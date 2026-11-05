@@ -1,0 +1,32 @@
+# Normalise text files to LF; let git detect everything else
+* text=auto
+*.yaml eol=lf
+*.lua eol=lf
+*.cs eol=lf
+*.csproj eol=lf
+*.sln eol=lf
+*.sh eol=lf
+*.py eol=lf
+*.cmd eol=crlf
+*.ps1 eol=crlf
+
+# Binary assets: never convert line endings or diff
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ttf binary
+*.otf binary
+*.wav binary
+*.ogg binary
+*.mp3 binary
+*.aud binary
+*.shp binary
+*.tmp binary
+*.mix binary
+*.bin binary
+*.oramap binary
+*.rpv binary
+*.zip binary
+
+# Custom for Visual Studio
+*.cs     diff=csharp

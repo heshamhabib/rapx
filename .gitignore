@@ -1,0 +1,84 @@
+user.config
+
+# Visual Studio
+Release
+bin
+obj
+*.ncb
+*.vcproj*
+*.suo
+*.user
+*.sln.cache
+*.manifest
+*.CodeAnalysisLog.xml
+*.lastcodeanalysissucceeded
+_ReSharper.*/
+/.vs
+
+# Visual Studio Code
+/.vscode/settings.json
+
+# backup files by various editors
+*~
+*.orig
+\#*
+.*.sw?
+
+# Monodevelop
+*.pidb
+*.userprefs
+
+# Mac OS X
+.DS_Store
+
+# SublimeText
+*.sublime-project
+*.sublime-workspace
+
+# NUnit
+/TestResult.xml
+/lib/
+
+# Support directory
+/Support
+
+# IntelliJ files
+.idea
+
+# ---- RAPX ----
+# Logs and scratch output
+*.log
+*.out
+__pycache__/
+*.pyc
+*.blend1
+
+# Raw incoming art (renders, Sketchfab downloads, AI images): too large for git, kept locally
+/assets/
+
+# 3D sources and renders (~10 GB of .blend/.glb); generator scripts in there are kept
+/artsrc/units/meshes/**
+!/artsrc/units/meshes/*.py
+!/artsrc/units/meshes/*.sh
+!/artsrc/units/meshes/*.json
+
+# Heavy media sources in artsrc
+/artsrc/**/*.blend
+/artsrc/**/*.glb
+/artsrc/**/*.gltf
+/artsrc/**/*.fbx
+/artsrc/**/*.usdc
+/artsrc/**/*.bin
+/artsrc/**/*.mp4
+/artsrc/**/*.rpv
+/artsrc/**/*.7z
+/artsrc/**/*.zip
+/artsrc/maps/*/build/
+/artsrc/audio/firearms/
+/artsrc/textures/*/
+/artsrc/maps/*/osm/
+# Regenerable intermediate renders and previews
+/artsrc/**/render/
+/artsrc/**/render-*/
+/artsrc/**/preview/
+/artsrc/**/upload/
