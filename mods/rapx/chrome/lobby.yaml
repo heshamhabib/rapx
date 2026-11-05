@@ -1,0 +1,456 @@
+Background@SERVER_LOBBY:
+	Logic: LobbyLogic, PxLobbyExtrasLogic
+		ChatTemplates:
+			Chat: CHAT_LINE_TEMPLATE
+			Join: SYSTEM_LINE_TEMPLATE
+			Leave: SYSTEM_LINE_TEMPLATE
+			System: SYSTEM_LINE_TEMPLATE
+			Mission: CHAT_LINE_TEMPLATE
+			Feedback: TRANSIENT_LINE_TEMPLATE
+	X: (WINDOW_WIDTH - WIDTH) / 2
+	Y: (WINDOW_HEIGHT - HEIGHT) / 2
+	Width: 1320
+	Height: 840
+	Background: px-lobby-frame
+	Children:
+		Background@TITLE_BADGE:
+			X: 24
+			Y: 20
+			Width: 48
+			Height: 48
+			Background: px-key-highlighted
+			Children:
+				Image@ICON:
+					X: 10
+					Y: 10
+					ImageCollection: px-lobby-icons
+					ImageName: title
+		Label@SERVER_NAME:
+			X: 86
+			Y: 16
+			Width: 560
+			Height: 36
+			Font: PXDisplayLarge
+		Label@SUBTITLE:
+			X: 88
+			Y: 52
+			Width: 400
+			Height: 16
+			Font: PXSidebarSmall
+			TextColor: FF6A55
+			Text: label-px-lobby-subtitle
+		Background@CHIP_PLAYERS:
+			X: PARENT_WIDTH - 24 - 3 * 158 - 2 * 8
+			Y: 28
+			Width: 158
+			Height: 34
+			Background: px-row
+			Children:
+				Image@ICON:
+					X: 12
+					Y: 9
+					ImageCollection: px-lobby-icons
+					ImageName: chip-players
+				Label@CAPTION:
+					X: 34
+					Width: 70
+					Height: 34
+					Font: PXSidebarSmall
+					TextColor: 9D9EA6
+					Text: label-px-lobby-chip-players
+				Label@CHIP_PLAYERS_VALUE:
+					X: 90
+					Width: 56
+					Height: 34
+					Align: Right
+					Font: PXDigitsSmall
+		Background@CHIP_SPEED:
+			X: PARENT_WIDTH - 24 - 2 * 158 - 8
+			Y: 28
+			Width: 158
+			Height: 34
+			Background: px-row
+			Children:
+				Image@ICON:
+					X: 12
+					Y: 9
+					ImageCollection: px-lobby-icons
+					ImageName: chip-speed
+				Label@CAPTION:
+					X: 34
+					Width: 60
+					Height: 34
+					Font: PXSidebarSmall
+					TextColor: 9D9EA6
+					Text: label-px-lobby-chip-speed
+				Label@CHIP_SPEED_VALUE:
+					X: 76
+					Width: 70
+					Height: 34
+					Align: Right
+					Font: PXDigitsSmall
+		Background@CHIP_CASH:
+			X: PARENT_WIDTH - 24 - 158
+			Y: 28
+			Width: 158
+			Height: 34
+			Background: px-row
+			Children:
+				Image@ICON:
+					X: 12
+					Y: 9
+					ImageCollection: px-lobby-icons
+					ImageName: chip-cash
+				Label@CAPTION:
+					X: 34
+					Width: 60
+					Height: 34
+					Font: PXSidebarSmall
+					TextColor: 9D9EA6
+					Text: label-px-lobby-chip-cash
+				Label@CHIP_CASH_VALUE:
+					X: 76
+					Width: 70
+					Height: 34
+					Align: Right
+					Font: PXDigitsSmall
+		ColorBlock@HEADER_RULE:
+			X: 24
+			Y: 86
+			Width: PARENT_WIDTH - 48
+			Height: 1
+			Color: 2A2B31
+		Container@SKIRMISH_TABS:
+			X: 24
+			Y: 100
+			Width: 500
+			Height: 48
+			Visible: False
+			Children:
+				Button@PLAYERS_TAB:
+					Width: 160
+					Height: 48
+					Background: px-key
+					Font: PXButton
+					Text: button-skirmish-tabs-players-tab
+					Children:
+						Image@ICON:
+							X: 18
+							Y: 14
+							ImageCollection: px-lobby-icons
+							ImageName: tab-players
+				Button@OPTIONS_TAB:
+					X: 166
+					Width: 160
+					Height: 48
+					Background: px-key
+					Font: PXButton
+					Text: button-skirmish-tabs-options-tab
+					Children:
+						Image@ICON:
+							X: 18
+							Y: 14
+							ImageCollection: px-lobby-icons
+							ImageName: tab-options
+				Button@MUSIC_TAB:
+					X: 332
+					Width: 160
+					Height: 48
+					Background: px-key
+					Font: PXButton
+					Text: label-music-title
+					Children:
+						Image@ICON:
+							X: 18
+							Y: 14
+							ImageCollection: px-lobby-icons
+							ImageName: tab-music
+		Container@MULTIPLAYER_TABS:
+			X: 24
+			Y: 100
+			Width: 640
+			Height: 48
+			Visible: False
+			Children:
+				Button@PLAYERS_TAB:
+					Width: 150
+					Height: 48
+					Background: px-key
+					Font: PXButton
+					Text: button-multiplayer-tabs-players-tab
+					Children:
+						Image@ICON:
+							X: 14
+							Y: 14
+							ImageCollection: px-lobby-icons
+							ImageName: tab-players
+				Button@OPTIONS_TAB:
+					X: 156
+					Width: 150
+					Height: 48
+					Background: px-key
+					Font: PXButton
+					Text: button-multiplayer-tabs-options-tab
+					Children:
+						Image@ICON:
+							X: 14
+							Y: 14
+							ImageCollection: px-lobby-icons
+							ImageName: tab-options
+				Button@MUSIC_TAB:
+					X: 312
+					Width: 150
+					Height: 48
+					Background: px-key
+					Font: PXButton
+					Text: label-music-title
+					Children:
+						Image@ICON:
+							X: 14
+							Y: 14
+							ImageCollection: px-lobby-icons
+							ImageName: tab-music
+				Button@SERVERS_TAB:
+					X: 468
+					Width: 150
+					Height: 48
+					Background: px-key
+					Font: PXButton
+					Text: button-multiplayer-tabs-servers-tab
+					Children:
+						Image@ICON:
+							X: 14
+							Y: 14
+							ImageCollection: px-lobby-icons
+							ImageName: map
+		DropDownButton@SLOTS_DROPDOWNBUTTON:
+			X: 24 + 940 - WIDTH
+			Y: 100
+			Width: 210
+			Height: 48
+			Background: px-key
+			Font: PXButton
+			Text: dropdownbutton-server-lobby-slots
+			Children:
+				Image@ICON:
+					X: 14
+					Y: 15
+					ImageCollection: px-lobby-icons
+					ImageName: admin
+		Button@RESET_OPTIONS_BUTTON:
+			X: 24 + 940 - WIDTH
+			Y: 100
+			Width: 210
+			Height: 48
+			Background: px-key
+			Font: PXButton
+			Text: button-server-lobby-reset-options
+			Children:
+				Image@ICON:
+					X: 14
+					Y: 15
+					ImageCollection: px-lobby-icons
+					ImageName: reset
+		Container@TOP_PANELS_ROOT:
+			X: 24
+			Y: 158
+			Width: 940
+			Height: PARENT_HEIGHT - 158 - 24
+		Container@MAP_PREVIEW_ROOT:
+			X: PARENT_WIDTH - 24 - WIDTH
+			Y: 100
+			Width: 308
+			Height: 392
+		Button@CHANGEMAP_BUTTON:
+			X: PARENT_WIDTH - 24 - WIDTH
+			Y: 500
+			Width: 308
+			Height: 52
+			Background: px-key
+			Font: PXButton
+			Align: Left
+			LeftMargin: 128
+			Text: button-server-lobby-changemap
+			Children:
+				Image@ICON:
+					X: 96
+					Y: 16
+					ImageCollection: px-lobby-icons
+					ImageName: map
+		Background@SUMMARY:
+			X: PARENT_WIDTH - 24 - WIDTH
+			Y: 562
+			Width: 308
+			Height: 130
+			Background: px-well
+			Children:
+				Label@SUMMARY_TITLE:
+					X: 14
+					Y: 10
+					Width: 200
+					Height: 16
+					Font: PXSidebarSmall
+					TextColor: 9D9EA6
+					Text: label-px-lobby-summary
+				Image@SUM_CASH_ICON:
+					X: 14
+					Y: 31
+					ImageCollection: px-lobby-icons
+					ImageName: sum-cash
+				Label@SUM_CASH_LABEL:
+					X: 40
+					Y: 28
+					Width: 140
+					Height: 20
+					Font: PXSmall
+					TextColor: B9BAC2
+					Text: label-px-lobby-sum-cash
+				Label@SUM_CASH_VALUE:
+					X: 160
+					Y: 28
+					Width: 134
+					Height: 20
+					Align: Right
+					Font: PXDigitsSmall
+				Image@SUM_UNITS_ICON:
+					X: 14
+					Y: 51
+					ImageCollection: px-lobby-icons
+					ImageName: sum-units
+				Label@SUM_UNITS_LABEL:
+					X: 40
+					Y: 48
+					Width: 140
+					Height: 20
+					Font: PXSmall
+					TextColor: B9BAC2
+					Text: label-px-lobby-sum-units
+				Label@SUM_UNITS_VALUE:
+					X: 130
+					Y: 48
+					Width: 164
+					Height: 20
+					Align: Right
+					Font: PXDigitsSmall
+				Image@SUM_SPEED_ICON:
+					X: 14
+					Y: 71
+					ImageCollection: px-lobby-icons
+					ImageName: sum-speed
+				Label@SUM_SPEED_LABEL:
+					X: 40
+					Y: 68
+					Width: 140
+					Height: 20
+					Font: PXSmall
+					TextColor: B9BAC2
+					Text: label-px-lobby-sum-speed
+				Label@SUM_SPEED_VALUE:
+					X: 160
+					Y: 68
+					Width: 134
+					Height: 20
+					Align: Right
+					Font: PXDigitsSmall
+				Image@SUM_TIME_ICON:
+					X: 14
+					Y: 91
+					ImageCollection: px-lobby-icons
+					ImageName: sum-time
+				Label@SUM_TIME_LABEL:
+					X: 40
+					Y: 88
+					Width: 140
+					Height: 20
+					Font: PXSmall
+					TextColor: B9BAC2
+					Text: label-px-lobby-sum-time
+				Label@SUM_TIME_VALUE:
+					X: 160
+					Y: 88
+					Width: 134
+					Height: 20
+					Align: Right
+					Font: PXDigitsSmall
+				Image@SUM_TREATY_ICON:
+					X: 14
+					Y: 111
+					ImageCollection: px-lobby-icons
+					ImageName: sum-treaty
+				Label@SUM_TREATY_LABEL:
+					X: 40
+					Y: 108
+					Width: 140
+					Height: 20
+					Font: PXSmall
+					TextColor: B9BAC2
+					Text: label-px-lobby-sum-treaty
+				Label@SUM_TREATY_VALUE:
+					X: 160
+					Y: 108
+					Width: 134
+					Height: 20
+					Align: Right
+					Font: PXDigitsSmall
+		Container@LOBBYCHAT:
+			X: 24
+			Y: PARENT_HEIGHT - HEIGHT - 24
+			Width: 300
+			Height: 120
+			Visible: False
+			Children:
+				ScrollPanel@CHAT_DISPLAY:
+					Width: PARENT_WIDTH
+					Height: PARENT_HEIGHT - 30
+					TopBottomSpacing: 2
+					ItemSpacing: 2
+				Button@CHAT_MODE:
+					Y: PARENT_HEIGHT - HEIGHT
+					Width: 50
+					Height: 25
+					Text: button-lobbychat-chat-mode.label
+					Font: Bold
+					Key: ToggleChatMode
+					TooltipText: button-lobbychat-chat-mode.tooltip
+					TooltipContainer: TOOLTIP_CONTAINER
+				TextField@CHAT_TEXTFIELD:
+					X: 55
+					Y: PARENT_HEIGHT - HEIGHT
+					Width: PARENT_WIDTH - 55
+					Height: 25
+		Button@START_GAME_BUTTON:
+			X: PARENT_WIDTH - 24 - WIDTH
+			Y: PARENT_HEIGHT - 24 - 52 - 10 - HEIGHT
+			Width: 308
+			Height: 52
+			Background: px-primary
+			Font: PXButton
+			Align: Left
+			LeftMargin: 128
+			Text: button-server-lobby-start-game
+			Children:
+				Image@ICON:
+					X: 96
+					Y: 15
+					ImageCollection: px-lobby-icons
+					ImageName: play
+		Button@DISCONNECT_BUTTON:
+			X: PARENT_WIDTH - 24 - WIDTH
+			Y: PARENT_HEIGHT - 24 - HEIGHT
+			Width: 308
+			Height: 52
+			Background: px-key
+			Font: PXButton
+			Align: Left
+			LeftMargin: 128
+			Text: button-server-lobby-disconnect
+			Children:
+				Image@ICON:
+					X: 96
+					Y: 17
+					ImageCollection: px-lobby-icons
+					ImageName: back
+		Container@FACTION_DROPDOWN_PANEL_ROOT:
+		TooltipContainer@TOOLTIP_CONTAINER:
+			# Below the 32pt HD cursors (artsrc/px-cursors): the stock 0, 20 puts the text under the arrow
+			CursorOffset: 0, 32

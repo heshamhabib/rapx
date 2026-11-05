@@ -1,0 +1,89 @@
+# Allied prism weapons: the Prism Tank and the Prism Tower.
+# Prism Towers relay their beams (PxPrismRelay): when one fires, every linked ready tower within 6 cells
+# (chained) beams its energy into it for +40 % damage each (max +200 %) and pauses its own attack meanwhile.
+
+PTNK:
+	Inherits: ^TrackedVehicle
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 235
+		Prerequisites: atek, ~vehicles.allies, ~techlevel.high
+		Description: actor-ptnk.description
+	Valued:
+		Cost: 1200
+	Tooltip:
+		Name: actor-ptnk.name
+		GenericName: actor-ptnk.generic-name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 32000
+	Armor:
+		Type: Light
+	Mobile:
+		Speed: 64
+	RevealsShroud:
+		MinRange: 4c0
+		Range: 7c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Turreted:
+		TurnSpeed: 16
+		# Cyber Tank turret ring (artsrc/units/meshes/import_sketchfab.py prints these)
+		Offset: -446,1,0
+	Armament:
+		Weapon: PrismTankBeam
+		# Beam leaves the turret gun's muzzle
+		LocalOffset: 338,0,492
+	AttackTurreted:
+	WithSpriteTurret:
+	ProducibleWithLevel:
+		Prerequisites: vehicles.upgraded
+	Selectable:
+		DecorationBounds: 1672, 1672
+	WithProductionIconOverlay:
+		Types: Veterancy
+		Prerequisites: vehicles.upgraded
+
+PTWR:
+	Inherits: ^Defense
+	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
+	Inherits@AUTOTARGET: ^AutoTargetGround
+	Buildable:
+		Queue: Defense
+		BuildPaletteOrder: 75
+		Prerequisites: dome, ~structures.allies, ~techlevel.medium
+		Description: actor-ptwr.description
+	Valued:
+		Cost: 1500
+	Tooltip:
+		Name: actor-ptwr.name
+	Selectable:
+		Bounds: 1024, 1024
+		DecorationBounds: 1024, 1792, 0, -384
+	Health:
+		HP: 40000
+	Armor:
+		Type: Heavy
+	RevealsShroud:
+		MinRange: 6c0
+		Range: 8c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 6c0
+	Armament:
+		Weapon: PrismTowerBeam
+		LocalOffset: 0,0,1200
+	AttackOmni:
+		PauseOnCondition: disabled || build-incomplete || prism-feeding
+	PxPrismRelay:
+		RequiresCondition: !disabled && !build-incomplete
+		RelayWeapon: PrismRelayBeam
+		LinkRange: 6c0
+		BeamOffset: 0,0,1200
+	Power:
+		Amount: -75
+	ProvidesPrerequisite@buildingname:

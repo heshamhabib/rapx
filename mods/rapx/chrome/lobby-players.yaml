@@ -1,0 +1,687 @@
+# RAPX lobby player list and nation picker. Widget ids must match LobbyLogic / LobbyUtils.
+
+Container@LOBBY_PLAYER_BIN:
+	Width: PARENT_WIDTH
+	Height: PARENT_HEIGHT
+	Children:
+		Container@LABEL_CONTAINER:
+			Width: PARENT_WIDTH
+			Height: 24
+			Children:
+				Image@HEADER_COMMANDER_ICON:
+					X: 26
+					Y: 4
+					ImageCollection: px-lobby-icons
+					ImageName: col-commander
+				Label@HEADER_COMMANDER:
+					X: 48
+					Width: 120
+					Height: 24
+					Font: PXSidebarSmall
+					TextColor: 9D9EA6
+					Text: label-px-lobby-col-commander
+				Image@HEADER_COLOR_ICON:
+					X: 260
+					Y: 4
+					ImageCollection: px-lobby-icons
+					ImageName: col-color
+				Label@HEADER_COLOR:
+					X: 282
+					Width: 120
+					Height: 24
+					Font: PXSidebarSmall
+					TextColor: 9D9EA6
+					Text: label-px-lobby-col-color
+				Image@HEADER_NATION_ICON:
+					X: 344
+					Y: 4
+					ImageCollection: px-lobby-icons
+					ImageName: col-nation
+				Label@HEADER_NATION:
+					X: 366
+					Width: 120
+					Height: 24
+					Font: PXSidebarSmall
+					TextColor: 9D9EA6
+					Text: label-px-lobby-col-nation
+				Image@HEADER_TEAM_ICON:
+					X: 548
+					Y: 4
+					ImageCollection: px-lobby-icons
+					ImageName: col-team
+				Label@HEADER_TEAM:
+					X: 570
+					Width: 120
+					Height: 24
+					Font: PXSidebarSmall
+					TextColor: 9D9EA6
+					Text: label-px-lobby-col-team
+				Image@HEADER_HANDICAP_ICON:
+					X: 620
+					Y: 4
+					ImageCollection: px-lobby-icons
+					ImageName: col-handicap
+				Label@HEADER_HANDICAP:
+					X: 642
+					Width: 120
+					Height: 24
+					Font: PXSidebarSmall
+					TextColor: 9D9EA6
+					Text: label-px-lobby-col-handicap
+				Image@HEADER_SPAWN_ICON:
+					X: 712
+					Y: 4
+					ImageCollection: px-lobby-icons
+					ImageName: col-spawn
+				Label@HEADER_SPAWN:
+					X: 734
+					Width: 120
+					Height: 24
+					Font: PXSidebarSmall
+					TextColor: 9D9EA6
+					Text: label-px-lobby-col-spawn
+				Image@HEADER_STATUS_ICON:
+					X: 784
+					Y: 4
+					ImageCollection: px-lobby-icons
+					ImageName: col-status
+				Label@HEADER_STATUS:
+					X: 806
+					Width: 120
+					Height: 24
+					Font: PXSidebarSmall
+					TextColor: 9D9EA6
+					Text: label-px-lobby-col-status
+		ScrollPanel@LOBBY_PLAYERS:
+			Y: 30
+			Width: PARENT_WIDTH
+			Height: PARENT_HEIGHT - 30
+			Background: px-well
+			TopBottomSpacing: 10
+			ItemSpacing: 8
+			Children:
+				Background@TEMPLATE_EDITABLE_PLAYER:
+					X: 10
+					Width: 892
+					Height: 68
+					Background: px-row
+					Visible: false
+					Children:
+						PxPlayerRowDecor@DECOR:
+							Width: 892
+							Height: 68
+							StatusX: 774
+							StatusWidth: 110
+							TagX: 74
+						Container@LATENCY:
+							X: 4
+							Y: 4
+							Width: 11
+							Height: 14
+							Visible: false
+							Children:
+								ColorBlock@LATENCY_COLOR:
+									X: 2
+									Y: 2
+									Width: PARENT_WIDTH - 4
+									Height: PARENT_HEIGHT - 4
+						ClientTooltipRegion@LATENCY_REGION:
+							X: 4
+							Width: 11
+							Height: 20
+							TooltipContainer: TOOLTIP_CONTAINER
+							Template: LATENCY_TOOLTIP
+						TextField@NAME:
+							X: 68
+							Y: 6
+							Width: 172
+							Height: 30
+							Text: Name
+							LeftMargin: 24
+							MaxLength: 16
+							Font: PXButton
+							Visible: false
+							Children:
+								Image@PROFILE:
+									ImageCollection: lobby-bits
+									X: 4
+									Y: 7
+									Visible: false
+								ClientTooltipRegion@PROFILE_TOOLTIP:
+									X: 4
+									Y: 7
+									Width: 16
+									Height: 16
+									TooltipContainer: TOOLTIP_CONTAINER
+									Template: ANONYMOUS_PLAYER_TOOLTIP
+						DropDownButton@SLOT_OPTIONS:
+							X: 68
+							Y: 6
+							Width: 172
+							Height: 30
+							Background: px-key
+							Text: label-lobby-players-name
+							Font: PXButton
+							Visible: false
+						DropDownButton@COLOR:
+							X: 250
+							Y: 13
+							Width: 76
+							Height: 42
+							Background: px-key
+							IgnoreChildMouseOver: true
+							Children:
+								ColorBlock@COLORBLOCK:
+									X: 8
+									Y: 12
+									Width: PARENT_WIDTH - 40
+									Height: 18
+						DropDownButton@FACTION:
+							X: 334
+							Y: 11
+							Width: 196
+							Height: 46
+							Background: px-key
+							IgnoreChildMouseOver: true
+							TooltipContainer: TOOLTIP_CONTAINER
+							PanelRoot: FACTION_DROPDOWN_PANEL_ROOT
+							Children:
+								Image@FACTIONFLAG:
+									X: 8
+									Y: 8
+									Width: 30
+									Height: 15
+									Visible: false
+								Label@FACTIONNAME:
+									X: 66
+									Y: 4
+									Width: 96
+									Height: 22
+									Font: PXButton
+									Text: label-lobby-players-faction
+								PxFactionDecor@DECOR:
+									Mode: Button
+									FlagWidget: FACTIONFLAG
+									FlagSize: 48, 32
+									Width: 1
+									Height: 1
+						DropDownButton@TEAM_DROPDOWN:
+							X: 538
+							Y: 13
+							Width: 64
+							Height: 42
+							Background: px-key
+							Font: PXDigitsSmall
+							Text: label-lobby-players-team
+						DropDownButton@HANDICAP_DROPDOWN:
+							X: 610
+							Y: 13
+							Width: 84
+							Height: 42
+							Background: px-key
+							Font: PXDigitsSmall
+							TooltipContainer: TOOLTIP_CONTAINER
+							TooltipText: dropdownbutton-lobby-players-handicap-tooltip
+						DropDownButton@SPAWN_DROPDOWN:
+							X: 702
+							Y: 13
+							Width: 64
+							Height: 42
+							Background: px-key
+							Font: PXDigitsSmall
+							Text: label-lobby-players-spawn
+						PxReadyPill@STATUS_CHECKBOX:
+							X: 774
+							Y: 13
+							Width: 110
+							Height: 42
+							Visible: false
+						Image@STATUS_IMAGE:
+							X: 774
+							Y: 13
+							Width: 1
+							Height: 1
+							ImageCollection: px-blank
+							ImageName: blank
+							Visible: false
+				Background@TEMPLATE_NONEDITABLE_PLAYER:
+					X: 10
+					Width: 892
+					Height: 68
+					Background: px-row
+					Visible: false
+					Children:
+						PxPlayerRowDecor@DECOR:
+							Width: 892
+							Height: 68
+							StatusX: 774
+							StatusWidth: 110
+							TagX: 74
+						Container@LATENCY:
+							X: 4
+							Y: 4
+							Width: 11
+							Height: 14
+							Visible: false
+							Children:
+								ColorBlock@LATENCY_COLOR:
+									X: 2
+									Y: 2
+									Width: PARENT_WIDTH - 4
+									Height: PARENT_HEIGHT - 4
+						ClientTooltipRegion@LATENCY_REGION:
+							X: 4
+							Width: 11
+							Height: 20
+							TooltipContainer: TOOLTIP_CONTAINER
+							Template: LATENCY_TOOLTIP
+						Image@PROFILE:
+							ImageCollection: lobby-bits
+							X: 52
+							Y: 12
+							Visible: false
+						ClientTooltipRegion@PROFILE_TOOLTIP:
+							X: 52
+							Y: 12
+							Width: 16
+							Height: 16
+							TooltipContainer: TOOLTIP_CONTAINER
+							Template: ANONYMOUS_PLAYER_TOOLTIP
+						Label@NAME:
+							X: 72
+							Y: 6
+							Width: 168
+							Height: 30
+							Font: PXButton
+							Text: label-lobby-players-name
+						DropDownButton@PLAYER_ACTION:
+							X: 68
+							Y: 6
+							Width: 172
+							Height: 30
+							Background: px-key
+							Font: PXButton
+							Align: Left
+							LeftMargin: 24
+							Visible: false
+							Children:
+								Image@PROFILE:
+									ImageCollection: lobby-bits
+									X: 4
+									Y: 7
+									Visible: false
+								ClientTooltipRegion@PROFILE_TOOLTIP:
+									X: 4
+									Y: 7
+									Width: 16
+									Height: 16
+									TooltipContainer: TOOLTIP_CONTAINER
+									Template: ANONYMOUS_PLAYER_TOOLTIP
+						ColorBlock@COLORBLOCK:
+							X: 258
+							Y: 25
+							Width: 60
+							Height: 18
+						Container@FACTION:
+							X: 334
+							Width: 196
+							Height: 68
+							Children:
+								Image@FACTIONFLAG:
+									X: 8
+									Y: 8
+									Width: 30
+									Height: 15
+									Visible: false
+								Label@FACTIONNAME:
+									X: 66
+									Y: 14
+									Width: 96
+									Height: 22
+									Font: PXButton
+									Text: label-lobby-players-faction
+								PxFactionDecor@DECOR:
+									Mode: Button
+									FlagWidget: FACTIONFLAG
+									FlagSize: 48, 32
+									Width: 1
+									Height: 1
+						Label@TEAM:
+							X: 538
+							Width: 64
+							Height: 68
+							Align: Center
+							Font: PXDigitsSmall
+							Text: label-lobby-players-team
+						DropDownButton@TEAM_DROPDOWN:
+							X: 538
+							Y: 13
+							Width: 64
+							Height: 42
+							Background: px-key
+							Font: PXDigitsSmall
+							Visible: false
+						Label@HANDICAP:
+							X: 610
+							Width: 84
+							Height: 68
+							Align: Center
+							Font: PXDigitsSmall
+						DropDownButton@HANDICAP_DROPDOWN:
+							X: 610
+							Y: 13
+							Width: 84
+							Height: 42
+							Background: px-key
+							Font: PXDigitsSmall
+							TooltipContainer: TOOLTIP_CONTAINER
+							TooltipText: dropdownbutton-lobby-players-handicap-tooltip
+						Label@SPAWN:
+							X: 702
+							Width: 64
+							Height: 68
+							Align: Center
+							Font: PXDigitsSmall
+						DropDownButton@SPAWN_DROPDOWN:
+							X: 702
+							Y: 13
+							Width: 64
+							Height: 42
+							Background: px-key
+							Font: PXDigitsSmall
+							Visible: false
+						Image@STATUS_IMAGE:
+							X: 774
+							Y: 13
+							Width: 1
+							Height: 1
+							ImageCollection: px-blank
+							ImageName: blank
+							Visible: false
+				Background@TEMPLATE_EMPTY:
+					X: 10
+					Width: 892
+					Height: 68
+					Background: px-row-empty
+					Visible: false
+					Children:
+						Label@NAME:
+							X: 72
+							Y: 6
+							Width: 168
+							Height: 30
+							Font: PXButton
+							TextColor: B9BAC2
+							Text: label-lobby-players-name
+						Label@OPEN_HINT:
+							X: 74
+							Y: 38
+							Width: 200
+							Height: 16
+							Font: PXSidebarSmall
+							TextColor: 8A8B93
+							Text: label-px-lobby-open-slot
+						DropDownButton@SLOT_OPTIONS:
+							X: 68
+							Y: 6
+							Width: 172
+							Height: 30
+							Background: px-key
+							Text: label-lobby-players-name
+							Font: PXButton
+							Visible: false
+						Button@JOIN:
+							X: 334
+							Y: 13
+							Width: 260
+							Height: 42
+							Background: px-key
+							Font: PXButton
+							Text: button-lobby-players-join
+							Children:
+								Image@ICON:
+									X: 18
+									Y: 13
+									ImageCollection: px-lobby-icons
+									ImageName: join
+						Image@SLOT_ICON:
+							X: 30
+							Y: 26
+							ImageCollection: px-lobby-icons
+							ImageName: join
+				Background@TEMPLATE_EDITABLE_SPECTATOR:
+					X: 10
+					Width: 892
+					Height: 68
+					Background: px-row
+					Visible: false
+					Children:
+						PxPlayerRowDecor@DECOR:
+							Width: 892
+							Height: 68
+							StatusX: 774
+							StatusWidth: 110
+							TagX: 74
+						Container@LATENCY:
+							X: 4
+							Y: 4
+							Width: 11
+							Height: 14
+							Visible: false
+							Children:
+								ColorBlock@LATENCY_COLOR:
+									X: 2
+									Y: 2
+									Width: PARENT_WIDTH - 4
+									Height: PARENT_HEIGHT - 4
+						ClientTooltipRegion@LATENCY_REGION:
+							X: 4
+							Width: 11
+							Height: 20
+							TooltipContainer: TOOLTIP_CONTAINER
+							Template: LATENCY_TOOLTIP
+						TextField@NAME:
+							X: 68
+							Y: 6
+							Width: 172
+							Height: 30
+							Text: Name
+							LeftMargin: 24
+							MaxLength: 16
+							Font: PXButton
+							Children:
+								Image@PROFILE:
+									ImageCollection: lobby-bits
+									X: 4
+									Y: 7
+									Visible: false
+								ClientTooltipRegion@PROFILE_TOOLTIP:
+									X: 4
+									Y: 7
+									Width: 16
+									Height: 16
+									TooltipContainer: TOOLTIP_CONTAINER
+									Template: ANONYMOUS_PLAYER_TOOLTIP
+						Label@SPECTATOR:
+							X: 250
+							Width: 514
+							Height: 68
+							Text: label-lobby-players-spectator
+							Align: Center
+							Font: PXButton
+							TextColor: 9D9EA6
+						PxReadyPill@STATUS_CHECKBOX:
+							X: 774
+							Y: 13
+							Width: 110
+							Height: 42
+							Visible: false
+						Image@STATUS_IMAGE:
+							X: 774
+							Y: 13
+							Width: 1
+							Height: 1
+							ImageCollection: px-blank
+							ImageName: blank
+							Visible: false
+				Background@TEMPLATE_NONEDITABLE_SPECTATOR:
+					X: 10
+					Width: 892
+					Height: 68
+					Background: px-row
+					Visible: false
+					Children:
+						PxPlayerRowDecor@DECOR:
+							Width: 892
+							Height: 68
+							StatusX: 774
+							StatusWidth: 110
+							TagX: 74
+						Container@LATENCY:
+							X: 4
+							Y: 4
+							Width: 11
+							Height: 14
+							Visible: false
+							Children:
+								ColorBlock@LATENCY_COLOR:
+									X: 2
+									Y: 2
+									Width: PARENT_WIDTH - 4
+									Height: PARENT_HEIGHT - 4
+						ClientTooltipRegion@LATENCY_REGION:
+							X: 4
+							Width: 11
+							Height: 20
+							TooltipContainer: TOOLTIP_CONTAINER
+							Template: LATENCY_TOOLTIP
+						Image@PROFILE:
+							ImageCollection: lobby-bits
+							X: 52
+							Y: 12
+							Visible: false
+						ClientTooltipRegion@PROFILE_TOOLTIP:
+							X: 52
+							Y: 12
+							Width: 16
+							Height: 16
+							TooltipContainer: TOOLTIP_CONTAINER
+							Template: ANONYMOUS_PLAYER_TOOLTIP
+						Label@NAME:
+							X: 72
+							Y: 6
+							Width: 168
+							Height: 30
+							Font: PXButton
+							Text: label-lobby-players-name
+						DropDownButton@PLAYER_ACTION:
+							X: 68
+							Y: 6
+							Width: 172
+							Height: 30
+							Background: px-key
+							Font: PXButton
+							Align: Left
+							LeftMargin: 24
+							Visible: false
+							Children:
+								Image@PROFILE:
+									ImageCollection: lobby-bits
+									X: 4
+									Y: 7
+									Visible: false
+								ClientTooltipRegion@PROFILE_TOOLTIP:
+									X: 4
+									Y: 7
+									Width: 16
+									Height: 16
+									TooltipContainer: TOOLTIP_CONTAINER
+									Template: ANONYMOUS_PLAYER_TOOLTIP
+						Label@SPECTATOR:
+							X: 250
+							Width: 514
+							Height: 68
+							Text: label-lobby-players-spectator
+							Align: Center
+							Font: PXButton
+							TextColor: 9D9EA6
+						Image@STATUS_IMAGE:
+							X: 774
+							Y: 13
+							Width: 1
+							Height: 1
+							ImageCollection: px-blank
+							ImageName: blank
+							Visible: false
+				PxHidden@TEMPLATE_NEW_SPECTATOR:
+					X: 10
+					Width: 892
+					Height: 0
+					Visible: false
+					Children:
+						Checkbox@TOGGLE_SPECTATORS:
+							X: 20
+							Y: 16
+							Width: 260
+							Height: 24
+							Font: PXSmall
+							Text: checkbox-lobby-players-new-spectator-toggle
+						Button@SPECTATE:
+							X: 334
+							Y: 8
+							Width: 260
+							Height: 40
+							Background: px-key
+							Font: PXButton
+							Text: button-lobby-players-spectate
+							Children:
+								Image@ICON:
+									X: 18
+									Y: 12
+									ImageCollection: px-lobby-icons
+									ImageName: spectate
+
+PxFactionPickerPanel@FACTION_DROPDOWN_TEMPLATE:
+	Width: 640
+	Background: px-lobby-frame
+	ScrollBar: Hidden
+	TopBottomSpacing: 0
+	Children:
+		ScrollItem@HEADER:
+			Background: 
+			Width: 300
+			Height: 28
+			Visible: false
+			Children:
+				Label@LABEL:
+					X: 40
+					Width: 200
+					Height: 26
+					Font: PXSidebarLabel
+				PxFactionDecor@DECOR:
+					Mode: Header
+					Width: 1
+					Height: 1
+		ScrollItem@TEMPLATE:
+			Background: px-card
+			Width: 300
+			Height: 60
+			Visible: false
+			TooltipContainer: TOOLTIP_CONTAINER
+			Children:
+				Image@FLAG:
+					X: 10
+					Y: 10
+					Width: 30
+					Height: 15
+					Visible: false
+				Label@LABEL:
+					X: 82
+					Y: 4
+					Width: 170
+					Height: 22
+					Font: PXButton
+				PxFactionDecor@DECOR:
+					Mode: Card
+					Width: 1
+					Height: 1

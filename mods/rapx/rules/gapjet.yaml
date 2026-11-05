@@ -1,0 +1,68 @@
+# AE-2 Shroud Hawk (2026-11-01): the flying Gap Generator. An unarmed Union radar plane (E-2D Hawkeye model,
+# artsrc/units/meshes/sketchfab_models.py jet.gapgen) that hides the ground under it from enemies while airborne,
+# like the Mobile Gap Generator. Order it somewhere and it circles there.
+
+JET.GAPGEN:
+	Inherits: ^Plane
+	Buildable:
+		Queue: Aircraft
+		BuildAtProductionType: Plane
+		BuildPaletteOrder: 228
+		Prerequisites: ~afld, ~aircraft.allies, atek, ~techlevel.high
+		Description: actor-jet-gapgen.description
+	Valued:
+		Cost: 1800
+	Tooltip:
+		Name: actor-jet-gapgen.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 12000
+	RevealsShroud:
+		MinRange: 9c0
+		Range: 11c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 9c0
+		Type: GroundPosition
+	CreatesShroud:
+		Range: 8c0
+		RequiresCondition: airborne
+	PxRenderShroudDome:
+		RequiresCondition: airborne
+	Aircraft:
+		CruiseAltitude: 2560
+		TurnSpeed: 12
+		Speed: 150
+		RepulsionSpeed: 40
+		MaximumPitch: 56
+	-AmbientSound@PASS:
+	AmbientSound@ENGINE:
+		SoundFiles: ra|audio/aircraft/prop-engine.wav
+		RequiresCondition: airborne
+	Selectable:
+		Bounds: 3000, 2800, 0, 0
+		DecorationBounds: 3328, 3104, 0, 220
+	SpawnActorOnDeath:
+		Actor: JET.GAPGEN.Husk
+	LeavesTrails:
+		Offsets: -853,0,171
+		MovingInterval: 2
+		Image: smokey
+		SpawnAtLastPosition: False
+		Type: CenterPosition
+		RequiresCondition: enable-smoke
+	GrantConditionOnDamageState@SmokeTrail:
+		Condition: enable-smoke
+	PxAltitudeScale:
+		LandedScale: 0.6
+	-WithShadow:
+	WithShadow@SCALED:
+		Offset: 43, 128, 0
+		ZOffset: -129
+
+JET.GAPGEN.Husk:
+	Inherits: MIG.Husk
+	RenderSprites:
+		Image: jet.gapgen

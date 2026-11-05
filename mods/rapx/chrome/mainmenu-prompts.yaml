@@ -1,0 +1,457 @@
+Background@MAINMENU_INTRODUCTION_PROMPT:
+	Logic: IntroductionPromptLogic, PxControlSchemeLogic
+	X: (WINDOW_WIDTH - WIDTH) / 2
+	Y: (WINDOW_HEIGHT - HEIGHT) / 2
+	Width: 760
+	Height: 590
+	Background: px-dialog
+	Children:
+		Label@PROMPT_TITLE:
+			Width: PARENT_WIDTH
+			Y: 26
+			Height: 34
+			Font: PXTitle
+			Align: Center
+			Text: label-mainmenu-introduction-prompt-title
+		Image@TITLE_LINE:
+			X: (PARENT_WIDTH - WIDTH) / 2
+			Y: 64
+			Width: 320
+			Height: 6
+			ImageCollection: px-deco
+			ImageName: title-line
+		Label@DESC_A:
+			Width: PARENT_WIDTH
+			Y: 80
+			Height: 20
+			Font: PXBody
+			Align: Center
+			Text: label-mainmenu-introduction-prompt-desc-a
+			TextColor: D6CFCC
+		Label@DESC_B:
+			Width: PARENT_WIDTH
+			Y: 100
+			Height: 20
+			Font: PXBody
+			Align: Center
+			Text: label-mainmenu-introduction-prompt-desc-b
+			TextColor: D6CFCC
+		ScrollPanel@SETTINGS_SCROLLPANEL:
+			X: 30
+			Y: 132
+			Width: PARENT_WIDTH - 60
+			Height: PARENT_HEIGHT - 206
+			CollapseHiddenChildren: True
+			TopBottomSpacing: 5
+			ItemSpacing: 10
+			ScrollBar: Hidden
+			Background:
+			ScrollBarBackground:
+			Children:
+				Background@PROFILE_SECTION_HEADER:
+					X: 5
+					Width: PARENT_WIDTH - 10
+					Height: 13
+					Background: px-section
+					ClickThrough: True
+					Children:
+						Label@LABEL:
+							Width: PARENT_WIDTH
+							Height: PARENT_HEIGHT
+							Font: PXHeader
+							Align: Center
+							Text: label-profile-section-header
+							TextColor: FFFFFF
+				Container@ROW:
+					Width: PARENT_WIDTH
+					Height: 50
+					Children:
+						Container@PLAYER_CONTAINER:
+							X: 10
+							Width: PARENT_WIDTH / 2 - 20
+							Children:
+								Label@PLAYER:
+									Width: PARENT_WIDTH
+									Height: 20
+									Text: label-player-container
+									Font: PXLabel
+								TextField@PLAYERNAME:
+									Y: 25
+									Width: PARENT_WIDTH
+									Height: 25
+									MaxLength: 16
+									Text: Name
+									Background: px-field
+									Font: PXBody
+						Container@PLAYERCOLOR_CONTAINER:
+							X: PARENT_WIDTH / 2 + 10
+							Width: PARENT_WIDTH / 2 - 20
+							Children:
+								Label@COLOR:
+									Width: PARENT_WIDTH
+									Height: 20
+									Text: label-playercolor-container-color
+									Font: PXLabel
+								DropDownButton@PLAYERCOLOR:
+									Y: 25
+									Width: 75
+									Height: 25
+									IgnoreChildMouseOver: true
+									PanelAlign: Right
+									Background: px-button
+									Separators: px-dropdown-separators
+									Font: PXBody
+									Children:
+										ColorBlock@COLORBLOCK:
+											X: 5
+											Y: 6
+											Width: PARENT_WIDTH - 35
+											Height: PARENT_HEIGHT - 12
+				Container@SPACER:
+				Background@INPUT_SECTION_HEADER:
+					X: 5
+					Width: PARENT_WIDTH - 10
+					Height: 13
+					Background: px-section
+					ClickThrough: True
+					Children:
+						Label@LABEL:
+							Width: PARENT_WIDTH
+							Height: PARENT_HEIGHT
+							Font: PXHeader
+							Align: Center
+							Text: label-input-section-header
+							TextColor: FFFFFF
+				Container@ROW:
+					Width: PARENT_WIDTH
+					Height: 50
+					Children:
+						Container@CONTROL_SCHEME_CONTAINER:
+							X: 10
+							Width: PARENT_WIDTH / 2 - 20
+							Children:
+								Label@CONTROL_SCHEME_LABEL:
+									Width: PARENT_WIDTH
+									Height: 20
+									Font: PXLabel
+									Text: label-px-control-scheme
+								DropDownButton@CONTROL_SCHEME_DROPDOWN:
+									Y: 25
+									Width: PARENT_WIDTH
+									Height: 25
+									Font: PXBody
+									Background: px-button
+									Separators: px-dropdown-separators
+						Container@MOUSE_CONTROL_CONTAINER:
+							X: 10
+							Width: PARENT_WIDTH / 2 - 20
+							Visible: false
+							Children:
+								Label@MOUSE_CONTROL_LABEL:
+									Width: PARENT_WIDTH
+									Height: 20
+									Font: PXLabel
+									Text: label-mouse-control-container
+								DropDownButton@MOUSE_CONTROL_DROPDOWN:
+									Y: 25
+									Width: PARENT_WIDTH
+									Height: 25
+									Font: PXBody
+									Background: px-button
+									Separators: px-dropdown-separators
+						Container@MOUSE_CONTROL_DESC_CLASSIC:
+							X: PARENT_WIDTH / 2 + 10
+							Width: PARENT_WIDTH / 2 - 20
+							Children:
+								LabelWithHighlight@DESC_SELECTION:
+									Width: PARENT_WIDTH
+									Height: 16
+									Font: PXSmall
+									Text: label-mouse-control-desc-classic-selection
+									TextColor: D6CFCC
+									HighlightColor: FF6A50
+								LabelWithHighlight@DESC_COMMANDS:
+									Y: 17
+									Width: PARENT_WIDTH
+									Height: 16
+									Font: PXSmall
+									Text: label-mouse-control-desc-classic-commands
+									TextColor: D6CFCC
+									HighlightColor: FF6A50
+								LabelWithHighlight@DESC_BUILDINGS:
+									Y: 34
+									Width: PARENT_WIDTH
+									Height: 16
+									Font: PXSmall
+									Text: label-mouse-control-desc-classic-buildings
+									TextColor: D6CFCC
+									HighlightColor: FF6A50
+								LabelWithHighlight@DESC_SUPPORT:
+									Y: 51
+									Width: PARENT_WIDTH
+									Height: 16
+									Font: PXSmall
+									Text: label-mouse-control-desc-classic-support
+									TextColor: D6CFCC
+									HighlightColor: FF6A50
+								LabelWithHighlight@DESC_ZOOM:
+									Y: 68
+									Width: PARENT_WIDTH
+									Height: 16
+									Font: PXSmall
+									Text: label-mouse-control-desc-classic-zoom
+									TextColor: D6CFCC
+									HighlightColor: FF6A50
+								LabelWithHighlight@DESC_ZOOM_MODIFIER:
+									Y: 68
+									Width: PARENT_WIDTH
+									Height: 16
+									Font: PXSmall
+									Text: label-mouse-control-desc-classic-zoom-modifier
+									TextColor: D6CFCC
+									HighlightColor: FF6A50
+								LabelWithHighlight@DESC_SCROLL_RIGHT:
+									Y: 85
+									Width: PARENT_WIDTH
+									Height: 16
+									Font: PXSmall
+									Text: label-mouse-control-desc-classic-scroll-right
+									TextColor: D6CFCC
+									HighlightColor: FF6A50
+								LabelWithHighlight@DESC_SCROLL_MIDDLE:
+									Y: 85
+									Width: PARENT_WIDTH
+									Height: 16
+									Font: PXSmall
+									Text: label-mouse-control-desc-classic-scroll-middle
+									TextColor: D6CFCC
+									HighlightColor: FF6A50
+								Label@DESC_EDGESCROLL:
+									X: 9
+									Y: 102
+									Width: PARENT_WIDTH
+									Height: 16
+									Font: PXSmall
+									Text: label-mouse-control-desc-classic-edgescroll
+									TextColor: D6CFCC
+						Container@MOUSE_CONTROL_DESC_MODERN:
+							X: PARENT_WIDTH / 2 + 10
+							Width: PARENT_WIDTH / 2 - 20
+							Children:
+								LabelWithHighlight@DESC_SELECTION:
+									Width: PARENT_WIDTH
+									Height: 16
+									Font: PXSmall
+									Text: label-mouse-control-desc-modern-selection
+									TextColor: D6CFCC
+									HighlightColor: FF6A50
+								LabelWithHighlight@DESC_COMMANDS:
+									Y: 17
+									Width: PARENT_WIDTH
+									Height: 16
+									Font: PXSmall
+									Text: label-mouse-control-desc-modern-commands
+									TextColor: D6CFCC
+									HighlightColor: FF6A50
+								LabelWithHighlight@DESC_BUILDINGS:
+									Y: 34
+									Width: PARENT_WIDTH
+									Height: 16
+									Font: PXSmall
+									Text: label-mouse-control-desc-modern-buildings
+									TextColor: D6CFCC
+									HighlightColor: FF6A50
+								LabelWithHighlight@DESC_SUPPORT:
+									Y: 51
+									Width: PARENT_WIDTH
+									Height: 16
+									Font: PXSmall
+									Text: label-mouse-control-desc-modern-support
+									TextColor: D6CFCC
+									HighlightColor: FF6A50
+								LabelWithHighlight@DESC_ZOOM:
+									Y: 68
+									Width: PARENT_WIDTH
+									Height: 16
+									Font: PXSmall
+									Text: label-mouse-control-desc-modern-zoom
+									TextColor: D6CFCC
+									HighlightColor: FF6A50
+								LabelWithHighlight@DESC_ZOOM_MODIFIER:
+									Y: 68
+									Width: PARENT_WIDTH
+									Height: 16
+									Font: PXSmall
+									Text: label-mouse-control-desc-modern-zoom-modifier
+									TextColor: D6CFCC
+									HighlightColor: FF6A50
+								LabelWithHighlight@DESC_SCROLL_RIGHT:
+									Y: 85
+									Width: PARENT_WIDTH
+									Height: 16
+									Font: PXSmall
+									Text: label-mouse-control-desc-modern-scroll-right
+									TextColor: D6CFCC
+									HighlightColor: FF6A50
+								LabelWithHighlight@DESC_SCROLL_MIDDLE:
+									Y: 85
+									Width: PARENT_WIDTH
+									Height: 16
+									Font: PXSmall
+									Text: label-mouse-control-desc-modern-scroll-middle
+									TextColor: D6CFCC
+									HighlightColor: FF6A50
+								Label@DESC_EDGESCROLL:
+									X: 9
+									Y: 102
+									Width: PARENT_WIDTH
+									Height: 16
+									Font: PXSmall
+									Text: label-mouse-control-desc-modern-edgescroll
+									TextColor: D6CFCC
+				Container@ROW:
+					Width: PARENT_WIDTH
+					Height: 20
+					Children:
+						Container@EDGESCROLL_CHECKBOX_CONTAINER:
+							X: 10
+							Width: PARENT_WIDTH / 2 - 20
+							Children:
+								Checkbox@EDGESCROLL_CHECKBOX:
+									Width: PARENT_WIDTH
+									Height: 20
+									Font: PXBody
+									Text: checkbox-edgescroll-container
+									Background: px-field
+				Container@SPACER:
+					Height: 30
+				Background@DISPLAY_SECTION_HEADER:
+					X: 5
+					Width: PARENT_WIDTH - 10
+					Height: 13
+					Background: px-section
+					ClickThrough: True
+					Children:
+						Label@LABEL:
+							Width: PARENT_WIDTH
+							Height: PARENT_HEIGHT
+							Font: PXHeader
+							Align: Center
+							Text: label-display-section-header
+							TextColor: FFFFFF
+				Container@ROW:
+					Width: PARENT_WIDTH
+					Height: 50
+					Children:
+						Container@BATTLEFIELD_CAMERA_DROPDOWN_CONTAINER:
+							X: 10
+							Width: PARENT_WIDTH / 2 - 20
+							Children:
+								Label@BATTLEFIELD_CAMERA:
+									Width: PARENT_WIDTH
+									Height: 20
+									Text: label-battlefield-camera-dropdown
+									Font: PXLabel
+								DropDownButton@BATTLEFIELD_CAMERA_DROPDOWN:
+									Y: 25
+									Width: PARENT_WIDTH
+									Height: 25
+									Font: PXBody
+									Background: px-button
+									Separators: px-dropdown-separators
+						Container@UI_SCALE_DROPDOWN_CONTAINER:
+							X: PARENT_WIDTH / 2 + 10
+							Width: PARENT_WIDTH / 2 - 20
+							Children:
+								Label@UI_SCALE:
+									Width: PARENT_WIDTH
+									Height: 20
+									Text: label-ui-scale-dropdown
+									Font: PXLabel
+								DropDownButton@UI_SCALE_DROPDOWN:
+									Y: 25
+									Width: PARENT_WIDTH
+									Height: 25
+									Font: PXBody
+									Background: px-button
+									Separators: px-dropdown-separators
+				Container@ROW:
+					Width: PARENT_WIDTH
+					Height: 20
+					Children:
+						Container@CURSORDOUBLE_CHECKBOX_CONTAINER:
+							X: PARENT_WIDTH / 2 + 10
+							Width: PARENT_WIDTH / 2 - 20
+							Children:
+								Checkbox@CURSORDOUBLE_CHECKBOX:
+									Width: PARENT_WIDTH
+									Height: 20
+									Font: PXBody
+									Text: checkbox-cursordouble-container
+									Background: px-field
+		Button@CONTINUE_BUTTON:
+			X: PARENT_WIDTH - 214
+			Y: PARENT_HEIGHT - 62
+			Width: 180
+			Height: 34
+			Text: button-continue
+			Font: PXButton
+			Key: return
+			Background: px-button-highlighted
+
+Background@MAINMENU_SYSTEM_INFO_PROMPT:
+	Logic: SystemInfoPromptLogic
+	X: (WINDOW_WIDTH - WIDTH) / 2
+	Y: (WINDOW_HEIGHT - HEIGHT) / 2
+	Width: 600
+	Height: 430
+	Children:
+		Label@PROMPT_TITLE:
+			Width: PARENT_WIDTH
+			Y: 20
+			Height: 25
+			Font: Bold
+			Align: Center
+			Text: label-mainmenu-system-info-prompt-title
+		Label@PROMPT_TEXT_A:
+			X: 15
+			Y: 50
+			Width: PARENT_WIDTH - 30
+			Height: 16
+			Align: Center
+			Text: label-mainmenu-system-info-prompt-text-a
+		Label@PROMPT_TEXT_B:
+			X: 15
+			Y: 68
+			Width: PARENT_WIDTH - 30
+			Height: 16
+			Align: Center
+			Text: label-mainmenu-system-info-prompt-text-b
+		ScrollPanel@SYSINFO_DATA:
+			X: 20
+			Y: 98
+			Width: PARENT_WIDTH - 40
+			Height: 355 - 98 - 10
+			TopBottomSpacing: 4
+			ItemSpacing: 4
+			Children:
+				Label@DATA_TEMPLATE:
+					X: 8
+					Height: 13
+					VAlign: Top
+					Font: Small
+		Checkbox@SYSINFO_CHECKBOX:
+			X: 390
+			Y: 353
+			Width: 200
+			Height: 20
+			Font: Regular
+			Text: checkbox-mainmenu-system-info-prompt-sysinfo
+		Button@CONTINUE_BUTTON:
+			X: PARENT_WIDTH - WIDTH - 20
+			Y: PARENT_HEIGHT - 45
+			Width: 160
+			Height: 25
+			Text: button-continue
+			Font: Bold
+			Key: return

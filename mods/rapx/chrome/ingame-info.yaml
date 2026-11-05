@@ -1,0 +1,180 @@
+Container@GAME_INFO_PANEL:
+	X: (WINDOW_WIDTH - 522) / 4 + 137 + (WINDOW_WIDTH - (WINDOW_WIDTH - 522) / 4 - 157 - WIDTH) / 2
+	Y: (WINDOW_HEIGHT - HEIGHT) / 2
+	Width: 900
+	Height: 640
+	Logic: GameInfoLogic
+	Visible: False
+	Children:
+		Background@BACKGROUND:
+			Width: PARENT_WIDTH
+			Height: PARENT_HEIGHT
+			Background: px-lobby-frame
+		Background@TITLE_BADGE:
+			X: 28
+			Y: 22
+			Width: 48
+			Height: 48
+			Background: px-key-highlighted
+			Children:
+				Image@ICON:
+					X: 10
+					Y: 10
+					ImageCollection: px-lobby-icons
+					ImageName: title
+		Label@TITLE:
+			X: 90
+			Y: 18
+			Width: 420
+			Height: 36
+			Font: PXDisplayLarge
+		Label@SUBTITLE:
+			X: 92
+			Y: 54
+			Width: 300
+			Height: 16
+			Font: PXSidebarSmall
+			TextColor: FF6A55
+			Text: label-px-info-subtitle
+		Container@TAB_CONTAINER_2:
+			X: PARENT_WIDTH - WIDTH - 28
+			Y: 24
+			Width: 306
+			Height: 40
+			Visible: False
+			Children:
+				Button@BUTTON1:
+					X: 0
+					Width: 150
+					Height: 40
+					Background: px-key
+					Font: PXButton
+				Button@BUTTON2:
+					X: 156
+					Width: 150
+					Height: 40
+					Background: px-key
+					Font: PXButton
+		Container@TAB_CONTAINER_3:
+			X: PARENT_WIDTH - WIDTH - 28
+			Y: 24
+			Width: 432
+			Height: 40
+			Visible: False
+			Children:
+				Button@BUTTON1:
+					X: 0
+					Width: 140
+					Height: 40
+					Background: px-key
+					Font: PXButton
+				Button@BUTTON2:
+					X: 146
+					Width: 140
+					Height: 40
+					Background: px-key
+					Font: PXButton
+				Button@BUTTON3:
+					X: 292
+					Width: 140
+					Height: 40
+					Background: px-key
+					Font: PXButton
+		Container@TAB_CONTAINER_4:
+			X: PARENT_WIDTH - WIDTH - 28
+			Y: 24
+			Width: 530
+			Height: 40
+			Visible: False
+			Children:
+				Button@BUTTON1:
+					X: 0
+					Width: 128
+					Height: 40
+					Background: px-key
+					Font: PXButton
+				Button@BUTTON2:
+					X: 134
+					Width: 128
+					Height: 40
+					Background: px-key
+					Font: PXButton
+				Button@BUTTON3:
+					X: 268
+					Width: 128
+					Height: 40
+					Background: px-key
+					Font: PXButton
+				Button@BUTTON4:
+					X: 402
+					Width: 128
+					Height: 40
+					Background: px-key
+					Font: PXButton
+		Container@TAB_CONTAINER_5:
+			X: PARENT_WIDTH - WIDTH - 28
+			Y: 24
+			Width: 584
+			Height: 40
+			Visible: False
+			Children:
+				Button@BUTTON1:
+					X: 0
+					Width: 112
+					Height: 40
+					Background: px-key
+					Font: PXButton
+				Button@BUTTON2:
+					X: 118
+					Width: 112
+					Height: 40
+					Background: px-key
+					Font: PXButton
+				Button@BUTTON3:
+					X: 236
+					Width: 112
+					Height: 40
+					Background: px-key
+					Font: PXButton
+				Button@BUTTON4:
+					X: 354
+					Width: 112
+					Height: 40
+					Background: px-key
+					Font: PXButton
+				Button@BUTTON5:
+					X: 472
+					Width: 112
+					Height: 40
+					Background: px-key
+					Font: PXButton
+		Container@OBJECTIVES_PANEL:
+			X: 28
+			Y: 92
+			Width: PARENT_WIDTH - 56
+			Height: PARENT_HEIGHT - 120
+		Container@STATS_PANEL:
+			X: (PARENT_WIDTH - WIDTH) / 2
+			Y: 92
+			Width: 580
+			Height: 500
+		Container@MAP_PANEL:
+			X: (PARENT_WIDTH - WIDTH) / 2
+			Y: 92
+			Width: 580
+			Height: 500
+		Container@DEBUG_PANEL:
+			X: (PARENT_WIDTH - WIDTH) / 2
+			Y: 92
+			Width: 580
+			Height: 500
+		Container@CHAT_PANEL:
+			X: (PARENT_WIDTH - WIDTH) / 2
+			Y: 92
+			Width: 580
+			Height: 500
+		Container@LOBBY_OPTIONS_PANEL:
+			X: (PARENT_WIDTH - WIDTH) / 2
+			Y: 92
+			Width: 580
+			Height: 500

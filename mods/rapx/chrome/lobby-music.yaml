@@ -1,0 +1,123 @@
+# Project X music player (lobby Music tab). Replaces common|chrome/lobby-music.yaml.
+# Covers come from mods/rapx/music-covers (see artsrc/music-covers/make_covers.sh).
+
+Container@LOBBY_MUSIC_BIN:
+	Logic: PxMusicPlayerLogic
+	Width: PARENT_WIDTH
+	Height: PARENT_HEIGHT
+	Children:
+		LogicTicker@SONG_WATCHER:
+		PxMusicHero@HERO:
+			Width: PARENT_WIDTH
+			Height: 240
+			Children:
+				PxMusicButton@BUTTON_SHUFFLE:
+					X: 404
+					Y: 168
+					Width: 36
+					Height: 36
+					Glyph: Shuffle
+					TooltipContainer: TOOLTIP_CONTAINER
+				PxMusicButton@BUTTON_PREV:
+					X: 448
+					Y: 164
+					Width: 44
+					Height: 44
+					Glyph: Prev
+				PxMusicButton@BUTTON_PLAY:
+					X: 500
+					Y: 156
+					Width: 60
+					Height: 60
+					Primary: true
+				PxMusicButton@BUTTON_NEXT:
+					X: 568
+					Y: 164
+					Width: 44
+					Height: 44
+					Glyph: Next
+				PxMusicButton@BUTTON_STOP:
+					X: 620
+					Y: 168
+					Width: 36
+					Height: 36
+					Glyph: Stop
+				PxMusicButton@BUTTON_LOOP:
+					X: 664
+					Y: 168
+					Width: 36
+					Height: 36
+					Glyph: Loop
+					TooltipContainer: TOOLTIP_CONTAINER
+				PxMusicButton@BUTTON_VOLUME:
+					X: PARENT_WIDTH - 24 - 172 - 40
+					Y: 168
+					Width: 36
+					Height: 36
+					Glyph: Speaker
+					TooltipContainer: TOOLTIP_CONTAINER
+				PxVolumeSlider@VOLUME:
+					X: PARENT_WIDTH - 24 - 172
+					Y: 176
+					Width: 172
+					Height: 20
+		Image@SOUNDTRACK_ICON:
+			X: 2
+			Y: 256
+			ImageCollection: px-lobby-icons
+			ImageName: tab-music
+		Label@SOUNDTRACK_TITLE:
+			X: 30
+			Y: 252
+			Width: 300
+			Height: 26
+			Font: PXSidebarLabel
+			Text: label-px-music-soundtrack
+		Label@TRACK_COUNT:
+			X: PARENT_WIDTH - 300
+			Y: 252
+			Width: 300
+			Height: 26
+			Align: Right
+			Font: PXSidebarSmall
+			TextColor: 9D9EA6
+		ColorBlock@SOUNDTRACK_RULE:
+			Y: 280
+			Width: PARENT_WIDTH
+			Height: 1
+			Color: E2262680
+		ScrollPanel@TRACK_GRID:
+			Y: 290
+			Width: PARENT_WIDTH
+			Height: PARENT_HEIGHT - 290
+			Background: px-well
+			TopBottomSpacing: 8
+			ItemSpacing: 10
+			Children:
+				PxMusicCard@TRACK_TEMPLATE:
+					Width: 292
+					Height: 108
+		Container@NO_MUSIC_LABEL:
+			Y: 290
+			Width: PARENT_WIDTH
+			Visible: false
+			Children:
+				Label@TITLE:
+					Y: 76
+					Width: PARENT_WIDTH
+					Height: 25
+					Font: Bold
+					Align: Center
+					Text: label-no-music-title
+				Label@DESCA:
+					Y: 96
+					Width: PARENT_WIDTH
+					Height: 25
+					Align: Center
+					Text: label-no-music-desc-a
+				Label@DESCB:
+					Y: 116
+					Width: PARENT_WIDTH
+					Height: 25
+					Align: Center
+					Text: label-no-music-desc-b

@@ -1,0 +1,70 @@
+# Spy Cars (2026-11-01), built at the War Factory once England has its MI6 Headquarters (rules/mi6.yaml).
+# Spy Car 1 (SCAR): an original sleek grand tourer for the Spy, with hidden guns and rockets,
+# very fast, carries only the Spy (Passenger CargoType Spy). Enemies see a harmless civilian car: neutral colours,
+# "Civilian Car" tooltip, and their units don't attack it on their own (PxCivilianDisguise) until it takes damage.
+# Uses the Jeep's sprites until its own HD art is rendered (artsrc/prompts/spy-prompts.md, image scar).
+
+SCAR:
+	Inherits: ^Vehicle
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 95
+		Prerequisites: mi6, ~vehicles.england, ~techlevel.medium
+		Description: actor-scar.description
+	Valued:
+		Cost: 1200
+	Tooltip:
+		Name: actor-scar.name
+		GenericName: actor-scar.disguise-name
+		GenericVisibility: Enemy
+		ShowOwnerRow: false
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 15000
+	Armor:
+		Type: Light
+	Mobile:
+		Speed: 170
+		PauseOnCondition: notmobile || being-captured
+	RevealsShroud:
+		Range: 6c0
+	Cargo:
+		Types: Spy
+		MaxWeight: 1
+		LoadingCondition: notmobile
+	PxCivilianDisguise:
+	# Gadgets: twin machine guns hidden under the headlights and a pop-up rocket launcher in the rear deck, both
+	# firing forward. It only fires on its own when shot at (ReturnFire), and firing blows the disguise.
+	Armament@PRIMARY:
+		Weapon: M60mg
+		LocalOffset: 380,-90,180, 380,90,180
+	Armament@SECONDARY:
+		Weapon: SpyCarRocket
+		LocalOffset: -200,0,300
+	AttackFrontal:
+		FacingTolerance: 24
+	AutoTarget:
+		InitialStance: ReturnFire
+
+# Spy Car 2 (SCR2): an original classic 1960s British grand tourer. Cheaper, slower and tougher than Spy Car 1,
+# with the same hidden twin machine guns but no rockets. Same civilian disguise; firing blows it.
+# Uses the Jeep's sprites until its own HD art is rendered (artsrc/prompts/spy-prompts.md, image scr2).
+
+SCR2:
+	Inherits: SCAR
+	Buildable:
+		BuildPaletteOrder: 96
+		Description: actor-scr2.description
+	Valued:
+		Cost: 900
+	Tooltip:
+		Name: actor-scr2.name
+	Health:
+		HP: 22000
+	Mobile:
+		Speed: 140
+		TurnSpeed: 32
+	# Guns only: no rocket launcher
+	-Armament@SECONDARY:

@@ -1,0 +1,74 @@
+# Role badges (OpenRA.Mods.RAPX/Traits/Render/PxRoleBadge.cs): a small glyph above look-alike soldiers,
+# shown when selected or under the mouse, and above every visible unit while Alt is held.
+
+E1:
+	PxRoleBadge:
+		Role: Rifle
+
+E2:
+	PxRoleBadge:
+		Role: Grenade
+
+E3:
+	PxRoleBadge:
+		Role: Rocket
+
+E4:
+	PxRoleBadge:
+		Role: Flame
+
+E6:
+	PxRoleBadge:
+		Role: Engineer
+
+E7:
+	PxRoleBadge:
+		Role: Pistol
+
+MEDI:
+	PxRoleBadge:
+		Role: Medic
+
+MECH:
+	PxRoleBadge:
+		Role: Mechanic
+
+SHOK:
+	PxRoleBadge:
+		Role: Tesla
+
+SPY:
+	PxRoleBadge:
+		Role: Spy
+
+SNIP:
+	PxRoleBadge:
+		Role: Sniper
+
+DOG:
+	PxRoleBadge:
+		Role: Dog
+
+CYBT:
+	PxRoleBadge:
+		Role: Pistol
+
+BDRD:
+	PxRoleBadge:
+		Role: Robot
+
+RGUN:
+	PxRoleBadge:
+		Role: Robot
+
+IRGD:
+	PxRoleBadge:
+		Role: MachineGun
+
+TAUT:
+	PxRoleBadge:
+		Role: Tesla
+
+SDRN:
+	PxRoleBadge:
+		Role: Robot

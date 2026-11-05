@@ -1,0 +1,384 @@
+^AACannon:
+	ReloadDelay: 10
+	Range: 8c0
+	Report: aacanon3.aud
+	ValidTargets: AirborneActor
+	Projectile: InstantHit
+	Warhead@1Dam: SpreadDamage
+		Spread: 213
+		Damage: 900
+		ValidTargets: AirborneActor
+		DamageTypes: Prone50Percent, TriggerProne, DefaultDeath
+	Warhead@2Eff: CreateEffect
+		Explosions: small_explosion_air
+		ValidTargets: Air, Ground, Water, Trees
+
+ZSU-23:
+	Inherits: ^AACannon
+	Burst: 2
+	BurstDelays: 0
+	ReloadDelay: 6
+	Range: 10c0
+
+FLAK-23-AA:
+	Inherits: ^AACannon
+	Warhead@1Dam: SpreadDamage
+		Damage: 1200
+
+FLAK-23-AG:
+	Inherits: ^AACannon
+	Range: 6c0
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	Projectile: InstantHit
+		Blockable: true
+	Warhead@1Dam: SpreadDamage
+		Damage: 2000
+		ValidTargets: AirborneActor, GroundActor, WaterActor
+		Versus:
+			None: 40
+			Wood: 10
+			Light: 60
+			Heavy: 10
+			Concrete: 20
+	Warhead@2Eff: CreateEffect
+		Explosions: flak_explosion_ground
+		ValidTargets: Ground, GroundActor, Air, AirborneActor, WaterActor, Trees
+	Warhead@3EffWater: CreateEffect
+		Explosions: small_splash
+		ValidTargets: Water, Underwater
+		InvalidTargets: Bridge
+
+^HeavyMG:
+	ReloadDelay: 35
+	Range: 6c0
+	Report: ra|audio/weapons/mg-shot1.wav, ra|audio/weapons/mg-shot2.wav, ra|audio/weapons/mg-shot3.wav
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	# HD tracers, muzzle flashes, casings and impacts (OpenRA.Mods.RAPX/Projectiles/PxTracer.cs); real recorded
+	# sounds from artsrc/audio/make_rifle_sounds.py (CC0 Free Firearm Sound Library)
+	Projectile: PxTracer
+		Rounds: 1
+	Warhead@1Dam: SpreadDamage
+		Spread: 128
+		Damage: 2500
+		ValidTargets: GroundActor, WaterActor
+		Versus:
+			None: 120
+			Wood: 60
+			Light: 72
+			Heavy: 28
+			Concrete: 28
+		DamageTypes: Prone50Percent, TriggerProne, BulletDeath
+	Warhead@3EffWater: CreateEffect
+		Explosions: water_piffs
+		ValidTargets: Water, Underwater
+		InvalidTargets: Bridge
+
+^LightMG:
+	Inherits: ^HeavyMG
+	Warhead@1Dam: SpreadDamage
+		Damage: 1000
+		Versus:
+			None: 150
+			Wood: 10
+			Light: 40
+			Heavy: 10
+			Concrete: 10
+		DamageTypes: Prone50Percent, TriggerProne, DefaultDeath
+	Warhead@3EffWater: CreateEffect
+		Explosions: water_piff
+		Inaccuracy: 171
+
+Vulcan:
+	Inherits: ^HeavyMG
+	Warhead@1Dam: SpreadDamage
+		Damage: 1000
+		Versus:
+			None: 200
+			Wood: 50
+			Light: 50
+			Heavy: 20
+			Concrete: 20
+	Warhead@4Dam_2: SpreadDamage
+		Spread: 128
+		Damage: 1000
+		Delay: 2
+		ValidTargets: GroundActor, WaterActor
+		Versus:
+			None: 200
+			Wood: 50
+			Light: 50
+			Heavy: 20
+			Concrete: 20
+		DamageTypes: Prone50Percent, TriggerProne, BulletDeath
+	Warhead@4Eff_2: CreateEffect
+		Explosions: piffs
+		ValidTargets: Ground, GroundActor, Air, AirborneActor, WaterActor, Trees
+		Delay: 2
+	Warhead@4Eff_2Water: CreateEffect
+		Explosions: water_piffs
+		ValidTargets: Water, Underwater
+		InvalidTargets: Bridge
+		Delay: 2
+	Warhead@5Dam_3: SpreadDamage
+		Spread: 128
+		Damage: 1000
+		Delay: 4
+		ValidTargets: GroundActor, WaterActor
+		Versus:
+			None: 200
+			Wood: 50
+			Light: 50
+			Heavy: 20
+			Concrete: 20
+		DamageTypes: Prone50Percent, TriggerProne, BulletDeath
+	Warhead@6Eff_3: CreateEffect
+		Explosions: piffs
+		ValidTargets: Ground, GroundActor, Air, AirborneActor, WaterActor, Trees
+		Delay: 4
+	Warhead@6Eff_3Water: CreateEffect
+		Explosions: water_piffs
+		ValidTargets: Water, Underwater
+		InvalidTargets: Bridge
+		Delay: 4
+	Warhead@7Dam_4: SpreadDamage
+		Spread: 128
+		Damage: 1000
+		Delay: 6
+		ValidTargets: GroundActor, WaterActor
+		Versus:
+			None: 200
+			Wood: 50
+			Light: 50
+			Heavy: 20
+			Concrete: 20
+		DamageTypes: Prone50Percent, TriggerProne, BulletDeath
+	Warhead@8Eff_4: CreateEffect
+		Explosions: piffs
+		ValidTargets: Ground, GroundActor, Air, AirborneActor, WaterActor, Trees
+		Delay: 6
+	Warhead@8Eff_4Water: CreateEffect
+		Explosions: water_piffs
+		ValidTargets: Water, Underwater
+		InvalidTargets: Bridge
+		Delay: 6
+	Warhead@9Dam_5: SpreadDamage
+		Spread: 128
+		Damage: 1000
+		Delay: 8
+		ValidTargets: GroundActor, WaterActor
+		Versus:
+			None: 200
+			Wood: 50
+			Light: 50
+			Heavy: 20
+			Concrete: 20
+		DamageTypes: Prone50Percent, TriggerProne, BulletDeath
+	Warhead@10Eff_5: CreateEffect
+		Explosions: piffs
+		ValidTargets: Ground, GroundActor, Air, AirborneActor, WaterActor, Trees
+		Delay: 8
+	Warhead@10Eff_5Water: CreateEffect
+		Explosions: water_piffs
+		ValidTargets: Water, Underwater
+		InvalidTargets: Bridge
+		Delay: 8
+	Warhead@11Dam_6: SpreadDamage
+		Spread: 128
+		Damage: 1000
+		Delay: 10
+		ValidTargets: GroundActor, WaterActor
+		Versus:
+			None: 200
+			Wood: 50
+			Light: 50
+			Heavy: 20
+			Concrete: 20
+		DamageTypes: Prone50Percent, TriggerProne, BulletDeath
+	Warhead@12Eff_6: CreateEffect
+		Explosions: piffs
+		ValidTargets: Ground, GroundActor, Air, AirborneActor, WaterActor, Trees
+		Delay: 10
+	Warhead@12Eff_6Water: CreateEffect
+		Explosions: water_piffs
+		ValidTargets: Water, Underwater
+		InvalidTargets: Bridge
+		Delay: 10
+	Report: ra|audio/weapons/vulcan-burst1.wav, ra|audio/weapons/vulcan-burst2.wav, ra|audio/weapons/vulcan-burst3.wav
+	Projectile: PxTracer
+		Rounds: 4
+		RoundInterval: 1
+
+ChainGun:
+	Inherits: ^HeavyMG
+	Burst: 2
+	BurstDelays: 0
+	ReloadDelay: 10
+	Range: 5c0
+	MinRange: 0c768
+	Report: ra|audio/weapons/chaingun-shot1.wav, ra|audio/weapons/chaingun-shot2.wav, ra|audio/weapons/chaingun-shot3.wav
+	Projectile: PxTracer
+		Rounds: 1
+		Speed: 1800
+		Width: 20
+		TracerLength: 560
+		MuzzleFlare: 200
+		Inaccuracy: 220
+	Warhead@1Dam: SpreadDamage
+		Versus:
+			None: 144
+
+ChainGun.Yak:
+	Inherits: ^HeavyMG
+	Burst: 2
+	BurstDelays: 0
+	ReloadDelay: 3
+	Range: 5c0
+	MinRange: 2c512
+	Report: ra|audio/weapons/chaingun-shot1.wav, ra|audio/weapons/chaingun-shot2.wav, ra|audio/weapons/chaingun-shot3.wav
+	Projectile: PxTracer
+		Rounds: 1
+		Speed: 1800
+		Width: 20
+		TracerLength: 560
+		MuzzleFlare: 200
+		Inaccuracy: 220
+	Warhead@1Dam: SpreadDamage
+		Damage: 4000
+		Versus:
+			None: 100
+			Wood: 50
+			Light: 60
+			Heavy: 25
+			Concrete: 25
+
+Pistol:
+	Inherits: ^LightMG
+	ReloadDelay: 7
+	Range: 3c0
+	Report: ra|audio/weapons/pistol-shot1.wav, ra|audio/weapons/pistol-shot2.wav, ra|audio/weapons/pistol-shot3.wav
+	Projectile: PxTracer
+		Rounds: 1
+		Width: 10
+		TracerLength: 260
+		MuzzleFlare: 100
+	Warhead@1Dam: SpreadDamage
+		Damage: 100
+		Versus:
+			None: 100
+	Warhead@2Eff: CreateEffect
+		Inaccuracy: 128
+	Warhead@3EffWater: CreateEffect
+		Inaccuracy: 128
+
+# HD burst (OpenRA.Mods.RAPX/Projectiles/PxTracer.cs): muzzle flashes, tracers, casings, dusty impacts.
+# The classic "piff" impact sprites are dropped; the water splashes stay.
+M1Carbine:
+	Inherits: ^LightMG
+	ReloadDelay: 20
+	Range: 5c0
+	# Real AR-15 bursts (CC0, The Free Firearm Sound Library) built by artsrc/audio/make_rifle_sounds.py
+	Report: ra|audio/weapons/rifle-burst1.wav, ra|audio/weapons/rifle-burst2.wav, ra|audio/weapons/rifle-burst3.wav
+	Projectile: PxTracer
+		Rounds: 3
+		RoundInterval: 2
+	Warhead@1Dam: SpreadDamage
+		Versus:
+			Wood: 30
+	Warhead@3EffWater2: CreateEffect
+		Delay: 2
+		ValidTargets: Water, Underwater
+		InvalidTargets: Bridge
+		Explosions: water_piff
+		Inaccuracy: 171
+	Warhead@3EffWater3: CreateEffect
+		Delay: 4
+		ValidTargets: Water, Underwater
+		InvalidTargets: Bridge
+		Explosions: water_piff
+		Inaccuracy: 171
+
+# Vanguard Rifle Infantry: same rifle, AK-47 sound (real recordings, CC0; artsrc/audio/make_rifle_sounds.py)
+AK47:
+	Inherits: M1Carbine
+	Report: ra|audio/weapons/ak-burst1.wav, ra|audio/weapons/ak-burst2.wav, ra|audio/weapons/ak-burst3.wav
+
+M60mg:
+	Inherits: ^LightMG
+	ReloadDelay: 30
+	Range: 4c0
+	Report: ra|audio/weapons/mg-shot1.wav, ra|audio/weapons/mg-shot2.wav, ra|audio/weapons/mg-shot3.wav
+	Burst: 5
+	Warhead@1Dam: SpreadDamage
+		Versus:
+			Light: 30
+	Warhead@2Eff: CreateEffect
+		Inaccuracy: 213
+	Warhead@3EffWater: CreateEffect
+		Inaccuracy: 213
+
+^SnipeWeapon:
+	ReloadDelay: 80
+	Range: 2c512
+	Report: gun5.aud
+	ValidTargets: Ground, Infantry, Barrel
+	Projectile: InstantHit
+		Blockable: true
+	Warhead@1Dam: SpreadDamage
+		Spread: 42
+		Damage: 15000
+		ValidTargets: Barrel, Infantry
+		DamageTypes: Prone50Percent, TriggerProne, DefaultDeath
+	Warhead@2Eff: CreateEffect
+		Explosions: piff
+		ValidTargets: Ground, GroundActor, Air, AirborneActor, WaterActor, Trees
+	Warhead@3EffWater: CreateEffect
+		Explosions: water_piff
+		ValidTargets: Water, Underwater
+		InvalidTargets: Ship, Structure, Bridge
+
+SilencedPPK:
+	Inherits: ^SnipeWeapon
+	Report: silppk.aud
+	Warhead@1Dam: SpreadDamage
+		Spread: 128
+
+Colt45:
+	Inherits: ^SnipeWeapon
+	ReloadDelay: 7
+	Range: 7c0
+	Warhead@1Dam: SpreadDamage
+		Damage: 10000
+	Report: ra|audio/weapons/colt-shot1.wav, ra|audio/weapons/colt-shot2.wav, ra|audio/weapons/colt-shot3.wav
+	Projectile: PxTracer
+		Rounds: 1
+		Width: 11
+		TracerLength: 280
+		MuzzleFlare: 120
+		Inaccuracy: 60
+	-Warhead@2Eff:
+
+# Sniper (rules/infantry.yaml SNIP): very long range, one shot kills most infantry, weak against vehicles.
+# Real bolt-action rifle (Tikka, CC0) from artsrc/audio/make_rifle_sounds.py; one long bright HD tracer.
+SniperRifle:
+	Inherits: ^SnipeWeapon
+	ReloadDelay: 100
+	Range: 9c0
+	Report: ra|audio/weapons/sniper-shot1.wav, ra|audio/weapons/sniper-shot2.wav, ra|audio/weapons/sniper-shot3.wav
+	ValidTargets: Ground, GroundActor, Infantry, Barrel
+	Projectile: PxTracer
+		Rounds: 1
+		Speed: 2600
+		Width: 13
+		TracerLength: 900
+		MuzzleFlare: 210
+		Inaccuracy: 0
+	-Warhead@2Eff:
+	Warhead@1Dam: SpreadDamage
+		Damage: 15000
+		ValidTargets: Infantry, GroundActor, Barrel
+		Versus:
+			None: 100
+			Wood: 5
+			Light: 12
+			Heavy: 4
+			Concrete: 4

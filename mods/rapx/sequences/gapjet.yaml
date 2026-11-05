@@ -1,0 +1,12 @@
+# AE-2 Shroud Hawk (rules/gapjet.yaml): Sketchfab E-2D Hawkeye, rendered at the jets' 2.6x (Scale 1/3)
+jet.gapgen:
+	Inherits: mig
+	idle:
+		Filename: ra|bits/hd/units/ae-2-shroud-hawk.png
+		Start: 0
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	icon:
+		Filename: ra|bits/hd/ae-2-shroud-hawkcameo.png

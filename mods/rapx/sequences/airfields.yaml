@@ -1,0 +1,50 @@
+# Sidebar icons of the IDEA-06 airfields (the HD art is in hd-structures.yaml).
+# artsrc/px-cameos/generate.py makes both files from assets/cameos/<id>.png.
+# ZOffset: the airfield is drawn as ground, so planes parked on its back pads stay on top of it. It must reach
+# past the furthest pad from the building centre (half the footprint depth): pads further back would be hidden.
+
+afld:
+	idle:
+		ZOffset: -3072
+	damaged-idle:
+		ZOffset: -3072
+	active:
+		ZOffset: -3072
+	damaged-active:
+		ZOffset: -3072
+
+abas:
+	idle:
+		ZOffset: -4096
+	damaged-idle:
+		ZOffset: -4096
+	active:
+		ZOffset: -4096
+	damaged-active:
+		ZOffset: -4096
+	icon:
+		Filename: ra|bits/hd/abascameo.png
+
+afbs:
+	idle:
+		ZOffset: -5120
+	damaged-idle:
+		ZOffset: -5120
+	active:
+		ZOffset: -5120
+	damaged-active:
+		ZOffset: -5120
+	icon:
+		Filename: ra|bits/hd/afbscameo.png
+
+sacm:
+	idle:
+		ZOffset: -8192
+	damaged-idle:
+		ZOffset: -8192
+	active:
+		ZOffset: -8192
+	damaged-active:
+		ZOffset: -8192
+	icon:
+		Filename: ra|bits/hd/sacmcameo.png

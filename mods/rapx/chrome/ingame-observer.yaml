@@ -1,0 +1,332 @@
+Container@OBSERVER_WIDGETS:
+	Logic: LoadIngameChatLogic
+	Children:
+		Container@CHAT_ROOT:
+		Container@MUTE_INDICATOR:
+			Logic: MuteIndicatorLogic
+			X: WINDOW_WIDTH - WIDTH - 420
+			Y: 10
+			Width: 200
+			Height: 25
+			Children:
+				Image@ICON:
+					X: PARENT_WIDTH - WIDTH
+					Y: 1
+					Width: 24
+					Height: 24
+					ImageCollection: sidebar-bits
+					ImageName: indicator-muted
+				Label@LABEL:
+					Width: PARENT_WIDTH - 30
+					Height: 25
+					Align: Right
+					Text: label-mute-indicator
+					Contrast: true
+		Background@PX_OBSERVER_SIDEBAR:
+			Logic: PxObserverSidebarLogic
+			X: WINDOW_WIDTH - WIDTH
+			Width: 400
+			Height: WINDOW_HEIGHT
+			Background: px-sidebar-bg
+			ClickThrough: false
+			Children:
+				Image@FACTION_EMBLEM:
+					X: 18
+					Y: 10
+					Width: 44
+					Height: 44
+					ImageCollection: px-emblems
+					ImageName: allies
+				Label@OBSERVER_TITLE:
+					X: 72
+					Y: 11
+					Width: 240
+					Height: 24
+					Font: PXSidebarTitle
+					Text: label-px-observer-title
+				Label@OBSERVER_SUBTITLE:
+					X: 72
+					Y: 35
+					Width: 240
+					Height: 16
+					Font: PXSidebarSmall
+					TextColor: FF6A55
+				Container@TOP_BUTTONS:
+					Logic: MenuButtonsChromeLogic
+					X: 342
+					Y: 10
+					Width: 44
+					Height: 44
+					Children:
+						LogicKeyListener@OBSERVER_KEY_LISTENER:
+						MenuButton@OPTIONS_BUTTON:
+							Width: 44
+							Height: 44
+							Background: px-key
+							Key: escape
+							TooltipText: button-top-buttons-options-tooltip
+							TooltipContainer: TOOLTIP_CONTAINER
+							DisableWorldSounds: true
+							VisualHeight: 0
+							Children:
+								Image@ICON:
+									X: 10
+									Y: 10
+									ImageCollection: px-order-icons
+									ImageName: options
+				Background@WEATHER_WELL:
+					X: 18
+					Y: 62
+					Width: 368
+					Height: 48
+					Background: px-well
+					Children:
+						PxWeatherBadge@WEATHER_BADGE:
+							Width: 368
+							Height: 48
+							TooltipContainer: TOOLTIP_CONTAINER
+				Background@RADAR_WELL:
+					X: 18
+					Y: 118
+					Width: 368
+					Height: 214
+					Background: px-well
+					Children:
+						Image@RADAR_ICON:
+							X: 10
+							Y: 8
+							ImageCollection: px-sidebar-bits
+							ImageName: radar
+						Label@RADAR_LABEL:
+							X: 30
+							Y: 5
+							Width: 100
+							Height: 20
+							Font: PXSidebarSmall
+							TextColor: C8C8CF
+							Text: label-px-sidebar-radar
+						ColorBlock@RADAR_DOT:
+							X: 314
+							Y: 12
+							Width: 7
+							Height: 7
+							Color: 5DFF7A
+						Label@RADAR_STATUS:
+							X: 326
+							Y: 5
+							Width: 36
+							Height: 20
+							Font: PXDigitsSmall
+							TextColor: 5DFF7A
+							Text: label-px-observer-live
+						Container@RADAR:
+							X: 6
+							Y: 26
+							Width: 356
+							Height: 182
+							Children:
+								ColorBlock:
+									Width: 356
+									Height: 182
+									Color: 000000
+								Radar@INGAME_RADAR:
+									WorldInteractionController: INTERACTION_CONTROLLER
+									Width: 356
+									Height: 182
+								VideoPlayer@PLAYER:
+									Width: 356
+									Height: 182
+									Skippable: false
+				Background@TIME_WELL:
+					X: 18
+					Y: 340
+					Width: 214
+					Height: 52
+					Background: px-well
+					Children:
+						Label@TIME_LABEL:
+							X: 12
+							Y: 5
+							Width: 190
+							Height: 14
+							Font: PXSidebarSmall
+							TextColor: 9D9EA6
+							Text: label-px-sidebar-time
+						LabelWithTooltip@GAME_TIMER:
+							Logic: GameTimerLogic
+							X: 12
+							Y: 18
+							Width: 190
+							Height: 30
+							Font: PXDigits
+							TooltipContainer: TOOLTIP_CONTAINER
+							TooltipTemplate: SIMPLE_TOOLTIP
+				Background@ALIVE_WELL:
+					X: 238
+					Y: 340
+					Width: 148
+					Height: 52
+					Background: px-well
+					Children:
+						Label@ALIVE_LABEL:
+							X: 12
+							Y: 5
+							Width: 130
+							Height: 14
+							Font: PXSidebarSmall
+							TextColor: 9D9EA6
+							Text: label-px-observer-alive
+						Label@PLAYERS_ALIVE:
+							X: 12
+							Y: 18
+							Width: 130
+							Height: 30
+							Font: PXDigits
+				Background@VIEW_WELL:
+					X: 18
+					Y: 400
+					Width: 368
+					Height: 66
+					Background: px-well
+					Children:
+						Label@VIEW_LABEL:
+							X: 12
+							Y: 5
+							Width: 200
+							Height: 14
+							Font: PXSidebarSmall
+							TextColor: 9D9EA6
+							Text: label-px-observer-view
+						DropDownButton@SHROUD_SELECTOR:
+							Logic: ObserverShroudSelectorLogic
+								CombinedViewKey: ObserverCombinedView
+								WorldViewKey: ObserverWorldView
+							X: 8
+							Y: 26
+							Width: 352
+							Height: 32
+							Font: Bold
+							Children:
+								LogicKeyListener@SHROUD_KEYHANDLER:
+								Image@FLAG:
+									X: 8
+									Y: 8
+									Width: 32
+									Height: 16
+								Label@LABEL:
+									X: 46
+									Width: PARENT_WIDTH
+									Height: 32
+									Shadow: True
+								Label@NOFLAG_LABEL:
+									X: 10
+									Width: PARENT_WIDTH
+									Height: 32
+									Shadow: True
+				Label@CARDS_LABEL:
+					X: 20
+					Y: 474
+					Width: 200
+					Height: 16
+					Font: PXSidebarSmall
+					TextColor: 9D9EA6
+					Text: label-px-observer-players
+				PxObserverPlayers@PLAYER_CARDS:
+					X: 18
+					Y: 494
+					Width: 368
+					Height: WINDOW_HEIGHT - 494 - 12
+				Background@REPLAY_PLAYER:
+					Logic: ReplayControlBarLogic
+					X: 18
+					Y: WINDOW_HEIGHT - HEIGHT - 12
+					Width: 368
+					Height: 52
+					Background: px-well
+					Visible: false
+					Children:
+						Button@BUTTON_PAUSE:
+							X: 8
+							Y: 8
+							Width: 44
+							Height: 36
+							Background: px-key
+							Key: Pause
+							TooltipText: button-observer-widgets-pause-tooltip
+							TooltipContainer: TOOLTIP_CONTAINER
+							VisualHeight: 0
+							Children:
+								Image@IMAGE_PAUSE:
+									X: 14
+									Y: 10
+									ImageCollection: music
+									ImageName: pause
+						Button@BUTTON_PLAY:
+							X: 8
+							Y: 8
+							Width: 44
+							Height: 36
+							Background: px-key
+							Key: Pause
+							TooltipText: button-observer-widgets-play-tooltip
+							TooltipContainer: TOOLTIP_CONTAINER
+							VisualHeight: 0
+							Children:
+								Image@IMAGE_PLAY:
+									X: 14
+									Y: 10
+									ImageCollection: music
+									ImageName: play
+						Button@BUTTON_SLOW:
+							X: 60
+							Y: 8
+							Width: 72
+							Height: 36
+							Background: px-key
+							Key: ReplaySpeedSlow
+							TooltipText: button-observer-widgets-slow.tooltip
+							TooltipContainer: TOOLTIP_CONTAINER
+							VisualHeight: 0
+							Text: button-observer-widgets-slow.label
+							Font: PXSidebarSmall
+						Button@BUTTON_REGULAR:
+							X: 136
+							Y: 8
+							Width: 72
+							Height: 36
+							Background: px-key
+							Key: ReplaySpeedRegular
+							TooltipText: button-observer-widgets-regular.tooltip
+							TooltipContainer: TOOLTIP_CONTAINER
+							VisualHeight: 0
+							Text: button-observer-widgets-regular.label
+							Font: PXSidebarSmall
+						Button@BUTTON_FAST:
+							X: 212
+							Y: 8
+							Width: 72
+							Height: 36
+							Background: px-key
+							Key: ReplaySpeedFast
+							TooltipText: button-observer-widgets-fast.tooltip
+							TooltipContainer: TOOLTIP_CONTAINER
+							VisualHeight: 0
+							Text: button-observer-widgets-fast.label
+							Font: PXSidebarSmall
+						Button@BUTTON_MAXIMUM:
+							X: 288
+							Y: 8
+							Width: 72
+							Height: 36
+							Background: px-key
+							Key: ReplaySpeedMax
+							TooltipText: button-observer-widgets-maximum.tooltip
+							TooltipContainer: TOOLTIP_CONTAINER
+							VisualHeight: 0
+							Text: button-observer-widgets-maximum.label
+							Font: PXSidebarSmall
+		Container@HPF_ROOT:
+			Logic: LoadIngameHierarchicalPathFinderOverlayLogic
+			X: WINDOW_WIDTH - WIDTH - 415
+			Y: 40
+			Width: 175

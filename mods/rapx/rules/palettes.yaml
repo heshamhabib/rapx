@@ -1,0 +1,202 @@
+^Palettes:
+	PaletteFromFile@terrain-snow:
+		Name: terrain
+		Tileset: SNOW
+		Filename: snow.pal
+		ShadowIndex: 3, 4
+	PaletteFromFile@terrain-interior:
+		Name: terrain
+		Tileset: INTERIOR
+		Filename: interior.pal
+		ShadowIndex: 3, 4
+	PaletteFromFile@terrain-temperat:
+		Name: terrain
+		Tileset: TEMPERAT
+		Filename: temperat.pal
+		ShadowIndex: 3, 4
+	PaletteFromFile@terrain-desert:
+		Name: terrain
+		Tileset: DESERT
+		Filename: desert.pal
+		ShadowIndex: 3, 4
+	PaletteFromFile@player:
+		Name: player
+		Filename: temperat.pal
+		ShadowIndex: 4
+	PaletteFromFile@player-noshadow:
+		Name: player-noshadow
+		Filename: temperat.pal
+		TransparentIndex: 0, 4
+	PaletteFromFile@chrome:
+		Name: chrome
+		Filename: temperat.pal
+		ShadowIndex: 3
+		AllowModifiers: false
+	PaletteFromFile@cursor:
+		Name: cursor
+		Filename: temperat.pal
+		AllowModifiers: false
+		CursorPalette: true
+	PaletteFromFile@effect:
+		Name: effect
+		Filename: temperat.pal
+		ShadowIndex: 4
+	ColorPickerPalette@colorpicker:
+		Name: colorpicker
+		BasePalette: player
+		RemapIndex: 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95
+		AllowModifiers: false
+	PaletteFromFile@desert:
+		Name: desert
+		Filename: desert.pal
+		ShadowIndex: 4
+	PaletteFromRGBA@shadow:
+		Name: shadow
+		R: 0
+		G: 0
+		B: 0
+		A: 140
+	PaletteFromRGBA@moveflash:
+		Name: moveflash
+		R: 255
+		G: 255
+		B: 255
+		A: 64
+	ShroudPalette@shroud:
+		Name: shroud
+	ShroudPalette@fog:
+		Name: fog
+		Fog: true
+	PlayerColorPalette:
+		BasePalette: player
+		RemapIndex: 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95
+	PlayerColorPalette@NOSHADOW:
+		BaseName: player-noshadow
+		BasePalette: player-noshadow
+		RemapIndex: 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95
+	# Team colour for true-colour (HD) sprites: hues around pure green are shifted to the owner's colour.
+	# The range is wider than the default (0.29-0.37) to also catch scorched / shaded greens in AI-made art.
+	PlayerColorShift:
+		BasePalette: player
+		MinHue: 0.22
+		MaxHue: 0.45
+	PlayerColorShift@NOSHADOW:
+		BasePalette: player-noshadow
+		MinHue: 0.22
+		MaxHue: 0.45
+	ColorPickerColorShift:
+		BasePalette: colorpicker
+		MinHue: 0.22
+		MaxHue: 0.45
+	MenuPostProcessEffect:
+	RotationPaletteEffect@defaultwater:
+		Palettes: terrain
+		ExcludeTilesets: DESERT
+	RotationPaletteEffect@actorswater:
+		Palettes: player, effect
+	RotationPaletteEffect@desertwater:
+		Palettes: terrain
+		Tilesets: DESERT
+		RotationBase: 32
+	RotationPaletteEffect@desertwater-actor:
+		Palettes: desert
+		RotationBase: 32
+	LightPaletteRotator:
+		ExcludePalettes: terrain, effect, desert
+	ChronoshiftPostProcessEffect:
+	FlashPostProcessEffect@NUKE:
+		Type: Nuke
+	IndexedPalette@CIV2:
+		Name: civilian2
+		BasePalette: player
+		Index: 7, 14, 118, 119, 159, 187, 188
+		ReplaceIndex: 209, 12, 187, 188, 209, 167, 13
+	IndexedPalette@CIV4:
+		Name: civilian4
+		BasePalette: player
+		Index: 7, 109, 111, 206, 210
+		ReplaceIndex: 187, 118, 119, 188, 182
+	IndexedPalette@CIV5:
+		Name: civilian5
+		BasePalette: player
+		Index: 7, 12, 109, 111, 200, 206, 210
+		ReplaceIndex: 109, 131, 177, 178, 111, 111, 182
+	IndexedPalette@CIV6:
+		Name: civilian6
+		BasePalette: player
+		Index: 7, 14, 118, 119, 159
+		ReplaceIndex: 120, 238, 236, 206, 111
+	IndexedPalette@CIV7:
+		Name: civilian7
+		BasePalette: player
+		Index: 14, 118, 119, 159, 187, 188
+		ReplaceIndex: 131, 157, 212, 7, 118, 119
+	IndexedPalette@CIV8:
+		Name: civilian8
+		BasePalette: player
+		Index: 7, 14, 118, 119, 159, 187, 188, 200
+		ReplaceIndex: 182, 131, 215, 7, 182, 198, 199, 111
+	IndexedPalette@CIV9:
+		Name: civilian9
+		BasePalette: player
+		Index: 14, 118, 119, 159, 187, 188
+		ReplaceIndex: 7, 163, 165, 200, 111, 13
+	IndexedPalette@CIV10:
+		Name: civilian10
+		BasePalette: player
+		Index: 7, 14, 118, 119, 159, 187, 188
+		ReplaceIndex: 137, 15, 129, 131, 137, 163, 165
+	TerrainDetailTextures:
+		Tilesets: TEMPERAT
+		Grass: ra|bits/terrain/temperate-clear.png
+		Dirt: ra|bits/terrain/temperate-road.png
+		Rock: ra|bits/terrain/temperate-cliff.png
+		Rough: ra|bits/terrain/temperate-rough.png
+		Beach: ra|bits/terrain/temperate-beach.png
+		Water: ra|bits/terrain/temperate-water.png
+		River: ra|bits/terrain/temperate-river.png
+		VertexShader: ra|shaders/terrain_detail.vert
+		FragmentShader: ra|shaders/terrain_detail.frag
+	TerrainDetailTextures@SNOW:
+		Tilesets: SNOW
+		Grass: ra|bits/terrain/snow-clear.png
+		Dirt: ra|bits/terrain/snow-road.png
+		Rock: ra|bits/terrain/snow-cliff.png
+		Rough: ra|bits/terrain/snow-rough.png
+		Beach: ra|bits/terrain/snow-beach.png
+		Water: ra|bits/terrain/snow-water.png
+		River: ra|bits/terrain/snow-river.png
+		VertexShader: ra|shaders/terrain_detail.vert
+		FragmentShader: ra|shaders/terrain_detail.frag
+		# Classic SNOW colours before any map tint (measured on code-19 / snow-town with the tint divided out)
+		GroundLum: 0.87
+		GroundTint: 0.7
+		GroundColors: E1DDE1, C1BBBB
+		DirtColors: 9D9286
+		RockColors: 5E5E5C, 433D37, 151518
+		WaterColors: 747E87, 688397
+		# Snow tracks (Road) are laid out in whole cells too; wobble that border so it isn't square
+		EdgeWarp: 14
+	TerrainDetailTextures@DESERT:
+		Tilesets: DESERT
+		Grass: ra|bits/terrain/desert-clear.png
+		Dirt: ra|bits/terrain/desert-road.png
+		Rock: ra|bits/terrain/desert-cliff.png
+		Rough: ra|bits/terrain/desert-rough.png
+		Beach: ra|bits/terrain/desert-beach.png
+		Water: ra|bits/terrain/desert-water.png
+		River: ra|bits/terrain/desert-river.png
+		VertexShader: ra|shaders/terrain_detail.vert
+		FragmentShader: ra|shaders/terrain_detail.frag
+		# Classic DESERT colours before any map tint (desert-rats with its tint divided out, oil-spill)
+		GroundLum: 0.41
+		GroundTint: 0.8
+		GroundColors: 8A5F46, 785741
+		DirtColors: A27A4E
+		RockColors: C6996A, 523E2E, 36291F
+		WaterColors: 70868C
+		# Desert maps lay their light tracked sand (Road) out in whole cells; wobble that border so it isn't square
+		EdgeWarp: 14
+		# The AI desert sea is tropical turquoise; pull it towards the classic grey-blue
+		WaterTint: 0.6
+		WaterTintColor: 70868C

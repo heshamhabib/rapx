@@ -1,0 +1,219 @@
+Container@MAP_PREVIEW:
+	Logic: MapPreviewLogic
+	Width: PARENT_WIDTH
+	Height: PARENT_HEIGHT
+	Children:
+		Container@MAP_LARGE:
+			Width: PARENT_WIDTH
+			Height: PARENT_HEIGHT
+			Children:
+				Background@MAP_BG:
+					Width: PARENT_WIDTH
+					Height: 308
+					Background: px-well
+					Children:
+						MapPreview@MAP_PREVIEW:
+							X: 6
+							Y: 6
+							Width: PARENT_WIDTH - 12
+							Height: PARENT_HEIGHT - 12
+							TooltipContainer: TOOLTIP_CONTAINER
+				LabelWithTooltip@MAP_TITLE:
+					X: 4
+					Y: 314
+					Width: PARENT_WIDTH - 8
+					Height: 30
+					Font: PXDisplay
+					TooltipContainer: TOOLTIP_CONTAINER
+					TooltipTemplate: SIMPLE_TOOLTIP
+		Container@MAP_SMALL:
+			Width: PARENT_WIDTH
+			Height: PARENT_HEIGHT
+			Children:
+				Background@MAP_BG:
+					Width: PARENT_WIDTH
+					Height: 308
+					Background: px-well
+					Children:
+						MapPreview@MAP_PREVIEW:
+							X: 6
+							Y: 6
+							Width: PARENT_WIDTH - 12
+							Height: PARENT_HEIGHT - 12
+							TooltipContainer: TOOLTIP_CONTAINER
+				LabelWithTooltip@MAP_TITLE:
+					X: 4
+					Y: 314
+					Width: PARENT_WIDTH - 8
+					Height: 30
+					Font: PXDisplay
+					TooltipContainer: TOOLTIP_CONTAINER
+					TooltipTemplate: SIMPLE_TOOLTIP
+		Container@MAP_AVAILABLE:
+			Width: PARENT_WIDTH
+			Height: PARENT_HEIGHT
+			Children:
+				Label@MAP_TYPE:
+					X: 6
+					Y: 346
+					Width: PARENT_WIDTH - 6
+					Height: 25
+					Font: PXSidebarSmall
+					Align: Left
+					TextColor: FF6A55
+					IgnoreMouseOver: true
+				Label@MAP_AUTHOR:
+					X: 6
+					Y: 364
+					Width: PARENT_WIDTH - 6
+					Height: 25
+					Font: PXSmall
+					TextColor: 9D9EA6
+					Align: Left
+		Container@MAP_INCOMPATIBLE:
+			Width: PARENT_WIDTH
+			Height: PARENT_HEIGHT
+			Children:
+				Label@MAP_STATUS_A:
+					Y: 338
+					Width: PARENT_WIDTH
+					Height: 25
+					Font: PXSmall
+					Align: Center
+					Text: label-map-incompatible-status-a
+					IgnoreMouseOver: true
+				Label@MAP_STATUS_B:
+					Y: 351
+					Width: PARENT_WIDTH
+					Height: 25
+					Font: PXSmall
+					Align: Center
+					Text: label-map-incompatible-status-b
+		Container@MAP_VALIDATING:
+			Width: PARENT_WIDTH
+			Height: PARENT_HEIGHT
+			Children:
+				Label@MAP_STATUS_VALIDATING:
+					Y: 324
+					Width: PARENT_WIDTH
+					Height: 25
+					Font: PXSmall
+					Align: Center
+					Text: label-map-validating-status
+					IgnoreMouseOver: true
+				ProgressBar@MAP_VALIDATING_BAR:
+					Y: 344
+					Width: PARENT_WIDTH
+					Height: 25
+					Indeterminate: True
+		Container@MAP_DOWNLOAD_AVAILABLE:
+			Width: PARENT_WIDTH
+			Height: PARENT_HEIGHT
+			Children:
+				Label@MAP_TYPE:
+					X: 6
+					Y: 346
+					Width: PARENT_WIDTH - 6
+					Height: 25
+					Font: PXSidebarSmall
+					Align: Left
+					TextColor: FF6A55
+					IgnoreMouseOver: true
+				Label@MAP_AUTHOR:
+					X: 6
+					Y: 364
+					Width: PARENT_WIDTH - 6
+					Height: 25
+					Font: PXSmall
+					Align: Center
+				Button@MAP_INSTALL:
+					Y: 344
+					Width: PARENT_WIDTH
+					Height: 25
+					Font: Bold
+					Text: button-map-download-available-install
+		Button@MAP_UPDATE:
+			Y: 345
+			Width: PARENT_WIDTH
+			Height: 25
+			Font: Bold
+			Text: button-map-preview-update
+		Container@MAP_UPDATE_DOWNLOAD_AVAILABLE:
+			Width: PARENT_WIDTH
+			Height: PARENT_HEIGHT
+			Children:
+				Button@MAP_INSTALL:
+					Y: 316
+					Width: PARENT_WIDTH
+					Height: 25
+					Font: Bold
+					Text: button-map-update-download-available-install
+		Label@MAP_SEARCHING:
+			Y: 308
+			Width: PARENT_WIDTH
+			Height: 25
+			Font: PXSmall
+			Align: Center
+			Text: label-map-preview-searching
+			IgnoreMouseOver: true
+		Container@MAP_UNAVAILABLE:
+			Width: PARENT_WIDTH
+			Children:
+				Label@a:
+					Y: 308
+					Width: PARENT_WIDTH
+					Height: 25
+					Font: PXSmall
+					Align: Center
+					Text: label-map-unavailable-a
+				Label@b:
+					Y: 321
+					Width: PARENT_WIDTH
+					Height: 25
+					Font: PXSmall
+					Align: Center
+					Text: label-map-unavailable-b
+		Label@MAP_ERROR:
+			Y: 308
+			Width: PARENT_WIDTH
+			Height: 25
+			Font: PXSmall
+			Align: Center
+			Text: label-map-preview-error
+		Container@MAP_DOWNLOADING:
+			Width: PARENT_WIDTH
+			Height: PARENT_HEIGHT
+			Children:
+				Label@MAP_STATUS_DOWNLOADING:
+					Y: 308
+					Width: PARENT_WIDTH
+					Height: 25
+					Font: PXSmall
+					Align: Center
+				ProgressBar@MAP_PROGRESSBAR:
+					Y: 344
+					Width: PARENT_WIDTH
+					Height: 25
+					Indeterminate: True
+		Button@MAP_RETRY:
+			Y: 344
+			Width: PARENT_WIDTH
+			Height: 25
+			Font: Bold
+		Container@MAP_UPDATE_AVAILABLE:
+			Width: PARENT_WIDTH
+			Children:
+				Label@a:
+					Y: 308
+					Width: PARENT_WIDTH
+					Height: 25
+					Font: PXSmall
+					Align: Center
+					Text: label-map-update-available-a
+				Label@b:
+					Y: 321
+					Width: PARENT_WIDTH
+					Height: 25
+					Font: PXSmall
+					Align: Center
+					Text: label-map-update-available-b

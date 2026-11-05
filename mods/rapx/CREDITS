@@ -1,0 +1,568 @@
+RedAlert Project X
+
+Built on OpenRA and Command & Conquer: Red Alert.
+
+3D models
+
+These Sketchfab models were rendered into the unit sprites. Changes for
+every model: recoloured for team colours, rendered as game sprites from
+32 directions; parts that hid the unit from above were removed.
+
+* Light Tank (1TNK):
+    "M551 Sheridan Light Tank"
+    (https://sketchfab.com/3d-models/m551-sheridan-light-tank-bc61470bf6f34716a223f45a6b9e8df1)
+    by Muhamad Mirza Arrafi, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: antennas removed.
+
+* Medium Tank (2TNK):
+    "M1A1 Abrams Main Battle Tank"
+    (https://sketchfab.com/3d-models/m1a1-abrams-main-battle-tank-1529f5d842cb4f578aa8cb672524f044)
+    by Muhamad Mirza Arrafi, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* Tesla Tank (TTNK):
+    "T-62A Main Battle Tank"
+    (https://sketchfab.com/3d-models/t-62a-main-battle-tank-c61279bad4ca4502bcc8e584b558d10e)
+    by Muhamad Mirza Arrafi, and "Red Alert 2 - Soviet Tesla coil"
+    (https://sketchfab.com/3d-models/red-alert-2-soviet-tesla-coil-deffdea10a0b4742bae2d6d16a743c67)
+    by Ska-Ara, both licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: the tank's turret replaced by the Tesla coil on a turret plate.
+
+* MAD Tank (QTNK):
+    "KV-2 heavy tank 1940"
+    (https://sketchfab.com/3d-models/kv-2-heavy-tank-1940-ba8b84d78c0a42038cf2eaa4210ef296)
+    by comrade1280, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: display floor removed.
+
+* Construction Vehicle, Vanguard (MCV):
+    "M978 HEMTT"
+    (https://sketchfab.com/3d-models/m978-hemtt-d1a986c5d7f34d9eb027e612502c4874)
+    by 42manako, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* Mobile Gap Generator (MGG):
+    "1S12 Long Track Acquisition Radar"
+    (https://sketchfab.com/3d-models/1s12-long-track-acquisition-radar-ab6842bd4a584413a99388f48106080b)
+    by gogiart, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* AE-2 Shroud Hawk (JET.GAPGEN):
+    "Grumman E-2D Advanced Hawkeye"
+    (https://sketchfab.com/3d-models/grumman-e-2d-advanced-hawkeye-0082cf8f15044cfd80ebd4e11b96789d)
+    by Muhamad Mirza Arrafi, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* Ranger (JEEP):
+    "Tiger Russian Military Vehicle"
+    (https://sketchfab.com/3d-models/tiger-russian-military-vehicle-a00e676f72d24198ab65ebdc2441817b)
+    by Gerhald, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* Minelayer (MNLY):
+    "M113" (https://sketchfab.com/3d-models/m113-7fe132c071584049b51d3569726021a0)
+    by arc4de, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* Supply Truck (TRUK):
+    "Ural 4320" (https://sketchfab.com/3d-models/ural-4320-f953c51a5dbc4a15949f4dcc0905c4e8)
+    by davidbroutian, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* Flak Truck (FTRK):
+    "96K6 Pantsir-S1"
+    (https://sketchfab.com/3d-models/96k6-pantsir-s1-8be7dcff46794b809560e2377561546e)
+    by ALI1388, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* Vanguard Medium Tank (MTNK):
+    "Soviet medium tank T-34-85" (Fab download; licence to confirm).
+
+* Heavy Tank (3TNK):
+    "T-72B3 Main Battle Tank" (https://skfb.ly/pwSFv)
+    by Muhamad Mirza Arrafi, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: markings and turret slat cage removed.
+
+* Spy Car 1 (SCAR):
+    "2009 Aston Martin DBS"
+    (https://sketchfab.com/3d-models/2009-aston-martin-dbs-aaef9c2b0b1a4af2815f30aa0893a00e)
+    by Galaxy Car Showroom, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: badges removed, team-colour stripe added.
+
+* Spy Car 2 (SCR2):
+    "1964 Aston Martin DB5"
+    (https://sketchfab.com/3d-models/1964-aston-martin-db5-42fad153d2f04b2bb6d726b40f757df7)
+    by BrodyFelch, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: badge removed, team-colour stripe added.
+
+* Mammoth Tank (4TNK):
+    "Red Alert 2 - Soviet Apocalypse Tank V2"
+    (https://sketchfab.com/3d-models/red-alert-2-soviet-apocalypse-tank-v2-bfc38d9673b348c4aa258442d049b620)
+    by Ska-Ara, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* V2 Rocket Launcher (V2RL):
+    "Red Alert 2 - Soviet V3 rocket launcher"
+    (https://sketchfab.com/3d-models/red-alert-2-soviet-v3-rocket-launcher-70c24143cafd4e3e9c3da080ff160ea2)
+    by Ska-Ara, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* Armored Personnel Carrier (APC):
+    "ARX Medic"
+    (https://sketchfab.com/3d-models/arx-medic-f1e92e4bb0624250821e1fc6e0e1b37e)
+    by snafuj, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* Chinook (TRAN):
+    "Boeing CH-47 Chinook Military Transport Aircraft"
+    (https://sketchfab.com/3d-models/boeing-ch-47-chinook-military-transport-aircraft-cdac73e931f6482e86960a326fef73bf)
+    by Muhamad Mirza Arrafi, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* Black Hawk (MH60):
+    "Sikorsky CH-53E Sea Stallion"
+    (https://sketchfab.com/3d-models/sikorsky-ch-53e-sea-stallion-6246617aeb874e4793b21d5861eea8c9)
+    by Muhamad Mirza Arrafi, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* Raptorex jet (JET.F22):
+    "KF-21A Boramae Fighter Jet"
+    (https://sketchfab.com/3d-models/kf-21a-boramae-fighter-jet-f4f82afcfe5a41bfab790418f9b94ba2)
+    by Muhamad Mirza Arrafi, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* Badger plane (BADR):
+    "c-17a globemaster"
+    (https://sketchfab.com/3d-models/c-17a-globemaster-22fbf464a08b497d82b638120c9f1767)
+    by Kevin Love (Tyler_Kevin), licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* Stingray drone (JET.X47):
+    "Northrop Grumman X-47B"
+    (https://sketchfab.com/3d-models/northrop-grumman-x-47b-8d5fa8ab10ba4b8486d40248eeb9332d)
+    by yakudami, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* Swarm drone (JET.SWARM):
+    "FPV Drone"
+    (https://sketchfab.com/3d-models/fpv-drone-92152c31ec9a4a87b2a0478bd114d293)
+    by PinaPipe, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* Zeppelin (JET.ZEPPELIN):
+    "Red Alert Kirov Airship"
+    (https://sketchfab.com/3d-models/red-alert-kirov-airship-24297b1c59764d4aa1a4b3e1a22e70ee)
+    by boxgizmo, used under the Sketchfab Standard licence
+    (https://sketchfab.com/licenses).
+
+
+Ground vehicles (2026-11-02)
+
+* Artillery (ARTY):
+    "M109A6 Paladin Self-Propelled Howitzer" (https://sketchfab.com/3d-models/m109a6-paladin-self-propelled-howitzer-7bc24252d4b84ac5bb7fd3b67f119b0a)
+    by Muhamad Mirza Arrafi, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* Demolition Truck (DTRK):
+    "Gaz 66" (https://sketchfab.com/3d-models/gaz-66-4ae573e2fb084f63bd63a2bb44852c68)
+    by tiunov.se, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* Chrono Tank (CTNK):
+    ""Cobra" Futuristic tank concept" (https://sketchfab.com/3d-models/cobra-futuristic-tank-concept-eafb340ee30b41f89c793b73475edd1d)
+    by iptestcs, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* Phase Transport (STNK):
+    "Stealth tank" (https://sketchfab.com/3d-models/stealth-tank-b7fbbcf93a2e4631b89de82f1ae63ef6)
+    by artmanbox, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* Prism Tank (PTNK):
+    "Cyber Tank (Futuristic/Cyberpunk)" (https://sketchfab.com/3d-models/cyber-tank-futuristiccyberpunk-8882ab6534e14ce6b09ed9cd65206290)
+    by kraytay, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* Radar Jammer (MRJ):
+    "Renault TRM Radar Truck" (https://sketchfab.com/3d-models/renault-trm-radar-truck-1ad95e5724624a3bba7d36a686817efc)
+    by Muhamad Mirza Arrafi, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* Tesla Tank (TTNK):
+    "T4-B Heavy Tank" (https://sketchfab.com/3d-models/t4-b-heavy-tank-67328a996f32434691b0128f99e57df1)
+    by henskelion, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: Rebel emblem painted out.
+
+* XR-85 Tank Droid (XR85, France):
+    "XR-85 Tank Droid" (https://sketchfab.com/3d-models/xr-85-tank-droid-0d54c07f5929461eba92036b223ee088)
+    by henskelion, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* Spider Tank (SPDR, Vanguard):
+    "Spider Tank" (https://sketchfab.com/3d-models/spider-tank-e9dd92b0aec24fcb864c715fabb0d949)
+    by Adoni, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+Aircraft (second set)
+
+* Yak Attack Plane (YAK):
+    "Yak9" (https://sketchfab.com/3d-models/yak9-a0e72d7a03fe423d9e85db646745cbea)
+    by manilov.ap, licensed under CC Attribution.
+
+* Spy Plane (U2):
+    "Lockheed U-2C Spy Plane — Duxford" (https://sketchfab.com/3d-models/lockheed-u-2c-spy-plane-duxford-29d8eb26c0fa47f3967de8b0334ef20e)
+    by mgg8, licensed under CC0 Public Domain.
+
+* F-104 (JET.F104):
+    "F-104 Starfighter" (https://sketchfab.com/3d-models/f-104-starfighter-96e60f2f463b4b1c8822079f1b2e21eb)
+    by Mikhail_Zelenov, licensed under CC Attribution.
+
+* F-4 (JET.F4):
+    "McDonnell Douglas F-4 Phantom II" (https://sketchfab.com/3d-models/mcdonnell-douglas-f-4-phantom-ii-1ea38a66a59048529d27b24a570c5e07)
+    by andertan, licensed under CC Attribution.
+
+* F-16 (JET.F16):
+    "General Dynamics F-16D Block 60" (https://sketchfab.com/3d-models/general-dynamics-f-16d-block-60-ea8edb08d79e4eafa9c794c581f88cf3)
+    by Muhamad Mirza Arrafi, licensed under CC Attribution.
+
+* F-117 (JET.F117):
+    "Lockheed F-117A Nighthawk Stealth Bomber" (https://sketchfab.com/3d-models/lockheed-f-117a-nighthawk-stealth-bomber-037698ed02624d45b5ba5cd774d54b68)
+    by Muhamad Mirza Arrafi, licensed under CC Attribution.
+
+* SR-71 (JET.SR71):
+    "Lockheed SR-71 "Blackbird"" (https://sketchfab.com/3d-models/lockheed-sr-71-blackbird-e2400e6119f5414c89e075654a82d30a)
+    by KOG_THORNS, licensed under CC Attribution.
+
+* B-52 (JET.B52):
+    "Boeing B-52D Stratofortress — Duxford" (https://sketchfab.com/3d-models/boeing-b-52d-stratofortress-duxford-ec3485da9ec3462aab91863edd707afa)
+    by mgg8, licensed under CC0 Public Domain.
+
+* B-2 (JET.B2):
+    "b-2 spirit" (https://sketchfab.com/3d-models/b-2-spirit-06464acbeca94381893c037b6dfa3d12)
+    by Kevin Love SketchFab, licensed under CC Attribution.
+
+* YF-23 (JET.YF23):
+    "rigged Northrop YF-23" (https://sketchfab.com/3d-models/rigged-northrop-yf-23-53936b1d83b74e6a8598f793fabe7119)
+    by metlocaypsecrasy, licensed under CC Attribution.
+
+* V-22 (JET.V22):
+    "Bell Boeing V-22 Osprey Military Helicopter" (https://sketchfab.com/3d-models/bell-boeing-v-22-osprey-military-helicopter-cf00a682505f479a903e9600cce051f7)
+    by Muhamad Mirza Arrafi, licensed under CC Attribution.
+
+* Harrier (JET.HARRIER):
+    "AV-8B Harrier II" (https://sketchfab.com/3d-models/av-8b-harrier-ii-8482e199f18b44f3bede5a5806aa1cb1)
+    by 42manako, licensed under CC Attribution.
+
+* Mirage 2000 (JET.M2000):
+    "Mirage 2000-5F" (https://sketchfab.com/3d-models/mirage-2000-5f-3894c147f6474d5eb6308b8d2724a914)
+    by Jeyhun1985, licensed under CC Attribution.
+
+* Rafale (JET.RAFALE):
+    "Dassault Rafale" (https://sketchfab.com/3d-models/dassault-rafale-fabb8472bc2e413282c80406b13ff1a7)
+    by andertan, licensed under CC Attribution.
+
+* Typhoon (JET.TYPHOON):
+    "Eurofighter Typhoon DA2 — ZH588" (https://sketchfab.com/3d-models/eurofighter-typhoon-da2-zh588-5650572af6c14dc09e1fd77d98724a1a)
+    by mgg8, licensed under CC0 Public Domain.
+
+* Vulcan (JET.VULCAN):
+    "Avro Vulcan B.2 — XH558" (https://sketchfab.com/3d-models/avro-vulcan-b2-xh558-accfa2763c574b4991d4d6234a318b2b)
+    by mgg8, licensed under CC0 Public Domain.
+
+* Sea Vixen (JET.SEAVIXEN):
+    "de Havilland DH.110 Sea Vixen FAW.2" (https://sketchfab.com/3d-models/de-havilland-dh110-sea-vixen-faw2-a0a22b0f53d04a20b5e04cb94af9349a)
+    by mgg8, licensed under CC0 Public Domain.
+
+* MiG-3 (JET.MIG3):
+    "Mig3" (https://sketchfab.com/3d-models/mig3-6ba63e06628e491a9836e4a9c54c50f1)
+    by manilov.ap, licensed under CC Attribution.
+
+* MiG-21 (JET.MIG21):
+    "MIG-21 Fishbed - cold war era fighter - free" (https://sketchfab.com/3d-models/mig-21-fishbed-cold-war-era-fighter-free-18927e007c3b47ed9e676f88b4adb578)
+    by NETRUNNER_pl, licensed under CC Attribution.
+
+* MiG-23 (JET.MIG23):
+    "Mig-23 MLD" (https://sketchfab.com/3d-models/mig-23-mld-7a13c91f07e042a685b4d265644fdc06)
+    by Tim Samedov, licensed under CC Attribution.
+
+* MiG-25 (JET.MIG25):
+    "Mig25" (https://sketchfab.com/3d-models/mig25-afe67617c5294dce9056106a22f640ff)
+    by manilov.ap, licensed under CC Attribution.
+
+* Su-25 (JET.SU25):
+    "[PBR] Sukhoi Su-25" (https://sketchfab.com/3d-models/pbr-sukhoi-su-25-956d0cb0bbe54fa8ad72e8c3e224fd2d)
+    by Immersive3D, licensed under CC Attribution.
+
+* Su-27 (JET.SU27):
+    "Sukhoi Su-27P Flanker-B" (https://sketchfab.com/3d-models/sukhoi-su-27p-flanker-b-4b73e72471b440be949b5cbc3ca36184)
+    by Rhine_Lab_Muelsyse, licensed under CC Attribution.
+
+* Su-47 (JET.SU47):
+    "su 47 berkut" (https://sketchfab.com/3d-models/su-47-berkut-87373815a47841b8999666c477a7190a)
+    by Chenzoss, licensed under CC Attribution.
+
+* Tu-160 (JET.TU160):
+    "tupolev tu-160 blackjack strategic bomber" (https://sketchfab.com/3d-models/tupolev-tu-160-blackjack-strategic-bomber-a6d878f3e2a24c9a89078d082f8d70db)
+    by Chenzoss, licensed under CC Attribution.
+
+* L-39 (JET.L39):
+    "L-39 Albatros" (https://sketchfab.com/3d-models/l-39-albatros-8e9bd5454ca848b699356a7a06559216)
+    by UraTera, licensed under CC Attribution.
+
+* J-20 (JET.J20):
+    "Chinese Chengdu J-20" (https://sketchfab.com/3d-models/chinese-chengdu-j-20-b9e81062c94545ffb0232d3ac6b7adc5)
+    by 42manako, licensed under CC Attribution.
+
+* Saeqeh (JET.SAEQEH):
+    "Northrop F-5E Tiger II" (https://sketchfab.com/3d-models/northrop-f-5e-tiger-ii-cdf665a536b34879b3b56026ce4ae962)
+    by mgg8, licensed under CC0 Public Domain.
+
+* Grom (JET.GROM):
+    "Stealth Drone concept" (https://sketchfab.com/3d-models/stealth-drone-concept-c1f0bfab4e924753994a8d953aad2621)
+    by radekstepan, licensed under CC Attribution.
+
+Non-commercial models
+
+The sprites made from these models are shared under the same licence,
+Creative Commons Attribution-NonCommercial-ShareAlike 4.0
+(http://creativecommons.org/licenses/by-nc-sa/4.0/): they may not be used
+commercially.
+
+* Construction Vehicle, Union (MCV):
+    "HEMTT (USA)"
+    (https://sketchfab.com/3d-models/hemtt-usa-c40a017c042b4cc3ba44207c7c3bded9)
+    by 42manako, licensed under Creative Commons Attribution-NonCommercial
+    (http://creativecommons.org/licenses/by-nc/4.0/).
+
+* Thunderhog jet (JET.A10):
+    "A-10C Thunderbolt II"
+    (https://sketchfab.com/3d-models/a-10c-thunderbolt-ii-687b5c82dec9468c95f569378cedf909)
+    by VTX.
+
+* Bobcat jet (JET.F14):
+    "F-14A Tomcat Early"
+    (https://sketchfab.com/3d-models/f-14a-tomcat-early-d76edb7f887d47d99a4ed1eb7b76567c)
+    by VTX.
+
+* Longbow (HELI):
+    "Aérospatiale SA342 Gazelle"
+    (https://sketchfab.com/3d-models/aerospatiale-sa342-gazelle-4448a22ea130421e8e739a80913c2900)
+    by VTX.
+
+* Hind (HIND):
+    "CAIC Z-10ME"
+    (https://sketchfab.com/3d-models/caic-z-10me-3ee228332a06416b9257eb8c743e0c3c)
+    by VTX.
+
+* Flankard-E jet (JET.SU35):
+    "Sukhoi Su-35 - Fighter Jet - Free"
+    (https://sketchfab.com/3d-models/sukhoi-su-35-fighter-jet-free-3213a404e5cb4fb68f778b9acae5109c)
+    by bohmerang.
+
+* An-225 Dreamer jet (JET.AN225):
+    "C-17A Globemaster III"
+    (https://sketchfab.com/3d-models/c-17a-globemaster-iii-472c12abe72f435a95f9b54f4c469e29)
+    by VTX.
+
+* MiG Attack Plane (MIG):
+    "MiG-35 - Fighter Jet - Free"
+    (https://sketchfab.com/3d-models/mig-35-fighter-jet-free-1dcea306e8a14ed4ab4d11a819cb6676)
+    by bohmerang.
+
+* Cruiser (CA):
+    "USS Cleveland (CL-55)"
+    (https://sketchfab.com/3d-models/6267ab80b28745a68d6d1357e1e0543a)
+    by bsterling, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: hull below the waterline removed.
+
+* Fleet Carrier (CV1):
+    "Essex-Class Aircraft Carrier"
+    (https://sketchfab.com/3d-models/92033a1dcd9f417797997871e6d1c2ea)
+    by Spark_Customs, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: hull below the waterline removed.
+
+* Battle Carrier (CV2):
+    "USS Enterprise CVN-65 Aircraft Carrier"
+    (https://sketchfab.com/3d-models/f1b46fa2de8f409cbbe693f7f10dc3b8)
+    by MirzaArrafiERV_45, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: hull below the waterline removed.
+
+* Supercarrier (CV3):
+    "USS NIMITZ CVN-68 AIRCRAFT CARRIER"
+    (https://sketchfab.com/3d-models/06cf0dba66874934a105b3fe2bfdb0f7)
+    by MirzaArrafiERV_45, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: hull below the waterline removed.
+
+* Future Carrier (CV4):
+    "Gerald R Ford aircraft Carrier"
+    (https://sketchfab.com/3d-models/562bf516e1494df38d8f222504dc798b)
+    by waelXcm, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: hull below the waterline removed.
+
+* Queen Elizabeth Carrier (CVGB):
+    "HMS Queen Elizabeth R08 Aircraft Carrier"
+    (https://sketchfab.com/3d-models/b7394547685749ae9e1c48afe29586ab)
+    by MirzaArrafiERV_45, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: hull below the waterline removed.
+
+* Charles de Gaulle Carrier (CVFR):
+    "Charles De Gaulle Aircraft Carrier"
+    (https://sketchfab.com/3d-models/4ed9674d1adf406bb1b358dd4a8c93a1)
+    by MirzaArrafiERV_45, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: hull below the waterline removed.
+
+* Kaga Carrier (CVJP):
+    "JS Kaga DDH/CVM - 184"
+    (https://sketchfab.com/3d-models/91cd810a0ade403590193e22a2aadd56)
+    by hrd4588, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: hull below the waterline removed.
+
+* Cavour Light Carrier (CVIT):
+    "JS Izumo DDH/CVM -183"
+    (https://sketchfab.com/3d-models/a4f51fe27b684cceaf2ceebefc2ffa66)
+    by hrd4588, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: hull below the waterline removed.
+
+* Mistral Helicopter Carrier (CVEG):
+    "MISTRAL CLASS LHD"
+    (https://sketchfab.com/3d-models/200f78ee68b44788833f097b88d5aad3)
+    by MirzaArrafiERV_45, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: hull below the waterline removed.
+
+* Kiev Aviation Cruiser (CVSU):
+    "KIEV CLASS AIRCRAFT CARRIER"
+    (https://sketchfab.com/3d-models/f854eda1eab54a40aae8628e6456ae78)
+    by MirzaArrafiERV_45, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: hull below the waterline removed.
+
+* Kuznetsov Carrier (CVRU):
+    "Admiral Kuznetsov Aircraft Carrier (Prop)"
+    (https://sketchfab.com/3d-models/825917092d784fc285bc6c31d2b6e7d8)
+    by mansoorsajidp, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: hull below the waterline removed.
+
+* Vikrant Carrier (CVIN):
+    "ins vikrant aircraft carrier"
+    (https://sketchfab.com/3d-models/7fc21f7a6d6e4fc5ade592f5f4eec0a0)
+    by Chenzoss, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: hull below the waterline removed.
+
+* Fujian Carrier (CVCN):
+    "Chinese Aircraft Carrier"
+    (https://sketchfab.com/3d-models/f9ddadfc6988414fa15da2cb1b1de545)
+    by businessyuen, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: hull below the waterline removed.
+
+* Anadolu Drone Carrier (CVTR):
+    "TCG Anadolu"
+    (https://sketchfab.com/3d-models/90c0f1a1e2ae42e89d96d8ed84862ac5)
+    by ammar_ssr, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: hull below the waterline removed.
+
+* Bagheri Drone Carrier (CVIR):
+    "USS WASP LHD-1"
+    (https://sketchfab.com/3d-models/bf391bb56fbf44c4a924cb6a5bd8bf81)
+    by MirzaArrafiERV_45, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: painted darker grey.
+
+* Destroyer (DD):
+    "1:1 Low poly US NAVY DDG-51 USS Arleigh Burke."
+    (https://sketchfab.com/3d-models/11-low-poly-us-navy-ddg-51-uss-arleigh-burke-17be09c31c6047e4a5969b68c29eba03)
+    by Yi Tsung Lee, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: hull below the waterline removed.
+
+* Gunboat (PT):
+    "Type 22 Houbei-class missile boat"
+    (https://sketchfab.com/3d-models/type-22-houbei-class-missile-boat-ca6b98e1100e4c81adefdc36d1f5af19)
+    by 42manako, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: hull below the waterline removed.
+
+* Transport (LST):
+    "LCAC Hovercraft croqui"
+    (https://sketchfab.com/3d-models/lcac-hovercraft-croqui-14ad629070db445eaf2364eda019192f)
+    by LM3D, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: hull below the waterline removed; painted naval grey.
+
+* Missile Submarine (MSUB):
+    "Ohio Class Submarine SSBN"
+    (https://sketchfab.com/3d-models/ohio-class-submarine-ssbn-c9adff3a72d7462f8f82a35459a582d2)
+    by waelXcm, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: hull below the waterline removed; raised missile removed.
+
+* HIMAX (USA):
+    "Ukrainian M142 HIMARS"
+    (https://sketchfab.com/3d-models/ukrainian-m142-himars-95d255cd685e4cc5afc35ba5f58679d4)
+    by 42manako, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: damaged-variant parts removed; repainted desert tan.
+
+* Hailstorm, LRX, MARZ II, Saetta (England, France, Germany, Italy):
+    "Free M270"
+    (https://sketchfab.com/3d-models/free-m270-fc879301999a4cd0a09721b51affba9b)
+    by 다훈 (DaHoon), licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: loose rocket and spare pod removed; repainted in each nation's colours.
+
+* Kasirga-X, Fatah-X, Chunmu, Vilkra, PHX-16 Longreach (Turkey, Pakistan, South Korea, Ukraine, China):
+    "BM-27 Uragan"
+    (https://sketchfab.com/3d-models/bm-27-uragan-536cf77932ae4784ad5ad1d69937eaa2)
+    by javanilga, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: repainted in each nation's colours.
+
+* Guajiro Grad, Pinak, Saqr-36, Fajir-5 (Cuba, India, Egypt, Iran):
+    "BM-21 Grad"
+    (https://sketchfab.com/3d-models/21-bm-21-grad-c90559a30e6a414d993a0d3bdf6c5ff8)
+    by Basic Hsu, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: repainted in each nation's colours.
+
+* TOZ-1 Sunflare (Russia):
+    "TOS-1 BURATINO (LOW POLY)"
+    (https://sketchfab.com/3d-models/tos-1-buratino-low-poly-255fba6ba6c44b97aaea91d0225d0c75)
+    by LM3D, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: ground disc removed.
+
+* Type-12 Sea Arrow (Japan):
+    "3K60 Bal-E"
+    (https://sketchfab.com/3d-models/3k60-bal-e-f808eb27a4af42309ec6b71343b871a6)
+    by 42manako, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: repainted olive.
+
+Sounds
+
+* Propeller plane engine: "airplane prop loop" (https://opengameart.org/content/airplane-prop-loop)
+    by AntumDeluge, licensed under Creative Commons Attribution 3.0
+    (http://creativecommons.org/licenses/by/3.0/).
+
+* Helicopter, jet and airship engines: CC0 recordings by qubodup, kyles, MickBoere,
+    FreqMan, klangfabrik and Rudmer_Rotteveel (freesound.org) and JoBrodie
+    (Wikimedia Commons). No credit required; given with thanks.

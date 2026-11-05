@@ -1,0 +1,127 @@
+# IDEA-17 national rocket launchers: their own HD sprites (artsrc/units/meshes/make_sketchfab.py <actor>, shared
+# Sketchfab chassis in national paint, sketchfab_models.py LAUNCHER_PAINT). Icons are borrowed from the V2RL /
+# Artillery until the launchers get their own cameos.
+
+rl-himax:
+	Inherits: v2rl
+	idle:
+		Filename: ra|bits/hd/units/rl-himax.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	-empty-idle:
+
+rl-kasirga:
+	Inherits: v2rl
+	idle:
+		Filename: ra|bits/hd/units/rl-kasirga.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	-empty-idle:
+
+rl-fatah:
+	Inherits: v2rl
+	idle:
+		Filename: ra|bits/hd/units/rl-fatah.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	-empty-idle:
+
+rl-chunmu:
+	Inherits: v2rl
+	idle:
+		Filename: ra|bits/hd/units/rl-chunmu.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	-empty-idle:
+
+rl-vilkra:
+	Inherits: v2rl
+	idle:
+		Filename: ra|bits/hd/units/rl-vilkra.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	-empty-idle:
+
+rl-phx16:
+	Inherits: v2rl
+	idle:
+		Filename: ra|bits/hd/units/rl-phx16.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	-empty-idle:
+
+rl-grad:
+	Inherits: v2rl
+	idle:
+		Filename: ra|bits/hd/units/rl-grad.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	-empty-idle:
+
+rl-pinak:
+	Inherits: v2rl
+	idle:
+		Filename: ra|bits/hd/units/rl-pinak.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	-empty-idle:
+
+rl-saqr36:
+	Inherits: v2rl
+	idle:
+		Filename: ra|bits/hd/units/rl-saqr36.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	-empty-idle:
+
+rl-fajir5:
+	Inherits: v2rl
+	idle:
+		Filename: ra|bits/hd/units/rl-fajir5.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	-empty-idle:
+
+rl-type12:
+	Inherits: v2rl
+	idle:
+		Filename: ra|bits/hd/units/rl-type12.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	-empty-idle:
+
+rl-hailstorm:
+	Inherits: arty
+	idle:
+		Filename: ra|bits/hd/units/rl-hailstorm.png
+		UseClassicFacings: False
+		Scale: 0.2333
+
+rl-lrx:
+	Inherits: arty
+	idle:
+		Filename: ra|bits/hd/units/rl-lrx.png
+		UseClassicFacings: False
+		Scale: 0.2333
+
+rl-marz:
+	Inherits: arty
+	idle:
+		Filename: ra|bits/hd/units/rl-marz.png
+		UseClassicFacings: False
+		Scale: 0.2333
+
+rl-saetta:
+	Inherits: arty
+	idle:
+		Filename: ra|bits/hd/units/rl-saetta.png
+		UseClassicFacings: False
+		Scale: 0.2333
+
+rl-toz1:
+	Inherits: arty
+	idle:
+		Filename: ra|bits/hd/units/rl-toz1.png
+		UseClassicFacings: False
+		Scale: 0.2333
+

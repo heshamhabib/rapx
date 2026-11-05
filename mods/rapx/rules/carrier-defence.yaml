@@ -1,0 +1,230 @@
+# Layered carrier air defence (docs/DESIGN-IDEAS.md IDEA-08, carrier weapons step 1). Weapons: weapons/naval-defence.yaml.
+# Outer layer NavalSAM (medium-range SAM), middle layer StingerAA (short-range missile, carriers.yaml), inner layer
+# CIWSGun (gatling vs aircraft) plus PxPointDefense, which shoots down incoming missiles aimed at the ship.
+# Point-defence gun mounts are generated into rules/carrier-decks.yaml. Counts and chances follow the real ships.
+
+CV1:
+	# Essex, WWII: no missiles; a wall of 40 mm Bofors flak, which can sometimes knock down a missile too.
+	-Armament@AA1:
+	Armament@FLAK1:
+		Weapon: FlakGun
+		LocalOffset: 512,400,0
+	Armament@FLAK2:
+		Weapon: FlakGun
+		LocalOffset: -512,-400,0
+		FireDelay: 8
+	Armament@FLAK3:
+		Weapon: FlakGun
+		LocalOffset: 0,400,0
+		FireDelay: 15
+	PxPointDefense:
+		Weapon: FlakTracer
+		Range: 4c0
+		Chance: 30
+		AimTicks: 6
+		ReloadDelay: 16
+
+CV2:
+	# Real: Sea Sparrow, Phalanx.
+	Armament@SAM1:
+		Weapon: NavalSAM
+		LocalOffset: 512,300,0
+	Armament@CIWS1:
+		Weapon: CIWSGun
+		LocalOffset: 700,350,0
+	Armament@CIWS2:
+		Weapon: CIWSGun
+		LocalOffset: 0,-350,0
+		FireDelay: 5
+	PxPointDefense:
+		Weapon: CIWSTracer
+		Chance: 75
+
+CV3:
+	# Real: Sea Sparrow (ESSM), RAM, Phalanx.
+	Armament@SAM1:
+		Weapon: NavalSAM
+		LocalOffset: 512,300,0
+	Armament@SAM2:
+		Weapon: NavalSAM
+		LocalOffset: -512,-300,0
+		FireDelay: 40
+	Armament@CIWS1:
+		Weapon: CIWSGun
+		LocalOffset: 700,350,0
+	Armament@CIWS2:
+		Weapon: CIWSGun
+		LocalOffset: 0,-350,0
+		FireDelay: 5
+	PxPointDefense:
+		Weapon: CIWSTracer
+		Chance: 80
+
+CV4:
+	# Real: ESSM, RAM, Phalanx.
+	Armament@SAM1:
+		Weapon: NavalSAM
+		LocalOffset: 512,300,0
+	Armament@SAM2:
+		Weapon: NavalSAM
+		LocalOffset: -512,-300,0
+		FireDelay: 40
+	Armament@CIWS1:
+		Weapon: CIWSGun
+		LocalOffset: 700,350,0
+	Armament@CIWS2:
+		Weapon: CIWSGun
+		LocalOffset: 0,-350,0
+		FireDelay: 5
+	PxPointDefense:
+		Weapon: CIWSTracer
+		Chance: 85
+
+CVGB:
+	# Real: Phalanx only (relies on escorts).
+	Armament@CIWS1:
+		Weapon: CIWSGun
+		LocalOffset: 700,350,0
+	Armament@CIWS2:
+		Weapon: CIWSGun
+		LocalOffset: 0,-350,0
+		FireDelay: 5
+	Armament@CIWS3:
+		Weapon: CIWSGun
+		LocalOffset: -700,350,0
+		FireDelay: 10
+	PxPointDefense:
+		Weapon: CIWSTracer
+		Chance: 70
+
+CVFR:
+	# Real: Aster 15, Mistral.
+	Armament@SAM1:
+		Weapon: NavalSAM
+		LocalOffset: 512,300,0
+	Armament@CIWS1:
+		Weapon: CIWSGun
+		LocalOffset: 700,350,0
+	PxPointDefense:
+		Weapon: CIWSTracer
+		Chance: 75
+
+CVJP:
+	# Real: SeaRAM, Phalanx.
+	Armament@CIWS1:
+		Weapon: CIWSGun
+		LocalOffset: 700,350,0
+	Armament@CIWS2:
+		Weapon: CIWSGun
+		LocalOffset: 0,-350,0
+		FireDelay: 5
+	PxPointDefense:
+		Weapon: CIWSTracer
+		Chance: 75
+
+CVIT:
+	# Real: Aster 15, 76 mm guns.
+	Armament@SAM1:
+		Weapon: NavalSAM
+		LocalOffset: 512,300,0
+	Armament@CIWS1:
+		Weapon: CIWSGun
+		LocalOffset: 700,350,0
+	PxPointDefense:
+		Weapon: CIWSTracer
+		Chance: 70
+
+CVEG:
+	# Real: Simbad (Mistral missiles).
+	Armament@CIWS1:
+		Weapon: CIWSGun
+		LocalOffset: 700,350,0
+	PxPointDefense:
+		Weapon: CIWSTracer
+		Chance: 55
+
+CVSU:
+	# Real: SA-N-3, AK-630.
+	Armament@SAM1:
+		Weapon: NavalSAM
+		LocalOffset: 512,300,0
+	Armament@CIWS1:
+		Weapon: CIWSGun
+		LocalOffset: 700,350,0
+	Armament@CIWS2:
+		Weapon: CIWSGun
+		LocalOffset: 0,-350,0
+		FireDelay: 5
+	PxPointDefense:
+		Weapon: CIWSTracer
+		Chance: 65
+
+CVRU:
+	# Real: Kinzhal, Kashtan.
+	Armament@SAM1:
+		Weapon: NavalSAM
+		LocalOffset: 512,300,0
+	Armament@SAM2:
+		Weapon: NavalSAM
+		LocalOffset: -512,-300,0
+		FireDelay: 40
+	Armament@CIWS1:
+		Weapon: CIWSGun
+		LocalOffset: 700,350,0
+	Armament@CIWS2:
+		Weapon: CIWSGun
+		LocalOffset: 0,-350,0
+		FireDelay: 5
+	PxPointDefense:
+		Weapon: CIWSTracer
+		Chance: 80
+
+CVIN:
+	# Real: Barak-8, AK-630.
+	Armament@SAM1:
+		Weapon: NavalSAM
+		LocalOffset: 512,300,0
+	Armament@CIWS1:
+		Weapon: CIWSGun
+		LocalOffset: 700,350,0
+	Armament@CIWS2:
+		Weapon: CIWSGun
+		LocalOffset: 0,-350,0
+		FireDelay: 5
+	PxPointDefense:
+		Weapon: CIWSTracer
+		Chance: 70
+
+CVCN:
+	# Real: HQ-10, Type 1130.
+	Armament@SAM1:
+		Weapon: NavalSAM
+		LocalOffset: 512,300,0
+	Armament@CIWS1:
+		Weapon: CIWSGun
+		LocalOffset: 700,350,0
+	Armament@CIWS2:
+		Weapon: CIWSGun
+		LocalOffset: 0,-350,0
+		FireDelay: 5
+	PxPointDefense:
+		Weapon: CIWSTracer
+		Chance: 75
+
+CVTR:
+	# Real: Phalanx, 25 mm guns.
+	Armament@CIWS1:
+		Weapon: CIWSGun
+		LocalOffset: 700,350,0
+	PxPointDefense:
+		Weapon: CIWSTracer
+		Chance: 60
+
+CVIR:
+	# Real: light guns.
+	Armament@CIWS1:
+		Weapon: CIWSGun
+		LocalOffset: 700,350,0
+	PxPointDefense:
+		Weapon: CIWSTracer
+		Chance: 50

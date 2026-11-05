@@ -1,0 +1,134 @@
+# Airfields with parking slots (RedAlert Project X, IDEA-06 in docs/DESIGN-IDEAS.md).
+# Real scale (1 cell = 10 m): every jet pad is 2x2 cells. The slots themselves (Reservable SlotOffsets) are measured
+# from the art into airfield-slots.yaml by artsrc/buildings/make_airfield_slots.py.
+# Each plane gets a slot when it is built, parks on it, and flies back to it when idle or out of ammo
+# (engine patch patches/engine-airfield-slots.patch). The Aircraft queue (PxAirfieldProductionQueue in player.yaml)
+# greys out planes once planes owned + queued fill every slot.
+# TODO (IDEA-06): hidden hangar slots, slot counter, parked planes destroyed with the airfield.
+
+AFLD:
+	HitShape:
+		UseTargetableCellsOffsets: true
+		-TargetableOffsets:
+		Type: Rectangle
+			TopLeft: -3072, -2560
+			BottomRight: 3072, 2560
+	Building:
+		Footprint: xxxxxx xxxxxx xxxxxx xxxxxx xxxxxx
+		Dimensions: 6,5
+	Selectable:
+		Bounds: 6144, 5120
+	Exit@1:
+		ExitCell: 2,2
+
+ABAS:
+	Inherits: AFLD
+	Buildable:
+		Queue: Building
+		BuildPaletteOrder: 131
+		Prerequisites: afld, ~techlevel.medium
+		Description: actor-abas.description
+	Valued:
+		Cost: 3000
+	Tooltip:
+		Name: actor-abas.name
+	Selectable:
+		Class: abas
+		Bounds: 8192, 7168
+	HitShape:
+		Type: Rectangle
+			TopLeft: -4096, -3584
+			BottomRight: 4096, 3584
+	Building:
+		Footprint: xxxxxxxx xxxxxxxx xxxxxxxx xxxxxxxx xxxxxxxx xxxxxxxx xxxxxxxx
+		Dimensions: 8,7
+	Exit@1:
+		ExitCell: 3,3
+	Health:
+		HP: 200000
+	Power:
+		Amount: -60
+	RenderSprites:
+		Image: abas
+	ProvidesPrerequisite@abas:
+		Prerequisite: abas
+
+AFBS:
+	Inherits: AFLD
+	Buildable:
+		Queue: Building
+		BuildPaletteOrder: 132
+		Prerequisites: abas, stek, ~techlevel.high
+		Description: actor-afbs.description
+	Valued:
+		Cost: 6000
+	Tooltip:
+		Name: actor-afbs.name
+	Selectable:
+		Class: afbs
+		Bounds: 12288, 9216
+	HitShape:
+		Type: Rectangle
+			TopLeft: -6144, -4608
+			BottomRight: 6144, 4608
+	Building:
+		Footprint: xxxxxxxxxxxx xxxxxxxxxxxx xxxxxxxxxxxx xxxxxxxxxxxx xxxxxxxxxxxx xxxxxxxxxxxx xxxxxxxxxxxx xxxxxxxxxxxx xxxxxxxxxxxx
+		Dimensions: 12,9
+	Exit@1:
+		ExitCell: 5,4
+	Health:
+		HP: 350000
+	Power:
+		Amount: -100
+	RenderSprites:
+		Image: afbs
+	ProvidesPrerequisite@afbs:
+		Prerequisite: afbs
+
+SACM:
+	Inherits: AFLD
+	Buildable:
+		Queue: Building
+		BuildPaletteOrder: 133
+		Prerequisites: afbs, stek, ~techlevel.high
+		Description: actor-sacm.description
+		BuildLimit: 1
+	Valued:
+		Cost: 12000
+	Tooltip:
+		Name: actor-sacm.name
+	Selectable:
+		Class: sacm
+		Bounds: 20480, 15360
+	HitShape:
+		Type: Rectangle
+			TopLeft: -10240, -7680
+			BottomRight: 10240, 7680
+	Building:
+		Footprint: xxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxx
+		Dimensions: 20,15
+	Exit@1:
+		ExitCell: 9,8
+	Health:
+		HP: 600000
+	Power:
+		Amount: -200
+	RenderSprites:
+		Image: sacm
+	ProvidesPrerequisite@sacm:
+		Prerequisite: sacm
+
+# Fixed-wing planes (and every IDEA-12 jet, which inherit these) park on their slot instead of circling.
+MIG:
+	Aircraft:
+		IdleBehavior: ReturnToBase
+		TakeOffOnCreation: false
+	Rearmable:
+		RearmActors: afld, afld.ukraine, abas, afbs, sacm
+
+YAK:
+	Aircraft:
+		IdleBehavior: ReturnToBase
+		TakeOffOnCreation: false
+	Rearmable:
+		RearmActors: afld, afld.ukraine, abas, afbs, sacm

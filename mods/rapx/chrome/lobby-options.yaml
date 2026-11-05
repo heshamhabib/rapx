@@ -1,0 +1,112 @@
+Container@LOBBY_OPTIONS_BIN:
+	Width: PARENT_WIDTH
+	Height: PARENT_HEIGHT
+	Children:
+		Background@OPTIONS_WELL:
+			Logic: PxLobbyOptionsLogic
+			Width: PARENT_WIDTH
+			Height: PARENT_HEIGHT
+			Background: px-well
+			Children:
+				Image@BATTLEFIELD_ICON:
+					X: 18
+					Y: 18
+					ImageCollection: px-lobby-icons
+					ImageName: section-battlefield
+				Label@BATTLEFIELD_TITLE:
+					X: 42
+					Y: 12
+					Width: 200
+					Height: 26
+					Font: PXSidebarLabel
+					Text: label-px-lobby-section-battlefield
+				ColorBlock@BATTLEFIELD_RULE:
+					X: 16
+					Y: 40
+					Width: (PARENT_WIDTH - 48) / 2
+					Height: 1
+					Color: E2262680
+				Container@BATTLEFIELD_OPTIONS:
+					X: 16
+					Y: 48
+					Width: (PARENT_WIDTH - 48) / 2
+					Height: 290
+				Image@RULES_ICON:
+					X: 32 + (PARENT_WIDTH - 48) / 2 + 2
+					Y: 18
+					ImageCollection: px-lobby-icons
+					ImageName: section-rules
+				Label@RULES_TITLE:
+					X: 32 + (PARENT_WIDTH - 48) / 2 + 26
+					Y: 12
+					Width: 200
+					Height: 26
+					Font: PXSidebarLabel
+					Text: label-px-lobby-section-rules
+				ColorBlock@RULES_RULE:
+					X: 32 + (PARENT_WIDTH - 48) / 2
+					Y: 40
+					Width: (PARENT_WIDTH - 48) / 2
+					Height: 1
+					Color: E2262680
+				Container@RULES_OPTIONS:
+					X: 32 + (PARENT_WIDTH - 48) / 2
+					Y: 48
+					Width: (PARENT_WIDTH - 48) / 2
+					Height: 290
+				Image@SETUP_ICON:
+					X: 18
+					Y: 354
+					ImageCollection: px-lobby-icons
+					ImageName: section-setup
+				Label@SETUP_TITLE:
+					X: 42
+					Y: 348
+					Width: 200
+					Height: 26
+					Font: PXSidebarLabel
+					Text: label-px-lobby-section-setup
+				ColorBlock@SETUP_RULE:
+					X: 16
+					Y: 376
+					Width: PARENT_WIDTH - 32
+					Height: 1
+					Color: E2262680
+				Container@SETUP_OPTIONS:
+					X: 16
+					Y: 386
+					Width: PARENT_WIDTH - 32
+					Height: PARENT_HEIGHT - 386 - 72
+				ColorBlock@DEVELOPER_RULE:
+					X: 16
+					Y: PARENT_HEIGHT - 62
+					Width: PARENT_WIDTH - 32
+					Height: 1
+					Color: 1F2025
+				Image@DEVELOPER_ICON:
+					X: 18
+					Y: PARENT_HEIGHT - 40
+					ImageCollection: px-lobby-icons
+					ImageName: section-dev
+				Label@DEVELOPER_TITLE:
+					X: 42
+					Y: PARENT_HEIGHT - 46
+					Width: 120
+					Height: 26
+					Font: PXSidebarSmall
+					TextColor: 8A8B93
+					Text: label-px-lobby-section-developer
+				Container@DEVELOPER_OPTIONS:
+					X: 150
+					Y: PARENT_HEIGHT - 54
+					Width: PARENT_WIDTH - 166
+					Height: 44
+				PxOptionSwitch@SWITCH_TEMPLATE:
+					Width: 300
+					Height: 52
+					Font: PXButton
+					TooltipContainer: TOOLTIP_CONTAINER
+				PxOptionCard@CARD_TEMPLATE:
+					Width: 160
+					Height: 84
+					TooltipContainer: TOOLTIP_CONTAINER

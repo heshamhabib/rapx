@@ -1,0 +1,14 @@
+Container@TRANSIENTS_PANEL:
+	Width: WINDOW_WIDTH
+	Height: WINDOW_HEIGHT
+	Logic: IngameTransientNotificationsLogic
+	Children:
+		TextNotificationsDisplay@TRANSIENTS_DISPLAY:
+			Width: 0
+			Height: 0
+			IgnoredPools: Transients, Feedback
+		PxToasts@PX_TOASTS:
+			X: WINDOW_WIDTH - 400 - WIDTH - 16
+			Y: WINDOW_HEIGHT - 150 - 16 - HEIGHT
+			Width: 400
+			Height: 420

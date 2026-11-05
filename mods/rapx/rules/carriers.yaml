@@ -1,0 +1,783 @@
+# Aircraft carriers (docs/DESIGN-IDEAS.md IDEA-08 2a/2b). Phase 1: big anti-air ships, each nation only builds its own
+# (USA: the four-tier era ladder CV1-CV4; the other nations with carriers in real life: one each). Aircraft on
+# deck (slots, take-off, landing, building on board) come with IDEA-06/08.
+# Art: artsrc/units/meshes/make_sketchfab.py <id> (sequences/carriers.yaml). Allied ones are built at the Naval
+# Yard, Vanguard ones at the Sub Pen.
+
+# Nation prerequisites for the naval buildings (ships.england/france/russia/sovietvanilla exist already)
+SYRD:
+	ProvidesPrerequisite@carrierusa:
+		Factions: usa
+		Prerequisite: ships.usa
+	ProvidesPrerequisite@carrierjapan:
+		Factions: japan
+		Prerequisite: ships.japan
+	ProvidesPrerequisite@carrieritaly:
+		Factions: italy
+		Prerequisite: ships.italy
+	ProvidesPrerequisite@carrieregypt:
+		Factions: egypt
+		Prerequisite: ships.egypt
+
+SPEN:
+	ProvidesPrerequisite@carrierindia:
+		Factions: india
+		Prerequisite: ships.india
+	ProvidesPrerequisite@carrierchina:
+		Factions: china
+		Prerequisite: ships.china
+	ProvidesPrerequisite@carrierturkey:
+		Factions: turkey
+		Prerequisite: ships.turkey
+	ProvidesPrerequisite@carrieriran:
+		Factions: iran
+		Prerequisite: ships.iran
+
+CV1:
+	Inherits: ^Ship
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Ship
+		BuildPaletteOrder: 60
+		Prerequisites: ~ships.usa, hpad, ~techlevel.medium
+		Description: actor-cv1.description
+	Valued:
+		Cost: 3000
+	Tooltip:
+		Name: actor-cv1.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 90000
+	Armor:
+		Type: Heavy
+	Mobile:
+		TurnSpeed: 10
+		Speed: 50
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 7c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	HitShape:
+		Type: Circle
+			Radius: 1024
+	Turreted:
+		TurnSpeed: 40
+		Offset: 0,0,256
+	Armament@AA1:
+		Weapon: StingerAA
+		LocalOffset: 256,320,0
+		FireDelay: 0
+	AttackTurreted:
+	WithSpriteTurret:
+	Selectable:
+		DecorationBounds: 2900, 2900
+
+CV2:
+	Inherits: ^Ship
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Ship
+		BuildPaletteOrder: 61
+		Prerequisites: ~ships.usa, hpad, dome, ~techlevel.medium
+		Description: actor-cv2.description
+	Valued:
+		Cost: 4000
+	Tooltip:
+		Name: actor-cv2.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 110000
+	Armor:
+		Type: Heavy
+	Mobile:
+		TurnSpeed: 9
+		Speed: 48
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 8c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	HitShape:
+		Type: Circle
+			Radius: 1152
+	Turreted:
+		TurnSpeed: 40
+		Offset: 0,0,256
+	Armament@AA1:
+		Weapon: StingerAA
+		LocalOffset: 256,320,0
+		FireDelay: 0
+	Armament@AA2:
+		Weapon: StingerAA
+		LocalOffset: -256,-320,0
+		FireDelay: 10
+	AttackTurreted:
+	WithSpriteTurret:
+	Selectable:
+		DecorationBounds: 3300, 3300
+
+CV3:
+	Inherits: ^Ship
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Ship
+		BuildPaletteOrder: 62
+		Prerequisites: ~ships.usa, hpad, atek, ~techlevel.high
+		Description: actor-cv3.description
+	Valued:
+		Cost: 6000
+	Tooltip:
+		Name: actor-cv3.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 140000
+	Armor:
+		Type: Heavy
+	Mobile:
+		TurnSpeed: 8
+		Speed: 46
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 9c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	HitShape:
+		Type: Circle
+			Radius: 1280
+	Turreted:
+		TurnSpeed: 40
+		Offset: 0,0,256
+	Armament@AA1:
+		Weapon: StingerAA
+		LocalOffset: 256,320,0
+		FireDelay: 0
+	Armament@AA2:
+		Weapon: StingerAA
+		LocalOffset: -256,-320,0
+		FireDelay: 10
+	AttackTurreted:
+	WithSpriteTurret:
+	Selectable:
+		DecorationBounds: 3700, 3700
+
+CV4:
+	Inherits: ^Ship
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Ship
+		BuildPaletteOrder: 63
+		Prerequisites: ~ships.usa, hpad, atek, ~techlevel.high
+		Description: actor-cv4.description
+	Valued:
+		Cost: 7500
+	Tooltip:
+		Name: actor-cv4.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 160000
+	Armor:
+		Type: Heavy
+	Mobile:
+		TurnSpeed: 8
+		Speed: 48
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 10c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	HitShape:
+		Type: Circle
+			Radius: 1280
+	Turreted:
+		TurnSpeed: 40
+		Offset: 0,0,256
+	Armament@AA1:
+		Weapon: StingerAA
+		LocalOffset: 256,320,0
+		FireDelay: 0
+	Armament@AA2:
+		Weapon: StingerAA
+		LocalOffset: -256,-320,0
+		FireDelay: 10
+	Armament@AA3:
+		Weapon: StingerAA
+		LocalOffset: -768,320,0
+		FireDelay: 20
+	AttackTurreted:
+	WithSpriteTurret:
+	Selectable:
+		DecorationBounds: 3900, 3900
+
+CVGB:
+	Inherits: ^Ship
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Ship
+		BuildPaletteOrder: 64
+		Prerequisites: ~ships.england, hpad, atek, ~techlevel.high
+		Description: actor-cvgb.description
+	Valued:
+		Cost: 5500
+	Tooltip:
+		Name: actor-cvgb.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 130000
+	Armor:
+		Type: Heavy
+	Mobile:
+		TurnSpeed: 8
+		Speed: 48
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 9c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	HitShape:
+		Type: Circle
+			Radius: 1280
+	Turreted:
+		TurnSpeed: 40
+		Offset: 0,0,256
+	Armament@AA1:
+		Weapon: StingerAA
+		LocalOffset: 256,320,0
+		FireDelay: 0
+	Armament@AA2:
+		Weapon: StingerAA
+		LocalOffset: -256,-320,0
+		FireDelay: 10
+	AttackTurreted:
+	WithSpriteTurret:
+	Selectable:
+		DecorationBounds: 3700, 3700
+
+CVFR:
+	Inherits: ^Ship
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Ship
+		BuildPaletteOrder: 64
+		Prerequisites: ~ships.france, hpad, atek, ~techlevel.high
+		Description: actor-cvfr.description
+	Valued:
+		Cost: 5500
+	Tooltip:
+		Name: actor-cvfr.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 130000
+	Armor:
+		Type: Heavy
+	Mobile:
+		TurnSpeed: 8
+		Speed: 46
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 9c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	HitShape:
+		Type: Circle
+			Radius: 1280
+	Turreted:
+		TurnSpeed: 40
+		Offset: 0,0,256
+	Armament@AA1:
+		Weapon: StingerAA
+		LocalOffset: 256,320,0
+		FireDelay: 0
+	Armament@AA2:
+		Weapon: StingerAA
+		LocalOffset: -256,-320,0
+		FireDelay: 10
+	AttackTurreted:
+	WithSpriteTurret:
+	Selectable:
+		DecorationBounds: 3600, 3600
+
+CVJP:
+	Inherits: ^Ship
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Ship
+		BuildPaletteOrder: 64
+		Prerequisites: ~ships.japan, hpad, dome, ~techlevel.medium
+		Description: actor-cvjp.description
+	Valued:
+		Cost: 4000
+	Tooltip:
+		Name: actor-cvjp.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 100000
+	Armor:
+		Type: Heavy
+	Mobile:
+		TurnSpeed: 9
+		Speed: 50
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 8c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	HitShape:
+		Type: Circle
+			Radius: 1152
+	Turreted:
+		TurnSpeed: 40
+		Offset: 0,0,256
+	Armament@AA1:
+		Weapon: StingerAA
+		LocalOffset: 256,320,0
+		FireDelay: 0
+	Armament@AA2:
+		Weapon: StingerAA
+		LocalOffset: -256,-320,0
+		FireDelay: 10
+	AttackTurreted:
+	WithSpriteTurret:
+	Selectable:
+		DecorationBounds: 3300, 3300
+
+CVIT:
+	Inherits: ^Ship
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Ship
+		BuildPaletteOrder: 64
+		Prerequisites: ~ships.italy, hpad, dome, ~techlevel.medium
+		Description: actor-cvit.description
+	Valued:
+		Cost: 4000
+	Tooltip:
+		Name: actor-cvit.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 100000
+	Armor:
+		Type: Heavy
+	Mobile:
+		TurnSpeed: 9
+		Speed: 50
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 8c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	HitShape:
+		Type: Circle
+			Radius: 1152
+	Turreted:
+		TurnSpeed: 40
+		Offset: 0,0,256
+	Armament@AA1:
+		Weapon: StingerAA
+		LocalOffset: 256,320,0
+		FireDelay: 0
+	Armament@AA2:
+		Weapon: StingerAA
+		LocalOffset: -256,-320,0
+		FireDelay: 10
+	AttackTurreted:
+	WithSpriteTurret:
+	Selectable:
+		DecorationBounds: 3200, 3200
+
+CVEG:
+	Inherits: ^Ship
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Ship
+		BuildPaletteOrder: 64
+		Prerequisites: ~ships.egypt, hpad, ~techlevel.medium
+		Description: actor-cveg.description
+	Valued:
+		Cost: 3000
+	Tooltip:
+		Name: actor-cveg.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 85000
+	Armor:
+		Type: Heavy
+	Mobile:
+		TurnSpeed: 10
+		Speed: 52
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 7c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	HitShape:
+		Type: Circle
+			Radius: 1024
+	Turreted:
+		TurnSpeed: 40
+		Offset: 0,0,256
+	Armament@AA1:
+		Weapon: StingerAA
+		LocalOffset: 256,320,0
+		FireDelay: 0
+	AttackTurreted:
+	WithSpriteTurret:
+	Selectable:
+		DecorationBounds: 3000, 3000
+
+CVSU:
+	Inherits: ^Ship
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Ship
+		BuildPaletteOrder: 64
+		Prerequisites: ~ships.sovietvanilla, afld, dome, ~techlevel.medium
+		Description: actor-cvsu.description
+	Valued:
+		Cost: 4500
+	Tooltip:
+		Name: actor-cvsu.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 120000
+	Armor:
+		Type: Heavy
+	Mobile:
+		TurnSpeed: 9
+		Speed: 48
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 8c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	HitShape:
+		Type: Circle
+			Radius: 1152
+	Turreted:
+		TurnSpeed: 40
+		Offset: 0,0,256
+	Armament@AA1:
+		Weapon: StingerAA
+		LocalOffset: 256,320,0
+		FireDelay: 0
+	Armament@AA2:
+		Weapon: StingerAA
+		LocalOffset: -256,-320,0
+		FireDelay: 10
+	Armament@AA3:
+		Weapon: StingerAA
+		LocalOffset: -768,320,0
+		FireDelay: 20
+	AttackTurreted:
+	WithSpriteTurret:
+	Selectable:
+		DecorationBounds: 3400, 3400
+
+CVRU:
+	Inherits: ^Ship
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Ship
+		BuildPaletteOrder: 64
+		Prerequisites: ~ships.russia, afld, stek, ~techlevel.high
+		Description: actor-cvru.description
+	Valued:
+		Cost: 5500
+	Tooltip:
+		Name: actor-cvru.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 140000
+	Armor:
+		Type: Heavy
+	Mobile:
+		TurnSpeed: 8
+		Speed: 44
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 9c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	HitShape:
+		Type: Circle
+			Radius: 1280
+	Turreted:
+		TurnSpeed: 40
+		Offset: 0,0,256
+	Armament@AA1:
+		Weapon: StingerAA
+		LocalOffset: 256,320,0
+		FireDelay: 0
+	Armament@AA2:
+		Weapon: StingerAA
+		LocalOffset: -256,-320,0
+		FireDelay: 10
+	Armament@AA3:
+		Weapon: StingerAA
+		LocalOffset: -768,320,0
+		FireDelay: 20
+	AttackTurreted:
+	WithSpriteTurret:
+	Selectable:
+		DecorationBounds: 3700, 3700
+
+CVIN:
+	Inherits: ^Ship
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Ship
+		BuildPaletteOrder: 64
+		Prerequisites: ~ships.india, afld, stek, ~techlevel.high
+		Description: actor-cvin.description
+	Valued:
+		Cost: 5000
+	Tooltip:
+		Name: actor-cvin.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 120000
+	Armor:
+		Type: Heavy
+	Mobile:
+		TurnSpeed: 8
+		Speed: 48
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 9c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	HitShape:
+		Type: Circle
+			Radius: 1280
+	Turreted:
+		TurnSpeed: 40
+		Offset: 0,0,256
+	Armament@AA1:
+		Weapon: StingerAA
+		LocalOffset: 256,320,0
+		FireDelay: 0
+	Armament@AA2:
+		Weapon: StingerAA
+		LocalOffset: -256,-320,0
+		FireDelay: 10
+	AttackTurreted:
+	WithSpriteTurret:
+	Selectable:
+		DecorationBounds: 3600, 3600
+
+CVCN:
+	Inherits: ^Ship
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Ship
+		BuildPaletteOrder: 64
+		Prerequisites: ~ships.china, afld, stek, ~techlevel.high
+		Description: actor-cvcn.description
+	Valued:
+		Cost: 6500
+	Tooltip:
+		Name: actor-cvcn.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 150000
+	Armor:
+		Type: Heavy
+	Mobile:
+		TurnSpeed: 8
+		Speed: 46
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 10c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	HitShape:
+		Type: Circle
+			Radius: 1280
+	Turreted:
+		TurnSpeed: 40
+		Offset: 0,0,256
+	Armament@AA1:
+		Weapon: StingerAA
+		LocalOffset: 256,320,0
+		FireDelay: 0
+	Armament@AA2:
+		Weapon: StingerAA
+		LocalOffset: -256,-320,0
+		FireDelay: 10
+	Armament@AA3:
+		Weapon: StingerAA
+		LocalOffset: -768,320,0
+		FireDelay: 20
+	AttackTurreted:
+	WithSpriteTurret:
+	Selectable:
+		DecorationBounds: 3800, 3800
+
+CVTR:
+	Inherits: ^Ship
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Ship
+		BuildPaletteOrder: 64
+		Prerequisites: ~ships.turkey, afld, ~techlevel.medium
+		Description: actor-cvtr.description
+	Valued:
+		Cost: 3000
+	Tooltip:
+		Name: actor-cvtr.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 90000
+	Armor:
+		Type: Heavy
+	Mobile:
+		TurnSpeed: 10
+		Speed: 50
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 7c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	HitShape:
+		Type: Circle
+			Radius: 1024
+	Turreted:
+		TurnSpeed: 40
+		Offset: 0,0,256
+	Armament@AA1:
+		Weapon: StingerAA
+		LocalOffset: 256,320,0
+		FireDelay: 0
+	AttackTurreted:
+	WithSpriteTurret:
+	Selectable:
+		DecorationBounds: 3000, 3000
+
+CVIR:
+	Inherits: ^Ship
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Ship
+		BuildPaletteOrder: 64
+		Prerequisites: ~ships.iran, afld, ~techlevel.medium
+		Description: actor-cvir.description
+	Valued:
+		Cost: 2500
+	Tooltip:
+		Name: actor-cvir.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 80000
+	Armor:
+		Type: Heavy
+	Mobile:
+		TurnSpeed: 10
+		Speed: 48
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 7c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	HitShape:
+		Type: Circle
+			Radius: 1024
+	Turreted:
+		TurnSpeed: 40
+		Offset: 0,0,256
+	Armament@AA1:
+		Weapon: StingerAA
+		LocalOffset: 256,320,0
+		FireDelay: 0
+	AttackTurreted:
+	WithSpriteTurret:
+	Selectable:
+		DecorationBounds: 3000, 3000
+
+# Carrier air wings (IDEA-08 2c, A1 launch and recovery cycles). Flight decks: rules/carrier-decks.yaml (generated).
+# Only naval jets land on carriers, by deck kind: Catapult (CATOBAR: Nimitz, Ford, Charles de Gaulle, Fujian),
+# SkiJump (STOBAR: Kuznetsov, Vikrant, Fujian) and STOVL (any deck: Harrier, Yak-141 and the Turkish drone swarm).
+# Su-27/Su-35 stand in for the Su-33 / J-15 sea Flankers. Right-click your carrier with these jets to rebase them.
+JET.F4:
+	PxCarrierJet:
+		DeckTypes: Catapult
+
+JET.F14:
+	PxCarrierJet:
+		DeckTypes: Catapult
+
+JET.X47:
+	PxCarrierJet:
+		DeckTypes: Catapult
+
+JET.SEAVIXEN:
+	PxCarrierJet:
+		DeckTypes: Catapult
+
+JET.RAFALE:
+	PxCarrierJet:
+		DeckTypes: Catapult, SkiJump
+
+JET.SU27:
+	PxCarrierJet:
+		DeckTypes: SkiJump
+
+JET.SU35:
+	PxCarrierJet:
+		DeckTypes: SkiJump
+
+JET.HARRIER:
+	PxCarrierJet:
+		DeckTypes: STOVL
+
+JET.YAK141:
+	PxCarrierJet:
+		DeckTypes: STOVL
+
+JET.SWARM:
+	PxCarrierJet:
+		DeckTypes: STOVL

@@ -1,0 +1,30 @@
+# General dumping-ground for UI element sizes, etc.
+
+Metrics:
+	HighDensityCursors: true
+	FactionSuffix-allies: allies
+	FactionSuffix-usa: allies
+	FactionSuffix-england: allies
+	FactionSuffix-france: allies
+	FactionSuffix-germany: allies
+	FactionSuffix-spain: allies
+	FactionSuffix-greece: allies
+	FactionSuffix-turkey: soviet
+	FactionSuffix-russia: soviet
+	FactionSuffix-soviet: soviet
+	FactionSuffix-ukraine: soviet
+	FactionSuffix-pakistan: soviet
+	FactionSuffix-iran: soviet
+	FactionSuffix-cuba: soviet
+	FactionSuffix-india: soviet
+	FactionSuffix-egypt: allies
+	FactionSuffix-china: soviet
+	FactionSuffix-japan: allies
+	FactionSuffix-southkorea: allies
+	FactionSuffix-italy: allies
+	IncompatibleProtectedGameColor: B22222
+	IncompatibleVersionColor: D3D3D3
+	TextfieldColorHighlight: 562020
+	PlayerJoinedSound: PlayerJoined
+	LobbyOptionChangedSound: LobbyOptionChanged
+	PlayerLeftSound: PlayerLeft

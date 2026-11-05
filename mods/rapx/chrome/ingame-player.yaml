@@ -1,0 +1,962 @@
+Container@PLAYER_WIDGETS:
+	Logic: LoadIngameChatLogic
+	Children:
+		Container@CHAT_ROOT:
+		LogicKeyListener@PLAYER_KEYHANDLER:
+			Logic: RemoveFromControlGroupHotkeyLogic
+				RemoveFromControlGroupKey: RemoveFromControlGroup
+		ControlGroups@CONTROLGROUPS:
+			SelectGroupKeyPrefix: ControlGroupSelect
+			CreateGroupKeyPrefix: ControlGroupCreate
+			AddToGroupKeyPrefix: ControlGroupAddTo
+			CombineWithGroupKeyPrefix: ControlGroupCombineWith
+			JumpToGroupKeyPrefix: ControlGroupJumpTo
+		LogicTicker@SIDEBAR_TICKER:
+		Container@SUPPORT_POWERS:
+			Logic: SupportPowerBinLogic
+			X: 10
+			Y: 10
+			Children:
+				PxSupportPowers@SUPPORT_PALETTE:
+					IconSize: 80, 76
+					IconMargin: 8
+					TooltipContainer: TOOLTIP_CONTAINER
+					ReadyText: supportpowers-support-powers-palette.ready
+					HoldText: supportpowers-support-powers-palette.hold
+					HotkeyPrefix: SupportPower
+					HotkeyCount: 6
+		PxSupportPowerTimer@SUPPORT_POWER_TIMER:
+			X: 102
+			Y: 10
+			Width: 330
+			Order: Descending
+		PxTreatyBanner@PX_TREATY_BANNER:
+			X: (WINDOW_WIDTH - 400 - WIDTH) / 2
+			Y: 0
+			Width: 380
+			Height: 88
+		Background@PX_SELECTION_PANEL:
+			Logic: PxSelectionPanelLogic
+			Y: WINDOW_HEIGHT - HEIGHT
+			Width: WINDOW_WIDTH - 400
+			Height: 150
+			Background: px-bottombar
+			Children:
+				Background@PORTRAIT_WELL:
+					X: 10
+					Y: 16
+					Width: 150
+					Height: 124
+					Background: px-well
+					Children:
+						PxSelectionPanel@PORTRAIT:
+							Width: 150
+							Height: 124
+							Part: Portrait
+				Background@INFO_WELL:
+					X: 166
+					Y: 16
+					Width: 214
+					Height: 124
+					Background: px-well
+					Children:
+						PxSelectionPanel@INFO:
+							Width: 214
+							Height: 124
+							Part: Info
+				Background@STATS_WELL:
+					X: 386
+					Y: 16
+					Width: 232
+					Height: 124
+					Background: px-well
+					Children:
+						PxSelectionPanel@STATS:
+							Width: 232
+							Height: 124
+							Part: Stats
+				Background@GROUPS_WELL:
+					X: 624
+					Y: 16
+					Width: PARENT_WIDTH - 624 - 282
+					Height: 124
+					Background: px-well
+					Children:
+						PxSelectionPanel@GROUPS:
+							Width: PARENT_WIDTH
+							Height: 124
+							Part: Groups
+							SlotSize: 60, 46
+				Background@ACTIONS_WELL:
+					X: PARENT_WIDTH - 276
+					Y: 16
+					Width: 266
+					Height: 124
+					Background: px-well
+					Children:
+						Label@COMMANDS_LABEL:
+							X: 12
+							Y: 6
+							Width: 200
+							Height: 16
+							Font: PXSidebarSmall
+							TextColor: 9D9EA6
+							Text: label-px-panel-commands
+						Container@COMMAND_BAR:
+							Logic: CommandBarLogic
+							X: 3
+							Y: 30
+							Width: 260
+							Height: 84
+							Children:
+								LogicKeyListener@MODIFIER_OVERRIDES:
+								Button@ATTACK_MOVE:
+									Width: 40
+									Height: 40
+									VisualHeight: 0
+									Background: px-key
+									Key: AttackMove
+									DisableKeySound: true
+									TooltipText: button-command-bar-attack-move.tooltip
+									TooltipDesc: button-command-bar-attack-move.tooltipdesc
+									TooltipContainer: TOOLTIP_CONTAINER
+									TooltipTemplate: BUTTON_WITH_DESC_HIGHLIGHT_TOOLTIP
+									Children:
+										Image@ICON:
+											X: 8
+											Y: 8
+											ImageCollection: px-command-icons
+											ImageName: attack-move
+								Button@FORCE_MOVE:
+									X: 44
+									Width: 40
+									Height: 40
+									VisualHeight: 0
+									Background: px-key
+									DisableKeySound: true
+									TooltipText: button-command-bar-force-move.tooltip
+									TooltipDesc: button-command-bar-force-move.tooltipdesc
+									TooltipContainer: TOOLTIP_CONTAINER
+									TooltipTemplate: BUTTON_WITH_DESC_HIGHLIGHT_TOOLTIP
+									Children:
+										Image@ICON:
+											X: 8
+											Y: 8
+											ImageCollection: px-command-icons
+											ImageName: force-move
+								Button@FORCE_ATTACK:
+									X: 88
+									Width: 40
+									Height: 40
+									VisualHeight: 0
+									Background: px-key
+									DisableKeySound: true
+									TooltipText: button-command-bar-force-attack.tooltip
+									TooltipDesc: button-command-bar-force-attack.tooltipdesc
+									TooltipContainer: TOOLTIP_CONTAINER
+									TooltipTemplate: BUTTON_WITH_DESC_HIGHLIGHT_TOOLTIP
+									Children:
+										Image@ICON:
+											X: 8
+											Y: 8
+											ImageCollection: px-command-icons
+											ImageName: force-attack
+								Button@GUARD:
+									X: 132
+									Width: 40
+									Height: 40
+									VisualHeight: 0
+									Background: px-key
+									Key: Guard
+									DisableKeySound: true
+									TooltipText: button-command-bar-guard.tooltip
+									TooltipDesc: button-command-bar-guard.tooltipdesc
+									TooltipContainer: TOOLTIP_CONTAINER
+									Children:
+										Image@ICON:
+											X: 8
+											Y: 8
+											ImageCollection: px-command-icons
+											ImageName: guard
+								Button@DEPLOY:
+									X: 176
+									Width: 40
+									Height: 40
+									VisualHeight: 0
+									Background: px-key
+									Key: Deploy
+									DisableKeyRepeat: true
+									DisableKeySound: true
+									TooltipText: button-command-bar-deploy.tooltip
+									TooltipDesc: button-command-bar-deploy.tooltipdesc
+									TooltipContainer: TOOLTIP_CONTAINER
+									Children:
+										Image@ICON:
+											X: 8
+											Y: 8
+											ImageCollection: px-command-icons
+											ImageName: deploy
+								Button@SCATTER:
+									X: 220
+									Width: 40
+									Height: 40
+									VisualHeight: 0
+									Background: px-key
+									Key: Scatter
+									DisableKeyRepeat: true
+									DisableKeySound: true
+									TooltipText: button-command-bar-scatter.tooltip
+									TooltipDesc: button-command-bar-scatter.tooltipdesc
+									TooltipContainer: TOOLTIP_CONTAINER
+									Children:
+										Image@ICON:
+											X: 8
+											Y: 8
+											ImageCollection: px-command-icons
+											ImageName: scatter
+								Button@STOP:
+									Y: 44
+									Width: 40
+									Height: 40
+									VisualHeight: 0
+									Background: px-key
+									Key: Stop
+									DisableKeyRepeat: true
+									DisableKeySound: true
+									TooltipText: button-command-bar-stop.tooltip
+									TooltipDesc: button-command-bar-stop.tooltipdesc
+									TooltipContainer: TOOLTIP_CONTAINER
+									Children:
+										Image@ICON:
+											X: 8
+											Y: 8
+											ImageCollection: px-command-icons
+											ImageName: stop
+								Button@QUEUE_ORDERS:
+									X: 44
+									Y: 44
+									Width: 40
+									Height: 40
+									VisualHeight: 0
+									Background: px-key
+									DisableKeySound: true
+									TooltipText: button-command-bar-queue-orders.tooltip
+									TooltipDesc: button-command-bar-queue-orders.tooltipdesc
+									TooltipContainer: TOOLTIP_CONTAINER
+									TooltipTemplate: BUTTON_WITH_DESC_HIGHLIGHT_TOOLTIP
+									Children:
+										Image@ICON:
+											X: 8
+											Y: 8
+											ImageCollection: px-command-icons
+											ImageName: queue-orders
+						Container@STANCE_BAR:
+							Logic: StanceSelectorLogic
+							X: 91
+							Y: 74
+							Width: 172
+							Height: 40
+							Children:
+								Button@STANCE_ATTACKANYTHING:
+									Width: 40
+									Height: 40
+									VisualHeight: 0
+									Background: px-key
+									Key: StanceAttackAnything
+									DisableKeyRepeat: true
+									DisableKeySound: true
+									TooltipText: button-stance-bar-attackanything.tooltip
+									TooltipDesc: button-stance-bar-attackanything.tooltipdesc
+									TooltipContainer: TOOLTIP_CONTAINER
+									Children:
+										Image@ICON:
+											X: 8
+											Y: 8
+											ImageCollection: px-stance-icons
+											ImageName: attack-anything
+								Button@STANCE_DEFEND:
+									X: 44
+									Width: 40
+									Height: 40
+									VisualHeight: 0
+									Background: px-key
+									Key: StanceDefend
+									DisableKeyRepeat: true
+									DisableKeySound: true
+									TooltipText: button-stance-bar-defend.tooltip
+									TooltipDesc: button-stance-bar-defend.tooltipdesc
+									TooltipContainer: TOOLTIP_CONTAINER
+									Children:
+										Image@ICON:
+											X: 8
+											Y: 8
+											ImageCollection: px-stance-icons
+											ImageName: defend
+								Button@STANCE_RETURNFIRE:
+									X: 88
+									Width: 40
+									Height: 40
+									VisualHeight: 0
+									Background: px-key
+									Key: StanceReturnFire
+									DisableKeyRepeat: true
+									DisableKeySound: true
+									TooltipText: button-stance-bar-returnfire.tooltip
+									TooltipDesc: button-stance-bar-returnfire.tooltipdesc
+									TooltipContainer: TOOLTIP_CONTAINER
+									Children:
+										Image@ICON:
+											X: 8
+											Y: 8
+											ImageCollection: px-stance-icons
+											ImageName: return-fire
+								Button@STANCE_HOLDFIRE:
+									X: 132
+									Width: 40
+									Height: 40
+									VisualHeight: 0
+									Background: px-key
+									Key: StanceHoldFire
+									DisableKeyRepeat: true
+									DisableKeySound: true
+									TooltipText: button-stance-bar-holdfire.tooltip
+									TooltipDesc: button-stance-bar-holdfire.tooltipdesc
+									TooltipContainer: TOOLTIP_CONTAINER
+									Children:
+										Image@ICON:
+											X: 8
+											Y: 8
+											ImageCollection: px-stance-icons
+											ImageName: hold-fire
+						Container@BUILDING_ACTIONS:
+							X: 3
+							Y: 6
+							Width: 260
+							Height: 112
+							Children:
+								Label@ACTIONS_LABEL:
+									X: 9
+									Width: 200
+									Height: 16
+									Font: PXSidebarSmall
+									TextColor: 9D9EA6
+									Text: label-px-panel-actions
+								Container@KEYS:
+									Y: 24
+									Width: 260
+									Height: 84
+									Children:
+										Button@REPAIR_SELECTED:
+											X: 0
+											Width: 62
+											Height: 84
+											Background: px-key
+											TooltipText: button-top-buttons-repair-tooltip
+											TooltipContainer: TOOLTIP_CONTAINER
+											VisualHeight: 0
+											Children:
+												Image@ICON:
+													X: 17
+													Y: 16
+													ImageCollection: px-building-actions
+													ImageName: repair
+												Label@LABEL:
+													Y: 54
+													Width: 62
+													Height: 14
+													Align: Center
+													Font: PXSidebarSmall
+													TextColor: CFD0D6
+													Text: label-px-sidebar-repair
+										Button@SELL_SELECTED:
+											X: 66
+											Width: 62
+											Height: 84
+											Background: px-key
+											TooltipText: button-top-buttons-sell-tooltip
+											TooltipContainer: TOOLTIP_CONTAINER
+											VisualHeight: 0
+											Children:
+												Image@ICON:
+													X: 17
+													Y: 16
+													ImageCollection: px-building-actions
+													ImageName: sell
+												Label@LABEL:
+													Y: 54
+													Width: 62
+													Height: 14
+													Align: Center
+													Font: PXSidebarSmall
+													TextColor: CFD0D6
+													Text: label-px-sidebar-sell
+										Button@POWER_SELECTED:
+											X: 132
+											Width: 62
+											Height: 84
+											Background: px-key
+											TooltipText: button-top-buttons-power-tooltip
+											TooltipContainer: TOOLTIP_CONTAINER
+											VisualHeight: 0
+											Children:
+												Image@ICON:
+													X: 17
+													Y: 16
+													ImageCollection: px-building-actions
+													ImageName: power
+												Label@LABEL:
+													Y: 54
+													Width: 62
+													Height: 14
+													Align: Center
+													Font: PXSidebarSmall
+													TextColor: CFD0D6
+													Text: label-px-sidebar-power
+										Button@RALLY_SELECTED:
+											X: 198
+											Width: 62
+											Height: 84
+											Background: px-key
+											TooltipText: button-px-panel-rally-tooltip
+											TooltipContainer: TOOLTIP_CONTAINER
+											VisualHeight: 0
+											Children:
+												Image@ICON:
+													X: 17
+													Y: 16
+													ImageCollection: px-building-actions
+													ImageName: rally
+												Label@LABEL:
+													Y: 54
+													Width: 62
+													Height: 14
+													Align: Center
+													Font: PXSidebarSmall
+													TextColor: CFD0D6
+													Text: label-px-panel-rally
+		Container@MUTE_INDICATOR:
+			Logic: MuteIndicatorLogic
+			X: WINDOW_WIDTH - WIDTH - 420
+			Y: 10
+			Width: 200
+			Height: 25
+			Children:
+				Image@ICON:
+					X: PARENT_WIDTH - WIDTH
+					Y: 1
+					Width: 24
+					Height: 24
+					ImageCollection: sidebar-bits
+					ImageName: indicator-muted
+				Label@LABEL:
+					Width: PARENT_WIDTH - 30
+					Height: 25
+					Align: Right
+					Text: label-mute-indicator
+					Contrast: true
+		Background@PX_SIDEBAR:
+			Logic: PxSidebarLogic
+			X: WINDOW_WIDTH - WIDTH
+			Width: 400
+			Height: WINDOW_HEIGHT
+			Background: px-sidebar-bg
+			Children:
+				LogicTicker@PX_SIDEBAR_TICKER:
+				Image@FACTION_EMBLEM:
+					X: 18
+					Y: 10
+					Width: 44
+					Height: 44
+					ImageCollection: px-emblems
+					ImageName: soviet
+				Label@FACTION_NAME:
+					X: 72
+					Y: 11
+					Width: 212
+					Height: 24
+					Font: PXSidebarTitle
+				Label@PLAYER_NAME:
+					X: 72
+					Y: 35
+					Width: 212
+					Height: 16
+					Font: PXSidebarSmall
+					TextColor: FF6A55
+				Container@TOP_BUTTONS:
+					Logic: MenuButtonsChromeLogic
+					X: 18
+					Y: 10
+					Width: 368
+					Height: 102
+					Children:
+						Button@HOME_BUTTON:
+							X: 274
+							Width: 44
+							Height: 44
+							Background: px-key
+							TooltipText: button-top-buttons-home-tooltip
+							TooltipContainer: TOOLTIP_CONTAINER
+							VisualHeight: 0
+							Children:
+								Image@ICON:
+									X: 10
+									Y: 10
+									ImageCollection: px-order-icons
+									ImageName: home
+						MenuButton@OPTIONS_BUTTON:
+							X: 324
+							Width: 44
+							Height: 44
+							Background: px-key
+							Key: escape
+							TooltipText: button-top-buttons-options-tooltip
+							TooltipContainer: TOOLTIP_CONTAINER
+							DisableWorldSounds: true
+							VisualHeight: 0
+							Children:
+								Image@ICON:
+									X: 10
+									Y: 10
+									ImageCollection: px-order-icons
+									ImageName: options
+						Button@REPAIR_BUTTON:
+							Logic: RepairOrderButtonLogic
+							Y: 52
+							Width: 88
+							Height: 50
+							Background: px-key
+							Key: Repair
+							TooltipText: button-top-buttons-repair-tooltip
+							TooltipContainer: TOOLTIP_CONTAINER
+							VisualHeight: 0
+							Children:
+								Image@ICON:
+									X: 32
+									Y: 6
+									ImageCollection: px-order-icons
+								Label@LABEL:
+									Y: 31
+									Width: 88
+									Height: 14
+									Align: Center
+									Font: PXSidebarSmall
+									TextColor: CFD0D6
+									Text: label-px-sidebar-repair
+						Button@SELL_BUTTON:
+							Logic: SellOrderButtonLogic
+							X: 93
+							Y: 52
+							Width: 88
+							Height: 50
+							Background: px-key
+							Key: Sell
+							TooltipText: button-top-buttons-sell-tooltip
+							TooltipContainer: TOOLTIP_CONTAINER
+							VisualHeight: 0
+							Children:
+								Image@ICON:
+									X: 32
+									Y: 6
+									ImageCollection: px-order-icons
+								Label@LABEL:
+									Y: 31
+									Width: 88
+									Height: 14
+									Align: Center
+									Font: PXSidebarSmall
+									TextColor: CFD0D6
+									Text: label-px-sidebar-sell
+						Button@POWER_BUTTON:
+							Logic: PowerdownOrderButtonLogic
+							X: 186
+							Y: 52
+							Width: 88
+							Height: 50
+							Background: px-key
+							Key: PowerDown
+							TooltipText: button-top-buttons-power-tooltip
+							TooltipContainer: TOOLTIP_CONTAINER
+							VisualHeight: 0
+							Children:
+								Image@ICON:
+									X: 32
+									Y: 6
+									ImageCollection: px-order-icons
+								Label@LABEL:
+									Y: 31
+									Width: 88
+									Height: 14
+									Align: Center
+									Font: PXSidebarSmall
+									TextColor: CFD0D6
+									Text: label-px-sidebar-power
+						Button@BEACON_BUTTON:
+							Logic: BeaconOrderButtonLogic
+							X: 279
+							Y: 52
+							Width: 89
+							Height: 50
+							Background: px-key
+							Key: PlaceBeacon
+							TooltipText: button-top-buttons-beacon-tooltip
+							TooltipContainer: TOOLTIP_CONTAINER
+							VisualHeight: 0
+							Children:
+								Image@ICON:
+									X: 32
+									Y: 6
+									ImageCollection: px-order-icons
+								Label@LABEL:
+									Y: 31
+									Width: 89
+									Height: 14
+									Align: Center
+									Font: PXSidebarSmall
+									TextColor: CFD0D6
+									Text: label-px-sidebar-beacon
+				Background@WEATHER_WELL:
+					X: 18
+					Y: 62
+					Width: 368
+					Height: 48
+					Background: px-well
+					Children:
+						PxWeatherBadge@WEATHER_BADGE:
+							Width: 368
+							Height: 48
+							TooltipContainer: TOOLTIP_CONTAINER
+				Background@RADAR_WELL:
+					X: 18
+					Y: 120
+					Width: 368
+					Height: 214
+					Background: px-well
+					Children:
+						Image@RADAR_ICON:
+							X: 10
+							Y: 8
+							ImageCollection: px-sidebar-bits
+							ImageName: radar
+						Label@RADAR_LABEL:
+							X: 30
+							Y: 5
+							Width: 100
+							Height: 20
+							Font: PXSidebarSmall
+							TextColor: C8C8CF
+							Text: label-px-sidebar-radar
+						ColorBlock@RADAR_DOT:
+							X: 290
+							Y: 12
+							Width: 7
+							Height: 7
+						Label@RADAR_STATUS:
+							X: 302
+							Y: 5
+							Width: 58
+							Height: 20
+							Font: PXDigitsSmall
+						Container@RADAR:
+							Logic: IngameRadarDisplayLogic
+							X: 6
+							Y: 26
+							Width: 356
+							Height: 182
+							Children:
+								LogicTicker@RADAR_TICKER:
+								Container@RADAR_OFFLINE:
+									Width: 356
+									Height: 182
+									Children:
+										Label@NO_SIGNAL:
+											Y: 74
+											Width: 356
+											Height: 20
+											Align: Center
+											Font: PXSidebarLabel
+											TextColor: 6E6F78
+											Text: label-px-sidebar-no-radar
+										Label@BUILD_RADAR:
+											Y: 94
+											Width: 356
+											Height: 16
+											Align: Center
+											Font: PXSidebarSmall
+											TextColor: 55565E
+											Text: label-px-sidebar-build-radar
+								ColorBlock@RADAR_FADETOBLACK:
+									Width: 356
+									Height: 182
+								Radar@RADAR_MINIMAP:
+									WorldInteractionController: INTERACTION_CONTROLLER
+									Width: 356
+									Height: 182
+									SoundUp: RadarUp
+									SoundDown: RadarDown
+								VideoPlayer@PLAYER:
+									Width: 356
+									Height: 182
+									Skippable: false
+								PxRadarOverlay@RADAR_OVERLAY:
+									Width: 356
+									Height: 182
+				Background@CASH_WELL:
+					X: 18
+					Y: 342
+					Width: 214
+					Height: 52
+					Background: px-well
+					Children:
+						Image@CASH_ICON:
+							X: 10
+							Y: 12
+							ImageCollection: px-sidebar-bits
+							ImageName: cash
+						Label@CASH_LABEL:
+							X: 46
+							Y: 5
+							Width: 150
+							Height: 14
+							Font: PXSidebarSmall
+							TextColor: 9D9EA6
+							Text: label-px-sidebar-credits
+						Container@CASH_COUNTER:
+							Logic: IngameCashCounterLogic
+							X: 46
+							Y: 18
+							Width: 160
+							Height: 30
+							Children:
+								PxCashLabel@CASH:
+									Width: 160
+									Height: 30
+									Font: PXDigits
+									TextColor: FFD166
+									TooltipContainer: TOOLTIP_CONTAINER
+									TooltipTemplate: SIMPLE_TOOLTIP
+				Background@TIME_WELL:
+					X: 238
+					Y: 342
+					Width: 148
+					Height: 52
+					Background: px-well
+					Children:
+						Label@TIME_LABEL:
+							X: 12
+							Y: 5
+							Width: 130
+							Height: 14
+							Font: PXSidebarSmall
+							TextColor: 9D9EA6
+							Text: label-px-sidebar-time
+						Label@GAME_TIMER:
+							Logic: GameTimerLogic
+							X: 12
+							Y: 18
+							Width: 130
+							Height: 30
+							Font: PXDigits
+				Background@POWER_WELL:
+					X: 18
+					Y: 400
+					Width: 368
+					Height: 30
+					Background: px-well
+					Children:
+						Image@POWER_ICON:
+							X: 10
+							Y: 5
+							ImageCollection: px-sidebar-bits
+							ImageName: power-normal
+						Label@POWER_LABEL:
+							X: 34
+							Y: 6
+							Width: 50
+							Height: 16
+							Font: PXSidebarSmall
+							TextColor: 9D9EA6
+							Text: label-px-sidebar-power
+						PxPowerBar@POWER_BAR:
+							X: 84
+							Y: 9
+							Width: 212
+							Height: 10
+						Label@POWER_TEXT:
+							X: 300
+							Y: 6
+							Width: 58
+							Height: 16
+							Align: Right
+							Font: PXDigitsSmall
+				Container@SIDEBAR_PRODUCTION:
+					Logic: ClassicProductionLogic
+					Y: 438
+					Width: 400
+					Height: WINDOW_HEIGHT - 438
+					Children:
+						LogicTicker@PRODUCTION_TICKER:
+						Container@PRODUCTION_TYPES:
+							X: 18
+							Width: 368
+							Height: 46
+							Children:
+								ProductionTypeButton@BUILDING:
+									Width: 57
+									Height: 46
+									VisualHeight: 0
+									Background: px-key
+									TooltipText: button-production-types-building-tooltip
+									TooltipContainer: TOOLTIP_CONTAINER
+									ProductionGroup: Building
+									Key: ProductionTypeBuilding
+									Children:
+										Image@ICON:
+											X: 14
+											Y: 9
+											ImageCollection: px-production-icons
+								ProductionTypeButton@DEFENSE:
+									X: 62
+									Width: 57
+									Height: 46
+									VisualHeight: 0
+									Background: px-key
+									TooltipText: button-production-types-defense-tooltip
+									TooltipContainer: TOOLTIP_CONTAINER
+									ProductionGroup: Defense
+									Key: ProductionTypeDefense
+									Children:
+										Image@ICON:
+											X: 14
+											Y: 9
+											ImageCollection: px-production-icons
+								ProductionTypeButton@INFANTRY:
+									X: 124
+									Width: 57
+									Height: 46
+									VisualHeight: 0
+									Background: px-key
+									TooltipText: button-production-types-infantry-tooltip
+									TooltipContainer: TOOLTIP_CONTAINER
+									ProductionGroup: Infantry
+									Key: ProductionTypeInfantry
+									Children:
+										Image@ICON:
+											X: 14
+											Y: 9
+											ImageCollection: px-production-icons
+								ProductionTypeButton@VEHICLE:
+									X: 186
+									Width: 57
+									Height: 46
+									VisualHeight: 0
+									Background: px-key
+									TooltipText: button-production-types-vehicle-tooltip
+									TooltipContainer: TOOLTIP_CONTAINER
+									ProductionGroup: Vehicle
+									Key: ProductionTypeVehicle
+									Children:
+										Image@ICON:
+											X: 14
+											Y: 9
+											ImageCollection: px-production-icons
+								ProductionTypeButton@AIRCRAFT:
+									X: 248
+									Width: 57
+									Height: 46
+									VisualHeight: 0
+									Background: px-key
+									TooltipText: button-production-types-aircraft-tooltip
+									TooltipContainer: TOOLTIP_CONTAINER
+									ProductionGroup: Aircraft
+									Key: ProductionTypeAircraft
+									Children:
+										Image@ICON:
+											X: 14
+											Y: 9
+											ImageCollection: px-production-icons
+								ProductionTypeButton@NAVAL:
+									X: 310
+									Width: 58
+									Height: 46
+									VisualHeight: 0
+									Background: px-key
+									TooltipText: button-production-types-naval-tooltip
+									TooltipContainer: TOOLTIP_CONTAINER
+									ProductionGroup: Ship
+									Key: ProductionTypeNaval
+									Children:
+										Image@ICON:
+											X: 15
+											Y: 9
+											ImageCollection: px-production-icons
+						Label@QUEUE_TITLE:
+							X: 18
+							Y: 53
+							Width: 150
+							Height: 20
+							Font: PXSidebarLabel
+						Label@QUEUE_COUNT:
+							X: 170
+							Y: 54
+							Width: 162
+							Height: 18
+							Align: Right
+							Font: PXSidebarSmall
+							TextColor: 9D9EA6
+						ColorBlock@QUEUE_RULE:
+							X: 18
+							Y: 74
+							Width: 368
+							Height: 1
+							Color: E2262699
+						Button@SCROLL_UP_BUTTON:
+							X: 338
+							Y: 51
+							Width: 22
+							Height: 20
+							VisualHeight: 0
+							Background: px-key
+							TooltipText: button-production-types-scroll-up-tooltip
+							TooltipContainer: TOOLTIP_CONTAINER
+							Children:
+								Image@ICON:
+									X: 3
+									Y: 2
+									ImageCollection: scrollpanel-decorations
+									ImageName: up
+						Button@SCROLL_DOWN_BUTTON:
+							X: 364
+							Y: 51
+							Width: 22
+							Height: 20
+							VisualHeight: 0
+							Background: px-key
+							TooltipText: button-production-types-scroll-down-tooltip
+							TooltipContainer: TOOLTIP_CONTAINER
+							Children:
+								Image@ICON:
+									X: 3
+									Y: 2
+									ImageCollection: scrollpanel-decorations
+									ImageName: down
+						PxCategoryBar@CATEGORY_BAR:
+							X: 18
+							Y: 80
+							Width: 368
+							Height: 30
+						PxProductionPalette@PRODUCTION_PALETTE:
+							X: 18
+							Y: 116
+							TooltipContainer: TOOLTIP_CONTAINER
+							ReadyText: productionpalette-sidebar-production-palette.ready
+							HoldText: productionpalette-sidebar-production-palette.hold
+							IconSize: 120, 80
+							IconMargin: 4, 4
+							HotkeyPrefix: Production
+							HotkeyCount: 24
+							SelectProductionBuildingHotkey: SelectProductionBuilding
+		Container@HPF_ROOT:
+			Logic: LoadIngameHierarchicalPathFinderOverlayLogic
+			X: WINDOW_WIDTH - WIDTH - 420
+			Y: 40
+			Width: 175

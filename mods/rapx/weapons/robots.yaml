@@ -1,0 +1,105 @@
+# IDEA-29 robot weapons (rules/robots.yaml). Built on the stock weapons; numbers are a first pass.
+
+EnforcerGun:
+	Inherits: M60mg
+	ReloadDelay: 25
+	Range: 5c0
+	Burst: 6
+	Warhead@1Dam: SpreadDamage
+		Versus:
+			Light: 60
+
+# Shoulder-pod rocket with the HD rocket projectile (OpenRA.Mods.RAPX/Projectiles/PxRocket.cs): drawn rocket,
+# exhaust flame, launch blast and a lingering smoke trail
+EnforcerRocket:
+	Inherits: Dragon
+	ReloadDelay: 90
+	Range: 6c0
+	Report: missile6.aud
+	Projectile: PxRocket
+		Speed: 200
+		Arc: 0.15
+
+CyborgPistol:
+	Inherits: M1Carbine
+	ReloadDelay: 14
+	Range: 5c0
+	Warhead@1Dam: SpreadDamage
+		Versus:
+			Light: 50
+
+DroidBlaster:
+	Inherits: M1Carbine
+	ReloadDelay: 24
+	Range: 4c512
+	# Blue energy bolts instead of bullets, with a synthesised blaster zap (artsrc/audio/make_zap_sounds.py)
+	Report: ra|audio/weapons/droid-zap1.wav, ra|audio/weapons/droid-zap2.wav, ra|audio/weapons/droid-zap3.wav
+	Projectile: PxTracer
+		Rounds: 2
+		RoundInterval: 3
+		Speed: 900
+		TracerLength: 300
+		Width: 22
+		CoreColor: E6F4FF
+		Color: 4AA8FF
+		Casings: false
+
+RailgunShot:
+	Inherits: PrismTankBeam
+	ReloadDelay: 140
+	Range: 8c0
+	MinRange: 0c0
+	Warhead@1Dam: SpreadDamage
+		Spread: 128
+		Damage: 9000
+		Versus:
+			None: 40
+			Wood: 90
+			Light: 110
+			Heavy: 100
+			Concrete: 60
+
+StriderCannon:
+	Inherits: 105mm
+	ReloadDelay: 80
+	Range: 5c512
+
+StriderMG:
+	Inherits: M60mg
+	Range: 4c512
+
+IronGuardMG:
+	Inherits: M60mg
+	ReloadDelay: 22
+	Range: 5c0
+	Burst: 8
+
+AutomatonZap:
+	Inherits: PortaTesla
+	ReloadDelay: 60
+	Range: 5c0
+
+# The Spider Drone's charge (FireWarheadsOnDeath): strong against vehicles and robots, weak against buildings
+SpiderBlast:
+	Inherits: UnitExplode
+	Warhead@1Dam: SpreadDamage
+		Spread: 426
+		Damage: 25000
+		Versus:
+			None: 60
+			Wood: 60
+			Light: 120
+			Heavy: 100
+			Concrete: 40
+
+# Spy Car 1 (rules/spycar.yaml SCAR): pop-up rear-deck rocket pair, HD rocket projectile
+SpyCarRocket:
+	Inherits: Dragon
+	ReloadDelay: 100
+	Burst: 2
+	BurstDelays: 6
+	Range: 6c0
+	Report: missile6.aud
+	Projectile: PxRocket
+		Speed: 220
+		Arc: 0.1

@@ -1,0 +1,239 @@
+# IDEA-29 robot units: four Union robots and their four Vanguard counterparts (docs/DESIGN-IDEAS.md).
+# Sprites: AI animation sheets -> artsrc/units/infantry/make_infantry.py (sequences/hd-infantry.yaml);
+# weapons in weapons/robots.yaml, icons in sequences/robots.yaml, names in fluent/robots.ftl.
+# Robots never take cover, can't be crushed, healed or eaten by dogs, and all deaths use their two drawn
+# destruction sheets (make_infantry.py aliases die1 to die-crushed / die6).
+
+^PxRobot:
+	Inherits: ^Infantry
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	MustBeDestroyed:
+	Armor:
+		Type: Light
+	-Crushable:
+	-Targetable@HEAL:
+	-EdibleByLeap:
+	PxTreatyProtection:
+		-Condition:
+	WithInfantryBody:
+		IdleSequences: idle1
+		StandSequences: stand,stand2
+		DefaultAttackSequence: shoot
+	AttackFrontal:
+		FacingTolerance: 0
+	DeathSounds@NORMAL:
+		DeathTypes: DefaultDeath, BulletDeath, SmallExplosionDeath, ExplosionDeath
+		Voice: Die
+	WithDeathAnimation:
+		DeathTypes:
+			DefaultDeath: 1
+			BulletDeath: 1
+			SmallExplosionDeath: 2
+			ExplosionDeath: 2
+			FireDeath: 1
+			ElectricityDeath: 1
+
+# Walker-sized robots: built at the War Factory, too big for transports (no transport carries Walker cargo)
+^PxWalker:
+	Inherits: ^PxRobot
+	Armor:
+		Type: Heavy
+	Passenger:
+		CargoType: Walker
+	Selectable:
+		Bounds: 1024, 1100, 0, -360
+		DecorationBounds: 1024, 1250, 0, -440
+	HitShape:
+		Type: Circle
+			Radius: 512
+
+# --- Union -------------------------------------------------------------------------------------------------
+
+ENFW:
+	Inherits: ^PxWalker
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 240
+		Prerequisites: atek, ~vehicles.allies, ~techlevel.high
+		Description: actor-enfw.description
+	Valued:
+		Cost: 1600
+	Tooltip:
+		Name: actor-enfw.name
+	Health:
+		HP: 70000
+	Mobile:
+		Speed: 40
+	RevealsShroud:
+		Range: 6c0
+	Armament@PRIMARY:
+		Weapon: EnforcerGun
+		LocalOffset: 358,0,358
+	Armament@SECONDARY:
+		Weapon: EnforcerRocket
+		LocalOffset: 179,0,630
+
+CYBT:
+	Inherits: ^PxRobot
+	Buildable:
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 140
+		Prerequisites: dome, ~tent, ~techlevel.medium
+		Description: actor-cybt.description
+	Valued:
+		Cost: 700
+	Tooltip:
+		Name: actor-cybt.name
+	Health:
+		HP: 30000
+	Mobile:
+		Speed: 50
+	RevealsShroud:
+		Range: 5c0
+	Armament@PRIMARY:
+		Weapon: CyborgPistol
+
+BDRD:
+	Inherits: ^PxRobot
+	Buildable:
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 135
+		Prerequisites: ~tent, ~techlevel.low
+		Description: actor-bdrd.description
+	Valued:
+		Cost: 250
+	Tooltip:
+		Name: actor-bdrd.name
+	Health:
+		HP: 12000
+	Mobile:
+		Speed: 54
+	Armament@PRIMARY:
+		Weapon: DroidBlaster
+
+RGUN:
+	Inherits: ^PxRobot
+	Buildable:
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 145
+		Prerequisites: atek, ~tent, ~techlevel.high
+		Description: actor-rgun.description
+	Valued:
+		Cost: 900
+	Tooltip:
+		Name: actor-rgun.name
+	Health:
+		HP: 20000
+	Mobile:
+		Speed: 46
+	RevealsShroud:
+		Range: 7c0
+	Armament@PRIMARY:
+		Weapon: RailgunShot
+		LocalOffset: 307,0,240
+
+# --- Vanguard ----------------------------------------------------------------------------------------------
+
+STRD:
+	Inherits: ^PxWalker
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 240
+		Prerequisites: stek, ~vehicles.soviet, ~techlevel.high
+		Description: actor-strd.description
+	Valued:
+		Cost: 1800
+	Tooltip:
+		Name: actor-strd.name
+	Health:
+		HP: 80000
+	Mobile:
+		Speed: 34
+	RevealsShroud:
+		Range: 6c0
+	Armament@PRIMARY:
+		Weapon: StriderCannon
+		LocalOffset: 448,0,630
+	Armament@SECONDARY:
+		Weapon: StriderMG
+		LocalOffset: 358,0,210
+
+IRGD:
+	Inherits: ^PxRobot
+	Buildable:
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 140
+		Prerequisites: dome, ~barr, ~techlevel.medium
+		Description: actor-irgd.description
+	Valued:
+		Cost: 700
+	Tooltip:
+		Name: actor-irgd.name
+	Health:
+		HP: 35000
+	Mobile:
+		Speed: 46
+	RevealsShroud:
+		Range: 5c0
+	Armament@PRIMARY:
+		Weapon: IronGuardMG
+
+SDRN:
+	Inherits: ^PxRobot
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 150
+		Prerequisites: ~vehicles.soviet, ~techlevel.medium
+		Description: actor-sdrn.description
+	Valued:
+		Cost: 300
+	Tooltip:
+		Name: actor-sdrn.name
+	Health:
+		HP: 8000
+	Mobile:
+		Speed: 100
+	Selectable:
+		Bounds: 682, 512, 0, -128
+		DecorationBounds: 682, 512, 0, -170
+	# Runs at its target and detonates, like the Demolition Truck
+	AttackFrontal:
+		FacingTolerance: 512
+	Armament@PRIMARY:
+		Weapon: DemoTruckTargeting
+	GrantConditionOnAttack:
+		Condition: triggered
+	GrantConditionOnDeploy:
+		DeployedCondition: triggered
+	KillsSelf:
+		RequiresCondition: triggered
+	FireWarheadsOnDeath:
+		Weapon: SpiderBlast
+		EmptyWeapon: SpiderBlast
+		DamageSource: Killer
+
+TAUT:
+	Inherits: ^PxRobot
+	Buildable:
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 145
+		Prerequisites: tsla, ~barr, ~techlevel.high
+		Description: actor-taut.description
+	Valued:
+		Cost: 900
+	Tooltip:
+		Name: actor-taut.name
+	Health:
+		HP: 30000
+	Mobile:
+		Speed: 43
+	Armament@PRIMARY:
+		Weapon: AutomatonZap
+		LocalOffset: 256,0,300

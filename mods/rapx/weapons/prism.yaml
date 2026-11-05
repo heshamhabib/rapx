@@ -1,0 +1,136 @@
+# Prism weapons (Prism Tank, Prism Tower; PxPrismRelay relay beams).
+
+^PrismBeam:
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	# HD red energy beam (OpenRA.Mods.RAPX/Projectiles/PxGlowLaser.cs): white-hot core, layered red glow,
+	# crackling filaments, glowing flares at both ends and impact sparks
+	Projectile: PxGlowLaser
+		Width: 60
+		GlowScale: 5
+		CoreColor: FFF0E8
+		Color: FF2A1E
+		GlowColor: E6000064
+		Duration: 16
+		ZOffset: 2048
+	Warhead@1Dam: SpreadDamage
+		ValidTargets: GroundActor, WaterActor
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath
+	Warhead@2Eff: CreateEffect
+		Explosions: small_explosion
+		ImpactSounds: kaboom25.aud
+		ValidTargets: Ground, GroundActor, WaterActor
+
+PrismTowerBeam:
+	Inherits: ^PrismBeam
+	ReloadDelay: 110
+	Range: 7c512
+	Warhead@1Dam: SpreadDamage
+		Spread: 128
+		Damage: 9000
+		Versus:
+			None: 110
+			Wood: 75
+			Light: 100
+			Heavy: 70
+			Concrete: 40
+
+PrismTankBeam:
+	Inherits: ^PrismBeam
+	ReloadDelay: 120
+	Range: 7c0
+	MinRange: 1c512
+	Projectile: PxGlowLaser
+		Width: 50
+		MuzzleFlare: 280
+		ImpactFlare: 460
+	Warhead@1Dam: SpreadDamage
+		Spread: 384
+		Damage: 5500
+		Falloff: 100, 50, 20
+		Versus:
+			None: 120
+			Wood: 110
+			Light: 80
+			Heavy: 45
+			Concrete: 60
+	Warhead@2Eff: CreateEffect
+		Explosions: med_explosion
+
+# Cosmetic: the beam a feeding Prism actor sends into the one that fires (PxPrismRelay RelayWeapon). No warheads.
+PrismRelayBeam:
+	Range: 32c0
+	Projectile: PxGlowLaser
+		Width: 36
+		GlowScale: 4
+		CoreColor: FFE6DC
+		Color: FF3A28
+		GlowColor: FF000032
+		Duration: 12
+		Filaments: 1
+		Sparks: 0
+		ImpactFlare: 260
+		MuzzleFlare: 200
+		ZOffset: 2048
+
+# IDEA-16 orbital laser mesh (rules/space.yaml)
+
+OrbitalLaser:
+	ReloadDelay: 100
+	Range: 6c0
+	Report: tesla1.aud
+	ValidTargets: Ground, Water, Air, GroundActor, WaterActor, AirborneActor
+	Projectile: LaserZap
+		Width: 110
+		Color: B4F6FFF0
+		SecondaryBeam: true
+		SecondaryBeamWidth: 300
+		SecondaryBeamColor: 2AA8FF55
+		Duration: 14
+		ZOffset: 4096
+	Warhead@1Dam: SpreadDamage
+		Spread: 256
+		Damage: 15000
+		ValidTargets: GroundActor, WaterActor, AirborneActor
+		Versus:
+			None: 90
+			Wood: 80
+			Light: 100
+			Heavy: 75
+			Concrete: 50
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Scorch
+		InvalidTargets: Vehicle, Structure, Wall, Husk, Trees
+	Warhead@3Eff: CreateEffect
+		Explosions: med_explosion
+		ImpactSounds: kaboom25.aud
+		ValidTargets: Ground, GroundActor, WaterActor
+	Warhead@4EffAir: CreateEffect
+		Explosions: med_explosion_air
+		ValidTargets: Air, AirborneActor
+
+OrbitalRelayBeam:
+	Inherits: PrismRelayBeam
+	Range: 64c0
+	Projectile: LaserZap
+		Width: 64
+		SecondaryBeamWidth: 180
+		ZOffset: 4096
+
+ASATMissile:
+	Inherits: Nike
+	ReloadDelay: 60
+	Range: 12c0
+	ValidTargets: Air, Satellite
+	Projectile: Missile
+		RangeLimit: 20c0
+		Speed: 400
+		HorizontalRateOfTurn: 120
+		VerticalRateOfTurn: 120
+	Warhead@1Dam: SpreadDamage
+		ValidTargets: Satellite
+		Damage: 7000
+		Versus:
+			Light: 100
+	Warhead@5EffAir: CreateEffect
+		ValidTargets: Air, Satellite

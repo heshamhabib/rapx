@@ -1,0 +1,345 @@
+^AntiGroundMissile:
+	ReloadDelay: 50
+	Range: 5c0
+	MinRange: 0c512
+	Report: missile6.aud
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	# HD rocket (OpenRA.Mods.RAPX/Projectiles/PxRocket.cs)
+	Projectile: PxRocket
+		Speed: 220
+		Arc: 0.12
+	Warhead@1Dam: SpreadDamage
+		Spread: 128
+		Damage: 5000
+		ValidTargets: GroundActor, WaterActor
+		Versus:
+			None: 10
+			Wood: 74
+			Light: 34
+			Heavy: 100
+			Concrete: 50
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Crater
+		ValidTargets: Ground, Infantry
+	Warhead@3Eff: PxExplosion
+		Size: 1.0
+		ImpactSounds: kaboom25.aud
+		ValidTargets: Ground, Air, GroundActor, AirborneActor, WaterActor, Trees
+	Warhead@4EffWater: CreateEffect
+		Explosions: med_splash
+		ImpactSounds: splash9.aud
+		ValidTargets: Water, Underwater
+		InvalidTargets: Bridge
+
+^AntiAirMissile:
+	Inherits: ^AntiGroundMissile
+	ValidTargets: AirborneActor
+	Warhead@1Dam: SpreadDamage
+		ValidTargets: AirborneActor
+		Versus:
+			Light: 100
+	Warhead@3Eff: PxExplosion
+		Size: 0.8
+
+Maverick:
+	Inherits: ^AntiGroundMissile
+	ReloadDelay: 50
+	Range: 9c0
+	MinRange: 2c0
+	Report: missile7.aud
+	Burst: 2
+	BurstDelays: 7
+	# HD rocket (OpenRA.Mods.RAPX/Projectiles/PxRocket.cs)
+	Projectile: PxRocket
+		Speed: 260
+		Arc: 0.06
+		Length: 200
+		Width: 44
+	Warhead@1Dam: SpreadDamage
+		Damage: 7000
+		Versus:
+			None: 30
+			Wood: 90
+			Light: 90
+			Heavy: 115
+			Concrete: 100
+
+Dragon:
+	Inherits: ^AntiGroundMissile
+	# HD rocket (OpenRA.Mods.RAPX/Projectiles/PxRocket.cs)
+	Projectile: PxRocket
+		Speed: 200
+		Arc: 0.15
+
+HellfireAG:
+	Inherits: ^AntiGroundMissile
+	ReloadDelay: 34
+	MinRange: 1c256
+	Burst: 2
+	BurstDelays: 10
+	# HD rocket (OpenRA.Mods.RAPX/Projectiles/PxRocket.cs)
+	Projectile: PxRocket
+		Speed: 260
+		Arc: 0.05
+		Length: 170
+	Warhead@1Dam: SpreadDamage
+		Damage: 6000
+		Versus:
+			None: 30
+			Wood: 90
+			Light: 90
+			Concrete: 100
+
+HellfireAA:
+	Inherits: ^AntiAirMissile
+	ReloadDelay: 30
+	MinRange: 1c256
+	Range: 4c0
+	Burst: 2
+	BurstDelays: 10
+	# HD rocket (OpenRA.Mods.RAPX/Projectiles/PxRocket.cs)
+	Projectile: PxRocket
+		Speed: 420
+		Arc: 0.04
+		Length: 170
+	Warhead@1Dam: SpreadDamage
+		Damage: 3000
+	Warhead@3Eff: PxExplosion
+		Size: 0.8
+
+MammothTusk:
+	Inherits: ^AntiGroundMissile
+	ReloadDelay: 60
+	Range: 6c512
+	Burst: 2
+	ValidTargets: AirborneActor, Infantry
+	# HD rocket (OpenRA.Mods.RAPX/Projectiles/PxRocket.cs)
+	Projectile: PxRocket
+		Speed: 220
+		Arc: 0.18
+	Warhead@1Dam: SpreadDamage
+		ValidTargets: AirborneActor, Infantry
+		Spread: 256
+		Damage: 5000
+		Versus:
+			None: 100
+			Light: 60
+			Heavy: 24
+			Concrete: 50
+		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
+	Warhead@3Eff: PxExplosion
+		Size: 1.0
+		ImpactSounds: kaboom12.aud
+		ValidTargets: Ground, GroundActor, Trees
+	Warhead@5EffAir: PxExplosion
+		Size: 1.0
+		ImpactSounds: kaboom25.aud
+		ValidTargets: Air, AirborneActor
+
+Nike:
+	Inherits: ^AntiAirMissile
+	ReloadDelay: 15
+	Range: 7c512
+	Report: missile1.aud
+	# HD rocket (OpenRA.Mods.RAPX/Projectiles/PxRocket.cs)
+	Projectile: PxRocket
+		Speed: 420
+		Arc: 0.05
+		Length: 200
+		Width: 44
+	Warhead@1Dam: SpreadDamage
+		Damage: 4500
+	Warhead@3Eff: PxExplosion
+		Size: 0.8
+		ImpactSounds: kaboom25.aud
+
+RedEye:
+	Inherits: Nike
+	ReloadDelay: 50
+	# HD rocket (OpenRA.Mods.RAPX/Projectiles/PxRocket.cs)
+	Projectile: PxRocket
+		Speed: 300
+		Arc: 0.05
+	Warhead@1Dam: SpreadDamage
+		Damage: 2400
+
+Stinger:
+	Inherits: ^AntiGroundMissile
+	ReloadDelay: 60
+	Range: 7c512
+	Burst: 2
+	BurstDelays: 0
+	InvalidTargets: Underwater
+	# HD rocket (OpenRA.Mods.RAPX/Projectiles/PxRocket.cs)
+	Projectile: PxRocket
+		Speed: 260
+		Arc: 0.08
+	Warhead@1Dam: SpreadDamage
+		Damage: 2500
+		Versus:
+			None: 36
+			Wood: 88
+			Light: 66
+			Heavy: 120
+			Concrete: 60
+
+StingerAA:
+	Inherits: Stinger
+	ValidTargets: AirborneActor
+	# HD rocket (OpenRA.Mods.RAPX/Projectiles/PxRocket.cs)
+	Projectile: PxRocket
+		Speed: 380
+		Arc: 0.05
+	Warhead@1Dam: SpreadDamage
+		ValidTargets: AirborneActor
+		Damage: 1650
+		Versus:
+			Light: 100
+	Warhead@3Eff: PxExplosion
+		Size: 0.7
+		ImpactSounds: kaboom25.aud
+
+APTusk:
+	Inherits: ^AntiGroundMissile
+	ReloadDelay: 60
+	Range: 6c0
+	Burst: 2
+	BurstDelays: 0
+	# HD rocket (OpenRA.Mods.RAPX/Projectiles/PxRocket.cs)
+	Projectile: PxRocket
+		Speed: 220
+		Arc: 0.15
+
+APTusk.stnk:
+	Inherits: APTusk
+	ReloadDelay: 100
+	Burst: 1
+
+TorpTube:
+	ReloadDelay: 100
+	Range: 9c0
+	Report: torpedo1.aud
+	ValidTargets: Water, WaterActor, Underwater, Bridge
+	Burst: 2
+	BurstDelays: 15
+	# HD torpedo with a foam wake (OpenRA.Mods.RAPX/Projectiles/PxTorpedo.cs)
+	Projectile: PxTorpedo
+		Speed: 85
+		TurnRate: 16
+		RangeLimit: 10c819
+		BoundToTerrainType: Water
+	Warhead@1Dam: SpreadDamage
+		Spread: 426
+		Damage: 18000
+		ValidTargets: WaterActor, Underwater, Bridge
+		Versus:
+			Wood: 75
+			Light: 75
+			Heavy: 100
+			Concrete: 500
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+	Warhead@3Eff: PxExplosion
+		Size: 1.2
+		ImpactSounds: kaboom15.aud
+		ValidTargets: Ground, WaterActor, Underwater, GroundActor, Bridge
+	Warhead@4EffWater: CreateEffect
+		Explosions: large_splash
+		ImpactSounds: splash9.aud
+		ValidTargets: Water
+		InvalidTargets: Bridge
+
+^SubMissileDefault:
+	Inherits: ^AntiGroundMissile
+	ReloadDelay: 300
+	Range: 8c0
+	Burst: 2
+	# HD rocket fired from under water: foam and steam at launch, then fire and a smoke trail
+	Projectile: PxRocket
+		Speed: 234
+		Arc: 0.15
+		Length: 260
+		Width: 60
+		TrailDensity: 3
+		TrailLife: 70
+		LaunchPuffs: 16
+		WaterLaunch: true
+	Warhead@1Dam: SpreadDamage
+		Spread: 426
+		Damage: 2500
+		Falloff: 1000, 368, 135, 50, 18, 7, 0
+		Versus:
+			None: 80
+			Wood: 50
+			Light: 48
+			Heavy: 30
+			Concrete: 100
+		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
+	Warhead@3Eff: PxExplosion
+		Size: 1.3
+		ImpactSounds: kaboom15.aud
+	Warhead@4EffWater: CreateEffect
+		Explosions: large_splash
+		ImpactSounds: splash9.aud
+
+SubMissile:
+	Inherits: ^SubMissileDefault
+	Range: 20c0
+	TargetActorCenter: true
+	# Long-range strike: a high lob
+	Projectile: PxRocket
+		Speed: 215
+		Arc: 0.35
+		TrackTarget: false
+
+SubMissileAA:
+	Inherits: ^SubMissileDefault
+	ValidTargets: AirborneActor
+	Warhead@1Dam: SpreadDamage
+		ValidTargets: AirborneActor
+		Damage: 450
+		Versus:
+			Light: 100
+
+SCUD:
+	Inherits: ^AntiGroundMissile
+	ReloadDelay: 215
+	Range: 10c0
+	MinRange: 4c0
+	Report: missile1.aud
+	-Projectile:
+	# HD rocket (OpenRA.Mods.RAPX/Projectiles/PxRocket.cs): the V2 rocket from the launcher's rail itself
+	# (pxmissile v2*, artsrc/units/vehicles/make_v2_rocket.sh). It leaves the rail slowly, then climbs and dives.
+	# Length = half the rocket, so the exhaust starts at its tail.
+	Projectile: PxRocket
+		Image: pxmissile
+		Sequence: v2
+		ClimbSequence: v2-climb
+		DiveSequence: v2-dive
+		LaunchEase: 0.6
+		Speed: 170
+		Arc: 0.35
+		Length: 975
+		Width: 150
+		FlameSize: 0.6
+		TrailDensity: 3
+		TrailLife: 70
+		LaunchPuffs: 18
+	Warhead@1Dam: SpreadDamage
+		Spread: 341
+		Damage: 4500
+		Falloff: 1000, 368, 135, 50, 18, 7, 0
+		ValidTargets: GroundActor, WaterActor, Trees
+		Versus:
+			None: 90
+			Wood: 75
+			Tree: 75
+			Light: 70
+			Heavy: 40
+			Concrete: 100
+		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath, Incendiary
+	Warhead@3Eff: PxExplosion
+		Size: 2.2
+		ImpactSounds: firebl3.aud
+	Warhead@4EffWater: CreateEffect
+		Explosions: large_splash

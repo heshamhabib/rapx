@@ -1,0 +1,226 @@
+# Carriers (rules/carriers.yaml): HD hull renders; the SAM turret is invisible
+
+cv1:
+	idle:
+		Filename: ra|bits/hd/units/cv1.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/blank.png
+		Facings: 1
+		UseClassicFacings: False
+		Start: 0
+		Length: 1
+	icon:
+		Filename: ra|bits/hd/icons/cv1icon.png
+
+cv2:
+	idle:
+		Filename: ra|bits/hd/units/cv2.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/blank.png
+		Facings: 1
+		UseClassicFacings: False
+		Start: 0
+		Length: 1
+	icon:
+		Filename: ra|bits/hd/icons/cv2icon.png
+
+cv3:
+	idle:
+		Filename: ra|bits/hd/units/cv3.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/blank.png
+		Facings: 1
+		UseClassicFacings: False
+		Start: 0
+		Length: 1
+	icon:
+		Filename: ra|bits/hd/icons/cv3icon.png
+
+cv4:
+	idle:
+		Filename: ra|bits/hd/units/cv4.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/blank.png
+		Facings: 1
+		UseClassicFacings: False
+		Start: 0
+		Length: 1
+	icon:
+		Filename: ra|bits/hd/icons/cv4icon.png
+
+cvgb:
+	idle:
+		Filename: ra|bits/hd/units/cvgb.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/blank.png
+		Facings: 1
+		UseClassicFacings: False
+		Start: 0
+		Length: 1
+	icon:
+		Filename: ra|bits/hd/icons/cvgbicon.png
+
+cvfr:
+	idle:
+		Filename: ra|bits/hd/units/cvfr.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/blank.png
+		Facings: 1
+		UseClassicFacings: False
+		Start: 0
+		Length: 1
+	icon:
+		Filename: ra|bits/hd/icons/cvfricon.png
+
+cvjp:
+	idle:
+		Filename: ra|bits/hd/units/cvjp.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/blank.png
+		Facings: 1
+		UseClassicFacings: False
+		Start: 0
+		Length: 1
+	icon:
+		Filename: ra|bits/hd/icons/cvjpicon.png
+
+cvit:
+	idle:
+		Filename: ra|bits/hd/units/cvit.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/blank.png
+		Facings: 1
+		UseClassicFacings: False
+		Start: 0
+		Length: 1
+	icon:
+		Filename: ra|bits/hd/icons/cviticon.png
+
+cveg:
+	idle:
+		Filename: ra|bits/hd/units/cveg.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/blank.png
+		Facings: 1
+		UseClassicFacings: False
+		Start: 0
+		Length: 1
+	icon:
+		Filename: ra|bits/hd/icons/cvegicon.png
+
+cvsu:
+	idle:
+		Filename: ra|bits/hd/units/cvsu.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/blank.png
+		Facings: 1
+		UseClassicFacings: False
+		Start: 0
+		Length: 1
+	icon:
+		Filename: ra|bits/hd/icons/cvsuicon.png
+
+cvru:
+	idle:
+		Filename: ra|bits/hd/units/cvru.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/blank.png
+		Facings: 1
+		UseClassicFacings: False
+		Start: 0
+		Length: 1
+	icon:
+		Filename: ra|bits/hd/icons/cvruicon.png
+
+cvin:
+	idle:
+		Filename: ra|bits/hd/units/cvin.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/blank.png
+		Facings: 1
+		UseClassicFacings: False
+		Start: 0
+		Length: 1
+	icon:
+		Filename: ra|bits/hd/icons/cvinicon.png
+
+cvcn:
+	idle:
+		Filename: ra|bits/hd/units/cvcn.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/blank.png
+		Facings: 1
+		UseClassicFacings: False
+		Start: 0
+		Length: 1
+	icon:
+		Filename: ra|bits/hd/icons/cvcnicon.png
+
+cvtr:
+	idle:
+		Filename: ra|bits/hd/units/cvtr.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/blank.png
+		Facings: 1
+		UseClassicFacings: False
+		Start: 0
+		Length: 1
+	icon:
+		Filename: ra|bits/hd/icons/cvtricon.png
+
+cvir:
+	idle:
+		Filename: ra|bits/hd/units/cvir.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/blank.png
+		Facings: 1
+		UseClassicFacings: False
+		Start: 0
+		Length: 1
+	icon:
+		Filename: ra|bits/hd/icons/cviricon.png

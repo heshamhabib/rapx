@@ -1,0 +1,151 @@
+# Fired jet weapons as HD sprites (IDEA-34): artsrc/jets/make_missiles.sh renders bits/hd/fx/missile-<kind>.png.
+
+pxmissile:
+	aim9:
+		Filename: ra|bits/hd/fx/missile-aim9.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	r73:
+		Filename: ra|bits/hd/fx/missile-r73.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	aim120:
+		Filename: ra|bits/hd/fx/missile-aim120.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	r77:
+		Filename: ra|bits/hd/fx/missile-r77.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	aim54:
+		Filename: ra|bits/hd/fx/missile-aim54.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	agm65:
+		Filename: ra|bits/hd/fx/missile-agm65.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	mk82:
+		Filename: ra|bits/hd/fx/missile-mk82.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	gbu:
+		Filename: ra|bits/hd/fx/missile-gbu.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	hydra:
+		Filename: ra|bits/hd/fx/missile-hydra.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	# National rocket-launcher rockets (IDEA-17): artsrc/jets/make_rockets.sh
+	gmlrs_us:
+		Filename: ra|bits/hd/fx/missile-gmlrs_us.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	gmlrs_uk:
+		Filename: ra|bits/hd/fx/missile-gmlrs_uk.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	gmlrs_fr:
+		Filename: ra|bits/hd/fx/missile-gmlrs_fr.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	gmlrs_de:
+		Filename: ra|bits/hd/fx/missile-gmlrs_de.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	gmlrs_it:
+		Filename: ra|bits/hd/fx/missile-gmlrs_it.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	trg300:
+		Filename: ra|bits/hd/fx/missile-trg300.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	fatah:
+		Filename: ra|bits/hd/fx/missile-fatah.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	type12:
+		Filename: ra|bits/hd/fx/missile-type12.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	k239:
+		Filename: ra|bits/hd/fx/missile-k239.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	tos220:
+		Filename: ra|bits/hd/fx/missile-tos220.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	vilkha:
+		Filename: ra|bits/hd/fx/missile-vilkha.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	grad122:
+		Filename: ra|bits/hd/fx/missile-grad122.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	pinaka:
+		Filename: ra|bits/hd/fx/missile-pinaka.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	sakr:
+		Filename: ra|bits/hd/fx/missile-sakr.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	phl16:
+		Filename: ra|bits/hd/fx/missile-phl16.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	fajr5:
+		Filename: ra|bits/hd/fx/missile-fajr5.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	# The V2RL's own rocket (artsrc/units/vehicles/make_v2_rocket.sh): same density and Scale as the launcher
+	v2:
+		Filename: ra|bits/hd/fx/missile-v2.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	v2-climb:
+		Filename: ra|bits/hd/fx/missile-v2-climb.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	v2-dive:
+		Filename: ra|bits/hd/fx/missile-v2-dive.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	# Fajir-5 drone mode: Shard-136 delta-wing drone (artsrc/jets/make_rockets.sh shard136)
+	shard136:
+		Filename: ra|bits/hd/fx/missile-shard136.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333

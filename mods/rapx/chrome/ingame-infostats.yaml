@@ -1,0 +1,193 @@
+Container@SKIRMISH_STATS:
+	Height: PARENT_HEIGHT
+	Width: PARENT_WIDTH
+	Logic: GameInfoStatsLogic
+	Children:
+		Container@OBJECTIVE:
+			Width: PARENT_WIDTH
+			Height: 100
+			Children:
+				PxMissionBanner@BANNER:
+					Width: PARENT_WIDTH
+					Height: 88
+				Label@MISSION:
+					X: 24
+					Y: 12
+					Width: 300
+					Height: 16
+					Font: PXSidebarSmall
+					TextColor: FF6A55
+					Text: label-px-info-mission
+				Label@STATS_STATUS:
+					X: 24
+					Y: 26
+					Width: PARENT_WIDTH - 48
+					Height: 34
+					Font: PXDisplayLarge
+				Checkbox@STATS_CHECKBOX:
+					X: 24
+					Y: 60
+					Width: PARENT_WIDTH - 48
+					Height: 20
+					Font: PXLabel
+					Text: checkbox-stats-objective
+					Disabled: true
+					TextColorDisabled: E6E6EA
+		Container@STATS_HEADERS:
+			Y: 100
+			Width: PARENT_WIDTH - 26
+			Height: 20
+			Children:
+				Label@RANK:
+					X: 18
+					Width: 40
+					Height: 20
+					Font: PXSidebarSmall
+					TextColor: 8A8B93
+					Text: label-px-info-rank
+				Label@NAME:
+					X: 72
+					Width: 300
+					Height: 20
+					Font: PXSidebarSmall
+					TextColor: 8A8B93
+					Text: label-px-info-commander
+				Label@STATUS:
+					X: PARENT_WIDTH - 244
+					Width: 128
+					Height: 20
+					Align: Center
+					Font: PXSidebarSmall
+					TextColor: 8A8B93
+					Text: label-px-info-status
+				Label@ACTIONS:
+					Visible: False
+					Text: label-stats-actions
+		ScrollPanel@PLAYER_LIST:
+			Y: 124
+			Width: PARENT_WIDTH
+			Height: PARENT_HEIGHT - 124
+			TopBottomSpacing: 8
+			ItemSpacing: 10
+			Children:
+				ScrollItem@TEAM_TEMPLATE:
+					Background: px-row
+					X: 8
+					Width: PARENT_WIDTH - 42
+					Height: 30
+					Visible: false
+					Children:
+						Label@TEAM:
+							X: 16
+							Width: 300
+							Height: 30
+							Font: PXSidebarLabel
+						Label@TEAM_SCORE:
+							X: PARENT_WIDTH - 224
+							Width: 200
+							Height: 30
+							Align: Right
+							Font: PXDigitsMedium
+				Container@PLAYER_TEMPLATE:
+					X: 8
+					Width: PARENT_WIDTH - 42
+					Height: 92
+					Children:
+						Image@PROFILE:
+							ImageCollection: lobby-bits
+							Visible: false
+						Label@NAME:
+							Width: 1
+							Height: 1
+							Visible: False
+						Image@FACTIONFLAG:
+							Visible: False
+						LabelWithTooltip@FACTION:
+							Width: 1
+							Height: 1
+							Visible: False
+							TooltipContainer: TOOLTIP_CONTAINER
+							TooltipTemplate: SIMPLE_TOOLTIP
+						Label@SCORE:
+							Visible: False
+						PxStatsCard@CARD:
+							Width: PARENT_WIDTH
+							Height: PARENT_HEIGHT
+							Children:
+								ClientTooltipRegion@PROFILE_TOOLTIP:
+									X: 190
+									Y: 58
+									Width: 18
+									Height: 18
+									Visible: false
+									TooltipContainer: TOOLTIP_CONTAINER
+									Template: ANONYMOUS_PLAYER_TOOLTIP
+								Checkbox@MUTE:
+									X: PARENT_WIDTH - 302
+									Y: 33
+									Width: 26
+									Height: 26
+									Checkmark: mute
+									Background: checkbox-toggle
+									TooltipContainer: TOOLTIP_CONTAINER
+								Button@KICK:
+									X: PARENT_WIDTH - 270
+									Y: 33
+									Width: 26
+									Height: 26
+									Background: checkbox-toggle
+									TooltipContainer: TOOLTIP_CONTAINER
+									Children:
+										Image:
+											ImageCollection: lobby-bits
+											ImageName: kick
+											X: 7
+											Y: 7
+				Container@SPECTATOR_TEMPLATE:
+					X: 8
+					Width: PARENT_WIDTH - 42
+					Height: 40
+					Children:
+						Background@BG:
+							Width: PARENT_WIDTH
+							Height: PARENT_HEIGHT
+							Background: px-row
+						Image@PROFILE:
+							ImageCollection: lobby-bits
+							X: 14
+							Y: 12
+							Visible: false
+						ClientTooltipRegion@PROFILE_TOOLTIP:
+							X: 14
+							Y: 12
+							Width: 16
+							Height: 16
+							Visible: false
+							TooltipContainer: TOOLTIP_CONTAINER
+							Template: ANONYMOUS_PLAYER_TOOLTIP
+						Label@NAME:
+							X: 40
+							Width: 400
+							Height: 40
+							Font: PXLabel
+						Checkbox@MUTE:
+							X: PARENT_WIDTH - 72
+							Y: 7
+							Width: 26
+							Height: 26
+							Checkmark: mute
+							Background: checkbox-toggle
+							TooltipContainer: TOOLTIP_CONTAINER
+						Button@KICK:
+							X: PARENT_WIDTH - 40
+							Y: 7
+							Width: 26
+							Height: 26
+							Background: checkbox-toggle
+							TooltipContainer: TOOLTIP_CONTAINER
+							Children:
+								Image:
+									ImageCollection: lobby-bits
+									ImageName: kick
+									X: 7
+									Y: 7

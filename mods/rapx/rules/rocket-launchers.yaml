@@ -1,0 +1,432 @@
+# National rocket launchers (IDEA-17, phase A1): one launcher per nation, built at the War Factory with a Radar Dome.
+# Soviet nations keep the V2RL and Allied nations keep the Artillery next to their launcher.
+# Art: each launcher has its own model (phase 3): 6 shared Sketchfab chassis in national paint.
+# Weapons: weapons/rocket-launchers.yaml.
+
+WEAP:
+	ProvidesPrerequisite@rl.usa:
+		Factions: usa
+		Prerequisite: rocketlauncher.usa
+	ProvidesPrerequisite@rl.england:
+		Factions: england
+		Prerequisite: rocketlauncher.england
+	ProvidesPrerequisite@rl.france:
+		Factions: france
+		Prerequisite: rocketlauncher.france
+	ProvidesPrerequisite@rl.germany:
+		Factions: germany
+		Prerequisite: rocketlauncher.germany
+	ProvidesPrerequisite@rl.italy:
+		Factions: italy
+		Prerequisite: rocketlauncher.italy
+	ProvidesPrerequisite@rl.turkey:
+		Factions: turkey
+		Prerequisite: rocketlauncher.turkey
+	ProvidesPrerequisite@rl.pakistan:
+		Factions: pakistan
+		Prerequisite: rocketlauncher.pakistan
+	ProvidesPrerequisite@rl.japan:
+		Factions: japan
+		Prerequisite: rocketlauncher.japan
+	ProvidesPrerequisite@rl.southkorea:
+		Factions: southkorea
+		Prerequisite: rocketlauncher.southkorea
+	ProvidesPrerequisite@rl.russia:
+		Factions: russia
+		Prerequisite: rocketlauncher.russia
+	ProvidesPrerequisite@rl.ukraine:
+		Factions: ukraine
+		Prerequisite: rocketlauncher.ukraine
+	ProvidesPrerequisite@rl.cuba:
+		Factions: cuba
+		Prerequisite: rocketlauncher.cuba
+	ProvidesPrerequisite@rl.india:
+		Factions: india
+		Prerequisite: rocketlauncher.india
+	ProvidesPrerequisite@rl.egypt:
+		Factions: egypt
+		Prerequisite: rocketlauncher.egypt
+	ProvidesPrerequisite@rl.china:
+		Factions: china
+		Prerequisite: rocketlauncher.china
+	ProvidesPrerequisite@rl.iran:
+		Factions: iran
+		Prerequisite: rocketlauncher.iran
+
+^PxRocketLauncher:
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 231
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Armor:
+		Type: Light
+	RevealsShroud:
+		MinRange: 4c0
+		Range: 5c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	AttackFrontal:
+		TargetFrozenActors: True
+		ForceFireIgnoresActors: True
+		FacingTolerance: 0
+	FireWarheadsOnDeath:
+		Weapon: V2Explode
+	ProducibleWithLevel:
+		Prerequisites: vehicles.upgraded
+	WithProductionIconOverlay:
+		Types: Veterancy
+		Prerequisites: vehicles.upgraded
+	Selectable:
+		DecorationBounds: 1672, 1672
+
+# Wheeled launcher: its own model (sequences/rocket-launchers.yaml rl-<actor>); rockets leave from its pods / tubes,
+# which stay on the vehicle. Armament LocalOffset = the pods (estimated from the model: forward ~175, height ~134
+# world units per model unit, artsrc/units/meshes/sketchfab_models.py LAUNCHER_CHASSIS).
+^PxRocketTruck:
+	Inherits: ^Vehicle
+	Inherits@RL: ^PxRocketLauncher
+	Health:
+		HP: 20000
+	Mobile:
+		Speed: 72
+
+# Tracked launcher: its own model
+^PxRocketTracked:
+	Inherits: ^TrackedVehicle
+	Inherits@RL: ^PxRocketLauncher
+	Health:
+		HP: 24000
+	Mobile:
+		TurnSpeed: 8
+		Speed: 64
+		Locomotor: lighttracked
+	Armament:
+		LocalOffset: -210,0,295
+
+HIMAX:
+	Inherits: ^PxRocketTruck
+	Buildable:
+		Prerequisites: dome, ~rocketlauncher.usa, ~techlevel.medium
+		Description: actor-himax.description
+	Valued:
+		Cost: 1300
+	Tooltip:
+		Name: actor-himax.name
+	Health:
+		HP: 18000
+	Mobile:
+		Speed: 99
+	Armament:
+		LocalOffset: -280,0,375
+		Weapon: RL_HIMAX
+	PxShootAndScoot:
+	RenderSprites:
+		Image: rl-himax
+
+HAILSTORM:
+	Inherits: ^PxRocketTracked
+	Buildable:
+		Prerequisites: dome, ~rocketlauncher.england, ~techlevel.medium
+		Description: actor-hailstorm.description
+	Valued:
+		Cost: 1400
+	Tooltip:
+		Name: actor-hailstorm.name
+	Armament:
+		Weapon: RL_HAILSTORM
+	RenderSprites:
+		Image: rl-hailstorm
+
+LRX:
+	Inherits: ^PxRocketTracked
+	Buildable:
+		Prerequisites: dome, ~rocketlauncher.france, ~techlevel.medium
+		Description: actor-lrx.description
+	Valued:
+		Cost: 1400
+	Tooltip:
+		Name: actor-lrx.name
+	Armament:
+		Weapon: RL_LRX
+	RenderSprites:
+		Image: rl-lrx
+
+MARZ:
+	Inherits: ^PxRocketTracked
+	Buildable:
+		Prerequisites: dome, ~rocketlauncher.germany, ~techlevel.medium
+		Description: actor-marz.description
+	Valued:
+		Cost: 1500
+	Tooltip:
+		Name: actor-marz.name
+	Health:
+		HP: 26000
+	Armament:
+		Weapon: RL_MARZ
+		RequiresCondition: !mine-mode
+	Armament@MINES:
+		Weapon: RL_MARZ_MINES
+		LocalOffset: -210,0,295
+		RequiresCondition: mine-mode
+	GrantConditionOnDeploy:
+		DeployedCondition: mine-mode
+	WithTextDecoration@MODE:
+		RequiresCondition: mine-mode
+		Text: MINES
+		Position: Top
+		Margin: 0, -6
+		Color: FFD24A
+	RenderSprites:
+		Image: rl-marz
+
+SAETTA:
+	Inherits: ^PxRocketTracked
+	Buildable:
+		Prerequisites: dome, ~rocketlauncher.italy, ~techlevel.medium
+		Description: actor-saetta.description
+	Valued:
+		Cost: 1200
+	Tooltip:
+		Name: actor-saetta.name
+	Armament:
+		Weapon: RL_SAETTA
+	RenderSprites:
+		Image: rl-saetta
+
+KASIRGA:
+	Inherits: ^PxRocketTruck
+	Buildable:
+		Prerequisites: dome, ~rocketlauncher.turkey, ~techlevel.medium
+		Description: actor-kasirga.description
+	Valued:
+		Cost: 1600
+	Tooltip:
+		Name: actor-kasirga.name
+	Health:
+		HP: 24000
+	Mobile:
+		Speed: 60
+	Armament:
+		LocalOffset: -260,0,310
+		Weapon: RL_KASIRGA
+	RenderSprites:
+		Image: rl-kasirga
+
+FATAH:
+	Inherits: ^PxRocketTruck
+	Buildable:
+		Prerequisites: dome, ~rocketlauncher.pakistan, ~techlevel.medium
+		Description: actor-fatah.description
+	Valued:
+		Cost: 1500
+	Tooltip:
+		Name: actor-fatah.name
+	Health:
+		HP: 22000
+	Mobile:
+		Speed: 64
+	Armament:
+		LocalOffset: -260,0,310
+		Weapon: RL_FATAH
+	RenderSprites:
+		Image: rl-fatah
+
+TYPE12:
+	Inherits: ^PxRocketTruck
+	Buildable:
+		Prerequisites: dome, ~rocketlauncher.japan, ~techlevel.medium
+		Description: actor-type12.description
+	Valued:
+		Cost: 1400
+	Tooltip:
+		Name: actor-type12.name
+	Mobile:
+		Speed: 72
+	Armament:
+		LocalOffset: -610,0,295
+		Weapon: RL_TYPE12
+	RenderSprites:
+		Image: rl-type12
+
+CHUNMU:
+	Inherits: ^PxRocketTruck
+	Buildable:
+		Prerequisites: dome, ~rocketlauncher.southkorea, ~techlevel.medium
+		Description: actor-chunmu.description
+	Valued:
+		Cost: 1600
+	Tooltip:
+		Name: actor-chunmu.name
+	Health:
+		HP: 24000
+	Mobile:
+		Speed: 64
+	Armament:
+		LocalOffset: -260,0,310
+		Weapon: RL_CHUNMU
+		RequiresCondition: !missile-mode
+	Armament@MISSILE:
+		Weapon: RL_CHUNMU_MISSILE
+		LocalOffset: -260,0,310
+		RequiresCondition: missile-mode
+	GrantConditionOnDeploy:
+		DeployedCondition: missile-mode
+	WithTextDecoration@MODE:
+		RequiresCondition: missile-mode
+		Text: MISSILE
+		Position: Top
+		Margin: 0, -6
+		Color: FFD24A
+	RenderSprites:
+		Image: rl-chunmu
+
+TOZ1:
+	Inherits: ^PxRocketTracked
+	Buildable:
+		Prerequisites: dome, ~rocketlauncher.russia, ~techlevel.medium
+		Description: actor-toz1.description
+	Valued:
+		Cost: 1500
+	Tooltip:
+		Name: actor-toz1.name
+	Health:
+		HP: 45000
+	Armor:
+		Type: Heavy
+	Mobile:
+		Speed: 56
+		Locomotor: tracked
+	Armament:
+		LocalOffset: -90,0,350
+		Weapon: RL_TOZ
+	RenderSprites:
+		Image: rl-toz1
+
+VILKRA:
+	Inherits: ^PxRocketTruck
+	Buildable:
+		Prerequisites: dome, ~rocketlauncher.ukraine, ~techlevel.medium
+		Description: actor-vilkra.description
+	Valued:
+		Cost: 1500
+	Tooltip:
+		Name: actor-vilkra.name
+	Health:
+		HP: 22000
+	Mobile:
+		Speed: 64
+	Armament:
+		LocalOffset: -260,0,310
+		Weapon: RL_VILKRA
+	RenderSprites:
+		Image: rl-vilkra
+
+GRAD:
+	Inherits: ^PxRocketTruck
+	Buildable:
+		Prerequisites: dome, ~rocketlauncher.cuba, ~techlevel.medium
+		Description: actor-grad.description
+	Valued:
+		Cost: 900
+	Tooltip:
+		Name: actor-grad.name
+	Health:
+		HP: 16000
+	Armament:
+		LocalOffset: -385,0,350
+		Weapon: RL_GRAD
+	RenderSprites:
+		Image: rl-grad
+
+PINAK:
+	Inherits: ^PxRocketTruck
+	Buildable:
+		Prerequisites: dome, ~rocketlauncher.india, ~techlevel.medium
+		Description: actor-pinak.description
+	Valued:
+		Cost: 1100
+	Tooltip:
+		Name: actor-pinak.name
+	Health:
+		HP: 17000
+	Mobile:
+		Speed: 80
+	Armament:
+		LocalOffset: -385,0,350
+		Weapon: RL_PINAK
+	RenderSprites:
+		Image: rl-pinak
+
+SAQR36:
+	Inherits: ^PxRocketTruck
+	Buildable:
+		Prerequisites: dome, ~rocketlauncher.egypt, ~techlevel.medium
+		Description: actor-saqr36.description
+	Valued:
+		Cost: 1100
+	Tooltip:
+		Name: actor-saqr36.name
+	Health:
+		HP: 17000
+	Mobile:
+		Speed: 80
+	Armament:
+		LocalOffset: -385,0,350
+		Weapon: RL_SAQR
+	RenderSprites:
+		Image: rl-saqr36
+
+PHX16:
+	Inherits: ^PxRocketTruck
+	Buildable:
+		Prerequisites: dome, ~rocketlauncher.china, ~techlevel.medium
+		Description: actor-phx16.description
+	Valued:
+		Cost: 1600
+	Tooltip:
+		Name: actor-phx16.name
+	Health:
+		HP: 24000
+	Mobile:
+		Speed: 60
+	Armament:
+		LocalOffset: -260,0,310
+		Weapon: RL_PHX
+	RenderSprites:
+		Image: rl-phx16
+
+FAJIR5:
+	Inherits: ^PxRocketTruck
+	Buildable:
+		Prerequisites: dome, ~rocketlauncher.iran, ~techlevel.medium
+		Description: actor-fajir5.description
+	Valued:
+		Cost: 1000
+	Tooltip:
+		Name: actor-fajir5.name
+	Health:
+		HP: 16000
+	Armament:
+		LocalOffset: -385,0,350
+		Weapon: RL_FAJIR
+		RequiresCondition: !drone-mode
+	# Drone mode: the drones launch from the tube rack
+	Armament@DRONES:
+		Weapon: RL_FAJIR_DRONE
+		LocalOffset: -385,0,350
+		RequiresCondition: drone-mode
+	GrantConditionOnDeploy:
+		DeployedCondition: drone-mode
+	WithTextDecoration@MODE:
+		RequiresCondition: drone-mode
+		Text: DRONES
+		Position: Top
+		Margin: 0, -6
+		Color: FFD24A
+	RenderSprites:
+		Image: rl-fajir5

@@ -1,0 +1,86 @@
+# IDEA-29 robots (rules/robots.yaml). Body sequences are generated into sequences/hd-infantry.yaml by
+# artsrc/units/infantry/make_infantry.py; the sidebar px-icon comes from the concept art (artsrc/px-cameos/generate.py).
+
+enfw:
+	icon:
+		Filename: ra|bits/hd/icons/enfwcameo.png
+		Scale: 0.5
+
+cybt:
+	icon:
+		Filename: ra|bits/hd/icons/cybtcameo.png
+		Scale: 0.5
+
+bdrd:
+	icon:
+		Filename: ra|bits/hd/icons/bdrdcameo.png
+		Scale: 0.5
+
+rgun:
+	icon:
+		Filename: ra|bits/hd/icons/rguncameo.png
+		Scale: 0.5
+
+strd:
+	icon:
+		Filename: ra|bits/hd/icons/strdcameo.png
+		Scale: 0.5
+
+irgd:
+	icon:
+		Filename: ra|bits/hd/icons/irgdcameo.png
+		Scale: 0.5
+
+sdrn:
+	icon:
+		Filename: ra|bits/hd/icons/sdrncameo.png
+		Scale: 0.5
+
+taut:
+	icon:
+		Filename: ra|bits/hd/icons/tautcameo.png
+		Scale: 0.5
+
+# Sniper (rules/infantry.yaml SNIP): body sequences in hd-soldiers3d.yaml
+snip:
+	icon:
+		Filename: ra|bits/hd/icons/snipcameo.png
+		Scale: 0.5
+	# The shared infantry effects his own image lacks: crushed corpse and the electrocution death
+	die-crushed:
+		Filename: corpse1.tem
+		TilesetFilenames:
+			SNOW: corpse1.sno
+		Length: 6
+		Tick: 1600
+		ZOffset: -511
+	die6:
+		Filename: electro.tem
+		TilesetFilenames:
+			SNOW: electro.sno
+		Frames: 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
+		Length: *
+		Tick: 80
+
+# Spy Cars (rules/spycar.yaml): body sequences in hd-units.yaml; cameos from their renders (px-cameos/generate.py)
+scar:
+	icon:
+		Filename: ra|bits/hd/scarcameo.png
+
+scr2:
+	icon:
+		Filename: ra|bits/hd/scr2cameo.png
+
+# Vanguard Medium Tank (rules/vehicles.yaml MTNK): body in hd-units.yaml; cameo from its render
+mtnk:
+	icon:
+		Filename: ra|bits/hd/mtnkcameo.png
+
+# XR-85 Tank Droid (France) and Spider Tank (Vanguard): bodies in hd-units.yaml; cameos from their renders
+xr85:
+	icon:
+		Filename: ra|bits/hd/xr85cameo.png
+
+spdr:
+	icon:
+		Filename: ra|bits/hd/spdrcameo.png

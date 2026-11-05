@@ -1,0 +1,567 @@
+# National rocket launchers (IDEA-17): one salvo weapon per nation.
+# Ranges are scaled to the real V2RL (SCUD, 10 cells): the doc's range r becomes r + 5 cells.
+# Salvos spread with PxRocket's Inaccuracy (Maximum: grows with distance up to the value at full range).
+# Every launcher fires salvos of its real rockets from the pods or tubes of its own model (phase 3, user decision:
+# real pods, real salvos).
+# Look: each fires a model of its real rocket (pxmissile sequences, artsrc/jets/make_rockets.sh) with its own smoke and
+# flame (PxRocket SmokeColor / TrailSize / FlameSize / FlameColor) and its own blast (PxExplosion Style / colours).
+# Length/Width place the exhaust flame: about 95 / 268 world units per metre of rocket length / diameter.
+
+^PxSalvoRocket:
+	Inherits: ^AntiGroundMissile
+	ReloadDelay: 300
+	Range: 13c0
+	MinRange: 3c0
+	Report: missile6.aud
+	Projectile: PxRocket
+		Image: pxmissile
+		Speed: 200
+		Arc: 0.3
+		TrailDensity: 2
+		TrailLife: 50
+		LaunchPuffs: 8
+		Inaccuracy: 1c512
+	Warhead@1Dam: SpreadDamage
+		Spread: 256
+		Damage: 1600
+		Falloff: 1000, 368, 135, 50, 18, 7, 0
+		ValidTargets: GroundActor, WaterActor, Trees
+		Versus:
+			None: 90
+			Wood: 75
+			Tree: 75
+			Light: 60
+			Heavy: 35
+			Concrete: 80
+		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath, Incendiary
+	Warhead@3Eff: PxExplosion
+		Size: 1.2
+		ImpactSounds: kaboom25.aud
+
+# M270 family: GMLRS rockets, 3.94 m x 227 mm
+^PxGmlrs:
+	Inherits: ^PxSalvoRocket
+	Projectile: PxRocket
+		Length: 375
+		Width: 61
+
+# USA: guided GMLRS from the pod, few rockets, long reach; clean white smoke and a sharp precision blast
+RL_HIMAX:
+	Inherits: ^PxGmlrs
+	ReloadDelay: 200
+	Range: 14c0
+	Burst: 3
+	BurstDelays: 12
+	Projectile: PxRocket
+		Sequence: gmlrs_us
+		Speed: 240
+		Inaccuracy: 0c384
+		SmokeColor: EBEBE6
+		TrailSize: 0.9
+		FlameColor: FFC860
+	Warhead@1Dam: SpreadDamage
+		Damage: 3500
+	Warhead@3Eff: PxExplosion
+		Style: Precision
+		Size: 1.4
+
+# England: big 12-rocket salvo over a wide area
+RL_HAILSTORM:
+	Inherits: ^PxGmlrs
+	Burst: 12
+	BurstDelays: 5
+	Projectile: PxRocket
+		Sequence: gmlrs_uk
+		Inaccuracy: 2c256
+		SmokeColor: D2D2CD
+	Warhead@3Eff: PxExplosion
+		Size: 1.1
+
+# France: GPS-guided, precise, +50 % vs buildings
+RL_LRX:
+	Inherits: ^PxGmlrs
+	ReloadDelay: 260
+	Burst: 6
+	BurstDelays: 8
+	Projectile: PxRocket
+		Sequence: gmlrs_fr
+		Inaccuracy: 0c256
+		SmokeColor: E6E6E6
+		TrailSize: 0.9
+	Warhead@1Dam: SpreadDamage
+		Damage: 2400
+		Versus:
+			Wood: 112
+			Concrete: 120
+	Warhead@3Eff: PxExplosion
+		Style: Precision
+		Size: 1.3
+
+# Germany: big salvo (deploy: mine rockets, RL_MARZ_MINES); dusty blasts
+RL_MARZ:
+	Inherits: ^PxGmlrs
+	Burst: 12
+	BurstDelays: 5
+	Projectile: PxRocket
+		Sequence: gmlrs_de
+		Inaccuracy: 2c0
+		SmokeColor: DCD2C3
+	Warhead@1Dam: SpreadDamage
+		Damage: 1700
+	Warhead@3Eff: PxExplosion
+		Size: 1.1
+		SmokeColor: BEB09A
+
+# Italy: cheaper, faster reload
+RL_SAETTA:
+	Inherits: ^PxGmlrs
+	ReloadDelay: 240
+	Burst: 12
+	BurstDelays: 5
+	Projectile: PxRocket
+		Sequence: gmlrs_it
+		Inaccuracy: 2c256
+		SmokeColor: DCDCD7
+	Warhead@1Dam: SpreadDamage
+		Damage: 1500
+	Warhead@3Eff: PxExplosion
+		Size: 1.0
+
+# Turkey: heavy 300 mm rockets, very long range, slow reload; thick trail and a heavy blast
+RL_KASIRGA:
+	Inherits: ^PxSalvoRocket
+	ReloadDelay: 420
+	Range: 15c0
+	MinRange: 4c0
+	Report: missile1.aud
+	Burst: 4
+	BurstDelays: 15
+	Projectile: PxRocket
+		Sequence: trg300
+		Speed: 190
+		Arc: 0.35
+		Length: 466
+		Width: 80
+		TrailDensity: 3
+		TrailLife: 70
+		LaunchPuffs: 14
+		Inaccuracy: 1c512
+		SmokeColor: F0F0EB
+		TrailSize: 1.5
+		FlameSize: 1.4
+	Warhead@1Dam: SpreadDamage
+		Spread: 426
+		Damage: 5000
+	Warhead@3Eff: PxExplosion
+		Style: Heavy
+		Size: 2.0
+		ImpactSounds: firebl3.aud
+
+# Pakistan: guided long-range rockets, very accurate
+RL_FATAH:
+	Inherits: ^PxSalvoRocket
+	ReloadDelay: 360
+	Range: 14c0
+	Report: missile1.aud
+	Burst: 4
+	BurstDelays: 15
+	Projectile: PxRocket
+		Sequence: fatah
+		Speed: 220
+		Length: 665
+		Width: 107
+		TrailDensity: 3
+		TrailLife: 60
+		LaunchPuffs: 12
+		Inaccuracy: 0c384
+		SmokeColor: E6E6E1
+		TrailSize: 1.4
+		FlameSize: 1.3
+	Warhead@1Dam: SpreadDamage
+		Spread: 341
+		Damage: 4000
+	Warhead@3Eff: PxExplosion
+		Style: Heavy
+		Size: 1.8
+		ImpactSounds: firebl3.aud
+
+# Japan: anti-ship missiles from the canisters, flying low over the sea; huge damage vs ships, weak vs land
+RL_TYPE12:
+	Inherits: ^PxSalvoRocket
+	ReloadDelay: 300
+	Range: 15c0
+	MinRange: 4c0
+	Report: missile1.aud
+	Burst: 2
+	BurstDelays: 25
+	Projectile: PxRocket
+		Sequence: type12
+		Speed: 230
+		Arc: 0.08
+		Length: 475
+		Width: 94
+		LaunchPuffs: 16
+		Inaccuracy: 0c128
+		SmokeColor: C8C8C8
+		TrailSize: 0.7
+		FlameColor: FFAA50
+	Warhead@1Dam: SpreadDamage
+		Spread: 256
+		Damage: 400
+		ValidTargets: GroundActor, Trees
+		Versus:
+			None: 50
+			Concrete: 50
+	Warhead@Ship: SpreadDamage
+		Spread: 341
+		Damage: 9000
+		Falloff: 1000, 368, 135, 50, 18, 7, 0
+		ValidTargets: Ship
+		Versus:
+			None: 100
+			Wood: 100
+			Light: 100
+			Heavy: 100
+			Concrete: 100
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+	Warhead@3Eff: PxExplosion
+		Size: 1.0
+		NotOn: Ship
+	Warhead@3EffShip: PxExplosion
+		Style: Naval
+		Size: 1.8
+		ImpactSounds: firebl3.aud
+		OnlyOn: Ship
+
+# South Korea: rocket salvo (deploy: one heavy guided missile, RL_CHUNMU_MISSILE)
+RL_CHUNMU:
+	Inherits: ^PxSalvoRocket
+	ReloadDelay: 260
+	Burst: 6
+	BurstDelays: 8
+	Projectile: PxRocket
+		Sequence: k239
+		Length: 380
+		Width: 64
+		Inaccuracy: 1c0
+		SmokeColor: E1E1DC
+		TrailSize: 1.1
+	Warhead@1Dam: SpreadDamage
+		Damage: 2200
+	Warhead@3Eff: PxExplosion
+		Size: 1.3
+
+# Russia: thermobaric, short range; orange flame, dark smoke and a fuel-air fireball
+RL_TOZ:
+	Inherits: ^PxSalvoRocket
+	ReloadDelay: 380
+	Range: 8c0
+	MinRange: 2c0
+	Burst: 12
+	BurstDelays: 4
+	Projectile: PxRocket
+		Sequence: tos220
+		Speed: 170
+		Arc: 0.22
+		Length: 314
+		Width: 59
+		Inaccuracy: 1c512
+		FlameColor: FF7A2A
+		SmokeColor: 8C8278
+		TrailSize: 1.1
+	Warhead@1Dam: SpreadDamage
+		Spread: 512
+		Damage: 2200
+		Versus:
+			None: 150
+			Wood: 120
+			Tree: 120
+			Light: 70
+			Heavy: 30
+			Concrete: 90
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath, Incendiary
+	Warhead@3Eff: PxExplosion
+		Style: Thermobaric
+		Size: 1.6
+		FireColor: FFB46E
+		SmokeColor: 6E6458
+		ImpactSounds: firebl3.aud
+
+# Ukraine: precision long-range rockets
+RL_VILKRA:
+	Inherits: ^PxSalvoRocket
+	ReloadDelay: 340
+	Range: 14c0
+	Report: missile1.aud
+	Burst: 4
+	BurstDelays: 15
+	Projectile: PxRocket
+		Sequence: vilkha
+		Speed: 220
+		Length: 722
+		Width: 80
+		TrailDensity: 3
+		TrailLife: 60
+		LaunchPuffs: 12
+		Inaccuracy: 0c384
+		SmokeColor: E6E6E1
+		TrailSize: 1.4
+		FlameSize: 1.3
+	Warhead@1Dam: SpreadDamage
+		Spread: 341
+		Damage: 3800
+	Warhead@3Eff: PxExplosion
+		Style: Heavy
+		Size: 1.7
+
+# Cuba: old Grad, cheap but inaccurate; dirty smoke from old motors
+RL_GRAD:
+	Inherits: ^PxSalvoRocket
+	ReloadDelay: 260
+	Range: 12c0
+	Burst: 10
+	BurstDelays: 5
+	Projectile: PxRocket
+		Sequence: grad122
+		Length: 273
+		Width: 33
+		Inaccuracy: 3c0
+		FlameColor: FF9A3C
+		SmokeColor: B4AFA5
+		TrailSize: 0.8
+	Warhead@1Dam: SpreadDamage
+		Damage: 1100
+	Warhead@3Eff: PxExplosion
+		Size: 0.9
+		SmokeColor: A09B91
+
+# India: the fastest salvo
+RL_PINAK:
+	Inherits: ^PxSalvoRocket
+	ReloadDelay: 260
+	Range: 12c0
+	Burst: 12
+	BurstDelays: 2
+	Projectile: PxRocket
+		Sequence: pinaka
+		Length: 466
+		Width: 57
+		Inaccuracy: 2c0
+		SmokeColor: EBEBE6
+		TrailSize: 0.9
+	Warhead@1Dam: SpreadDamage
+		Damage: 1200
+	Warhead@3Eff: PxExplosion
+		Size: 1.0
+		FireColor: FFC88C
+
+# Egypt: cluster rockets, each splits into bomblets
+RL_SAQR:
+	Inherits: ^PxSalvoRocket
+	ReloadDelay: 280
+	Range: 12c0
+	Burst: 4
+	BurstDelays: 10
+	Projectile: PxRocket
+		Sequence: sakr
+		Arc: 0.35
+		Length: 285
+		Width: 33
+		Inaccuracy: 1c512
+		SmokeColor: D7D2C3
+		TrailSize: 0.8
+	Warhead@1Dam: SpreadDamage
+		Damage: 600
+	Warhead@3Eff: PxExplosion
+		Size: 0.7
+		Smoke: 0.5
+	Warhead@Cluster: FireCluster
+		Weapon: RL_SAQR_BOMBLET
+		RandomClusterCount: 6
+		Dimensions: 3,3
+		Footprint: xxx xxx xxx
+
+RL_SAQR_BOMBLET:
+	Range: 2c0
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	Projectile: Bullet
+		Speed: 120
+		Blockable: false
+		LaunchAngle: 40
+		Inaccuracy: 0c384
+	Warhead@1Dam: SpreadDamage
+		Spread: 256
+		Damage: 900
+		Falloff: 100, 50, 20, 5
+		ValidTargets: GroundActor, WaterActor
+		Versus:
+			None: 100
+			Wood: 30
+			Light: 80
+			Heavy: 20
+			Concrete: 15
+		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
+	Warhead@3Eff: PxExplosion
+		Style: Bomblet
+		Size: 0.8
+		ImpactSounds: kaboom12.aud
+		ValidTargets: Ground, GroundActor, WaterActor, Trees
+	Warhead@4EffWater: CreateEffect
+		Explosions: small_splash
+		ValidTargets: Water, Underwater
+		InvalidTargets: Bridge
+
+# China: the longest range, big 370 mm rockets
+RL_PHX:
+	Inherits: ^PxSalvoRocket
+	ReloadDelay: 400
+	Range: 15c0
+	MinRange: 4c0
+	Report: missile1.aud
+	Burst: 8
+	BurstDelays: 7
+	Projectile: PxRocket
+		Sequence: phl16
+		Speed: 220
+		Length: 684
+		Width: 99
+		TrailDensity: 3
+		TrailLife: 70
+		LaunchPuffs: 14
+		Inaccuracy: 1c512
+		SmokeColor: F0F0EB
+		TrailSize: 1.5
+		FlameSize: 1.4
+	Warhead@1Dam: SpreadDamage
+		Spread: 341
+		Damage: 2600
+	Warhead@3Eff: PxExplosion
+		Style: Heavy
+		Size: 1.9
+
+# Iran: long range for cheap, inaccurate (deploy: Shard-136 drones, RL_FAJIR_DRONE); greyer smoke
+RL_FAJIR:
+	Inherits: ^PxSalvoRocket
+	ReloadDelay: 320
+	Range: 14c0
+	Report: missile1.aud
+	Burst: 4
+	BurstDelays: 12
+	Projectile: PxRocket
+		Sequence: fajr5
+		Length: 618
+		Width: 89
+		TrailDensity: 3
+		TrailLife: 60
+		Inaccuracy: 3c0
+		SmokeColor: A09B91
+		TrailSize: 1.4
+		FlameSize: 1.2
+	Warhead@1Dam: SpreadDamage
+		Spread: 341
+		Damage: 2400
+	Warhead@3Eff: PxExplosion
+		Style: Heavy
+		Size: 1.6
+		SmokeColor: 8C877D
+
+# Germany MARZ II, mine mode: rockets burst over the target and scatter anti-tank mines (3 per rocket)
+RL_MARZ_MINES:
+	Inherits: ^PxGmlrs
+	ReloadDelay: 450
+	Burst: 4
+	BurstDelays: 10
+	Projectile: PxRocket
+		Sequence: gmlrs_de
+		Inaccuracy: 1c0
+		SmokeColor: DCD2C3
+	-Warhead@1Dam:
+	-Warhead@2Smu:
+	Warhead@3Eff: PxExplosion
+		Style: Bomblet
+		Size: 0.8
+		Smoke: 0.4
+		Scorch: false
+		ImpactSounds: kaboom12.aud
+	Warhead@Cluster: FireCluster
+		Weapon: RL_MARZ_MINELET
+		RandomClusterCount: 3
+		Dimensions: 3,3
+		Footprint: xxx xxx xxx
+
+RL_MARZ_MINELET:
+	Range: 2c0
+	ValidTargets: Ground, Water
+	Projectile: Bullet
+		Speed: 100
+		Blockable: false
+		LaunchAngle: 40
+	Warhead@Mine: PxSpawnActor
+		Actor: minv
+	Warhead@3Eff: PxExplosion
+		Style: Bomblet
+		Size: 0.35
+		Smoke: 0.3
+		Scorch: false
+
+# South Korea Chunmu, missile mode: one heavy guided missile, longer range, slow reload
+RL_CHUNMU_MISSILE:
+	Inherits: RL_CHUNMU
+	-Burst:
+	-BurstDelays:
+	ReloadDelay: 420
+	Range: 15c0
+	MinRange: 4c0
+	Report: missile1.aud
+	Projectile: PxRocket
+		Speed: 260
+		Inaccuracy: 0c64
+		SmokeColor: F5F5F0
+		TrailSize: 1.2
+		FlameColor: FFD278
+	Warhead@1Dam: SpreadDamage
+		Spread: 256
+		Damage: 14000
+		Versus:
+			Heavy: 60
+			Concrete: 120
+	Warhead@3Eff: PxExplosion
+		Style: Precision
+		Size: 2.2
+		ImpactSounds: firebl3.aud
+
+# Iran Fajir-5, drone mode: 2 Shard-136 one-way attack drones: slow, low and very long range, launched by a booster
+RL_FAJIR_DRONE:
+	Inherits: ^PxSalvoRocket
+	ReloadDelay: 500
+	Range: 22c0
+	MinRange: 3c0
+	Report: missile1.aud
+	Burst: 2
+	BurstDelays: 30
+	Projectile: PxRocket
+		Sequence: shard136
+		Speed: 90
+		Arc: 0.04
+		Length: 332
+		Width: 86
+		TrailDensity: 1
+		TrailLife: 30
+		LaunchPuffs: 16
+		Inaccuracy: 0c256
+		SmokeColor: B4B4B4
+		TrailSize: 0.4
+		FlameSize: 0.15
+		FlameColor: FFB45A
+	Warhead@1Dam: SpreadDamage
+		Spread: 341
+		Damage: 5000
+		Versus:
+			Wood: 120
+			Light: 80
+			Heavy: 45
+			Concrete: 150
+	Warhead@3Eff: PxExplosion
+		Style: Heavy
+		Size: 1.3
+		ImpactSounds: firebl3.aud

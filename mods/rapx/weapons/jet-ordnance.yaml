@@ -1,0 +1,235 @@
+# IDEA-34 jet loadouts: the weapons jets carry on their stations (artsrc/jets/loadout_table.py). Each family has a
+# single version (centreline station) and a .Pair version (left + right pylon, fired left then right; one ammo each,
+# so each missile leaves its own pylon and disappears from the sprite). Rules: rules/jet-loadouts.yaml (generated).
+# Air-to-air missiles and guns hit aircraft too: jets fight jets.
+
+# --- Air-to-air ---------------------------------------------------------------------------------------------------
+# Short range (AIM-9, R-73): agile, accurate, close in
+JetAAM.Short:
+	Inherits: ^AntiAirMissile
+	ReloadDelay: 60
+	Range: 6c0
+	MinRange: 0c512
+	Report: missile1.aud
+	Projectile: PxRocket
+		Image: pxmissile
+		Sequence: aim9
+		Speed: 540
+		Arc: 0.02
+		Length: 540
+		Width: 34
+	Warhead@1Dam: SpreadDamage
+		Damage: 5200
+		Versus:
+			None: 100
+			Light: 80
+			Heavy: 70
+JetAAM.Short.Pair:
+	Inherits: JetAAM.Short
+	Burst: 2
+	BurstDelays: 8
+
+# Medium range (AIM-120, R-77): fired from far away, a little less deadly
+JetAAM.Medium:
+	Inherits: JetAAM.Short
+	ReloadDelay: 80
+	Range: 10c0
+	MinRange: 1c512
+	Projectile: PxRocket
+		Image: pxmissile
+		Sequence: aim120
+		Speed: 460
+		Length: 640
+		Width: 38
+	Warhead@1Dam: SpreadDamage
+		Damage: 4600
+JetAAM.Medium.Pair:
+	Inherits: JetAAM.Medium
+	Burst: 2
+	BurstDelays: 10
+
+# Long range (AIM-54 Phoenix, R-33/R-40): the longest reach, heavy warhead, hits bombers hard
+JetAAM.Long:
+	Inherits: JetAAM.Short
+	ReloadDelay: 110
+	Range: 14c0
+	MinRange: 3c0
+	Projectile: PxRocket
+		Image: pxmissile
+		Sequence: aim54
+		Speed: 400
+		Length: 700
+		Width: 46
+	Warhead@1Dam: SpreadDamage
+		Damage: 7500
+		Versus:
+			Heavy: 110
+	Warhead@3Eff: PxExplosion
+		Size: 1.1
+JetAAM.Long.Pair:
+	Inherits: JetAAM.Long
+	Burst: 2
+	BurstDelays: 14
+
+# --- Air-to-ground --------------------------------------------------------------------------------------------------
+# Air-to-ground missile (AGM-65 Maverick, Kh-25): tanks and vehicles
+JetAGM:
+	Inherits: Maverick
+	Burst: 1
+	ReloadDelay: 35
+	Projectile: PxRocket
+		Image: pxmissile
+		Sequence: agm65
+		Length: 450
+
+JetAGM.Pair:
+	Inherits: JetAGM
+	Burst: 2
+	BurstDelays: 7
+
+# Unguided bombs (Mk 82, FAB): must fly close, big splash
+JetBomb:
+	Inherits: ^AntiGroundMissile
+	ReloadDelay: 12
+	Range: 2c512
+	MinRange: 0c0
+	Report: chute1.aud
+	Projectile: PxRocket
+		Image: pxmissile
+		Sequence: mk82
+		Speed: 170
+		Arc: 0.45
+		Length: 390
+		Width: 60
+	Warhead@1Dam: SpreadDamage
+		Spread: 512
+		Damage: 9000
+		Versus:
+			None: 70
+			Wood: 100
+			Light: 90
+			Heavy: 70
+			Concrete: 70
+	Warhead@3Eff: PxExplosion
+		Size: 1.5
+		ImpactSounds: kaboom15.aud
+JetBomb.Pair:
+	Inherits: JetBomb
+	Burst: 2
+	BurstDelays: 4
+
+# Guided bombs (GBU-12/31, KAB-500): precise, heavy, best against buildings
+JetGBU:
+	Inherits: JetBomb
+	ReloadDelay: 40
+	Range: 5c0
+	Projectile: PxRocket
+		Image: pxmissile
+		Sequence: gbu
+		Length: 590
+		Speed: 230
+		Arc: 0.25
+	Warhead@1Dam: SpreadDamage
+		Spread: 256
+		Damage: 15000
+		Versus:
+			None: 40
+			Wood: 120
+			Light: 90
+			Heavy: 100
+			Concrete: 120
+JetGBU.Pair:
+	Inherits: JetGBU
+	Burst: 2
+	BurstDelays: 10
+
+# Rocket pods (Hydra 70, S-8): a salvo per pod, wide spread, infantry and light vehicles
+JetRockets:
+	Inherits: ^AntiGroundMissile
+	ReloadDelay: 6
+	Range: 6c0
+	MinRange: 1c0
+	Report: missile6.aud
+	Projectile: PxRocket
+		Image: pxmissile
+		Sequence: hydra
+		Speed: 300
+		Arc: 0.05
+		Length: 190
+		Width: 26
+	Warhead@1Dam: SpreadDamage
+		Spread: 256
+		Damage: 2200
+		Versus:
+			None: 100
+			Wood: 60
+			Light: 80
+			Heavy: 35
+			Concrete: 30
+	Warhead@3Eff: PxExplosion
+		Size: 0.7
+JetRockets.Pair:
+	Inherits: JetRockets
+	Burst: 2
+	BurstDelays: 3
+
+# --- Guns: hit aircraft and ground ---------------------------------------------------------------------------------
+JetGun.M61:
+	Inherits: ^HeavyMG
+	Burst: 6
+	BurstDelays: 2
+	ReloadDelay: 40
+	Range: 4c512
+	MinRange: 0c768
+	ValidTargets: Ground, Water, GroundActor, WaterActor, AirborneActor
+	Report: ra|audio/weapons/vulcan-burst1.wav, ra|audio/weapons/vulcan-burst2.wav, ra|audio/weapons/vulcan-burst3.wav
+	Projectile: PxTracer
+		Rounds: 1
+		Speed: 2200
+		Width: 22
+		TracerLength: 640
+		MuzzleFlare: 220
+		Inaccuracy: 260
+	Warhead@1Dam: SpreadDamage
+		Damage: 1300
+		ValidTargets: GroundActor, WaterActor, AirborneActor
+		Versus:
+			None: 120
+			Wood: 50
+			Light: 30
+			Heavy: 25
+			Concrete: 20
+
+# GAU-8 Avenger (A-10): 30 mm armour-piercing, the tank killer
+JetGun.GAU8:
+	Inherits: JetGun.M61
+	Burst: 8
+	BurstDelays: 1
+	ReloadDelay: 30
+	Range: 5c0
+	Projectile: PxTracer
+		Width: 30
+		TracerLength: 720
+		MuzzleFlare: 300
+	Warhead@1Dam: SpreadDamage
+		Spread: 160
+		Damage: 3200
+		Versus:
+			None: 90
+			Wood: 70
+			Light: 45
+			Heavy: 120
+			Concrete: 45
+	Warhead@3Eff: PxExplosion
+		Size: 0.35
+		ValidTargets: Ground, GroundActor, WaterActor, Trees
+
+# 23/30 mm Soviet and European guns: harder hitting, slower than the M61
+JetGun.GSh30:
+	Inherits: JetGun.M61
+	Burst: 4
+	BurstDelays: 3
+	Warhead@1Dam: SpreadDamage
+		Damage: 2000
+		Versus:
+			Heavy: 40

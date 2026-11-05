@@ -1,0 +1,91 @@
+# Layered carrier air defence (docs/DESIGN-IDEAS.md IDEA-08, carrier weapons step 1):
+#   NavalSAM    medium-range surface-to-air missile (Sea Sparrow / Aster / Barak / HQ-10 class), outer layer
+#   StingerAA   short-range missile (RAM class), middle layer (missiles.yaml)
+#   CIWSGun     close-in gatling vs aircraft (Phalanx / Kashtan / Type 1130 class), inner layer
+#   CIWSTracer  cosmetic burst that PxPointDefense fires at incoming missiles it shoots down
+#   FlakGun / FlakTracer  WWII 40 mm Bofors for the Essex (no missiles)
+
+NavalSAM:
+	Inherits: StingerAA
+	ReloadDelay: 110
+	Range: 11c0
+	MinRange: 3c0
+	Burst: 1
+	Projectile: PxRocket
+		Speed: 430
+		Arc: 0.14
+		Length: 230
+		Width: 48
+		TrailDensity: 3
+		LaunchPuffs: 16
+	Warhead@1Dam: SpreadDamage
+		Damage: 5200
+
+CIWSGun:
+	ReloadDelay: 14
+	Range: 3c512
+	ValidTargets: AirborneActor
+	Report: ra|audio/weapons/vulcan-burst1.wav, ra|audio/weapons/vulcan-burst2.wav, ra|audio/weapons/vulcan-burst3.wav
+	# HD tracers (OpenRA.Mods.RAPX/Projectiles/PxTracer.cs)
+	Projectile: PxTracer
+		Rounds: 6
+		RoundInterval: 1
+		Speed: 1800
+		TracerLength: 360
+		Width: 12
+		Inaccuracy: 220
+		Casings: false
+		ImpactDust: false
+	Warhead@1Dam: SpreadDamage
+		Spread: 160
+		Damage: 650
+		ValidTargets: AirborneActor
+		Versus:
+			None: 100
+			Light: 100
+			Heavy: 45
+		DamageTypes: BulletDeath
+
+CIWSTracer:
+	Report: ra|audio/weapons/vulcan-burst1.wav, ra|audio/weapons/vulcan-burst2.wav, ra|audio/weapons/vulcan-burst3.wav
+	Projectile: PxTracer
+		Rounds: 5
+		RoundInterval: 1
+		Speed: 2000
+		TracerLength: 380
+		Width: 12
+		Inaccuracy: 160
+		Casings: false
+		ImpactDust: false
+
+FlakGun:
+	ReloadDelay: 22
+	Range: 5c512
+	ValidTargets: AirborneActor
+	Report: ra|audio/weapons/chaingun-shot1.wav, ra|audio/weapons/chaingun-shot2.wav, ra|audio/weapons/chaingun-shot3.wav
+	Projectile: PxTracer
+		Rounds: 2
+		RoundInterval: 3
+		Speed: 1200
+		TracerLength: 300
+		Width: 20
+		Color: FF9A3C
+		Inaccuracy: 420
+		Casings: false
+		ImpactDust: false
+	Warhead@1Dam: SpreadDamage
+		Spread: 384
+		Damage: 900
+		ValidTargets: AirborneActor
+		Versus:
+			None: 100
+			Light: 100
+			Heavy: 50
+	Warhead@2Eff: CreateEffect
+		Explosions: small_explosion_air
+		ValidTargets: AirborneActor
+
+FlakTracer:
+	Inherits: FlakGun
+	-Warhead@1Dam:
+	-Warhead@2Eff:

@@ -1,0 +1,32 @@
+# MI6 Headquarters: England-only intelligence building. Unlocks the English Spy (SPY.England) and the Spy Cars (spycar.yaml).
+
+MI6:
+	Inherits: ^Building
+	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
+	Inherits@shape: ^2x2Shape
+	Selectable:
+		Bounds: 2048, 2048
+	Buildable:
+		Queue: Building
+		BuildPaletteOrder: 95
+		Prerequisites: dome, ~structures.england, ~techlevel.medium
+		BuildLimit: 1
+		Description: actor-mi6.description
+	Valued:
+		Cost: 1000
+	Tooltip:
+		Name: actor-mi6.name
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+	Targetable:
+		TargetTypes: GroundActor, Structure, C4, DetonateAttack, SpyInfiltrate
+	Health:
+		HP: 80000
+	Armor:
+		Type: Wood
+	RevealsShroud:
+		Range: 6c0
+	Power:
+		Amount: -50
+	ProvidesPrerequisite@buildingname:

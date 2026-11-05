@@ -1,0 +1,73 @@
+Background@PX_CONTROLS_PANEL:
+	Logic: PxControlsHelpLogic
+	X: (WINDOW_WIDTH - WIDTH) / 2
+	Y: (WINDOW_HEIGHT - HEIGHT) / 2
+	Width: 720
+	Height: 640
+	Background: px-dialog
+	Children:
+		Label@TITLE:
+			Width: PARENT_WIDTH
+			Y: 26
+			Height: 34
+			Font: PXTitle
+			Align: Center
+			Text: label-px-controls-title
+		Image@TITLE_LINE:
+			X: (PARENT_WIDTH - WIDTH) / 2
+			Y: 64
+			Width: 320
+			Height: 6
+			ImageCollection: px-deco
+			ImageName: title-line
+		Label@SCHEME:
+			Width: PARENT_WIDTH
+			Y: 78
+			Height: 20
+			Font: PXBody
+			Align: Center
+			TextColor: D6CFCC
+		ScrollPanel@CONTROLS_LIST:
+			X: 40
+			Y: 110
+			Width: PARENT_WIDTH - 80
+			Height: PARENT_HEIGHT - 190
+			TopBottomSpacing: 4
+			ItemSpacing: 2
+			Background:
+			Children:
+				Container@HEADER_TEMPLATE:
+					Width: PARENT_WIDTH - 24
+					Height: 34
+					Children:
+						Label@LABEL:
+							Y: 10
+							Width: PARENT_WIDTH
+							Height: 20
+							Font: PXLabel
+							TextColor: F05A46
+				Container@ROW_TEMPLATE:
+					Width: PARENT_WIDTH - 24
+					Height: 24
+					Children:
+						Label@ACTION:
+							X: 8
+							Width: PARENT_WIDTH * 3 / 5 - 8
+							Height: PARENT_HEIGHT
+							Font: PXBody
+							TextColor: D6CFCC
+						Label@KEY:
+							X: PARENT_WIDTH * 3 / 5
+							Width: PARENT_WIDTH * 2 / 5 - 8
+							Height: PARENT_HEIGHT
+							Font: PXBody
+							Align: Right
+		Button@CLOSE_BUTTON:
+			X: PARENT_WIDTH - 214
+			Y: PARENT_HEIGHT - 62
+			Width: 180
+			Height: 34
+			Text: button-px-controls-close
+			Font: PXButton
+			Key: escape
+			Background: px-button-highlighted

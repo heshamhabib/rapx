@@ -1,0 +1,273 @@
+^Cannon:
+	ReloadDelay: 50
+	Range: 4c768
+	Report: cannon1.aud
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	Projectile: Bullet
+		Speed: 682
+		Image: 120MM
+		Shadow: True
+	Warhead@1Dam: SpreadDamage
+		Spread: 128
+		Damage: 4000
+		ValidTargets: GroundActor, WaterActor
+		Versus:
+			None: 30
+			Wood: 75
+			Light: 75
+			Concrete: 50
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Crater
+		ValidTargets: Ground, Infantry
+	# HD explosion (OpenRA.Mods.RAPX/Warheads/PxExplosionWarhead.cs)
+	Warhead@3Eff: PxExplosion
+		Size: 0.7
+		Smoke: 0.7
+		ImpactSounds: kaboom12.aud
+		ValidTargets: Ground, GroundActor, WaterActor, Trees
+	Warhead@4EffWater: CreateEffect
+		Explosions: small_splash
+		ImpactSounds: splash9.aud
+		ValidTargets: Water, Underwater
+		InvalidTargets: Bridge
+
+25mm:
+	Inherits: ^Cannon
+	ReloadDelay: 21
+	Range: 4c768
+	Report: cannon2.aud
+	Projectile: Bullet
+		Speed: 853
+		Image: 50CAL
+	Warhead@1Dam: SpreadDamage
+		Damage: 2500
+		Versus:
+			None: 32
+			Wood: 52
+			Light: 116
+			Heavy: 48
+			Concrete: 32
+	-Warhead@2Smu:
+	Warhead@3Eff: PxExplosion
+		Size: 0.45
+		Smoke: 0.4
+		-ImpactSounds:
+	Warhead@4EffWater: CreateEffect
+		-ImpactSounds:
+
+90mm:
+	Inherits: ^Cannon
+	Warhead@1Dam: SpreadDamage
+		Versus:
+			Heavy: 115
+	Warhead@3Eff: PxExplosion
+		Size: 0.75
+		Smoke: 0.8
+
+105mm:
+	Inherits: ^Cannon
+	ReloadDelay: 70
+	Burst: 2
+	Warhead@1Dam: SpreadDamage
+		Versus:
+			Heavy: 115
+	Warhead@3Eff: PxExplosion
+		Size: 0.85
+		Smoke: 0.9
+
+120mm:
+	Inherits: ^Cannon
+	ReloadDelay: 90
+	Burst: 2
+	InvalidTargets: Air, Infantry
+	Warhead@1Dam: SpreadDamage
+		Damage: 6000
+		Versus:
+			Heavy: 115
+		InvalidTargets: Air
+	Warhead@3Eff: PxExplosion
+		Size: 1.0
+		Smoke: 1.0
+
+TurretGun:
+	Inherits: ^Cannon
+	ReloadDelay: 30
+	Range: 6c512
+	Report: turret1.aud
+	Warhead@1Dam: SpreadDamage
+		Damage: 6000
+		Versus:
+			None: 20
+			Wood: 50
+	Warhead@3Eff: PxExplosion
+		Size: 0.9
+		Smoke: 0.9
+
+^Artillery:
+	Inherits: ^Cannon
+	ReloadDelay: 85
+	Range: 12c0
+	Projectile: Bullet
+		Speed: 204
+		Blockable: false
+		LaunchAngle: 62
+		Inaccuracy: 1c938
+	Warhead@1Dam: SpreadDamage
+		Spread: 426
+		Damage: 23000
+		Versus:
+			None: 90
+			Wood: 40
+			Light: 60
+			Heavy: 25
+		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
+	# HD explosion (OpenRA.Mods.RAPX/Warheads/PxExplosionWarhead.cs)
+	Warhead@3Eff: PxExplosion
+		Size: 1.2
+		Smoke: 1.2
+		ImpactSounds: kaboom15.aud
+	Warhead@4EffWater: CreateEffect
+		Explosions: med_splash
+
+155mm:
+	Inherits: ^Artillery
+	MinRange: 4c0
+	Report: tank5.aud
+	TargetActorCenter: true
+	Projectile: Bullet
+		ContrailLength: 30
+		Speed: 170
+		Inaccuracy: 1c138
+	Warhead@1Dam: SpreadDamage
+		Falloff: 100, 55, 20, 5
+		Versus:
+			None: 60
+	Warhead@3Eff: PxExplosion
+		Size: 1.25
+		Smoke: 1.2
+
+8Inch:
+	Inherits: ^Artillery
+	MinRange: 3c0
+	ReloadDelay: 250
+	Range: 20c0
+	Burst: 2
+	Report: turret1.aud
+	TargetActorCenter: true
+	Projectile: Bullet
+		Inaccuracy: 1c938
+		ContrailLength: 30
+	Warhead@1Dam: SpreadDamage
+		Spread: 213
+		Damage: 2500
+		Falloff: 1000, 368, 135, 50, 18, 7, 0
+		Versus:
+			None: 60
+			Wood: 35
+			Light: 60
+			Heavy: 25
+			Concrete: 100
+	Warhead@4EffWater: CreateEffect
+		Explosions: large_splash
+	Warhead@3Eff: PxExplosion
+		Size: 1.6
+		Smoke: 1.3
+
+2Inch:
+	Inherits: ^Cannon
+	ReloadDelay: 60
+	Range: 5c512
+	Report: cannon2.aud
+	InvalidTargets: Underwater
+	Warhead@1Dam: SpreadDamage
+		Spread: 256
+		Damage: 2500
+		Versus:
+			None: 28
+			Wood: 72
+			Light: 72
+			Concrete: 48
+	Warhead@3Eff: PxExplosion
+		Size: 0.6
+		Smoke: 0.6
+
+Grenade:
+	Inherits: ^Artillery
+	ReloadDelay: 60
+	Range: 4c0
+	Report: grenade1.aud
+	Projectile: Bullet
+		Speed: 136
+		Inaccuracy: 554
+		Image: BOMB
+	Warhead@1Dam: SpreadDamage
+		Spread: 256
+		Damage: 6000
+		Versus:
+			None: 60
+			Wood: 100
+			Light: 25
+			Heavy: 25
+			Concrete: 100
+	Warhead@3Eff: PxExplosion
+		Size: 0.65
+		Smoke: 0.7
+		ImpactSounds: kaboom25.aud
+	Warhead@4EffWater: CreateEffect
+		Explosions: small_splash
+
+DepthCharge:
+	Inherits: ^Artillery
+	-Report:
+	ReloadDelay: 60
+	Range: 5c0
+	ValidTargets: Underwater
+	Projectile: Bullet
+		Speed: 125
+		Image: BOMB
+		Inaccuracy: 128
+	Warhead@1Dam: SpreadDamage
+		Spread: 128
+		Damage: 6000
+		ValidTargets: Submarine
+		Versus:
+			Light: 100
+		DamageTypes: ExplosionDeath
+	Warhead@3Eff: CreateEffect
+		Explosions: med_explosion
+		ImpactSounds: kaboom15.aud
+		ValidTargets: Submarine
+		InvalidTargets: Underwater
+	Warhead@4EffWater: CreateEffect
+		Explosions: large_splash
+		ImpactSounds: splash9.aud
+		ValidTargets: Water, Underwater
+	Warhead@5EffSubmergedHitSound: CreateEffect
+		ImpactSounds: h2obomb2.aud
+		ValidTargets: Underwater
+
+# XR-85 (France only, rules/vehicles.yaml XR85): a slow, very heavy long-range gun. Out-ranges every tank and
+# most defences; one hit wrecks light vehicles, three or four kill a heavy tank. Slow to reload and useless up close.
+XR85Cannon:
+	Inherits: ^Cannon
+	ReloadDelay: 150
+	Range: 12c0
+	MinRange: 2c0
+	Report: cannon1.aud
+	Projectile: Bullet
+		Speed: 900
+		Blockable: False
+	Warhead@1Dam: SpreadDamage
+		Spread: 384
+		Damage: 24000
+		Versus:
+			None: 40
+			Wood: 100
+			Light: 110
+			Heavy: 100
+			Concrete: 90
+	Warhead@3Eff: PxExplosion
+		Size: 2.2
+		Smoke: 2.0
+		ImpactSounds: kaboom25.aud

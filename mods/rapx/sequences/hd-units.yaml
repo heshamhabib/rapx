@@ -1,0 +1,612 @@
+# High resolution unit art (RedAlert Project X), overriding the classic sequences.
+# Sprites are rendered from procedural Blender models: see artsrc/units/<unit>/make.sh.
+# Frames are evenly spaced counter-clockwise from north, so UseClassicFacings is off.
+# Vehicles are drawn 1.4x their render size (Scale 0.4667) so they read right next to the HD infantry;
+# rules/vehicles.yaml turret/weapon offsets and DecorationBounds were scaled by the same 1.4.
+# Pure green areas are recoloured to the owner's colour by PlayerColorShift.
+
+# Minelayer: AI-generated model (artsrc/units/meshes); the older procedural one is in artsrc/units/minelayer.
+# Minelayer / Supply Truck / Flak Truck: Sketchfab M113, Ural 4320, Pantsir-S1 (2x pixels)
+mnly:
+	idle:
+		Filename: ra|bits/hd/units/mnly.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+
+# Ore truck: sheets keep the classic harv.shp frame layout (see artsrc/units/harvester/render_harvester.py),
+# so the stock Start / Length / Facings values still apply. Docking always uses the full truck, as in the original.
+# Scale is set per sequence (not in Defaults) so the classic icon keeps its size. 0.3267 = 0.7 x the other
+# vehicles' 0.4667: the model is rendered at 13.6 units long, which looked twice a tank's size in game.
+harv:
+	Defaults:
+		Filename: ra|bits/hd/units/harv.png
+	idle:
+		UseClassicFacings: False
+		Scale: 0.3267
+	harvest:
+		Scale: 0.3267
+	dock:
+		Filename: ra|bits/hd/units/harv.png
+		Scale: 0.3267
+	dock-loop:
+		Filename: ra|bits/hd/units/harv.png
+		Scale: 0.3267
+
+harvempty:
+	Defaults:
+		Filename: ra|bits/hd/units/harvempty.png
+
+harvhalf:
+	Defaults:
+		Filename: ra|bits/hd/units/harvhalf.png
+
+hhusk:
+	idle:
+		Filename: ra|bits/hd/units/harv-wreck.png
+		UseClassicFacings: False
+		Scale: 0.3267
+
+hhusk2:
+	idle:
+		Filename: ra|bits/hd/units/harvempty-wreck.png
+		UseClassicFacings: False
+		Scale: 0.3267
+
+# Tanks (artsrc/units/tanks): hull frames 0-31, turret frames 32-63, like the classic sheets.
+# Armament LocalOffsets in rules/vehicles.yaml follow the rendered barrel tips (build_tanks.py prints them,
+# scaled by ~0.88 forward and ~0.64 up for the camera angle). Muzzle flashes and icons keep their classic art.
+# The .destroyed images use charred copies of the same art (artsrc/fx/make_wreck_fx.py); ^Husk adds the fire and smoke.
+# Light / Medium Tank: Sketchfab M551 Sheridan / M1A1 Abrams, rendered at 2x pixels (half Scale)
+1tnk:
+	idle:
+		Filename: ra|bits/hd/units/1tnk.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/units/1tnk.png
+		UseClassicFacings: False
+		Scale: 0.2333
+
+1tnk.destroyed:
+	idle:
+		Filename: ra|bits/hd/units/1tnk-wreck.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/units/1tnk-wreck.png
+		UseClassicFacings: False
+		Scale: 0.2333
+
+2tnk:
+	idle:
+		Filename: ra|bits/hd/units/2tnk.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/units/2tnk.png
+		UseClassicFacings: False
+		Scale: 0.2333
+
+2tnk.destroyed:
+	idle:
+		Filename: ra|bits/hd/units/2tnk-wreck.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/units/2tnk-wreck.png
+		UseClassicFacings: False
+		Scale: 0.2333
+
+# Heavy Tank: Sketchfab T-72B3 (artsrc/units/meshes/import_sketchfab.py, credits in CREDITS), rendered at 2x
+# pixels so the detail holds up when zoomed in: half the usual Scale.
+3tnk:
+	idle:
+		Filename: ra|bits/hd/units/3tnk.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/units/3tnk.png
+		UseClassicFacings: False
+		Scale: 0.2333
+
+3tnk.destroyed:
+	idle:
+		Filename: ra|bits/hd/units/3tnk-wreck.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/units/3tnk-wreck.png
+		UseClassicFacings: False
+		Scale: 0.2333
+
+# Sketchfab models (artsrc/units/meshes/make_sketchfab.py, credits in CREDITS), rendered at 2x pixels: half the
+# usual Scale. Mammoth Tank: RA2 Apocalypse; V2: RA2 V3 launcher; APC: ARX.
+4tnk:
+	idle:
+		Filename: ra|bits/hd/units/4tnk.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/units/4tnk.png
+		UseClassicFacings: False
+		Scale: 0.2333
+
+4tnk.destroyed:
+	idle:
+		Filename: ra|bits/hd/units/4tnk-wreck.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/units/4tnk-wreck.png
+		UseClassicFacings: False
+		Scale: 0.2333
+
+# Support vehicles (artsrc/units/vehicles). Muzzle flashes, icons and the APC's unused door frames stay classic.
+# Ranger: Sketchfab Tiger armoured car, 2x pixels at the jeep's x0.76 size; no turret sprite (hatch gunner)
+jeep:
+	idle:
+		Filename: ra|bits/hd/units/jeep.png
+		UseClassicFacings: False
+		Scale: 0.1773
+
+# APC: AI-generated model from the concept art (artsrc/units/meshes), 25% larger than the classic unit.
+apc:
+	idle:
+		Filename: ra|bits/hd/units/apc.png
+		UseClassicFacings: False
+		Scale: 0.2333
+
+arty:
+	idle:
+		Filename: ra|bits/hd/units/arty.png
+		UseClassicFacings: False
+		Scale: 0.2333
+
+v2rl:
+	idle:
+		Filename: ra|bits/hd/units/v2rl.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	empty-idle:
+		Filename: ra|bits/hd/units/v2rl.png
+		UseClassicFacings: False
+		Scale: 0.2333
+
+# AI-generated models (artsrc/units/meshes): Hunyuan3D-2 shape + concept image projected, 25% larger than classic.
+truk:
+	idle:
+		Filename: ra|bits/hd/units/truk.png
+		UseClassicFacings: False
+		Scale: 0.2333
+
+dtrk:
+	idle:
+		Filename: ra|bits/hd/units/dtrk.png
+		UseClassicFacings: False
+		Scale: 0.2333
+
+# Construction Vehicle: Sketchfab Oshkosh M1070 (Union) and Ural KS3574 crane truck (Vanguard, image mcv.vanguard
+# via RenderSprites FactionImages), 2x pixels
+mcv:
+	idle:
+		Filename: ra|bits/hd/units/mcv.png
+		UseClassicFacings: False
+		Scale: 0.2333
+
+mcv.vanguard:
+	Inherits: mcv
+	idle:
+		Filename: ra|bits/hd/units/mcv-vanguard.png
+		UseClassicFacings: False
+		Scale: 0.2333
+
+# MCV wreck: charred copy of the HD MCV (artsrc/fx/make_wreck_fx.py)
+mcvhusk:
+	idle:
+		Filename: ra|bits/hd/units/mcv-wreck.png
+		UseClassicFacings: False
+		Scale: 0.2333
+
+ctnk:
+	idle:
+		Filename: ra|bits/hd/units/ctnk.png
+		UseClassicFacings: False
+		Scale: 0.2333
+
+ftrk:
+	idle:
+		Filename: ra|bits/hd/units/ftrk.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/units/ftrk.png
+		UseClassicFacings: False
+		Scale: 0.2333
+
+# Spinners: body 0-31, spinning part 32+ (rendered turning a full circle over the loop).
+mrj:
+	idle:
+		Filename: ra|bits/hd/units/mrj.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	spinner:
+		Filename: ra|bits/hd/units/mrj.png
+		Start: 32
+		Length: 32
+		Tick: 70
+		Scale: 0.2333
+
+# Mobile Gap Generator: Sketchfab 1S12 Long Track radar, 2x pixels; the antenna turns a full circle in 32 frames
+mgg:
+	idle:
+		Filename: ra|bits/hd/units/mgg.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	spinner:
+		Filename: ra|bits/hd/units/mgg.png
+		Start: 32
+		Length: 32
+		Tick: 70
+		Scale: 0.2333
+	spinner-idle:
+		Filename: ra|bits/hd/units/mgg.png
+		Start: 32
+		Length: 1
+		Scale: 0.2333
+
+mgg.destroyed:
+	idle:
+		Filename: ra|bits/hd/units/mgg-wreck.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	spinner:
+		Filename: ra|bits/hd/units/mgg-wreck.png
+		Scale: 0.2333
+	spinner-idle:
+		Filename: ra|bits/hd/units/mgg-wreck.png
+		Scale: 0.2333
+
+# Tesla Tank: the HD coil gun turns as a turret instead of the classic spinning coil overlay.
+# Tesla Tank: Sketchfab T-62A hull with the RA2 Tesla coil as its turret, 2x pixels
+ttnk:
+	idle:
+		Filename: ra|bits/hd/units/ttnk.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/units/ttnk.png
+		Start: 32
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+
+# Aircraft from Sketchfab models (artsrc/units/meshes/make_sketchfab.py, credits in CREDITS), at the jets' scale.
+# Helicopter bodies have no blades: the rotor sheet (32 frames, one blade period) sits on the hub with the
+# WithIdleOverlay Offsets in rules/aircraft.yaml; Tick = about one turn per 4 s flying, half that landed. MiG: MiG-35; Badger: C-17; Yak: Yak-9; Spy Plane: U-2; Chinook: CH-47; Longbow: Gazelle;
+# Hind: Z-10; Black Hawk: CH-53E.
+
+mig:
+	idle:
+		Filename: ra|bits/hd/units/mig.png
+		Facings: 32
+		-InterpolatedFacings:
+		UseClassicFacings: False
+		Scale: 0.3333
+
+badr:
+	idle:
+		Filename: ra|bits/hd/units/badr.png
+		Facings: 32
+		-InterpolatedFacings:
+		UseClassicFacings: False
+		Scale: 0.3333
+
+yak:
+	idle:
+		Filename: ra|bits/hd/units/yak.png
+		Facings: 32
+		-InterpolatedFacings:
+		UseClassicFacings: False
+		Scale: 0.3333
+
+u2:
+	idle:
+		Filename: ra|bits/hd/units/u2.png
+		Facings: 32
+		-InterpolatedFacings:
+		UseClassicFacings: False
+		Scale: 0.3333
+
+tran:
+	idle:
+		Filename: ra|bits/hd/units/tran.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	rotor:
+		Filename: ra|bits/hd/units/tran-rotor.png
+		Start: 0
+		Length: 32
+		Tick: 42
+		Scale: 0.3333
+	slow-rotor:
+		Filename: ra|bits/hd/units/tran-rotor.png
+		Start: 0
+		Length: 32
+		Tick: 84
+		Scale: 0.3333
+	rotor2:
+		Filename: ra|bits/hd/units/tran-rotor.png
+		Start: 0
+		Length: 32
+		Tick: 42
+		Scale: 0.3333
+	slow-rotor2:
+		Filename: ra|bits/hd/units/tran-rotor.png
+		Start: 0
+		Length: 32
+		Tick: 84
+		Scale: 0.3333
+	open:
+		Filename: ra|bits/hd/units/tran.png
+		Start: 0
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	unload:
+		Filename: ra|bits/hd/units/tran.png
+		Start: 0
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+
+heli:
+	idle:
+		Filename: ra|bits/hd/units/heli.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	rotor:
+		Filename: ra|bits/hd/units/heli-rotor.png
+		Start: 0
+		Length: 32
+		Tick: 42
+		Scale: 0.3333
+	slow-rotor:
+		Filename: ra|bits/hd/units/heli-rotor.png
+		Start: 0
+		Length: 32
+		Tick: 84
+		Scale: 0.3333
+
+hind:
+	idle:
+		Filename: ra|bits/hd/units/hind.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	rotor:
+		Filename: ra|bits/hd/units/hind-rotor.png
+		Start: 0
+		Length: 32
+		Tick: 25
+		Scale: 0.3333
+	slow-rotor:
+		Filename: ra|bits/hd/units/hind-rotor.png
+		Start: 0
+		Length: 32
+		Tick: 50
+		Scale: 0.3333
+
+mh60:
+	idle:
+		Filename: ra|bits/hd/units/mh60.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	rotor:
+		Filename: ra|bits/hd/units/mh60-rotor.png
+		Start: 0
+		Length: 32
+		Tick: 18
+		Scale: 0.3333
+	slow-rotor:
+		Filename: ra|bits/hd/units/mh60-rotor.png
+		Start: 0
+		Length: 32
+		Tick: 36
+		Scale: 0.3333
+
+# Spy Car (rules/spycar.yaml SCAR): artsrc/units/meshes/make_spycar.sh, jeep size class
+scar:
+	idle:
+		Filename: ra|bits/hd/units/scar.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.1773
+
+# Spy Car (rules/spycar.yaml SCR2): artsrc/units/meshes/make_spycar.sh, jeep size class
+scr2:
+	idle:
+		Filename: ra|bits/hd/units/scr2.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.1773
+
+# MAD Tank: Sketchfab KV-2 (one body, its box turret does not turn), 2x pixels
+qtnk:
+	idle:
+		Filename: ra|bits/hd/units/qtnk.png
+		UseClassicFacings: False
+		Scale: 0.2333
+
+# Vanguard Medium Tank: Fab T-34-85, 2x pixels (hull 0-31, turret 32-63 as the stock 2tnk layout)
+mtnk:
+	Inherits: 2tnk
+	idle:
+		Filename: ra|bits/hd/units/mtnk.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/units/mtnk.png
+		UseClassicFacings: False
+		Scale: 0.2333
+
+mtnk.destroyed:
+	Inherits: 2tnk.destroyed
+	idle:
+		Filename: ra|bits/hd/units/mtnk-wreck.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/units/mtnk-wreck.png
+		UseClassicFacings: False
+		Scale: 0.2333
+
+# Ground vehicles from Sketchfab models, 2026-11-02 (artsrc/units/meshes/sketchfab_models.py, credits in CREDITS)
+# Phase Transport: the stealth car has no separate turret; its rules turret draws nothing
+stnk:
+	idle:
+		Filename: ra|bits/hd/units/stnk.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/blank.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+
+xr85:
+	Inherits: 4tnk
+	idle:
+		Filename: ra|bits/hd/units/xr85.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/units/xr85.png
+		Start: 32
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+
+xr85.destroyed:
+	Inherits: 4tnk.destroyed
+	idle:
+		Filename: ra|bits/hd/units/xr85-wreck.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/units/xr85-wreck.png
+		Start: 32
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+
+spdr:
+	Inherits: 3tnk
+	idle:
+		Filename: ra|bits/hd/units/spdr.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/units/spdr.png
+		Start: 32
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+
+spdr.destroyed:
+	Inherits: 4tnk.destroyed
+	idle:
+		Filename: ra|bits/hd/units/spdr-wreck.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/units/spdr-wreck.png
+		Start: 32
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+
+# Ships (artsrc/units/meshes/make_sketchfab.py, kind ship). The guns are part of the hull renders for now, so the
+# classic turret sprites are blanked (Turreted/Armament offsets still aim and fire as before).
+ca:
+	idle:
+		Filename: ra|bits/hd/units/ca.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/blank.png
+		Facings: 1
+		UseClassicFacings: False
+		Start: 0
+		Length: 1
+
+dd:
+	idle:
+		Filename: ra|bits/hd/units/dd.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/blank.png
+		Facings: 1
+		UseClassicFacings: False
+		Start: 0
+		Length: 1
+
+pt:
+	idle:
+		Filename: ra|bits/hd/units/pt.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/blank.png
+		Facings: 1
+		UseClassicFacings: False
+		Start: 0
+		Length: 1
+
+msub:
+	idle:
+		Filename: ra|bits/hd/units/msub.png
+		Facings: 32
+		-InterpolatedFacings:
+		UseClassicFacings: False
+		Scale: 0.2333
+
+# The LCAC turns (the classic LST was a one-facing hovercraft); its bow ramp is not animated yet, so the door
+# sequences show the hull
+lst:
+	idle:
+		Filename: ra|bits/hd/units/lst.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	open:
+		Filename: ra|bits/hd/units/lst.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+		Start: 0
+		Length: 1
+	close:
+		Filename: ra|bits/hd/units/lst.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+		-Frames:
+		Start: 0
+		Length: 1
+	unload:
+		Filename: ra|bits/hd/units/lst.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+		Start: 0

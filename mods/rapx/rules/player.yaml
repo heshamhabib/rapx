@@ -1,0 +1,274 @@
+^BasePlayer:
+	AlwaysVisible:
+	Shroud:
+	PlayerResources:
+		ResourceValues:
+			Ore: 25
+			Gems: 50
+
+EditorPlayer:
+	Inherits: ^BasePlayer
+
+Player:
+	Inherits: ^BasePlayer
+	PxTreatyPlayer:
+	# Sidebar category chips (IDEA-05). Add new buildings to the right category's Actors list.
+	PxBuildCategory@command:
+		Queue: Building
+		Name: build-category-command
+		Icon: command
+		Order: 10
+		Actors: fact, dome
+	PxBuildCategory@power:
+		Queue: Building
+		Name: build-category-power
+		Icon: power
+		Order: 20
+		Actors: powr, apwr
+	PxBuildCategory@resources:
+		Queue: Building
+		Name: build-category-resources
+		Icon: resources
+		Order: 30
+		Actors: proc, silo, oilr
+	PxBuildCategory@army:
+		Queue: Building
+		Name: build-category-army
+		Icon: army
+		Order: 40
+		Actors: tent, barr, kenn, weap, fix
+	PxBuildCategory@marine:
+		Queue: Building
+		Name: build-category-marine
+		Icon: marine
+		Order: 50
+	PxBuildCategory@navy:
+		Queue: Building
+		Name: build-category-navy
+		Icon: navy
+		Order: 60
+		Actors: syrd, spen
+	PxBuildCategory@airforce:
+		Queue: Building
+		Name: build-category-airforce
+		Icon: airforce
+		Order: 70
+		Actors: hpad, afld, afld.ukraine, abas, afbs, sacm
+	PxBuildCategory@space:
+		Queue: Building
+		Name: build-category-space
+		Icon: space
+		Order: 80
+		Actors: supl, lnch
+	PxBuildCategory@rnd:
+		Queue: Building
+		Name: build-category-rnd
+		Icon: rnd
+		Order: 90
+		Actors: atek, stek, gap
+	PxBuildCategory@unmanned:
+		Queue: Building
+		Name: build-category-unmanned
+		Icon: unmanned
+		Order: 95
+	PxBuildCategory@strategic:
+		Queue: Building
+		Name: build-category-strategic
+		Icon: strategic
+		Order: 100
+		Actors: pdox, iron, mslo
+	PxBuildCategory@walls:
+		Queue: Defense
+		Name: build-category-walls
+		Icon: walls
+		Order: 10
+		Actors: sbag, fenc, brik
+	PxBuildCategory@ground:
+		Queue: Defense
+		Name: build-category-ground
+		Icon: ground
+		Order: 20
+		Actors: pbox, hbox, gun, ftur, tsla, ptwr
+	PxBuildCategory@air:
+		Queue: Defense
+		Name: build-category-air
+		Icon: air
+		Order: 30
+		Actors: agun, sam, asat
+	PxBuildCategory@coast:
+		Queue: Defense
+		Name: build-category-coast
+		Icon: coast
+		Order: 40
+	TechTree:
+	ClassicProductionQueue@Building:
+		Type: Building
+		DisplayOrder: 0
+		LowPowerModifier: 300
+		ReadyAudio: ConstructionComplete
+		ReadyTextNotification: notification-construction-complete
+		BlockedAudio: NoBuild
+		BlockedTextNotification: notification-unable-to-build-more
+		LimitedAudio: BuildingInProgress
+		LimitedTextNotification: notification-unable-to-comply-building-in-progress
+		QueuedAudio: Building
+		OnHoldAudio: OnHold
+		CancelledAudio: Cancelled
+		SpeedUp: True
+	ClassicProductionQueue@Defense:
+		Type: Defense
+		DisplayOrder: 1
+		LowPowerModifier: 300
+		ReadyAudio: ConstructionComplete
+		ReadyTextNotification: notification-construction-complete
+		BlockedAudio: NoBuild
+		BlockedTextNotification: notification-unable-to-build-more
+		LimitedAudio: BuildingInProgress
+		LimitedTextNotification: notification-unable-to-comply-building-in-progress
+		QueuedAudio: Building
+		OnHoldAudio: OnHold
+		CancelledAudio: Cancelled
+		SpeedUp: True
+	ClassicProductionQueue@Vehicle:
+		Type: Vehicle
+		DisplayOrder: 3
+		LowPowerModifier: 300
+		ReadyAudio: UnitReady
+		ReadyTextNotification: notification-unit-ready
+		BlockedAudio: NoBuild
+		BlockedTextNotification: notification-unable-to-build-more
+		LimitedAudio: BuildingInProgress
+		LimitedTextNotification: notification-unable-to-comply-building-in-progress
+		QueuedAudio: Building
+		OnHoldAudio: OnHold
+		CancelledAudio: Cancelled
+		SpeedUp: True
+		BuildTimeSpeedReduction: 100, 75, 60, 50
+	ClassicProductionQueue@Infantry:
+		Type: Infantry
+		DisplayOrder: 2
+		LowPowerModifier: 300
+		ReadyAudio: UnitReady
+		ReadyTextNotification: notification-unit-ready
+		BlockedAudio: NoBuild
+		BlockedTextNotification: notification-unable-to-build-more
+		LimitedAudio: BuildingInProgress
+		LimitedTextNotification: notification-unable-to-comply-building-in-progress
+		QueuedAudio: Training
+		OnHoldAudio: OnHold
+		CancelledAudio: Cancelled
+		SpeedUp: True
+	ClassicProductionQueue@Ship:
+		Type: Ship
+		DisplayOrder: 5
+		LowPowerModifier: 300
+		ReadyAudio: UnitReady
+		ReadyTextNotification: notification-unit-ready
+		BlockedAudio: NoBuild
+		BlockedTextNotification: notification-unable-to-build-more
+		LimitedAudio: BuildingInProgress
+		LimitedTextNotification: notification-unable-to-comply-building-in-progress
+		QueuedAudio: Building
+		OnHoldAudio: OnHold
+		CancelledAudio: Cancelled
+		SpeedUp: True
+	PxAirfieldProductionQueue@Aircraft:
+		Type: Aircraft
+		DisplayOrder: 4
+		LowPowerModifier: 300
+		ReadyAudio: UnitReady
+		ReadyTextNotification: notification-unit-ready
+		BlockedAudio: NoBuild
+		BlockedTextNotification: notification-unable-to-build-more
+		LimitedAudio: BuildingInProgress
+		LimitedTextNotification: notification-unable-to-comply-building-in-progress
+		QueuedAudio: Building
+		OnHoldAudio: OnHold
+		CancelledAudio: Cancelled
+		SpeedUp: True
+	PlaceBuilding:
+		NewOptionsNotification: NewOptions
+		CannotPlaceNotification: BuildingCannotPlaceAudio
+		NewOptionsTextNotification: notification-new-construction-options
+		CannotPlaceTextNotification: notification-cannot-deploy-here
+	SupportPowerManager:
+	ScriptTriggers:
+	MissionObjectives:
+		WinNotification: Win
+		LoseNotification: Lose
+		LeaveNotification: Leave
+	ConquestVictoryConditions:
+	PowerManager:
+		SpeechNotification: LowPower
+		TextNotification: notification-low-power
+	AllyRepair:
+	PlayerResources:
+		# Cash is 64-bit (engine patch patches/engine-long-cash.patch), so trillions are safe
+		SelectableCash: 2500, 5000, 10000, 20000, 50000, 100000, 1000000, 10000000, 100000000, 1000000000, 10000000000, 100000000000, 1000000000000
+		InsufficientFundsNotification: InsufficientFunds
+		InsufficientFundsTextNotification: notification-insufficient-funds
+		CashTickUpNotification: CashTickUp
+		CashTickDownNotification: CashTickDown
+	DeveloperMode:
+		CheckboxDisplayOrder: 10
+	GpsWatcher:
+	Shroud:
+		FogCheckboxDisplayOrder: 3
+	LobbyPrerequisiteCheckbox@GLOBALBOUNTY:
+		ID: bounty
+		Label: checkbox-kill-bounties.label
+		Description: checkbox-kill-bounties.description
+		Enabled: False
+		DisplayOrder: 8
+		Prerequisites: global-bounty
+	LobbyPrerequisiteCheckbox@GLOBALFACTUNDEPLOY:
+		ID: factundeploy
+		Label: checkbox-redeployable-mcvs.label
+		Description: checkbox-redeployable-mcvs.description
+		Enabled: True
+		DisplayOrder: 7
+		Prerequisites: global-factundeploy
+	LobbyPrerequisiteCheckbox@REUSABLEENGINEERS:
+		ID: reusable-engineers
+		Label: checkbox-reusable-engineers.label
+		Description: checkbox-reusable-engineers.description
+		Enabled: False
+		DisplayOrder: 9
+		Prerequisites: global-reusable-engineers
+	FrozenActorLayer:
+	BaseAttackNotifier:
+		TextNotification: notification-base-under-attack
+		AllyTextNotification: notification-ally-under-attack
+	PlayerStatistics:
+	PlaceBeacon:
+	ProvidesTechPrerequisite@infonly:
+		Name: options-tech-level.infantry-only
+		Prerequisites: techlevel.infonly
+		Id: infantryonly
+	ProvidesTechPrerequisite@low:
+		Name: options-tech-level.low
+		Prerequisites: techlevel.infonly, techlevel.low
+		Id: low
+	ProvidesTechPrerequisite@medium:
+		Name: options-tech-level.medium
+		Prerequisites: techlevel.infonly, techlevel.low, techlevel.medium
+		Id: medium
+	ProvidesTechPrerequisite@high:
+		Name: options-tech-level.no-superweapons
+		Prerequisites: techlevel.infonly, techlevel.low, techlevel.medium, techlevel.high
+		Id: nosuperweapons
+	ProvidesTechPrerequisite@unrestricted:
+		Name: options-tech-level.unrestricted
+		Prerequisites: techlevel.infonly, techlevel.low, techlevel.medium, techlevel.high, techlevel.unrestricted
+		Id: unrestricted
+	GrantConditionOnPrerequisiteManager:
+	EnemyWatcher:
+	ProductionIconOverlayManager:
+		Type: Veterancy
+		Image: iconchevrons
+		Sequence: veteran
+	ResourceStorageWarning:
+		TextNotification: notification-silos-needed
+	PlayerExperience:
+	GameSaveViewportManager:
+	PlayerRadarTerrain:

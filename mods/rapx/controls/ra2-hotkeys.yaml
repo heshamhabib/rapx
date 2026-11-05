@@ -1,0 +1,70 @@
+# Red Alert 2 control scheme (IDEA-11): hotkeys that differ from the OpenRA defaults.
+# Applied by Settings > Input > Control scheme (PxControlSchemes). Every hotkey not listed here
+# is reset to its default when the scheme is picked. An empty value unbinds the key.
+
+# Unit commands
+SelectUnitsByType: T
+Guard: G
+Deploy: D
+Scatter: X
+PxWaypointMode: Z
+
+# Moved out of the way of the RA2 keys
+SelectAllUnits: A Ctrl
+Sell: L
+Repair: K
+PowerDown: P
+
+# Sidebar tabs: Q W E R like RA2 (aircraft U and naval I keep their defaults)
+ProductionTypeBuilding: Q
+ProductionTypeDefense: W
+ProductionTypeInfantry: E
+ProductionTypeVehicle: R
+
+# Map bookmarks on F1-F4 (Ctrl saves, plain key jumps)
+MapBookmarkSave01: F1 Ctrl
+MapBookmarkSave02: F2 Ctrl
+MapBookmarkSave03: F3 Ctrl
+MapBookmarkSave04: F4 Ctrl
+MapBookmarkRestore01: F1
+MapBookmarkRestore02: F2
+MapBookmarkRestore03: F3
+MapBookmarkRestore04: F4
+
+# Sidebar slot keys move to Shift / Ctrl+Shift so F1-F4 are free for bookmarks
+Production01: F1 Shift
+Production02: F2 Shift
+Production03: F3 Shift
+Production04: F4 Shift
+Production05: F5 Shift
+Production06: F6 Shift
+Production07: F7 Shift
+Production08: F8 Shift
+Production09: F9 Shift
+Production10: F10 Shift
+Production11: F11 Shift
+Production12: F12 Shift
+Production13: F1 Ctrl, Shift
+Production14: F2 Ctrl, Shift
+Production15: F3 Ctrl, Shift
+Production16: F4 Ctrl, Shift
+Production17: F5 Ctrl, Shift
+Production18: F6 Ctrl, Shift
+Production19: F7 Ctrl, Shift
+Production20: F8 Ctrl, Shift
+Production21: F9 Ctrl, Shift
+Production22: F10 Ctrl, Shift
+Production23: F11 Ctrl, Shift
+Production24: F12 Ctrl, Shift
+
+# Observer statistics and map editor overlays move to Shift+F so they don't clash with the bookmarks
+StatisticsNone: F1 Shift
+StatisticsBasic: F2 Shift
+StatisticsEconomy: F3 Shift
+StatisticsProduction: F4 Shift
+StatisticsSupportPowers: F5 Shift
+StatisticsCombat: F6 Shift
+StatisticsArmy: F7 Shift
+EditorToggleGridOverlay: F1 Shift
+EditorToggleBuildableOverlay: F2 Shift
+EditorToggleMarkerOverlay: F3 Shift

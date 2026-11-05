@@ -1,0 +1,32 @@
+# Prism Tank and Prism Tower (rules/prism.yaml). Tower art is built by artsrc/buildings/build_all.py
+# (sequences/hd-structures.yaml); tank sprites by artsrc/units/meshes/make.sh ptnk.
+
+ptnk:
+	Defaults:
+		Filename: ra|bits/hd/units/ptnk.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	idle:
+		Facings: 32
+	turret:
+		Start: 32
+		Facings: 32
+	icon:
+		Filename: ra|bits/hd/ptnkcameo.png
+		Scale: 1
+
+ptwr:
+	icon:
+		Filename: ra|bits/hd/ptwrcameo.png
+
+# IDEA-16 Laser Satellite (rules/space.yaml); sprites by artsrc/units/meshes/make.sh lsat
+lsat:
+	Defaults:
+		Filename: ra|bits/hd/units/lsat.png
+		UseClassicFacings: False
+		Scale: 0.4667
+	idle:
+		Facings: 32
+	icon:
+		Filename: ra|bits/hd/lsatcameo.png
+		Scale: 1

@@ -1,0 +1,16 @@
+Container@INTRO_VIDEO:
+	Logic: IntroVideoLogic
+	Width: WINDOW_WIDTH
+	Height: WINDOW_HEIGHT
+	Children:
+		PxIntroPlayer@PLAYER:
+			Width: WINDOW_WIDTH
+			Height: WINDOW_HEIGHT
+			Transition: Barrage
+			TileSize: 9
+			SparkImage: ra|uibits/menu-fx/dot.png
+			VideoAnchor: 960,532
+			TargetImageSize: 3168,1980
+			TargetAnchor: 959,982
+			TargetAlign: 0.3
+			VideoToArtScale: 1.45
