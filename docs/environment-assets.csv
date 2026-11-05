@@ -1,0 +1,1126 @@
+kind,tileset,id/actor,name,category,size_cells,source_files,notes
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",FCOM,Forward Command,Tech building,2x3,fcom.shp,
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",HOSP,Hospital,Tech building,2x2,hosp.shp,already HD
+object,"TEMPERAT, SNOW",V01,Church,Civilian building,2x2,"v01.tem, v01.sno",
+object,"TEMPERAT, SNOW",V02,Civilian Building,Civilian building,2x2,"v02.tem, v02.sno",
+object,"TEMPERAT, SNOW",V03,Civilian Building,Civilian building,2x2,"v03.tem, v03.sno",
+object,"TEMPERAT, SNOW",V04,Civilian Building,Civilian building,2x2,"v04.tem, v04.sno",
+object,"TEMPERAT, SNOW",V05,Civilian Building,Civilian building,2x1,"v05.tem, v05.sno",
+object,"TEMPERAT, SNOW",V06,Civilian Building,Civilian building,2x1,"v06.tem, v06.sno",
+object,"TEMPERAT, SNOW",V07,Civilian Building,Civilian building,2x1,"v07.tem, v07.sno",
+object,"TEMPERAT, SNOW",V08,Civilian Building,Civilian building,1x1,"v08.tem, v08.sno",
+object,"TEMPERAT, SNOW",V09,Civilian Building,Civilian building,1x1,"v09.tem, v09.sno",
+object,"TEMPERAT, SNOW",V10,Civilian Building,Civilian building,1x1,"v10.tem, v10.sno",
+object,"TEMPERAT, SNOW",V11,Civilian Building,Civilian building,1x1,"v11.tem, v11.sno",
+object,"TEMPERAT, SNOW",V12,Haystack,Civilian building,1x1,"v12.tem, v12.sno",
+object,"TEMPERAT, SNOW",V13,Haystack,Civilian building,1x1,"v13.tem, v13.sno",
+object,"TEMPERAT, SNOW",V14,Field,Civilian building,1x1,"v14.tem, v14.sno",
+object,"TEMPERAT, SNOW",V15,Field,Civilian building,1x1,"v15.tem, v15.sno",
+object,"TEMPERAT, SNOW",V16,Field,Civilian building,1x1,"v16.tem, v16.sno",
+object,"TEMPERAT, SNOW",V17,Field,Civilian building,1x1,"v17.tem, v17.sno",
+object,"TEMPERAT, SNOW",V18,Field,Civilian building,1x1,"v18.tem, v18.sno",
+object,"TEMPERAT, SNOW, DESERT",V19,Oil Pump,Civilian building,1x1,v19.shp,husk V19.Husk
+object,"TEMPERAT, SNOW, DESERT",V19.Husk,Husk (Oil Pump),Civilian building,1x1,v19.shp,
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",BARL,Explosive Barrel,Decoration,1x1,barl.shp,
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",BRL3,Explosive Barrel,Decoration,1x1,brl3.shp,
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",AMMOBOX1,Ammo Box,Decoration,1x1,ammobox1.shp,
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",AMMOBOX2,Ammo Box,Decoration,1x1,ammobox2.shp,
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",AMMOBOX3,Ammo Box,Decoration,1x1,ammobox3.shp,
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",MISS,Communications Center,Tech building,3x3,miss.shp,
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",BIO,Biological Lab,Tech building,2x2,bio.shp,
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",OILB,Oil Derrick,Tech building,2x2,oilb.shp,
+object,DESERT,V20,Civilian Building,Civilian building,2x2,v20.des,
+object,DESERT,V21,Civilian Building,Civilian building,2x2,v21.des,
+object,DESERT,V22,Civilian Building,Civilian building,2x1,v22.des,
+object,DESERT,V23,Civilian Building,Civilian building,1x1,v23.des,
+object,DESERT,V24,Civilian Building,Civilian building,2x2,v24.des,
+object,DESERT,V25,Church,Civilian building,2x2,v25.des,
+object,DESERT,V26,Civilian Building,Civilian building,2x1,v26.des,
+object,DESERT,V27,Civilian Building,Civilian building,1x1,v27.des,
+object,DESERT,V28,Civilian Building,Civilian building,1x1,v28.des,
+object,DESERT,V29,Civilian Building,Civilian building,1x1,v29.des,
+object,DESERT,V30,Civilian Building,Civilian building,2x1,v30.des,
+object,DESERT,V31,Civilian Building,Civilian building,2x1,v31.des,
+object,DESERT,V32,Civilian Building,Civilian building,2x1,v32.des,
+object,DESERT,V33,Civilian Building,Civilian building,2x1,v33.des,
+object,DESERT,V34,Civilian Building,Civilian building,1x1,v34.des,
+object,DESERT,V35,Civilian Building,Civilian building,1x1,v35.des,
+object,DESERT,V36,Civilian Building,Civilian building,1x1,v36.des,
+object,DESERT,V37,Civilian Building,Civilian building,5x2,v37.des,
+object,TEMPERAT,RICE,Field,Civilian building,1x1,rice.tem,
+object,TEMPERAT,RUSHOUSE,Civilian Building,Civilian building,1x2,rushouse.shp,
+object,TEMPERAT,ASIANHUT,Civilian Building,Civilian building,1x1,asianhut.shp,
+object,SNOW,SNOWHUT,Civilian Building,Civilian building,1x2,snowhut.shp,
+object,TEMPERAT,LHUS,Lighthouse,Civilian building,1x1,lhus.shp,
+object,TEMPERAT,WINDMILL,Windmill,Civilian building,1x1,windmill.shp,
+object,"TEMPERAT, SNOW",T01,Tree,Tree,2x2,"t01.tem, t01.sno",husk T01.Husk
+object,"TEMPERAT, SNOW",T02,Tree,Tree,2x2,"t02.tem, t02.sno",husk T02.Husk
+object,"TEMPERAT, SNOW",T03,Tree,Tree,2x2,"t03.tem, t03.sno",husk T03.Husk
+object,DESERT,T04,Tree,Tree,2x2,t04.des,husk T04.Husk
+object,"TEMPERAT, SNOW",T05,Tree,Tree,2x2,"t05.tem, t05.sno",husk T05.Husk
+object,"TEMPERAT, SNOW",T06,Tree,Tree,2x2,"t06.tem, t06.sno",husk T06.Husk
+object,"TEMPERAT, SNOW",T07,Tree,Tree,2x2,"t07.tem, t07.sno",husk T07.Husk
+object,"TEMPERAT, SNOW, DESERT",T08,Tree,Tree,2x1,"t08.tem, t08.sno, t08.des",husk T08.Husk
+object,DESERT,T09,Tree,Tree,1x1,t09.des,husk T09.Husk
+object,"TEMPERAT, SNOW",T10,Tree,Tree,2x2,"t10.tem, t10.sno",husk T10.Husk
+object,"TEMPERAT, SNOW",T11,Tree,Tree,2x2,"t11.tem, t11.sno",husk T11.Husk
+object,"TEMPERAT, SNOW",T12,Tree,Tree,2x2,"t12.tem, t12.sno",husk T12.Husk
+object,"TEMPERAT, SNOW",T13,Tree,Tree,2x2,"t13.tem, t13.sno",husk T13.Husk
+object,"TEMPERAT, SNOW",T14,Tree,Tree,3x2,"t14.tem, t14.sno",husk T14.Husk
+object,"TEMPERAT, SNOW",T15,Tree,Tree,3x2,"t15.tem, t15.sno",husk T15.Husk
+object,"TEMPERAT, SNOW",T16,Tree,Tree,2x2,"t16.tem, t16.sno",husk T16.Husk
+object,"TEMPERAT, SNOW",T17,Tree,Tree,2x2,"t17.tem, t17.sno",husk T17.Husk
+object,"TEMPERAT, SNOW, DESERT",TC01,Tree,Tree,3x2,"tc01.tem, tc01.sno, tc01.des",husk TC01.Husk
+object,"TEMPERAT, SNOW",TC02,Tree,Tree,3x2,"tc02.tem, tc02.sno",husk TC02.Husk
+object,"TEMPERAT, SNOW",TC03,Tree,Tree,3x2,"tc03.tem, tc03.sno",husk TC03.Husk
+object,"TEMPERAT, SNOW",TC04,Tree,Tree,4x3,"tc04.tem, tc04.sno",husk TC04.Husk
+object,"TEMPERAT, SNOW",TC05,Tree,Tree,4x3,"tc05.tem, tc05.sno",husk TC05.Husk
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",BOXES01,Boxes,Decoration,1x1,boxes01.int,
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",BOXES02,Boxes,Decoration,1x1,boxes02.int,
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",BOXES03,Boxes,Decoration,1x1,boxes03.int,
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",BOXES04,Boxes,Decoration,1x1,boxes04.int,
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",BOXES05,Boxes,Decoration,1x1,boxes05.int,
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",BOXES06,Boxes,Decoration,1x1,boxes06.int,
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",BOXES07,Boxes,Decoration,1x1,boxes07.int,
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",BOXES08,Boxes,Decoration,1x1,boxes08.int,
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",BOXES09,Boxes,Decoration,1x1,boxes09.int,
+object,SNOW,ICE01,Ice Floe,Decoration,2x2,ice01.sno,
+object,SNOW,ICE02,Ice Floe,Decoration,1x2,ice02.sno,
+object,SNOW,ICE03,Ice Floe,Decoration,2x1,ice03.sno,
+object,SNOW,ICE04,Ice Floe,Decoration,1x1,ice04.sno,
+object,SNOW,ICE05,Ice Floe,Decoration,1x1,ice05.sno,
+object,DESERT,ROCK1,Rock,Decoration,3x2,rock1.des,
+object,DESERT,ROCK2,Rock,Decoration,3x1,rock2.des,
+object,DESERT,ROCK3,Rock,Decoration,3x2,rock3.des,
+object,DESERT,ROCK4,Rock,Decoration,2x1,rock4.des,
+object,DESERT,ROCK5,Rock,Decoration,2x1,rock5.des,
+object,DESERT,ROCK6,Rock,Decoration,3x2,rock6.des,
+object,DESERT,ROCK7,Rock,Decoration,5x1,rock7.des,
+object,"TEMPERAT, SNOW, DESERT",UTILPOL1,Utility Pole,Decoration,1x1,utilpol1.shp,
+object,"TEMPERAT, SNOW, DESERT",UTILPOL2,Utility Pole,Decoration,1x1,utilpol2.shp,
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",TANKTRAP1,Tank Trap,Decoration,1x1,tanktrap1.shp,
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",TANKTRAP2,Tank Trap,Decoration,1x1,tanktrap2.shp,
+object,"TEMPERAT, SNOW",T01.Husk,Tree (Burnt),Tree,2x2,"t01.tem, t01.sno",
+object,"TEMPERAT, SNOW",T02.Husk,Tree (Burnt),Tree,2x2,"t02.tem, t02.sno",
+object,"TEMPERAT, SNOW",T03.Husk,Tree (Burnt),Tree,2x2,"t03.tem, t03.sno",
+object,DESERT,T04.Husk,Tree (Burnt),Tree,2x2,t04.des,
+object,"TEMPERAT, SNOW",T05.Husk,Tree (Burnt),Tree,2x2,"t05.tem, t05.sno",
+object,"TEMPERAT, SNOW",T06.Husk,Tree (Burnt),Tree,2x2,"t06.tem, t06.sno",
+object,"TEMPERAT, SNOW",T07.Husk,Tree (Burnt),Tree,2x2,"t07.tem, t07.sno",
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",T08.Husk,Tree (Burnt),Tree,2x1,"t08.tem, t08.sno, t08.des",
+object,DESERT,T09.Husk,Tree (Burnt),Tree,1x1,t09.des,
+object,"TEMPERAT, SNOW",T10.Husk,Tree (Burnt),Tree,2x2,"t10.tem, t10.sno",
+object,"TEMPERAT, SNOW",T11.Husk,Tree (Burnt),Tree,2x2,"t11.tem, t11.sno",
+object,"TEMPERAT, SNOW",T12.Husk,Tree (Burnt),Tree,2x2,"t12.tem, t12.sno",
+object,"TEMPERAT, SNOW",T13.Husk,Tree (Burnt),Tree,2x2,"t13.tem, t13.sno",
+object,"TEMPERAT, SNOW",T14.Husk,Tree (Burnt),Tree,3x2,"t14.tem, t14.sno",
+object,"TEMPERAT, SNOW",T15.Husk,Tree (Burnt),Tree,3x2,"t15.tem, t15.sno",
+object,"TEMPERAT, SNOW",T16.Husk,Tree (Burnt),Tree,2x2,"t16.tem, t16.sno",
+object,"TEMPERAT, SNOW",T17.Husk,Tree (Burnt),Tree,2x2,"t17.tem, t17.sno",
+object,"TEMPERAT, SNOW, DESERT",TC01.Husk,Tree (Burnt),Tree,3x2,"tc01.tem, tc01.sno, tc01.des",
+object,"TEMPERAT, SNOW",TC02.Husk,Tree (Burnt),Tree,3x2,"tc02.tem, tc02.sno",
+object,"TEMPERAT, SNOW",TC03.Husk,Tree (Burnt),Tree,3x2,"tc03.tem, tc03.sno",
+object,"TEMPERAT, SNOW",TC04.Husk,Tree (Burnt),Tree,4x3,"tc04.tem, tc04.sno",
+object,"TEMPERAT, SNOW",TC05.Husk,Tree (Burnt),Tree,4x3,"tc05.tem, tc05.sno",
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",MINV,Mine,System,,minv.shp,already HD
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",MINP,Mine,System,,minv.shp,already HD
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",CRATE,Crate,System,,scrate.shp,
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",MONEYCRATE,Money Crate,System,,wcrate.shp,
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",HEALCRATE,Heal Crate,System,,scrate.shp,
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",WCRATE,Wooden Crate,System,,wcrate.shp,
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",SCRATE,Steel Crate,System,,scrate.shp,
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",MINE,Ore Mine,Resource spawn,1x1,"mine.tem, mine.sno, mine.des, mine.int",already HD
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",GMINE,Gem Mine,Resource spawn,1x1,"gmine.tem, gmine.sno, gmine.des",
+object,"TEMPERAT, SNOW, DESERT",RAILMINE,Abandoned Mine,Civilian building,2x1,"railmine.tem, railmine.sno, railmine.des",
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",CTFLAG,Flag,Decoration,1x1,ctflag.shp,
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",SBAG,Sandbag Wall,Wall,1x1,sbag.shp,already HD
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",FENC,Wire Fence,Wall,1x1,fenc.shp,already HD
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",BRIK,Concrete Wall,Wall,1x1,brik.shp,already HD
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",CYCL,Chain-Link Barrier,Wall,1x1,cycl.shp,
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",BARB,Barbed-Wire Fence,Wall,1x1,barb.shp,
+object,"TEMPERAT, SNOW, DESERT, INTERIOR",WOOD,Wooden Fence,Wall,1x1,wood.shp,
+tile,TEMPERAT,255,,Terrain,1x1,clear1.tem,random variants; terrain: Clear
+tile,TEMPERAT,65535,,Terrain,1x1,clear1.tem,random variants; terrain: Clear
+tile,TEMPERAT,1,,Terrain,1x1,w1.tem,terrain: Water
+tile,TEMPERAT,2,,Terrain,2x2,w2.tem,terrain: Water
+tile,TEMPERAT,3,,Beach,4x5,sh01.tem,"terrain: Beach, Clear, River, Rock, Water"
+tile,TEMPERAT,4,,Beach,5x5,sh02.tem,"terrain: Beach, Clear, River, Rock, Rough, Water"
+tile,TEMPERAT,5,,Beach,3x5,sh03.tem,"terrain: Beach, Clear, Water"
+tile,TEMPERAT,6,,Beach,3x3,sh04.tem,"terrain: Beach, Water"
+tile,TEMPERAT,7,,Beach,3x3,sh05.tem,"terrain: Beach, River, Rock"
+tile,TEMPERAT,8,,Beach,3x3,sh06.tem,"terrain: Beach, Water"
+tile,TEMPERAT,9,,Beach,3x3,sh07.tem,"terrain: Beach, Water"
+tile,TEMPERAT,10,,Beach,1x2,sh08.tem,terrain: Beach
+tile,TEMPERAT,11,,Beach,3x3,sh09.tem,"terrain: Beach, Clear, River, Rock, Water"
+tile,TEMPERAT,12,,Beach,5x6,sh10.tem,"terrain: Beach, Clear, Rock, Water"
+tile,TEMPERAT,13,,Beach,4x5,sh11.tem,"terrain: Beach, Clear, Water"
+tile,TEMPERAT,14,,Beach,3x5,sh12.tem,"terrain: Beach, Clear, Water"
+tile,TEMPERAT,15,,Beach,6x5,sh13.tem,"terrain: Beach, Clear, Rock, Rough, Water"
+tile,TEMPERAT,16,,Beach,4x4,sh14.tem,"terrain: Beach, Clear, River, Rough, Water"
+tile,TEMPERAT,17,,Beach,5x3,sh15.tem,"terrain: Beach, Clear, Water"
+tile,TEMPERAT,18,,Beach,3x3,sh16.tem,"terrain: Beach, Clear, Water"
+tile,TEMPERAT,19,,Beach,2x1,sh17.tem,"terrain: Beach, Clear"
+tile,TEMPERAT,20,,Beach,3x3,sh18.tem,"terrain: Beach, River, Rough, Water"
+tile,TEMPERAT,21,,Beach,4x5,sh19.tem,"terrain: Beach, Clear, Water"
+tile,TEMPERAT,22,,Beach,5x4,sh20.tem,"terrain: Beach, Water"
+tile,TEMPERAT,23,,Beach,5x3,sh21.tem,"terrain: Beach, Clear, Water"
+tile,TEMPERAT,24,,Beach,6x5,sh22.tem,"terrain: Beach, Clear, Water"
+tile,TEMPERAT,25,,Beach,5x5,sh23.tem,"terrain: Beach, Clear, River, Water"
+tile,TEMPERAT,26,,Beach,3x4,sh24.tem,"terrain: Beach, Clear, Water"
+tile,TEMPERAT,27,,Beach,3x3,sh25.tem,"terrain: Beach, Rock, Water"
+tile,TEMPERAT,28,,Beach,3x3,sh26.tem,"terrain: Beach, Rough, Water"
+tile,TEMPERAT,29,,Beach,3x3,sh27.tem,"terrain: Beach, Rock, Rough"
+tile,TEMPERAT,30,,Beach,3x3,sh28.tem,"terrain: Beach, Rock, Rough"
+tile,TEMPERAT,31,,Beach,1x2,sh29.tem,"terrain: Beach, Clear"
+tile,TEMPERAT,32,,Beach,3x2,sh30.tem,"terrain: Beach, Clear, River, Rough"
+tile,TEMPERAT,33,,Beach,6x5,sh31.tem,"terrain: Beach, Clear, Water"
+tile,TEMPERAT,34,,Beach,4x4,sh32.tem,"terrain: Beach, Clear, Water"
+tile,TEMPERAT,35,,Beach,3x4,sh33.tem,"terrain: Beach, Clear, Rough, Water"
+tile,TEMPERAT,36,,Beach,6x5,sh34.tem,"terrain: Beach, Clear, Water"
+tile,TEMPERAT,37,,Beach,4x4,sh35.tem,"terrain: Beach, Clear, Rough, Water"
+tile,TEMPERAT,38,,Beach,4x3,sh36.tem,"terrain: Beach, Water"
+tile,TEMPERAT,39,,Beach,3x3,sh37.tem,"terrain: Beach, Clear, Rough, Water"
+tile,TEMPERAT,40,,Beach,2x1,sh38.tem,"terrain: Beach, Clear"
+tile,TEMPERAT,41,,Beach,3x3,sh39.tem,"terrain: Beach, Clear, River, Rock, Water"
+tile,TEMPERAT,42,,Beach,5x5,sh40.tem,"terrain: Beach, Clear, Water"
+tile,TEMPERAT,43,,Beach,4x4,sh41.tem,"terrain: Beach, Clear, Water"
+tile,TEMPERAT,44,,Beach,4x3,sh42.tem,"terrain: Beach, Clear, River, Water"
+tile,TEMPERAT,45,,Beach,3x3,sh43.tem,"terrain: Beach, Water"
+tile,TEMPERAT,46,,Beach,2x2,sh44.tem,"terrain: Beach, River, Water"
+tile,TEMPERAT,47,,Beach,3x3,sh45.tem,"terrain: Beach, River, Rough, Water"
+tile,TEMPERAT,48,,Beach,2x2,sh46.tem,"terrain: Beach, River, Water"
+tile,TEMPERAT,49,,Beach,3x3,sh47.tem,"terrain: Beach, Water"
+tile,TEMPERAT,50,,Beach,2x2,sh48.tem,"terrain: Beach, Clear, Water"
+tile,TEMPERAT,51,,Beach,3x3,sh49.tem,"terrain: Beach, River, Rock, Water"
+tile,TEMPERAT,52,,Beach,2x2,sh50.tem,"terrain: Beach, Water"
+tile,TEMPERAT,53,,Beach,3x3,sh51.tem,"terrain: Beach, Clear, Rough"
+tile,TEMPERAT,54,,Beach,3x3,sh52.tem,"terrain: Beach, Clear, Water"
+tile,TEMPERAT,55,,Beach,3x3,sh53.tem,"terrain: Beach, Clear, Water"
+tile,TEMPERAT,56,,Beach,3x3,sh54.tem,"terrain: Beach, Clear, Water"
+tile,TEMPERAT,57,,Debris,1x1,sh55.tem,terrain: Rock
+tile,TEMPERAT,58,,Debris,2x1,sh56.tem,terrain: Rock
+tile,TEMPERAT,135,,Cliffs,2x2,s01.tem,terrain: Rock
+tile,TEMPERAT,136,,Cliffs,2x3,s02.tem,"terrain: Rock, Rough"
+tile,TEMPERAT,137,,Cliffs,2x2,s03.tem,terrain: Rock
+tile,TEMPERAT,138,,Cliffs,2x2,s04.tem,terrain: Rock
+tile,TEMPERAT,139,,Cliffs,2x2,s05.tem,terrain: Rock
+tile,TEMPERAT,140,,Cliffs,2x3,s06.tem,"terrain: Rock, Rough"
+tile,TEMPERAT,141,,Cliffs,2x2,s07.tem,terrain: Rock
+tile,TEMPERAT,142,,Cliffs,2x2,s08.tem,terrain: Rock
+tile,TEMPERAT,143,,Cliffs,3x2,s09.tem,terrain: Rock
+tile,TEMPERAT,144,,Cliffs,2x2,s10.tem,terrain: Rock
+tile,TEMPERAT,145,,Cliffs,2x2,s11.tem,terrain: Rock
+tile,TEMPERAT,146,,Cliffs,2x2,s12.tem,terrain: Rock
+tile,TEMPERAT,147,,Cliffs,3x2,s13.tem,"terrain: Rock, Rough"
+tile,TEMPERAT,148,,Cliffs,2x2,s14.tem,"terrain: Rock, Rough"
+tile,TEMPERAT,149,,Cliffs,2x2,s15.tem,terrain: Rock
+tile,TEMPERAT,150,,Cliffs,2x3,s16.tem,"terrain: Rock, Rough"
+tile,TEMPERAT,151,,Cliffs,2x2,s17.tem,terrain: Rock
+tile,TEMPERAT,152,,Cliffs,2x2,s18.tem,terrain: Rock
+tile,TEMPERAT,153,,Cliffs,2x2,s19.tem,terrain: Rock
+tile,TEMPERAT,154,,Cliffs,2x3,s20.tem,"terrain: Rock, Rough"
+tile,TEMPERAT,155,,Cliffs,1x2,s21.tem,terrain: Rock
+tile,TEMPERAT,156,,Cliffs,2x1,s22.tem,terrain: Rock
+tile,TEMPERAT,157,,Cliffs,3x2,s23.tem,"terrain: Rock, Rough"
+tile,TEMPERAT,158,,Cliffs,2x2,s24.tem,terrain: Rock
+tile,TEMPERAT,159,,Cliffs,2x2,s25.tem,terrain: Rock
+tile,TEMPERAT,160,,Cliffs,2x2,s26.tem,terrain: Rock
+tile,TEMPERAT,161,,Cliffs,3x2,s27.tem,"terrain: Rock, Rough"
+tile,TEMPERAT,162,,Cliffs,2x2,s28.tem,terrain: Rock
+tile,TEMPERAT,163,,Cliffs,2x2,s29.tem,terrain: Rock
+tile,TEMPERAT,164,,Cliffs,2x2,s30.tem,terrain: Rock
+tile,TEMPERAT,165,,Cliffs,2x2,s31.tem,"terrain: Rock, Rough"
+tile,TEMPERAT,166,,Cliffs,2x2,s32.tem,"terrain: Rock, Rough"
+tile,TEMPERAT,167,,Cliffs,2x2,s33.tem,terrain: Rock
+tile,TEMPERAT,168,,Cliffs,2x2,s34.tem,terrain: Rock
+tile,TEMPERAT,169,,Cliffs,2x2,s35.tem,terrain: Rock
+tile,TEMPERAT,170,,Cliffs,2x2,s36.tem,terrain: Rock
+tile,TEMPERAT,171,,Cliffs,2x2,s37.tem,terrain: Rock
+tile,TEMPERAT,172,,Cliffs,2x2,s38.tem,terrain: Rock
+tile,TEMPERAT,59,,Water Cliffs,2x2,wc01.tem,terrain: Rock
+tile,TEMPERAT,60,,Water Cliffs,2x3,wc02.tem,"terrain: Rock, Rough"
+tile,TEMPERAT,61,,Water Cliffs,2x2,wc03.tem,terrain: Rock
+tile,TEMPERAT,62,,Water Cliffs,2x2,wc04.tem,terrain: Rock
+tile,TEMPERAT,63,,Water Cliffs,2x2,wc05.tem,terrain: Rock
+tile,TEMPERAT,64,,Water Cliffs,2x3,wc06.tem,"terrain: Rock, Rough"
+tile,TEMPERAT,65,,Water Cliffs,2x2,wc07.tem,terrain: Rock
+tile,TEMPERAT,66,,Water Cliffs,2x2,wc08.tem,terrain: Rock
+tile,TEMPERAT,67,,Water Cliffs,3x2,wc09.tem,"terrain: River, Rock"
+tile,TEMPERAT,68,,Water Cliffs,2x2,wc10.tem,terrain: Rock
+tile,TEMPERAT,69,,Water Cliffs,2x2,wc11.tem,terrain: Rock
+tile,TEMPERAT,70,,Water Cliffs,2x2,wc12.tem,terrain: Rock
+tile,TEMPERAT,71,,Water Cliffs,3x2,wc13.tem,"terrain: Clear, Rock, Rough"
+tile,TEMPERAT,72,,Water Cliffs,2x2,wc14.tem,"terrain: Beach, Rock"
+tile,TEMPERAT,73,,Water Cliffs,2x2,wc15.tem,terrain: Rock
+tile,TEMPERAT,74,,Water Cliffs,2x3,wc16.tem,"terrain: Rock, Water"
+tile,TEMPERAT,75,,Water Cliffs,2x2,wc17.tem,terrain: Rock
+tile,TEMPERAT,76,,Water Cliffs,2x2,wc18.tem,terrain: Rock
+tile,TEMPERAT,77,,Water Cliffs,2x2,wc19.tem,terrain: Rock
+tile,TEMPERAT,78,,Water Cliffs,2x3,wc20.tem,"terrain: River, Rock, Rough"
+tile,TEMPERAT,79,,Water Cliffs,1x2,wc21.tem,terrain: Rock
+tile,TEMPERAT,80,,Water Cliffs,2x2,wc22.tem,terrain: Rock
+tile,TEMPERAT,81,,Water Cliffs,3x2,wc23.tem,"terrain: River, Rock, Water"
+tile,TEMPERAT,82,,Water Cliffs,2x2,wc24.tem,terrain: Rock
+tile,TEMPERAT,83,,Water Cliffs,2x2,wc25.tem,terrain: Rock
+tile,TEMPERAT,84,,Water Cliffs,2x2,wc26.tem,terrain: Rock
+tile,TEMPERAT,85,,Water Cliffs,3x2,wc27.tem,"terrain: Clear, Rock, Water"
+tile,TEMPERAT,86,,Water Cliffs,2x2,wc28.tem,terrain: Rock
+tile,TEMPERAT,87,,Water Cliffs,2x2,wc29.tem,terrain: Rock
+tile,TEMPERAT,88,,Water Cliffs,2x2,wc30.tem,terrain: Rock
+tile,TEMPERAT,89,,Water Cliffs,2x2,wc31.tem,"terrain: River, Rock"
+tile,TEMPERAT,90,,Water Cliffs,2x2,wc32.tem,"terrain: Rock, Water"
+tile,TEMPERAT,91,,Water Cliffs,2x2,wc33.tem,terrain: Rock
+tile,TEMPERAT,92,,Water Cliffs,2x2,wc34.tem,terrain: Rock
+tile,TEMPERAT,93,,Water Cliffs,2x2,wc35.tem,terrain: Rock
+tile,TEMPERAT,94,,Water Cliffs,2x2,wc36.tem,terrain: Rock
+tile,TEMPERAT,95,,Water Cliffs,2x2,wc37.tem,terrain: Rock
+tile,TEMPERAT,96,,Water Cliffs,2x2,wc38.tem,terrain: Rock
+tile,TEMPERAT,173,,Road,2x2,d01.tem,"terrain: Clear, Road"
+tile,TEMPERAT,174,,Road,2x2,d02.tem,"terrain: Clear, Road"
+tile,TEMPERAT,175,,Road,1x2,d03.tem,"terrain: Clear, Road"
+tile,TEMPERAT,176,,Road,2x2,d04.tem,"terrain: Clear, Road"
+tile,TEMPERAT,177,,Road,3x4,d05.tem,"terrain: Clear, Road"
+tile,TEMPERAT,178,,Road,2x3,d06.tem,"terrain: Clear, Road"
+tile,TEMPERAT,179,,Road,3x2,d07.tem,"terrain: Clear, Road"
+tile,TEMPERAT,180,,Road,3x2,d08.tem,"terrain: Clear, Road"
+tile,TEMPERAT,181,,Road,4x3,d09.tem,"terrain: Clear, Road"
+tile,TEMPERAT,182,,Road,4x2,d10.tem,"terrain: Clear, Road, Rock"
+tile,TEMPERAT,183,,Road,2x3,d11.tem,"terrain: Clear, Road"
+tile,TEMPERAT,184,,Road,2x2,d12.tem,"terrain: Clear, Road"
+tile,TEMPERAT,185,,Road,4x3,d13.tem,"terrain: Clear, Road, Rock"
+tile,TEMPERAT,186,,Road,3x3,d14.tem,"terrain: Clear, Road, Rock"
+tile,TEMPERAT,187,,Road,3x3,d15.tem,"terrain: Clear, Road"
+tile,TEMPERAT,188,,Road,3x3,d16.tem,"terrain: Clear, Road, Rock"
+tile,TEMPERAT,189,,Road,3x2,d17.tem,"terrain: Clear, Road"
+tile,TEMPERAT,190,,Road,3x3,d18.tem,"terrain: Clear, Road, Rock"
+tile,TEMPERAT,191,,Road,3x3,d19.tem,"terrain: Clear, Road"
+tile,TEMPERAT,192,,Road,3x3,d20.tem,"terrain: Clear, Road"
+tile,TEMPERAT,193,,Road,3x2,d21.tem,"terrain: Clear, Road, Rock, Rough"
+tile,TEMPERAT,194,,Road,3x3,d22.tem,"terrain: Clear, Road"
+tile,TEMPERAT,195,,Road,3x3,d23.tem,"terrain: Clear, Road"
+tile,TEMPERAT,196,,Road,3x3,d24.tem,terrain: Road
+tile,TEMPERAT,197,,Road,3x3,d25.tem,terrain: Road
+tile,TEMPERAT,198,,Road,2x2,d26.tem,terrain: Road
+tile,TEMPERAT,199,,Road,2x2,d27.tem,terrain: Road
+tile,TEMPERAT,200,,Road,2x2,d28.tem,"terrain: Road, Rough"
+tile,TEMPERAT,201,,Road,2x2,d29.tem,terrain: Road
+tile,TEMPERAT,202,,Road,2x2,d30.tem,terrain: Road
+tile,TEMPERAT,203,,Road,2x2,d31.tem,terrain: Road
+tile,TEMPERAT,204,,Road,2x2,d32.tem,"terrain: Clear, Road"
+tile,TEMPERAT,205,,Road,2x2,d33.tem,terrain: Road
+tile,TEMPERAT,206,,Road,3x3,d34.tem,terrain: Road
+tile,TEMPERAT,207,,Road,3x3,d35.tem,terrain: Road
+tile,TEMPERAT,208,,Road,2x2,d36.tem,terrain: Road
+tile,TEMPERAT,209,,Road,2x2,d37.tem,terrain: Road
+tile,TEMPERAT,210,,Road,2x2,d38.tem,terrain: Road
+tile,TEMPERAT,211,,Road,2x2,d39.tem,terrain: Road
+tile,TEMPERAT,212,,Road,2x2,d40.tem,terrain: Road
+tile,TEMPERAT,213,,Road,2x2,d41.tem,"terrain: Road, Rock"
+tile,TEMPERAT,214,,Road,2x2,d42.tem,terrain: Road
+tile,TEMPERAT,215,,Road,2x2,d43.tem,"terrain: Clear, Road"
+tile,TEMPERAT,227,,Road,1x1,d44.tem,terrain: Road
+tile,TEMPERAT,228,,Road,1x1,d45.tem,terrain: Road
+tile,TEMPERAT,231,,River,2x2,rc01.tem,terrain: Rock
+tile,TEMPERAT,232,,River,2x2,rc02.tem,terrain: Rock
+tile,TEMPERAT,233,,River,2x2,rc03.tem,terrain: Rock
+tile,TEMPERAT,234,,River,2x2,rc04.tem,terrain: Rock
+tile,TEMPERAT,112,,River,5x4,rv01.tem,"terrain: River, Rock, Rough"
+tile,TEMPERAT,113,,River,5x3,rv02.tem,"terrain: River, Rock, Rough"
+tile,TEMPERAT,114,,River,4x4,rv03.tem,"terrain: Clear, River, Rock, Rough"
+tile,TEMPERAT,115,,River,4x4,rv04.tem,"terrain: River, Rock, Rough"
+tile,TEMPERAT,116,,River,3x3,rv05.tem,"terrain: Clear, River, Rock"
+tile,TEMPERAT,117,,River,3x2,rv06.tem,"terrain: River, Rock"
+tile,TEMPERAT,118,,River,3x2,rv07.tem,"terrain: River, Rock"
+tile,TEMPERAT,119,,River,2x2,rv08.tem,"terrain: River, Rock"
+tile,TEMPERAT,120,,River,2x2,rv09.tem,"terrain: Clear, River"
+tile,TEMPERAT,121,,River,2x2,rv10.tem,"terrain: River, Rock"
+tile,TEMPERAT,122,,River,2x2,rv11.tem,"terrain: River, Rock"
+tile,TEMPERAT,123,,River,3x4,rv12.tem,"terrain: Clear, River, Rock, Rough"
+tile,TEMPERAT,124,,River,4x4,rv13.tem,"terrain: Clear, River, Rock, Rough"
+tile,TEMPERAT,229,,River,1x2,rv14.tem,"terrain: River, Rock"
+tile,TEMPERAT,230,,River,2x1,rv15.tem,"terrain: River, Rock"
+tile,TEMPERAT,235,,Bridge,4x3,br1a.tem,"terrain: Bridge, Rock"
+tile,TEMPERAT,236,,Bridge,4x3,br1b.tem,"terrain: Rock, Rough"
+tile,TEMPERAT,237,,Bridge,4x3,br1c.tem,terrain: Rock
+tile,TEMPERAT,238,,Bridge,5x3,br2a.tem,"terrain: Bridge, Rock"
+tile,TEMPERAT,239,,Bridge,5x3,br2b.tem,"terrain: Rock, Rough"
+tile,TEMPERAT,240,,Bridge,5x3,br2c.tem,"terrain: Rock, Water"
+tile,TEMPERAT,241,,Bridge,4x2,br3a.tem,"terrain: Bridge, Rock"
+tile,TEMPERAT,242,,Bridge,4x2,br3b.tem,"terrain: Bridge, Rock"
+tile,TEMPERAT,243,,Bridge,4x2,br3c.tem,terrain: Rock
+tile,TEMPERAT,244,,Bridge,4x2,br3d.tem,"terrain: River, Rock"
+tile,TEMPERAT,245,,Bridge,4x2,br3e.tem,"terrain: Rock, Water"
+tile,TEMPERAT,246,,Bridge,4x2,br3f.tem,terrain: Water
+tile,TEMPERAT,380,,Bridge,5x3,br1x.tem,"terrain: Clear, Road, Rock, Water"
+tile,TEMPERAT,381,,Bridge,5x1,br2x.tem,"terrain: Beach, Road"
+tile,TEMPERAT,131,,Bridge,5x3,bridge1.tem,"terrain: Bridge, Rock"
+tile,TEMPERAT,132,,Bridge,5x3,bridge1d.tem,terrain: Rock
+tile,TEMPERAT,378,,Bridge,5x3,bridge1h.tem,"terrain: Rock, Rough"
+tile,TEMPERAT,382,,Bridge,5x4,bridge1x.tem,"terrain: Bridge, Clear, Rock"
+tile,TEMPERAT,133,,Bridge,5x2,bridge2.tem,"terrain: Bridge, Rock"
+tile,TEMPERAT,134,,Bridge,5x2,bridge2d.tem,terrain: Rock
+tile,TEMPERAT,379,,Bridge,5x2,bridge2h.tem,"terrain: Rock, Rough"
+tile,TEMPERAT,383,,Bridge,5x5,bridge2x.tem,"terrain: Bridge, Clear, River, Rock, Rough"
+tile,TEMPERAT,247,,Bridge,3x3,f01.tem,"terrain: Beach, Road, Rough"
+tile,TEMPERAT,248,,Bridge,3x3,f02.tem,terrain: Beach
+tile,TEMPERAT,249,,Bridge,3x3,f03.tem,"terrain: Beach, Clear, Road"
+tile,TEMPERAT,250,,Bridge,3x3,f04.tem,"terrain: Beach, Clear, Road"
+tile,TEMPERAT,251,,Bridge,3x3,f05.tem,terrain: Beach
+tile,TEMPERAT,252,,Bridge,3x3,f06.tem,"terrain: Beach, Clear, Road"
+tile,TEMPERAT,129,,Bridge,3x3,ford1.tem,"terrain: Clear, River, Road, Rough"
+tile,TEMPERAT,130,,Bridge,3x3,ford2.tem,"terrain: Clear, Road, Rock, Rough"
+tile,TEMPERAT,125,,River,3x3,falls1.tem,"terrain: River, Rock, Rough"
+tile,TEMPERAT,126,,Water Cliffs,3x3,falls1a.tem,"terrain: River, Rock, Water"
+tile,TEMPERAT,127,,River,3x2,falls2.tem,"terrain: River, Rock"
+tile,TEMPERAT,128,,Water Cliffs,3x2,falls2a.tem,"terrain: River, Rock"
+tile,TEMPERAT,97,,Debris,1x1,b1.tem,terrain: Rock
+tile,TEMPERAT,98,,Debris,2x1,b2.tem,terrain: Rock
+tile,TEMPERAT,99,,Debris,3x1,b3.tem,terrain: Rock
+tile,TEMPERAT,216,,Debris,1x1,rf01.tem,terrain: Rock
+tile,TEMPERAT,217,,Debris,1x1,rf02.tem,terrain: Rock
+tile,TEMPERAT,218,,Debris,1x1,rf03.tem,terrain: Rock
+tile,TEMPERAT,219,,Debris,1x1,rf04.tem,terrain: Rock
+tile,TEMPERAT,220,,Debris,1x1,rf05.tem,terrain: Rock
+tile,TEMPERAT,221,,Debris,1x1,rf06.tem,terrain: Rock
+tile,TEMPERAT,222,,Debris,1x1,rf07.tem,terrain: Rock
+tile,TEMPERAT,223,,Debris,1x2,rf08.tem,terrain: Rock
+tile,TEMPERAT,224,,Debris,1x2,rf09.tem,terrain: Rock
+tile,TEMPERAT,225,,Debris,2x1,rf10.tem,terrain: Rough
+tile,TEMPERAT,226,,Debris,2x1,rf11.tem,terrain: Rock
+tile,TEMPERAT,103,,Debris,1x1,p01.tem,terrain: Rock
+tile,TEMPERAT,104,,Debris,1x1,p02.tem,terrain: Rock
+tile,TEMPERAT,105,,Debris,1x1,p03.tem,terrain: Rock
+tile,TEMPERAT,106,,Debris,1x1,p04.tem,terrain: Rock
+tile,TEMPERAT,107,,Debris,4x2,p07.tem,"terrain: Clear, Rough"
+tile,TEMPERAT,108,,Debris,3x2,p08.tem,terrain: Clear
+tile,TEMPERAT,109,,Debris,3x2,p13.tem,terrain: Rock
+tile,TEMPERAT,110,,Debris,2x1,p14.tem,terrain: Rock
+tile,TEMPERAT,500,,Debris,1x1,sh57.tem,terrain: Rock
+tile,TEMPERAT,502,,Debris,2x1,sh58.tem,terrain: Rock
+tile,TEMPERAT,503,,Debris,2x1,sh59.tem,terrain: Rock
+tile,TEMPERAT,504,,Debris,1x2,sh60.tem,terrain: Rock
+tile,TEMPERAT,505,,Debris,1x1,sh61.tem,terrain: Rock
+tile,TEMPERAT,506,,Debris,1x1,sh62.tem,terrain: Rock
+tile,TEMPERAT,507,,Debris,2x2,sh63.tem,terrain: Rock
+tile,TEMPERAT,508,,Debris,1x1,sh64.tem,terrain: Rock
+tile,TEMPERAT,519,,Bridge,3x4,sbridge1x.tem,"terrain: Clear, Road"
+tile,TEMPERAT,520,,Bridge,3x2,sbridge1.tem,"terrain: Bridge, River"
+tile,TEMPERAT,521,,Bridge,3x2,sbridge1h.tem,"terrain: Bridge, River"
+tile,TEMPERAT,522,,Bridge,3x2,sbridge1d.tem,"terrain: River, Rock"
+tile,TEMPERAT,523,,Bridge,4x2,sbridge3.tem,"terrain: Bridge, River, Rock"
+tile,TEMPERAT,524,,Bridge,4x2,sbridge3h.tem,"terrain: Bridge, River, Rock"
+tile,TEMPERAT,525,,Bridge,4x2,sbridge3d.tem,"terrain: River, Rock"
+tile,TEMPERAT,526,,Bridge,4x4,sbridge3x.tem,"terrain: Clear, River, Road"
+tile,TEMPERAT,527,,Bridge,4x2,sbridge4.tem,"terrain: Bridge, River, Rock"
+tile,TEMPERAT,528,,Bridge,4x2,sbridge4h.tem,"terrain: Bridge, River, Rock"
+tile,TEMPERAT,529,,Bridge,4x2,sbridge4d.tem,"terrain: River, Rock"
+tile,TEMPERAT,530,,Bridge,5x5,sbridge4x.tem,"terrain: Clear, River, Road"
+tile,TEMPERAT,531,,Bridge,2x3,sbridge2.tem,"terrain: Bridge, River, Rock"
+tile,TEMPERAT,532,,Bridge,2x3,sbridge2h.tem,"terrain: Bridge, River, Rock"
+tile,TEMPERAT,533,,Bridge,2x3,sbridge2d.tem,terrain: River
+tile,TEMPERAT,534,,Bridge,4x4,sbridge2x.tem,"terrain: Clear, River, Road, Rough"
+tile,TEMPERAT,550,,Water Cliffs,2x3,sccnr.tem,terrain: Rock
+tile,TEMPERAT,551,,Water Cliffs,2x3,sccnl.tem,terrain: Rock
+tile,TEMPERAT,552,,Water Cliffs,2x3,sccsr.tem,terrain: Rock
+tile,TEMPERAT,553,,Water Cliffs,2x3,sccsl.tem,terrain: Rock
+tile,TEMPERAT,554,,Water Cliffs,3x2,sccln.tem,terrain: Rock
+tile,TEMPERAT,555,,Water Cliffs,3x2,sccls.tem,terrain: Rock
+tile,TEMPERAT,556,,Water Cliffs,3x2,sccrn.tem,terrain: Rock
+tile,TEMPERAT,557,,Water Cliffs,3x2,sccrs.tem,terrain: Rock
+tile,TEMPERAT,580,,Debris,1x1,deca.tem,terrain: Rough
+tile,TEMPERAT,581,,Debris,1x1,decb.tem,terrain: Rough
+tile,TEMPERAT,582,,Debris,1x1,decc.tem,terrain: Rough
+tile,TEMPERAT,583,,Debris,1x1,decc.tem,terrain: Rough
+tile,TEMPERAT,584,,Debris,1x1,decd.tem,terrain: Rough
+tile,TEMPERAT,585,,Debris,1x1,dece.tem,terrain: Rough
+tile,TEMPERAT,586,,Debris,1x1,decf.tem,terrain: Rough
+tile,TEMPERAT,587,,Debris,1x1,decg.tem,terrain: Rough
+tile,TEMPERAT,588,,Debris,1x1,dech.tem,terrain: Rough
+tile,TEMPERAT,590,,Bridge,1x2,fjord1.tem,terrain: Rough
+tile,TEMPERAT,591,,Bridge,2x1,fjord2.tem,terrain: Rough
+tile,TEMPERAT,400,,Debris,4x3,hill01.tem,"terrain: Clear, Rock, Rough"
+tile,TEMPERAT,401,,Cliffs,1x2,cliffsl1.tem,terrain: Rock
+tile,TEMPERAT,402,,Cliffs,1x2,cliffsl2.tem,terrain: Rock
+tile,TEMPERAT,403,,Cliffs,2x1,cliffsl3.tem,terrain: Rock
+tile,TEMPERAT,404,,Cliffs,2x1,cliffsl4.tem,terrain: Rock
+tile,TEMPERAT,405,,Water Cliffs,1x2,cliffsw1.tem,terrain: Rock
+tile,TEMPERAT,406,,Water Cliffs,1x2,cliffsw2.tem,terrain: Rock
+tile,TEMPERAT,407,,Water Cliffs,2x1,cliffsw3.tem,terrain: Rock
+tile,TEMPERAT,408,,Water Cliffs,2x1,cliffsw4.tem,terrain: Rock
+tile,SNOW,255,,Terrain,1x1,clear1.sno,random variants; terrain: Clear
+tile,SNOW,65535,,Terrain,1x1,clear1.sno,random variants; terrain: Clear
+tile,SNOW,1,,Terrain,1x1,w1.sno,terrain: Water
+tile,SNOW,2,,Terrain,2x2,w2.sno,terrain: Water
+tile,SNOW,3,,Beach,4x5,sh01.sno,"terrain: Beach, Clear, River, Rock, Water"
+tile,SNOW,4,,Beach,5x5,sh02.sno,"terrain: Beach, Clear, River, Rock, Rough, Water"
+tile,SNOW,5,,Beach,3x5,sh03.sno,"terrain: Beach, Clear, Water"
+tile,SNOW,6,,Beach,3x3,sh04.sno,"terrain: Beach, Water"
+tile,SNOW,7,,Beach,3x3,sh05.sno,"terrain: Beach, River, Rock"
+tile,SNOW,8,,Beach,3x3,sh06.sno,"terrain: Beach, Water"
+tile,SNOW,9,,Beach,3x3,sh07.sno,"terrain: Beach, Water"
+tile,SNOW,10,,Beach,1x2,sh08.sno,terrain: Beach
+tile,SNOW,11,,Beach,3x3,sh09.sno,"terrain: Beach, Clear, River, Rock, Water"
+tile,SNOW,12,,Beach,5x6,sh10.sno,"terrain: Beach, Clear, Rock, Water"
+tile,SNOW,13,,Beach,4x5,sh11.sno,"terrain: Beach, Clear, Water"
+tile,SNOW,14,,Beach,3x5,sh12.sno,"terrain: Beach, Clear, Water"
+tile,SNOW,15,,Beach,6x5,sh13.sno,"terrain: Beach, Clear, Rock, Rough, Water"
+tile,SNOW,16,,Beach,4x4,sh14.sno,"terrain: Beach, Clear, River, Rough, Water"
+tile,SNOW,17,,Beach,5x3,sh15.sno,"terrain: Beach, Clear, Water"
+tile,SNOW,18,,Beach,3x3,sh16.sno,"terrain: Beach, Clear, Water"
+tile,SNOW,19,,Beach,2x1,sh17.sno,"terrain: Beach, Clear"
+tile,SNOW,20,,Beach,3x3,sh18.sno,"terrain: Beach, River, Rough, Water"
+tile,SNOW,21,,Beach,4x5,sh19.sno,"terrain: Beach, Clear, Water"
+tile,SNOW,22,,Beach,5x4,sh20.sno,"terrain: Beach, Water"
+tile,SNOW,23,,Beach,5x3,sh21.sno,"terrain: Beach, Clear, Water"
+tile,SNOW,24,,Beach,6x5,sh22.sno,"terrain: Beach, Clear, Water"
+tile,SNOW,25,,Beach,5x5,sh23.sno,"terrain: Beach, Clear, River, Water"
+tile,SNOW,26,,Beach,3x4,sh24.sno,"terrain: Beach, Clear, Water"
+tile,SNOW,27,,Beach,3x3,sh25.sno,"terrain: Beach, Rock, Water"
+tile,SNOW,28,,Beach,3x3,sh26.sno,"terrain: Beach, Rough, Water"
+tile,SNOW,29,,Beach,3x3,sh27.sno,"terrain: Beach, Rock, Rough"
+tile,SNOW,30,,Beach,3x3,sh28.sno,"terrain: Beach, Rock, Rough"
+tile,SNOW,31,,Beach,1x2,sh29.sno,"terrain: Beach, Clear"
+tile,SNOW,32,,Beach,3x2,sh30.sno,"terrain: Beach, Clear, River, Rough"
+tile,SNOW,33,,Beach,6x5,sh31.sno,"terrain: Beach, Clear, Water"
+tile,SNOW,34,,Beach,4x4,sh32.sno,"terrain: Beach, Clear, Water"
+tile,SNOW,35,,Beach,3x4,sh33.sno,"terrain: Beach, Clear, Rough, Water"
+tile,SNOW,36,,Beach,6x5,sh34.sno,"terrain: Beach, Clear, Water"
+tile,SNOW,37,,Beach,4x4,sh35.sno,"terrain: Beach, Clear, Rough, Water"
+tile,SNOW,38,,Beach,4x3,sh36.sno,"terrain: Beach, Water"
+tile,SNOW,39,,Beach,3x3,sh37.sno,"terrain: Beach, Clear, Rough, Water"
+tile,SNOW,40,,Beach,2x1,sh38.sno,"terrain: Beach, Clear"
+tile,SNOW,41,,Beach,3x3,sh39.sno,"terrain: Beach, Clear, River, Rock, Water"
+tile,SNOW,42,,Beach,5x5,sh40.sno,"terrain: Beach, Clear, Water"
+tile,SNOW,43,,Beach,4x4,sh41.sno,"terrain: Beach, Clear, Water"
+tile,SNOW,44,,Beach,4x3,sh42.sno,"terrain: Beach, Clear, River, Water"
+tile,SNOW,45,,Beach,3x3,sh43.sno,"terrain: Beach, Water"
+tile,SNOW,46,,Beach,2x2,sh44.sno,"terrain: Beach, River, Water"
+tile,SNOW,47,,Beach,3x3,sh45.sno,"terrain: Beach, River, Rough, Water"
+tile,SNOW,48,,Beach,2x2,sh46.sno,"terrain: Beach, River, Water"
+tile,SNOW,49,,Beach,3x3,sh47.sno,"terrain: Beach, Water"
+tile,SNOW,50,,Beach,2x2,sh48.sno,"terrain: Beach, Clear, Water"
+tile,SNOW,51,,Beach,3x3,sh49.sno,"terrain: Beach, River, Rock, Water"
+tile,SNOW,52,,Beach,2x2,sh50.sno,"terrain: Beach, Water"
+tile,SNOW,53,,Beach,3x3,sh51.sno,"terrain: Beach, Clear, Rough"
+tile,SNOW,54,,Beach,3x3,sh52.sno,"terrain: Beach, Clear, Water"
+tile,SNOW,55,,Beach,3x3,sh53.sno,"terrain: Beach, Clear, Water"
+tile,SNOW,56,,Beach,3x3,sh54.sno,"terrain: Beach, Clear, Water"
+tile,SNOW,57,,Debris,1x1,sh55.sno,terrain: Rock
+tile,SNOW,58,,Debris,2x1,sh56.sno,terrain: Rock
+tile,SNOW,135,,Cliffs,2x2,s01.sno,terrain: Rock
+tile,SNOW,136,,Cliffs,2x3,s02.sno,"terrain: Rock, Rough"
+tile,SNOW,137,,Cliffs,2x2,s03.sno,terrain: Rock
+tile,SNOW,138,,Cliffs,2x2,s04.sno,terrain: Rock
+tile,SNOW,139,,Cliffs,2x2,s05.sno,terrain: Rock
+tile,SNOW,140,,Cliffs,2x3,s06.sno,"terrain: Rock, Rough"
+tile,SNOW,141,,Cliffs,2x2,s07.sno,terrain: Rock
+tile,SNOW,142,,Cliffs,2x2,s08.sno,terrain: Rock
+tile,SNOW,143,,Cliffs,3x2,s09.sno,terrain: Rock
+tile,SNOW,144,,Cliffs,2x2,s10.sno,terrain: Rock
+tile,SNOW,145,,Cliffs,2x2,s11.sno,terrain: Rock
+tile,SNOW,146,,Cliffs,2x2,s12.sno,terrain: Rock
+tile,SNOW,147,,Cliffs,3x2,s13.sno,"terrain: Rock, Rough"
+tile,SNOW,148,,Cliffs,2x2,s14.sno,"terrain: Rock, Rough"
+tile,SNOW,149,,Cliffs,2x2,s15.sno,terrain: Rock
+tile,SNOW,150,,Cliffs,2x3,s16.sno,"terrain: Rock, Rough"
+tile,SNOW,151,,Cliffs,2x2,s17.sno,terrain: Rock
+tile,SNOW,152,,Cliffs,2x2,s18.sno,terrain: Rock
+tile,SNOW,153,,Cliffs,2x2,s19.sno,terrain: Rock
+tile,SNOW,154,,Cliffs,2x3,s20.sno,"terrain: Rock, Rough"
+tile,SNOW,155,,Cliffs,1x2,s21.sno,terrain: Rock
+tile,SNOW,156,,Cliffs,2x1,s22.sno,terrain: Rock
+tile,SNOW,157,,Cliffs,3x2,s23.sno,"terrain: Rock, Rough"
+tile,SNOW,158,,Cliffs,2x2,s24.sno,terrain: Rock
+tile,SNOW,159,,Cliffs,2x2,s25.sno,terrain: Rock
+tile,SNOW,160,,Cliffs,2x2,s26.sno,terrain: Rock
+tile,SNOW,161,,Cliffs,3x2,s27.sno,"terrain: Rock, Rough"
+tile,SNOW,162,,Cliffs,2x2,s28.sno,terrain: Rock
+tile,SNOW,163,,Cliffs,2x2,s29.sno,terrain: Rock
+tile,SNOW,164,,Cliffs,2x2,s30.sno,terrain: Rock
+tile,SNOW,165,,Cliffs,2x2,s31.sno,"terrain: Rock, Rough"
+tile,SNOW,166,,Cliffs,2x2,s32.sno,"terrain: Rock, Rough"
+tile,SNOW,167,,Cliffs,2x2,s33.sno,terrain: Rock
+tile,SNOW,168,,Cliffs,2x2,s34.sno,terrain: Rock
+tile,SNOW,169,,Cliffs,2x2,s35.sno,terrain: Rock
+tile,SNOW,170,,Cliffs,2x2,s36.sno,terrain: Rock
+tile,SNOW,171,,Cliffs,2x2,s37.sno,terrain: Rock
+tile,SNOW,172,,Cliffs,2x2,s38.sno,terrain: Rock
+tile,SNOW,59,,Water Cliffs,2x2,wc01.sno,terrain: Rock
+tile,SNOW,60,,Water Cliffs,2x3,wc02.sno,"terrain: Rock, Rough"
+tile,SNOW,61,,Water Cliffs,2x2,wc03.sno,terrain: Rock
+tile,SNOW,62,,Water Cliffs,2x2,wc04.sno,terrain: Rock
+tile,SNOW,63,,Water Cliffs,2x2,wc05.sno,terrain: Rock
+tile,SNOW,64,,Water Cliffs,2x3,wc06.sno,"terrain: Rock, Rough"
+tile,SNOW,65,,Water Cliffs,2x2,wc07.sno,terrain: Rock
+tile,SNOW,66,,Water Cliffs,2x2,wc08.sno,terrain: Rock
+tile,SNOW,67,,Water Cliffs,3x2,wc09.sno,"terrain: River, Rock"
+tile,SNOW,68,,Water Cliffs,2x2,wc10.sno,terrain: Rock
+tile,SNOW,69,,Water Cliffs,2x2,wc11.sno,terrain: Rock
+tile,SNOW,70,,Water Cliffs,2x2,wc12.sno,terrain: Rock
+tile,SNOW,71,,Water Cliffs,3x2,wc13.sno,"terrain: Clear, Rock, Rough"
+tile,SNOW,72,,Water Cliffs,2x2,wc14.sno,"terrain: Beach, Rock"
+tile,SNOW,73,,Water Cliffs,2x2,wc15.sno,terrain: Rock
+tile,SNOW,74,,Water Cliffs,2x3,wc16.sno,"terrain: Rock, Water"
+tile,SNOW,75,,Water Cliffs,2x2,wc17.sno,terrain: Rock
+tile,SNOW,76,,Water Cliffs,2x2,wc18.sno,terrain: Rock
+tile,SNOW,77,,Water Cliffs,2x2,wc19.sno,terrain: Rock
+tile,SNOW,78,,Water Cliffs,2x3,wc20.sno,"terrain: River, Rock, Rough"
+tile,SNOW,79,,Water Cliffs,1x2,wc21.sno,terrain: Rock
+tile,SNOW,80,,Water Cliffs,2x2,wc22.sno,terrain: Rock
+tile,SNOW,81,,Water Cliffs,3x2,wc23.sno,"terrain: River, Rock, Water"
+tile,SNOW,82,,Water Cliffs,2x2,wc24.sno,terrain: Rock
+tile,SNOW,83,,Water Cliffs,2x2,wc25.sno,terrain: Rock
+tile,SNOW,84,,Water Cliffs,2x2,wc26.sno,terrain: Rock
+tile,SNOW,85,,Water Cliffs,3x2,wc27.sno,"terrain: Clear, Rock, Water"
+tile,SNOW,86,,Water Cliffs,2x2,wc28.sno,terrain: Rock
+tile,SNOW,87,,Water Cliffs,2x2,wc29.sno,terrain: Rock
+tile,SNOW,88,,Water Cliffs,2x2,wc30.sno,terrain: Rock
+tile,SNOW,89,,Water Cliffs,2x2,wc31.sno,"terrain: River, Rock"
+tile,SNOW,90,,Water Cliffs,2x2,wc32.sno,"terrain: Rock, Water"
+tile,SNOW,91,,Water Cliffs,2x2,wc33.sno,terrain: Rock
+tile,SNOW,92,,Water Cliffs,2x2,wc34.sno,terrain: Rock
+tile,SNOW,93,,Water Cliffs,2x2,wc35.sno,terrain: Rock
+tile,SNOW,94,,Water Cliffs,2x2,wc36.sno,terrain: Rock
+tile,SNOW,95,,Water Cliffs,2x2,wc37.sno,terrain: Rock
+tile,SNOW,96,,Water Cliffs,2x2,wc38.sno,terrain: Rock
+tile,SNOW,173,,Road,2x2,d01.sno,"terrain: Clear, Road"
+tile,SNOW,174,,Road,2x2,d02.sno,"terrain: Clear, Road"
+tile,SNOW,175,,Road,1x2,d03.sno,"terrain: Clear, Road"
+tile,SNOW,176,,Road,2x2,d04.sno,"terrain: Clear, Road"
+tile,SNOW,177,,Road,3x4,d05.sno,"terrain: Clear, Road"
+tile,SNOW,178,,Road,2x3,d06.sno,"terrain: Clear, Road"
+tile,SNOW,179,,Road,3x2,d07.sno,"terrain: Clear, Road"
+tile,SNOW,180,,Road,3x2,d08.sno,"terrain: Clear, Road"
+tile,SNOW,181,,Road,4x3,d09.sno,"terrain: Clear, Road"
+tile,SNOW,182,,Road,4x2,d10.sno,"terrain: Clear, Road, Rock"
+tile,SNOW,183,,Road,2x3,d11.sno,"terrain: Clear, Road"
+tile,SNOW,184,,Road,2x2,d12.sno,"terrain: Clear, Road"
+tile,SNOW,185,,Road,4x3,d13.sno,"terrain: Clear, Road, Rock"
+tile,SNOW,186,,Road,3x3,d14.sno,"terrain: Clear, Road, Rock"
+tile,SNOW,187,,Road,3x3,d15.sno,"terrain: Clear, Road"
+tile,SNOW,188,,Road,3x3,d16.sno,"terrain: Clear, Road, Rock"
+tile,SNOW,189,,Road,3x2,d17.sno,"terrain: Clear, Road"
+tile,SNOW,190,,Road,3x3,d18.sno,"terrain: Clear, Road, Rock"
+tile,SNOW,191,,Road,3x3,d19.sno,"terrain: Clear, Road"
+tile,SNOW,192,,Road,3x3,d20.sno,"terrain: Clear, Road"
+tile,SNOW,193,,Road,3x2,d21.sno,"terrain: Clear, Road, Rock, Rough"
+tile,SNOW,194,,Road,3x3,d22.sno,"terrain: Clear, Road"
+tile,SNOW,195,,Road,3x3,d23.sno,"terrain: Clear, Road"
+tile,SNOW,196,,Road,3x3,d24.sno,terrain: Road
+tile,SNOW,197,,Road,3x3,d25.sno,terrain: Road
+tile,SNOW,198,,Road,2x2,d26.sno,terrain: Road
+tile,SNOW,199,,Road,2x2,d27.sno,terrain: Road
+tile,SNOW,200,,Road,2x2,d28.sno,"terrain: Road, Rough"
+tile,SNOW,201,,Road,2x2,d29.sno,terrain: Road
+tile,SNOW,202,,Road,2x2,d30.sno,terrain: Road
+tile,SNOW,203,,Road,2x2,d31.sno,terrain: Road
+tile,SNOW,204,,Road,2x2,d32.sno,"terrain: Clear, Road"
+tile,SNOW,205,,Road,2x2,d33.sno,terrain: Road
+tile,SNOW,206,,Road,3x3,d34.sno,terrain: Road
+tile,SNOW,207,,Road,3x3,d35.sno,terrain: Road
+tile,SNOW,208,,Road,2x2,d36.sno,terrain: Road
+tile,SNOW,209,,Road,2x2,d37.sno,terrain: Road
+tile,SNOW,210,,Road,2x2,d38.sno,terrain: Road
+tile,SNOW,211,,Road,2x2,d39.sno,terrain: Road
+tile,SNOW,212,,Road,2x2,d40.sno,terrain: Road
+tile,SNOW,213,,Road,2x2,d41.sno,"terrain: Road, Rock"
+tile,SNOW,214,,Road,2x2,d42.sno,terrain: Road
+tile,SNOW,215,,Road,2x2,d43.sno,"terrain: Clear, Road"
+tile,SNOW,227,,Road,1x1,d44.sno,terrain: Road
+tile,SNOW,228,,Road,1x1,d45.sno,terrain: Road
+tile,SNOW,231,,River,2x2,rc01.sno,terrain: Rock
+tile,SNOW,232,,River,2x2,rc02.sno,terrain: Rock
+tile,SNOW,233,,River,2x2,rc03.sno,terrain: Rock
+tile,SNOW,234,,River,2x2,rc04.sno,terrain: Rock
+tile,SNOW,112,,River,5x4,rv01.sno,"terrain: River, Rock, Rough"
+tile,SNOW,113,,River,5x3,rv02.sno,"terrain: River, Rock, Rough"
+tile,SNOW,114,,River,4x4,rv03.sno,"terrain: Clear, River, Rock, Rough"
+tile,SNOW,115,,River,4x4,rv04.sno,"terrain: River, Rock, Rough"
+tile,SNOW,116,,River,3x3,rv05.sno,"terrain: Clear, River, Rock"
+tile,SNOW,117,,River,3x2,rv06.sno,"terrain: River, Rock"
+tile,SNOW,118,,River,3x2,rv07.sno,"terrain: River, Rock"
+tile,SNOW,119,,River,2x2,rv08.sno,"terrain: River, Rock"
+tile,SNOW,120,,River,2x2,rv09.sno,"terrain: Clear, River"
+tile,SNOW,121,,River,2x2,rv10.sno,"terrain: River, Rock"
+tile,SNOW,122,,River,2x2,rv11.sno,"terrain: River, Rock"
+tile,SNOW,123,,River,3x4,rv12.sno,"terrain: Clear, River, Rock, Rough"
+tile,SNOW,124,,River,4x4,rv13.sno,"terrain: Clear, River, Rock, Rough"
+tile,SNOW,229,,River,1x2,rv14.sno,"terrain: River, Rock"
+tile,SNOW,230,,River,2x1,rv15.sno,"terrain: River, Rock"
+tile,SNOW,235,,Bridge,4x3,br1a.sno,"terrain: Bridge, Rock"
+tile,SNOW,236,,Bridge,4x3,br1b.sno,"terrain: Rock, Rough"
+tile,SNOW,237,,Bridge,4x3,br1c.sno,terrain: Rock
+tile,SNOW,238,,Bridge,5x3,br2a.sno,"terrain: Bridge, Rock"
+tile,SNOW,239,,Bridge,5x3,br2b.sno,"terrain: Rock, Rough"
+tile,SNOW,240,,Bridge,5x3,br2c.sno,"terrain: Rock, Water"
+tile,SNOW,241,,Bridge,4x2,br3a.sno,"terrain: Bridge, Rock"
+tile,SNOW,242,,Bridge,4x2,br3b.sno,"terrain: Bridge, Rock"
+tile,SNOW,243,,Bridge,4x2,br3c.sno,terrain: Rock
+tile,SNOW,244,,Bridge,4x2,br3d.sno,"terrain: River, Rock"
+tile,SNOW,245,,Bridge,4x2,br3e.sno,"terrain: Rock, Water"
+tile,SNOW,246,,Bridge,4x2,br3f.sno,terrain: Water
+tile,SNOW,380,,Bridge,5x3,br1x.sno,"terrain: Clear, Road, Rock, Water"
+tile,SNOW,381,,Bridge,5x1,br2x.sno,"terrain: Beach, Road"
+tile,SNOW,131,,Bridge,5x3,bridge1.sno,"terrain: Bridge, Rock"
+tile,SNOW,132,,Bridge,5x3,bridge1d.sno,terrain: Rock
+tile,SNOW,378,,Bridge,5x3,bridge1h.sno,"terrain: Rock, Rough"
+tile,SNOW,382,,Bridge,5x4,bridge1x.sno,"terrain: Clear, Road, Rock"
+tile,SNOW,133,,Bridge,5x2,bridge2.sno,"terrain: Bridge, Rock"
+tile,SNOW,134,,Bridge,5x2,bridge2d.sno,terrain: Rock
+tile,SNOW,379,,Bridge,5x2,bridge2h.sno,"terrain: Rock, Rough"
+tile,SNOW,383,,Bridge,5x5,bridge2x.sno,"terrain: Clear, River, Road, Rock, Rough"
+tile,SNOW,247,,Bridge,3x3,f01.sno,"terrain: Beach, Road, Rough"
+tile,SNOW,248,,Bridge,3x3,f02.sno,terrain: Beach
+tile,SNOW,249,,Bridge,3x3,f03.sno,"terrain: Beach, Clear, Road"
+tile,SNOW,250,,Bridge,3x3,f04.sno,"terrain: Beach, Clear, Road"
+tile,SNOW,251,,Bridge,3x3,f05.sno,terrain: Beach
+tile,SNOW,252,,Bridge,3x3,f06.sno,"terrain: Beach, Clear, Road"
+tile,SNOW,129,,Bridge,3x3,ford1.sno,"terrain: Clear, River, Road, Rough"
+tile,SNOW,130,,Bridge,3x3,ford2.sno,"terrain: Clear, Road, Rock, Rough"
+tile,SNOW,125,,River,3x3,falls1.sno,"terrain: River, Rock, Rough"
+tile,SNOW,126,,Water Cliffs,3x3,falls1a.sno,"terrain: River, Rock, Water"
+tile,SNOW,127,,River,3x2,falls2.sno,"terrain: River, Rock"
+tile,SNOW,128,,Water Cliffs,3x2,falls2a.sno,"terrain: River, Rock"
+tile,SNOW,97,,Debris,1x1,b1.sno,terrain: Rock
+tile,SNOW,98,,Debris,2x1,b2.sno,terrain: Rock
+tile,SNOW,99,,Debris,3x1,b3.sno,terrain: Rock
+tile,SNOW,216,,Debris,1x1,rf01.sno,terrain: Rock
+tile,SNOW,217,,Debris,1x1,rf02.sno,terrain: Rock
+tile,SNOW,218,,Debris,1x1,rf03.sno,terrain: Rock
+tile,SNOW,219,,Debris,1x1,rf04.sno,terrain: Rock
+tile,SNOW,220,,Debris,1x1,rf05.sno,terrain: Rock
+tile,SNOW,221,,Debris,1x1,rf06.sno,terrain: Rock
+tile,SNOW,222,,Debris,1x1,rf07.sno,terrain: Rock
+tile,SNOW,223,,Debris,1x2,rf08.sno,terrain: Rock
+tile,SNOW,224,,Debris,1x2,rf09.sno,terrain: Rock
+tile,SNOW,225,,Debris,2x1,rf10.sno,terrain: Rough
+tile,SNOW,226,,Debris,2x1,rf11.sno,terrain: Rock
+tile,SNOW,103,,Debris,1x1,p01.sno,terrain: Rock
+tile,SNOW,104,,Debris,1x1,p02.sno,terrain: Rock
+tile,SNOW,105,,Debris,1x1,p03.sno,terrain: Rock
+tile,SNOW,106,,Debris,1x1,p04.sno,terrain: Rock
+tile,SNOW,107,,Debris,4x2,p07.sno,"terrain: Clear, Rough"
+tile,SNOW,108,,Debris,3x2,p08.sno,terrain: Clear
+tile,SNOW,109,,Debris,3x2,p13.sno,terrain: Rock
+tile,SNOW,110,,Debris,2x1,p14.sno,terrain: Rock
+tile,SNOW,401,,Cliffs,1x2,cliffsl1.sno,terrain: Rock
+tile,SNOW,402,,Cliffs,1x2,cliffsl2.sno,terrain: Rock
+tile,SNOW,403,,Cliffs,2x1,cliffsl3.sno,terrain: Rock
+tile,SNOW,404,,Cliffs,2x1,cliffsl4.sno,terrain: Rock
+tile,SNOW,405,,Water Cliffs,1x2,cliffsw1.sno,terrain: Rock
+tile,SNOW,406,,Water Cliffs,1x2,cliffsw2.sno,terrain: Rock
+tile,SNOW,407,,Water Cliffs,2x1,cliffsw3.sno,terrain: Rock
+tile,SNOW,408,,Water Cliffs,2x1,cliffsw4.sno,terrain: Rock
+tile,DESERT,255,,Terrain,1x1,clear1.des,random variants; terrain: Clear
+tile,DESERT,65535,,Terrain,1x1,clear1.des,random variants; terrain: Clear
+tile,DESERT,256,,Terrain,1x1,w1.des,terrain: Water
+tile,DESERT,257,,Terrain,2x2,sh17.des,terrain: Water
+tile,DESERT,258,,Terrain,2x2,sh18.des,terrain: Water
+tile,DESERT,180,,Cliffs,2x2,s01.des,terrain: Rock
+tile,DESERT,181,,Cliffs,2x3,s02.des,"terrain: Rock, Rough"
+tile,DESERT,182,,Cliffs,2x2,s03.des,terrain: Rock
+tile,DESERT,183,,Cliffs,2x2,s04.des,terrain: Rock
+tile,DESERT,184,,Cliffs,2x2,s05.des,terrain: Rock
+tile,DESERT,185,,Cliffs,2x3,s06.des,"terrain: Rock, Rough"
+tile,DESERT,186,,Cliffs,2x2,s07.des,terrain: Rock
+tile,DESERT,187,,Cliffs,2x2,s08.des,terrain: Rock
+tile,DESERT,188,,Cliffs,3x2,s09.des,terrain: Rock
+tile,DESERT,189,,Cliffs,2x2,s10.des,terrain: Rock
+tile,DESERT,190,,Cliffs,2x2,s11.des,terrain: Rock
+tile,DESERT,191,,Cliffs,2x2,s12.des,terrain: Rock
+tile,DESERT,192,,Cliffs,3x2,s13.des,"terrain: Rock, Rough"
+tile,DESERT,193,,Cliffs,2x2,s14.des,"terrain: Rock, Rough"
+tile,DESERT,194,,Cliffs,2x2,s15.des,terrain: Rock
+tile,DESERT,195,,Cliffs,2x3,s16.des,"terrain: Rock, Rough"
+tile,DESERT,196,,Cliffs,2x2,s17.des,terrain: Rock
+tile,DESERT,197,,Cliffs,2x2,s18.des,terrain: Rock
+tile,DESERT,198,,Cliffs,2x2,s19.des,terrain: Rock
+tile,DESERT,199,,Cliffs,2x3,s20.des,"terrain: Rock, Rough"
+tile,DESERT,200,,Cliffs,1x2,s21.des,terrain: Rock
+tile,DESERT,202,,Cliffs,2x1,s22.des,terrain: Rock
+tile,DESERT,203,,Cliffs,3x2,s23.des,"terrain: Rock, Rough"
+tile,DESERT,204,,Cliffs,2x2,s24.des,terrain: Rock
+tile,DESERT,205,,Cliffs,2x2,s25.des,terrain: Rock
+tile,DESERT,206,,Cliffs,2x2,s26.des,terrain: Rock
+tile,DESERT,207,,Cliffs,3x2,s27.des,"terrain: Rock, Rough"
+tile,DESERT,208,,Cliffs,2x2,s28.des,terrain: Rock
+tile,DESERT,209,,Cliffs,2x2,s29.des,terrain: Rock
+tile,DESERT,210,,Cliffs,2x2,s30.des,terrain: Rock
+tile,DESERT,211,,Cliffs,2x2,s31.des,"terrain: Rock, Rough"
+tile,DESERT,212,,Cliffs,2x2,s32.des,"terrain: Rock, Rough"
+tile,DESERT,213,,Cliffs,2x2,s33.des,terrain: Rock
+tile,DESERT,214,,Cliffs,2x2,s34.des,terrain: Rock
+tile,DESERT,215,,Cliffs,2x2,s35.des,terrain: Rock
+tile,DESERT,216,,Cliffs,2x2,s36.des,terrain: Rock
+tile,DESERT,217,,Cliffs,2x2,s37.des,terrain: Rock
+tile,DESERT,218,,Cliffs,2x2,s38.des,terrain: Rock
+tile,DESERT,2,,Debris,1x1,b01.des,terrain: Rock
+tile,DESERT,3,,Debris,2x1,b02.des,terrain: Rock
+tile,DESERT,4,,Debris,1x1,b03.des,terrain: Rock
+tile,DESERT,5,,Debris,1x1,b04.des,terrain: Rock
+tile,DESERT,6,,Debris,1x1,b05.des,terrain: Rock
+tile,DESERT,7,,Debris,1x1,b06.des,terrain: Rock
+tile,DESERT,14,,Debris,1x1,br01.des,terrain: Tree
+tile,DESERT,15,,Debris,1x1,br02.des,terrain: Tree
+tile,DESERT,16,,Debris,1x1,br03.des,terrain: Tree
+tile,DESERT,17,,Debris,1x1,br04.des,terrain: Tree
+tile,DESERT,18,,Debris,3x2,br05.des,"terrain: Rock, Tree"
+tile,DESERT,19,,Debris,2x2,br06.des,terrain: Tree
+tile,DESERT,20,,Debris,2x2,br07.des,terrain: Tree
+tile,DESERT,21,,Debris,3x2,br08.des,terrain: Tree
+tile,DESERT,22,,Debris,3x2,br09.des,terrain: Tree
+tile,DESERT,23,,Debris,2x2,br10.des,terrain: Tree
+tile,DESERT,35,,Debris,1x1,p01.des,terrain: Rock
+tile,DESERT,36,,Debris,1x1,p02.des,terrain: Rock
+tile,DESERT,37,,Debris,1x1,p03.des,terrain: Rough
+tile,DESERT,38,,Debris,1x1,p04.des,terrain: Rock
+tile,DESERT,39,,Debris,2x2,p05.des,terrain: Clear
+tile,DESERT,40,,Debris,6x4,p06.des,terrain: Clear
+tile,DESERT,41,,Debris,4x2,p07.des,terrain: Rough
+tile,DESERT,42,,Debris,2x1,p08.des,terrain: Rough
+tile,DESERT,43,,Debris,1x2,p09.des,terrain: Rock
+tile,DESERT,44,,Debris,3x2,p10.des,terrain: Clear
+tile,DESERT,73,,River,1x1,rv26.des,terrain: River
+tile,DESERT,74,,River,1x1,rv27.des,terrain: River
+tile,DESERT,296,,River,2x3,rvm01.des,"terrain: River, Rock"
+tile,DESERT,297,,River,1x3,rvm02.des,"terrain: River, Rock"
+tile,DESERT,298,,River,3x2,rvm03.des,"terrain: River, Rock"
+tile,DESERT,299,,River,3x1,rvm04.des,"terrain: River, Rock"
+tile,DESERT,60,,River,4x3,rv14.des,"terrain: River, Rock, Tree"
+tile,DESERT,61,,River,4x3,rv15.des,"terrain: Clear, River, Rock"
+tile,DESERT,62,,River,6x4,rv16.des,"terrain: River, Rock, Tree"
+tile,DESERT,63,,River,6x5,rv17.des,"terrain: Clear, River, Rock, Tree"
+tile,DESERT,64,,River,4x4,rv18.des,"terrain: River, Rock, Tree"
+tile,DESERT,65,,River,4x4,rv19.des,"terrain: Clear, River, Rock, Tree"
+tile,DESERT,66,,River,6x8,rv20.des,"terrain: Clear, River, Rock"
+tile,DESERT,67,,River,5x8,rv21.des,"terrain: Clear, River, Rock"
+tile,DESERT,69,,River,3x3,rv22.des,"terrain: Clear, River, Rock"
+tile,DESERT,70,,River,3x3,rv23.des,"terrain: River, Rock"
+tile,DESERT,71,,River,3x3,rv24.des,"terrain: Clear, River, Rock, Tree"
+tile,DESERT,72,,River,3x3,rv25.des,"terrain: Clear, River, Rock, Tree"
+tile,DESERT,100,,River,4x3,dt01.des,"terrain: River, Rock, Tree"
+tile,DESERT,101,,River,2x4,dt02.des,"terrain: River, Rock, Rough"
+tile,DESERT,102,,River,3x3,dt03.des,"terrain: River, Rock, Rough, Tree"
+tile,DESERT,103,,River,3x4,dt04.des,"terrain: River, Rock, Rough"
+tile,DESERT,75,,River,3x2,rc01.des,terrain: Rock
+tile,DESERT,76,,River,2x3,rc02.des,terrain: Rock
+tile,DESERT,77,,River,2x3,rc03.des,terrain: Rock
+tile,DESERT,78,,River,3x2,rc04.des,terrain: Rock
+tile,DESERT,79,,River,3x2,falls2.des,"terrain: River, Rock"
+tile,DESERT,80,,River,3x3,falls1.des,"terrain: River, Rock"
+tile,DESERT,90,,Bridge,3x3,ford1.des,"terrain: Clear, River, Road, Rock, Rough"
+tile,DESERT,91,,Bridge,3x3,ford2.des,"terrain: Clear, River, Road, Rock, Rough"
+tile,DESERT,164,,Road,1x1,d44.des,terrain: Road
+tile,DESERT,165,,Road,1x1,d45.des,terrain: Road
+tile,DESERT,120,,Road,2x2,d01.des,"terrain: Clear, Road"
+tile,DESERT,121,,Road,2x2,d02.des,"terrain: Clear, Road"
+tile,DESERT,122,,Road,1x2,d03.des,terrain: Road
+tile,DESERT,123,,Road,2x2,d04.des,"terrain: Clear, Road"
+tile,DESERT,124,,Road,3x4,d05.des,"terrain: Clear, Road"
+tile,DESERT,125,,Road,2x3,d06.des,terrain: Road
+tile,DESERT,126,,Road,3x2,d07.des,"terrain: Clear, Road"
+tile,DESERT,127,,Road,3x2,d08.des,"terrain: Clear, Road"
+tile,DESERT,128,,Road,4x3,d09.des,"terrain: Clear, Road"
+tile,DESERT,129,,Road,4x2,d10.des,"terrain: Clear, Road"
+tile,DESERT,130,,Road,2x3,d11.des,"terrain: Clear, Road"
+tile,DESERT,500,,Road,2x2,d12.des,"terrain: Clear, Road"
+tile,DESERT,501,,Road,4x3,d13.des,"terrain: Clear, Road"
+tile,DESERT,502,,Road,3x3,d14.des,"terrain: Clear, Road"
+tile,DESERT,503,,Road,3x3,d15.des,"terrain: Clear, Road"
+tile,DESERT,135,,Road,3x3,d16.des,"terrain: Clear, Road"
+tile,DESERT,136,,Road,3x2,d17.des,"terrain: Clear, Road"
+tile,DESERT,137,,Road,3x3,d18.des,"terrain: Clear, Road"
+tile,DESERT,138,,Road,3x3,d19.des,"terrain: Clear, Road"
+tile,DESERT,139,,Road,3x3,d20.des,"terrain: Clear, Road"
+tile,DESERT,140,,Road,3x2,d21.des,"terrain: Clear, Road"
+tile,DESERT,141,,Road,3x3,d22.des,"terrain: Clear, Road"
+tile,DESERT,142,,Road,3x3,d23.des,"terrain: Clear, Road"
+tile,DESERT,143,,Road,3x3,d24.des,"terrain: Clear, Road"
+tile,DESERT,144,,Road,3x3,d25.des,"terrain: Clear, Road"
+tile,DESERT,145,,Road,2x2,d26.des,terrain: Clear
+tile,DESERT,146,,Road,2x2,d27.des,terrain: Clear
+tile,DESERT,147,,Road,2x2,d28.des,"terrain: Clear, Road"
+tile,DESERT,148,,Road,2x2,d29.des,"terrain: Clear, Road"
+tile,DESERT,149,,Road,2x2,d30.des,"terrain: Clear, Road"
+tile,DESERT,151,,Road,2x2,d31.des,"terrain: Clear, Road"
+tile,DESERT,152,,Road,2x2,d32.des,"terrain: Clear, Road"
+tile,DESERT,153,,Road,2x2,d33.des,"terrain: Clear, Road"
+tile,DESERT,154,,Road,3x3,d34.des,"terrain: Clear, Road"
+tile,DESERT,155,,Road,3x3,d35.des,"terrain: Clear, Road"
+tile,DESERT,156,,Road,2x2,d36.des,terrain: Clear
+tile,DESERT,157,,Road,2x2,d37.des,terrain: Clear
+tile,DESERT,158,,Road,2x2,d38.des,"terrain: Clear, Road"
+tile,DESERT,159,,Road,2x2,d39.des,"terrain: Clear, Road"
+tile,DESERT,160,,Road,2x2,d40.des,"terrain: Clear, Road"
+tile,DESERT,161,,Road,2x2,d41.des,"terrain: Clear, Road"
+tile,DESERT,162,,Road,2x2,d42.des,"terrain: Clear, Road"
+tile,DESERT,163,,Road,2x2,d43.des,"terrain: Clear, Road"
+tile,DESERT,300,,Water Cliffs,2x2,wc01.des,terrain: Rock
+tile,DESERT,301,,Water Cliffs,2x3,wc02.des,"terrain: Rock, Rough"
+tile,DESERT,302,,Water Cliffs,2x2,wc03.des,terrain: Rock
+tile,DESERT,303,,Water Cliffs,2x2,wc04.des,terrain: Rock
+tile,DESERT,304,,Water Cliffs,2x2,wc05.des,terrain: Rock
+tile,DESERT,305,,Water Cliffs,2x3,wc06.des,"terrain: Rock, Rough"
+tile,DESERT,306,,Water Cliffs,2x2,wc07.des,terrain: Rock
+tile,DESERT,307,,Water Cliffs,2x2,wc08.des,terrain: Rock
+tile,DESERT,308,,Water Cliffs,3x2,wc09.des,"terrain: River, Rock"
+tile,DESERT,309,,Water Cliffs,2x2,wc10.des,terrain: Rock
+tile,DESERT,310,,Water Cliffs,2x2,wc11.des,terrain: Rock
+tile,DESERT,311,,Water Cliffs,2x2,wc12.des,terrain: Rock
+tile,DESERT,312,,Water Cliffs,3x2,wc13.des,"terrain: Clear, Rock, Rough"
+tile,DESERT,313,,Water Cliffs,2x2,wc14.des,"terrain: Beach, Rock"
+tile,DESERT,314,,Water Cliffs,2x2,wc15.des,terrain: Rock
+tile,DESERT,315,,Water Cliffs,2x3,wc16.des,"terrain: Rock, Water"
+tile,DESERT,316,,Water Cliffs,2x2,wc17.des,terrain: Rock
+tile,DESERT,317,,Water Cliffs,2x2,wc18.des,terrain: Rock
+tile,DESERT,318,,Water Cliffs,2x2,wc19.des,terrain: Rock
+tile,DESERT,319,,Water Cliffs,2x3,wc20.des,"terrain: River, Rock, Rough"
+tile,DESERT,320,,Water Cliffs,1x2,wc21.des,terrain: Rock
+tile,DESERT,321,,Water Cliffs,2x1,wc22.des,terrain: Rock
+tile,DESERT,322,,Water Cliffs,3x2,wc23.des,"terrain: River, Rock, Water"
+tile,DESERT,323,,Water Cliffs,2x2,wc24.des,terrain: Rock
+tile,DESERT,324,,Water Cliffs,2x2,wc25.des,terrain: Rock
+tile,DESERT,325,,Water Cliffs,2x2,wc26.des,terrain: Rock
+tile,DESERT,326,,Water Cliffs,3x2,wc27.des,"terrain: Clear, Rock, Water"
+tile,DESERT,327,,Water Cliffs,2x2,wc28.des,terrain: Rock
+tile,DESERT,328,,Water Cliffs,2x2,wc29.des,terrain: Rock
+tile,DESERT,329,,Water Cliffs,2x2,wc30.des,terrain: Rock
+tile,DESERT,330,,Water Cliffs,2x2,wc31.des,"terrain: River, Rock"
+tile,DESERT,331,,Water Cliffs,2x2,wc32.des,"terrain: Rock, Water"
+tile,DESERT,332,,Water Cliffs,2x2,wc33.des,terrain: Rock
+tile,DESERT,333,,Water Cliffs,2x2,wc34.des,terrain: Rock
+tile,DESERT,334,,Water Cliffs,2x2,wc35.des,terrain: Rock
+tile,DESERT,335,,Water Cliffs,2x2,wc36.des,terrain: Rock
+tile,DESERT,336,,Water Cliffs,2x2,wc37.des,terrain: Rock
+tile,DESERT,337,,Water Cliffs,2x2,wc38.des,terrain: Rock
+tile,DESERT,338,,Water Cliffs,3x2,wc39.des,terrain: Rock
+tile,DESERT,339,,Water Cliffs,3x2,wc40.des,terrain: Rock
+tile,DESERT,340,,Water Cliffs,3x2,wc41.des,terrain: Rock
+tile,DESERT,341,,Water Cliffs,3x2,wc42.des,terrain: Rock
+tile,DESERT,342,,Water Cliffs,2x3,wc43.des,terrain: Rock
+tile,DESERT,343,,Water Cliffs,2x3,wc44.des,terrain: Rock
+tile,DESERT,344,,Water Cliffs,2x3,wc45.des,terrain: Rock
+tile,DESERT,345,,Water Cliffs,2x3,wc46.des,terrain: Rock
+tile,DESERT,346,,Water Cliffs,3x2,falls3.des,"terrain: River, Rock"
+tile,DESERT,347,,Water Cliffs,2x3,falls4.des,"terrain: River, Rock"
+tile,DESERT,400,,Beach,3x2,sh19.des,"terrain: Beach, Clear, Rock"
+tile,DESERT,401,,Beach,4x1,sh20.des,"terrain: Beach, Rock"
+tile,DESERT,402,,Beach,3x1,sh21.des,"terrain: Beach, Rock"
+tile,DESERT,403,,Beach,6x2,sh22.des,"terrain: Beach, Rock, Water"
+tile,DESERT,404,,Beach,2x2,sh23.des,"terrain: Beach, Clear"
+tile,DESERT,405,,Beach,3x3,sh24.des,"terrain: Beach, Clear, River, Rock, Water"
+tile,DESERT,431,,Beach,3x2,sh54.des,"terrain: Beach, Clear, River, Tree, Water"
+tile,DESERT,432,,Beach,3x2,sh55.des,"terrain: Clear, Rock, Water"
+tile,DESERT,439,,Beach,6x1,sh62.des,terrain: Beach
+tile,DESERT,440,,Beach,4x1,sh63.des,terrain: Beach
+tile,DESERT,406,,Beach,3x2,sh25.des,"terrain: Beach, Clear, Rock"
+tile,DESERT,407,,Beach,3x2,sh26.des,"terrain: Beach, Clear"
+tile,DESERT,408,,Beach,4x1,sh27.des,"terrain: Beach, Rock"
+tile,DESERT,409,,Beach,3x1,sh28.des,terrain: Water
+tile,DESERT,410,,Beach,6x2,sh29.des,"terrain: Beach, Clear, Rock"
+tile,DESERT,411,,Beach,2x2,sh30.des,"terrain: Beach, Rock"
+tile,DESERT,412,,Beach,3x3,sh31.des,"terrain: Clear, River, Rock"
+tile,DESERT,433,,Beach,3x2,sh56.des,"terrain: Beach, River, Rock, Water"
+tile,DESERT,434,,Beach,3x2,sh57.des,"terrain: Beach, River, Water"
+tile,DESERT,413,,Beach,1x1,sh36.des,terrain: Clear
+tile,DESERT,414,,Beach,1x1,sh37.des,terrain: Clear
+tile,DESERT,415,,Beach,1x1,sh38.des,terrain: Clear
+tile,DESERT,416,,Beach,1x1,sh39.des,terrain: Clear
+tile,DESERT,417,,Beach,3x3,sh40.des,"terrain: Beach, Clear, Rock, Water"
+tile,DESERT,418,,Beach,3x3,sh41.des,"terrain: Beach, Clear, Rock, Water"
+tile,DESERT,423,,Beach,3x3,sh46.des,"terrain: Beach, Clear, Water"
+tile,DESERT,424,,Beach,3x3,sh47.des,"terrain: Beach, Clear, Rock, Water"
+tile,DESERT,425,,Beach,3x3,sh48.des,terrain: Beach
+tile,DESERT,426,,Beach,3x3,sh49.des,"terrain: Beach, Clear, Rock, Water"
+tile,DESERT,427,,Beach,4x3,sh50.des,"terrain: Beach, Clear, Rock, Water"
+tile,DESERT,428,,Beach,4x3,sh51.des,"terrain: Beach, Clear, Rock, Water"
+tile,DESERT,429,,Beach,4x3,sh52.des,"terrain: Beach, River, Rock, Water"
+tile,DESERT,430,,Beach,4x3,sh53.des,"terrain: Beach, Clear, River, Water"
+tile,DESERT,419,,Beach,1x2,sh42.des,terrain: Beach
+tile,DESERT,420,,Beach,1x3,sh43.des,"terrain: Beach, Clear"
+tile,DESERT,437,,Beach,2x3,sh60.des,"terrain: Beach, Clear, Water"
+tile,DESERT,438,,Beach,2x3,sh61.des,"terrain: Beach, Clear, Water"
+tile,DESERT,441,,Beach,2x3,sh64.des,"terrain: River, Rock, Rough"
+tile,DESERT,421,,Beach,1x3,sh44.des,"terrain: Beach, Clear"
+tile,DESERT,422,,Beach,1x2,sh45.des,terrain: Beach
+tile,DESERT,435,,Beach,2x3,sh58.des,"terrain: Beach, Clear, Water"
+tile,DESERT,436,,Beach,2x3,sh59.des,"terrain: Beach, Clear, River"
+tile,DESERT,442,,Beach,2x3,sh65.des,"terrain: River, Rock, Rough"
+tile,DESERT,600,,Bridge,3x3,f01.des,"terrain: Beach, Road, Rough"
+tile,DESERT,601,,Bridge,3x3,f02.des,terrain: Beach
+tile,DESERT,602,,Bridge,3x3,f03.des,"terrain: Beach, Clear, Road"
+tile,DESERT,603,,Bridge,3x3,f04.des,"terrain: Beach, Clear, Road"
+tile,DESERT,604,,Bridge,3x3,f05.des,terrain: Beach
+tile,DESERT,605,,Bridge,3x3,f06.des,"terrain: Beach, Clear, Road"
+tile,DESERT,620,,Bridge,4x2,bridge1.des,"terrain: Bridge, Rock"
+tile,DESERT,621,,Bridge,4x2,bridge1h.des,"terrain: Bridge, Rock"
+tile,DESERT,622,,Bridge,4x2,bridge1d.des,terrain: Rock
+tile,DESERT,623,,Bridge,6x4,bridge1x.des,"terrain: River, Road, Rock"
+tile,DESERT,624,,Bridge,4x2,bridge2.des,"terrain: Bridge, Rock"
+tile,DESERT,625,,Bridge,4x2,bridge2h.des,"terrain: Bridge, Rock"
+tile,DESERT,626,,Bridge,4x2,bridge2d.des,terrain: Rock
+tile,DESERT,627,,Bridge,6x4,bridge2x.des,"terrain: River, Road, Rock"
+tile,DESERT,235,,Bridge,4x2,br1a.des,"terrain: Bridge, River, Rock"
+tile,DESERT,236,,Bridge,4x2,br1b.des,"terrain: Bridge, River, Rock"
+tile,DESERT,237,,Bridge,4x2,br1c.des,"terrain: River, Rock"
+tile,DESERT,238,,Bridge,4x2,br2a.des,"terrain: Bridge, Rock"
+tile,DESERT,239,,Bridge,4x2,br2b.des,"terrain: Bridge, Rock"
+tile,DESERT,240,,Bridge,4x2,br2c.des,"terrain: River, Rock"
+tile,DESERT,241,,Bridge,4x2,br3a.des,"terrain: Bridge, Rock"
+tile,DESERT,242,,Bridge,4x2,br3b.des,"terrain: Bridge, Rock"
+tile,DESERT,243,,Bridge,4x2,br3c.des,terrain: Rock
+tile,DESERT,244,,Bridge,4x2,br3d.des,"terrain: River, Rock"
+tile,DESERT,245,,Bridge,4x2,br3e.des,"terrain: Rock, Water"
+tile,DESERT,246,,Bridge,4x2,br3f.des,terrain: Water
+tile,DESERT,380,,Bridge,5x3,br1x.des,"terrain: Road, Rock"
+tile,DESERT,381,,Bridge,5x3,br2x.des,"terrain: Beach, Road, Rock"
+tile,DESERT,382,,Cliffs,1x2,cliffsl1.des,terrain: Rock
+tile,DESERT,383,,Cliffs,1x2,cliffsl2.des,terrain: Rock
+tile,DESERT,384,,Cliffs,2x1,cliffsl3.des,terrain: Rock
+tile,DESERT,385,,Cliffs,2x1,cliffsl4.des,terrain: Rock
+tile,DESERT,386,,Water Cliffs,1x2,cliffsw1.des,terrain: Rock
+tile,DESERT,387,,Water Cliffs,1x2,cliffsw2.des,terrain: Rock
+tile,DESERT,388,,Water Cliffs,2x1,cliffsw3.des,terrain: Rock
+tile,DESERT,389,,Water Cliffs,2x1,cliffsw4.des,terrain: Rock
+tile,INTERIOR,255,,Floor,1x1,clear1.int,random variants; terrain: ClearNoSmudges
+tile,INTERIOR,65535,,Floor,1x1,clear1.int,random variants; terrain: ClearNoSmudges
+tile,INTERIOR,329,,Wall,1x1,wall0001.int,terrain: Wall
+tile,INTERIOR,330,,Wall,1x1,wall0002.int,terrain: Wall
+tile,INTERIOR,331,,Wall,1x1,wall0003.int,terrain: Wall
+tile,INTERIOR,332,,Wall,1x1,wall0004.int,terrain: Wall
+tile,INTERIOR,333,,Wall,1x1,wall0005.int,terrain: Wall
+tile,INTERIOR,334,,Wall,1x1,wall0006.int,terrain: Wall
+tile,INTERIOR,335,,Wall,1x1,wall0007.int,terrain: Wall
+tile,INTERIOR,336,,Wall,1x1,wall0008.int,terrain: Wall
+tile,INTERIOR,337,,Wall,1x1,wall0009.int,terrain: Wall
+tile,INTERIOR,338,,Wall,1x1,wall0010.int,terrain: Wall
+tile,INTERIOR,339,,Wall,1x1,wall0011.int,terrain: Wall
+tile,INTERIOR,340,,Wall,1x1,wall0012.int,terrain: Wall
+tile,INTERIOR,341,,Wall,1x1,wall0013.int,terrain: Wall
+tile,INTERIOR,342,,Wall,1x1,wall0014.int,terrain: Wall
+tile,INTERIOR,343,,Wall,1x1,wall0015.int,terrain: Wall
+tile,INTERIOR,344,,Wall,1x1,wall0016.int,terrain: Wall
+tile,INTERIOR,345,,Wall,1x1,wall0017.int,terrain: Wall
+tile,INTERIOR,346,,Wall,1x1,wall0018.int,terrain: Wall
+tile,INTERIOR,347,,Wall,1x1,wall0019.int,terrain: Wall
+tile,INTERIOR,348,,Wall,1x1,wall0020.int,terrain: Wall
+tile,INTERIOR,349,,Wall,1x1,wall0021.int,terrain: Wall
+tile,INTERIOR,350,,Wall,1x1,wall0022.int,terrain: Wall
+tile,INTERIOR,351,,Wall,2x2,wall0023.int,terrain: Wall
+tile,INTERIOR,352,,Wall,2x2,wall0024.int,terrain: Wall
+tile,INTERIOR,353,,Wall,2x2,wall0025.int,terrain: Wall
+tile,INTERIOR,354,,Wall,2x2,wall0026.int,terrain: Wall
+tile,INTERIOR,355,,Wall,2x2,wall0027.int,terrain: Wall
+tile,INTERIOR,356,,Wall,2x2,wall0028.int,terrain: Wall
+tile,INTERIOR,357,,Wall,2x2,wall0029.int,terrain: Wall
+tile,INTERIOR,358,,Wall,2x2,wall0030.int,terrain: Wall
+tile,INTERIOR,359,,Wall,2x2,wall0031.int,terrain: Wall
+tile,INTERIOR,360,,Wall,2x2,wall0032.int,terrain: Wall
+tile,INTERIOR,361,,Wall,2x2,wall0033.int,terrain: Wall
+tile,INTERIOR,362,,Wall,2x2,wall0034.int,terrain: Wall
+tile,INTERIOR,363,,Wall,2x2,wall0035.int,terrain: Wall
+tile,INTERIOR,364,,Wall,2x2,wall0036.int,terrain: Wall
+tile,INTERIOR,365,,Wall,2x2,wall0037.int,terrain: Wall
+tile,INTERIOR,366,,Wall,2x2,wall0038.int,terrain: Wall
+tile,INTERIOR,367,,Wall,2x3,wall0039.int,terrain: Wall
+tile,INTERIOR,368,,Wall,2x3,wall0040.int,terrain: Wall
+tile,INTERIOR,369,,Wall,2x3,wall0041.int,terrain: Wall
+tile,INTERIOR,370,,Wall,2x3,wall0042.int,terrain: Wall
+tile,INTERIOR,371,,Wall,3x2,wall0043.int,terrain: Wall
+tile,INTERIOR,372,,Wall,3x2,wall0044.int,terrain: Wall
+tile,INTERIOR,373,,Wall,3x2,wall0045.int,terrain: Wall
+tile,INTERIOR,374,,Wall,3x2,wall0046.int,terrain: Wall
+tile,INTERIOR,375,,Wall,3x2,wall0047.int,terrain: Wall
+tile,INTERIOR,376,,Wall,3x2,wall0048.int,terrain: Wall
+tile,INTERIOR,377,,Wall,3x3,wall0049.int,terrain: Wall
+tile,INTERIOR,268,,Floor,1x1,flor0001.int,random variants; terrain: Clear
+tile,INTERIOR,269,,Floor,1x1,flor0002.int,random variants; terrain: Clear
+tile,INTERIOR,270,,Floor,1x1,flor0003.int,random variants; terrain: Clear
+tile,INTERIOR,271,,Floor,1x1,flor0004.int,random variants; terrain: Clear
+tile,INTERIOR,272,,Floor,1x1,flor0005.int,random variants; terrain: Clear
+tile,INTERIOR,273,,Floor,1x1,flor0006.int,random variants; terrain: Clear
+tile,INTERIOR,274,,Floor,1x1,flor0007.int,random variants; terrain: Clear
+tile,INTERIOR,384,,Wall,1x1,xtra0001.int,terrain: Wall
+tile,INTERIOR,385,,Wall,2x1,xtra0002.int,"terrain: Clear, Wall"
+tile,INTERIOR,386,,Wall,1x1,xtra0003.int,terrain: Wall
+tile,INTERIOR,387,,Wall,1x2,xtra0004.int,"terrain: Clear, Wall"
+tile,INTERIOR,388,,Wall,1x1,xtra0005.int,terrain: Wall
+tile,INTERIOR,389,,Wall,2x1,xtra0006.int,"terrain: Clear, Wall"
+tile,INTERIOR,390,,Wall,1x1,xtra0007.int,terrain: Wall
+tile,INTERIOR,391,,Wall,1x2,xtra0008.int,"terrain: Clear, Wall"
+tile,INTERIOR,392,,Wall,1x1,xtra0009.int,terrain: Wall
+tile,INTERIOR,393,,Wall,1x1,xtra0010.int,terrain: Wall
+tile,INTERIOR,394,,Wall,1x1,xtra0011.int,terrain: Wall
+tile,INTERIOR,395,,Wall,1x2,xtra0012.int,"terrain: Clear, Wall"
+tile,INTERIOR,396,,Wall,1x2,xtra0013.int,"terrain: Clear, Wall"
+tile,INTERIOR,397,,Wall,3x2,xtra0014.int,"terrain: Clear, Wall"
+tile,INTERIOR,398,,Wall,3x2,xtra0015.int,terrain: Wall
+tile,INTERIOR,399,,Wall,2x4,xtra0016.int,terrain: Wall
+tile,INTERIOR,318,,Floor,1x1,strp0001.int,random variants; terrain: Clear
+tile,INTERIOR,319,,Floor,1x1,strp0002.int,random variants; terrain: Clear
+tile,INTERIOR,320,,Floor,1x1,strp0003.int,terrain: Clear
+tile,INTERIOR,321,,Floor,1x1,strp0004.int,terrain: Clear
+tile,INTERIOR,322,,Floor,1x1,strp0005.int,terrain: Clear
+tile,INTERIOR,323,,Floor,1x1,strp0006.int,terrain: Clear
+tile,INTERIOR,324,,Floor,1x1,strp0007.int,terrain: Clear
+tile,INTERIOR,325,,Floor,1x1,strp0008.int,terrain: Clear
+tile,INTERIOR,326,,Floor,1x1,strp0009.int,terrain: Clear
+tile,INTERIOR,327,,Floor,1x1,strp0010.int,terrain: Clear
+tile,INTERIOR,328,,Floor,1x1,strp0011.int,terrain: Clear
+tile,INTERIOR,253,,Floor,1x1,arro0001.int,random variants; terrain: Clear
+tile,INTERIOR,254,,Floor,1x1,arro0002.int,random variants; terrain: Clear
+tile,INTERIOR,256,,Floor,1x1,arro0004.int,random variants; terrain: Clear
+tile,INTERIOR,257,,Floor,1x1,arro0005.int,random variants; terrain: Clear
+tile,INTERIOR,258,,Floor,1x1,arro0006.int,random variants; terrain: Clear
+tile,INTERIOR,259,,Floor,1x1,arro0007.int,terrain: Clear
+tile,INTERIOR,260,,Floor,1x1,arro0008.int,terrain: Clear
+tile,INTERIOR,261,,Floor,1x1,arro0009.int,terrain: Clear
+tile,INTERIOR,262,,Floor,1x1,arro0010.int,terrain: Clear
+tile,INTERIOR,263,,Floor,1x1,arro0011.int,terrain: Clear
+tile,INTERIOR,264,,Floor,1x1,arro0012.int,terrain: Clear
+tile,INTERIOR,265,,Floor,1x1,arro0013.int,terrain: Clear
+tile,INTERIOR,266,,Floor,1x1,arro0014.int,terrain: Clear
+tile,INTERIOR,267,,Floor,1x1,arro0015.int,terrain: Clear
+tile,INTERIOR,275,,Floor,1x1,gflr0001.int,random variants; terrain: Clear
+tile,INTERIOR,276,,Floor,1x1,gflr0002.int,random variants; terrain: Clear
+tile,INTERIOR,277,,Floor,1x1,gflr0003.int,random variants; terrain: Clear
+tile,INTERIOR,278,,Floor,1x1,gflr0004.int,random variants; terrain: Clear
+tile,INTERIOR,279,,Floor,1x1,gflr0005.int,random variants; terrain: Clear
+tile,INTERIOR,280,,Floor,1x1,gstr0001.int,random variants; terrain: Clear
+tile,INTERIOR,281,,Floor,1x1,gstr0002.int,random variants; terrain: Clear
+tile,INTERIOR,282,,Floor,1x1,gstr0003.int,terrain: Clear
+tile,INTERIOR,283,,Floor,1x1,gstr0004.int,terrain: Clear
+tile,INTERIOR,284,,Floor,1x1,gstr0005.int,terrain: Clear
+tile,INTERIOR,285,,Floor,1x1,gstr0006.int,terrain: Clear
+tile,INTERIOR,286,,Floor,1x1,gstr0007.int,terrain: Clear
+tile,INTERIOR,287,,Floor,1x1,gstr0008.int,terrain: Clear
+tile,INTERIOR,288,,Floor,1x1,gstr0009.int,terrain: Clear
+tile,INTERIOR,289,,Floor,1x1,gstr0010.int,terrain: Clear
+tile,INTERIOR,290,,Floor,1x1,gstr0011.int,terrain: Clear
+tile,INTERIOR,291,,Wall,1x1,lwal0001.int,random variants; terrain: Wall
+tile,INTERIOR,292,,Wall,1x1,lwal0002.int,random variants; terrain: Wall
+tile,INTERIOR,293,,Wall,1x1,lwal0003.int,random variants; terrain: Wall
+tile,INTERIOR,294,,Wall,1x1,lwal0004.int,random variants; terrain: Wall
+tile,INTERIOR,295,,Wall,1x1,lwal0005.int,random variants; terrain: Wall
+tile,INTERIOR,296,,Wall,1x1,lwal0006.int,terrain: Wall
+tile,INTERIOR,297,,Wall,1x1,lwal0007.int,terrain: Wall
+tile,INTERIOR,298,,Wall,1x1,lwal0008.int,terrain: Wall
+tile,INTERIOR,299,,Wall,1x1,lwal0009.int,terrain: Wall
+tile,INTERIOR,300,,Wall,1x1,lwal0010.int,terrain: Wall
+tile,INTERIOR,301,,Wall,1x1,lwal0011.int,terrain: Wall
+tile,INTERIOR,302,,Wall,1x1,lwal0012.int,terrain: Wall
+tile,INTERIOR,303,,Wall,1x1,lwal0013.int,terrain: Wall
+tile,INTERIOR,304,,Wall,1x1,lwal0014.int,terrain: Wall
+tile,INTERIOR,305,,Wall,1x1,lwal0015.int,terrain: Wall
+tile,INTERIOR,306,,Wall,1x1,lwal0016.int,terrain: Wall
+tile,INTERIOR,307,,Wall,1x1,lwal0017.int,terrain: Wall
+tile,INTERIOR,308,,Wall,1x1,lwal0018.int,terrain: Wall
+tile,INTERIOR,309,,Wall,1x1,lwal0019.int,terrain: Wall
+tile,INTERIOR,310,,Wall,1x1,lwal0020.int,terrain: Wall
+tile,INTERIOR,311,,Wall,1x1,lwal0021.int,terrain: Wall
+tile,INTERIOR,312,,Wall,1x1,lwal0022.int,terrain: Wall
+tile,INTERIOR,313,,Wall,1x1,lwal0023.int,terrain: Wall
+tile,INTERIOR,314,,Wall,1x1,lwal0024.int,terrain: Wall
+tile,INTERIOR,315,,Wall,1x1,lwal0025.int,terrain: Wall
+tile,INTERIOR,316,,Wall,1x1,lwal0026.int,terrain: Wall
+tile,INTERIOR,317,,Wall,1x1,lwal0027.int,terrain: Wall
