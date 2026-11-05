@@ -1,0 +1,22 @@
+--- a/OpenRA.Mods.Common/Widgets/TextNotificationsDisplayWidget.cs
++++ b/OpenRA.Mods.Common/Widgets/TextNotificationsDisplayWidget.cs
+@@ -24,6 +24,9 @@
+ 		public readonly int LogLength = 8;
+ 		public readonly bool HideOverflow = true;
+ 
++		[Desc("Notification pools this display skips, e.g. because another widget shows them.")]
++		public readonly HashSet<TextNotificationPool> IgnoredPools = new();
++
+ 		public string ChatTemplate = "CHAT_LINE_TEMPLATE";
+ 		public string SystemTemplate = "SYSTEM_LINE_TEMPLATE";
+ 		public string MissionTemplate = "CHAT_LINE_TEMPLATE";
+@@ -81,6 +84,9 @@
+ 
+ 		public void AddNotification(TextNotification notification)
+ 		{
++			if (IgnoredPools.Contains(notification.Pool))
++				return;
++
+ 			var notificationWidget = templates[notification.Pool].Clone();
+ 			WidgetUtils.SetupTextNotification(notificationWidget, notification, Bounds.Width, false);
+ 

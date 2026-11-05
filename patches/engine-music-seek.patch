@@ -1,0 +1,136 @@
+--- a/OpenRA.Game/Sound/SoundDevice.cs
++++ b/OpenRA.Game/Sound/SoundDevice.cs
+@@ -52,5 +52,8 @@
+ 		float SeekPosition { get; }
+ 		bool Complete { get; }
+ 		void SetPosition(WPos pos);
++
++		// RAPX: jump to a time in the sound, for the music player's seek bar.
++		void Seek(float seconds);
+ 	}
+ }
+--- a/OpenRA.Game/Sound/Sound.cs
++++ b/OpenRA.Game/Sound/Sound.cs
+@@ -352,6 +352,12 @@
+ 		}
+ 
+ 		public float MusicSeekPosition => music?.SeekPosition ?? 0;
++
++		// RAPX: jump to a time in the current music track.
++		public void SeekMusic(float seconds)
++		{
++			music?.Seek(seconds);
++		}
+ 
+ 		public float VideoSeekPosition => video?.SeekPosition ?? 0;
+ 
+--- a/OpenRA.Platforms.Default/OpenAlSoundEngine.cs
++++ b/OpenRA.Platforms.Default/OpenAlSoundEngine.cs
+@@ -540,7 +540,27 @@
+ 				return;
+ 
+ 			AL10.alSourcei(Source, AL10.AL_LOOPING, looping ? AL10.AL_TRUE : AL10.AL_FALSE);
++		}
++
++		// RAPX: move the play position; keeps the playing/paused state.
++		public virtual void Seek(float seconds)
++		{
++			if (done)
++				return;
++
++			SetSampleOffset(seconds);
+ 		}
++
++		protected void SetSampleOffset(float seconds)
++		{
++			AL10.alGetSourcei(Source, AL10.AL_BUFFER, out var buffer);
++			AL10.alGetBufferi((uint)buffer, AL10.AL_SIZE, out var size);
++			AL10.alGetBufferi((uint)buffer, AL10.AL_CHANNELS, out var channels);
++			AL10.alGetBufferi((uint)buffer, AL10.AL_BITS, out var bits);
++			var samples = size / Math.Max(1, channels * bits / 8);
++			var offset = Math.Clamp((int)(seconds * SampleRate), 0, Math.Max(0, samples - 1));
++			AL10.alSourcei(Source, AL11.AL_SAMPLE_OFFSET, offset);
++		}
+ 	}
+ 
+ 	sealed class OpenAlAsyncLoadSound : OpenAlSound
+@@ -549,6 +569,10 @@
+ 		readonly CancellationTokenSource cts = new();
+ 		readonly Task playTask;
+ 
++		// RAPX: a seek made while the track is still decoding is applied once it is loaded.
++		bool loaded;
++		float pendingSeek = -1;
++
+ 		public OpenAlAsyncLoadSound(uint source, bool looping, bool relative, WPos pos, float volume, int channels, int sampleBits, int sampleRate, Stream stream)
+ 			: base(source, looping, relative, pos, volume, sampleRate)
+ 		{
+@@ -599,6 +623,7 @@
+ 
+ 					lock (cts)
+ 					{
++						loaded = true;
+ 						if (!cts.IsCancellationRequested)
+ 						{
+ 							// TODO: A race condition can happen between the state check and playing/rewinding if a
+@@ -606,13 +631,19 @@
+ 							// consequences are minor, so for now we'll ignore it.
+ 							AL10.alGetSourcei(Source, AL10.AL_SOURCE_STATE, out var state);
+ 							if (state != AL10.AL_STOPPED)
++							{
+ 								AL10.alSourcePlay(source);
++								if (pendingSeek >= 0)
++									SetSampleOffset(pendingSeek);
++							}
+ 							else
+ 							{
+ 								// A stopped sound indicates it was paused before we finishing loaded.
+ 								// We don't want to start playing it right away.
+ 								// We rewind the source so when it is started, it plays from the beginning.
+ 								AL10.alSourceRewind(source);
++								if (pendingSeek >= 0)
++									SetSampleOffset(pendingSeek);
+ 							}
+ 						}
+ 					}
+@@ -631,8 +662,8 @@
+ 						try
+ 						{
+ 							// Wait until the track is due to complete, and at most 60 times a second to prevent a
+-							// busy-wait.
+-							var delaySecs = Math.Max(lengthInSecs - currentSeek, 1 / 60f);
++							// busy-wait. RAPX: re-check at least 4 times a second, as a seek can move the end closer.
++							var delaySecs = Math.Clamp(lengthInSecs - currentSeek, 1 / 60f, 0.25f);
+ 							await Task.Delay(TimeSpan.FromSeconds(delaySecs), cts.Token);
+ 						}
+ 						catch (TaskCanceledException)
+@@ -646,6 +677,20 @@
+ 			});
+ 		}
+ 
++		public override void Seek(float seconds)
++		{
++			lock (cts)
++			{
++				if (!loaded)
++				{
++					pendingSeek = seconds;
++					return;
++				}
++			}
++
++			base.Seek(seconds);
++		}
++
+ 		public override void Stop()
+ 		{
+ 			lock (cts)
+--- a/OpenRA.Platforms.Default/DummySoundEngine.cs
++++ b/OpenRA.Platforms.Default/DummySoundEngine.cs
+@@ -71,5 +71,6 @@
+ 		public bool Complete => false;
+ 
+ 		public void SetPosition(WPos position) { }
++		public void Seek(float seconds) { }
+ 	}
+ }

@@ -1,0 +1,143 @@
+--- a/OpenRA.Game/Settings.cs
++++ b/OpenRA.Game/Settings.cs
+@@ -208,10 +208,14 @@
+ 		public float UIScale = 1;
+ 
+ 		[Desc("Add a frame rate limiter.")]
+-		public bool CapFramerate = false;
++		public bool CapFramerate = true;
+ 
+ 		[Desc("At which frames per second to cap the framerate.")]
+ 		public int MaxFramerate = 60;
++
++		[Desc("Frame rate limit while the game window does not have input focus (0 = no extra limit).",
++			"The game logic keeps running at full speed; only drawing slows down.")]
++		public int UnfocusedFramerate = 10;
+ 
+ 		[Desc("Set a frame rate limit of 1 render frame per game simulation frame (overrides CapFramerate/MaxFramerate).")]
+ 		public bool CapFramerateToGameFps = false;
+--- a/OpenRA.Game/Game.cs
++++ b/OpenRA.Game/Game.cs
+@@ -837,6 +837,11 @@
+ 					renderInterval = 1000 / maxFramerate;
+ 				}
+ 
++				// Save power while the window is in the background: draw less often, but keep the logic at full speed
++				var unfocusedThrottle = Settings.Graphics.UnfocusedFramerate > 0 && !Renderer.WindowHasInputFocus;
++				if (unfocusedThrottle)
++					renderInterval = Math.Max(renderInterval, 1000 / Settings.Graphics.UnfocusedFramerate.Clamp(1, 1000));
++
+ 				// Tick as fast as possible while restoring game saves, capping rendering at 5 FPS
+ 				if (OrderManager.World != null && OrderManager.World.IsLoadingGameSave)
+ 				{
+@@ -873,8 +878,8 @@
+ 						{
+ 							ticksSinceRender++;
+ 
+-							// Force at least one render per tick during regular gameplay
+-							if (OrderManager.World != null && !OrderManager.World.IsLoadingGameSave && !OrderManager.World.IsReplay)
++							// Force at least one render per tick during regular gameplay (not while throttled in the background)
++							if (!unfocusedThrottle && OrderManager.World != null && !OrderManager.World.IsLoadingGameSave && !OrderManager.World.IsReplay)
+ 								renderBeforeNextTick = true;
+ 						}
+ 
+--- a/OpenRA.Game/Renderer.cs
++++ b/OpenRA.Game/Renderer.cs
+@@ -235,7 +235,9 @@
+ 				// Render the world at the window's native pixel resolution: zoomed-in views are supersampled
+ 				// (fractional WorldDownscaleFactor < 1) so high resolution artwork keeps its detail, and
+ 				// zoomed-out views are downsampled to the same size.
+-				worldBufferSize = Window.SurfaceSize.NextPowerOf2();
++				// PERF: exactly the window size, not rounded up to a power of two (4096x2048 for a 2940x1846 window):
++				// every clear, post-processing copy and render pass reload covers the whole buffer.
++				worldBufferSize = Window.SurfaceSize;
+ 			}
+ 			else if (depthMargin == 0)
+ 			{
+@@ -404,6 +406,19 @@
+ 			PerfHistory.Increment("batches", 1);
+ 		}
+ 
++		/// <summary>
++		/// Draws a batch with a blend mode, e.g. a full-screen pass that only scales the colours already drawn
++		/// (BlendMode.Multiplicative). This needs no copy of the world buffer, unlike WorldBufferSnapshot.
++		/// </summary>
++		public void DrawBatch<T>(IVertexBuffer<T> vertices, IShader shader,
++			int firstVertex, int numVertices, PrimitiveType type, BlendMode blendMode)
++			where T : struct
++		{
++			Context.SetBlendMode(blendMode);
++			DrawBatch(vertices, shader, firstVertex, numVertices, type);
++			Context.SetBlendMode(BlendMode.None);
++		}
++
+ 		public void DrawQuadBatch(ref Vertex[] vertices, IShader shader, int numVertices)
+ 		{
+ 			tempVertexBuffer.SetData(ref vertices, numVertices);
+--- a/OpenRA.Game/Graphics/WorldRenderer.cs
++++ b/OpenRA.Game/Graphics/WorldRenderer.cs
+@@ -413,14 +413,28 @@
+ 
+ 		public void ApplyPostProcessing(PostProcessPassType type)
+ 		{
++			// PERF: full-screen passes cover the whole world buffer, which is rounded up to a power of two and is often
++			// much larger than the view (4096x2048 for a 2940x1846 window). Scissor them to the view (plus a tile of
++			// margin) so they skip the part that is never shown. Inside the map scissor this changes nothing.
++			var scissored = false;
+ 			foreach (var pass in postProcessPasses)
+ 			{
+ 				if (pass.Type != type || !pass.Enabled)
+ 					continue;
++
++				if (!scissored)
++				{
++					var view = Viewport.BottomRight - Viewport.TopLeft;
++					Game.Renderer.EnableScissor(new Rectangle(0, 0, view.X + TileSize.Width, view.Y + TileSize.Height));
++					scissored = true;
++				}
+ 
+ 				Game.Renderer.Flush();
+ 				pass.Draw(this);
+ 			}
++
++			if (scissored)
++				Game.Renderer.DisableScissor();
+ 		}
+ 
+ 		public void DrawAnnotations()
+--- a/OpenRA.Platforms.Default/FrameBuffer.cs
++++ b/OpenRA.Platforms.Default/FrameBuffer.cs
+@@ -29,9 +29,8 @@
+ 		{
+ 			this.size = size;
+ 			this.clearColor = clearColor;
+-			if (!Exts.IsPowerOf2(size.Width) || !Exts.IsPowerOf2(size.Height))
+-				throw new InvalidDataException($"Frame buffer size ({size.Width}x{size.Height}) must be a power of two");
+-
++			// Any size is fine: all supported OpenGL profiles (3.2 core, 2.1 + framebuffer_object, ES 3.0) allow
++			// non-power-of-two render targets. An exact-size world buffer saves fill rate and memory bandwidth.
+ 			OpenGL.glGenFramebuffers(1, out framebuffer);
+ 			OpenGL.CheckGLError();
+ 			OpenGL.glBindFramebuffer(OpenGL.GL_FRAMEBUFFER, framebuffer);
+--- a/OpenRA.Platforms.Default/Texture.cs
++++ b/OpenRA.Platforms.Default/Texture.cs
+@@ -165,9 +165,6 @@
+ 		public void SetDataFromReadBuffer(Rectangle rect)
+ 		{
+ 			VerifyThreadAffinity();
+-			if (!Exts.IsPowerOf2(rect.Width) || !Exts.IsPowerOf2(rect.Height))
+-				throw new InvalidDataException($"Non-power-of-two rectangle {rect.Width}x{rect.Height}");
+-
+ 			PrepareTexture();
+ 
+ 			var glInternalFormat = OpenGL.Profile == GLProfile.Embedded ? OpenGL.GL_BGRA : OpenGL.GL_RGBA8;
+@@ -250,9 +247,6 @@
+ 		public void SetEmpty(int width, int height)
+ 		{
+ 			VerifyThreadAffinity();
+-			if (!Exts.IsPowerOf2(width) || !Exts.IsPowerOf2(height))
+-				throw new InvalidDataException($"Non-power-of-two array {width}x{height}");
+-
+ 			Size = new Size(width, height);
+ 			SetData(IntPtr.Zero, width, height);
+ 		}

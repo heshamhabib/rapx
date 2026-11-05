@@ -1,0 +1,25 @@
+--- a/OpenRA.Mods.Common/Widgets/ProductionPaletteWidget.cs
++++ b/OpenRA.Mods.Common/Widgets/ProductionPaletteWidget.cs
+@@ -99,6 +99,9 @@
+ 		public int IconRowOffset = 0;
+ 		public int MaxIconRowOffset = int.MaxValue;
+ 
++		/// <summary>Optional filter on the items shown (RAPX: sidebar category chips). Null shows everything.</summary>
++		public Func<ActorInfo, bool> BuildableFilter;
++
+ 		readonly Lazy<TooltipContainerWidget> tooltipContainer;
+ 		ProductionQueue currentQueue;
+ 		HotkeyReference[] hotkeys;
+@@ -225,7 +228,11 @@
+ 				if (CurrentQueue == null)
+ 					return Enumerable.Empty<ActorInfo>();
+ 
+-				return CurrentQueue.AllItems().OrderBy(a => a.TraitInfo<BuildableInfo>().BuildPaletteOrder);
++				var items = CurrentQueue.AllItems();
++				if (BuildableFilter != null)
++					items = items.Where(BuildableFilter);
++
++				return items.OrderBy(a => a.TraitInfo<BuildableInfo>().BuildPaletteOrder);
+ 			}
+ 		}
+ 

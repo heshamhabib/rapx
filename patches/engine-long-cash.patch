@@ -1,0 +1,272 @@
+--- a/OpenRA.Game/Scripting/ScriptTypes.cs
++++ b/OpenRA.Game/Scripting/ScriptTypes.cs
+@@ -74,6 +74,12 @@
+ 					return true;
+ 				}
+ 
++				if (t.IsAssignableFrom(typeof(long)))
++				{
++					clrObject = (long)value.ToNumber().Value;
++					return true;
++				}
++
+ 				if (t.IsAssignableFrom(typeof(short)))
+ 				{
+ 					clrObject = (short)value.ToNumber().Value;
+@@ -158,6 +164,9 @@
+ 				if (obj is int i)
+ 					return i;
+ 
++				if (obj is long l)
++					return l;
++
+ 				if (obj is bool b)
+ 					return b;
+ 
+--- a/OpenRA.Game/Sync.cs
++++ b/OpenRA.Game/Sync.cs
+@@ -42,6 +42,7 @@
+ 
+ 		static readonly Dictionary<Type, MethodInfo> CustomHashFunctions = new()
+ 		{
++			{ typeof(long), ((Func<long, int>)HashLong).Method },
+ 			{ typeof(int2), ((Func<int2, int>)HashInt2).Method },
+ 			{ typeof(CPos), ((Func<CPos, int>)HashCPos).Method },
+ 			{ typeof(CVec), ((Func<CVec, int>)HashCVec).Method },
+@@ -105,6 +106,11 @@
+ 			return (Func<object, int>)d.CreateDelegate(typeof(Func<object, int>));
+ 		}
+ 
++		public static int HashLong(long l)
++		{
++			return (int)l ^ (int)(l >> 32);
++		}
++
+ 		public static int HashInt2(int2 i2)
+ 		{
+ 			return ((i2.X * 5) ^ (i2.Y * 3)) / 4;
+--- a/OpenRA.Mods.Cnc/Traits/Infiltration/InfiltrateForCash.cs
++++ b/OpenRA.Mods.Cnc/Traits/Infiltration/InfiltrateForCash.cs
+@@ -76,7 +76,7 @@
+ 			var spyResources = infiltrator.Owner.PlayerActor.Trait<PlayerResources>();
+ 			var spyValue = infiltrator.Info.TraitInfoOrDefault<ValuedInfo>();
+ 
+-			var toTake = Math.Min(info.Maximum, (targetResources.Cash + targetResources.Resources) * info.Percentage / 100);
++			var toTake = (int)Math.Min(info.Maximum, targetResources.GetCashAndResources() * info.Percentage / 100);
+ 			var toGive = Math.Max(toTake, info.Minimum >= 0 ? info.Minimum : spyValue != null ? spyValue.Cost : 0);
+ 
+ 			targetResources.TakeCash(toTake);
+--- a/OpenRA.Mods.Common/Scripting/Properties/ResourceProperties.cs
++++ b/OpenRA.Mods.Common/Scripting/Properties/ResourceProperties.cs
+@@ -38,7 +38,7 @@
+ 		public int ResourceCapacity => pr.ResourceCapacity;
+ 
+ 		[Desc("The amount of cash held by the player.")]
+-		public int Cash
++		public long Cash
+ 		{
+ 			get => pr.Cash;
+ 			set => pr.Cash = Math.Max(0, value);
+--- a/OpenRA.Mods.Common/Traits/Player/PlayerResources.cs
++++ b/OpenRA.Mods.Common/Traits/Player/PlayerResources.cs
+@@ -27,10 +27,10 @@
+ 		public readonly string DefaultCashDropdownDescription = "The amount of cash that players start with";
+ 
+ 		[Desc("Starting cash options that are available in the lobby options.")]
+-		public readonly int[] SelectableCash = { 2500, 5000, 10000, 20000 };
++		public readonly long[] SelectableCash = { 2500, 5000, 10000, 20000 };
+ 
+ 		[Desc("Default starting cash option: should be one of the SelectableCash options.")]
+-		public readonly int DefaultCash = 5000;
++		public readonly long DefaultCash = 5000;
+ 
+ 		[Desc("Force the DefaultCash option by disabling changes in the lobby.")]
+ 		public readonly bool DefaultCashDropdownLocked = false;
+@@ -63,14 +63,29 @@
+ 
+ 		IEnumerable<LobbyOption> ILobbyOptions.LobbyOptions(MapPreview map)
+ 		{
+-			var startingCash = SelectableCash.ToDictionary(c => c.ToStringInvariant(), c => "$" + c.ToString(NumberFormatInfo.CurrentInfo));
++			var startingCash = SelectableCash.ToDictionary(c => c.ToString(NumberFormatInfo.InvariantInfo), c => "$" + FormatCash(c));
+ 
+ 			if (startingCash.Count > 0)
+ 				yield return new LobbyOption(map, "startingcash",
+ 					DefaultCashDropdownLabel, DefaultCashDropdownDescription, DefaultCashDropdownVisible, DefaultCashDropdownDisplayOrder,
+-					startingCash, DefaultCash.ToStringInvariant(), DefaultCashDropdownLocked);
++					startingCash, DefaultCash.ToString(NumberFormatInfo.InvariantInfo), DefaultCashDropdownLocked);
+ 		}
+ 
++		/// <summary>Formats an amount for display: thousands separators, or a word scale from a million up ($1.5 Billion).</summary>
++		public static string FormatCash(long amount)
++		{
++			var scales = new (long Value, string Name)[]
++			{
++				(1_000_000_000_000_000, "Quadrillion"), (1_000_000_000_000, "Trillion"), (1_000_000_000, "Billion"), (1_000_000, "Million")
++			};
++
++			foreach (var (value, name) in scales)
++				if (Math.Abs(amount) >= value)
++					return (Math.Truncate(amount / (decimal)value * 100) / 100).ToString("0.##", NumberFormatInfo.CurrentInfo) + " " + name;
++
++			return amount.ToString("N0", NumberFormatInfo.CurrentInfo);
++		}
++
+ 		public override object Create(ActorInitializer init) { return new PlayerResources(init.Self, this); }
+ 	}
+ 
+@@ -85,16 +100,17 @@
+ 			owner = self.Owner;
+ 
+ 			var startingCash = self.World.LobbyInfo.GlobalSettings
+-				.OptionOrDefault("startingcash", info.DefaultCash.ToStringInvariant());
++				.OptionOrDefault("startingcash", info.DefaultCash.ToString(NumberFormatInfo.InvariantInfo));
+ 
+-			if (!int.TryParse(startingCash, out Cash))
++			if (!long.TryParse(startingCash, NumberStyles.Integer, NumberFormatInfo.InvariantInfo, out Cash))
+ 				Cash = info.DefaultCash;
+ 
+ 			lastNotificationTime = -Info.InsufficientFundsNotificationInterval;
+ 		}
+ 
++		// Cash and the running totals are 64-bit so lobbies can start players with billions or trillions
+ 		[Sync]
+-		public int Cash;
++		public long Cash;
+ 
+ 		[Sync]
+ 		public int Resources;
+@@ -102,8 +118,8 @@
+ 		[Sync]
+ 		public int ResourceCapacity;
+ 
+-		public int Earned;
+-		public int Spent;
++		public long Earned;
++		public long Spent;
+ 
+ 		long lastNotificationTime;
+ 
+@@ -114,7 +130,7 @@
+ 			else
+ 			{
+ 				// Don't put the player into negative funds
+-				amount = Math.Max(-GetCashAndResources(), amount);
++				amount = (int)Math.Max(-GetCashAndResources(), amount);
+ 
+ 				TakeCash(-amount);
+ 			}
+@@ -150,7 +166,7 @@
+ 
+ 		public void GiveCash(int num)
+ 		{
+-			if (Cash < int.MaxValue)
++			if (Cash < long.MaxValue)
+ 			{
+ 				try
+ 				{
+@@ -161,11 +177,11 @@
+ 				}
+ 				catch (OverflowException)
+ 				{
+-					Cash = int.MaxValue;
++					Cash = long.MaxValue;
+ 				}
+ 			}
+ 
+-			if (Earned < int.MaxValue)
++			if (Earned < long.MaxValue)
+ 			{
+ 				try
+ 				{
+@@ -176,7 +192,7 @@
+ 				}
+ 				catch (OverflowException)
+ 				{
+-					Earned = int.MaxValue;
++					Earned = long.MaxValue;
+ 				}
+ 			}
+ 		}
+@@ -220,9 +236,9 @@
+ 				Resources = ResourceCapacity;
+ 		}
+ 
+-		public int GetCashAndResources()
++		public long GetCashAndResources()
+ 		{
+-			return Cash + Resources;
++			return Cash > long.MaxValue - Resources ? long.MaxValue : Cash + Resources;
+ 		}
+ 	}
+ }
+--- a/OpenRA.Mods.Common/Traits/Player/PlayerStatistics.cs
++++ b/OpenRA.Mods.Common/Traits/Player/PlayerStatistics.cs
+@@ -55,7 +55,7 @@
+ 		public int AssetsValue;
+ 
+ 		// High resolution (every second) record of earnings, limited to the last minute
+-		readonly Queue<int> earnedSeconds = new(60);
++		readonly Queue<long> earnedSeconds = new(60);
+ 
+ 		int lastIncome;
+ 		int lastIncomeTick;
+@@ -108,7 +108,7 @@
+ 
+ 				var lastEarned = earnedSeconds.Count > 59 ? earnedSeconds.Dequeue() : 0;
+ 				lastIncome = DisplayIncome = Income;
+-				Income = resources.Earned - lastEarned;
++				Income = (int)Math.Clamp(resources.Earned - lastEarned, int.MinValue, int.MaxValue);
+ 				earnedSeconds.Enqueue(resources.Earned);
+ 			}
+ 			else
+--- a/OpenRA.Mods.Common/Widgets/Logic/Ingame/IngameCashCounterLogic.cs
++++ b/OpenRA.Mods.Common/Widgets/Logic/Ingame/IngameCashCounterLogic.cs
+@@ -32,7 +32,7 @@
+ 		readonly CachedTransform<(int Resources, int Capacity), string> siloUsageTooltipCache;
+ 
+ 		int nextCashTickTime = 0;
+-		int displayResources;
++		long displayResources;
+ 
+ 		string siloUsageTooltip = "";
+ 
+@@ -58,7 +58,7 @@
+ 			var actual = playerResources.GetCashAndResources();
+ 
+ 			var diff = Math.Abs(actual - displayResources);
+-			var move = Math.Min(Math.Max((int)(diff * DisplayFracPerFrame), DisplayDeltaPerFrame), diff);
++			var move = Math.Min(Math.Max((long)(diff * DisplayFracPerFrame), DisplayDeltaPerFrame), diff);
+ 
+ 			if (displayResources < actual)
+ 			{
+--- a/OpenRA.Mods.Common/Widgets/Logic/Ingame/ObserverStatsLogic.cs
++++ b/OpenRA.Mods.Common/Widgets/Logic/Ingame/ObserverStatsLogic.cs
+@@ -441,16 +441,16 @@
+ 				return template;
+ 
+ 			var res = player.PlayerActor.Trait<PlayerResources>();
+-			var cashText = new CachedTransform<int, string>(i => "$" + i);
++			var cashText = new CachedTransform<long, string>(i => "$" + i);
+ 			template.Get<LabelWidget>("CASH").GetText = () => cashText.Update(res.GetCashAndResources());
+ 
+ 			var incomeText = new CachedTransform<int, string>(i => "$" + i);
+ 			template.Get<LabelWidget>("INCOME").GetText = () => incomeText.Update(stats.DisplayIncome);
+ 
+-			var earnedText = new CachedTransform<int, string>(i => "$" + i);
++			var earnedText = new CachedTransform<long, string>(i => "$" + i);
+ 			template.Get<LabelWidget>("EARNED").GetText = () => earnedText.Update(res.Earned);
+ 
+-			var spentText = new CachedTransform<int, string>(i => "$" + i);
++			var spentText = new CachedTransform<long, string>(i => "$" + i);
+ 			template.Get<LabelWidget>("SPENT").GetText = () => spentText.Update(res.Spent);
+ 
+ 			var assetsText = new CachedTransform<int, string>(i => "$" + i);
+@@ -489,7 +489,7 @@
+ 			SetupPlayerColor(player, template, playerColor, playerGradient);
+ 
+ 			var res = player.PlayerActor.Trait<PlayerResources>();
+-			var cashText = new CachedTransform<int, string>(i => "$" + i);
++			var cashText = new CachedTransform<long, string>(i => "$" + i);
+ 			template.Get<LabelWidget>("CASH").GetText = () => cashText.Update(res.GetCashAndResources());
+ 
+ 			var powerRes = player.PlayerActor.TraitOrDefault<PowerManager>();

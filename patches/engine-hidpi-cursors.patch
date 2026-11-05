@@ -1,0 +1,298 @@
+--- a/OpenRA.Game/Graphics/CursorManager.cs
++++ b/OpenRA.Game/Graphics/CursorManager.cs
+@@ -13,6 +13,7 @@
+ using System.Collections.Generic;
+ using System.Linq;
+ using OpenRA.Primitives;
++using OpenRA.Widgets;
+ 
+ namespace OpenRA.Graphics
+ {
+@@ -39,11 +40,15 @@
+ 		readonly bool hardwareCursorsDisabled = false;
+ 		bool hardwareCursorsDoubled = false;
+ 
++		// Cursor art authored at 2x (ChromeMetrics HighDensityCursors): shown at half its pixel size
++		readonly bool highDensity;
++
+ 		public CursorManager(CursorProvider cursorProvider, int cursorSheetSize)
+ 		{
+ 			hardwareCursorsDisabled = Game.Settings.Graphics.DisableHardwareCursors;
+ 
+ 			graphicSettings = Game.Settings.Graphics;
++			ChromeMetrics.TryGet("HighDensityCursors", out highDensity);
+ 			sheetBuilder = new SheetBuilder(SheetType.BGRA, cursorSheetSize);
+ 
+ 			// Sort the cursors for better packing onto the sheet.
+@@ -88,8 +93,9 @@
+ 					c.Bounds = Rectangle.Union(c.Bounds, new Rectangle(hotspot, f.Size));
+ 				}
+ 
+-				// Pad bottom-right edge to make the frame size a multiple of 8
+-				c.PaddedSize = 8 * new int2((c.Bounds.Width + 7) / 8, (c.Bounds.Height + 7) / 8);
++				// Pad bottom-right edge to make the frame size a multiple of 8 (16 for 2x art, which may be halved)
++				var align = highDensity ? 16 : 8;
++				c.PaddedSize = align * new int2((c.Bounds.Width + align - 1) / align, (c.Bounds.Height + align - 1) / align);
+ 
+ 				cursors.Add(kv.Key, c);
+ 			}
+@@ -202,7 +208,7 @@
+ 			var mousePos = isLocked ? lockedPosition : Viewport.LastMousePos;
+ 			renderer.RgbaSpriteRenderer.DrawSprite(cursorSprite,
+ 				mousePos,
+-				cursorScale / Game.Renderer.WindowScale);
++				cursorScale / Game.Renderer.WindowScale / (highDensity ? 2 : 1));
+ 		}
+ 
+ 		public void Lock()
+@@ -270,7 +276,7 @@
+ 				}
+ 			}
+ 
+-			return Game.Renderer.Window.CreateHardwareCursor(name, new Size(newWidth, newHeight), rgbaData, hotspot, graphicSettings.CursorDouble);
++			return Game.Renderer.Window.CreateHardwareCursor(name, new Size(newWidth, newHeight), rgbaData, hotspot, graphicSettings.CursorDouble, highDensity);
+ 		}
+ 
+ 		void ClearHardwareCursors()
+--- a/OpenRA.Game/Graphics/PlatformInterfaces.cs
++++ b/OpenRA.Game/Graphics/PlatformInterfaces.cs
+@@ -70,7 +70,8 @@
+ 		void GrabWindowMouseFocus();
+ 		void ReleaseWindowMouseFocus();
+ 
+-		IHardwareCursor CreateHardwareCursor(string name, Size size, byte[] data, int2 hotspot, bool pixelDouble);
++		// highDensity: the image is authored at 2x, so show it at half its pixel size (full resolution on high-DPI displays)
++		IHardwareCursor CreateHardwareCursor(string name, Size size, byte[] data, int2 hotspot, bool pixelDouble, bool highDensity = false);
+ 		void SetHardwareCursor(IHardwareCursor cursor);
+ 		void SetWindowTitle(string title);
+ 		void SetRelativeMouseMode(bool mode);
+--- a/OpenRA.Platforms.Default/Sdl2HardwareCursor.cs
++++ b/OpenRA.Platforms.Default/Sdl2HardwareCursor.cs
+@@ -22,7 +22,7 @@
+ 		public IntPtr Cursor { get; private set; }
+ 		IntPtr surface;
+ 
+-		public Sdl2HardwareCursor(Size size, byte[] data, int2 hotspot)
++		public Sdl2HardwareCursor(Size size, byte[] data, int2 hotspot, int density = 1)
+ 		{
+ 			try
+ 			{
+@@ -36,6 +36,10 @@
+ 				// This call very occasionally fails on Windows, but often works when retried.
+ 				for (var retries = 0; retries < 3 && Cursor == IntPtr.Zero; retries++)
+ 					Cursor = SDL.SDL_CreateColorCursor(surface, hotspot.X, hotspot.Y);
++
++				// SDL2 maps one image pixel to one point on macOS; replace its NSCursor with a high-DPI one
++				if (density > 1 && Cursor != IntPtr.Zero)
++					CocoaCursor.ReplaceWithHighDensity(Cursor, size, data, hotspot, density);
+ 			}
+ 			catch
+ 			{
+--- a/OpenRA.Platforms.Default/Sdl2PlatformWindow.cs
++++ b/OpenRA.Platforms.Default/Sdl2PlatformWindow.cs
+@@ -375,14 +375,68 @@
+ 			return scaledData;
+ 		}
+ 
+-		public IHardwareCursor CreateHardwareCursor(string name, Size size, byte[] data, int2 hotspot, bool pixelDouble)
++		static byte[] HalvePixelData(byte[] data, Size size)
++		{
++			// Box filter, weighting colour by alpha so transparent pixels do not darken the edges
++			var w = size.Width / 2;
++			var h = size.Height / 2;
++			var result = new byte[4 * w * h];
++			for (var y = 0; y < h; y++)
++			{
++				for (var x = 0; x < w; x++)
++				{
++					int b = 0, g = 0, r = 0, a = 0;
++					for (var j = 0; j < 2; j++)
++					{
++						for (var i = 0; i < 2; i++)
++						{
++							var src = 4 * ((2 * y + j) * size.Width + 2 * x + i);
++							var alpha = data[src + 3];
++							b += data[src] * alpha;
++							g += data[src + 1] * alpha;
++							r += data[src + 2] * alpha;
++							a += alpha;
++						}
++					}
++
++					var dest = 4 * (y * w + x);
++					if (a > 0)
++					{
++						result[dest] = (byte)(b / a);
++						result[dest + 1] = (byte)(g / a);
++						result[dest + 2] = (byte)(r / a);
++					}
++
++					result[dest + 3] = (byte)(a / 4);
++				}
++			}
++
++			return result;
++		}
++
++		public IHardwareCursor CreateHardwareCursor(string name, Size size, byte[] data, int2 hotspot, bool pixelDouble, bool highDensity = false)
+ 		{
+ 			VerifyThreadAffinity();
+ 			try
+ 			{
++				// Points per image pixel for the macOS cursor image (1 = SDL's default behaviour)
++				var density = 1;
++				if (highDensity)
++				{
++					// 2x art: keep every pixel on high-DPI displays, otherwise shrink it to its intended size
++					if (NativeWindowScale > 1.5f)
++						density = Platform.CurrentPlatform == PlatformType.OSX ? 2 : 1;
++					else
++					{
++						data = HalvePixelData(data, size);
++						size = new Size(size.Width / 2, size.Height / 2);
++						hotspot /= 2;
++					}
++				}
++
+ 				// Pixel double the cursor on non-OSX if the window scale is large enough
+ 				// OSX does this for us automatically
+-				if (Platform.CurrentPlatform != PlatformType.OSX && NativeWindowScale > 1.5f)
++				else if (Platform.CurrentPlatform != PlatformType.OSX && NativeWindowScale > 1.5f)
+ 				{
+ 					data = DoublePixelData(data, size);
+ 					size = new Size(2 * size.Width, 2 * size.Height);
+@@ -397,7 +451,7 @@
+ 					hotspot *= 2;
+ 				}
+ 
+-				var cursor = new Sdl2HardwareCursor(size, data, hotspot);
++				var cursor = new Sdl2HardwareCursor(size, data, hotspot, density);
+ 				return cursor.Cursor == IntPtr.Zero ? null : cursor;
+ 			}
+ 			catch (Exception ex)
+--- a/OpenRA.Platforms.Default/CocoaCursor.cs
++++ b/OpenRA.Platforms.Default/CocoaCursor.cs
+@@ -0,0 +1,123 @@
++#region Copyright & License Information
++/*
++ * Copyright (c) The OpenRA Developers and Contributors
++ * This file is part of OpenRA, which is free software. It is made
++ * available to you under the terms of the GNU General Public License
++ * as published by the Free Software Foundation, either version 3 of
++ * the License, or (at your option) any later version. For more
++ * information, see COPYING.
++ */
++#endregion
++
++using System;
++using System.Runtime.InteropServices;
++using OpenRA.Primitives;
++
++namespace OpenRA.Platforms.Default
++{
++	/// <summary>
++	/// Builds a macOS NSCursor whose image keeps every pixel but is sized in points (pixels / density),
++	/// and swaps it into an SDL2 cursor. SDL2 itself always creates 1 pixel = 1 point cursors, which
++	/// macOS then blurs when it upscales them on Retina displays.
++	/// </summary>
++	static class CocoaCursor
++	{
++		const string ObjC = "/usr/lib/libobjc.A.dylib";
++
++		[StructLayout(LayoutKind.Sequential)]
++		struct CGSize
++		{
++			public double Width, Height;
++			public CGSize(double w, double h) { Width = w; Height = h; }
++		}
++
++		[StructLayout(LayoutKind.Sequential)]
++		struct CGPoint
++		{
++			public double X, Y;
++			public CGPoint(double x, double y) { X = x; Y = y; }
++		}
++
++		[DllImport(ObjC)]
++		static extern IntPtr objc_getClass(string name);
++
++		[DllImport(ObjC)]
++		static extern IntPtr sel_registerName(string name);
++
++		[DllImport(ObjC, EntryPoint = "objc_msgSend")]
++		static extern IntPtr Send(IntPtr receiver, IntPtr selector);
++
++		[DllImport(ObjC, EntryPoint = "objc_msgSend")]
++		static extern IntPtr Send(IntPtr receiver, IntPtr selector, IntPtr arg);
++
++		[DllImport(ObjC, EntryPoint = "objc_msgSend")]
++		static extern IntPtr Send(IntPtr receiver, IntPtr selector, string arg);
++
++		[DllImport(ObjC, EntryPoint = "objc_msgSend")]
++		static extern IntPtr Send(IntPtr receiver, IntPtr selector, CGSize size);
++
++		[DllImport(ObjC, EntryPoint = "objc_msgSend")]
++		static extern IntPtr Send(IntPtr receiver, IntPtr selector, IntPtr image, CGPoint hotspot);
++
++		[DllImport(ObjC, EntryPoint = "objc_msgSend")]
++		static extern IntPtr Send(IntPtr receiver, IntPtr selector, IntPtr planes, long width, long height,
++			long bitsPerSample, long samplesPerPixel, [MarshalAs(UnmanagedType.I1)] bool hasAlpha,
++			[MarshalAs(UnmanagedType.I1)] bool isPlanar, IntPtr colorSpaceName, long bytesPerRow, long bitsPerPixel);
++
++		static IntPtr Sel(string name) => sel_registerName(name);
++
++		static IntPtr Alloc(string cls) => Send(objc_getClass(cls), Sel("alloc"));
++
++		/// <param name="sdlCursor">An SDL_Cursor*: { SDL_Cursor *next; void *driverdata (a retained NSCursor) }.</param>
++		/// <param name="bgra">Straight-alpha BGRA pixels.</param>
++		public static void ReplaceWithHighDensity(IntPtr sdlCursor, Size size, byte[] bgra, int2 hotspot, int density)
++		{
++			try
++			{
++				var colorSpace = Send(Alloc("NSString"), Sel("initWithUTF8String:"), "NSDeviceRGBColorSpace");
++				var rep = Send(Alloc("NSBitmapImageRep"),
++					Sel("initWithBitmapDataPlanes:pixelsWide:pixelsHigh:bitsPerSample:samplesPerPixel:hasAlpha:isPlanar:colorSpaceName:bytesPerRow:bitsPerPixel:"),
++					IntPtr.Zero, size.Width, size.Height, 8, 4, true, false, colorSpace, 4 * size.Width, 32);
++				Send(colorSpace, Sel("release"));
++				if (rep == IntPtr.Zero)
++					return;
++
++				// NSBitmapImageRep wants premultiplied RGBA
++				var rgba = new byte[bgra.Length];
++				for (var i = 0; i < bgra.Length; i += 4)
++				{
++					var a = bgra[i + 3];
++					rgba[i] = (byte)(bgra[i + 2] * a / 255);
++					rgba[i + 1] = (byte)(bgra[i + 1] * a / 255);
++					rgba[i + 2] = (byte)(bgra[i] * a / 255);
++					rgba[i + 3] = a;
++				}
++
++				Marshal.Copy(rgba, 0, Send(rep, Sel("bitmapData")), rgba.Length);
++
++				var points = new CGSize((double)size.Width / density, (double)size.Height / density);
++				Send(rep, Sel("setSize:"), points);
++				var image = Send(Alloc("NSImage"), Sel("initWithSize:"), points);
++				Send(image, Sel("addRepresentation:"), rep);
++				Send(rep, Sel("release"));
++
++				var nsCursor = Send(Alloc("NSCursor"), Sel("initWithImage:hotSpot:"), image,
++					new CGPoint((double)hotspot.X / density, (double)hotspot.Y / density));
++				Send(image, Sel("release"));
++				if (nsCursor == IntPtr.Zero)
++					return;
++
++				// SDL releases driverdata when the cursor is freed, so hand it our (+1 retained) cursor
++				var old = Marshal.ReadIntPtr(sdlCursor, IntPtr.Size);
++				Marshal.WriteIntPtr(sdlCursor, IntPtr.Size, nsCursor);
++				if (old != IntPtr.Zero)
++					Send(old, Sel("release"));
++			}
++			catch (Exception e)
++			{
++				// Keep SDL's own (low density) cursor
++				Log.Write("debug", $"Failed to create high-DPI cursor: {e.Message}");
++			}
++		}
++	}
++}

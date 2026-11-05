@@ -1,0 +1,15 @@
+--- a/OpenRA.Game/Graphics/SpriteRenderer.cs
++++ b/OpenRA.Game/Graphics/SpriteRenderer.cs
+@@ -163,6 +163,12 @@
+ 			float rotation = 0f)
+ 		{
+ 			DrawSprite(s, ResolveTextureIndex(s, pal), location, scale, tint, alpha, rotation);
++		}
++
++		// RAPX: a palette sprite (e.g. team-coloured) drawn on any four corners, for bent or squashed sprites
++		public void DrawSprite(Sprite s, PaletteReference pal, in float3 a, in float3 b, in float3 c, in float3 d, in float3 tint, float alpha)
++		{
++			DrawSprite(s, ResolveTextureIndex(s, pal), a, b, c, d, tint, alpha);
+ 		}
+ 
+ 		internal void DrawSprite(Sprite s, int paletteTextureIndex, in float3 a, in float3 b, in float3 c, in float3 d, in float3 tint, float alpha)

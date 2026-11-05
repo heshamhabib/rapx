@@ -1,0 +1,349 @@
+--- a/OpenRA.Game/Graphics/PlatformInterfaces.cs	2026-10-24 14:02:53
++++ b/OpenRA.Game/Graphics/PlatformInterfaces.cs	2026-10-24 14:03:13
+@@ -151,8 +151,15 @@
+ 		ShaderVertexAttribute[] Attributes { get; }
+ 	}
+ 
+-	public enum TextureScaleFilter { Nearest, Linear }
++	public enum TextureScaleFilter
++	{
++		Nearest,
++		Linear,
+ 
++		/// <summary>Linear filtering with generated mipmaps and repeat wrapping, for tiling detail textures.</summary>
++		Trilinear
++	}
++
+ 	public interface ITexture : IDisposable
+ 	{
+ 		void SetData(byte[] colors, int width, int height);
+--- a/OpenRA.Game/Graphics/Sheet.cs	2026-10-24 13:40:02
++++ b/OpenRA.Game/Graphics/Sheet.cs	2026-10-24 15:08:55
+@@ -58,11 +58,17 @@
+ 			ReleaseBuffer();
+ 		}
+ 
++		/// <summary>Filtering applied when the texture is created. Only true colour (BGRA) sheets can use linear filtering.</summary>
++		public TextureScaleFilter ScaleFilter = TextureScaleFilter.Nearest;
++
+ 		public ITexture GetTexture()
+ 		{
+ 			if (texture == null)
+ 			{
+ 				texture = Game.Renderer.Context.CreateTexture();
++				if (ScaleFilter != TextureScaleFilter.Nearest)
++					texture.ScaleFilter = ScaleFilter;
++
+ 				dirty = true;
+ 			}
+ 
+--- a/OpenRA.Game/Graphics/SpriteCache.cs	2026-10-24 15:08:55
++++ b/OpenRA.Game/Graphics/SpriteCache.cs	2026-10-24 15:08:55
+@@ -42,7 +42,15 @@
+ 			SheetBuilders = new Dictionary<SheetType, SheetBuilder>
+ 			{
+ 				{ SheetType.Indexed, new SheetBuilder(SheetType.Indexed, indexedSheetSize, indexedSheetMargin) },
+-				{ SheetType.BGRA, new SheetBuilder(SheetType.BGRA, bgraSheetSize, bgraSheetMargin) }
++				{
++					// True colour sprites are usually high resolution art drawn scaled down, so filter them smoothly
++					SheetType.BGRA, new SheetBuilder(SheetType.BGRA, () =>
++					{
++						var sheet = SheetBuilder.AllocateSheet(SheetType.BGRA, bgraSheetSize);
++						sheet.ScaleFilter = TextureScaleFilter.Linear;
++						return sheet;
++					}, bgraSheetMargin)
++				}
+ 			};
+ 
+ 			this.fileSystem = fileSystem;
+--- a/OpenRA.Game/Graphics/SpriteRenderer.cs	2026-10-24 13:40:02
++++ b/OpenRA.Game/Graphics/SpriteRenderer.cs	2026-10-24 13:40:09
+@@ -217,7 +217,7 @@
+ 			shader.SetVec("PaletteRows", palette.Height);
+ 		}
+ 
+-		public void SetViewportParams(Size sheetSize, int downscale, float depthMargin, int2 scroll)
++		public void SetViewportParams(Size sheetSize, float downscale, float depthMargin, int2 scroll)
+ 		{
+ 			// OpenGL only renders x and y coordinates inside [-1, 1] range. We project world coordinates
+ 			// using p1 to values [0, 2] and then subtract by 1 using p2, where p stands for projection. It's
+--- a/OpenRA.Game/Graphics/WorldRenderer.cs	2026-10-24 14:02:53
++++ b/OpenRA.Game/Graphics/WorldRenderer.cs	2026-10-24 15:16:14
+@@ -129,6 +129,11 @@
+ 				paletteReference.Palette = pal;
+ 		}
+ 
++		public bool PaletteExists(string name)
++		{
++			return palette.Contains(name);
++		}
++
+ 		public void SetPaletteColorShift(string name, float hueOffset, float satOffset, float valueModifier, float minHue, float maxHue)
+ 		{
+ 			palette.SetColorShift(name, hueOffset, satOffset, valueModifier, minHue, maxHue);
+@@ -317,7 +322,7 @@
+ 			Game.Renderer.Flush();
+ 		}
+ 
+-		void ApplyPostProcessing(PostProcessPassType type)
++		public void ApplyPostProcessing(PostProcessPassType type)
+ 		{
+ 			foreach (var pass in postProcessPasses)
+ 			{
+--- a/OpenRA.Game/Renderer.cs	2026-10-24 13:40:02
++++ b/OpenRA.Game/Renderer.cs	2026-10-24 14:07:23
+@@ -59,7 +59,7 @@
+ 		Size lastWorldViewportSize;
+ 
+ 		public Size WorldFrameBufferSize => worldSheet.Size;
+-		public int WorldDownscaleFactor { get; private set; } = 1;
++		public float WorldDownscaleFactor { get; private set; } = 1;
+ 
+ 		/// <summary>
+ 		/// Copies and returns the currently rendered world state as a temporary texture.
+@@ -213,8 +213,15 @@
+ 			// twice the window surface size, which strikes a reasonable balance between rendering quality and performance.
+ 			// Mods that use the depth buffer must instead limit their artwork resolution or maximum zoom-out levels.
+ 			Size worldBufferSize;
+-			if (depthMargin == 0)
++			if (depthMargin == 0 && Game.Settings.Graphics.NativeResolutionWorld)
+ 			{
++				// Render the world at the window's native pixel resolution: zoomed-in views are supersampled
++				// (fractional WorldDownscaleFactor < 1) so high resolution artwork keeps its detail, and
++				// zoomed-out views are downsampled to the same size.
++				worldBufferSize = Window.SurfaceSize.NextPowerOf2();
++			}
++			else if (depthMargin == 0)
++			{
+ 				var surfaceSize = Window.SurfaceSize;
+ 				worldBufferSize = new Size(Math.Min(size.Width, 2 * surfaceSize.Width), Math.Min(size.Height, 2 * surfaceSize.Height)).NextPowerOf2();
+ 			}
+@@ -257,11 +264,19 @@
+ 				var vh = worldViewport.Size.Height;
+ 				var bw = worldSheet.Size.Width;
+ 				var bh = worldSheet.Size.Height;
+-				WorldDownscaleFactor = 1;
+-				while (vw / WorldDownscaleFactor > bw || vh / WorldDownscaleFactor > bh)
+-					WorldDownscaleFactor++;
++				if (depthMargin == 0 && Game.Settings.Graphics.NativeResolutionWorld)
++				{
++					var surface = Window.SurfaceSize;
++					WorldDownscaleFactor = Math.Max((float)vw / Math.Min(surface.Width, bw), (float)vh / Math.Min(surface.Height, bh));
++				}
++				else
++				{
++					WorldDownscaleFactor = 1;
++					while (vw / WorldDownscaleFactor > bw || vh / WorldDownscaleFactor > bh)
++						WorldDownscaleFactor++;
++				}
+ 
+-				var s = new Size(vw / WorldDownscaleFactor, vh / WorldDownscaleFactor);
++				var s = new Size(Math.Min(bw, (int)Math.Ceiling(vw / WorldDownscaleFactor)), Math.Min(bh, (int)Math.Ceiling(vh / WorldDownscaleFactor)));
+ 				worldSprite = new Sprite(worldSheet, new Rectangle(int2.Zero, s), TextureChannel.RGBA);
+ 				lastWorldViewportSize = worldViewport.Size;
+ 			}
+@@ -413,11 +428,25 @@
+ 			return Context.CreateShader(bindings);
+ 		}
+ 
++		public ITexture CreateTexture()
++		{
++			return Context.CreateTexture();
++		}
++
+ 		public IVertexBuffer<T> CreateVertexBuffer<T>(int length) where T : struct
+ 		{
+ 			return Context.CreateVertexBuffer<T>(length);
+ 		}
+ 
++		Rectangle WorldScissorRect(Rectangle rect)
++		{
++			return Rectangle.FromLTRB(
++				(int)Math.Floor(rect.Left / WorldDownscaleFactor),
++				(int)Math.Floor(rect.Top / WorldDownscaleFactor),
++				(int)Math.Ceiling(rect.Right / WorldDownscaleFactor),
++				(int)Math.Ceiling(rect.Bottom / WorldDownscaleFactor));
++		}
++
+ 		public void EnableScissor(Rectangle rect)
+ 		{
+ 			// Must remain inside the current scissor rect
+@@ -428,11 +457,7 @@
+ 
+ 			if (renderType == RenderType.World)
+ 			{
+-				var r = Rectangle.FromLTRB(
+-					rect.Left / WorldDownscaleFactor,
+-					rect.Top / WorldDownscaleFactor,
+-					(rect.Right + WorldDownscaleFactor - 1) / WorldDownscaleFactor,
+-					(rect.Bottom + WorldDownscaleFactor - 1) / WorldDownscaleFactor);
++				var r = WorldScissorRect(rect);
+ 				worldBuffer.EnableScissor(r);
+ 			}
+ 			else
+@@ -452,11 +477,7 @@
+ 				if (scissorState.Count > 0)
+ 				{
+ 					var rect = scissorState.Peek();
+-					var r = Rectangle.FromLTRB(
+-						rect.Left / WorldDownscaleFactor,
+-						rect.Top / WorldDownscaleFactor,
+-						(rect.Right + WorldDownscaleFactor - 1) / WorldDownscaleFactor,
+-						(rect.Bottom + WorldDownscaleFactor - 1) / WorldDownscaleFactor);
++					var r = WorldScissorRect(rect);
+ 					worldBuffer.EnableScissor(r);
+ 				}
+ 				else
+--- a/OpenRA.Game/Settings.cs	2026-10-24 13:40:02
++++ b/OpenRA.Game/Settings.cs	2026-10-24 13:40:09
+@@ -195,6 +195,10 @@
+ 
+ 		public bool CursorDouble = false;
+ 		public WorldViewport ViewportDistance = WorldViewport.Medium;
++
++		[Desc("Render the world at the display's native resolution instead of one texel per world pixel.",
++			"Required for high-resolution artwork to show its full detail.")]
++		public bool NativeResolutionWorld = true;
+ 		public float UIScale = 1;
+ 
+ 		[Desc("Add a frame rate limiter.")]
+--- a/OpenRA.Game/Traits/TraitsInterfaces.cs	2026-10-24 14:02:53
++++ b/OpenRA.Game/Traits/TraitsInterfaces.cs	2026-10-24 14:03:13
+@@ -463,7 +463,7 @@
+ 		bool SpatiallyPartitionable { get; }
+ 	}
+ 
+-	public enum PostProcessPassType { AfterShroud, AfterWorld, AfterActors }
++	public enum PostProcessPassType { AfterShroud, AfterWorld, AfterActors, AfterTerrain }
+ 
+ 	[RequireExplicitImplementation]
+ 	public interface IRenderPostProcessPass
+--- a/OpenRA.Mods.Common/Traits/Palettes/PlayerColorShift.cs	2026-10-24 15:15:46
++++ b/OpenRA.Mods.Common/Traits/Palettes/PlayerColorShift.cs	2026-10-24 15:15:46
+@@ -53,9 +53,14 @@
+ 
+ 		public void LoadPlayerPalettes(WorldRenderer wr, string playerName, Color color, bool replaceExisting)
+ 		{
++			// Some setups (e.g. campaign IndexedPlayerPalette) only create palettes for specific players
++			var paletteName = info.BasePalette + playerName;
++			if (!wr.PaletteExists(paletteName))
++				return;
++
+ 			var (r, g, b) = color.ToLinear();
+ 			var (h, s, v) = Color.RgbToHsv(r, g, b);
+-			wr.SetPaletteColorShift(info.BasePalette + playerName,
++			wr.SetPaletteColorShift(paletteName,
+ 				h - info.ReferenceHue, s - info.ReferenceSaturation, v / info.ReferenceValue,
+ 				info.MinHue, info.MaxHue);
+ 		}
+--- a/OpenRA.Mods.Common/Traits/World/TerrainRenderer.cs	2026-10-24 14:02:53
++++ b/OpenRA.Mods.Common/Traits/World/TerrainRenderer.cs	2026-10-24 14:03:13
+@@ -105,6 +105,10 @@
+ 		{
+ 			spriteLayer.Draw(wr.Viewport);
+ 
++			// Passes that re-render the base terrain (e.g. high resolution detail texturing) run
++			// before overlays such as resources and smudges are drawn on top
++			wr.ApplyPostProcessing(PostProcessPassType.AfterTerrain);
++
+ 			foreach (var r in wr.World.WorldActor.TraitsImplementing<IRenderOverlay>())
+ 				r.Render(wr);
+ 		}
+--- a/OpenRA.Platforms.Default/OpenGL.cs	2026-10-24 14:02:53
++++ b/OpenRA.Platforms.Default/OpenGL.cs	2026-10-24 14:03:13
+@@ -99,6 +99,8 @@
+ 		public const int GL_TEXTURE_MIN_FILTER = 0x2801;
+ 		public const int GL_NEAREST = 0x2600;
+ 		public const int GL_LINEAR = 0x2601;
++		public const int GL_LINEAR_MIPMAP_LINEAR = 0x2703;
++		public const int GL_REPEAT = 0x2901;
+ 
+ 		// Depth buffer
+ 		public const int GL_DEPTH_COMPONENT = 0x1902;
+--- a/OpenRA.Platforms.Default/Texture.cs	2026-10-24 14:02:53
++++ b/OpenRA.Platforms.Default/Texture.cs	2026-10-24 14:03:32
+@@ -52,15 +52,17 @@
+ 			OpenGL.glBindTexture(OpenGL.GL_TEXTURE_2D, texture);
+ 			OpenGL.CheckGLError();
+ 
+-			var filter = scaleFilter == TextureScaleFilter.Linear ? OpenGL.GL_LINEAR : OpenGL.GL_NEAREST;
++			var trilinear = scaleFilter == TextureScaleFilter.Trilinear;
++			var filter = scaleFilter == TextureScaleFilter.Nearest ? OpenGL.GL_NEAREST : OpenGL.GL_LINEAR;
+ 			OpenGL.glTexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MAG_FILTER, filter);
+ 			OpenGL.CheckGLError();
+-			OpenGL.glTexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MIN_FILTER, filter);
++			OpenGL.glTexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MIN_FILTER, trilinear ? OpenGL.GL_LINEAR_MIPMAP_LINEAR : filter);
+ 			OpenGL.CheckGLError();
+ 
+-			OpenGL.glTexParameterf(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_WRAP_S, OpenGL.GL_CLAMP_TO_EDGE);
++			var wrap = trilinear ? OpenGL.GL_REPEAT : OpenGL.GL_CLAMP_TO_EDGE;
++			OpenGL.glTexParameterf(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_WRAP_S, wrap);
+ 			OpenGL.CheckGLError();
+-			OpenGL.glTexParameterf(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_WRAP_T, OpenGL.GL_CLAMP_TO_EDGE);
++			OpenGL.glTexParameterf(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_WRAP_T, wrap);
+ 			OpenGL.CheckGLError();
+ 
+ 			OpenGL.glTexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_BASE_LEVEL, 0);
+@@ -69,6 +71,52 @@
+ 			OpenGL.CheckGLError();
+ 		}
+ 
++		/// <summary>Upload successively box-filtered half-size copies of BGRA data as mip levels 1..n.</summary>
++		void SetMipmaps(byte[] colors, int width, int height)
++		{
++			var glInternalFormat = OpenGL.Profile == GLProfile.Embedded ? OpenGL.GL_BGRA : OpenGL.GL_RGBA8;
++			var level = 0;
++			while (width > 1 || height > 1)
++			{
++				var w = Math.Max(1, width / 2);
++				var h = Math.Max(1, height / 2);
++				var next = new byte[4 * w * h];
++				for (var y = 0; y < h; y++)
++				{
++					for (var x = 0; x < w; x++)
++					{
++						var x0 = Math.Min(2 * x, width - 1);
++						var x1 = Math.Min(2 * x + 1, width - 1);
++						var y0 = Math.Min(2 * y, height - 1);
++						var y1 = Math.Min(2 * y + 1, height - 1);
++						for (var c = 0; c < 4; c++)
++						{
++							var sum = colors[4 * (y0 * width + x0) + c] + colors[4 * (y0 * width + x1) + c] +
++								colors[4 * (y1 * width + x0) + c] + colors[4 * (y1 * width + x1) + c];
++							next[4 * (y * w + x) + c] = (byte)((sum + 2) / 4);
++						}
++					}
++				}
++
++				colors = next;
++				width = w;
++				height = h;
++				level++;
++
++				unsafe
++				{
++					fixed (byte* ptr = &colors[0])
++						OpenGL.glTexImage2D(OpenGL.GL_TEXTURE_2D, level, glInternalFormat, width, height,
++							0, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE, new IntPtr(ptr));
++				}
++
++				OpenGL.CheckGLError();
++			}
++
++			OpenGL.glTexParameteri(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MAX_LEVEL, level);
++			OpenGL.CheckGLError();
++		}
++
+ 		void SetData(IntPtr data, int width, int height)
+ 		{
+ 			PrepareTexture();
+@@ -90,6 +138,9 @@
+ 				fixed (byte* ptr = &colors[0])
+ 					SetData(new IntPtr(ptr), width, height);
+ 			}
++
++			if (scaleFilter == TextureScaleFilter.Trilinear)
++				SetMipmaps(colors, width, height);
+ 		}
+ 
+ 		public void SetFloatData(float[] data, int width, int height)

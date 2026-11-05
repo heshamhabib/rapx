@@ -1,0 +1,115 @@
+--- a/OpenRA.Game/Graphics/Viewport.cs
++++ b/OpenRA.Game/Graphics/Viewport.cs
+@@ -83,13 +83,24 @@
+ 			}
+ 		}
+ 
++		/// <summary>
++		/// Optional HUD insets in UI pixels (left, top, right, bottom), set by mod chrome logic. When set, scrolling and
++		/// zooming keep the uncovered part of the view inside the map instead of only the view centre.
++		/// </summary>
++		public static Func<(int Left, int Top, int Right, int Bottom)> ViewInsets;
++
+ 		public float MinZoom { get; private set; } = 1f;
+ 		public float MaxZoom { get; private set; } = 2f;
+ 
++		// The extra spectator zoom-out would show past the map edge, so it is off while the HUD clamp is active
++		bool MinZoomUnlocked => unlockMinZoom && (ViewInsets == null || worldRenderer.World.Type == WorldType.Editor);
++
+ 		public void AdjustZoom(float dz)
+ 		{
+ 			// Exponential ensures that equal positive and negative steps have the same effect
+-			Zoom = (zoom * (float)Math.Exp(dz)).Clamp(unlockMinZoom ? unlockedMinZoom : MinZoom, MaxZoom);
++			Zoom = (zoom * (float)Math.Exp(dz)).Clamp(MinZoomUnlocked ? unlockedMinZoom : MinZoom, MaxZoom);
++			if (ViewInsets != null)
++				CenterLocation = ClampCenter(CenterLocation);
+ 		}
+ 
+ 		public void AdjustZoom(float dz, int2 center)
+@@ -97,9 +108,38 @@
+ 			var oldCenter = worldRenderer.Viewport.ViewToWorldPx(center);
+ 			AdjustZoom(dz);
+ 			var newCenter = worldRenderer.Viewport.ViewToWorldPx(center);
+-			CenterLocation += oldCenter - newCenter;
++			CenterLocation = ClampCenter(CenterLocation + oldCenter - newCenter);
+ 		}
+ 
++		// Allowed positions of the view centre (world-px)
++		Rectangle CenterLimits()
++		{
++			if (ViewInsets == null || worldRenderer.World.Type == WorldType.Editor)
++				return mapBounds;
++
++			var (left, top, right, bottom) = ViewInsets();
++			var scale = graphicSettings.UIScale / Zoom;
++			var half = viewportSize / 2;
++			var minX = mapBounds.Left + half.X - (int)(left * scale);
++			var maxX = mapBounds.Right - half.X + (int)(right * scale);
++			var minY = mapBounds.Top + half.Y - (int)(top * scale);
++			var maxY = mapBounds.Bottom - half.Y + (int)(bottom * scale);
++
++			// Map smaller than the uncovered view: keep it centred
++			if (minX > maxX)
++				minX = maxX = (minX + maxX) / 2;
++			if (minY > maxY)
++				minY = maxY = (minY + maxY) / 2;
++
++			return Rectangle.FromLTRB(minX, minY, maxX, maxY);
++		}
++
++		int2 ClampCenter(int2 center)
++		{
++			var r = CenterLimits();
++			return new int2(center.X.Clamp(r.Left, r.Right), center.Y.Clamp(r.Top, r.Bottom));
++		}
++
+ 		public void ToggleZoom()
+ 		{
+ 			// Unlocked zooms always reset to the default zoom
+@@ -122,13 +162,14 @@
+ 		public ScrollDirection GetBlockedDirections()
+ 		{
+ 			var ret = ScrollDirection.None;
+-			if (CenterLocation.Y <= mapBounds.Top)
+-				ret |= ScrollDirection.Up;
+-			if (CenterLocation.X <= mapBounds.Left)
++			var limits = CenterLimits();
++			if (CenterLocation.Y <= limits.Top)
++				ret |= ScrollDirection.Up;
++			if (CenterLocation.X <= limits.Left)
+ 				ret |= ScrollDirection.Left;
+-			if (CenterLocation.Y >= mapBounds.Bottom)
++			if (CenterLocation.Y >= limits.Bottom)
+ 				ret |= ScrollDirection.Down;
+-			if (CenterLocation.X >= mapBounds.Right)
++			if (CenterLocation.X >= limits.Right)
+ 				ret |= ScrollDirection.Right;
+ 
+ 			return ret;
+@@ -233,7 +274,7 @@
+ 			else
+ 				Zoom = Zoom.Clamp(MinZoom, MaxZoom);
+ 
+-			var minZoom = unlockMinZoom ? unlockedMinZoom : MinZoom;
++			var minZoom = MinZoomUnlocked ? unlockedMinZoom : MinZoom;
+ 			var maxSize = 1f / minZoom * new float2(Game.Renderer.NativeResolution);
+ 			Game.Renderer.SetMaximumViewportSize(new Size((int)maxSize.X, (int)maxSize.Y));
+ 
+@@ -325,7 +366,7 @@
+ 
+ 		public void Center(WPos pos)
+ 		{
+-			CenterLocation = worldRenderer.ScreenPxPosition(pos).Clamp(mapBounds);
++			CenterLocation = ClampCenter(worldRenderer.ScreenPxPosition(pos));
+ 			cellsDirty = true;
+ 			allCellsDirty = true;
+ 		}
+@@ -338,7 +379,7 @@
+ 			allCellsDirty = true;
+ 
+ 			if (!ignoreBorders)
+-				CenterLocation = CenterLocation.Clamp(mapBounds);
++				CenterLocation = ClampCenter(CenterLocation);
+ 		}
+ 
+ 		// Rectangle (in viewport coords) that contains things to be drawn

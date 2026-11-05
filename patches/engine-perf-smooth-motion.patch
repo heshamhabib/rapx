@@ -1,0 +1,435 @@
+--- a/OpenRA.Game/Game.cs
++++ b/OpenRA.Game/Game.cs
+@@ -619,6 +619,7 @@
+ 
+ 				using (var sample = new PerfSample("tick_time"))
+ 				{
++					var previousTickTime = orderManager.LastTickTime.Value;
+ 					orderManager.LastTickTime.AdvanceTickTime(tick);
+ 
+ 					Sound.Tick();
+@@ -640,6 +641,15 @@
+ 
+ 						PerfHistory.Tick();
+ 					}
++					else if (Settings.Graphics.LogicCatchUp && orderManager == OrderManager && orderManager.GameStarted)
++					{
++						// The orders for this net frame have not arrived yet (in skirmish: the local server has not
++						// echoed them back). Keep the time slot and retry shortly instead of losing a whole tick.
++						orderManager.LastTickTime.Value = previousTickTime;
++						waitingForOrders = true;
++						LogicOrderRetries++;
++						return;
++					}
+ 
+ 					// Wait until we have done our first world Tick before TickRendering
+ 					if (orderManager.LocalFrameNumber > 0)
+@@ -747,6 +757,15 @@
+ 			PerfHistory.Items["terrain_lighting"].Tick();
+ 		}
+ 
++		/// <summary>Number of extra logic ticks run to catch up with slow rendering (for performance diagnostics).</summary>
++		public static int LogicCatchUpTicks { get; private set; }
++
++		/// <summary>Number of logic ticks retried because the orders for a net frame had not arrived yet.</summary>
++		public static int LogicOrderRetries { get; private set; }
++
++		// Set by InnerLogicTick when the local world could not tick yet and kept its time slot for a retry
++		static bool waitingForOrders;
++
+ 		static void Loop()
+ 		{
+ 			// The game loop mainly does two things: logic updates and
+@@ -786,11 +805,20 @@
+ 			// than this, then that limit will be used.
+ 			const int MinReplayFps = 10;
+ 
++			// When rendering is slower than the logic timestep, run up to this many logic ticks before the next frame
++			// so the game keeps its real speed and only the frame rate drops (smooth motion hides the bigger steps).
++			// Normally one render per tick is forced, which made slow rendering slow down the game itself.
++			const int MaxLogicTicksPerRender = 3;
++
++			// How soon a logic tick that had to wait for orders is retried (ms)
++			const int OrderRetryInterval = 2;
++
+ 			// Timestamps for when the next logic and rendering should run
+ 			var nextLogic = RunTime;
+ 			var nextRender = RunTime;
+ 			var forcedNextRender = RunTime;
+ 			var renderBeforeNextTick = false;
++			var ticksSinceRender = 0;
+ 
+ 			while (state == RunStatus.Running)
+ 			{
+@@ -827,16 +855,40 @@
+ 				if (now >= nextUpdate)
+ 				{
+ 					var forceRender = renderBeforeNextTick || now >= forcedNextRender;
++					var catchUp = Settings.Graphics.LogicCatchUp && ticksSinceRender < MaxLogicTicksPerRender;
+ 
+-					if (now >= nextLogic && !renderBeforeNextTick)
++					if (now >= nextLogic && (!renderBeforeNextTick || catchUp))
+ 					{
+ 						nextLogic += logicInterval;
+ 
++						waitingForOrders = false;
+ 						LogicTick();
+ 
+-						// Force at least one render per tick during regular gameplay
+-						if (OrderManager.World != null && !OrderManager.World.IsLoadingGameSave && !OrderManager.World.IsReplay)
+-							renderBeforeNextTick = true;
++						if (waitingForOrders)
++						{
++							// Nothing ticked: retry soon, and don't count it as a tick
++							nextLogic = RunTime + OrderRetryInterval;
++						}
++						else
++						{
++							ticksSinceRender++;
++
++							// Force at least one render per tick during regular gameplay
++							if (OrderManager.World != null && !OrderManager.World.IsLoadingGameSave && !OrderManager.World.IsReplay)
++								renderBeforeNextTick = true;
++						}
++
++						// Logic is still behind: tick again before drawing, unless the minimum frame rate is due or the
++						// next tick would have to wait for the server (a failed tick would lose its time slot)
++						// The world's own tick clock decides whether it is behind; the loop clock follows it
++						if (renderBeforeNextTick && catchUp && ticksSinceRender < MaxLogicTicksPerRender
++								&& RunTime < forcedNextRender && OrderManager.LastTickTime.ShouldAdvance(RunTime)
++								&& OrderManager.CanTickWithoutWaiting)
++						{
++							LogicCatchUpTicks++;
++							nextLogic = RunTime;
++							continue;
++						}
+ 					}
+ 
+ 					var haveSomeTimeUntilNextLogic = now < nextLogic;
+@@ -855,6 +907,7 @@
+ 
+ 						RenderTick();
+ 						renderBeforeNextTick = false;
++						ticksSinceRender = 0;
+ 					}
+ 
+ 					// Simulate a render tick if it was time to render but we skip actually rendering
+--- a/OpenRA.Game/Network/OrderManager.cs
++++ b/OpenRA.Game/Network/OrderManager.cs
+@@ -325,6 +325,12 @@
+ 
+ 			return willTick;
+ 		}
++
++		/// <summary>
++		/// True when the next logic tick will not have to wait for orders from the server.
++		/// Used to only catch up with extra back-to-back ticks when they will actually run.
++		/// </summary>
++		internal bool CanTickWithoutWaiting => GameStarted && (!IsNetFrame || IsReadyForNextFrame);
+ 
+ 		// The server may request clients to batch multiple frames worth of orders into a single packet
+ 		// to improve robustness against network jitter at the expense of input latency
+--- a/OpenRA.Game/Graphics/PlatformInterfaces.cs
++++ b/OpenRA.Game/Graphics/PlatformInterfaces.cs
+@@ -166,6 +166,9 @@
+ 		void SetData(byte[] colors, int width, int height);
+ 		void SetFloatData(float[] data, int width, int height);
+ 		void SetDataFromReadBuffer(Rectangle rect);
++
++		/// <summary>Copies a region of the read buffer into the same region of the already allocated texture.</summary>
++		void UpdateFromReadBuffer(Rectangle rect);
+ 		byte[] GetData();
+ 		Size Size { get; }
+ 		TextureScaleFilter ScaleFilter { get; set; }
+--- a/OpenRA.Game/Graphics/WorldRenderer.cs
++++ b/OpenRA.Game/Graphics/WorldRenderer.cs
+@@ -20,6 +20,9 @@
+ {
+ 	public sealed class WorldRenderer : IDisposable
+ 	{
++		// Smooth motion: moves longer than this in one tick are teleports (spawning, unloading, chronoshift)
++		const int MaxInterpolatedMove = 2048;
++
+ 		public static readonly Func<IRenderable, int> RenderableZPositionComparisonKey =
+ 			r => r.Pos.Y + r.Pos.Z + r.ZOffset;
+ 
+@@ -47,6 +50,20 @@
+ 		readonly IRenderer[] renderers;
+ 		readonly IRenderPostProcessPass[] postProcessPasses;
+ 
++		// Smooth motion: actors only move once per logic tick (25 times a second at normal speed), so between
++		// ticks their renderables are drawn at a position interpolated from the previous tick to the current one.
++		sealed class MotionSample
++		{
++			public WPos Previous;
++			public WPos Current;
++			public int Tick;
++		}
++
++		readonly Dictionary<Actor, MotionSample> motionSamples = new();
++		bool smoothMotion;
++		float motionAlpha;
++		int lastMotionPrune;
++
+ 		internal WorldRenderer(ModData modData, World world)
+ 		{
+ 			World = world;
+@@ -139,11 +156,81 @@
+ 			palette.SetColorShift(name, hueOffset, satOffset, valueModifier, minHue, maxHue);
+ 		}
+ 
++		void UpdateMotionClock()
++		{
++			var orderManager = World.OrderManager;
++			var timestep = World.IsReplay ? World.ReplayTimestep : orderManager.SuggestedTimestep;
++			smoothMotion = Game.Settings.Graphics.SmoothMotion && World.Type != WorldType.Editor
++				&& !World.Paused && !World.IsLoadingGameSave && timestep > 0;
++
++			if (!smoothMotion)
++			{
++				motionSamples.Clear();
++				return;
++			}
++
++			motionAlpha = Math.Clamp((Game.RunTime - orderManager.LastTickTime.Value) / (float)timestep, 0f, 1f);
++
++			// Forget actors that left the world or have not been on screen for a while
++			if (World.WorldTick - lastMotionPrune > 250)
++			{
++				lastMotionPrune = World.WorldTick;
++				var stale = motionSamples.Where(kv => kv.Key.Disposed || World.WorldTick - kv.Value.Tick > 2).Select(kv => kv.Key).ToList();
++				foreach (var a in stale)
++					motionSamples.Remove(a);
++			}
++		}
++
++		/// <summary>
++		/// Offset from the actor's logic position to where it is drawn this frame when smooth motion is enabled.
++		/// </summary>
++		public WVec MotionOffset(Actor actor)
++		{
++			if (!smoothMotion || !actor.IsInWorld || actor.OccupiesSpace == null)
++				return WVec.Zero;
++
++			var pos = actor.CenterPosition;
++			var tick = World.WorldTick;
++			if (!motionSamples.TryGetValue(actor, out var sample))
++			{
++				motionSamples.Add(actor, new MotionSample { Previous = pos, Current = pos, Tick = tick });
++				return WVec.Zero;
++			}
++
++			if (sample.Tick != tick)
++			{
++				// Only interpolate across a single tick; after a gap (off screen, lag) start from the current position
++				sample.Previous = tick == sample.Tick + 1 ? sample.Current : pos;
++				sample.Current = pos;
++				sample.Tick = tick;
++			}
++			else if (sample.Current != pos)
++			{
++				// Moved outside the logic tick (e.g. a synced effect): snap
++				sample.Previous = sample.Current = pos;
++			}
++
++			var delta = sample.Current - sample.Previous;
++			if (delta == WVec.Zero || Math.Abs(delta.X) > MaxInterpolatedMove || Math.Abs(delta.Y) > MaxInterpolatedMove
++					|| Math.Abs(delta.Z) > MaxInterpolatedMove)
++				return WVec.Zero;
++
++			var k = motionAlpha - 1f;
++			return new WVec((int)(delta.X * k), (int)(delta.Y * k), (int)(delta.Z * k));
++		}
++
+ 		// PERF: Avoid LINQ.
+ 		void GenerateRenderables()
+ 		{
+ 			foreach (var actor in onScreenActors)
+-				renderablesBuffer.AddRange(actor.Render(this));
++			{
++				var offset = MotionOffset(actor);
++				if (offset == WVec.Zero)
++					renderablesBuffer.AddRange(actor.Render(this));
++				else
++					foreach (var r in actor.Render(this))
++						renderablesBuffer.Add(r.OffsetBy(offset));
++			}
+ 
+ 			renderablesBuffer.AddRange(World.WorldActor.Render(this));
+ 
+@@ -177,8 +264,9 @@
+ 				if (!actor.IsInWorld || actor.Disposed || (trait.SpatiallyPartitionable && !onScreenActors.Contains(actor)))
+ 					return;
+ 
++				var offset = MotionOffset(actor);
+ 				foreach (var renderable in trait.RenderAboveShroud(actor, this))
+-					preparedOverlayRenderables.Add(renderable.PrepareRender(this));
++					preparedOverlayRenderables.Add((offset == WVec.Zero ? renderable : renderable.OffsetBy(offset)).PrepareRender(this));
+ 			});
+ 
+ 			foreach (var a in World.Selection.Actors)
+@@ -257,6 +345,7 @@
+ 				return;
+ 
+ 			RefreshPalette();
++			UpdateMotionClock();
+ 
+ 			// PERF: Reuse collection to avoid allocations.
+ 			onScreenActors.UnionWith(World.ScreenMap.RenderableActorsInBox(Viewport.TopLeft, Viewport.BottomRight));
+--- a/OpenRA.Game/Renderer.cs
++++ b/OpenRA.Game/Renderer.cs
+@@ -48,6 +48,7 @@
+ 		readonly IIndexBuffer quadIndexBuffer;
+ 		readonly Stack<Rectangle> scissorState = new();
+ 		readonly ITexture worldBufferSnapshot;
++		Size worldBufferSnapshotSize;
+ 
+ 		IFrameBuffer screenBuffer;
+ 		Sprite screenSprite;
+@@ -66,7 +67,23 @@
+ 		/// </summary>
+ 		public ITexture WorldBufferSnapshot()
+ 		{
+-			worldBufferSnapshot.SetDataFromReadBuffer(new Rectangle(int2.Zero, worldSheet.Size));
++			// PERF: The world buffer is sized for the furthest zoom-out (or the native window resolution), but only
++			// the worldSprite region is drawn this frame. Reallocating and copying the whole buffer for every
++			// post-processing pass is very expensive at HiDPI sizes, so after the first full copy only the used
++			// region (plus a small margin for shader neighbour reads) is refreshed in place.
++			if (worldBufferSnapshotSize != worldSheet.Size || worldSprite == null)
++			{
++				worldBufferSnapshot.SetDataFromReadBuffer(new Rectangle(int2.Zero, worldSheet.Size));
++				worldBufferSnapshotSize = worldSheet.Size;
++			}
++			else
++			{
++				const int Margin = 16;
++				var used = worldSprite.Bounds;
++				worldBufferSnapshot.UpdateFromReadBuffer(new Rectangle(0, 0,
++					Math.Min(used.Right + Margin, worldSheet.Size.Width), Math.Min(used.Bottom + Margin, worldSheet.Size.Height)));
++			}
++
+ 			return worldBufferSnapshot;
+ 		}
+ 
+@@ -247,6 +264,18 @@
+ 			lastMaximumViewportSize = size;
+ 		}
+ 
++		/// <summary>
++		/// Rebuilds the world framebuffer, e.g. after Graphics.NativeResolutionWorld changes.
++		/// </summary>
++		public void RefreshWorldBuffer()
++		{
++			if (worldSheet == null)
++				return;
++
++			worldSprite = null;
++			SetMaximumViewportSize(lastMaximumViewportSize);
++		}
++
+ 		public void BeginWorld(Rectangle worldViewport)
+ 		{
+ 			if (renderType != RenderType.None)
+--- a/OpenRA.Game/Settings.cs
++++ b/OpenRA.Game/Settings.cs
+@@ -198,7 +198,13 @@
+ 
+ 		[Desc("Render the world at the display's native resolution instead of one texel per world pixel.",
+ 			"Required for high-resolution artwork to show its full detail.")]
+-		public bool NativeResolutionWorld = true;
++		public bool NativeResolutionWorld = false;
++
++		[Desc("Draw moving units at positions interpolated between game ticks, so motion is smooth at any frame rate.")]
++		public bool SmoothMotion = true;
++
++		[Desc("When drawing is slower than the game, run several game ticks per frame so the game keeps its real speed.")]
++		public bool LogicCatchUp = true;
+ 		public float UIScale = 1;
+ 
+ 		[Desc("Add a frame rate limiter.")]
+--- a/OpenRA.Mods.Common/Traits/Interactable.cs
++++ b/OpenRA.Mods.Common/Traits/Interactable.cs
+@@ -107,7 +107,14 @@
+ 
+ 		public Rectangle DecorationBounds(Actor self, WorldRenderer wr)
+ 		{
+-			return Bounds(self, wr, info.DecorationBounds ?? info.Bounds).BoundingRect;
++			// Follow the interpolated sprite position (smooth motion) so health bars and selection boxes stay attached
++			var bounds = Bounds(self, wr, info.DecorationBounds ?? info.Bounds).BoundingRect;
++			var offset = wr.MotionOffset(self);
++			if (offset == WVec.Zero)
++				return bounds;
++
++			var px = wr.ScreenPxOffset(offset);
++			return new Rectangle(bounds.X + px.X, bounds.Y + px.Y, bounds.Width, bounds.Height);
+ 		}
+ 	}
+ }
+--- a/OpenRA.Platforms.Default/OpenGL.cs
++++ b/OpenRA.Platforms.Default/OpenGL.cs
+@@ -452,6 +452,10 @@
+ 			int x, int y, int width, int height, int border);
+ 		public static CopyTexImage2D glCopyTexImage2D { get; private set; }
+ 
++		public delegate void CopyTexSubImage2D(int target, int level, int xoffset, int yoffset,
++			int x, int y, int width, int height);
++		public static CopyTexSubImage2D glCopyTexSubImage2D { get; private set; }
++
+ 		public delegate void GetTexImage(int target, int level,
+ 			int format, int type, IntPtr pixels);
+ 		public static GetTexImage glGetTexImage { get; private set; }
+@@ -619,6 +623,7 @@
+ 				glActiveTexture = Bind<ActiveTexture>("glActiveTexture");
+ 				glTexImage2D = Bind<TexImage2D>("glTexImage2D");
+ 				glCopyTexImage2D = Bind<CopyTexImage2D>("glCopyTexImage2D");
++				glCopyTexSubImage2D = Bind<CopyTexSubImage2D>("glCopyTexSubImage2D");
+ 				glTexParameteri = Bind<TexParameteri>("glTexParameteri");
+ 				glTexParameterf = Bind<TexParameterf>("glTexParameterf");
+ 
+--- a/OpenRA.Platforms.Default/Texture.cs
++++ b/OpenRA.Platforms.Default/Texture.cs
+@@ -172,6 +172,14 @@
+ 
+ 			var glInternalFormat = OpenGL.Profile == GLProfile.Embedded ? OpenGL.GL_BGRA : OpenGL.GL_RGBA8;
+ 			OpenGL.glCopyTexImage2D(OpenGL.GL_TEXTURE_2D, 0, glInternalFormat, rect.X, rect.Y, rect.Width, rect.Height, 0);
++			OpenGL.CheckGLError();
++		}
++
++		public void UpdateFromReadBuffer(Rectangle rect)
++		{
++			VerifyThreadAffinity();
++			PrepareTexture();
++			OpenGL.glCopyTexSubImage2D(OpenGL.GL_TEXTURE_2D, 0, rect.X, rect.Y, rect.X, rect.Y, rect.Width, rect.Height);
+ 			OpenGL.CheckGLError();
+ 		}
+ 
+--- a/OpenRA.Platforms.Default/ThreadedGraphicsContext.cs
++++ b/OpenRA.Platforms.Default/ThreadedGraphicsContext.cs
+@@ -649,6 +649,7 @@
+ 		readonly Action<object> setData3;
+ 		readonly Func<object, object> setData4;
+ 		readonly Action<object> setData5;
++		readonly Action<object> updateData;
+ 		readonly Action dispose;
+ 
+ 		public ThreadedTexture(ThreadedGraphicsContext device, ITextureInternal texture)
+@@ -665,6 +666,7 @@
+ 			setData3 = tuple => { var t = ((float[], int, int))tuple; texture.SetFloatData(t.Item1, t.Item2, t.Item3); };
+ 			setData4 = tuple => { setData3(tuple); return null; };
+ 			setData5 = rect => texture.SetDataFromReadBuffer((Rectangle)rect);
++			updateData = rect => texture.UpdateFromReadBuffer((Rectangle)rect);
+ 			dispose = texture.Dispose;
+ 		}
+ 
+@@ -732,6 +734,11 @@
+ 			device.Post(setData5, rect);
+ 		}
+ 
++		public void UpdateFromReadBuffer(Rectangle rect)
++		{
++			device.Post(updateData, rect);
++		}
++
+ 		public void Dispose()
+ 		{
+ 			device.Post(dispose);

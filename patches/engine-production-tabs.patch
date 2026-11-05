@@ -1,0 +1,24 @@
+--- a/OpenRA.Mods.Common/Widgets/ProductionTabsWidget.cs
++++ b/OpenRA.Mods.Common/Widgets/ProductionTabsWidget.cs
+@@ -185,7 +185,8 @@
+ 
+ 		public override void Draw()
+ 		{
+-			var tabs = Groups[queueGroup].Tabs.Where(t => t.Queue.BuildableItems().Any()).ToList();
++			// RAPX (IDEA-06): keep a tab while its tech allows items, even when they are all blocked (e.g. no free airfield slots).
++			var tabs = Groups[queueGroup].Tabs.Where(t => t.Queue.AnyItemsToBuild()).ToList();
+ 
+ 			if (tabs.Count == 0)
+ 				return;
+--- a/OpenRA.Mods.Common/Widgets/Logic/Ingame/ProductionTabsLogic.cs
++++ b/OpenRA.Mods.Common/Widgets/Logic/Ingame/ProductionTabsLogic.cs
+@@ -34,7 +34,8 @@
+ 				tabs.PickUpCompletedBuilding();
+ 			}
+ 
+-			button.IsDisabled = () => !tabs.Groups[button.ProductionGroup].Tabs.Any(t => t.Queue.BuildableItems().Any());
++			// RAPX (IDEA-06): stay enabled while items are blocked (e.g. no free airfield slots).
++			button.IsDisabled = () => !tabs.Groups[button.ProductionGroup].Tabs.Any(t => t.Queue.AnyItemsToBuild());
+ 			button.OnMouseUp = mi => SelectTab(mi.Modifiers.HasModifier(Modifiers.Shift));
+ 			button.OnKeyPress = e => SelectTab(e.Modifiers.HasModifier(Modifiers.Shift));
+ 			button.IsHighlighted = () => tabs.QueueGroup == button.ProductionGroup;

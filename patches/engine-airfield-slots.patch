@@ -1,0 +1,327 @@
+--- a/OpenRA.Mods.Common/Traits/Buildings/Reservable.cs
++++ b/OpenRA.Mods.Common/Traits/Buildings/Reservable.cs
+@@ -17,14 +17,44 @@
+ namespace OpenRA.Mods.Common.Traits
+ {
+ 	[Desc("Reserve landing places for aircraft.")]
+-	sealed class ReservableInfo : TraitInfo<Reservable> { }
++	public sealed class ReservableInfo : TraitInfo
++	{
++		// RAPX (IDEA-06): several parking slots per building. Each slot is the home of one aircraft, which keeps it
++		// while flying and lands back on it. Empty = one landing place at the exit, as in stock OpenRA.
++		[Desc("Landing position of each parking slot, relative to the building centre. Each slot must be in its own cell.")]
++		public readonly WVec[] SlotOffsets = Array.Empty<WVec>();
+ 
++		[Desc("Facing of the parked aircraft, one per slot (optional).")]
++		public readonly WAngle[] SlotFacings = Array.Empty<WAngle>();
++
++		public bool HasSlots => SlotOffsets.Length > 0;
++
++		public override object Create(ActorInitializer init) { return new Reservable(this); }
++	}
++
+ 	public class Reservable : ITick, INotifyOwnerChanged, INotifySold, INotifyActorDisposing, INotifyCreated
+ 	{
+-		Actor reservedFor;
+-		Aircraft reservedForAircraft;
++		sealed class Slot
++		{
++			public Actor ReservedFor;
++			public Aircraft ReservedForAircraft;
++
++			// RAPX: the aircraft that owns this slot, also while it is away.
++			public Actor Home;
++		}
++
++		public readonly ReservableInfo Info;
++		readonly Slot[] slots;
+ 		RallyPoint rallyPoint;
+ 
++		public Reservable(ReservableInfo info)
++		{
++			Info = info;
++			slots = new Slot[Math.Max(1, info.SlotOffsets.Length)];
++			for (var i = 0; i < slots.Length; i++)
++				slots[i] = new Slot();
++		}
++
+ 		void INotifyCreated.Created(Actor self)
+ 		{
+ 			rallyPoint = self.TraitOrDefault<RallyPoint>();
+@@ -32,31 +62,68 @@
+ 
+ 		void ITick.Tick(Actor self)
+ 		{
+-			// Nothing to do.
+-			if (reservedFor == null)
+-				return;
+-
+-			if (!Target.FromActor(reservedFor).IsValidFor(self))
++			foreach (var s in slots)
+ 			{
+-				// Not likely to arrive now.
+-				reservedForAircraft.UnReserve();
+-				reservedFor = null;
+-				reservedForAircraft = null;
++				if (s.ReservedFor != null && !Target.FromActor(s.ReservedFor).IsValidFor(self))
++				{
++					// Not likely to arrive now.
++					s.ReservedForAircraft.UnReserve();
++					s.ReservedFor = null;
++					s.ReservedForAircraft = null;
++				}
++
++				if (s.Home != null && (s.Home.IsDead || !s.Home.IsInWorld || s.Home.Owner != self.Owner))
++					s.Home = null;
+ 			}
+ 		}
+ 
++		bool IsFree(Slot s)
++		{
++			return (s.ReservedForAircraft == null || s.ReservedForAircraft.MayYieldReservation) && s.Home == null;
++		}
++
++		int SlotOf(Actor forActor)
++		{
++			for (var i = 0; i < slots.Length; i++)
++				if (slots[i].ReservedFor == forActor || slots[i].Home == forActor)
++					return i;
++
++			return -1;
++		}
++
+ 		public IDisposable Reserve(Actor self, Actor forActor, Aircraft forAircraft)
+ 		{
+-			if (reservedForAircraft != null && reservedForAircraft.MayYieldReservation)
+-				UnReserve(self);
++			var index = Info.HasSlots ? SlotOf(forActor) : 0;
++			if (index < 0)
++				index = Array.FindIndex(slots, IsFree);
+ 
+-			reservedFor = forActor;
+-			reservedForAircraft = forAircraft;
++			// No free slot (callers check IsAvailableFor first): nothing to reserve.
++			if (index < 0)
++				return new DisposableAction(() => { }, () => { });
+ 
++			var slot = slots[index];
++			if (slot.ReservedFor != forActor && slot.ReservedForAircraft != null && slot.ReservedForAircraft.MayYieldReservation)
++				UnReserve(self, slot);
++
++			slot.ReservedFor = forActor;
++			slot.ReservedForAircraft = forAircraft;
++			if (Info.HasSlots)
++			{
++				slot.Home = forActor;
++				ClearHomeElsewhere(self, forActor);
++			}
++
+ 			// NOTE: we really don't care about the GC eating DisposableActions that apply to a world *other* than
+ 			// the one we're playing in.
+ 			return new DisposableAction(
+-				() => { reservedFor = null; reservedForAircraft = null; },
++				() =>
++				{
++					if (slot.ReservedFor == forActor)
++					{
++						slot.ReservedFor = null;
++						slot.ReservedForAircraft = null;
++					}
++				},
+ 				() => Game.RunAfterTick(() =>
+ 				{
+ 					if (Game.IsCurrentWorld(self.World))
+@@ -65,42 +132,95 @@
+ 				}));
+ 		}
+ 
++		static void ClearHomeElsewhere(Actor self, Actor forActor)
++		{
++			foreach (var other in self.World.ActorsWithTrait<Reservable>())
++				if (other.Actor != self)
++					foreach (var s in other.Trait.slots)
++						if (s.Home == forActor && s.ReservedFor != forActor)
++							s.Home = null;
++		}
++
++		/// <summary>RAPX: landing offset and facing of the slot held by this aircraft, if the building has slots.</summary>
++		public bool TryGetSlot(Actor forActor, out WVec offset, out WAngle? facing)
++		{
++			offset = WVec.Zero;
++			facing = null;
++			if (!Info.HasSlots)
++				return false;
++
++			var index = SlotOf(forActor);
++			if (index < 0)
++				return false;
++
++			offset = Info.SlotOffsets[index];
++			if (index < Info.SlotFacings.Length)
++				facing = Info.SlotFacings[index];
++
++			return true;
++		}
++
++		/// <summary>RAPX: the building whose slot is this aircraft's home, or null.</summary>
++		public static Actor HomeOf(Actor aircraft)
++		{
++			foreach (var r in aircraft.World.ActorsWithTrait<Reservable>())
++				if (!r.Actor.IsDead && Array.Exists(r.Trait.slots, s => s.Home == aircraft))
++					return r.Actor;
++
++			return null;
++		}
++
++		/// <summary>RAPX: number of free slots and total slots (for slot counters and production limits).</summary>
++		public (int Free, int Total) SlotUsage()
++		{
++			return (Array.FindAll(slots, IsFree).Length, slots.Length);
++		}
++
+ 		public static bool IsReserved(Actor a)
+ 		{
+ 			var res = a.TraitOrDefault<Reservable>();
+-			return res != null && res.reservedForAircraft != null && !res.reservedForAircraft.MayYieldReservation;
++			return res != null && !Array.Exists(res.slots, res.IsFree);
+ 		}
+ 
+ 		public static bool IsAvailableFor(Actor reservable, Actor forActor)
+ 		{
+ 			var res = reservable.TraitOrDefault<Reservable>();
+-			return res == null || res.reservedForAircraft == null || res.reservedForAircraft.MayYieldReservation || res.reservedFor == forActor;
++			return res == null || res.SlotOf(forActor) >= 0 || Array.Exists(res.slots, res.IsFree);
+ 		}
+ 
+-		void UnReserve(Actor self)
++		void UnReserve(Actor self, Slot slot)
+ 		{
+-			if (reservedForAircraft != null)
+-			{
+-				if (reservedForAircraft.GetActorBelow() == self)
+-				{
+-					// HACK: Cache this in a local var, such that the inner activity of AttackMoveActivity can access the trait easily after reservedForAircraft was nulled
+-					var aircraft = reservedForAircraft;
+-					if (rallyPoint != null && rallyPoint.Path.Count > 0)
+-						foreach (var cell in rallyPoint.Path)
+-							reservedFor.QueueActivity(new AttackMoveActivity(reservedFor, () => aircraft.MoveTo(cell, 1, targetLineColor: Color.OrangeRed)));
+-					else
+-						reservedFor.QueueActivity(new TakeOff(reservedFor));
+-				}
++			var reservedFor = slot.ReservedFor;
++			var reservedForAircraft = slot.ReservedForAircraft;
++			slot.Home = null;
++			if (reservedForAircraft == null)
++				return;
+ 
+-				reservedForAircraft.UnReserve();
++			if (reservedForAircraft.GetActorBelow() == self)
++			{
++				// HACK: Cache this in a local var, such that the inner activity of AttackMoveActivity can access the trait easily after reservedForAircraft was nulled
++				var aircraft = reservedForAircraft;
++				if (rallyPoint != null && rallyPoint.Path.Count > 0)
++					foreach (var cell in rallyPoint.Path)
++						reservedFor.QueueActivity(new AttackMoveActivity(reservedFor, () => aircraft.MoveTo(cell, 1, targetLineColor: Color.OrangeRed)));
++				else
++					reservedFor.QueueActivity(new TakeOff(reservedFor));
+ 			}
++
++			reservedForAircraft.UnReserve();
+ 		}
+ 
+-		void INotifyActorDisposing.Disposing(Actor self) { UnReserve(self); }
++		void UnReserveAll(Actor self)
++		{
++			foreach (var s in slots)
++				UnReserve(self, s);
++		}
+ 
+-		void INotifyOwnerChanged.OnOwnerChanged(Actor self, Player oldOwner, Player newOwner) { UnReserve(self); }
++		void INotifyActorDisposing.Disposing(Actor self) { UnReserveAll(self); }
+ 
+-		void INotifySold.Selling(Actor self) { UnReserve(self); }
+-		void INotifySold.Sold(Actor self) { UnReserve(self); }
++		void INotifyOwnerChanged.OnOwnerChanged(Actor self, Player oldOwner, Player newOwner) { UnReserveAll(self); }
++
++		void INotifySold.Selling(Actor self) { UnReserveAll(self); }
++		void INotifySold.Sold(Actor self) { UnReserveAll(self); }
+ 	}
+ }
+--- a/OpenRA.Mods.Common/Activities/Air/ReturnToBase.cs
++++ b/OpenRA.Mods.Common/Activities/Air/ReturnToBase.cs
+@@ -42,6 +42,11 @@
+ 			if (rearmInfo == null)
+ 				return null;
+ 
++			// RAPX (IDEA-06): fly back to the aircraft's own parking slot first.
++			var home = Reservable.HomeOf(self);
++			if (home != null && home.Owner == self.Owner && rearmInfo.RearmActors.Contains(home.Info.Name))
++				return home;
++
+ 			return self.World.ActorsHavingTrait<Reservable>()
+ 				.Where(a => !a.IsDead
+ 					&& a.Owner == self.Owner
+@@ -110,15 +115,20 @@
+ 
+ 			if (ShouldLandAtBuilding(self, dest))
+ 			{
+-				var exit = dest.NearestExitOrDefault(self.CenterPosition);
++				aircraft.MakeReservation(dest);
++
++				// RAPX (IDEA-06): land on the reserved parking slot, or at the exit when the building has no slots.
+ 				var offset = WVec.Zero;
+-				if (exit != null)
++				if (!dest.Trait<Reservable>().TryGetSlot(self, out offset, out facing))
+ 				{
+-					offset = exit.Info.SpawnOffset;
+-					facing = exit.Info.Facing;
++					var exit = dest.NearestExitOrDefault(self.CenterPosition);
++					if (exit != null)
++					{
++						offset = exit.Info.SpawnOffset;
++						facing = exit.Info.Facing;
++					}
+ 				}
+ 
+-				aircraft.MakeReservation(dest);
+ 				QueueChild(aircraft.MoveOntoTarget(self, Target.FromActor(dest), offset, facing, Color.Green));
+ 				QueueChild(new Resupply(self, dest, WDist.Zero, alwaysLand));
+ 				return true;
+--- a/OpenRA.Mods.Common/Traits/Air/Aircraft.cs
++++ b/OpenRA.Mods.Common/Traits/Air/Aircraft.cs
+@@ -1258,7 +1258,19 @@
+ 						var exit = host.NearestExitOrDefault(pos);
+ 						pos = host.CenterPosition;
+ 						pos = new WPos(pos.X, pos.Y, pos.Z - self.World.Map.DistanceAboveTerrain(pos).Length);
+-						if (exit != null)
++
++						// RAPX (IDEA-06): park new aircraft on a free slot, which becomes their home.
++						aircraft.MakeReservation(host);
++						var reservable = host.Trait<Reservable>();
++						if (reservable.TryGetSlot(self, out var slotOffset, out var slotFacing))
++						{
++							pos += slotOffset;
++							if (slotFacing != null)
++								aircraft.Facing = slotFacing.Value;
++
++							cpos = self.World.Map.CellContaining(pos);
++						}
++						else if (exit != null)
+ 						{
+ 							pos += exit.Info.SpawnOffset;
+ 							if (exit.Info.Facing != null)
+@@ -1267,10 +1279,12 @@
+ 
+ 						aircraft.AddInfluence(cpos);
+ 						aircraft.SetPosition(self, pos);
+-						aircraft.MakeReservation(host);
+ 
+ 						// Freshly created aircraft shouldn't block the exit, so we allow them to yield their reservation.
+-						aircraft.AllowYieldingReservation();
++						// RAPX: not on slot airfields, where the slot is the aircraft's home.
++						if (!reservable.Info.HasSlots)
++							aircraft.AllowYieldingReservation();
++
+ 						return true;
+ 					}
+ 
