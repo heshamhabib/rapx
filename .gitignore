@@ -82,3 +82,7 @@ __pycache__/
 /artsrc/**/render-*/
 /artsrc/**/preview/
 /artsrc/**/upload/
+
+# Kept local, not published
+/docs/DESIGN-IDEAS.md
+/launch-game-test.sh

@@ -52,7 +52,7 @@ EA's freeware Red Alert files, or point it at your original CDs.
 | `patches/` | The same engine changes as patch files, a record of what differs from stock OpenRA |
 | `artsrc/` | Art pipeline: scripts that generate the HD sprites, UI skin, flags, cameos, maps and sounds |
 | `tools/` | Helper scripts (video encoder, perf bench, art audit) |
-| `docs/` | Design ideas, campaign story, asset inventories |
+| `docs/` | Campaign story, research notes, asset inventories |
 | `packaging/` | Scripts for building Windows / macOS / Linux installers |
 
 Raw source art (Blender scenes, 3D model downloads and intermediate renders, tens of GB) is not part of the
