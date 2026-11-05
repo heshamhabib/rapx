@@ -1,0 +1,8 @@
+World:
+	PxWeatherManager:
+		Fixed: Snow
+	TintPostProcessEffect:
+		Red: 0.9
+		Green: 0.9
+		Blue: 1.0
+		Ambient: 1.2

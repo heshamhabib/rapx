@@ -1,0 +1,156 @@
+# Classic RA tracks are hidden so only the Project X soundtrack plays in game.
+# Remove a track's "Hidden: true" line to add it back to the playlist.
+
+await_r: Afterlife (Await)
+	Hidden: true
+	VolumeModifier: 0.7
+bigf226m: Bigfoot
+	Hidden: true
+	VolumeModifier: 0.7
+crus226m: Crush
+	Hidden: true
+	VolumeModifier: 0.7
+dense_r: Dense
+	Hidden: true
+	VolumeModifier: 0.7
+fac1226m: Face to the Enemy 1
+	Hidden: true
+	VolumeModifier: 0.85
+fac2226m: Face to the Enemy 2
+	Hidden: true
+	VolumeModifier: 0.7
+fogger1a: Fogger
+	Hidden: true
+	VolumeModifier: 0.8
+hell226m: Hell March
+	Hidden: true
+	VolumeModifier: 0.7
+intro: Intro
+	Hidden: true
+	VolumeModifier: 0.9
+map: Map
+	Hidden: true
+	VolumeModifier: 0.6
+mud1a: Mud
+	Hidden: true
+	VolumeModifier: 0.7
+radio2: Radio 2
+	Hidden: true
+	VolumeModifier: 0.7
+credits: Reload Fire (Credits)
+	Hidden: true
+	VolumeModifier: 0.9
+rollout: Roll Out
+	Hidden: true
+	VolumeModifier: 0.7
+run1226m: Run (For Your Life)
+	Hidden: true
+	VolumeModifier: 0.7
+score: Militant Force (Scores)
+	Hidden: true
+	VolumeModifier: 0.7
+smsh226m: Smash
+	Hidden: true
+	VolumeModifier: 0.7
+snake: Snake
+	Hidden: true
+	VolumeModifier: 0.7
+terminat: Terminate
+	Hidden: true
+	VolumeModifier: 0.7
+tren226m: Trenches
+	Hidden: true
+	VolumeModifier: 0.7
+twin: Twin Cannon
+	Hidden: true
+	VolumeModifier: 0.7
+vector1a: Vector
+	Hidden: true
+	VolumeModifier: 0.7
+work226m: Workmen
+	Hidden: true
+	VolumeModifier: 0.7
+
+# Counterstrike tracks
+araziod: Arazoid
+	Hidden: true
+	VolumeModifier: 0.8
+backstab: Backstab
+	Hidden: true
+	VolumeModifier: 0.9
+chaos2: Chaos
+	Hidden: true
+	VolumeModifier: 0.9
+shut_it: Shut It
+	Hidden: true
+	VolumeModifier: 0.9
+2nd_hand: The Second Hand
+	Hidden: true
+twinmix1: Twin Cannon (Remix)
+	Hidden: true
+	VolumeModifier: 0.9
+under3: Underlying Thoughts
+	Hidden: true
+	VolumeModifier: 0.95
+vr2: Voice Rhythm 2
+	Hidden: true
+	VolumeModifier: 0.95
+
+# Aftermath tracks
+await: Afterlife (Await)
+	Hidden: true
+bog: Bog
+	Hidden: true
+	VolumeModifier: 0.9
+float_v2: Floating
+	Hidden: true
+gloom: Gloom
+	Hidden: true
+grndwire: Groundwire
+	Hidden: true
+rpt: Running Through Pipes
+	Hidden: true
+search: The Search
+	Hidden: true
+traction: Traction
+	Hidden: true
+wastelnd: Wasteland
+	Hidden: true
+
+# Project X soundtrack
+sector4: Sector Four Lockdown
+	Filename: ra|audio/sector4
+	Extension: mp3
+	VolumeModifier: 0.9
+crown: Claim the Crown
+	Filename: ra|audio/crown
+	Extension: mp3
+	VolumeModifier: 0.9
+perimeter: Fortress Defense
+	Filename: ra|audio/perimeter
+	Extension: mp3
+	VolumeModifier: 0.9
+siege: Desolate Siege
+	Filename: ra|audio/siege
+	Extension: mp3
+	VolumeModifier: 0.9
+ironrock: Kinetic Boundary
+	Filename: ra|audio/ironrock
+	Extension: mp3
+	VolumeModifier: 0.9
+armoredpulse: Armored Pulse
+	Filename: ra|audio/armoredpulse
+	Extension: mp3
+	VolumeModifier: 0.9
+calcsiege: Calculated Siege
+	Filename: ra|audio/calcsiege
+	Extension: mp3
+	VolumeModifier: 0.9
+frontier: Frontier Engagement
+	Filename: ra|audio/frontier
+	Extension: mp3
+	VolumeModifier: 0.9
+gambit: Midnight War Room
+	Filename: ra|audio/gambit
+	Extension: mp3
+	VolumeModifier: 0.9

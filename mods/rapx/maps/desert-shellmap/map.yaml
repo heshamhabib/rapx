@@ -1,0 +1,44 @@
+MapFormat: 12
+
+RequiresMod: ra
+
+Title: Desert Shellmap
+
+Author: Scott_NZ
+
+Tileset: DESERT
+
+MapSize: 8,8
+
+Bounds: 1,1,6,6
+
+Visibility: Shellmap
+
+Categories: Shellmap
+
+Players:
+	PlayerReference@Neutral:
+		Name: Neutral
+		OwnsWorld: True
+		NonCombatant: True
+		Faction: allies
+	PlayerReference@Creeps:
+		Name: Creeps
+		NonCombatant: True
+		Faction: allies
+	PlayerReference@Allies:
+		Name: Allies
+		Faction: allies
+		Color: ABB7E4
+		Enemies: Soviets
+	PlayerReference@Soviets:
+		Name: Soviets
+		Faction: soviet
+		Color: FE1100
+		Enemies: Allies
+
+Actors:
+
+Rules: ra|rules/campaign-palettes.yaml, rules.yaml
+
+Weapons: weapons.yaml
