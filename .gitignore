@@ -86,3 +86,6 @@ __pycache__/
 # Kept local, not published
 /docs/DESIGN-IDEAS.md
 /launch-game-test.sh
+
+# GitHub Actions workflows stay local (pushing them needs the token workflow scope)
+/.github/workflows/
