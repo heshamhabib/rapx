@@ -78,5 +78,7 @@ ffmpeg -hide_banner -loglevel error -y "${IN[@]}" \
 ffmpeg -hide_banner -loglevel error -y -i "$GAME" -vf "fade=t=out:st=$(echo "$TOT-1.5" | bc):d=1.5" \
 	-c:v libx264 -preset slow -crf 17 -c:a copy -movflags +faststart "$PREVIEW"
 
-# Game build: 1080p, best JPEG quality (Lanczos upscale avoids a pixelated look)
-python3 "$S/../../tools/make-video.py" "$GAME" "$S/../../mods/rapx/movies/intro.rpv" --width 1920 --quality 2
+# Game build: 1152x648, JPEG q12 + MP3 audio keeps intro.rpv under GitHub's 100 MB file limit.
+# If you change the width, rescale TileSize / VideoAnchor / VideoToArtScale in chrome/intro.yaml to match.
+# Full-quality local copy (not in git): --width 1920 --quality 2 --audio pcm -> artsrc/intro/intro-1080p-q2.rpv
+python3 "$S/../../tools/make-video.py" "$GAME" "$S/../../mods/rapx/movies/intro.rpv" --width 1152 --quality 12

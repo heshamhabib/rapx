@@ -7,10 +7,11 @@ Container@INTRO_VIDEO:
 			Width: WINDOW_WIDTH
 			Height: WINDOW_HEIGHT
 			Transition: Barrage
-			TileSize: 9
+			# TileSize, VideoAnchor and VideoToArtScale are in pixels of the 1152x648 intro.rpv (x0.6 of the 1080p values 9 / 960,532 / 1.45)
+			TileSize: 5
 			SparkImage: ra|uibits/menu-fx/dot.png
-			VideoAnchor: 960,532
+			VideoAnchor: 576,319
 			TargetImageSize: 3168,1980
 			TargetAnchor: 959,982
 			TargetAlign: 0.3
-			VideoToArtScale: 1.45
+			VideoToArtScale: 2.4167

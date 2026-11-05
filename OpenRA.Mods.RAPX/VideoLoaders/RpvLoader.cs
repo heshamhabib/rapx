@@ -103,6 +103,17 @@ namespace OpenRA.Mods.RAPX.VideoLoaders
 			SampleBits = s.ReadUInt8();
 			AudioData = s.ReadBytes(s.ReadInt32());
 
+			// SampleBits 0: the audio is a compressed sound file (e.g. MP3), decoded here to PCM by the mod's sound loaders
+			if (SampleBits == 0 && AudioData.Length > 0)
+			{
+				using var sound = ParseSound(AudioData);
+				using var pcm = sound.GetPCMInputStream();
+				AudioData = pcm.ReadAllBytes();
+				AudioChannels = sound.Channels;
+				SampleRate = sound.SampleRate;
+				SampleBits = sound.SampleBits;
+			}
+
 			if (s is FileStream file)
 			{
 				path = file.Name;
@@ -261,6 +272,15 @@ namespace OpenRA.Mods.RAPX.VideoLoaders
 			{
 				file?.Dispose();
 			}
+		}
+
+		static ISoundFormat ParseSound(byte[] data)
+		{
+			foreach (var loader in Game.ModData.SoundLoaders)
+				if (loader.TryParseSound(new MemoryStream(data), out var sound))
+					return sound;
+
+			throw new InvalidDataException("RPV audio is not in any of the mod's SoundFormats.");
 		}
 
 		byte[] ReadFrame(FileStream file, int index)

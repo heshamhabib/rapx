@@ -39,6 +39,9 @@ namespace OpenRA.Mods.RAPX.Widgets
 		const float DebrisLife = 0.6f;
 		const float Gravity = 700f;
 
+		// Effect speeds and sizes are tuned in pixels of a 1920-wide video; px rescales them to the actual video
+		const float ReferenceWidth = 1920f;
+
 		public Hotkey CancelKey = new(Keycode.ESCAPE, Modifiers.None);
 
 		public PxIntroTransition Transition = PxIntroTransition.Barrage;
@@ -99,6 +102,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 		Sprite[] glowTiles;
 		int cols, rows, textureWidth, textureHeight;
 		float invLength;
+		float px;
 
 		// Melt
 		float[] thresholds;
@@ -182,6 +186,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 			this.onComplete = onComplete;
 
 			invLength = video.Framerate * 1f / video.FrameCount;
+			px = video.Width / ReferenceWidth;
 			textureWidth = Exts.NextPowerOf2(video.Width);
 			textureHeight = Exts.NextPowerOf2(video.Height);
 			sheet = new Sheet(SheetType.BGRA, new Size(textureWidth, textureHeight));
@@ -328,7 +333,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 						{
 							killTime[i] = kt;
 							var dir = len > 1 ? offset / len : new float2(0, -1);
-							debrisVel[i] = (300 + 700 * Rand()) / k * dir + new float2(0, -350 * Rand() / k);
+							debrisVel[i] = px * ((300 + 700 * Rand()) / k * dir + new float2(0, -350 * Rand() / k));
 							debrisSpin[i] = (Rand() - 0.5f) * 16 / k;
 						}
 					}
@@ -340,7 +345,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 				}
 
 				// Jag the shard borders by sampling the nearest seed from a noisy position
-				var p = home + 3f * TileSize * new float2(Noise2(home.X / 30, home.Y / 30 + noiseSeed) - 0.5f, Noise2(home.X / 30 + noiseSeed, home.Y / 30) - 0.5f);
+				var p = home + 3f * TileSize * new float2(Noise2(home.X / (30 * px), home.Y / (30 * px) + noiseSeed) - 0.5f, Noise2(home.X / (30 * px) + noiseSeed, home.Y / (30 * px)) - 0.5f);
 				var best = 0;
 				var bestDist = float.MaxValue;
 				for (var s = 0; s < seeds.Count; s++)
@@ -370,7 +375,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 				shards[s] = new Shard
 				{
 					Center = center,
-					Vel = (500 + 900 * Rand()) * near / k * dir + new float2(0, (-150 - 200 * Rand()) / k),
+					Vel = px * ((500 + 900 * Rand()) * near / k * dir + new float2(0, (-150 - 200 * Rand()) / k)),
 					Spin = (Rand() - 0.5f) * 5 / k,
 					Start = blast + dist / shockSpeed
 				};
@@ -451,7 +456,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 
 					var x = i % cols;
 					var y = i / cols;
-					var drop = local * local * drips[x] * 60 * scale;
+					var drop = local * local * drips[x] * 60 * scale * px;
 					var tl = origin + new float2(x * tileScreen, y * tileScreen + drop);
 					var size = scale * new float2(tiles[i].Bounds.Width, tiles[i].Bounds.Height);
 
@@ -476,10 +481,10 @@ namespace OpenRA.Mods.RAPX.Widgets
 							EmitSpark(new Particle
 							{
 								Pos = tl + 0.5f * size,
-								Vel = scale * new float2(MathF.Cos(angle) * 60, -40 - 120 * Rand()),
+								Vel = scale * px * new float2(MathF.Cos(angle) * 60, -40 - 120 * Rand()),
 								Life = 0.6f + 0.8f * Rand(),
-								Size = (10 + 16 * Rand()) * scale,
-								Gravity = 50 * scale,
+								Size = (10 + 16 * Rand()) * scale * px,
+								Gravity = 50 * scale * px,
 								Color = SparkColor
 							});
 						}
@@ -558,7 +563,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 						continue;
 
 					var f = s / (DebrisLife * k);
-					center = home + s * debrisVel[i] + new float2(0, 0.5f * Gravity / (k * k) * s * s);
+					center = home + s * debrisVel[i] + new float2(0, 0.5f * px * Gravity / (k * k) * s * s);
 					angle = debrisSpin[i] * s;
 					grow = 1 - 0.5f * f;
 					alpha = 1 - f * f;
@@ -582,7 +587,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 						var rel = grow * (home - shard.Center);
 						var cs = MathF.Cos(angle);
 						var sn = MathF.Sin(angle);
-						center = shard.Center + s * shard.Vel + new float2(rel.X * cs - rel.Y * sn, 0.5f * Gravity / (k * k) * s * s + rel.X * sn + rel.Y * cs);
+						center = shard.Center + s * shard.Vel + new float2(rel.X * cs - rel.Y * sn, 0.5f * px * Gravity / (k * k) * s * s + rel.X * sn + rel.Y * cs);
 					}
 
 					// Cracks flash white-hot as the shock front passes
@@ -651,9 +656,9 @@ namespace OpenRA.Mods.RAPX.Widgets
 				if (t < s.Time && t >= s.Time - flight)
 				{
 					var u = (t - (s.Time - flight)) / flight;
-					var head = target - (1 - u) * 900 * scale * s.Dir;
-					DrawStreak(head - 220 * scale * s.Dir, head, 5 * scale, new float3(1f, 0.85f, 0.5f));
-					DrawGlow(head, 40 * scale, new float3(1f, 0.9f, 0.6f));
+					var head = target - (1 - u) * 900 * scale * px * s.Dir;
+					DrawStreak(head - 220 * scale * px * s.Dir, head, 5 * scale * px, new float3(1f, 0.85f, 0.5f));
+					DrawGlow(head, 40 * scale * px, new float3(1f, 0.9f, 0.6f));
 				}
 				else if (t >= s.Time && t < s.Time + 0.8f * k)
 				{
@@ -677,7 +682,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 				// Shockwave ring, riding the front that breaks the shards loose
 				const int Dots = 120;
 				var radius = scale * shockSpeed * b * k;
-				var size = (30 + 60 * b) * scale;
+				var size = (30 + 60 * b) * scale * px;
 				var color = 0.9f * (1 - b / 0.8f) * (1 - b / 0.8f) * new float3(1f, 0.7f, 0.35f);
 				for (var i = 0; i < Dots; i++)
 				{
@@ -703,11 +708,11 @@ namespace OpenRA.Mods.RAPX.Widgets
 				EmitSpark(new Particle
 				{
 					Pos = p,
-					Vel = (200 + 600 * Rand()) * scale / k * new float2(MathF.Cos(a), MathF.Sin(a)),
+					Vel = (200 + 600 * Rand()) * scale * px / k * new float2(MathF.Cos(a), MathF.Sin(a)),
 					Life = Math.Min((0.35f + 0.55f * Rand()) * k, remaining),
-					Size = (4 + 8 * Rand()) * scale,
+					Size = (4 + 8 * Rand()) * scale * px,
 					Drag = 1.5f / k,
-					Gravity = 900 * scale / (k * k),
+					Gravity = 900 * scale * px / (k * k),
 					Color = new float3(1f, 0.6f + 0.25f * Rand(), 0.2f + 0.2f * Rand())
 				});
 			}
@@ -718,7 +723,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 				EmitPuff(new Particle
 				{
 					Pos = p + 0.4f * scale * s.Radius * Rand() * new float2(MathF.Cos(a), MathF.Sin(a)),
-					Vel = scale / k * new float2((Rand() - 0.5f) * 80, -20 - 40 * Rand()),
+					Vel = scale * px / k * new float2((Rand() - 0.5f) * 80, -20 - 40 * Rand()),
 					Life = Math.Min((1.4f + 0.8f * Rand()) * k, remaining),
 					Size = scale * s.Radius * (0.7f + 0.5f * Rand()),
 					Grow = 0.9f / k,
@@ -744,11 +749,11 @@ namespace OpenRA.Mods.RAPX.Widgets
 				EmitSpark(new Particle
 				{
 					Pos = center,
-					Vel = (400 + 1200 * Rand()) * scale / k * new float2(MathF.Cos(a), MathF.Sin(a)),
+					Vel = (400 + 1200 * Rand()) * scale * px / k * new float2(MathF.Cos(a), MathF.Sin(a)),
 					Life = Math.Min((0.5f + 0.9f * Rand()) * k, remaining),
-					Size = (5 + 12 * Rand()) * scale,
+					Size = (5 + 12 * Rand()) * scale * px,
 					Drag = 1.8f / k,
-					Gravity = 500 * scale / (k * k),
+					Gravity = 500 * scale * px / (k * k),
 					Color = new float3(1f, 0.65f + 0.3f * Rand(), 0.3f + 0.3f * Rand())
 				});
 			}
@@ -760,10 +765,10 @@ namespace OpenRA.Mods.RAPX.Widgets
 				var dir = new float2(MathF.Cos(a), MathF.Sin(a));
 				EmitPuff(new Particle
 				{
-					Pos = center + 30 * scale * dir,
-					Vel = (500 + 600 * Rand()) * scale / k * dir,
+					Pos = center + 30 * scale * px * dir,
+					Vel = (500 + 600 * Rand()) * scale * px / k * dir,
 					Life = remaining * (0.75f + 0.25f * Rand()),
-					Size = (120 + 140 * Rand()) * scale,
+					Size = (120 + 140 * Rand()) * scale * px,
 					Grow = 0.6f / k,
 					Drag = 2.2f / k,
 					Alpha = 0.4f,
