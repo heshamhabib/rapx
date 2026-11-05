@@ -108,7 +108,12 @@ namespace OpenRA.Mods.RAPX.VideoLoaders
 			{
 				using var sound = ParseSound(AudioData);
 				using var pcm = sound.GetPCMInputStream();
-				AudioData = pcm.ReadAllBytes();
+
+				// Copy in chunks until the end: MP3Stream reports the compressed size as its Length,
+				// and ReadAllBytes' single huge Read of that size never returns
+				using var decoded = new MemoryStream();
+				pcm.CopyTo(decoded);
+				AudioData = decoded.ToArray();
 				AudioChannels = sound.Channels;
 				SampleRate = sound.SampleRate;
 				SampleBits = sound.SampleBits;
