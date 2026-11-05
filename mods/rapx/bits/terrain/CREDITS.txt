@@ -1,0 +1,4 @@
+HD terrain detail textures (all CC0 / public domain):
+  grass.png  - ambientCG "Grass004" (https://ambientcg.com/a/Grass004), colour graded
+  dirt.png   - Poly Haven "dirt_aerial_02" (https://polyhaven.com/a/dirt_aerial_02)
+  rock.png   - Poly Haven "aerial_rocks_02" (https://polyhaven.com/a/aerial_rocks_02)

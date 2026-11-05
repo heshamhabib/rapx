@@ -1,0 +1,161 @@
+ImageSize: 3168,1980
+Layers:
+	fire-tanks:
+		Image: ra|uibits/menu-fx/fire-tanks.png
+		Rect: 40,1042,380,242
+		Effect: Flicker
+		Speed: 1.0
+		Min: 0.3
+		Max: 1.5
+	fire-tank-small:
+		Image: ra|uibits/menu-fx/fire-tank-small.png
+		Rect: 310,1198,320,260
+		Effect: Flicker
+		Speed: 1.2
+		Min: 0.3
+		Max: 1.5
+	fire-left-edge:
+		Image: ra|uibits/menu-fx/fire-left-edge.png
+		Rect: 0,978,160,320
+		Effect: Flicker
+		Speed: 0.9
+		Min: 0.2
+		Max: 1.2
+	lava-left:
+		Image: ra|uibits/menu-fx/lava-left.png
+		Rect: 0,1452,490,202
+		Effect: Flicker
+		Speed: 0.6
+		Min: 0.2
+		Max: 1.0
+	lava-globe:
+		Image: ra|uibits/menu-fx/lava-globe.png
+		Rect: 520,1448,760,214
+		Effect: Flicker
+		Speed: 0.7
+		Min: 0.3
+		Max: 1.3
+	lava-centre:
+		Image: ra|uibits/menu-fx/lava-centre.png
+		Rect: 1080,1378,600,280
+		Effect: Flicker
+		Speed: 0.8
+		Min: 0.3
+		Max: 1.3
+	fire-tower:
+		Image: ra|uibits/menu-fx/fire-tower.png
+		Rect: 1540,1118,360,260
+		Effect: Flicker
+		Speed: 1.1
+		Min: 0.3
+		Max: 1.6
+	lava-right:
+		Image: ra|uibits/menu-fx/lava-right.png
+		Rect: 1500,1398,440,180
+		Effect: Flicker
+		Speed: 0.7
+		Min: 0.2
+		Max: 1.0
+	fire-crater:
+		Image: ra|uibits/menu-fx/fire-crater.png
+		Rect: 2210,1278,380,180
+		Effect: Flicker
+		Speed: 1.0
+		Min: 0.4
+		Max: 2.0
+	fire-far-right:
+		Image: ra|uibits/menu-fx/fire-far-right.png
+		Rect: 2760,1128,400,240
+		Effect: Flicker
+		Speed: 0.9
+		Min: 0.3
+		Max: 1.8
+	afterburner:
+		Image: ra|uibits/menu-fx/afterburner.png
+		Rect: 1360,602,340,142
+		Effect: Flicker
+		Speed: 2.6
+		Min: 0.4
+		Max: 1.6
+	logo:
+		Image: ra|uibits/menu-fx/logo.png
+		Rect: 180,618,1560,720
+		Effect: Pulse
+		Speed: 0.25
+		Min: 0.0
+		Max: 0.45
+	logo-shine:
+		Image: ra|uibits/menu-fx/logo-shine.png
+		Rect: 300,658,1320,640
+		Effect: Shine
+		Speed: 0.15
+		Min: 0.0
+		Max: 1.8
+	hud-ring-left:
+		Image: ra|uibits/menu-fx/hud-ring-left.png
+		Rect: 544,512,232,232
+		Effect: Pulse
+		Speed: 0.55
+		Min: 0.0
+		Max: 0.6
+	hud-ring-right:
+		Image: ra|uibits/menu-fx/hud-ring-right.png
+		Rect: 1144,472,252,252
+		Effect: Pulse
+		Speed: 0.45
+		Min: 0.0
+		Max: 0.6
+	hud-arc:
+		Image: ra|uibits/menu-fx/hud-arc.png
+		Rect: 1470,618,240,840
+		Effect: Pulse
+		Speed: 0.35
+		Min: 0.05
+		Max: 0.45
+	flare-left:
+		Image: ra|uibits/menu-fx/flare-left.png
+		Rect: 70,862,400,82
+		Effect: Twinkle
+		Speed: 0.5
+		Min: 0.1
+		Max: 1.0
+	flare-right:
+		Image: ra|uibits/menu-fx/flare-right.png
+		Rect: 1460,862,460,82
+		Effect: Twinkle
+		Speed: 0.4
+		Min: 0.1
+		Max: 1.0
+Beacons:
+	tower-left:
+		Position: 1781,896
+		Size: 26
+		Period: 1.6
+		Phase: 0.0
+	tower-right:
+		Position: 2956,896
+		Size: 26
+		Period: 1.6
+		Phase: 0.8
+	tower-tanks:
+		Position: 421,1136
+		Size: 18
+		Period: 2.1
+		Phase: 0.3
+	heli-tail:
+		Position: 102,564
+		Size: 16
+		Period: 1.2
+		Phase: 0.5
+	heli-belly:
+		Position: 346,695
+		Size: 18
+		Period: 1.2
+		Phase: 0.0
+EmberSources:
+	source-0: 0,1098,650,380
+	source-1: 650,1468,1000,194
+	source-2: 1600,1198,400,300
+	source-3: 2200,1318,400,150
+	source-4: 2750,1178,418,200
+FlashArea: 1750,968,1380,380
