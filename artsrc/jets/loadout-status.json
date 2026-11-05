@@ -1,0 +1,48 @@
+{
+ "steps": [
+  {
+   "name": "Ordnance survey of the jet models (artsrc/jets/loadouts.py)",
+   "done": true
+  },
+  {
+   "name": "Weapon families: missiles, bombs, rockets, guns (weapons/jet-ordnance.yaml)",
+   "done": true
+  },
+  {
+   "name": "Procedural missiles for jets modelled without weapons (artsrc/jets/ordnance.py)",
+   "done": true
+  },
+  {
+   "name": "Loadout table for every jet (artsrc/jets/loadout_table.py)",
+   "done": true
+  },
+  {
+   "name": "Missiles disappear when fired, jets fly home empty to rearm (tested: A-10)",
+   "done": true
+  },
+  {
+   "name": "Real smoke trails instead of contrail lines (WithPxJetTrail)",
+   "done": true
+  },
+  {
+   "name": "Render every jet with its weapon overlays",
+   "done": true
+  },
+  {
+   "name": "Jet-versus-jet test in game",
+   "done": true
+  },
+  {
+   "name": "Missiles reappear after rearming (check)",
+   "done": false
+  },
+  {
+   "name": "Balance: one air-to-air missile per pass, guns weaker vs aircraft (dogfight now lasts 15-40 s)",
+   "done": true
+  },
+  {
+   "name": "Realistic shot-down jets: fireball, spinning fall with fire and black smoke, debris, burning crash site (WithPxCrashFx)",
+   "done": true
+  }
+ ]
+}

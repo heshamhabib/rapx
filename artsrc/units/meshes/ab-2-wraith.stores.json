@@ -1,0 +1,13 @@
+{
+ "unit": "jet.b2",
+ "stations": [
+  {
+   "weapon": "JetGBU",
+   "shots": 8,
+   "stores": [],
+   "internal": true
+  }
+ ],
+ "wdist_per_unit": 341.67466666666667,
+ "height_factor": 0.7304404655528857
+}
