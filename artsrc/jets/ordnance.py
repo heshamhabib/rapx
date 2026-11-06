@@ -9,10 +9,34 @@ Kinds (real length m, diameter m, fins, paint):
 """
 
 import math
+import os
 
 import bmesh
 import bpy
+import numpy as np
 from mathutils import Matrix, Vector
+
+# Real models (Sketchfab, CC-BY; tools/download_sketchfab.py --missiles, unzipped into
+# artsrc/units/meshes/glb/sketchfab/missiles/<kind>/): used instead of the procedural shape for both the fired sprite
+# (render_missiles.py) and the stores hung on jets (import_sketchfab.py "add"). kind: real length in metres.
+# The long axis is turned onto +Y with the nose forward (the pointed end: the one with less width at its tip).
+MISSILE_MODELS = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "units", "meshes",
+                                               "glb", "sketchfab", "missiles"))
+REAL = {
+    "aim9": 2.87,      # AIM-9 Sidewinder (rickslash)
+    "aim120": 3.66,    # AIM-120C AMRAAM (Jeyhun1985)
+    "aim54": 3.96,     # AIM-54 Phoenix (MustafaGarip)
+    "r73": 2.9,        # R-73 (jokesforboats)
+    "r77": 3.6,        # R-77 (MustafaGarip)
+    "r27t": 3.7,       # R-27T (KojfDiscord, War Thunder)
+    "agm65": 2.49,     # AGM-65B Maverick (xFORTUNAx)
+    "kh29": 3.9,       # Kh-29T (xFORTUNAx)
+    "gbu": 3.27,       # GBU-12 Paveway II (KojfDiscord, War Thunder)
+    "s8": 1.57,        # S-8KOM 80 mm rocket (xFORTUNAx)
+    "tomahawk": 5.56,  # BGM-109 Tomahawk (rickslash)
+}
+# Models whose tail tip is narrower than the nose (a jet nozzle behind the fins): nose detection reversed
+NOSE_FLIP = {"tomahawk"}
 
 # kind: (length, diameter, nose fraction, fin span (x diameter), canards, body colour (linear), band colour)
 KINDS = {
@@ -138,7 +162,73 @@ def delta_wing(bm, L, R, span, mat_index):
             f.material_index = mat_index
 
 
+def real_model(kind, scale, name=None):
+    """Imports the real model of kind as one mesh: nose along +Y, centred, real length x scale."""
+    folder = os.path.join(MISSILE_MODELS, kind)
+    path = next(os.path.join(folder, f) for f in sorted(os.listdir(folder)) if f.endswith((".gltf", ".glb")))
+    before = set(bpy.data.objects)
+    bpy.ops.import_scene.gltf(filepath=path)
+    new = [o for o in bpy.data.objects if o not in before]
+    meshes = [o for o in new if o.type == "MESH"]
+    bpy.context.view_layer.update()
+
+    # One mesh in world coordinates
+    mesh = bpy.data.meshes.new(name or f"ord-{kind}")
+    bm = bmesh.new()
+    for o in meshes:
+        tmp = o.data.copy()
+        tmp.transform(o.matrix_world)
+        offset = len(mesh.materials)
+        for m in o.data.materials:
+            mesh.materials.append(m)
+        bm2 = bmesh.new()
+        bm2.from_mesh(tmp)
+        for f in bm2.faces:
+            f.material_index += offset
+        tmp2 = bpy.data.meshes.new("tmp")
+        bm2.to_mesh(tmp2)
+        bm2.free()
+        bm.from_mesh(tmp2)
+        bpy.data.meshes.remove(tmp2)
+        bpy.data.meshes.remove(tmp)
+    bm.to_mesh(mesh)
+    bm.free()
+    for o in new:
+        bpy.data.objects.remove(o)
+
+    pts = np.array([v.co[:] for v in mesh.vertices])
+    lo, hi = pts.min(axis=0), pts.max(axis=0)
+    axis = int(np.argmax(hi - lo))
+    centre = (lo + hi) / 2
+    pts -= centre
+    # Nose: the end whose last 3% is narrower (a point or seeker, not the fins and nozzle)
+    length = hi[axis] - lo[axis]
+    others = [i for i in range(3) if i != axis]
+    radius = np.linalg.norm(pts[:, others], axis=1)
+    tip_hi = radius[pts[:, axis] > length * 0.47]
+    tip_lo = radius[pts[:, axis] < -length * 0.47]
+    nose_sign = 1 if (tip_hi.max(initial=0) <= tip_lo.max(initial=0)) else -1
+    if kind in NOSE_FLIP:
+        nose_sign = -nose_sign
+    # Rotate so that axis * nose_sign becomes +Y
+    fwd = Vector([0, 0, 0])
+    fwd[axis] = nose_sign
+    rot = fwd.rotation_difference(Vector((0, 1, 0))).to_matrix().to_4x4()
+    k = (REAL[kind] * scale) / length
+    mesh.transform(Matrix.Scale(k, 4) @ rot @ Matrix.Translation(Vector(-centre)))
+    for p in mesh.polygons:
+        p.use_smooth = True
+    obj = bpy.data.objects.new(name or f"ord-{kind}", mesh)
+    bpy.context.scene.collection.objects.link(obj)
+    body = np.percentile(radius, 40) * k  # typical body radius, not the fin span
+    obj["px_radius"] = float(body)
+    obj["px_length"] = float(REAL[kind] * scale)
+    return obj
+
+
 def build(kind, scale, name=None):
+    if kind in REAL and os.path.isdir(os.path.join(MISSILE_MODELS, kind)):
+        return real_model(kind, scale, name)
     length, diam, nose, fin_span, canards, colour, band = KINDS[kind]
     L, R = length * scale, diam * scale / 2
     bm = bmesh.new()

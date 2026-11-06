@@ -183,7 +183,7 @@ JET.F104:
 	Armament@F104S0:
 		Name: f104-s0
 		Weapon: JetAAM.Short
-		LocalOffset: -106,393,111, -106,-393,111
+		LocalOffset: -113,393,106, -113,-393,106
 		PauseOnCondition: !f104-s0
 	WithIdleOverlay@F104STORE0R:
 		Sequence: store-0R
@@ -199,7 +199,7 @@ JET.F104:
 	Armament@F104GUN:
 		Name: f104-gun
 		Weapon: JetGun.M61
-		LocalOffset: 167,0,111
+		LocalOffset: 160,0,106
 		PauseOnCondition: !f104-gun
 	AttackAircraft:
 		Armaments: f104-s0, f104-gun
@@ -273,7 +273,7 @@ JET.F14:
 	Armament@F14S0:
 		Name: f14-s0
 		Weapon: JetAAM.Short
-		LocalOffset: 144,461,156, 144,-461,156
+		LocalOffset: 137,461,151, 137,-462,151
 		PauseOnCondition: !f14-s0
 	WithIdleOverlay@F14STORE0R:
 		Sequence: store-0R
@@ -289,7 +289,7 @@ JET.F14:
 	Armament@F14S1:
 		Name: f14-s1
 		Weapon: JetAAM.Long
-		LocalOffset: 328,342,181, 328,-342,181
+		LocalOffset: 234,342,191, 234,-342,191
 		PauseOnCondition: !f14-s1
 	WithIdleOverlay@F14STORE1R:
 		Sequence: store-1R
@@ -305,7 +305,7 @@ JET.F14:
 	Armament@F14GUN:
 		Name: f14-gun
 		Weapon: JetGun.M61
-		LocalOffset: 601,0,181
+		LocalOffset: 508,0,191
 		PauseOnCondition: !f14-gun
 	AttackAircraft:
 		Armaments: f14-s0, f14-s1, f14-gun
@@ -496,7 +496,7 @@ JET.F4:
 	Armament@F4S0:
 		Name: f4-s0
 		Weapon: JetAAM.Short
-		LocalOffset: 95,615,131, 95,-615,131
+		LocalOffset: 88,615,126, 88,-615,126
 		PauseOnCondition: !f4-s0
 	WithIdleOverlay@F4STORE0R:
 		Sequence: store-0R
@@ -652,7 +652,7 @@ JET.J20:
 		AmmoCondition: j20-s0
 	Armament@J20S0:
 		Name: j20-s0
-		Weapon: JetAAM.Medium
+		Weapon: JetAAM.Medium.r27t
 		LocalOffset: 0,0,-120
 		PauseOnCondition: !j20-s0
 	AmmoPool@J20S1:
@@ -662,7 +662,7 @@ JET.J20:
 		AmmoCondition: j20-s1
 	Armament@J20S1:
 		Name: j20-s1
-		Weapon: JetAAM.Short
+		Weapon: JetAAM.Short.r73
 		LocalOffset: 0,0,-120
 		PauseOnCondition: !j20-s1
 	AttackAircraft:
@@ -688,7 +688,7 @@ JET.L39:
 		AmmoCondition: l39-s0
 	Armament@L39S0:
 		Name: l39-s0
-		Weapon: JetRockets.Pair
+		Weapon: JetRockets.s8.Pair
 		LocalOffset: 179,444,126, 179,-444,126
 		PauseOnCondition: !l39-s0
 	WithIdleOverlay@L39STORE0R:
@@ -803,8 +803,8 @@ JET.MIG21:
 		AmmoCondition: mig21-s0
 	Armament@MIG21S0:
 		Name: mig21-s0
-		Weapon: JetAAM.Short
-		LocalOffset: -21,444,134, -21,-444,134
+		Weapon: JetAAM.Short.r73
+		LocalOffset: -24,444,133, -24,-444,133
 		PauseOnCondition: !mig21-s0
 	WithIdleOverlay@MIG21STORE0R:
 		Sequence: store-0R
@@ -819,8 +819,8 @@ JET.MIG21:
 		AmmoCondition: mig21-s1
 	Armament@MIG21S1:
 		Name: mig21-s1
-		Weapon: JetAAM.Short
-		LocalOffset: 191,308,138, 191,-308,138
+		Weapon: JetAAM.Short.r73
+		LocalOffset: 188,308,138, 188,-307,138
 		PauseOnCondition: !mig21-s1 || mig21-s0
 	WithIdleOverlay@MIG21STORE1R:
 		Sequence: store-1R
@@ -836,7 +836,7 @@ JET.MIG21:
 	Armament@MIG21GUN:
 		Name: mig21-gun
 		Weapon: JetGun.GSh30
-		LocalOffset: 464,0,138
+		LocalOffset: 461,0,138
 		PauseOnCondition: !mig21-gun
 	AttackAircraft:
 		Armaments: mig21-s0, mig21-s1, mig21-gun
@@ -872,8 +872,8 @@ JET.MIG23:
 		AmmoCondition: mig23-s0
 	Armament@MIG23S0:
 		Name: mig23-s0
-		Weapon: JetAAM.Short
-		LocalOffset: -17,342,227, -17,-342,227
+		Weapon: JetAAM.Short.r73
+		LocalOffset: -20,342,227, -20,-342,227
 		PauseOnCondition: !mig23-s0
 	WithIdleOverlay@MIG23STORE0R:
 		Sequence: store-0R
@@ -888,7 +888,7 @@ JET.MIG23:
 		AmmoCondition: mig23-s1
 	Armament@MIG23S1:
 		Name: mig23-s1
-		Weapon: JetAAM.Medium
+		Weapon: JetAAM.Medium.r27t
 		LocalOffset: 230,220,207, 230,-222,207
 		PauseOnCondition: !mig23-s1
 	WithIdleOverlay@MIG23STORE1R:
@@ -941,7 +941,7 @@ JET.MIG25:
 		AmmoCondition: mig25-s0
 	Armament@MIG25S0:
 		Name: mig25-s0
-		Weapon: JetAAM.Long
+		Weapon: JetAAM.Long.r77
 		LocalOffset: -466,811,230, -484,-813,230
 		PauseOnCondition: !mig25-s0
 	WithIdleOverlay@MIG25STORE0R:
@@ -957,7 +957,7 @@ JET.MIG25:
 		AmmoCondition: mig25-s1
 	Armament@MIG25S1:
 		Name: mig25-s1
-		Weapon: JetAAM.Long
+		Weapon: JetAAM.Long.r77
 		LocalOffset: -114,538,174, -126,-546,175
 		PauseOnCondition: !mig25-s1 || mig25-s0
 	WithIdleOverlay@MIG25STORE1R:
@@ -1040,7 +1040,7 @@ JET.RAFALE:
 	Armament@RAFALES0:
 		Name: rafale-s0
 		Weapon: JetAAM.Short
-		LocalOffset: -251,649,63, -271,-649,62
+		LocalOffset: -258,649,57, -279,-650,57
 		PauseOnCondition: !rafale-s0
 	WithIdleOverlay@RAFALESTORE0R:
 		Sequence: store-0R
@@ -1056,7 +1056,7 @@ JET.RAFALE:
 	Armament@RAFALES1:
 		Name: rafale-s1
 		Weapon: JetAAM.Medium
-		LocalOffset: 14,461,63, -6,-461,63
+		LocalOffset: -74,457,63, -95,-466,62
 		PauseOnCondition: !rafale-s1
 	WithIdleOverlay@RAFALESTORE1R:
 		Sequence: store-1R
@@ -1072,7 +1072,7 @@ JET.RAFALE:
 	Armament@RAFALES2:
 		Name: rafale-s2
 		Weapon: JetAGM.Pair
-		LocalOffset: 394,290,106, 380,-290,106
+		LocalOffset: 392,290,108, 378,-290,108
 		PauseOnCondition: !rafale-s2
 	WithIdleOverlay@RAFALESTORE2R:
 		Sequence: store-2R
@@ -1088,7 +1088,7 @@ JET.RAFALE:
 	Armament@RAFALEGUN:
 		Name: rafale-gun
 		Weapon: JetGun.GSh30
-		LocalOffset: 667,0,106
+		LocalOffset: 665,0,108
 		PauseOnCondition: !rafale-gun
 	AttackAircraft:
 		Armaments: rafale-s0, rafale-s1, rafale-s2, rafale-gun
@@ -1275,7 +1275,7 @@ JET.SU25:
 		AmmoCondition: su25-s0
 	Armament@SU25S0:
 		Name: su25-s0
-		Weapon: JetRockets.Pair
+		Weapon: JetRockets.s8.Pair
 		LocalOffset: 30,786,174, 30,-786,174
 		PauseOnCondition: !su25-s0
 	WithIdleOverlay@SU25STORE0R:
@@ -1291,8 +1291,8 @@ JET.SU25:
 		AmmoCondition: su25-s1
 	Armament@SU25S1:
 		Name: su25-s1
-		Weapon: JetAGM.Pair
-		LocalOffset: 212,547,167, 212,-547,167
+		Weapon: JetAGM.kh29.Pair
+		LocalOffset: 287,547,161, 287,-547,161
 		PauseOnCondition: !su25-s1
 	WithIdleOverlay@SU25STORE1R:
 		Sequence: store-1R
@@ -1324,7 +1324,7 @@ JET.SU25:
 	Armament@SU25GUN:
 		Name: su25-gun
 		Weapon: JetGun.GSh30
-		LocalOffset: 486,0,167
+		LocalOffset: 561,0,161
 		PauseOnCondition: !su25-gun
 	AttackAircraft:
 		Armaments: su25-s0, su25-s1, su25-s2, su25-gun
@@ -1360,7 +1360,7 @@ JET.SU27:
 		AmmoCondition: su27-s0
 	Armament@SU27S0:
 		Name: su27-s0
-		Weapon: JetAAM.Short
+		Weapon: JetAAM.Short.r73
 		LocalOffset: 769,1044,274, 769,-1044,274
 		PauseOnCondition: !su27-s0
 	WithIdleOverlay@SU27STORE0R:
@@ -1376,8 +1376,8 @@ JET.SU27:
 		AmmoCondition: su27-s1
 	Armament@SU27S1:
 		Name: su27-s1
-		Weapon: JetAAM.Medium
-		LocalOffset: 1304,649,202, 1311,-649,200
+		Weapon: JetAAM.Medium.r77
+		LocalOffset: 1157,649,203, 1164,-649,202
 		PauseOnCondition: !su27-s1
 	WithIdleOverlay@SU27STORE1R:
 		Sequence: store-1R
@@ -1392,8 +1392,8 @@ JET.SU27:
 		AmmoCondition: su27-s2
 	Armament@SU27S2:
 		Name: su27-s2
-		Weapon: JetAAM.Medium
-		LocalOffset: 1359,444,202, 1359,-444,201
+		Weapon: JetAAM.Medium.r77
+		LocalOffset: 1212,444,204, 1212,-444,203
 		PauseOnCondition: !su27-s2 || su27-s1
 	WithIdleOverlay@SU27STORE2R:
 		Sequence: store-2R
@@ -1409,7 +1409,7 @@ JET.SU27:
 	Armament@SU27GUN:
 		Name: su27-gun
 		Weapon: JetGun.GSh30
-		LocalOffset: 1632,0,202
+		LocalOffset: 1485,0,204
 		PauseOnCondition: !su27-gun
 	AttackAircraft:
 		Armaments: su27-s0, su27-s1, su27-s2, su27-gun
@@ -1445,7 +1445,7 @@ JET.SU35:
 		AmmoCondition: su35-s0
 	Armament@SU35S0:
 		Name: su35-s0
-		Weapon: JetAAM.Short
+		Weapon: JetAAM.Short.r73
 		LocalOffset: -355,968,257, -355,-968,257
 		PauseOnCondition: !su35-s0
 	WithIdleOverlay@SU35STORE0R:
@@ -1461,8 +1461,8 @@ JET.SU35:
 		AmmoCondition: su35-s1
 	Armament@SU35S1:
 		Name: su35-s1
-		Weapon: JetAAM.Medium
-		LocalOffset: -69,649,256, -69,-649,256
+		Weapon: JetAAM.Medium.r77
+		LocalOffset: -216,649,258, -216,-649,258
 		PauseOnCondition: !su35-s1
 	WithIdleOverlay@SU35STORE1R:
 		Sequence: store-1R
@@ -1477,8 +1477,8 @@ JET.SU35:
 		AmmoCondition: su35-s2
 	Armament@SU35S2:
 		Name: su35-s2
-		Weapon: JetAAM.Long
-		LocalOffset: 149,410,251, 149,-410,251
+		Weapon: JetAAM.Long.r27t
+		LocalOffset: 135,410,261, 135,-410,261
 		PauseOnCondition: !su35-s2
 	WithIdleOverlay@SU35STORE2R:
 		Sequence: store-2R
@@ -1494,7 +1494,7 @@ JET.SU35:
 	Armament@SU35GUN:
 		Name: su35-gun
 		Weapon: JetGun.GSh30
-		LocalOffset: 423,0,251
+		LocalOffset: 408,0,261
 		PauseOnCondition: !su35-gun
 	AttackAircraft:
 		Armaments: su35-s0, su35-s1, su35-s2, su35-gun
@@ -1530,7 +1530,7 @@ JET.SU47:
 		AmmoCondition: su47-s0
 	Armament@SU47S0:
 		Name: su47-s0
-		Weapon: JetAAM.Medium
+		Weapon: JetAAM.Medium.r27t
 		LocalOffset: 0,0,-120
 		PauseOnCondition: !su47-s0
 	AmmoPool@SU47S1:
@@ -1540,7 +1540,7 @@ JET.SU47:
 		AmmoCondition: su47-s1
 	Armament@SU47S1:
 		Name: su47-s1
-		Weapon: JetAAM.Short
+		Weapon: JetAAM.Short.r73
 		LocalOffset: 0,0,-120
 		PauseOnCondition: !su47-s1
 	AmmoPool@SU47GUN:
@@ -1625,7 +1625,7 @@ JET.TYPHOON:
 	Armament@TYPHOONS0:
 		Name: typhoon-s0
 		Weapon: JetAAM.Short
-		LocalOffset: -295,666,139, -295,-666,139
+		LocalOffset: -302,666,134, -302,-667,134
 		PauseOnCondition: !typhoon-s0
 	WithIdleOverlay@TYPHOONSTORE0R:
 		Sequence: store-0R
@@ -1641,7 +1641,7 @@ JET.TYPHOON:
 	Armament@TYPHOONS1:
 		Name: typhoon-s1
 		Weapon: JetAAM.Medium
-		LocalOffset: -30,495,133, -30,-495,133
+		LocalOffset: -117,491,133, -117,-500,133
 		PauseOnCondition: !typhoon-s1
 	WithIdleOverlay@TYPHOONSTORE1R:
 		Sequence: store-1R
@@ -1657,7 +1657,7 @@ JET.TYPHOON:
 	Armament@TYPHOONS2:
 		Name: typhoon-s2
 		Weapon: JetGBU.Pair
-		LocalOffset: 163,325,119, 163,-325,119
+		LocalOffset: 143,325,127, 143,-325,127
 		PauseOnCondition: !typhoon-s2
 	WithIdleOverlay@TYPHOONSTORE2R:
 		Sequence: store-2R
@@ -1673,7 +1673,7 @@ JET.TYPHOON:
 	Armament@TYPHOONGUN:
 		Name: typhoon-gun
 		Weapon: JetGun.GSh30
-		LocalOffset: 437,0,119
+		LocalOffset: 416,0,127
 		PauseOnCondition: !typhoon-gun
 	AttackAircraft:
 		Armaments: typhoon-s0, typhoon-s1, typhoon-s2, typhoon-gun
@@ -1889,7 +1889,7 @@ MIG:
 		AmmoCondition: mig-s0
 	Armament@MIGS0:
 		Name: mig-s0
-		Weapon: JetAAM.Short
+		Weapon: JetAAM.Short.r73
 		LocalOffset: -345,631,180, -344,-631,184
 		PauseOnCondition: !mig-s0
 	WithIdleOverlay@MIGSTORE0R:
@@ -1905,7 +1905,7 @@ MIG:
 		AmmoCondition: mig-s1
 	Armament@MIGS1:
 		Name: mig-s1
-		Weapon: JetAAM.Short
+		Weapon: JetAAM.Short.r73
 		LocalOffset: -182,249,238, -182,-249,238
 		PauseOnCondition: !mig-s1 || mig-s0
 	WithIdleOverlay@MIGSTORE1R:
@@ -1921,8 +1921,8 @@ MIG:
 		AmmoCondition: mig-s2
 	Armament@MIGS2:
 		Name: mig-s2
-		Weapon: JetAAM.Medium
-		LocalOffset: 51,410,209, 51,-410,209
+		Weapon: JetAAM.Medium.r77
+		LocalOffset: 78,410,-31, -107,-410,211
 		PauseOnCondition: !mig-s2
 	WithIdleOverlay@MIGSTORE2R:
 		Sequence: store-2R
@@ -1938,7 +1938,7 @@ MIG:
 	Armament@MIGGUN:
 		Name: mig-gun
 		Weapon: JetGun.GSh30
-		LocalOffset: 324,0,209
+		LocalOffset: 351,0,-31
 		PauseOnCondition: !mig-gun
 	AttackAircraft:
 		Armaments: mig-s0, mig-s1, mig-s2, mig-gun

@@ -257,13 +257,15 @@ TorpTube:
 	ReloadDelay: 300
 	Range: 8c0
 	Burst: 2
-	# HD rocket fired from under water: foam and steam at launch, then fire and a smoke trail
+	# HD rocket fired from under water: foam and steam at launch, then fire and a smoke trail; a Tomahawk model
 	Projectile: PxRocket
 		ThreatType: Cruise
+		Image: pxmissile
+		Sequence: tomahawk
 		Speed: 234
 		Arc: 0.15
-		Length: 260
-		Width: 60
+		Length: 560
+		Width: 90
 		TrailDensity: 3
 		TrailLife: 70
 		LaunchPuffs: 16

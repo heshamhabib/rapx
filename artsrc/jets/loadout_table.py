@@ -10,8 +10,10 @@ Per unit:
      model     (x, y, z, rx, ry, rz): the right-hand station on the model, unit coordinates (survey:
                artsrc/jets/loadouts/<unit>.png/.json); every model store centred within the tolerances joins it
                (a triple rack is one station), mirrored for the left
-     add       procedural weapon kind (artsrc/jets/ordnance.py) at "at" (x, y): hung under the airframe there;
+     add       weapon kind (artsrc/jets/ordnance.py: a real model in REAL, else procedural) at "at" (x, y): hung there;
                y "lead" hangs it forward from the wing's leading edge (its front half shows from above)
+     missile   kind the station fires (its pxmissile sprite); default: the "add" kind, else the family's missile for
+               the jet's side (make_loadouts.py EAST_JETS / SIDE_MISSILES)
      shots     missiles per side (default 1; a triple rack fires 3 before its sprite goes)
      internal  True: a weapons bay (stealth jets, bombers): shots in total, nothing shown on the sprite
   strike     True: never engages aircraft on its own even if it carries air-to-air missiles
@@ -110,12 +112,12 @@ LOADOUTS = {
     "jet.su35": {"real_length": 21.9, "gun": "GSh30", "stations": [
         {"weapon": "JetAAM.Short", "model": (2.84, -1.44, 1.04, 0.15, 0.6, 0.2)},
         {"weapon": "JetAAM.Medium", "add": "r77", "at": (1.9, "lead")},
-        {"weapon": "JetAAM.Long", "add": "aim54", "at": (1.2, "lead")},
+        {"weapon": "JetAAM.Long", "add": "r27t", "at": (1.2, "lead")},
     ]},
     # --- Ground attack ---------------------------------------------------------------------------------------------
     "jet.su25": {"real_length": 15.53, "gun": "GSh30", "strike": True, "stations": [
         {"weapon": "JetRockets", "add": "pod", "at": (2.3, "lead"), "shots": 4},
-        {"weapon": "JetAGM", "add": "agm65", "at": (1.6, "lead")},
+        {"weapon": "JetAGM", "add": "kh29", "at": (1.6, "lead")},
         {"weapon": "JetBomb", "add": "mk82", "at": (1.0, "lead")},
     ]},
     "jet.l39": {"real_length": 12.13, "gun": "GSh30", "strike": True, "stations": [

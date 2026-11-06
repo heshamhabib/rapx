@@ -3,7 +3,7 @@
 #   sh artsrc/jets/make_missiles.sh [kind ...]       (from the repo root; default: all)
 set -e
 cd "$(dirname "$0")/../.."
-KINDS=${*:-"aim9 r73 aim120 r77 aim54 agm65 mk82 gbu hydra"}
+KINDS=${*:-"aim9 r73 aim120 r77 aim54 agm65 mk82 gbu hydra r27t kh29 s8 tomahawk"}
 for k in $KINDS; do
 	rm -rf artsrc/jets/render-missiles/$k
 	nice -n 15 blender -b -t 4 -P artsrc/jets/render_missiles.py -- $k artsrc/jets/render-missiles/$k | grep rendered

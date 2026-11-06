@@ -12,6 +12,7 @@ imports) into assets/inbox/new_3d_models_2/, plus a credits list for mods/rapx/C
   python3 tools/download_sketchfab.py --nation-carriers   carriers for the other nations into assets/inbox/carriers-nations/
   python3 tools/download_sketchfab.py --launchers  national rocket-launcher chassis (IDEA-17) into assets/inbox/launchers/
   python3 tools/download_sketchfab.py --airdef     air-defence tiers 2-4 (IDEA-26 B2) into assets/inbox/airdef/
+  python3 tools/download_sketchfab.py --missiles   real missile models (fired sprites and jet stores) into assets/inbox/missiles/
 
 Sketchfab only hands out downloads to a logged-in account: put your API token (sketchfab.com -> Settings ->
 Password & API -> API Token) in ~/.sketchfab_token or the SKETCHFAB_TOKEN environment variable.
@@ -158,6 +159,21 @@ AIRDEF = [
     ("bmd.soviet", "Missile Shield (Soviets)", "246c635701c0421ca02e67202a6494e9"),  # Chinese HQ-9 (42manako), S-500 stand-in
 ]
 
+# Real missiles and bombs (artsrc/jets/ordnance.py REAL): the fired sprites and the stores hung on jets. The R-27T came
+# from the user (assets/inbox/su_r-27t_air-to-air_missiles_war_thunder.zip).
+MISSILES = [
+    ("aim9", "AIM-9 Sidewinder", "caaf15b49bac4144b6c6be577c2b872a"),        # rickslash
+    ("aim120", "AIM-120C AMRAAM", "838fa923340a4d108e05c99bf0146ff6"),       # Jeyhun1985
+    ("aim54", "AIM-54 Phoenix", "0f93756f393d498f95c4364244f8bda0"),         # MustafaGarip
+    ("r73", "R-73", "00e9be4be4d447a7963eae1fa4ab5cb9"),                     # jokesforboats
+    ("r77", "R-77", "0da27c5b53f24542843a4a423c59b96a"),                     # MustafaGarip
+    ("agm65", "AGM-65 Maverick", "a4336b95b8364dd78a52b8426598f789"),        # xFORTUNAx
+    ("kh29", "Kh-29T", "d13c7039142d46b5b61baef9db11fa80"),                  # xFORTUNAx
+    ("gbu", "GBU-12 Paveway II", "e25425b8a86a439bb7890536fcfc3fb1"),        # KojfDiscord
+    ("s8", "S-8KOM rocket", "06f720ad261041719210e60de6a94dd7"),             # xFORTUNAx
+    ("tomahawk", "BGM-109 Tomahawk", "da71eb1c023b444aba15ff37710e9613"),    # rickslash
+]
+
 
 def token():
     t = os.environ.get("SKETCHFAB_TOKEN")
@@ -207,6 +223,8 @@ def main():
         models, OUT = CARRIERS, os.path.join(ROOT, "assets", "inbox", "carriers")
     if "--nation-carriers" in sys.argv:
         models, OUT = NATION_CARRIERS, os.path.join(ROOT, "assets", "inbox", "carriers-nations")
+    if "--missiles" in sys.argv:
+        models, OUT = MISSILES, os.path.join(ROOT, "assets", "inbox", "missiles")
     if "--airdef" in sys.argv:
         models, OUT = AIRDEF, os.path.join(ROOT, "assets", "inbox", "airdef")
     if "--launchers" in sys.argv:

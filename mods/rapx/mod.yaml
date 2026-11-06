@@ -246,6 +246,7 @@ Weapons:
 	ra|weapons/prism.yaml
 	ra|weapons/robots.yaml
 	ra|weapons/jet-ordnance.yaml
+	ra|weapons/jet-missiles.yaml
 	ra|weapons/naval-defence.yaml
 	ra|weapons/rocket-launchers.yaml
 	ra|weapons/air-defence.yaml

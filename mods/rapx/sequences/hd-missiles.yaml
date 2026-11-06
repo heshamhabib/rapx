@@ -149,3 +149,24 @@ pxmissile:
 		Facings: 32
 		UseClassicFacings: False
 		Scale: 0.3333
+	# Real missiles (artsrc/jets/ordnance.py REAL, Sketchfab models): eastern jets' R-27T, Kh-29T, S-8; Tomahawk
+	r27t:
+		Filename: ra|bits/hd/fx/missile-r27t.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	kh29:
+		Filename: ra|bits/hd/fx/missile-kh29.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	s8:
+		Filename: ra|bits/hd/fx/missile-s8.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	tomahawk:
+		Filename: ra|bits/hd/fx/missile-tomahawk.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
