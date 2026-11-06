@@ -19,6 +19,8 @@ uniform vec4 ActorRect;
 uniform sampler2D CellMap;   // PxShroudRenderer: .bgra = (explored, visible, reveal, inside map)
 uniform vec2 CellMapSize;
 uniform float HasShroud;     // 0 = everything visible (observers)
+uniform sampler2D ScanMap;   // radar scan (PxRadarOverlayWidget): .a = terrain seen by radar, .rgb = enemy building blip
+uniform float HasScan;
 uniform vec4 Bounds;         // playable cells: left, top, width, height
 uniform vec2 PanelSize;      // radar panel in UI pixels
 uniform vec4 MapRect;        // map area inside the panel (UI pixels): x, y, w, h
@@ -139,6 +141,18 @@ vec4 SmoothCells(vec2 c)
 	return s;
 }
 
+float SmoothScan(vec2 c)
+{
+	float s = texture(ScanMap, c / CellMapSize).a * 0.28;
+	for (int i = 0; i < 8; i++)
+	{
+		float a = float(i) * TAU / 8.0;
+		s += texture(ScanMap, (c + 0.7 * vec2(cos(a), sin(a))) / CellMapSize).a * 0.09;
+	}
+
+	return s;
+}
+
 vec3 Hex(vec2 p)
 {
 	const vec2 r = vec2(1.0, 1.7320508);
@@ -195,6 +209,10 @@ void main()
 	vec4 s = HasShroud > 0.5 ? SmoothCells(cell) : vec4(1.0, 1.0, 0.0, 1.0);
 	float e = s.x;
 	float v = s.y;
+
+	// Radar scan: the whole map's terrain shows (fogged), except inside enemy Gap Generator bubbles
+	if (HasScan > 0.5)
+		e = max(e, SmoothScan(cell));
 	float de = length(vec2(dFdx(e), dFdy(e))) + 1e-5;
 	float sd = (e - 0.5) / de;
 	float unexplored = 1.0 - smoothstep(-0.7, 0.7, sd);
@@ -223,6 +241,13 @@ void main()
 		{
 			vec2 t = base + vec2(float(x), float(y));
 			vec4 a = Fetch(ActorRect, ActorRect.xy + t);
+			if (HasScan > 0.5 && a.a < 0.5)
+			{
+				// enemy buildings the radar scan sees but no unit does
+				vec3 sb = texture(ScanMap, (Bounds.xy + t + 0.5) / CellMapSize).rgb;
+				float has = step(0.02, max(sb.r, max(sb.g, sb.b)));
+				a = mix(a, vec4(sb, 0.9), has);
+			}
 			vec2 dd = tp - (t + 0.5);
 			float d2 = dot(dd, dd);
 			float wgt = a.a * exp(-d2 * 2.2);

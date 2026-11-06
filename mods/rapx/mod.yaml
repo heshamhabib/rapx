@@ -122,6 +122,7 @@ Sequences:
 	ra|sequences/gapjet.yaml
 	ra|sequences/hd-structures.yaml
 	ra|sequences/hd-structures-styles.yaml
+	ra|sequences/hd-silo.yaml
 	ra|sequences/hd-bibs.yaml
 	ra|sequences/hd-resources.yaml
 	ra|sequences/hd-units.yaml
@@ -132,9 +133,15 @@ Sequences:
 	ra|sequences/hd-fire.yaml
 	ra|sequences/hd-wreck-fx.yaml
 	ra|sequences/hd-water-fx.yaml
+	ra|sequences/hd-blast-fx.yaml
+	ra|sequences/hd-nuke-fx.yaml
+	ra|sequences/hd-beacon.yaml
+	ra|sequences/hd-parachute.yaml
+	ra|sequences/hd-infantry-deaths.yaml
 	ra|sequences/hd-cash.yaml
 	ra|sequences/hd-rally.yaml
 	ra|sequences/hd-env.yaml
+	ra|sequences/hd-props.yaml
 	ra|sequences/jet-loadouts.yaml
 	ra|sequences/hd-missiles.yaml
 	ra|sequences/rocket-launchers.yaml
@@ -384,9 +391,6 @@ Fonts:
 		Font: ra|fonts/UmbaSlab-Bold.otf
 		Size: 28
 		Ascender: 22
-
-Missions:
-	ra|missions.yaml
 
 MapGrid:
 	TileSize: 24,24

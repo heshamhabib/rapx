@@ -103,7 +103,7 @@ ParaBomb:
 	Projectile: Bullet
 		Speed: 170
 		TrailImage: fb4
-		Image: fb3
+		Image: fb1
 		Blockable: false
 		LaunchAngle: 30
 		Inaccuracy: 1c682

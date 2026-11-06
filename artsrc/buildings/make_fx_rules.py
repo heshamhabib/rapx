@@ -123,7 +123,7 @@ FX = {
     "spen": [blink(40, 35, RED, period=50), blink(205, 55, RED, period=50, Phase=25), sparks(115, 100, 18, 5)],
     "barr": [beacon(32, 20, RED, 0.6), blink(95, 96, AMBER, period=70)],
     "tent": [blink(66, 10, RED, period=50), blink(118, 12, RED, period=50, Phase=25)],
-    "mslo": [*chase([(25, 90), (125, 95)], RED, period=40), steam(85, 62, 0.6, Rate=10)],
+    "mslo": [*chase([(93, 241), (256, 219), (76, 171)], RED, period=40)],   # corner lamps of the 3D silo
     "silo": [steam(40, 12, 0.5, Rate=12)],
     "oilr": [
         dict(Type="Flame", Offset=(13, 34), Color="FFFFFF", Size=0.9, Rate=1.5, Life=90, Radius=(2, 1)),
@@ -319,6 +319,7 @@ def fx_lines(fx_list, w, h, offset, condition, start=0):
 def main():
     preview = "--preview" in sys.argv
     offsets = read_offsets()
+    offsets.update(read_offsets(os.path.join(ROOT, "mods", "rapx", "sequences", "hd-silo.yaml")))
     styles = {}  # bid -> {nation: offset}
     for name, offset in read_offsets(STYLE_SEQUENCES).items():
         bid, nation = name.split(".", 1)

@@ -45,16 +45,6 @@ Actors:
 	Actor221: wood
 		Owner: Neutral
 		Location: 52,15
-	Actor239: c3
-		Owner: Neutral
-		SubCell: 3
-		Facing: 368
-		Location: 47,16
-	Actor240: c3
-		Owner: Neutral
-		SubCell: 3
-		Facing: 368
-		Location: 52,16
 	Actor241: v06
 		Owner: Neutral
 		Location: 53,16
@@ -157,11 +147,6 @@ Actors:
 	Actor329: tc01
 		Owner: Neutral
 		Location: 46,23
-	Actor330: c3
-		Owner: Neutral
-		SubCell: 3
-		Facing: 368
-		Location: 49,24
 	Actor341: t08
 		Owner: Neutral
 		Location: 35,25
@@ -423,11 +408,6 @@ Actors:
 	Actor497: t12
 		Owner: Neutral
 		Location: 66,45
-	Actor509: c3
-		Owner: Neutral
-		SubCell: 3
-		Facing: 368
-		Location: 52,47
 	Actor510: t12
 		Owner: Neutral
 		Location: 54,46
@@ -533,16 +513,6 @@ Actors:
 	Actor618: v07
 		Owner: Neutral
 		Location: 47,55
-	Actor620: c3
-		Owner: Neutral
-		SubCell: 3
-		Facing: 368
-		Location: 49,55
-	Actor621: c3
-		Owner: Neutral
-		SubCell: 3
-		Facing: 368
-		Location: 54,55
 	Actor641: wood
 		Owner: Neutral
 		Location: 49,56
@@ -1644,16 +1614,6 @@ Actors:
 	Actor967: t03
 		Owner: Neutral
 		Location: 2,24
-	Actor1219: c3
-		Owner: Neutral
-		SubCell: 3
-		Facing: 368
-		Location: 36,35
-	Actor1220: c3
-		Owner: Neutral
-		SubCell: 3
-		Facing: 368
-		Location: 33,37
 	Actor1221: v08
 		Owner: Neutral
 		Location: 35,37
@@ -1684,16 +1644,6 @@ Actors:
 	Actor1230: v08
 		Owner: Neutral
 		Location: 66,35
-	Actor1231: c3
-		Owner: Neutral
-		SubCell: 3
-		Facing: 368
-		Location: 68,35
-	Actor1232: c3
-		Owner: Neutral
-		SubCell: 3
-		Facing: 368
-		Location: 65,37
 	Actor1179: snowhut
 		Owner: Neutral
 		Location: 39,24

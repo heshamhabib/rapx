@@ -10,12 +10,15 @@
 #endregion
 
 using System;
+using System.Linq;
 using System.Reflection;
 using OpenRA.Graphics;
+using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Widgets;
 using OpenRA.Mods.RAPX.Graphics;
 using OpenRA.Mods.RAPX.Traits;
 using OpenRA.Primitives;
+using OpenRA.Traits;
 using OpenRA.Widgets;
 
 namespace OpenRA.Mods.RAPX.Widgets
@@ -25,6 +28,8 @@ namespace OpenRA.Mods.RAPX.Widgets
 	/// open/close animation) with one shader pass: smooth shaded terrain, glowing unit blips, the Tactical shroud shared
 	/// with PxShroudRenderer, a radar sweep with range rings, scanlines and the camera frame; then corner brackets.
 	/// Without a radar it shows scanlines over the "no signal" panel. Never takes input.
+	/// Radar scan (RadarScan): while the radar works it also shows the terrain of the whole map and every enemy building,
+	/// except inside the shroud bubble of an active enemy Gap Generator (CreatesShroud). Units still need real vision.
 	/// </summary>
 	public class PxRadarOverlayWidget : Widget
 	{
@@ -46,12 +51,23 @@ namespace OpenRA.Mods.RAPX.Widgets
 		[Desc("Id of the Radar widget this draws over (a sibling).")]
 		public readonly string Radar = "RADAR_MINIMAP";
 
+		[Desc("Show the terrain of the whole map and the enemy buildings on the radar (not under enemy Gap Generators).")]
+		public readonly bool RadarScan = true;
+
+		[Desc("Milliseconds between radar scan updates.")]
+		public readonly int ScanInterval = 500;
+
 		public readonly string VertexShader = "ra|shaders/px_minimap.vert";
 		public readonly string FragmentShader = "ra|shaders/px_minimap.frag";
 
 		public Func<bool> IsActive = () => true;
 
 		RadarWidget radar;
+		ITexture scanMap;
+		byte[] scanData;
+		int scanWidth, scanHeight;
+		long nextScan;
+		World scanWorld;
 		FieldInfo mapRectField, scaleField, heightField, sheetField, terrainField, actorField, worldRendererField;
 		MethodInfo drawPings;
 
@@ -166,6 +182,12 @@ namespace OpenRA.Mods.RAPX.Widgets
 				shader.SetVec("HasShroud", 0f);
 			}
 
+			var scanning = RadarScan && shroud?.CellMap != null && shroud.HasShroud && world.RenderPlayer != null;
+			if (scanning)
+				UpdateScan(world);
+
+			shader.SetTexture("ScanMap", scanning && scanMap != null ? scanMap : sheet.GetTexture());
+			shader.SetVec("HasScan", scanning && scanMap != null ? 1f : 0f);
 			shader.SetVec("Bounds", new float[] { bounds.Left, bounds.Top, bounds.Width, bounds.Height }, 4);
 			shader.SetVec("View", new[] { U(tl.X), V(tl.Y), U(br.X), V(br.Y) }, 4);
 			shader.SetVec("SweepPeriod", SweepPeriod);
@@ -183,6 +205,102 @@ namespace OpenRA.Mods.RAPX.Widgets
 			}
 
 			return true;
+		}
+
+		/// <summary>
+		/// Per-cell radar scan for the render player, same layout as PxShroudRenderer.CellMap (BGRA bytes, read as
+		/// .rgba): alpha = the radar sees the terrain here, rgb = colour of an enemy building on this cell.
+		/// </summary>
+		void UpdateScan(World world)
+		{
+			if (scanWorld != world)
+			{
+				scanMap?.Dispose();
+				scanMap = null;
+				scanWorld = world;
+				nextScan = 0;
+			}
+
+			if (Game.RunTime < nextScan && scanMap != null)
+				return;
+
+			nextScan = Game.RunTime + ScanInterval;
+			var map = world.Map;
+			var size = map.MapSize;
+			if (scanMap == null)
+			{
+				scanWidth = Exts.NextPowerOf2(size.X);
+				scanHeight = Exts.NextPowerOf2(size.Y);
+				scanData = new byte[4 * scanWidth * scanHeight];
+				scanMap = Game.Renderer.CreateTexture();
+				scanMap.ScaleFilter = TextureScaleFilter.Linear;
+			}
+
+			var player = world.RenderPlayer;
+
+			// Shroud bubbles of active enemy Gap Generators hide terrain and buildings from the radar
+			var gaps = world.ActorsWithTrait<CreatesShroud>()
+				.Where(p => !p.Trait.IsTraitDisabled && p.Actor.IsInWorld &&
+					p.Trait.Info is CreatesShroudInfo ci && ci.ValidRelationships.HasRelationship(p.Actor.Owner.RelationshipWith(player)))
+				.Select(p => (Center: p.Actor.CenterPosition, Range: p.Trait.Info.Range.Length))
+				.ToArray();
+
+			bool Hidden(int x, int y)
+			{
+				var center = map.CenterOfCell(new MPos(x, y).ToCPos(map));
+				foreach (var g in gaps)
+					if ((center - g.Center).HorizontalLengthSquared <= (long)g.Range * g.Range)
+						return true;
+
+				return false;
+			}
+
+			var bounds = map.Bounds;
+			Array.Clear(scanData, 0, scanData.Length);
+			for (var y = 0; y < size.Y; y++)
+			{
+				var sy = Math.Clamp(y, bounds.Top, bounds.Bottom - 1);
+				for (var x = 0; x < size.X; x++)
+				{
+					var sx = Math.Clamp(x, bounds.Left, bounds.Right - 1);
+					scanData[4 * (y * scanWidth + x) + 3] = (byte)(gaps.Length > 0 && Hidden(sx, sy) ? 0 : 255);
+				}
+			}
+
+			// Enemy buildings: a blip in the owner's colour on every footprint cell
+			foreach (var a in world.ActorsHavingTrait<Building>())
+			{
+				if (!a.IsInWorld || a.IsDead || a.Owner.NonCombatant || a.Owner.IsAlliedWith(player))
+					continue;
+
+				if (a.TraitsImplementing<Cloak>().Any(c => c.Cloaked))
+					continue;
+
+				var colour = a.Owner.Color;
+				foreach (var cell in a.Trait<Building>().Info.OccupiedTiles(a.Location))
+				{
+					var uv = cell.ToMPos(map);
+					if (!map.Contains(uv) || uv.U < 0 || uv.V < 0 || uv.U >= size.X || uv.V >= size.Y)
+						continue;
+
+					var o = 4 * (uv.V * scanWidth + uv.U);
+					if (scanData[o + 3] == 0)
+						continue;
+
+					scanData[o] = colour.B;
+					scanData[o + 1] = colour.G;
+					scanData[o + 2] = colour.R;
+				}
+			}
+
+			scanMap.SetData(scanData, scanWidth, scanHeight);
+		}
+
+		public override void Removed()
+		{
+			base.Removed();
+			scanMap?.Dispose();
+			scanMap = null;
 		}
 
 		public override void Draw()

@@ -167,12 +167,6 @@ pips:
 		Tick: 300
 		Offset: 0, -6
 
-v2:
-	idle:
-		Filename: v2.shp
-		Facings: 32
-		ZOffset: 1023
-
 rallypoint:
 	flag:
 		Filename: flagfly.shp
@@ -378,78 +372,6 @@ scorch_flames:
 				Scale: 0.25
 		Length: *
 		Offset: 0,-3
-	tiny_flame:
-		Combine:
-			0:
-				Filename: fire4.shp
-				Length: *
-				Offset: 0,-3
-			1:
-				Filename: fire4.shp
-				Length: *
-				Offset: 0,-3
-			2:
-				Filename: fire4.shp
-				Length: *
-				Offset: 0,-3
-			3:
-				Filename: fire4.shp
-				Length: *
-				Offset: 0,-3
-			4:
-				Filename: smoke_m.shp
-				Length: *
-				Offset: 2, -5
-				Scale: 0.3
-			5:
-				Filename: smoke_m.shp
-				Start: 49
-				Length: 42
-				Offset: 2, -5
-				Scale: 0.2
-		Length: *
-		Offset: 0,-3
-	smoke:
-		Combine:
-			0:
-				Filename: smoke_m.shp
-				Length: *
-				Offset: 2, -5
-			1:
-				Filename: smoke_m.shp
-				Start: 49
-				Length: 42
-				Offset: 2, -5
-			2:
-				Filename: smoke_m.shp
-				Start: 49
-				Length: 42
-				Offset: 2, -5
-				Scale: 0.8
-			3:
-				Filename: smoke_m.shp
-				Start: 49
-				Length: 42
-				Offset: 2, -5
-				Scale: 0.6
-			4:
-				Filename: smoke_m.shp
-				Start: 49
-				Length: 42
-				Offset: 2, -5
-				Scale: 0.4
-			5:
-				Filename: smoke_m.shp
-				Start: 49
-				Length: 42
-				Offset: 2, -5
-				Scale: 0.2
-
-dragon:
-	idle:
-		Filename: dragon.shp
-		Facings: 32
-		ZOffset: 1023
 
 smokey:
 	idle:
@@ -461,29 +383,6 @@ bomb:
 	idle:
 		Filename: bomb.shp
 		Length: *
-		ZOffset: 1023
-
-missile:
-	idle:
-		Filename: missile.shp
-		Facings: 32
-		ZOffset: 1023
-
-torpedo:
-	idle:
-		Filename: missile.shp
-		Facings: 32
-		ZOffset: -1023
-
-litning:
-	Defaults:
-		Filename: litning.shp
-	bright:
-		Length: 4
-		ZOffset: 1023
-	dim:
-		Start: 4
-		Length: 4
 		ZOffset: 1023
 
 fb1:
@@ -552,12 +451,6 @@ fb2:
 	idle:
 		Filename: fb2.shp
 		Length: *
-		ZOffset: 1023
-
-fb3:
-	idle:
-		Filename: fb3.shp
-		Facings: 32
 		ZOffset: 1023
 
 fb4:
@@ -845,23 +738,6 @@ icon:
 		Filename: pbmbicon.shp
 	sonar:
 		Filename: sonricon.shp
-
-quee:
-	Defaults:
-		Filename: quee.shp
-	idle:
-		Length: 10
-	damaged-idle:
-		Start: 10
-		Length: 10
-
-lar1:
-	idle:
-		Filename: lar1.shp
-
-lar2:
-	idle:
-		Filename: lar2.shp
 
 minp:
 	idle:

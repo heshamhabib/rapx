@@ -463,42 +463,6 @@
 	AttackFrontal:
 		FacingTolerance: 0
 
-^CivInfantry:
-	Inherits: ^Infantry
-	Selectable:
-		Class: CivInfantry
-	Valued:
-		Cost: 10
-	Tooltip:
-		Name: meta-civinfantry-name
-		GenericVisibility: None
-	RevealsShroud:
-		Range: 3c0
-	Passenger:
-		CustomPipType: gray
-	ProximityCaptor:
-		Types: CivilianInfantry
-	ScaredyCat:
-	Voiced:
-		VoiceSet: CivilianMaleVoice
-	Wanders:
-		MinMoveDelay: 150
-		MaxMoveDelay: 750
-	MapEditorData:
-		Categories: Civilian infantry
-
-^ArmedCivilian:
-	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
-	Armament:
-		Weapon: Pistol
-	Armament@GARRISONED:
-		Name: garrisoned
-		Weapon: Pistol
-	AttackFrontal:
-		FacingTolerance: 0
-	WithInfantryBody:
-		DefaultAttackSequence: shoot
-
 ^Ship:
 	Inherits@1: ^ExistsInWorld
 	Inherits@2: ^GainsExperience
@@ -769,7 +733,7 @@
 	CapturableProgressBar:
 	CapturableProgressBlink:
 	SpawnActorsOnSell:
-		ActorTypes: e1,e1,e1,tecn,tecn2
+		ActorTypes: e1,e1,e1,e1,e1
 		GuaranteedActorTypes: e1
 	MustBeDestroyed:
 		RequiredForShortGame: true
@@ -791,7 +755,7 @@
 ^ScienceBuilding:
 	Inherits: ^Building
 	SpawnActorsOnSell:
-		ActorTypes: e1,e1,e1,e1,tecn,tecn2,tecn,tecn2,tecn,tecn2,tecn,tecn2,tecn,tecn2,e6,e6,e6,e6,e6,c10,c10,c10,c10
+		ActorTypes: e1,e1,e1,e1,e1,e1,e1,e1,e1,e1,e1,e1,e1,e1,e6,e6,e6,e6,e6,e1,e1,e1,e1
 
 ^Defense:
 	Inherits: ^Building

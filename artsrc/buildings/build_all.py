@@ -87,7 +87,7 @@ BUILDINGS = {
     "gap": ("gap.png", 1, 1.0),
     "pbox": ("pbox.png", 1, 1.0),
     "hbox": ("hbox.png", 1, 1.0),
-    "mslo": ("mslo.png", 2, 1.0),
+    # "mslo": 3D model with a launch animation, artsrc/buildings/nuke_silo/make_silo.py (sequences/hd-silo.yaml)
     "gun": ("gun.png", 1, 1.0),
     "agun": ("agun.png", 1, 1.0),
     "ftur": ("ftur.png", 1, 1.0),

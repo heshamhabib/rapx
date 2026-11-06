@@ -84,9 +84,6 @@ fact:
 	damaged-build:
 		Start: 27
 		Length: 25
-	dead:
-		Filename: factdead.shp
-		Tick: 800
 	bib:
 		Filename: bib2.tem
 		TilesetFilenames:
@@ -121,9 +118,6 @@ proc:
 	make:
 		Filename: procmake.shp
 		Length: *
-	dead:
-		Filename: procdead.shp
-		Tick: 800
 	bib:
 		Filename: bib2.tem
 		TilesetFilenames:
@@ -173,9 +167,6 @@ powr:
 	make:
 		Filename: powrmake.shp
 		Length: *
-	dead:
-		Filename: powrdead.shp
-		Tick: 800
 	bib:
 		Filename: bib3.tem
 		TilesetFilenames:
@@ -195,10 +186,6 @@ apwr:
 	make:
 		Filename: apwrmake.shp
 		Length: *
-		Offset: 0,-10
-	dead:
-		Filename: apwrdead.shp
-		Tick: 800
 		Offset: 0,-10
 	bib:
 		Filename: bib2.tem

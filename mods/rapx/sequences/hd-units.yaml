@@ -156,6 +156,21 @@ apc:
 		Filename: ra|bits/hd/units/apc.png
 		UseClassicFacings: False
 		Scale: 0.2333
+	# The AI-generated model has no separate rear door: loading and unloading show the HD hull (like the LST ramp)
+	open:
+		Filename: ra|bits/hd/units/apc.png
+		Start: 0
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	unload:
+		Filename: ra|bits/hd/units/apc.png
+		Start: 0
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
 
 arty:
 	idle:
@@ -572,6 +587,15 @@ pt:
 		UseClassicFacings: False
 		Start: 0
 		Length: 1
+
+# Submarine: "Kilo Class Submarine" by ArtBlender (Sketchfab, CC-BY-4.0), artsrc/units/meshes/sketchfab_models.py
+ss:
+	idle:
+		Filename: ra|bits/hd/units/ss.png
+		Facings: 32
+		-InterpolatedFacings:
+		UseClassicFacings: False
+		Scale: 0.2333
 
 msub:
 	idle:

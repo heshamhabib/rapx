@@ -181,6 +181,44 @@ def char_sheet(name, keep):
     print(f"{path}: {len(out)} frames")
 
 
+def chinook_wrecks():
+    """The two Chinook wreck props (TRAN.Husk1 / TRAN.Husk2, e.g. Code 19's burning wreck): the HD Chinook charred
+    like the vehicle wrecks and broken in two along a jagged line across its middle, front half and rear half."""
+    src = Image.open(os.path.join(UNITS, "tran.png"))
+    fw, fh = (int(v) for v in src.info["FrameSize"].split(","))
+    a = np.asarray(src.convert("RGBA")).astype(np.float32) / 255
+    cols = a.shape[1] // fw
+    yy, xx = np.mgrid[0:fh, 0:fw].astype(np.float32)
+    out = {}
+    for name, facing, keep_front in (("tran1husk", 6, True), ("tran2husk", 22, False)):
+        r, c = divmod(facing, cols)
+        f = a[r * fh:(r + 1) * fh, c * fw:(c + 1) * fw].copy()
+        ang = 2 * np.pi * facing / 32
+        fx, fy = -np.sin(ang), -np.cos(ang) * 0.77            # nose direction on screen
+        along = (xx - fw / 2) * fx + (yy - fh / 2) * fy
+        jag = 6 * np.sin((-(xx - fw / 2) * fy + (yy - fh / 2) * fx) * 0.35) + 4 * (periodic_noise(fh, fw, 3) - 0.5)
+        keep = (along + jag > 0) if keep_front else (along + jag < 0)
+        f[..., 3] *= keep
+        rgb, al = f[..., :3], f[..., 3]
+        body = smoothstep(0.55, 0.8, al)
+        lum = rgb @ np.array([0.3, 0.59, 0.11], np.float32)
+        soot = periodic_noise(fh, fw, 5)
+        base = 0.05 + lum * 0.42
+        charred = np.stack([base * 1.02, base * 0.96, base * 0.9], -1) * (1 - 0.45 * smoothstep(0.5, 0.75, soot))[..., None]
+        # glowing torn edge along the break
+        edge = np.exp(-((along + jag) / 4.0) ** 2) * body
+        charred = charred * (1 - 0.6 * edge[..., None]) + np.array([0.55, 0.22, 0.06]) * 0.6 * edge[..., None]
+        f[..., :3] = rgb * (1 - body[..., None]) + np.clip(charred, 0, 1) * body[..., None]
+        out[name] = f
+        info = PngImagePlugin.PngInfo()
+        info.add_text("FrameSize", f"{fw},{fh}")
+        info.add_text("FrameAmount", "1")
+        Image.fromarray((np.clip(f, 0, 1) * 255).round().astype(np.uint8)).save(os.path.join(UNITS, f"{name}.png"),
+                                                                              pnginfo=info, optimize=True)
+        print(f"{name}: 1 frame")
+    return out
+
+
 def main():
     os.makedirs(FX, exist_ok=True)
     fire = make_fire()
@@ -200,6 +238,15 @@ def main():
 
     for name, keep in WRECKS.items():
         char_sheet(name, keep)
+
+    # Chinook wreck props (rendered at the Chinook's 3x density), after the vehicle wrecks so their noise is unchanged
+    with open(SEQUENCES, "a") as f:
+        for name in chinook_wrecks():
+            path = f"ra|bits/hd/units/{name}.png"
+            f.write(f"\n{name}:\n\tidle:\n\t\tFilename: {path}\n\t\tTilesetFilenames:\n")
+            f.writelines(f"\t\t\t{t}: {path}\n" for t in ("TEMPERAT", "SNOW", "DESERT", "INTERIOR"))
+            f.write("\t\tStart: 0\n\t\tLength: 1\n\t\tScale: 0.3333\n")
+    print(f"{SEQUENCES}: tran1husk, tran2husk")
 
 
 if __name__ == "__main__":

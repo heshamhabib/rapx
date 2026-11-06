@@ -105,61 +105,11 @@ SpyVoice:
 		Burned: dedman10
 		Zapped: dedman6
 
-ThiefVoice:
-	Voices:
-		Select: swhat1,syeah1
-		Move: saffirm1,smout1,sokay1
-		Action: scandy,sclean1,ssteal1
-		Die: dedman1,dedman2,dedman3,dedman4,dedman5,dedman7,dedman8
-		Burned: dedman10
-		Zapped: dedman6
-
-CivilianMaleVoice:
-	Voices:
-		Select: guyyeah1
-		Action: guyokay1
-		Die: dedman1,dedman2,dedman3,dedman4,dedman5,dedman7,dedman8
-		Burned: dedman10
-		Zapped: dedman6
-
-CivilianFemaleVoice:
-	Voices:
-		Select: girlyeah
-		Action: girlokay
-		Die: dedman1,dedman2,dedman3,dedman4,dedman5,dedman7,dedman8
-		Burned: dedman10
-		Zapped: dedman6
-
-EinsteinVoice:
-	Voices:
-		Select: einah1
-		Action: einok1,einyes1
-		Die: dedman1,dedman2,dedman3,dedman4,dedman5,dedman7,dedman8
-		Burned: dedman10
-		Zapped: dedman6
-
 ShokVoice:
 	Voices:
 		Select: jjuice1,jjump1,jyes1
 		Move: jdance1,jchrge1,jpower1
 		Attack: jburn1,jcrisp1,jshock1,jlight1
-		Die: dedman1,dedman2,dedman3,dedman4,dedman5,dedman7,dedman8
-		Burned: dedman10
-		Zapped: dedman6
-
-AntVoice:
-	Voices:
-		Select: antbite
-		Action: antbite
-		Die: antdie
-		Burned: antdie
-		Zapped: antdie
-
-StavrosVoice:
-	Voices:
-		Select: stavcmdr
-		Move: stavcrse, stavyes, stavmov
-		Attack: stavcrse, stavyes
 		Die: dedman1,dedman2,dedman3,dedman4,dedman5,dedman7,dedman8
 		Burned: dedman10
 		Zapped: dedman6

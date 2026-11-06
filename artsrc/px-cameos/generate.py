@@ -17,7 +17,9 @@ sequence to mods/rapx/sequences/hd-icons.yaml (GENERATED - edit this script, not
 - Everything else uses the classic cameo, exported with OpenRA.Utility, with the baked-in name
   text cropped off (the tile draws its own label) and upscaled.
 
-The stock `icon` sequences are left alone so observer and support-power widgets keep working.
+The stock-size `icon` sequence (64x48, drawn by the observer and support-power widgets, which ignore sequence Scale)
+is also replaced by a downscaled copy of the HD cameo in mods/rapx/bits/hd/icons/small/, for every image with HD or
+painted art. Images that only have the classic cameo keep their classic `icon`.
 
 Run (needs the RA content installed and the engine built): python3 artsrc/px-cameos/generate.py
 """
@@ -37,6 +39,7 @@ HD = os.path.join(MOD, "bits", "hd")
 CONCEPTS = os.path.join(ROOT, "assets", "units")
 PAINTED = os.path.join(ROOT, "assets", "cameos")
 OUT = os.path.join(HD, "icons")
+SMALL = os.path.join(OUT, "small")
 # National jets (artsrc/jets/make_jets.py): image jet.<id> -> render assets/jets/<file>.png
 sys.path.insert(0, os.path.join(ROOT, "artsrc", "jets"))
 from make_jets import JETS  # noqa: E402
@@ -210,8 +213,14 @@ def upscale(cameo):
     return Image.composite(art, Image.blend(dark, art, 0.55), vignette)
 
 
+def sequence(seq, path, scale):
+    lines = [f"\t{seq}:", f"\t\tFilename: {path}", "\t\tTilesetFilenames:"]
+    lines += [f"\t\t\t{t}: {path}" for t in TILESETS]
+    return lines + ["\t\tStart: 0", "\t\tLength: 1", "\t\tFacings: 1", "\t\tOffset: 0,0", f"\t\tScale: {scale}"]
+
+
 def main():
-    os.makedirs(OUT, exist_ok=True)
+    os.makedirs(SMALL, exist_ok=True)
     entries = parse_icon_sequences()
     has_painted = {image for image, _, _ in entries if painted_source(image)}
     has_art = {image for image, _, _ in entries if image in has_painted or source_art(image) is not None}
@@ -241,9 +250,10 @@ def main():
                 img = upscale(cameos[f])
             img.convert("RGBA").save(os.path.join(OUT, name))
             path = "ra|bits/hd/icons/" + name
-            lines += [f"\tpx-{seq}:", f"\t\tFilename: {path}", "\t\tTilesetFilenames:"]
-            lines += [f"\t\t\t{t}: {path}" for t in TILESETS]
-            lines += ["\t\tStart: 0", "\t\tLength: 1", "\t\tFacings: 1", "\t\tOffset: 0,0", "\t\tScale: 0.5"]
+            lines += sequence(f"px-{seq}", path, 0.5)
+            if image in has_art and not f.endswith(".png"):
+                img.convert("RGBA").resize((64, 48), Image.LANCZOS).save(os.path.join(SMALL, name))
+                lines += sequence(seq, "ra|bits/hd/icons/small/" + name, 1)
         lines.append("")
 
     with open(os.path.join(MOD, "sequences", "hd-icons.yaml"), "w") as out:

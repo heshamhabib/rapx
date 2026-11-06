@@ -71,6 +71,57 @@ every model: recoloured for team colours, rendered as game sprites from
     by davidbroutian, licensed under Creative Commons Attribution
     (http://creativecommons.org/licenses/by/4.0/).
 
+* Submarine (SS):
+    "Kilo Class Submarine" (https://sketchfab.com/3d-models/kilo-class-submarine-b7b2b557ebfa422b961d44b546369b08)
+    by Art Blender, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* Hospital (HOSP):
+    "Building of the polyclinic in russia" (https://sketchfab.com/3d-models/building-of-the-polyclinic-in-russia-18ea30a7d33a427da66b3f82ade3dbf6)
+    by narcozisne1, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: the scanned ground removed, a red-cross roof panel added.
+
+* Windmill:
+    "Dutch windmill" (https://sketchfab.com/3d-models/dutch-windmill-45c2c76d8fb94f1cbdda4329cd7aeabf)
+    by Holywood (lessers91), licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: sails animated.
+
+* Oil pump (V19):
+    "Oil Pumpjack - Animated" (https://sketchfab.com/3d-models/oil-pumpjack-animated-7c5fdd845bf54d3e80d954bd4b08c5b5)
+    by Felnev (felhamard), licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: untextured parts painted, charred for the wreck.
+
+* Sandbags (SBAG):
+    "Sandbag Wall - 24MB" (https://sketchfab.com/3d-models/sandbag-wall-24mb-35f39f3b391040169eb04d9a339d88a5)
+    by adventurer (ahmagh2e), licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: bags restacked into the wall joins.
+
+* Wire fence (FENC):
+    "Modular Chain Link Fence Set" (https://sketchfab.com/3d-models/modular-chain-link-fence-set-bd85a8005ff0403cab2f1e9845016b8f)
+    by FrodoUndead, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: posts and panels rearranged into the wall joins.
+
+* Anti-tank mine (MINV):
+    "Soviet AT Land Mine" (https://sketchfab.com/3d-models/soviet-at-land-mine-b087652da1b6446c856494df7804503c)
+    by GameDev Nick, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* Anti-personnel mine (MINP):
+    "Claymore Mine" (https://sketchfab.com/3d-models/claymore-mine-0ab9698d824b4c56a2728e5edea90aa4)
+    by Charlie Tinley (Tnkii), licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* Parachutes (paratroopers, paradropped vehicles, parabombs):
+    "Army Parachute" (https://sketchfab.com/3d-models/army-parachute-af52e08feebc4d94a244692212ac25bb)
+    by amaraklov, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: canopy deploy and sway animation, scaled, rendered to sprites.
+
 * Flak Truck (FTRK):
     "96K6 Pantsir-S1"
     (https://sketchfab.com/3d-models/96k6-pantsir-s1-8be7dcff46794b809560e2377561546e)
@@ -677,6 +728,73 @@ Missiles and bombs (fired sprites and the weapons hung on jets)
     by rickslash, licensed under Creative Commons Attribution
     (http://creativecommons.org/licenses/by/4.0/).
     Changes: turned and scaled to the real missile; rendered as game sprites.
+
+Ironward map buildings
+
+These Sketchfab models were rendered into the painted backdrop of the Ironward
+map. Changes for every model: scaled and stretched to fit the city's house lots,
+sets split into single buildings, snow and lit windows added, re-lit for night;
+the backdrop was then partly repainted.
+
+* "Longworth Building Low Poly Game Ready"
+    (https://sketchfab.com/3d-models/longworth-building-low-poly-game-ready-4c39ac7b1d424d8c8ac3acb8338173e2)
+    by Ruslan Malovsky, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* "Realistic chicago buildings"
+    (https://sketchfab.com/3d-models/realistic-chicago-buildings-c4a3993ef1e84e6d9d5a15c78da88aae)
+    by 99.Miles, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* "Brownstone Building Set - Low poly model"
+    (https://sketchfab.com/3d-models/brownstone-building-set-low-poly-model-b15e6344acd844eabc823e1cc8332574)
+    by Daniel Zhabotinsky, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* "Game ready building 5"
+    (https://sketchfab.com/3d-models/game-ready-building-5-73b1d5fc97ca46bab7f80b7c95001e79)
+    by ModelMaker, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* "Game Ready Mid Poly Building"
+    (https://sketchfab.com/3d-models/game-ready-mid-poly-building-dc4f6a49d8a7462b9349936b8dc7256e)
+    by ModelMaker, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* "Low-poly Old American brick building with shop."
+    (https://sketchfab.com/3d-models/low-poly-old-american-brick-building-with-shop-3170993b67ee4e58b27d69d5877f71bd)
+    by Orzechu, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* "Art Deco Citadel"
+    (https://sketchfab.com/3d-models/art-deco-citadel-80898b00703f4fbd9a0622c90193032a)
+    by Samuel F. Angrick-Johanns (Oneironauticus), licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* "Abandoned Factory Building"
+    (https://sketchfab.com/3d-models/abandoned-factory-building-5df9f2662a824117b1e6c5597b29b33f)
+    by Klasy, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* "NYC LOW POLY BUILDING"
+    (https://sketchfab.com/3d-models/nyc-low-poly-building-3f6d0db9954746d38d398c759e53524c)
+    by AdarshMPro, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* "Low Poly Apartment #3"
+    (https://sketchfab.com/3d-models/low-poly-apartment-3-58c2196f53fd48afbd4228521dc39b04)
+    by Kerem Biçer, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* "Cathedral (low poly)"
+    (https://sketchfab.com/3d-models/cathedral-low-poly-9192b34b2136494aaf519b032a6ad1da)
+    by SenyorEtziba, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* "Clock Tower"
+    (https://sketchfab.com/3d-models/clock-tower-aeb85300d0734071966c379d0c173527)
+    by Darknest, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
 
 Sounds
 

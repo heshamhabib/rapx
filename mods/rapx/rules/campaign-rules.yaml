@@ -118,11 +118,3 @@ MISS:
 TRUK:
 	Buildable:
 		Prerequisites: ~disabled
-
-Ant:
-	Buildable:
-		Prerequisites: ~disabled
-
-Zombie:
-	Buildable:
-		Prerequisites: ~disabled

@@ -6967,37 +6967,6 @@ HBOX:
 		Points: -2,-4, 9,1
 		Size: 1
 
-MSLO:
-	WithPxCollapse:
-	WithPxDamageFx:
-		Points: 1,-3, -22,6, 21,-1
-		Size: 1.2
-	WithPxBuildingFx@0:
-		RequiresCondition: !build-incomplete && !disabled
-		Type: Blink
-		Offset: -18.3,-0.5
-		Color: FF3020
-		Size: 0.6
-		Period: 40
-		Phase: 0
-	WithPxBuildingFx@1:
-		RequiresCondition: !build-incomplete && !disabled
-		Type: Blink
-		Offset: 15,1.2
-		Color: FF3020
-		Size: 0.6
-		Period: 40
-		Phase: 20
-	WithPxBuildingFx@2:
-		RequiresCondition: !build-incomplete && !disabled
-		Type: Steam
-		Offset: 1.7,-9.8
-		Color: E8ECEEB0
-		Size: 0.6
-		Rate: 10
-		Life: 60
-		Radius: 1,0.5
-
 GUN:
 	WithPxCollapse:
 	WithPxDamageFx:
@@ -7084,3 +7053,33 @@ OILR:
 		Color: FFC070
 		Size: 0.7
 		Rate: 30
+
+MSLO:
+	WithPxCollapse:
+	WithPxDamageFx:
+		Points: 1,-7, -33,-12, 31,4, 24,-22
+		Size: 1.6
+	WithPxBuildingFx@0:
+		RequiresCondition: !build-incomplete && !disabled
+		Type: Blink
+		Offset: -24.3,12.3
+		Color: FF3020
+		Size: 0.6
+		Period: 40
+		Phase: 0
+	WithPxBuildingFx@1:
+		RequiresCondition: !build-incomplete && !disabled
+		Type: Blink
+		Offset: 30,5
+		Color: FF3020
+		Size: 0.6
+		Period: 40
+		Phase: 13
+	WithPxBuildingFx@2:
+		RequiresCondition: !build-incomplete && !disabled
+		Type: Blink
+		Offset: -30,-11
+		Color: FF3020
+		Size: 0.6
+		Period: 40
+		Phase: 26

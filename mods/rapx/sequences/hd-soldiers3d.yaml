@@ -153,6 +153,45 @@ e1:
 		UseClassicFacings: False
 		Scale: 0.2000
 		Tick: 80
+	die6:
+		Filename: ra|bits/hd/soldiers/e1/die6.png
+		Start: 0
+		Length: 20
+		Stride: 20
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 80
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/soldiers/e1/die6.png
+			SNOW: ra|bits/hd/soldiers/e1/die6.png
+			DESERT: ra|bits/hd/soldiers/e1/die6.png
+			INTERIOR: ra|bits/hd/soldiers/e1/die6.png
+		Frames: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
+	die-crushed:
+		Filename: ra|bits/hd/soldiers/e1/crushed.png
+		Start: 0
+		Length: 6
+		Stride: 6
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 1600
+		ZOffset: -511
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/soldiers/e1/crushed.png
+			SNOW: ra|bits/hd/soldiers/e1/crushed.png
+			DESERT: ra|bits/hd/soldiers/e1/crushed.png
+			INTERIOR: ra|bits/hd/soldiers/e1/crushed.png
+		Frames: 0, 1, 2, 3, 4, 5
+	parachute:
+		Filename: ra|bits/hd/soldiers/e1/idle.png
+		Start: 0
+		Length: 1
+		Stride: 12
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2000
 
 e2:
 	stand:
@@ -304,6 +343,45 @@ e2:
 		UseClassicFacings: False
 		Scale: 0.2000
 		Tick: 80
+	die6:
+		Filename: ra|bits/hd/soldiers/e2/die6.png
+		Start: 0
+		Length: 20
+		Stride: 20
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 80
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/soldiers/e2/die6.png
+			SNOW: ra|bits/hd/soldiers/e2/die6.png
+			DESERT: ra|bits/hd/soldiers/e2/die6.png
+			INTERIOR: ra|bits/hd/soldiers/e2/die6.png
+		Frames: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
+	die-crushed:
+		Filename: ra|bits/hd/soldiers/e2/crushed.png
+		Start: 0
+		Length: 6
+		Stride: 6
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 1600
+		ZOffset: -511
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/soldiers/e2/crushed.png
+			SNOW: ra|bits/hd/soldiers/e2/crushed.png
+			DESERT: ra|bits/hd/soldiers/e2/crushed.png
+			INTERIOR: ra|bits/hd/soldiers/e2/crushed.png
+		Frames: 0, 1, 2, 3, 4, 5
+	parachute:
+		Filename: ra|bits/hd/soldiers/e2/idle.png
+		Start: 0
+		Length: 1
+		Stride: 12
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2000
 
 e3:
 	stand:
@@ -455,6 +533,45 @@ e3:
 		UseClassicFacings: False
 		Scale: 0.2000
 		Tick: 80
+	die6:
+		Filename: ra|bits/hd/soldiers/e3/die6.png
+		Start: 0
+		Length: 20
+		Stride: 20
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 80
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/soldiers/e3/die6.png
+			SNOW: ra|bits/hd/soldiers/e3/die6.png
+			DESERT: ra|bits/hd/soldiers/e3/die6.png
+			INTERIOR: ra|bits/hd/soldiers/e3/die6.png
+		Frames: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
+	die-crushed:
+		Filename: ra|bits/hd/soldiers/e3/crushed.png
+		Start: 0
+		Length: 6
+		Stride: 6
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 1600
+		ZOffset: -511
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/soldiers/e3/crushed.png
+			SNOW: ra|bits/hd/soldiers/e3/crushed.png
+			DESERT: ra|bits/hd/soldiers/e3/crushed.png
+			INTERIOR: ra|bits/hd/soldiers/e3/crushed.png
+		Frames: 0, 1, 2, 3, 4, 5
+	parachute:
+		Filename: ra|bits/hd/soldiers/e3/idle.png
+		Start: 0
+		Length: 1
+		Stride: 12
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2000
 
 e4:
 	stand:
@@ -606,6 +723,45 @@ e4:
 		UseClassicFacings: False
 		Scale: 0.2000
 		Tick: 80
+	die6:
+		Filename: ra|bits/hd/soldiers/e4/die6.png
+		Start: 0
+		Length: 20
+		Stride: 20
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 80
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/soldiers/e4/die6.png
+			SNOW: ra|bits/hd/soldiers/e4/die6.png
+			DESERT: ra|bits/hd/soldiers/e4/die6.png
+			INTERIOR: ra|bits/hd/soldiers/e4/die6.png
+		Frames: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
+	die-crushed:
+		Filename: ra|bits/hd/soldiers/e4/crushed.png
+		Start: 0
+		Length: 6
+		Stride: 6
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 1600
+		ZOffset: -511
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/soldiers/e4/crushed.png
+			SNOW: ra|bits/hd/soldiers/e4/crushed.png
+			DESERT: ra|bits/hd/soldiers/e4/crushed.png
+			INTERIOR: ra|bits/hd/soldiers/e4/crushed.png
+		Frames: 0, 1, 2, 3, 4, 5
+	parachute:
+		Filename: ra|bits/hd/soldiers/e4/idle.png
+		Start: 0
+		Length: 1
+		Stride: 8
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2000
 
 e6:
 	stand:
@@ -739,6 +895,45 @@ e6:
 		UseClassicFacings: False
 		Scale: 0.2000
 		Tick: 80
+	die6:
+		Filename: ra|bits/hd/soldiers/e6/die6.png
+		Start: 0
+		Length: 20
+		Stride: 20
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 80
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/soldiers/e6/die6.png
+			SNOW: ra|bits/hd/soldiers/e6/die6.png
+			DESERT: ra|bits/hd/soldiers/e6/die6.png
+			INTERIOR: ra|bits/hd/soldiers/e6/die6.png
+		Frames: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
+	die-crushed:
+		Filename: ra|bits/hd/soldiers/e6/crushed.png
+		Start: 0
+		Length: 6
+		Stride: 6
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 1600
+		ZOffset: -511
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/soldiers/e6/crushed.png
+			SNOW: ra|bits/hd/soldiers/e6/crushed.png
+			DESERT: ra|bits/hd/soldiers/e6/crushed.png
+			INTERIOR: ra|bits/hd/soldiers/e6/crushed.png
+		Frames: 0, 1, 2, 3, 4, 5
+	parachute:
+		Filename: ra|bits/hd/soldiers/e6/idle.png
+		Start: 0
+		Length: 1
+		Stride: 8
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2000
 
 e7:
 	stand:
@@ -926,6 +1121,45 @@ e7:
 		UseClassicFacings: False
 		Scale: 0.2000
 		Tick: 80
+	die6:
+		Filename: ra|bits/hd/soldiers/e7/die6.png
+		Start: 0
+		Length: 20
+		Stride: 20
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 80
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/soldiers/e7/die6.png
+			SNOW: ra|bits/hd/soldiers/e7/die6.png
+			DESERT: ra|bits/hd/soldiers/e7/die6.png
+			INTERIOR: ra|bits/hd/soldiers/e7/die6.png
+		Frames: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
+	die-crushed:
+		Filename: ra|bits/hd/soldiers/e7/crushed.png
+		Start: 0
+		Length: 6
+		Stride: 6
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 1600
+		ZOffset: -511
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/soldiers/e7/crushed.png
+			SNOW: ra|bits/hd/soldiers/e7/crushed.png
+			DESERT: ra|bits/hd/soldiers/e7/crushed.png
+			INTERIOR: ra|bits/hd/soldiers/e7/crushed.png
+		Frames: 0, 1, 2, 3, 4, 5
+	parachute:
+		Filename: ra|bits/hd/soldiers/e7/idle.png
+		Start: 0
+		Length: 1
+		Stride: 8
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2000
 
 mech:
 	stand:
@@ -1077,6 +1311,45 @@ mech:
 		UseClassicFacings: False
 		Scale: 0.2000
 		Tick: 80
+	die6:
+		Filename: ra|bits/hd/soldiers/mech/die6.png
+		Start: 0
+		Length: 20
+		Stride: 20
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 80
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/soldiers/mech/die6.png
+			SNOW: ra|bits/hd/soldiers/mech/die6.png
+			DESERT: ra|bits/hd/soldiers/mech/die6.png
+			INTERIOR: ra|bits/hd/soldiers/mech/die6.png
+		Frames: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
+	die-crushed:
+		Filename: ra|bits/hd/soldiers/mech/crushed.png
+		Start: 0
+		Length: 6
+		Stride: 6
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 1600
+		ZOffset: -511
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/soldiers/mech/crushed.png
+			SNOW: ra|bits/hd/soldiers/mech/crushed.png
+			DESERT: ra|bits/hd/soldiers/mech/crushed.png
+			INTERIOR: ra|bits/hd/soldiers/mech/crushed.png
+		Frames: 0, 1, 2, 3, 4, 5
+	parachute:
+		Filename: ra|bits/hd/soldiers/mech/idle.png
+		Start: 0
+		Length: 1
+		Stride: 8
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2000
 
 medi:
 	stand:
@@ -1228,6 +1501,45 @@ medi:
 		UseClassicFacings: False
 		Scale: 0.2000
 		Tick: 80
+	die6:
+		Filename: ra|bits/hd/soldiers/medi/die6.png
+		Start: 0
+		Length: 20
+		Stride: 20
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 80
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/soldiers/medi/die6.png
+			SNOW: ra|bits/hd/soldiers/medi/die6.png
+			DESERT: ra|bits/hd/soldiers/medi/die6.png
+			INTERIOR: ra|bits/hd/soldiers/medi/die6.png
+		Frames: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
+	die-crushed:
+		Filename: ra|bits/hd/soldiers/medi/crushed.png
+		Start: 0
+		Length: 6
+		Stride: 6
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 1600
+		ZOffset: -511
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/soldiers/medi/crushed.png
+			SNOW: ra|bits/hd/soldiers/medi/crushed.png
+			DESERT: ra|bits/hd/soldiers/medi/crushed.png
+			INTERIOR: ra|bits/hd/soldiers/medi/crushed.png
+		Frames: 0, 1, 2, 3, 4, 5
+	parachute:
+		Filename: ra|bits/hd/soldiers/medi/idle.png
+		Start: 0
+		Length: 1
+		Stride: 8
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2000
 
 shok:
 	stand:
@@ -1379,6 +1691,45 @@ shok:
 		UseClassicFacings: False
 		Scale: 0.2000
 		Tick: 80
+	die6:
+		Filename: ra|bits/hd/soldiers/shok/die6.png
+		Start: 0
+		Length: 20
+		Stride: 20
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 80
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/soldiers/shok/die6.png
+			SNOW: ra|bits/hd/soldiers/shok/die6.png
+			DESERT: ra|bits/hd/soldiers/shok/die6.png
+			INTERIOR: ra|bits/hd/soldiers/shok/die6.png
+		Frames: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
+	die-crushed:
+		Filename: ra|bits/hd/soldiers/shok/crushed.png
+		Start: 0
+		Length: 6
+		Stride: 6
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 1600
+		ZOffset: -511
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/soldiers/shok/crushed.png
+			SNOW: ra|bits/hd/soldiers/shok/crushed.png
+			DESERT: ra|bits/hd/soldiers/shok/crushed.png
+			INTERIOR: ra|bits/hd/soldiers/shok/crushed.png
+		Frames: 0, 1, 2, 3, 4, 5
+	parachute:
+		Filename: ra|bits/hd/soldiers/shok/idle.png
+		Start: 0
+		Length: 1
+		Stride: 8
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2000
 
 snip:
 	stand:
@@ -1530,6 +1881,45 @@ snip:
 		UseClassicFacings: False
 		Scale: 0.2000
 		Tick: 80
+	die6:
+		Filename: ra|bits/hd/soldiers/snip/die6.png
+		Start: 0
+		Length: 20
+		Stride: 20
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 80
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/soldiers/snip/die6.png
+			SNOW: ra|bits/hd/soldiers/snip/die6.png
+			DESERT: ra|bits/hd/soldiers/snip/die6.png
+			INTERIOR: ra|bits/hd/soldiers/snip/die6.png
+		Frames: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
+	die-crushed:
+		Filename: ra|bits/hd/soldiers/snip/crushed.png
+		Start: 0
+		Length: 6
+		Stride: 6
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 1600
+		ZOffset: -511
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/soldiers/snip/crushed.png
+			SNOW: ra|bits/hd/soldiers/snip/crushed.png
+			DESERT: ra|bits/hd/soldiers/snip/crushed.png
+			INTERIOR: ra|bits/hd/soldiers/snip/crushed.png
+		Frames: 0, 1, 2, 3, 4, 5
+	parachute:
+		Filename: ra|bits/hd/soldiers/snip/idle.png
+		Start: 0
+		Length: 1
+		Stride: 12
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2000
 
 spy:
 	stand:
@@ -1541,6 +1931,14 @@ spy:
 		UseClassicFacings: False
 		Scale: 0.2000
 	stand2:
+		Filename: ra|bits/hd/soldiers/spy/aim.png
+		Start: 0
+		Length: 1
+		Stride: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2000
+	shoot:
 		Filename: ra|bits/hd/soldiers/spy/aim.png
 		Start: 0
 		Length: 1
@@ -1594,6 +1992,14 @@ spy:
 		Scale: 0.2000
 		Tick: 60
 	prone-stand:
+		Filename: ra|bits/hd/soldiers/spy/crawl.png
+		Start: 0
+		Length: 1
+		Stride: 8
+		Facings: 16
+		UseClassicFacings: False
+		Scale: 0.2000
+	prone-shoot:
 		Filename: ra|bits/hd/soldiers/spy/crawl.png
 		Start: 0
 		Length: 1
@@ -1663,3 +2069,42 @@ spy:
 		UseClassicFacings: False
 		Scale: 0.2000
 		Tick: 80
+	die6:
+		Filename: ra|bits/hd/soldiers/spy/die6.png
+		Start: 0
+		Length: 20
+		Stride: 20
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 80
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/soldiers/spy/die6.png
+			SNOW: ra|bits/hd/soldiers/spy/die6.png
+			DESERT: ra|bits/hd/soldiers/spy/die6.png
+			INTERIOR: ra|bits/hd/soldiers/spy/die6.png
+		Frames: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
+	die-crushed:
+		Filename: ra|bits/hd/soldiers/spy/crushed.png
+		Start: 0
+		Length: 6
+		Stride: 6
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 1600
+		ZOffset: -511
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/soldiers/spy/crushed.png
+			SNOW: ra|bits/hd/soldiers/spy/crushed.png
+			DESERT: ra|bits/hd/soldiers/spy/crushed.png
+			INTERIOR: ra|bits/hd/soldiers/spy/crushed.png
+		Frames: 0, 1, 2, 3, 4, 5
+	parachute:
+		Filename: ra|bits/hd/soldiers/spy/idle.png
+		Start: 0
+		Length: 1
+		Stride: 8
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2000

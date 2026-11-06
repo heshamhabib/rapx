@@ -33,7 +33,14 @@ SEQUENCES = {
     "die3": ("die1", None, 80),
     "die4": ("die2", None, 80),
     "die5": ("die2", None, 80),
+    # make_deaths.py: electrocuted (ElectricityDeath) and crushed, built from the soldier's own renders
+    "die6": ("die6", None, 80),
+    "die-crushed": ("crushed", None, 1600),
+    # hanging under the HD parachute (artsrc/units/parachute)
+    "parachute": ("idle", 1, None),
 }
+# Extra keys per game sequence
+EXTRA = {"die-crushed": ["ZOffset: -511"]}
 # Size in game: 3x-density renders shown at 0.6 of a third (Balanced RTS proportions, same as make_infantry.py)
 GAME_SCALE = 0.6 / 3
 # Per soldier: game sequence names that differ (e.g. the Grenadier throws)
@@ -45,6 +52,7 @@ ALIASES = {
     "mech": {"idle": "idle1", "repair": "idle2"},    # IdleSequences: idle, DefaultAttackSequence: repair
     "e7": {"shoot-left": "shoot", "shoot-right": "shoot",  # Tanya's two pistols (AttackSequences)
            "prone-shoot-left": "prone-shoot", "prone-shoot-right": "prone-shoot"},
+    "spy": {"shoot": "stand2", "prone-shoot": "prone-stand"},   # fires his silenced pistol from the aiming pose
 }
 
 lines = ["# 3D soldiers (Mixamo-animated, rendered in Blender; see artsrc/units/soldiers/).",
@@ -73,6 +81,12 @@ for uid in sorted(os.listdir(BITS)) if os.path.isdir(BITS) else []:
                       "\t\tUseClassicFacings: False", f"\t\tScale: {GAME_SCALE:.4f}"]
             if tick:
                 lines.append(f"\t\tTick: {tick}")
+            lines += [f"\t\t{e}" for e in EXTRA.get(seq, [])]
+            if seq in ("die6", "die-crushed"):
+                # the classic deaths have snow variants and a Frames list that would otherwise merge in
+                path = f"ra|bits/hd/soldiers/{uid}/{sheet}.png"
+                lines += ["\t\tTilesetFilenames:"] + [f"\t\t\t{t}: {path}" for t in ("TEMPERAT", "SNOW", "DESERT", "INTERIOR")]
+                lines.append("\t\tFrames: " + ", ".join(str(i) for i in range(length)))
     lines.append("")
 open(OUT, "w").write("\n".join(lines))
 print("wrote", OUT)

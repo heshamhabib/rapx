@@ -427,6 +427,9 @@ MODELS = {
     "lst": {"name": "Transport (LCAC)", "src": "inbox2/lst__lcac_hovercraft_croqui/scene.gltf", "kind": "ship",
             "frame": 224, "yaw": 90, "length": 12.0, "waterline": -1000.0,
             "darken": 0.1, "team": {"boxes": [(0.0, 0.2, 0.15, 0.85, 0.45, 1.0), (0.8, 1.0, 0.15, 0.85, 0.45, 1.0)]}},  # untextured white: naval grey; side cabins,
+    # Submarine: "Kilo Class Submarine" by ArtBlender, CC-BY-4.0 (surfaced; IDEA-30 phase 3)
+    "ss": {"name": "Submarine (Kilo)", "src": "phase34/kilo-sub/scene.gltf", "kind": "ship", "frame": 160,
+           "yaw": 270, "length": 11.0, "waterline": 0.0, "team": {"box": (0.0, 1.0, 0.28, 0.48, 0.55, 1.0)}},  # the sail
     # Missile Submarine: "Ohio Class Submarine SSBN" by waelXcm, CC-BY-4.0 (surfaced; the raised Trident left out)
     "msub": {"name": "Missile Submarine (Ohio)", "src": "inbox2/msub__ohio_class_submarine_ssbn/scene.gltf",
              "kind": "ship", "frame": 256, "yaw": 180, "length": 14.5, "waterline": 0.013,

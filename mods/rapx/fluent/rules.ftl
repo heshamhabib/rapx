@@ -198,9 +198,6 @@ actor-mh60 =
       Weak vs Tanks and Aircraft
 
 ## civilian.yaml
-actor-c10-name = Scientist
-actor-tecn-name = Technician
-actor-tecn2-name = Technician
 actor-v01-name = Church
 actor-v19-name = Oil Pump
 actor-v19-husk-name = Husk (Oil Pump)
@@ -232,7 +229,6 @@ notification-unit-stolen = Unit stolen.
 
 meta-vehicle-generic-name = Vehicle
 meta-infantry-generic-name = Soldier
-meta-civinfantry-name = Civilian
 meta-ship-generic-name = Ship
 meta-neutralplane-generic-name = Plane
 meta-helicopter-generic-name = Helicopter
@@ -364,10 +360,6 @@ actor-mech =
     working condition by capturing them.
       Unarmed
 
-actor-einstein-name = Prof. Einstein
-actor-delphi-name = Agent Delphi
-actor-chan-name = Scientist
-actor-gnrl-name = General
 
 actor-snip =
     .name = Sniper
@@ -377,34 +369,12 @@ actor-snip =
       Strong vs Infantry
       Weak vs Vehicles, Buildings
 
-actor-thf =
-    .name = Thief
-    .description =
-    Steals enemy credits.
-    Hijacks enemy vehicles.
-      Unarmed
-
 actor-shok =
     .name = Shock Trooper
     .description =
     Elite infantry with portable Tesla coils.
       Strong vs Infantry and Vehicles
       Weak vs Aircraft
-
-actor-zombie =
-    .name = Zombie
-    .description =
-    Slow-moving undead that attack in close combat.
-
-actor-ant =
-    .name = Giant Ant
-    .generic-name = Ant
-    .description =
-    Irradiated insect that grew to an abnormally large size.
-
-actor-fireant-name = Fire Ant
-actor-scoutant-name = Scout Ant
-actor-warriorant-name = Warrior Ant
 
 ## misc.yaml
 notification-sonar-pulse-ready = Sonar pulse ready.
@@ -421,9 +391,6 @@ actor-flare-name = Flare
 actor-mine-name = Ore Mine
 actor-gmine-name = Gem Mine
 actor-railmine-name = Abandoned Mine
-actor-quee-name = Queen Ant
-actor-lar1-name = Ant Larva
-actor-lar2-name = Ant Larvae
 actor-mpspawn-name = (multiplayer starting point)
 actor-waypoint-name = (waypoint for scripted behavior)
 actor-ctflag-name = Flag

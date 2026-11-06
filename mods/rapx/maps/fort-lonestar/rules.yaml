@@ -462,7 +462,3 @@ AGUN:
 TSLA:
 	Buildable:
 		Prerequisites: ~disabled
-
-THF:
-	Buildable:
-		Prerequisites: ~disabled

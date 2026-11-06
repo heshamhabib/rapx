@@ -10,3 +10,27 @@ pxfx:
 		Filename: ra|bits/hd/fx/wsmoke.png
 		Length: 8
 		Scale: 0.2500
+
+tran1husk:
+	idle:
+		Filename: ra|bits/hd/units/tran1husk.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/units/tran1husk.png
+			SNOW: ra|bits/hd/units/tran1husk.png
+			DESERT: ra|bits/hd/units/tran1husk.png
+			INTERIOR: ra|bits/hd/units/tran1husk.png
+		Start: 0
+		Length: 1
+		Scale: 0.3333
+
+tran2husk:
+	idle:
+		Filename: ra|bits/hd/units/tran2husk.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/units/tran2husk.png
+			SNOW: ra|bits/hd/units/tran2husk.png
+			DESERT: ra|bits/hd/units/tran2husk.png
+			INTERIOR: ra|bits/hd/units/tran2husk.png
+		Start: 0
+		Length: 1
+		Scale: 0.3333

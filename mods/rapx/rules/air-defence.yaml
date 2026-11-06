@@ -41,15 +41,13 @@ ASAT:
 	-PxInterceptor:
 
 # --- Tiers 2-3: SAM sites with their own look (one fixed facing of the rendered launcher) ------------------------
-^PxSamSite:
-	Inherits: SAM
-	-WithMuzzleOverlay:
-	Armament:
-		-MuzzleSequence:
+# They inherit the SAM Site directly (no shared ^ template: the engine's quick map-preview loader only reads abstract
+# definitions, so a ^ template inheriting the concrete SAM broke every map with its own rules file).
 
 
 MSAM:
-	Inherits: ^PxSamSite
+	Inherits: SAM
+	-WithMuzzleOverlay:
 	Buildable:
 		Queue: Defense
 		BuildPaletteOrder: 102
@@ -76,6 +74,7 @@ MSAM:
 			pakistan: ad-msam-soviet
 			iran: ad-msam-soviet
 	Armament:
+		-MuzzleSequence:
 		Weapon: MSAM_AA
 		LocalOffset: 0,0,400
 	PxInterceptor:
@@ -94,7 +93,8 @@ MSAM:
 		Amount: -60
 
 LSAM:
-	Inherits: ^PxSamSite
+	Inherits: SAM
+	-WithMuzzleOverlay:
 	Buildable:
 		Queue: Defense
 		BuildPaletteOrder: 104
@@ -121,6 +121,7 @@ LSAM:
 			pakistan: ad-lsam-soviet
 			iran: ad-lsam-soviet
 	Armament:
+		-MuzzleSequence:
 		Weapon: LSAM_AA
 		LocalOffset: 0,0,450
 	PxInterceptor:

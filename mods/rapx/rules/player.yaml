@@ -241,6 +241,7 @@ Player:
 		AllyTextNotification: notification-ally-under-attack
 	PlayerStatistics:
 	PlaceBeacon:
+		BeaconSequence: pulse
 	ProvidesTechPrerequisite@infonly:
 		Name: options-tech-level.infantry-only
 		Prerequisites: techlevel.infonly

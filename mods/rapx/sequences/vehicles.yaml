@@ -213,10 +213,6 @@ jeep:
 	idle:
 		Facings: 32
 		UseClassicFacings: True
-	turret:
-		Start: 32
-		Facings: 32
-		UseClassicFacings: True
 	muzzle:
 		Filename: minigun.shp
 		Length: 6
@@ -298,9 +294,6 @@ ttnk:
 	idle:
 		Facings: 32
 		UseClassicFacings: True
-	spinner:
-		Start: 32
-		Length: 32
 	icon:
 		Filename: ttnkicon.shp
 
@@ -345,10 +338,6 @@ qtnk:
 	idle:
 		Facings: 32
 		UseClassicFacings: True
-	piston:
-		Start: 32
-		Facings: 8
-		Length: 8
 	icon:
 		Filename: qtnkicon.shp
 

@@ -51,14 +51,21 @@ MSLO:
 		IncomingTextNotification: notification-abomb-launch-detected
 		MissileWeapon: atomic
 		MissileImage: atomic
-		MissileDelay: 5
-		SpawnOffset: 1c0,427,0
+		# Matches the silo's launch animation (artsrc/buildings/nuke_silo/make_silo.py): the missile takes over
+		# from the animation as it clears the shaft
+		MissileDelay: 48
+		SpawnOffset: -443,-33,2175
+		FlightVelocity: 395
+		# Nuclear launch siren (CC0, artsrc/audio/siren/README.md) for the launcher and every other player
+		LaunchSound: ra|audio/superweapons/nuke-siren.wav
+		IncomingSound: ra|audio/superweapons/nuke-siren.wav
 		DisplayTimerRelationships: Ally, Neutral, Enemy
 		DisplayBeacon: True
 		DisplayRadarPing: True
 		BeaconPoster: atomicon
 		CameraRange: 10c0
 		ArrowSequence: arrow
+		BeaconSequence: pulse
 		ClockSequence: clock
 		CircleSequence: circles
 		SupportPowerPaletteOrder: 70
@@ -1247,7 +1254,7 @@ FACT:
 	Tooltip:
 		Name: actor-fact.name
 	SpawnActorsOnSell:
-		ActorTypes: e1,e1,e1,tecn,tecn2
+		ActorTypes: e1,e1,e1,e1,e1
 		GuaranteedActorTypes: e1, e6
 	BaseBuilding:
 	Transforms:
@@ -1328,7 +1335,7 @@ PROC:
 		Bounds: 3072, 2133, 0, 170
 		DecorationBounds: 3072, 2986, 0, -85
 	Targetable:
-		TargetTypes: GroundActor, Structure, C4, DetonateAttack, ThiefInfiltrate, SpyInfiltrate
+		TargetTypes: GroundActor, Structure, C4, DetonateAttack, SpyInfiltrate
 	Health:
 		HP: 90000
 	Armor:
@@ -1368,7 +1375,7 @@ PROC:
 		Percentage: 50
 		PlayerExperience: 5
 		PlayerExperiencePercentage: 1
-		Types: SpyInfiltrate, ThiefInfiltrate
+		Types: SpyInfiltrate
 		InfiltratedNotification: CreditsStolen
 		InfiltratedTextNotification: notification-credits-stolen
 	WithPxBuildingPad:
@@ -1418,7 +1425,7 @@ SILO:
 	Valued:
 		Cost: 150
 	Targetable:
-		TargetTypes: GroundActor, Structure, C4, DetonateAttack, ThiefInfiltrate
+		TargetTypes: GroundActor, Structure, C4, DetonateAttack
 	Tooltip:
 		Name: actor-silo.name
 	-GivesBuildableArea:
@@ -1429,13 +1436,6 @@ SILO:
 		Type: Wood
 	RevealsShroud:
 		Range: 4c0
-	InfiltrateForCash:
-		Percentage: 50
-		PlayerExperience: 5
-		PlayerExperiencePercentage: 1
-		Types: ThiefInfiltrate
-		InfiltratedNotification: CreditsStolen
-		InfiltratedTextNotification: notification-credits-stolen
 	WithBuildingBib:
 		HasMinibib: true
 	-WithSpriteBody:
@@ -1632,6 +1632,7 @@ AFLD:
 		DisplayBeacon: true
 		BeaconPoster: camicon
 		ArrowSequence: arrow
+		BeaconSequence: pulse
 		ClockSequence: clock
 		CircleSequence: circles
 		UseDirectionalTarget: True
@@ -1655,6 +1656,7 @@ AFLD:
 		DisplayBeacon: true
 		BeaconPoster: pinficon
 		ArrowSequence: arrow
+		BeaconSequence: pulse
 		ClockSequence: clock
 		CircleSequence: circles
 		UseDirectionalTarget: True
@@ -1678,6 +1680,7 @@ AFLD:
 		SquadSize: 1
 		SquadOffset: 1792,1792,0
 		ArrowSequence: arrow
+		BeaconSequence: pulse
 		ClockSequence: clock
 		CircleSequence: circles
 		UseDirectionalTarget: True

@@ -45,7 +45,7 @@ Atomic:
 	Warhead@2Res_impact: DestroyResource
 		Size: 1
 	Warhead@3Smu_impact: LeaveSmudge
-		SmudgeType: Scorch
+		SmudgeType: NukeScorch
 		ValidTargets: Ground, Infantry
 		Size: 1
 	Warhead@4Eff_impact: CreateEffect
@@ -67,7 +67,7 @@ Atomic:
 		Size: 2
 		Delay: 5
 	Warhead@7Smu_areanuke1: LeaveSmudge
-		SmudgeType: Scorch
+		SmudgeType: NukeScorch
 		ValidTargets: Ground, Infantry
 		Size: 2
 		Delay: 5
@@ -90,7 +90,7 @@ Atomic:
 		Size: 3
 		Delay: 10
 	Warhead@12Smu_areanuke2: LeaveSmudge
-		SmudgeType: Scorch
+		SmudgeType: NukeScorch
 		ValidTargets: Ground, Infantry
 		Size: 3
 		Delay: 10
@@ -108,7 +108,7 @@ Atomic:
 		Size: 4
 		Delay: 15
 	Warhead@16Smu_areanuke3: LeaveSmudge
-		SmudgeType: Scorch
+		SmudgeType: NukeScorch
 		ValidTargets: Ground, Infantry
 		Size: 4
 		Delay: 15
@@ -126,7 +126,7 @@ Atomic:
 		Size: 5
 		Delay: 20
 	Warhead@20Smu_areanuke4: LeaveSmudge
-		SmudgeType: Scorch
+		SmudgeType: NukeScorch
 		ValidTargets: Ground, Infantry
 		Size: 5
 		Delay: 20
@@ -137,3 +137,13 @@ Atomic:
 	Warhead@22FlashEffect: FlashEffect
 		Duration: 20
 		FlashType: Nuke
+	# HD shock rings and a 3-second radiation field that kills the infantry around ground zero
+	# (OpenRA.Mods.RAPX/Warheads/PxRadiationWarhead.cs)
+	Warhead@23Radiation: PxRadiation
+		Radius: 6c0
+		Duration: 75
+		Interval: 5
+		Damage: 2500
+		EdgeDamage: 45
+		DamageTypes: DefaultDeath
+		ValidTargets: Ground, Water, GroundActor, WaterActor

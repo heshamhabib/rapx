@@ -263,6 +263,14 @@ World:
 		SmokeImage: scorch_flames
 		SmokeSequences: large_flame, medium_flame, small_flame
 		MaxSmokeOffsetDistance: 341
+	# Ground zero of a nuke: scorched earth with a few smoke columns, not a carpet of flames
+	SmudgeLayer@NUKESCORCH:
+		Type: NukeScorch
+		Sequence: scorches
+		SmokeChance: 6
+		SmokeImage: smoke_m
+		SmokeSequences: idle
+		MaxSmokeOffsetDistance: 341
 	SmudgeLayer@CRATER:
 		Type: Crater
 		Sequence: craters

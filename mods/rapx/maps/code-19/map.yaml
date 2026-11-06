@@ -3225,11 +3225,6 @@ Actors:
 		Facing: 96
 		TurretFacing: 96
 		Location: 21,1
-	Actor1438: c3
-		Owner: Neutral
-		Facing: 96
-		Location: 10,12
-		SubCell: 1
 	Actor1440: dog
 		Owner: Neutral
 		Facing: 96
