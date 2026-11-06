@@ -103,6 +103,7 @@ Rules:
 	ra|rules/jet-loadouts.yaml
 	ra|rules/jet-trails.yaml
 	ra|rules/rocket-launchers.yaml
+	ra|rules/air-defence.yaml
 
 Sequences:
 	ra|sequences/ships.yaml
@@ -137,6 +138,7 @@ Sequences:
 	ra|sequences/jet-loadouts.yaml
 	ra|sequences/hd-missiles.yaml
 	ra|sequences/rocket-launchers.yaml
+	ra|sequences/air-defence.yaml
 
 TileSets:
 	ra|tilesets/snow.yaml
@@ -230,6 +232,7 @@ FluentMessages:
 	ra|fluent/airfields.ftl
 	ra|fluent/carriers.ftl
 	ra|fluent/rocket-launchers.ftl
+	ra|fluent/air-defence.ftl
 
 AllowUnusedFluentMessagesInExternalPackages: false
 
@@ -245,6 +248,7 @@ Weapons:
 	ra|weapons/jet-ordnance.yaml
 	ra|weapons/naval-defence.yaml
 	ra|weapons/rocket-launchers.yaml
+	ra|weapons/air-defence.yaml
 
 Voices:
 	ra|audio/voices.yaml

@@ -188,6 +188,21 @@ if CFG.get("scrub_red"):
             img.pack()
             print(f"scrubbed {int(red.sum())} red pixels in {img.name}")
 
+if CFG.get("scrub_white"):
+    # Paints white markings (another nation's crosses, numbers) to the texture's average body colour
+    for img in {n.image for m in bpy.data.materials if m.node_tree for n in m.node_tree.nodes
+                if n.type == "TEX_IMAGE" and n.image}:
+        px = np.empty(len(img.pixels), dtype=np.float32)
+        img.pixels.foreach_get(px)
+        px = px.reshape(-1, 4)
+        rgb = px[:, :3]
+        white = (rgb.min(axis=1) > 0.45) & (rgb.max(axis=1) - rgb.min(axis=1) < 0.12)
+        if white.any():
+            px[white, :3] = rgb[~white].mean(axis=0)
+            img.pixels.foreach_set(px.ravel())
+            img.pack()
+            print(f"scrubbed {int(white.sum())} white pixels in {img.name}")
+
 
 def bounds(objs):
     pts = np.concatenate([np.array([v.co[:] for v in o.data.vertices]) for o in objs if len(o.data.vertices)])

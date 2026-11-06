@@ -15,6 +15,7 @@ Per unit id (the sprite it replaces):
   frame    frame size before the 2x (ground) or 2.6x (air) pixel factor
   drop     parts (object names) left out; drop_materials: parts with these materials left out; drop_contains:
            parts whose name contains one of these
+  scrub_white  repaint near-white texture markings (another nation's insignia) in the body colour
   paint    national paint (display RGB 0-1): its hue/saturation over the model's shading (paint_strength 0-1,
            default 0.85), then paint_value multiplies the brightness (IDEA-17 shared launcher chassis)
   attach   {"src", "at" (x, y, z model units after the yaw), "height", "plate" (radius, thickness) optional}: a
@@ -439,7 +440,7 @@ MODELS = {
 LAUNCHER_CHASSIS = {
     # HIMAX: "Ukrainian M142 HIMARS" by 42manako, CC-BY-4.0 (the "_dam" parts are its damaged variants)
     "rl.light": {"src": "launchers/rl.light__ukrainian_m142_himars/scene.gltf", "kind": "vehicle", "frame": 192,
-                 "length": 7.6, "drop_contains": ["_dam"],
+                 "length": 7.6, "drop_contains": ["_dam"], "scrub_white": True,  # Ukrainian crosses
                  "team": {"box": (0.0, 1.0, 0.0, 0.55, 0.8, 1.0)}},
     # Tracked MLRS: "Free M270" by DaHoon, CC-BY-4.0 (a loose rocket and a spare pod beside it are left out)
     "rl.tracked": {"src": "launchers/rl.tracked__free_m270/scene.gltf", "kind": "vehicle", "frame": 192,
@@ -484,3 +485,36 @@ for _actor, (_chassis, _paint) in LAUNCHER_PAINT.items():
     if _paint:
         _extra = {"paint": _paint, "paint_strength": 1.0}  # brightness: measured by import_sketchfab.py
     MODELS[_actor] = dict(LAUNCHER_CHASSIS[_chassis], name=_actor.upper(), out="rl-" + _actor, **_extra)
+
+
+# --- IDEA-26 B2 air-defence tiers 2-4: an Allied and a Soviet look per tier (tools/download_sketchfab.py --airdef) --
+# Rendered like vehicles (32 facings); the building shows one facing (sequences/air-defence.yaml). Team colour on the
+# missile canisters.
+MODELS.update({
+    # Medium SAM (Allies): "US NASAMS 3 (TEL) (War Thunder) Line of Contact" by KojfDiscord, CC-BY-4.0
+    "ad.msam.allies": {"name": "Medium SAM (NASAMS)", "src": "airdef/msam.allies__us_nasams_3__tel___war_thun/scene.gltf",
+                       "kind": "vehicle", "frame": 224, "yaw": 180, "length": 9.0, "out": "ad-msam-allies",
+                       "team": {"box": (0.0, 1.0, 0.0, 0.5, 0.7, 1.0)}},
+    # Medium SAM (Soviets): "BUK Missile System" by azlan, CC-BY-4.0
+    "ad.msam.soviet": {"name": "Medium SAM (Buk)", "src": "airdef/msam.soviet__buk_missile_system/scene.gltf",
+                       "kind": "vehicle", "frame": 224, "yaw": 180, "length": 9.0, "out": "ad-msam-soviet",
+                       "team": {"box": (0.0, 1.0, 0.0, 1.0, 0.82, 1.0)}},
+    # Long-range SAM (Allies): "MIM-104 Patriot Surface-To-Air Missile (SAM)" by MirzaArrafiERV_45, CC-BY-4.0
+    "ad.lsam.allies": {"name": "Long-range SAM (Patriot)", "src": "airdef/lsam.allies__mim_104_patriot_surface_to_/scene.gltf",
+                       "kind": "vehicle", "frame": 256, "yaw": 90, "length": 10.0, "out": "ad-lsam-allies",
+                       "team": {"box": (0.0, 1.0, 0.0, 1.0, 0.8, 1.0)}},
+    # Long-range SAM (Soviets): "s-400" by sami1230, CC-BY-4.0 (untextured: Soviet olive paint)
+    "ad.lsam.soviet": {"name": "Long-range SAM (S-400)", "src": "airdef/lsam.soviet__s_400/scene.gltf",
+                       "kind": "vehicle", "frame": 256, "yaw": 180, "length": 11.0, "out": "ad-lsam-soviet",
+                       "paint": (0.40, 0.40, 0.28), "paint_strength": 1.0,
+                       "team": {"box": (0.0, 1.0, 0.0, 0.5, 0.75, 1.0)}},
+    # Missile Shield (Allies): "Terminal High Altitude Area Defense (THAAD)" by Chenzoss, CC-BY-4.0
+    "ad.bmd.allies": {"name": "Missile Shield (THAAD)", "src": "airdef/bmd.allies__terminal_high_altitude_area_/scene.gltf",
+                      "kind": "vehicle", "frame": 256, "yaw": 180, "length": 11.0, "out": "ad-bmd-allies",
+                      "team": {"box": (0.0, 1.0, 0.0, 0.45, 0.7, 1.0)}},
+    # Missile Shield (Soviets): "Chinese HQ-9" by 42manako, CC-BY-4.0 (an S-500 stand-in; red star scrubbed)
+    "ad.bmd.soviet": {"name": "Missile Shield (HQ-9)", "src": "airdef/bmd.soviet__chinese_hq_9/scene.gltf",
+                      "kind": "vehicle", "frame": 256, "yaw": 180, "length": 11.0, "out": "ad-bmd-soviet",
+                      "scrub_red": True, "team": {"box": (0.0, 1.0, 0.0, 0.5, 0.75, 1.0)}},
+})
+

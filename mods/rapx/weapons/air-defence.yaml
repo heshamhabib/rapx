@@ -1,0 +1,91 @@
+# IDEA-26 layered air defence: the interceptors PxInterceptor launches (cosmetic: the hit or miss is rolled by the
+# trait when they meet the threat; a burst in the air, no damage) and the anti-aircraft weapons of tiers 2-3.
+# Each interceptor's projectile Speed must match its PxInterceptor Speed, so it arrives when the roll happens.
+# ThreatType Interceptor: air defence never shoots at interceptors.
+
+# Tier 1 (AA Gun): a flak burst
+InterceptFlak:
+	Report: aacanon3.aud
+	Projectile: Bullet
+		Speed: 600
+		Blockable: false
+		ContrailLength: 6
+		ContrailStartWidth: 0c24
+		ContrailStartColor: FFE6A0
+	Warhead@1Eff: PxExplosion
+		Size: 0.3
+		Smoke: 0.3
+		Scorch: false
+
+^Interceptor:
+	Report: missile6.aud
+	Projectile: PxRocket
+		ThreatType: Interceptor
+		TrackTarget: false
+		Arc: 0.06
+		Length: 160
+		Width: 40
+		BodyColor: E6E6E1
+		NoseColor: B4281E
+		FlameColor: FFD278
+		SmokeColor: F0F0F0
+		TrailDensity: 2
+		TrailLife: 40
+		LaunchPuffs: 8
+	Warhead@1Eff: PxExplosion
+		Style: Precision
+		Size: 0.45
+		Smoke: 0.4
+		Scorch: false
+
+# Tier 1 (SAM Site) and tier 2 (Medium SAM)
+InterceptSAM:
+	Inherits: ^Interceptor
+	Projectile: PxRocket
+		Speed: 380
+
+# Tier 3 (Long-range SAM): Patriot / S-400 class, bigger and faster
+InterceptLong:
+	Inherits: ^Interceptor
+	Report: missile1.aud
+	Projectile: PxRocket
+		Speed: 460
+		Length: 220
+		Width: 50
+		TrailSize: 1.2
+		LaunchPuffs: 12
+
+# Tier 4 (Missile Shield): THAAD class, very fast, climbs high
+InterceptBMD:
+	Inherits: ^Interceptor
+	Report: missile1.aud
+	Projectile: PxRocket
+		Speed: 620
+		Arc: 0.2
+		Length: 260
+		Width: 56
+		TrailSize: 1.4
+		LaunchPuffs: 16
+	Warhead@1Eff: PxExplosion
+		Size: 0.7
+
+# Anti-aircraft missiles of the Medium and Long-range SAMs (they also shoot aircraft)
+MSAM_AA:
+	Inherits: Nike
+	ReloadDelay: 40
+	Range: 11c0
+	Warhead@1Dam: SpreadDamage
+		Damage: 6000
+
+LSAM_AA:
+	Inherits: Nike
+	ReloadDelay: 60
+	Range: 15c0
+	Projectile: PxRocket
+		Speed: 480
+		Length: 240
+		Width: 52
+	Warhead@1Dam: SpreadDamage
+		Damage: 9000
+	Warhead@3Eff: PxExplosion
+		Size: 1.0

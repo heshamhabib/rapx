@@ -1,9 +1,12 @@
 # IDEA-17 national rocket launchers: their own HD sprites (artsrc/units/meshes/make_sketchfab.py <actor>, shared
-# Sketchfab chassis in national paint, sketchfab_models.py LAUNCHER_PAINT). Icons are borrowed from the V2RL /
-# Artillery until the launchers get their own cameos.
+# Sketchfab chassis in national paint, sketchfab_models.py LAUNCHER_PAINT). Icons: the cameo view of each model
+# (artsrc/units/meshes/render_cameo.py -> assets/units/renders/rl-<actor>.png), staged by artsrc/px-cameos/generate.py,
+# which also writes the stock-size icon file and the px-icon sequence.
 
 rl-himax:
 	Inherits: v2rl
+	icon:
+		Filename: ra|bits/hd/rl-himaxcameo.png
 	idle:
 		Filename: ra|bits/hd/units/rl-himax.png
 		UseClassicFacings: False
@@ -12,6 +15,8 @@ rl-himax:
 
 rl-kasirga:
 	Inherits: v2rl
+	icon:
+		Filename: ra|bits/hd/rl-kasirgacameo.png
 	idle:
 		Filename: ra|bits/hd/units/rl-kasirga.png
 		UseClassicFacings: False
@@ -20,6 +25,8 @@ rl-kasirga:
 
 rl-fatah:
 	Inherits: v2rl
+	icon:
+		Filename: ra|bits/hd/rl-fatahcameo.png
 	idle:
 		Filename: ra|bits/hd/units/rl-fatah.png
 		UseClassicFacings: False
@@ -28,6 +35,8 @@ rl-fatah:
 
 rl-chunmu:
 	Inherits: v2rl
+	icon:
+		Filename: ra|bits/hd/rl-chunmucameo.png
 	idle:
 		Filename: ra|bits/hd/units/rl-chunmu.png
 		UseClassicFacings: False
@@ -36,6 +45,8 @@ rl-chunmu:
 
 rl-vilkra:
 	Inherits: v2rl
+	icon:
+		Filename: ra|bits/hd/rl-vilkracameo.png
 	idle:
 		Filename: ra|bits/hd/units/rl-vilkra.png
 		UseClassicFacings: False
@@ -44,6 +55,8 @@ rl-vilkra:
 
 rl-phx16:
 	Inherits: v2rl
+	icon:
+		Filename: ra|bits/hd/rl-phx16cameo.png
 	idle:
 		Filename: ra|bits/hd/units/rl-phx16.png
 		UseClassicFacings: False
@@ -52,6 +65,8 @@ rl-phx16:
 
 rl-grad:
 	Inherits: v2rl
+	icon:
+		Filename: ra|bits/hd/rl-gradcameo.png
 	idle:
 		Filename: ra|bits/hd/units/rl-grad.png
 		UseClassicFacings: False
@@ -60,6 +75,8 @@ rl-grad:
 
 rl-pinak:
 	Inherits: v2rl
+	icon:
+		Filename: ra|bits/hd/rl-pinakcameo.png
 	idle:
 		Filename: ra|bits/hd/units/rl-pinak.png
 		UseClassicFacings: False
@@ -68,6 +85,8 @@ rl-pinak:
 
 rl-saqr36:
 	Inherits: v2rl
+	icon:
+		Filename: ra|bits/hd/rl-saqr36cameo.png
 	idle:
 		Filename: ra|bits/hd/units/rl-saqr36.png
 		UseClassicFacings: False
@@ -76,6 +95,8 @@ rl-saqr36:
 
 rl-fajir5:
 	Inherits: v2rl
+	icon:
+		Filename: ra|bits/hd/rl-fajir5cameo.png
 	idle:
 		Filename: ra|bits/hd/units/rl-fajir5.png
 		UseClassicFacings: False
@@ -84,6 +105,8 @@ rl-fajir5:
 
 rl-type12:
 	Inherits: v2rl
+	icon:
+		Filename: ra|bits/hd/rl-type12cameo.png
 	idle:
 		Filename: ra|bits/hd/units/rl-type12.png
 		UseClassicFacings: False
@@ -92,6 +115,8 @@ rl-type12:
 
 rl-hailstorm:
 	Inherits: arty
+	icon:
+		Filename: ra|bits/hd/rl-hailstormcameo.png
 	idle:
 		Filename: ra|bits/hd/units/rl-hailstorm.png
 		UseClassicFacings: False
@@ -99,6 +124,8 @@ rl-hailstorm:
 
 rl-lrx:
 	Inherits: arty
+	icon:
+		Filename: ra|bits/hd/rl-lrxcameo.png
 	idle:
 		Filename: ra|bits/hd/units/rl-lrx.png
 		UseClassicFacings: False
@@ -106,6 +133,8 @@ rl-lrx:
 
 rl-marz:
 	Inherits: arty
+	icon:
+		Filename: ra|bits/hd/rl-marzcameo.png
 	idle:
 		Filename: ra|bits/hd/units/rl-marz.png
 		UseClassicFacings: False
@@ -113,6 +142,8 @@ rl-marz:
 
 rl-saetta:
 	Inherits: arty
+	icon:
+		Filename: ra|bits/hd/rl-saettacameo.png
 	idle:
 		Filename: ra|bits/hd/units/rl-saetta.png
 		UseClassicFacings: False
@@ -120,6 +151,8 @@ rl-saetta:
 
 rl-toz1:
 	Inherits: arty
+	icon:
+		Filename: ra|bits/hd/rl-toz1cameo.png
 	idle:
 		Filename: ra|bits/hd/units/rl-toz1.png
 		UseClassicFacings: False

@@ -1,0 +1,260 @@
+# IDEA-26 B2 air-defence sites: one fixed facing (side-on, fits the 2x1 footprint) of the rendered launcher
+# (artsrc/units/meshes/make_sketchfab.py ad.<tier>.<side>). Tiers 2-3 inherit the SAM Site (blank body + "turret");
+# the Missile Shield draws the launcher as its body. All sit on the SAM Site's small concrete bib. Icons: artsrc/px-cameos/generate.py.
+
+ad-msam-allies:
+	idle:
+		Filename: ra|bits/hd/blank.png
+		Length: 1
+		Scale: 0.4167
+	turret:
+		Filename: ra|bits/hd/units/ad-msam-allies.png
+		Start: 8
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	damaged-turret:
+		Filename: ra|bits/hd/units/ad-msam-allies.png
+		Start: 8
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	make:
+		Filename: ra|bits/hd/units/ad-msam-allies.png
+		Start: 8
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	collapse:
+		Filename: ra|bits/hd/units/ad-msam-allies.png
+		Start: 8
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	bib:
+		TilesetFilenames:
+			SNOW: mbSAM.sno
+			INTERIOR: mbSAM.int
+			TEMPERAT: mbSAM.tem
+			DESERT: mbSAM.des
+		Length: *
+		Offset: 0,1
+	icon:
+		Filename: ra|bits/hd/ad-msam-alliescameo.png
+
+ad-msam-soviet:
+	idle:
+		Filename: ra|bits/hd/blank.png
+		Length: 1
+		Scale: 0.4167
+	turret:
+		Filename: ra|bits/hd/units/ad-msam-soviet.png
+		Start: 8
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	damaged-turret:
+		Filename: ra|bits/hd/units/ad-msam-soviet.png
+		Start: 8
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	make:
+		Filename: ra|bits/hd/units/ad-msam-soviet.png
+		Start: 8
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	collapse:
+		Filename: ra|bits/hd/units/ad-msam-soviet.png
+		Start: 8
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	bib:
+		TilesetFilenames:
+			SNOW: mbSAM.sno
+			INTERIOR: mbSAM.int
+			TEMPERAT: mbSAM.tem
+			DESERT: mbSAM.des
+		Length: *
+		Offset: 0,1
+	icon:
+		Filename: ra|bits/hd/ad-msam-sovietcameo.png
+
+ad-lsam-allies:
+	idle:
+		Filename: ra|bits/hd/blank.png
+		Length: 1
+		Scale: 0.4167
+	turret:
+		Filename: ra|bits/hd/units/ad-lsam-allies.png
+		Start: 8
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	damaged-turret:
+		Filename: ra|bits/hd/units/ad-lsam-allies.png
+		Start: 8
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	make:
+		Filename: ra|bits/hd/units/ad-lsam-allies.png
+		Start: 8
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	collapse:
+		Filename: ra|bits/hd/units/ad-lsam-allies.png
+		Start: 8
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	bib:
+		TilesetFilenames:
+			SNOW: mbSAM.sno
+			INTERIOR: mbSAM.int
+			TEMPERAT: mbSAM.tem
+			DESERT: mbSAM.des
+		Length: *
+		Offset: 0,1
+	icon:
+		Filename: ra|bits/hd/ad-lsam-alliescameo.png
+
+ad-lsam-soviet:
+	idle:
+		Filename: ra|bits/hd/blank.png
+		Length: 1
+		Scale: 0.4167
+	turret:
+		Filename: ra|bits/hd/units/ad-lsam-soviet.png
+		Start: 8
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	damaged-turret:
+		Filename: ra|bits/hd/units/ad-lsam-soviet.png
+		Start: 8
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	make:
+		Filename: ra|bits/hd/units/ad-lsam-soviet.png
+		Start: 8
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	collapse:
+		Filename: ra|bits/hd/units/ad-lsam-soviet.png
+		Start: 8
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	bib:
+		TilesetFilenames:
+			SNOW: mbSAM.sno
+			INTERIOR: mbSAM.int
+			TEMPERAT: mbSAM.tem
+			DESERT: mbSAM.des
+		Length: *
+		Offset: 0,1
+	icon:
+		Filename: ra|bits/hd/ad-lsam-sovietcameo.png
+
+ad-bmd-allies:
+	idle:
+		Filename: ra|bits/hd/units/ad-bmd-allies.png
+		Start: 8
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	damaged-idle:
+		Filename: ra|bits/hd/units/ad-bmd-allies.png
+		Start: 8
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	make:
+		Filename: ra|bits/hd/units/ad-bmd-allies.png
+		Start: 8
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	collapse:
+		Filename: ra|bits/hd/units/ad-bmd-allies.png
+		Start: 8
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	bib:
+		TilesetFilenames:
+			SNOW: mbSAM.sno
+			INTERIOR: mbSAM.int
+			TEMPERAT: mbSAM.tem
+			DESERT: mbSAM.des
+		Length: *
+		Offset: 0,1
+	icon:
+		Filename: ra|bits/hd/ad-bmd-alliescameo.png
+
+ad-bmd-soviet:
+	idle:
+		Filename: ra|bits/hd/units/ad-bmd-soviet.png
+		Start: 8
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	damaged-idle:
+		Filename: ra|bits/hd/units/ad-bmd-soviet.png
+		Start: 8
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	make:
+		Filename: ra|bits/hd/units/ad-bmd-soviet.png
+		Start: 8
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	collapse:
+		Filename: ra|bits/hd/units/ad-bmd-soviet.png
+		Start: 8
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	bib:
+		TilesetFilenames:
+			SNOW: mbSAM.sno
+			INTERIOR: mbSAM.int
+			TEMPERAT: mbSAM.tem
+			DESERT: mbSAM.des
+		Length: *
+		Offset: 0,1
+	icon:
+		Filename: ra|bits/hd/ad-bmd-sovietcameo.png
+

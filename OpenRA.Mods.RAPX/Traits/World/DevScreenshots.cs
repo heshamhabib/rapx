@@ -115,7 +115,8 @@ namespace OpenRA.Mods.RAPX.Traits
 		/// <summary>
 		/// RAPX_SPAWN="actor@x,y[,health%[,facing]];actor@x,y" places actors for the local player (else the first playable one), e.g. to preview
 		/// new art. Coordinates starting with + or - are relative to that player's start location.
-		/// Facing is a WAngle (0-1023, counter-clockwise from north).
+		/// Facing is a WAngle (0-1023, counter-clockwise from north). An optional fifth value spawns it that high (WDist,
+		/// e.g. 2048 for a jet already in the air).
 		/// </summary>
 		static void SpawnActors(World w)
 		{
@@ -151,6 +152,9 @@ namespace OpenRA.Mods.RAPX.Traits
 
 					if (xy.Length > 3)
 						inits.Add(new FacingInit(new WAngle(Exts.ParseInt32Invariant(xy[3]))));
+
+					if (xy.Length > 4)
+						inits.Add(new CenterPositionInit(w.Map.CenterOfCell(cell) + new WVec(0, 0, Exts.ParseInt32Invariant(xy[4]))));
 
 					w.AddFrameEndTask(ww =>
 					{

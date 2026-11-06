@@ -94,7 +94,7 @@ Player:
 		Name: build-category-air
 		Icon: air
 		Order: 30
-		Actors: agun, sam, asat
+		Actors: agun, sam, msam, lsam, bmd, asat
 	PxBuildCategory@coast:
 		Queue: Defense
 		Name: build-category-coast

@@ -93,7 +93,7 @@ Player:
 		VehiclesFactoryTypes: weap
 		ProductionTypes: barr,tent,weap
 		SiloTypes: silo
-		DefenseTypes: hbox,pbox,gun,ftur,tsla,agun,sam
+		DefenseTypes: hbox,pbox,gun,ftur,tsla,agun,sam,msam,lsam,bmd
 		BuildingLimits:
 			proc: 4
 			barr: 1
@@ -117,6 +117,9 @@ Player:
 			ftur: 10
 			agun: 5
 			sam: 5
+			msam: 3
+			lsam: 2
+			bmd: 1
 			atek: 1
 			stek: 1
 			fix: 1
@@ -138,7 +141,7 @@ Player:
 		ProductionTypes: barr,tent,weap,afld,hpad
 		NavalProductionTypes: spen, syrd
 		SiloTypes: silo
-		DefenseTypes: hbox,pbox,gun,ftur,tsla,agun,sam
+		DefenseTypes: hbox,pbox,gun,ftur,tsla,agun,sam,msam,lsam,bmd
 		BuildingLimits:
 			proc: 4
 			barr: 1
@@ -173,6 +176,9 @@ Player:
 			fix: 1
 			agun: 5
 			sam: 1
+			msam: 3
+			lsam: 2
+			bmd: 1
 			atek: 1
 			stek: 1
 			mslo: 1
@@ -192,7 +198,7 @@ Player:
 		ProductionTypes: barr,tent,weap,afld,hpad
 		NavalProductionTypes: spen, syrd
 		SiloTypes: silo
-		DefenseTypes: hbox,pbox,gun,ftur,tsla,agun,sam
+		DefenseTypes: hbox,pbox,gun,ftur,tsla,agun,sam,msam,lsam,bmd
 		BuildingLimits:
 			proc: 4
 			barr: 1
@@ -228,6 +234,9 @@ Player:
 			dome: 10
 			agun: 5
 			sam: 5
+			msam: 3
+			lsam: 2
+			bmd: 1
 			atek: 1
 			stek: 1
 			mslo: 1
@@ -247,7 +256,7 @@ Player:
 		ProductionTypes: barr,tent,weap,afld,hpad
 		NavalProductionTypes: spen, syrd
 		SiloTypes: silo
-		DefenseTypes: hbox,pbox,gun,ftur,tsla,agun,sam
+		DefenseTypes: hbox,pbox,gun,ftur,tsla,agun,sam,msam,lsam,bmd
 		BuildingLimits:
 			proc: 3
 			dome: 1
@@ -280,6 +289,9 @@ Player:
 			tsla: 1
 			agun: 5
 			sam: 5
+			msam: 3
+			lsam: 2
+			bmd: 1
 			mslo: 1
 		BuildingDelays:
 			dome: 3000

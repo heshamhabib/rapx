@@ -25,8 +25,11 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 
 	[Desc("Project X replacement for RenderRangeCircle: shows weapon coverage when selected or placed, either as a",
 		"translucent glass dome (air defence) or as a hologram hexagon grid on the ground (land defence).")]
-	public class PxRenderRangeDomeInfo : TraitInfo, IPlaceBuildingDecorationInfo, IRulesetLoaded, Requires<AttackBaseInfo>
+	public class PxRenderRangeDomeInfo : TraitInfo, IPlaceBuildingDecorationInfo, IRulesetLoaded
 	{
+		[Desc("Also show every allied dome of this kind while this modifier is held (Alt: see the gaps in coverage).")]
+		public readonly Modifiers OverlayModifier = Modifiers.Alt;
+
 		[Desc("Domes of the same type are all shown while placing a building of that type.")]
 		public readonly string RangeCircleType = null;
 
@@ -86,26 +89,40 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 			// ArmamentInfo.ModifiedRange is set by RulesetLoaded, so defer the lookup.
 			range = Exts.Lazy(() =>
 			{
-				var armaments = ai.TraitInfos<ArmamentInfo>().Where(a => a.EnabledByDefault);
-				if (!armaments.Any())
-					return FallbackRange;
-
-				return armaments.Max(a => a.ModifiedRange);
+				// Air defence (PxInterceptor) covers its own range, often beyond its anti-aircraft guns
+				var interceptors = ai.TraitInfos<PxInterceptorInfo>().Where(i => i.EnabledByDefault).Select(i => i.Range);
+				var armaments = ai.TraitInfos<ArmamentInfo>().Where(a => a.EnabledByDefault).Select(a => a.ModifiedRange);
+				var ranges = interceptors.Concat(armaments).ToList();
+				return ranges.Count > 0 ? ranges.Max() : FallbackRange;
 			});
 		}
 	}
 
-	public class PxRenderRangeDome : IRenderAnnotationsWhenSelected
+	public class PxRenderRangeDome : IRenderAnnotationsWhenSelected, IRenderAnnotations
 	{
 		public readonly PxRenderRangeDomeInfo Info;
 		readonly Actor self;
 		readonly AttackBase attack;
+		readonly PxInterceptor[] interceptors;
 
 		public PxRenderRangeDome(Actor self, PxRenderRangeDomeInfo info)
 		{
 			Info = info;
 			this.self = self;
-			attack = self.Trait<AttackBase>();
+			attack = self.TraitOrDefault<AttackBase>();
+			interceptors = self.TraitsImplementing<PxInterceptor>().ToArray();
+		}
+
+		WDist Range()
+		{
+			var range = attack == null ? WDist.Zero
+				: Info.RangeCircleMode == RangeCircleMode.Minimum ? attack.GetMinimumRange() : attack.GetMaximumRange();
+			if (Info.RangeCircleMode == RangeCircleMode.Maximum)
+				foreach (var i in interceptors)
+					if (!i.IsTraitDisabled && i.EffectiveRange > range)
+						range = i.EffectiveRange;
+
+			return range == WDist.Zero ? Info.FallbackRange : range;
 		}
 
 		public IEnumerable<IRenderable> RangeRenderables(bool lite)
@@ -113,7 +130,7 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 			if (!self.IsInWorld || !self.Owner.IsAlliedWith(self.World.RenderPlayer))
 				yield break;
 
-			var range = Info.RangeCircleMode == RangeCircleMode.Minimum ? attack.GetMinimumRange() : attack.GetMaximumRange();
+			var range = Range();
 			if (range == WDist.Zero)
 				yield break;
 
@@ -126,5 +143,16 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 		}
 
 		bool IRenderAnnotationsWhenSelected.SpatiallyPartitionable => false;
+
+		IEnumerable<IRenderable> IRenderAnnotations.RenderAnnotations(Actor self, WorldRenderer wr)
+		{
+			// Held modifier: every allied dome (selected ones draw through RenderAnnotationsWhenSelected)
+			if (!Game.GetModifierKeys().HasModifier(Info.OverlayModifier) || self.World.Selection.Contains(self))
+				return SpriteRenderable.None;
+
+			return RangeRenderables(true);
+		}
+
+		bool IRenderAnnotations.SpatiallyPartitionable => false;
 	}
 }

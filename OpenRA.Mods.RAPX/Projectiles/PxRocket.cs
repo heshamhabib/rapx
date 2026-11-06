@@ -98,6 +98,10 @@ namespace OpenRA.Mods.RAPX.Projectiles
 		[Desc("Launched from under water (missile submarine): the launch blast is a burst of foam, spray and steam.")]
 		public readonly bool WaterLaunch = false;
 
+		[Desc("What kind of threat air defence sees (PxInterceptor Chances): Rocket (artillery rockets, guided bombs),",
+			"Cruise, Ballistic, Hypersonic, Drone; any other name (e.g. AirToAir) is ignored by air defence.")]
+		public readonly string ThreatType = "Rocket";
+
 		[Desc("Equivalent to sequence ZOffset. Controls Z sorting.")]
 		public readonly int ZOffset = 1024;
 
@@ -110,11 +114,15 @@ namespace OpenRA.Mods.RAPX.Projectiles
 
 		readonly PxRocketInfo info;
 		readonly ProjectileArgs args;
-		readonly WPos origin;
-		readonly int flightTicks;
+
+		// Where the particles are anchored (the launch point; origin moves when flares lure the rocket away)
+		readonly WPos launch;
+		WPos origin;
+		int flightTicks;
 		readonly MersenneTwister rng = new(Game.CosmeticRandom.Next());
 		PxParticles particles;
 		int ticks;
+		bool launched;
 		bool exploded;
 		int lingering;
 
@@ -132,7 +140,7 @@ namespace OpenRA.Mods.RAPX.Projectiles
 		{
 			this.info = info;
 			this.args = args;
-			origin = args.Source;
+			origin = launch = args.Source;
 			pos = lastPos = args.Source;
 			target = args.PassiveTarget;
 			if (info.Inaccuracy.Length > 0)
@@ -149,15 +157,60 @@ namespace OpenRA.Mods.RAPX.Projectiles
 		}
 
 		/// <summary>Still flying (not yet exploded or shot down): point defence (PxPointDefense) can engage it.</summary>
-		public bool InFlight => !exploded && ticks > 0;
+		public bool InFlight => !exploded && launched;
 
 		public WPos Position => pos;
 
 		/// <summary>Where it will hit.</summary>
 		public WPos TargetPosition => target;
 
+		/// <summary>Kind of threat for air defence (PxInterceptor).</summary>
+		public string ThreatType => info.ThreatType;
+
+		/// <summary>Ticks until it hits.</summary>
+		public int TicksLeft => flightTicks - ticks;
+
+		/// <summary>Interceptors currently flying at it (PxInterceptor), so defences do not all fire at one missile.</summary>
+		public int Engagements;
+
+		/// <summary>Where it will be ticksAhead ticks from now (towards its current aim point).</summary>
+		public WPos PositionAt(int ticksAhead) { return PositionAtTick(ticks + ticksAhead); }
+
+		WPos PositionAtTick(int tick)
+		{
+			var t = Math.Min(1f, (float)tick / flightTicks);
+
+			// Lured by flares: already at full speed, flies straight at them
+			var u = Decoyed ? t : t + info.LaunchEase * (t * t - t);
+			var dist = (target - origin).Length;
+			var height = Decoyed ? 0 : (int)(Math.Sin(u * Math.PI) * dist * info.Arc);
+			return WPos.Lerp(origin, target, (int)(u * 1024), 1024) + new WVec(0, 0, height);
+		}
+
 		/// <summary>The player who fired it (null if unknown).</summary>
 		public Player Owner => args.SourceActor?.Owner;
+
+		/// <summary>The actor it is guided at (null for a ground or unguided shot).</summary>
+		public Actor TargetActor => info.TrackTarget && args.GuidedTarget.Type == TargetType.Actor ? args.GuidedTarget.Actor : null;
+
+		/// <summary>Lured away by flares (PxFlareDispenser): no longer follows its target.</summary>
+		public bool Decoyed { get; private set; }
+
+		/// <summary>The targeted jet already rolled its flare chance against this rocket.</summary>
+		public bool FlaresChecked;
+
+		/// <summary>Fooled by flares: stops tracking and flies from where it is to the decoy, bursting there.</summary>
+		public void Decoy(WPos at)
+		{
+			if (exploded || Decoyed)
+				return;
+
+			Decoyed = true;
+			origin = pos;
+			target = at;
+			ticks = 0;
+			flightTicks = Math.Max(3, (target - origin).Length / Math.Max(1, info.Speed.Length));
+		}
 
 		/// <summary>Shot down by point defence: bursts in the air without hitting anything.</summary>
 		public void Intercept()
@@ -184,7 +237,7 @@ namespace OpenRA.Mods.RAPX.Projectiles
 
 		float3 Local(WPos p)
 		{
-			return new float3((p.X - origin.X) * PixelPerWorld, (p.Y - origin.Y) * PixelPerWorld, p.Z * PixelPerWorld);
+			return new float3((p.X - launch.X) * PixelPerWorld, (p.Y - launch.Y) * PixelPerWorld, p.Z * PixelPerWorld);
 		}
 
 		void Puff(PxParticleKind kind, float3 at, float spread, float size, float life, float alpha, float3 tint, float rise)
@@ -224,10 +277,12 @@ namespace OpenRA.Mods.RAPX.Projectiles
 			}
 
 			var grey = new float3(info.SmokeColor.R / 255f, info.SmokeColor.G / 255f, info.SmokeColor.B / 255f);
-			if (ticks == 0)
+			if (!launched)
 			{
+				launched = true;
+
 				// Launch blast: a burst of smoke and a hot glow at the pod
-				var at = Local(origin);
+				var at = Local(launch);
 				for (var i = 0; i < info.LaunchPuffs; i++)
 					Puff(PxParticleKind.Smoke, at, 10 * info.TrailSize, 0.55f * info.TrailSize, info.TrailLife * 0.8f, 0.8f, grey, 0.15f);
 
@@ -243,16 +298,12 @@ namespace OpenRA.Mods.RAPX.Projectiles
 				}
 			}
 
-			if (info.TrackTarget && args.GuidedTarget.IsValidFor(args.SourceActor))
+			if (info.TrackTarget && !Decoyed && args.GuidedTarget.IsValidFor(args.SourceActor))
 				target = args.GuidedTarget.CenterPosition + miss;
 
 			ticks++;
-			var t = Math.Min(1f, (float)ticks / flightTicks);
-			var u = t + info.LaunchEase * (t * t - t);
-			var dist = (target - origin).Length;
-			var height = (int)(Math.Sin(u * Math.PI) * dist * info.Arc);
 			lastPos = pos;
-			pos = WPos.Lerp(origin, target, (int)(u * 1024), 1024) + new WVec(0, 0, height);
+			pos = PositionAtTick(ticks);
 
 			// Trail: fresh smoke behind the rocket and a short-lived flame glow
 			var here = Local(pos);
@@ -266,7 +317,7 @@ namespace OpenRA.Mods.RAPX.Projectiles
 
 			Puff(PxParticleKind.Flame, back, 1, 0.22f * info.FlameSize, 5, 0.9f, FlameTint, 0);
 
-			if (u >= 1)
+			if (ticks >= flightTicks)
 			{
 				args.Weapon.Impact(Target.FromPos(target), new WarheadArgs(args) { ImpactPosition = target });
 				exploded = true;
@@ -277,7 +328,7 @@ namespace OpenRA.Mods.RAPX.Projectiles
 		public IEnumerable<IRenderable> Render(WorldRenderer wr)
 		{
 			if (particles != null)
-				foreach (var r in particles.Render(new WPos(origin.X, origin.Y, 0), info.ZOffset))
+				foreach (var r in particles.Render(new WPos(launch.X, launch.Y, 0), info.ZOffset))
 					yield return r;
 
 			if (!exploded && !wr.World.FogObscures(pos))

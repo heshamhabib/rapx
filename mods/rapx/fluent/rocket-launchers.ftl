@@ -3,7 +3,7 @@ actor-himax =
     .name = HIMAX
     .description =
     Fast wheeled launcher with long-range guided rockets.
-Shoot and scoot: drives off after each launch.
+    Shoot and scoot: drives off after each launch.
       Strong vs Infantry, Buildings and Vehicles
       Weak vs Aircraft
 
@@ -26,8 +26,8 @@ actor-marz =
     .name = MARZ II
     .description =
     Tracked launcher: a big 12-rocket salvo.
-Deploy to switch to mine rockets that scatter
-anti-tank mines.
+    Deploy to switch to mine rockets that scatter
+    anti-tank mines.
       Strong vs Infantry and Buildings
       Weak vs Vehicles and Aircraft; slow
 
@@ -63,8 +63,8 @@ actor-chunmu =
     .name = Chunmu
     .description =
     Heavy wheeled launcher firing a 6-rocket salvo.
-Deploy to switch to one heavy guided missile
-with longer range.
+    Deploy to switch to one heavy guided missile
+    with longer range.
       Strong vs Infantry and Buildings
       Weak vs Vehicles and Aircraft; expensive
 
@@ -115,7 +115,7 @@ actor-fajir5 =
     .name = Fajir-5
     .description =
     Long range for a cheap price, but inaccurate.
-Deploy to switch to 2 Shard-136 attack drones
-with very long range.
+    Deploy to switch to 2 Shard-136 attack drones
+    with very long range.
       Strong vs Infantry and Buildings
       Weak vs Vehicles and Aircraft

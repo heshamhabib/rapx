@@ -11,6 +11,7 @@ imports) into assets/inbox/new_3d_models_2/, plus a credits list for mods/rapx/C
   python3 tools/download_sketchfab.py --cruisers   cruiser candidates into assets/inbox/cruisers/
   python3 tools/download_sketchfab.py --nation-carriers   carriers for the other nations into assets/inbox/carriers-nations/
   python3 tools/download_sketchfab.py --launchers  national rocket-launcher chassis (IDEA-17) into assets/inbox/launchers/
+  python3 tools/download_sketchfab.py --airdef     air-defence tiers 2-4 (IDEA-26 B2) into assets/inbox/airdef/
 
 Sketchfab only hands out downloads to a logged-in account: put your API token (sketchfab.com -> Settings ->
 Password & API -> API Token) in ~/.sketchfab_token or the SKETCHFAB_TOKEN environment variable.
@@ -147,6 +148,16 @@ LAUNCHERS = [
     ("rl.canister", "Type-12 Sea Arrow", "f808eb27a4af42309ec6b71343b871a6"),     # 3K60 Bal-E (42manako)
 ]
 
+# IDEA-26 B2 generic air-defence tiers 2-4: one Allied and one Soviet look per tier (national systems come in B4)
+AIRDEF = [
+    ("msam.allies", "Medium SAM (Allies)", "3cd0c368823c420c9a2c5d7c49cdd5e6"),   # US NASAMS 3 TEL (KojfDiscord)
+    ("msam.soviet", "Medium SAM (Soviets)", "7663f9fca2ce485da8c0fafcf2d40d10"),  # BUK Missile System (azlan)
+    ("lsam.allies", "Long-range SAM (Allies)", "7a64d0af78514a159877edab1ab2bccb"),  # MIM-104 Patriot (MirzaArrafi)
+    ("lsam.soviet", "Long-range SAM (Soviets)", "3458009aa5df425f9bd3e1651709d54d"),  # S-400 (sami1230)
+    ("bmd.allies", "Missile Shield (Allies)", "4ab96bf250e64f3c92c74feb835dd4a9"),  # THAAD (Chenzoss)
+    ("bmd.soviet", "Missile Shield (Soviets)", "246c635701c0421ca02e67202a6494e9"),  # Chinese HQ-9 (42manako), S-500 stand-in
+]
+
 
 def token():
     t = os.environ.get("SKETCHFAB_TOKEN")
@@ -196,6 +207,8 @@ def main():
         models, OUT = CARRIERS, os.path.join(ROOT, "assets", "inbox", "carriers")
     if "--nation-carriers" in sys.argv:
         models, OUT = NATION_CARRIERS, os.path.join(ROOT, "assets", "inbox", "carriers-nations")
+    if "--airdef" in sys.argv:
+        models, OUT = AIRDEF, os.path.join(ROOT, "assets", "inbox", "airdef")
     if "--launchers" in sys.argv:
         models, OUT = LAUNCHERS, os.path.join(ROOT, "assets", "inbox", "launchers")
     if "--cruisers" in sys.argv:

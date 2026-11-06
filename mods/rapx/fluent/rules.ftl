@@ -576,9 +576,10 @@ actor-tsla =
 actor-agun =
     .name = AA Gun
     .description =
-    Anti-Air base defense.
+    Anti-Air base defense. Also shoots down drones,
+    cruise missiles and some rockets at short range.
     Requires power to operate.
-      Strong vs Aircraft
+      Strong vs Aircraft and Drones
       Weak vs Ground units
 
 actor-dome =
@@ -625,9 +626,10 @@ actor-ftur =
 actor-sam =
     .name = SAM Site
     .description =
-    Anti-Air base defense.
+    Anti-Air base defense. Also shoots down drones,
+    cruise missiles and some rockets at short range.
     Requires power to operate.
-      Strong vs Aircraft
+      Strong vs Aircraft and Drones
       Weak vs Ground units
 
 actor-atek =

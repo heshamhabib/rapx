@@ -666,10 +666,15 @@
 	Huntable:
 	Repairable:
 		RepairActors: fix
+	# Countermeasure flares against guided missiles (OpenRA.Mods.RAPX/Traits/PxFlareDispenser.cs)
+	PxFlareDispenser:
+		RequiresCondition: airborne
+		Sounds: ra|audio/aircraft/flares1.wav, ra|audio/aircraft/flares2.wav, ra|audio/aircraft/flares3.wav
 
 ^Helicopter:
 	Inherits: ^Plane
 	-AmbientSound@PASS:
+	-PxFlareDispenser:
 	AmbientSound@ENGINE:
 		SoundFiles: ra|audio/aircraft/rotor.wav
 		RequiresCondition: airborne

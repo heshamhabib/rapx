@@ -14,6 +14,7 @@
 	MinRange: 3c0
 	Report: missile6.aud
 	Projectile: PxRocket
+		ThreatType: Rocket
 		Image: pxmissile
 		Speed: 200
 		Arc: 0.3
@@ -137,6 +138,7 @@ RL_KASIRGA:
 	Burst: 4
 	BurstDelays: 15
 	Projectile: PxRocket
+		ThreatType: Ballistic
 		Sequence: trg300
 		Speed: 190
 		Arc: 0.35
@@ -166,6 +168,7 @@ RL_FATAH:
 	Burst: 4
 	BurstDelays: 15
 	Projectile: PxRocket
+		ThreatType: Ballistic
 		Sequence: fatah
 		Speed: 220
 		Length: 665
@@ -195,6 +198,7 @@ RL_TYPE12:
 	Burst: 2
 	BurstDelays: 25
 	Projectile: PxRocket
+		ThreatType: Cruise
 		Sequence: type12
 		Speed: 230
 		Arc: 0.08
@@ -296,6 +300,7 @@ RL_VILKRA:
 	Burst: 4
 	BurstDelays: 15
 	Projectile: PxRocket
+		ThreatType: Ballistic
 		Sequence: vilkha
 		Speed: 220
 		Length: 722
@@ -421,6 +426,7 @@ RL_PHX:
 	Burst: 8
 	BurstDelays: 7
 	Projectile: PxRocket
+		ThreatType: Ballistic
 		Sequence: phl16
 		Speed: 220
 		Length: 684
@@ -448,6 +454,7 @@ RL_FAJIR:
 	Burst: 4
 	BurstDelays: 12
 	Projectile: PxRocket
+		ThreatType: Ballistic
 		Sequence: fajr5
 		Length: 618
 		Width: 89
@@ -514,6 +521,7 @@ RL_CHUNMU_MISSILE:
 	MinRange: 4c0
 	Report: missile1.aud
 	Projectile: PxRocket
+		ThreatType: Ballistic
 		Speed: 260
 		Inaccuracy: 0c64
 		SmokeColor: F5F5F0
@@ -540,6 +548,7 @@ RL_FAJIR_DRONE:
 	Burst: 2
 	BurstDelays: 30
 	Projectile: PxRocket
+		ThreatType: Drone
 		Sequence: shard136
 		Speed: 90
 		Arc: 0.04

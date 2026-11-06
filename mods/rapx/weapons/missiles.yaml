@@ -6,6 +6,7 @@
 	ValidTargets: Ground, Water, GroundActor, WaterActor
 	# HD rocket (OpenRA.Mods.RAPX/Projectiles/PxRocket.cs)
 	Projectile: PxRocket
+		ThreatType: ATGM
 		Speed: 220
 		Arc: 0.12
 	Warhead@1Dam: SpreadDamage
@@ -41,6 +42,8 @@
 			Light: 100
 	Warhead@3Eff: PxExplosion
 		Size: 0.8
+	Projectile: PxRocket
+		ThreatType: AirToAir
 
 Maverick:
 	Inherits: ^AntiGroundMissile
@@ -256,6 +259,7 @@ TorpTube:
 	Burst: 2
 	# HD rocket fired from under water: foam and steam at launch, then fire and a smoke trail
 	Projectile: PxRocket
+		ThreatType: Cruise
 		Speed: 234
 		Arc: 0.15
 		Length: 260
@@ -312,6 +316,7 @@ SCUD:
 	# (pxmissile v2*, artsrc/units/vehicles/make_v2_rocket.sh). It leaves the rail slowly, then climbs and dives.
 	# Length = half the rocket, so the exhaust starts at its tail.
 	Projectile: PxRocket
+		ThreatType: Ballistic
 		Image: pxmissile
 		Sequence: v2
 		ClimbSequence: v2-climb

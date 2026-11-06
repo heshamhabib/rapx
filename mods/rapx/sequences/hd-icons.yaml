@@ -71,6 +71,90 @@ abas:
 		Offset: 0,0
 		Scale: 0.5
 
+ad-bmd-allies:
+	px-icon:
+		Filename: ra|bits/hd/icons/ad-bmd-alliescameo.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/ad-bmd-alliescameo.png
+			SNOW: ra|bits/hd/icons/ad-bmd-alliescameo.png
+			DESERT: ra|bits/hd/icons/ad-bmd-alliescameo.png
+			INTERIOR: ra|bits/hd/icons/ad-bmd-alliescameo.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+ad-bmd-soviet:
+	px-icon:
+		Filename: ra|bits/hd/icons/ad-bmd-sovietcameo.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/ad-bmd-sovietcameo.png
+			SNOW: ra|bits/hd/icons/ad-bmd-sovietcameo.png
+			DESERT: ra|bits/hd/icons/ad-bmd-sovietcameo.png
+			INTERIOR: ra|bits/hd/icons/ad-bmd-sovietcameo.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+ad-lsam-allies:
+	px-icon:
+		Filename: ra|bits/hd/icons/ad-lsam-alliescameo.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/ad-lsam-alliescameo.png
+			SNOW: ra|bits/hd/icons/ad-lsam-alliescameo.png
+			DESERT: ra|bits/hd/icons/ad-lsam-alliescameo.png
+			INTERIOR: ra|bits/hd/icons/ad-lsam-alliescameo.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+ad-lsam-soviet:
+	px-icon:
+		Filename: ra|bits/hd/icons/ad-lsam-sovietcameo.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/ad-lsam-sovietcameo.png
+			SNOW: ra|bits/hd/icons/ad-lsam-sovietcameo.png
+			DESERT: ra|bits/hd/icons/ad-lsam-sovietcameo.png
+			INTERIOR: ra|bits/hd/icons/ad-lsam-sovietcameo.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+ad-msam-allies:
+	px-icon:
+		Filename: ra|bits/hd/icons/ad-msam-alliescameo.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/ad-msam-alliescameo.png
+			SNOW: ra|bits/hd/icons/ad-msam-alliescameo.png
+			DESERT: ra|bits/hd/icons/ad-msam-alliescameo.png
+			INTERIOR: ra|bits/hd/icons/ad-msam-alliescameo.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+ad-msam-soviet:
+	px-icon:
+		Filename: ra|bits/hd/icons/ad-msam-sovietcameo.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/ad-msam-sovietcameo.png
+			SNOW: ra|bits/hd/icons/ad-msam-sovietcameo.png
+			DESERT: ra|bits/hd/icons/ad-msam-sovietcameo.png
+			INTERIOR: ra|bits/hd/icons/ad-msam-sovietcameo.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
 afbs:
 	px-icon:
 		Filename: ra|bits/hd/icons/afbscameo.png
@@ -1787,6 +1871,230 @@ rgun:
 			SNOW: ra|bits/hd/icons/rguncameo.png
 			DESERT: ra|bits/hd/icons/rguncameo.png
 			INTERIOR: ra|bits/hd/icons/rguncameo.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+rl-chunmu:
+	px-icon:
+		Filename: ra|bits/hd/icons/rl-chunmucameo.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/rl-chunmucameo.png
+			SNOW: ra|bits/hd/icons/rl-chunmucameo.png
+			DESERT: ra|bits/hd/icons/rl-chunmucameo.png
+			INTERIOR: ra|bits/hd/icons/rl-chunmucameo.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+rl-fajir5:
+	px-icon:
+		Filename: ra|bits/hd/icons/rl-fajir5cameo.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/rl-fajir5cameo.png
+			SNOW: ra|bits/hd/icons/rl-fajir5cameo.png
+			DESERT: ra|bits/hd/icons/rl-fajir5cameo.png
+			INTERIOR: ra|bits/hd/icons/rl-fajir5cameo.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+rl-fatah:
+	px-icon:
+		Filename: ra|bits/hd/icons/rl-fatahcameo.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/rl-fatahcameo.png
+			SNOW: ra|bits/hd/icons/rl-fatahcameo.png
+			DESERT: ra|bits/hd/icons/rl-fatahcameo.png
+			INTERIOR: ra|bits/hd/icons/rl-fatahcameo.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+rl-grad:
+	px-icon:
+		Filename: ra|bits/hd/icons/rl-gradcameo.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/rl-gradcameo.png
+			SNOW: ra|bits/hd/icons/rl-gradcameo.png
+			DESERT: ra|bits/hd/icons/rl-gradcameo.png
+			INTERIOR: ra|bits/hd/icons/rl-gradcameo.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+rl-hailstorm:
+	px-icon:
+		Filename: ra|bits/hd/icons/rl-hailstormcameo.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/rl-hailstormcameo.png
+			SNOW: ra|bits/hd/icons/rl-hailstormcameo.png
+			DESERT: ra|bits/hd/icons/rl-hailstormcameo.png
+			INTERIOR: ra|bits/hd/icons/rl-hailstormcameo.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+rl-himax:
+	px-icon:
+		Filename: ra|bits/hd/icons/rl-himaxcameo.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/rl-himaxcameo.png
+			SNOW: ra|bits/hd/icons/rl-himaxcameo.png
+			DESERT: ra|bits/hd/icons/rl-himaxcameo.png
+			INTERIOR: ra|bits/hd/icons/rl-himaxcameo.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+rl-kasirga:
+	px-icon:
+		Filename: ra|bits/hd/icons/rl-kasirgacameo.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/rl-kasirgacameo.png
+			SNOW: ra|bits/hd/icons/rl-kasirgacameo.png
+			DESERT: ra|bits/hd/icons/rl-kasirgacameo.png
+			INTERIOR: ra|bits/hd/icons/rl-kasirgacameo.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+rl-lrx:
+	px-icon:
+		Filename: ra|bits/hd/icons/rl-lrxcameo.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/rl-lrxcameo.png
+			SNOW: ra|bits/hd/icons/rl-lrxcameo.png
+			DESERT: ra|bits/hd/icons/rl-lrxcameo.png
+			INTERIOR: ra|bits/hd/icons/rl-lrxcameo.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+rl-marz:
+	px-icon:
+		Filename: ra|bits/hd/icons/rl-marzcameo.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/rl-marzcameo.png
+			SNOW: ra|bits/hd/icons/rl-marzcameo.png
+			DESERT: ra|bits/hd/icons/rl-marzcameo.png
+			INTERIOR: ra|bits/hd/icons/rl-marzcameo.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+rl-phx16:
+	px-icon:
+		Filename: ra|bits/hd/icons/rl-phx16cameo.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/rl-phx16cameo.png
+			SNOW: ra|bits/hd/icons/rl-phx16cameo.png
+			DESERT: ra|bits/hd/icons/rl-phx16cameo.png
+			INTERIOR: ra|bits/hd/icons/rl-phx16cameo.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+rl-pinak:
+	px-icon:
+		Filename: ra|bits/hd/icons/rl-pinakcameo.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/rl-pinakcameo.png
+			SNOW: ra|bits/hd/icons/rl-pinakcameo.png
+			DESERT: ra|bits/hd/icons/rl-pinakcameo.png
+			INTERIOR: ra|bits/hd/icons/rl-pinakcameo.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+rl-saetta:
+	px-icon:
+		Filename: ra|bits/hd/icons/rl-saettacameo.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/rl-saettacameo.png
+			SNOW: ra|bits/hd/icons/rl-saettacameo.png
+			DESERT: ra|bits/hd/icons/rl-saettacameo.png
+			INTERIOR: ra|bits/hd/icons/rl-saettacameo.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+rl-saqr36:
+	px-icon:
+		Filename: ra|bits/hd/icons/rl-saqr36cameo.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/rl-saqr36cameo.png
+			SNOW: ra|bits/hd/icons/rl-saqr36cameo.png
+			DESERT: ra|bits/hd/icons/rl-saqr36cameo.png
+			INTERIOR: ra|bits/hd/icons/rl-saqr36cameo.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+rl-toz1:
+	px-icon:
+		Filename: ra|bits/hd/icons/rl-toz1cameo.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/rl-toz1cameo.png
+			SNOW: ra|bits/hd/icons/rl-toz1cameo.png
+			DESERT: ra|bits/hd/icons/rl-toz1cameo.png
+			INTERIOR: ra|bits/hd/icons/rl-toz1cameo.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+rl-type12:
+	px-icon:
+		Filename: ra|bits/hd/icons/rl-type12cameo.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/rl-type12cameo.png
+			SNOW: ra|bits/hd/icons/rl-type12cameo.png
+			DESERT: ra|bits/hd/icons/rl-type12cameo.png
+			INTERIOR: ra|bits/hd/icons/rl-type12cameo.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+rl-vilkra:
+	px-icon:
+		Filename: ra|bits/hd/icons/rl-vilkracameo.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/rl-vilkracameo.png
+			SNOW: ra|bits/hd/icons/rl-vilkracameo.png
+			DESERT: ra|bits/hd/icons/rl-vilkracameo.png
+			INTERIOR: ra|bits/hd/icons/rl-vilkracameo.png
 		Start: 0
 		Length: 1
 		Facings: 1

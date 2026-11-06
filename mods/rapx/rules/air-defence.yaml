@@ -1,0 +1,206 @@
+# IDEA-26 B1/B2 layered air defence. PxInterceptor (OpenRA.Mods.RAPX/Traits/PxInterceptor.cs) shoots down hostile
+# missiles by PxRocket ThreatType: Rocket (artillery rockets), Cruise, Ballistic, Hypersonic, Drone. Interceptors
+# reach only half their range without a working Radar Dome. Weapons: weapons/air-defence.yaml.
+#
+#   Tier 1 SHORAD      AA Gun (Allies) / SAM Site (Soviets)   ~7-8 cells   drones, cruise, some rockets; aircraft
+#   Tier 2 Medium SAM  MSAM: NASAMS / Buk look                11 cells     + more cruise; aircraft
+#   Tier 3 Long SAM    LSAM: Patriot / S-400 look             15 cells     + tactical ballistic; aircraft
+#   Tier 4 BMD         BMD: THAAD / HQ-9 (S-500 stand-in)     23 cells     ballistic and hypersonic only
+
+# --- Tier 1: the existing AA defences gain short-range interceptors ----------------------------------------------
+AGUN:
+	PxInterceptor:
+		Range: 7c0
+		Rails: 2
+		ReloadDelay: 60
+		Speed: 600
+		Weapon: InterceptFlak
+		LocalOffset: 0,0,450
+		RequiresCondition: !disabled && !build-incomplete
+		Chances:
+			Rocket: 40
+			Drone: 75
+			Cruise: 55
+
+SAM:
+	PxInterceptor:
+		Range: 8c0
+		Rails: 2
+		ReloadDelay: 90
+		Speed: 380
+		Weapon: InterceptSAM
+		LocalOffset: 0,0,320
+		RequiresCondition: !disabled && !build-incomplete
+		Chances:
+			Rocket: 30
+			Drone: 65
+			Cruise: 60
+
+# The anti-satellite site inherits the SAM Site but is no missile defence
+ASAT:
+	-PxInterceptor:
+
+# --- Tiers 2-3: SAM sites with their own look (one fixed facing of the rendered launcher) ------------------------
+^PxSamSite:
+	Inherits: SAM
+	-WithMuzzleOverlay:
+	Armament:
+		-MuzzleSequence:
+
+
+MSAM:
+	Inherits: ^PxSamSite
+	Buildable:
+		Queue: Defense
+		BuildPaletteOrder: 102
+		Prerequisites: dome, ~techlevel.medium
+		Description: actor-msam.description
+	Valued:
+		Cost: 1200
+	Tooltip:
+		Name: actor-msam.name
+	Health:
+		HP: 60000
+	RevealsShroud:
+		Range: 10c0
+	RenderSprites:
+		Image: ad-msam-allies
+		FactionImages:
+			soviet: ad-msam-soviet
+			russia: ad-msam-soviet
+			ukraine: ad-msam-soviet
+			cuba: ad-msam-soviet
+			india: ad-msam-soviet
+			china: ad-msam-soviet
+			turkey: ad-msam-soviet
+			pakistan: ad-msam-soviet
+			iran: ad-msam-soviet
+	Armament:
+		Weapon: MSAM_AA
+		LocalOffset: 0,0,400
+	PxInterceptor:
+		Range: 11c0
+		Rails: 4
+		ReloadDelay: 150
+		Speed: 380
+		Weapon: InterceptSAM
+		LocalOffset: -200,0,400
+		RequiresCondition: !disabled && !build-incomplete
+		Chances:
+			Rocket: 30
+			Drone: 60
+			Cruise: 70
+	Power:
+		Amount: -60
+
+LSAM:
+	Inherits: ^PxSamSite
+	Buildable:
+		Queue: Defense
+		BuildPaletteOrder: 104
+		Prerequisites: dome, techcenter, ~techlevel.high
+		Description: actor-lsam.description
+	Valued:
+		Cost: 2200
+	Tooltip:
+		Name: actor-lsam.name
+	Health:
+		HP: 80000
+	RevealsShroud:
+		Range: 12c0
+	RenderSprites:
+		Image: ad-lsam-allies
+		FactionImages:
+			soviet: ad-lsam-soviet
+			russia: ad-lsam-soviet
+			ukraine: ad-lsam-soviet
+			cuba: ad-lsam-soviet
+			india: ad-lsam-soviet
+			china: ad-lsam-soviet
+			turkey: ad-lsam-soviet
+			pakistan: ad-lsam-soviet
+			iran: ad-lsam-soviet
+	Armament:
+		Weapon: LSAM_AA
+		LocalOffset: 0,0,450
+	PxInterceptor:
+		Range: 15c0
+		Rails: 4
+		ReloadDelay: 220
+		Speed: 460
+		Weapon: InterceptLong
+		LocalOffset: -250,0,450
+		RequiresCondition: !disabled && !build-incomplete
+		Chances:
+			Rocket: 20
+			Drone: 40
+			Cruise: 65
+			Ballistic: 50
+	PxRenderRangeDome:
+		DomeHeight: 0.6
+	Power:
+		Amount: -100
+
+# --- Tier 4: Missile Shield, missiles only (no anti-aircraft weapon) ----------------------------------------------
+BMD:
+	Inherits: ^Defense
+	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
+	Inherits@shape: ^2x1Shape
+	Selectable:
+		Bounds: 2048, 1024
+	HitShape:
+		Type: Rectangle
+	Buildable:
+		Queue: Defense
+		BuildPaletteOrder: 106
+		Prerequisites: techcenter, uplink, ~techlevel.high
+		Description: actor-bmd.description
+	Valued:
+		Cost: 4000
+	Tooltip:
+		Name: actor-bmd.name
+	Building:
+		Footprint: xx
+		Dimensions: 2,1
+	Health:
+		HP: 90000
+	Armor:
+		Type: Heavy
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 8c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	WithBuildingBib:
+		HasMinibib: true
+	RenderSprites:
+		Image: ad-bmd-allies
+		FactionImages:
+			soviet: ad-bmd-soviet
+			russia: ad-bmd-soviet
+			ukraine: ad-bmd-soviet
+			cuba: ad-bmd-soviet
+			india: ad-bmd-soviet
+			china: ad-bmd-soviet
+			turkey: ad-bmd-soviet
+			pakistan: ad-bmd-soviet
+			iran: ad-bmd-soviet
+	PxInterceptor:
+		Range: 23c0
+		Rails: 2
+		ReloadDelay: 300
+		Speed: 620
+		Weapon: InterceptBMD
+		LocalOffset: -300,0,500
+		RequiresCondition: !disabled && !build-incomplete
+		Chances:
+			Ballistic: 70
+			Hypersonic: 35
+	PxRenderRangeDome:
+		RangeCircleType: aa
+		Shape: Dome
+		Color: B98CFF
+		DomeHeight: 1.0
+	Power:
+		Amount: -150
