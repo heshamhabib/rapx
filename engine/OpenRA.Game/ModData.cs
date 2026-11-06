@@ -42,6 +42,10 @@ namespace OpenRA
 		public FS ModFiles;
 		public IReadOnlyFileSystem DefaultFileSystem => ModFiles;
 
+		// RAPX: decoded sprites kept across map loads (see SharedSpriteStore).
+		readonly Lazy<SharedSpriteStore> sharedSprites;
+		public SharedSpriteStore SharedSprites => sharedSprites.Value;
+
 		readonly Lazy<Ruleset> defaultRules;
 		public Ruleset DefaultRules => defaultRules.Value;
 
@@ -99,6 +103,7 @@ namespace OpenRA
 
 			Hotkeys = new HotkeyManager(ModFiles, Game.Settings.Keys, Manifest);
 
+			sharedSprites = Exts.Lazy(() => new SharedSpriteStore(SpriteSequenceLoader.BgraSheetSize, SpriteSequenceLoader.IndexedSheetSize));
 			defaultRules = Exts.Lazy(() => Ruleset.LoadDefaults(this));
 			defaultTerrainInfo = Exts.Lazy(() =>
 			{
@@ -174,6 +179,8 @@ namespace OpenRA
 		{
 			LoadScreen?.Dispose();
 			MapCache.Dispose();
+			if (sharedSprites.IsValueCreated)
+				sharedSprites.Value.Dispose();
 
 			ObjectCreator?.Dispose();
 

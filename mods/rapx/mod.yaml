@@ -405,6 +405,11 @@ VideoFormats: Vqa, Wsa, Rpv
 TerrainFormat: DefaultTerrain
 
 SpriteSequenceFormat: ClassicTilesetSpecificSpriteSequence
+	# RAPX: trim the transparent border of HD unit, infantry and building frames at load time (faster loads,
+	# less video memory; bounds and placement are unchanged). Effects, scenery, icons and UI art keep their full frames
+	# because some RAPX renderers size them from the sprite.
+	CropTransparent: ra|bits/hd/
+	CropTransparentExclude: /fx/, /env/, /tiles/, /icons/, /cash/, /ore/, /pads/, /rally/, cameo, rolebadges, blank
 
 AssetBrowser:
 	SpriteExtensions: .shp, .tmp, .tem, .des, .sno, .int

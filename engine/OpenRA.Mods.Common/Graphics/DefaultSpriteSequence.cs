@@ -34,6 +34,26 @@ namespace OpenRA.Mods.Common.Graphics
 
 			if (metadata.TryGetValue("IndexedSheetSize", out yaml))
 				IndexedSheetSize = FieldLoader.GetValue<int>("IndexedSheetSize", yaml.Value);
+
+			// RAPX: true colour files whose transparent borders are trimmed at load time
+			// (filename prefixes, minus any filename containing one of the exclude strings).
+			if (metadata.TryGetValue("CropTransparent", out yaml))
+				cropPrefixes = FieldLoader.GetValue<string[]>("CropTransparent", yaml.Value);
+
+			if (metadata.TryGetValue("CropTransparentExclude", out yaml))
+				cropExcludes = FieldLoader.GetValue<string[]>("CropTransparentExclude", yaml.Value);
+		}
+
+		readonly string[] cropPrefixes = Array.Empty<string>();
+		readonly string[] cropExcludes = Array.Empty<string>();
+
+		public SpriteCropMode CropMode(string filename, bool rotates)
+		{
+			if (!cropPrefixes.Any(p => filename.StartsWith(p, StringComparison.Ordinal)) ||
+				cropExcludes.Any(e => filename.Contains(e, StringComparison.Ordinal)))
+				return SpriteCropMode.None;
+
+			return rotates ? SpriteCropMode.Centred : SpriteCropMode.Tight;
 		}
 
 		public virtual ISpriteSequence CreateSequence(
@@ -462,7 +482,7 @@ namespace OpenRA.Mods.Common.Graphics
 					{
 						spritesToLoad.Add(new SpriteReservation
 						{
-							Token = cache.ReserveSprites(f.Filename, f.LoadFrames, f.Location),
+							Token = cache.ReserveSprites(f.Filename, f.LoadFrames, f.Location, crop: CropMode(f.Filename)),
 							Offset = subOffset + offset,
 							FlipX = subFlipX ^ flipX,
 							FlipY = subFlipY ^ flipY,
@@ -479,7 +499,7 @@ namespace OpenRA.Mods.Common.Graphics
 				{
 					spritesToLoad.Add(new SpriteReservation
 					{
-						Token = cache.ReserveSprites(f.Filename, f.LoadFrames, f.Location),
+						Token = cache.ReserveSprites(f.Filename, f.LoadFrames, f.Location, crop: CropMode(f.Filename)),
 						Offset = offset,
 						FlipX = flipX,
 						FlipY = flipY,
@@ -489,6 +509,42 @@ namespace OpenRA.Mods.Common.Graphics
 					});
 				}
 			}
+		}
+
+		SpriteCropMode CropMode(string filename)
+		{
+			// Sequences with interpolated facings are drawn rotated about the sprite centre
+			return (Loader as DefaultSpriteSequenceLoader)?.CropMode(filename, interpolatedFacings != null) ?? SpriteCropMode.None;
+		}
+
+		/// <summary>
+		/// RAPX: places a cropped sprite so its pixels land exactly where the uncropped frame's would.
+		/// SpriteRenderable truncates half the scaled sprite size to whole pixels, so the crop's offset
+		/// absorbs the difference that truncation makes between the cropped and the full size.
+		/// </summary>
+		Sprite ResolvePadded(PaddedSprite p, SpriteReservation r)
+		{
+			var odx = r.Offset.X + (r.FlipX ? -p.PaddedOffset.X : p.PaddedOffset.X);
+			var ody = r.Offset.Y + (r.FlipY ? -p.PaddedOffset.Y : p.PaddedOffset.Y);
+			var odz = r.Offset.Z + p.PaddedOffset.Z + r.ZRamp * ody;
+
+			var fullW = (int)Math.Abs(p.PaddedSize.X);
+			var fullH = (int)Math.Abs(p.PaddedSize.Y);
+			var w = p.Bounds.Width;
+			var h = p.Bounds.Height;
+			var x0 = r.FlipX ? fullW - p.CropOrigin.X - w : p.CropOrigin.X;
+			var y0 = r.FlipY ? fullH - p.CropOrigin.Y - h : p.CropOrigin.Y;
+
+			var s = GetScale();
+			if (s <= 0)
+				s = 1;
+
+			var dx = odx + x0 + ((int)(0.5f * s * w) - (int)(0.5f * s * fullW)) / s;
+			var dy = ody + y0 + ((int)(0.5f * s * h) - (int)(0.5f * s * fullH)) / s;
+
+			var sprite = new Sprite(p.Sheet, FlipRectangle(p.Bounds, r.FlipX, r.FlipY), r.ZRamp, new float3(dx, dy, odz), p.Channel, r.BlendMode);
+			var paddedSize = new float2(r.FlipX ? -fullW : fullW, r.FlipY ? -fullH : fullH);
+			return new PaddedSprite(sprite, new float3(odx, ody, odz), paddedSize, p.CropOrigin);
 		}
 
 		public virtual void ResolveSprites(SpriteCache cache)
@@ -510,6 +566,9 @@ namespace OpenRA.Mods.Common.Graphics
 				{
 					if (s == null)
 						return null;
+
+					if (s is PaddedSprite padded && depthSprite == null)
+						return ResolvePadded(padded, r);
 
 					var dx = r.Offset.X + (r.FlipX ? -s.Offset.X : s.Offset.X);
 					var dy = r.Offset.Y + (r.FlipY ? -s.Offset.Y : s.Offset.Y);
@@ -566,6 +625,13 @@ namespace OpenRA.Mods.Common.Graphics
 
 		protected static Rectangle OffsetSpriteBounds(Sprite sprite)
 		{
+			// RAPX: cropped sprites report the bounds of the full frame they were cut from
+			if (sprite is PaddedSprite p)
+				return new Rectangle(
+					(int)(p.PaddedOffset.X - p.PaddedSize.X / 2),
+					(int)(p.PaddedOffset.Y - p.PaddedSize.Y / 2),
+					(int)p.PaddedSize.X, (int)p.PaddedSize.Y);
+
 			if (sprite == null || sprite.Bounds.IsEmpty)
 				return Rectangle.Empty;
 

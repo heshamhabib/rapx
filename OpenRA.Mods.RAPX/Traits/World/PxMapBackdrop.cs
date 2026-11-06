@@ -10,6 +10,9 @@
 #endregion
 
 using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
+using OpenRA.FileFormats;
 using OpenRA.Graphics;
 using OpenRA.Primitives;
 using OpenRA.Traits;
@@ -73,7 +76,9 @@ namespace OpenRA.Mods.RAPX.Traits
 			var columns = (bounds.Width + info.ChunkCells - 1) / info.ChunkCells;
 			var rows = (bounds.Height + info.ChunkCells - 1) / info.ChunkCells;
 
-			TerrainSpriteLayer layer = null;
+			// Read the chunks in order (map packages are not thread safe), decode them in parallel,
+			// then upload them here on the render thread
+			var chunks = new List<(int Column, int Row, byte[] Data)>();
 			for (var row = 0; row < rows; row++)
 			{
 				for (var column = 0; column < columns; column++)
@@ -85,34 +90,51 @@ namespace OpenRA.Mods.RAPX.Traits
 						continue;
 					}
 
-					Sheet sheet;
 					using (var stream = map.Package.GetStream(name))
-						sheet = new Sheet(SheetType.BGRA, stream);
+						chunks.Add((column, row, stream.ReadAllBytes()));
+				}
+			}
 
-					sheet.ScaleFilter = TextureScaleFilter.Linear;
-					sheets.Add(sheet);
+			var decoded = new Sheet[chunks.Count];
+			var parallel = new ParallelOptions { MaxDegreeOfParallelism = System.Math.Max(1, System.Environment.ProcessorCount - 1) };
+			Parallel.For(0, chunks.Count, parallel, i =>
+			{
+				using var stream = new MemoryStream(chunks[i].Data, false);
+				var png = new Png(stream);
+				var chunk = new Sheet(SheetType.BGRA, new Size(png.Width, png.Height));
+				Util.FastCopyIntoSprite(new Sprite(chunk, new Rectangle(0, 0, png.Width, png.Height), TextureChannel.Red), png);
+				decoded[i] = chunk;
+			});
 
-					if (layer == null || sheets.Count % ChunksPerLayer == 1)
+			TerrainSpriteLayer layer = null;
+			for (var i = 0; i < chunks.Count; i++)
+			{
+				var (column, row, _) = chunks[i];
+				var sheet = decoded[i];
+				sheet.ScaleFilter = TextureScaleFilter.Linear;
+				sheet.ReleaseBuffer();
+				sheets.Add(sheet);
+
+				if (layer == null || sheets.Count % ChunksPerLayer == 1)
+				{
+					layer = new TerrainSpriteLayer(w, wr, empty, BlendMode.Alpha, true);
+					layers.Add(layer);
+				}
+
+				// Each cell is a sub-sprite of its chunk; the chunk's own sheet clamps at its edges, so there are no seams
+				var cellsX = System.Math.Min(info.ChunkCells, sheet.Size.Width / info.CellSize);
+				var cellsY = System.Math.Min(info.ChunkCells, sheet.Size.Height / info.CellSize);
+				for (var y = 0; y < cellsY; y++)
+				{
+					for (var x = 0; x < cellsX; x++)
 					{
-						layer = new TerrainSpriteLayer(w, wr, empty, BlendMode.Alpha, true);
-						layers.Add(layer);
-					}
+						var cell = new MPos(bounds.X + column * info.ChunkCells + x, bounds.Y + row * info.ChunkCells + y).ToCPos(map);
+						if (!map.Contains(cell))
+							continue;
 
-					// Each cell is a sub-sprite of its chunk; the chunk's own sheet clamps at its edges, so there are no seams
-					var cellsX = System.Math.Min(info.ChunkCells, sheet.Size.Width / info.CellSize);
-					var cellsY = System.Math.Min(info.ChunkCells, sheet.Size.Height / info.CellSize);
-					for (var y = 0; y < cellsY; y++)
-					{
-						for (var x = 0; x < cellsX; x++)
-						{
-							var cell = new MPos(bounds.X + column * info.ChunkCells + x, bounds.Y + row * info.ChunkCells + y).ToCPos(map);
-							if (!map.Contains(cell))
-								continue;
-
-							var sprite = new Sprite(sheet, new Rectangle(x * info.CellSize, y * info.CellSize, info.CellSize, info.CellSize),
-								TextureChannel.RGBA);
-							layer.Update(cell, sprite, null, scale);
-						}
+						var sprite = new Sprite(sheet, new Rectangle(x * info.CellSize, y * info.CellSize, info.CellSize, info.CellSize),
+							TextureChannel.RGBA);
+						layer.Update(cell, sprite, null, scale);
 					}
 				}
 			}

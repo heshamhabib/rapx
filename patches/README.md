@@ -18,6 +18,7 @@ engine-palette-filter.patch
 engine-power-saving.patch
 engine-production-tabs.patch
 engine-quad-palette-sprite.patch
+engine-shared-sprites.patch
 engine-text-notification-pools.patch
 engine-viewport-clamp.patch
 ```

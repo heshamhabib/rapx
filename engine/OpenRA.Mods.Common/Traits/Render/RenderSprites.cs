@@ -271,11 +271,17 @@ namespace OpenRA.Mods.Common.Traits.Render
 		{
 			return anims.Where(b => b.IsVisible
 				&& b.Animation.Animation.CurrentSequence != null)
-					.Select(a => (a.Animation.Animation.Image.Size.XY * a.Animation.Animation.CurrentSequence.Scale).ToInt2())
+					.Select(a => (ImageSize(a.Animation.Animation.Image) * a.Animation.Animation.CurrentSequence.Scale).ToInt2())
 					.FirstOrDefault();
 		}
 
-		void IActorPreviewInitModifier.ModifyActorPreviewInit(Actor self, TypeDictionary inits)
+		// RAPX: cropped sprites size the actor by the full frame, as before cropping
+		static float2 ImageSize(Sprite image)
+		{
+			return image is PaddedSprite p ? p.PaddedSize : image.Size.XY;
+		}
+
+				void IActorPreviewInitModifier.ModifyActorPreviewInit(Actor self, TypeDictionary inits)
 		{
 			if (!inits.Contains<FactionInit>())
 				inits.Add(new FactionInit(faction));

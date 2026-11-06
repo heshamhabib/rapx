@@ -49,11 +49,13 @@ namespace OpenRA.Graphics
 		readonly IReadOnlyDictionary<string, IReadOnlyDictionary<string, ISpriteSequence>> images;
 		public SpriteCache SpriteCache { get; }
 
-		public SequenceSet(IReadOnlyFileSystem fileSystem, ModData modData, string tileSet, MiniYaml additionalSequences)
+		public SequenceSet(IReadOnlyFileSystem fileSystem, ModData modData, string tileSet, MiniYaml additionalSequences,
+			SharedSpriteStore sharedSprites = null, Func<string, bool> canShareFile = null)
 		{
 			this.modData = modData;
 			this.tileSet = tileSet;
-			SpriteCache = new SpriteCache(fileSystem, modData.SpriteLoaders, modData.SpriteSequenceLoader.BgraSheetSize, modData.SpriteSequenceLoader.IndexedSheetSize);
+			SpriteCache = new SpriteCache(fileSystem, modData.SpriteLoaders, modData.SpriteSequenceLoader.BgraSheetSize, modData.SpriteSequenceLoader.IndexedSheetSize,
+				shared: sharedSprites, canShare: canShareFile);
 			using (new Support.PerfTimer("LoadSequences"))
 				images = Load(fileSystem, additionalSequences);
 		}

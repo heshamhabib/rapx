@@ -452,7 +452,9 @@ namespace OpenRA
 				Rules = Ruleset.LoadDefaultsForTileSet(modData, Tileset);
 			}
 
-			Sequences = new SequenceSet(this, modData, Tileset, SequenceDefinitions);
+			// RAPX: share decoded sprites between maps; files a map package can override stay per map.
+			Sequences = new SequenceSet(this, modData, Tileset, SequenceDefinitions,
+				modData.SharedSprites, f => f.Contains('|') || !Package.Contains(f));
 
 			var tl = new MPos(0, 0).ToCPos(this);
 			var br = new MPos(MapSize.X - 1, MapSize.Y - 1).ToCPos(this);

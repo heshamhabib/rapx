@@ -10,10 +10,15 @@
 #endregion
 
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.ExceptionServices;
+using System.Threading;
+using System.Threading.Tasks;
 using OpenRA.FileSystem;
+using OpenRA.Primitives;
 
 namespace OpenRA.Graphics
 {
@@ -24,11 +29,14 @@ namespace OpenRA.Graphics
 		public readonly Dictionary<SheetType, SheetBuilder> SheetBuilders;
 		readonly ISpriteLoader[] loaders;
 		readonly IReadOnlyFileSystem fileSystem;
+		readonly SharedSpriteStore shared;
+		readonly Func<string, bool> canShare;
 
 		readonly Dictionary<
 			int,
 			(int[] Frames, MiniYamlNode.SourceLocation Location, AdjustFrame AdjustFrame, bool Premultiplied)> spriteReservations = new();
 		readonly Dictionary<string, List<int>> reservationsByFilename = new();
+		readonly Dictionary<string, SpriteCropMode> cropByFilename = new();
 
 		readonly Dictionary<int, Sprite[]> resolvedSprites = new();
 
@@ -37,9 +45,21 @@ namespace OpenRA.Graphics
 		int nextReservationToken = 1;
 
 		public SpriteCache(
-			IReadOnlyFileSystem fileSystem, ISpriteLoader[] loaders, int bgraSheetSize, int indexedSheetSize, int bgraSheetMargin = 1, int indexedSheetMargin = 1)
+			IReadOnlyFileSystem fileSystem, ISpriteLoader[] loaders, int bgraSheetSize, int indexedSheetSize, int bgraSheetMargin = 1, int indexedSheetMargin = 1,
+			SharedSpriteStore shared = null, Func<string, bool> canShare = null)
 		{
-			SheetBuilders = new Dictionary<SheetType, SheetBuilder>
+			this.shared = shared;
+			this.canShare = canShare;
+			SheetBuilders = CreateSheetBuilders(bgraSheetSize, indexedSheetSize, bgraSheetMargin, indexedSheetMargin);
+
+			this.fileSystem = fileSystem;
+			this.loaders = loaders;
+		}
+
+		internal static Dictionary<SheetType, SheetBuilder> CreateSheetBuilders(
+			int bgraSheetSize, int indexedSheetSize, int bgraSheetMargin = 1, int indexedSheetMargin = 1)
+		{
+			return new Dictionary<SheetType, SheetBuilder>
 			{
 				{ SheetType.Indexed, new SheetBuilder(SheetType.Indexed, indexedSheetSize, indexedSheetMargin) },
 				{
@@ -52,14 +72,15 @@ namespace OpenRA.Graphics
 					}, bgraSheetMargin)
 				}
 			};
-
-			this.fileSystem = fileSystem;
-			this.loaders = loaders;
 		}
 
 		public int ReserveSprites(string filename, IEnumerable<int> frames, MiniYamlNode.SourceLocation location,
-			AdjustFrame adjustFrame = null, bool premultiplied = false)
+			AdjustFrame adjustFrame = null, bool premultiplied = false, SpriteCropMode crop = SpriteCropMode.None)
 		{
+			// A file shared by several sequences is cropped once, with the most careful mode any of them asks for.
+			if (crop != SpriteCropMode.None && adjustFrame == null)
+				cropByFilename[filename] = (SpriteCropMode)Math.Max((int)crop, (int)cropByFilename.GetValueOrDefault(filename));
+
 			var token = nextReservationToken++;
 			spriteReservations[token] = (frames?.ToArray(), location, adjustFrame, premultiplied);
 			reservationsByFilename.GetOrAdd(filename, _ => new List<int>()).Add(token);
@@ -72,13 +93,16 @@ namespace OpenRA.Graphics
 				return null;
 
 			using (stream)
-			{
-				foreach (var loader in loaders)
-					if (loader.TryParseSprite(stream, filename, out var frames, out _))
-						return frames;
+				return ParseFrames(stream, filename, loaders);
+		}
 
-				return null;
-			}
+		static ISpriteFrame[] ParseFrames(Stream stream, string filename, ISpriteLoader[] loaders)
+		{
+			foreach (var loader in loaders)
+				if (loader.TryParseSprite(stream, filename, out var frames, out _))
+					return frames;
+
+			return null;
 		}
 
 		public ISpriteFrame[] LoadFramesUncached(string filename)
@@ -91,14 +115,29 @@ namespace OpenRA.Graphics
 			var pendingResolve = new List<(
 				string Filename,
 				int FrameIndex,
+				int FrameCount,
 				bool Premultiplied,
 				AdjustFrame AdjustFrame,
+				bool Shared,
 				ISpriteFrame Frame,
 				Sprite[] SpritesForToken)>();
+
+			// RAPX: files whose sprites are all in the shared store (loaded by an earlier map) are resolved
+			// without decoding them again; everything else is decoded on worker threads below.
+			var toDecode = new List<(string Filename, List<int> Tokens)>();
 			foreach (var (filename, tokens) in reservationsByFilename)
+				if (!TryResolveShared(filename, tokens))
+					toDecode.Add((filename, tokens));
+
+			ISpriteFrame[][] decoded;
+			using (new Support.PerfTimer("DecodeSprites"))
+				decoded = DecodeFiles(modData, toDecode.Select(f => (f.Filename, CropMode(f.Filename))).ToList());
+
+			for (var n = 0; n < toDecode.Count; n++)
 			{
-				modData.LoadScreen?.Display();
-				var loadedFrames = GetFrames(fileSystem, filename, loaders);
+				var (filename, tokens) = toDecode[n];
+				var loadedFrames = decoded[n];
+				var shareFile = CanShare(filename);
 				foreach (var token in tokens)
 				{
 					if (spriteReservations.TryGetValue(token, out var rs))
@@ -113,6 +152,7 @@ namespace OpenRA.Graphics
 
 							var frames = rs.Frames ?? Enumerable.Range(0, loadedFrames.Length);
 							var total = rs.Frames?.Length ?? loadedFrames.Length;
+							var share = shareFile && rs.AdjustFrame == null;
 
 							var j = 0;
 							foreach (var i in frames)
@@ -120,7 +160,7 @@ namespace OpenRA.Graphics
 								var frame = loadedFrames[i];
 								if (rs.AdjustFrame != null)
 									frame = rs.AdjustFrame(frame, j++, total);
-								pendingResolve.Add((filename, i, rs.Premultiplied, rs.AdjustFrame, frame, resolved));
+								pendingResolve.Add((filename, i, loadedFrames.Length, rs.Premultiplied, rs.AdjustFrame, share, frame, resolved));
 							}
 						}
 						else
@@ -136,6 +176,8 @@ namespace OpenRA.Graphics
 			spriteReservations.TrimExcess();
 			reservationsByFilename.Clear();
 			reservationsByFilename.TrimExcess();
+			var cropModes = new Dictionary<string, SpriteCropMode>(cropByFilename);
+			cropByFilename.Clear();
 
 			// When the sheet builder is adding sprites, it reserves height for the tallest sprite seen along the row.
 			// We can achieve better sheet packing by keeping sprites with similar heights together.
@@ -147,23 +189,155 @@ namespace OpenRA.Graphics
 				bool Premultiplied,
 				AdjustFrame AdjustFrame),
 				Sprite>(pendingResolve.Count);
-			foreach (var (filename, frameIndex, premultiplied, adjustFrame, frame, spritesForToken) in orderedPendingResolve)
+			using (new Support.PerfTimer("PackSprites"))
 			{
-				// Premultiplied and non-premultiplied sprites must be cached separately
-				// to cover the case where the same image is requested in both versions.
-				spritesForToken[frameIndex] = spriteCache.GetOrAdd(
-					(filename, frameIndex, premultiplied, adjustFrame),
-					_ =>
-					{
-						var sheetBuilder = SheetBuilders[SheetBuilder.FrameTypeToSheetType(frame.Type)];
-						return sheetBuilder.Add(frame, premultiplied);
-					});
+				foreach (var (filename, frameIndex, frameCount, premultiplied, adjustFrame, share, frame, spritesForToken) in orderedPendingResolve)
+				{
+					// Premultiplied and non-premultiplied sprites must be cached separately
+					// to cover the case where the same image is requested in both versions.
+					spritesForToken[frameIndex] = spriteCache.GetOrAdd(
+						(filename, frameIndex, premultiplied, adjustFrame),
+						_ =>
+						{
+							var sheetType = SheetBuilder.FrameTypeToSheetType(frame.Type);
+							if (!share)
+								return AddFrame(SheetBuilders[sheetType], frame, premultiplied);
 
-				modData.LoadScreen?.Display();
+							var sharedFrames = shared.GetOrAddFile(filename, premultiplied, cropModes.GetValueOrDefault(filename), frameCount);
+							return sharedFrames[frameIndex] ??= AddFrame(shared.SheetBuilders[sheetType], frame, premultiplied);
+						});
+
+					modData.LoadScreen?.Display();
+				}
 			}
 
 			foreach (var sb in SheetBuilders.Values)
 				sb.Current.ReleaseBuffer();
+
+			shared?.ReleaseBuffers();
+		}
+
+		static Sprite AddFrame(SheetBuilder builder, ISpriteFrame frame, bool premultiplied)
+		{
+			var sprite = builder.Add(frame, premultiplied);
+			if (frame is CroppedFrame c)
+				return new PaddedSprite(sprite, new float3(c.PaddedOffset, 0), new float2(c.PaddedSize.Width, c.PaddedSize.Height), c.CropOrigin);
+
+			return sprite;
+		}
+
+		SpriteCropMode CropMode(string filename)
+		{
+			return cropByFilename.GetValueOrDefault(filename);
+		}
+
+		bool CanShare(string filename)
+		{
+			return shared != null && (canShare == null || canShare(filename));
+		}
+
+		bool TryResolveShared(string filename, List<int> tokens)
+		{
+			if (!CanShare(filename))
+				return false;
+
+			var found = new List<(int Token, Sprite[] Resolved)>(tokens.Count);
+			foreach (var token in tokens)
+			{
+				if (!spriteReservations.TryGetValue(token, out var rs))
+					continue;
+
+				if (rs.AdjustFrame != null || !shared.TryGetFile(filename, rs.Premultiplied, CropMode(filename), out var sharedFrames))
+					return false;
+
+				if (rs.Frames != null && rs.Frames.Any(i => i >= sharedFrames.Length))
+					throw new InvalidOperationException($"{rs.Location}: {filename} does not contain frames: " +
+						string.Join(',', rs.Frames.Where(f => f >= sharedFrames.Length)));
+
+				var resolved = new Sprite[sharedFrames.Length];
+				foreach (var i in rs.Frames ?? Enumerable.Range(0, sharedFrames.Length))
+				{
+					if (sharedFrames[i] == null)
+						return false;
+
+					resolved[i] = sharedFrames[i];
+				}
+
+				found.Add((token, resolved));
+			}
+
+			foreach (var (token, resolved) in found)
+				resolvedSprites[token] = resolved;
+
+			return true;
+		}
+
+		/// <summary>
+		/// RAPX: reads the files in order on this thread (packages such as .mix are not thread safe)
+		/// and parses them on worker threads, keeping the load screen updated while it waits.
+		/// A null entry means the file is missing or no loader understood it.
+		/// </summary>
+		ISpriteFrame[][] DecodeFiles(ModData modData, List<(string Filename, SpriteCropMode Crop)> files)
+		{
+			var results = new ISpriteFrame[files.Count][];
+			if (files.Count == 0)
+				return results;
+
+			var workerCount = Math.Max(1, Math.Min(Environment.ProcessorCount - 1, 8));
+			Exception workerError = null;
+			using var queue = new BlockingCollection<(int Index, byte[] Data)>(workerCount * 2);
+			var workers = Enumerable.Range(0, workerCount).Select(_ => Task.Run(() =>
+			{
+				foreach (var (index, data) in queue.GetConsumingEnumerable())
+				{
+					if (Volatile.Read(ref workerError) != null)
+						continue;
+
+					try
+					{
+						using var stream = new MemoryStream(data, false);
+						var frames = ParseFrames(stream, files[index].Filename, loaders);
+						if (frames != null && files[index].Crop != SpriteCropMode.None)
+							for (var f = 0; f < frames.Length; f++)
+								frames[f] = CroppedFrame.Crop(frames[f], files[index].Crop);
+
+						results[index] = frames;
+					}
+					catch (Exception e)
+					{
+						Interlocked.CompareExchange(ref workerError, e, null);
+					}
+				}
+			})).ToArray();
+
+			try
+			{
+				for (var i = 0; i < files.Count && Volatile.Read(ref workerError) == null; i++)
+				{
+					if (!fileSystem.TryOpen(files[i].Filename, out var stream))
+						continue;
+
+					byte[] data;
+					using (stream)
+						data = stream.ReadAllBytes();
+
+					while (!queue.TryAdd((i, data), 20))
+						modData.LoadScreen?.Display();
+
+					modData.LoadScreen?.Display();
+				}
+			}
+			finally
+			{
+				queue.CompleteAdding();
+				while (!Task.WaitAll(workers, 20))
+					modData.LoadScreen?.Display();
+			}
+
+			if (workerError != null)
+				ExceptionDispatchInfo.Capture(workerError).Throw();
+
+			return results;
 		}
 
 		public Sprite[] ResolveSprites(int token)
@@ -185,6 +359,157 @@ namespace OpenRA.Graphics
 		{
 			foreach (var sb in SheetBuilders.Values)
 				sb.Dispose();
+		}
+	}
+
+	/// <summary>
+	/// RAPX: a true colour frame with its fully transparent border removed. Cropping keeps the visible
+	/// pixels where they were (the offset moves with the crop) and remembers the full frame for bounds.
+	/// </summary>
+	sealed class CroppedFrame : ISpriteFrame
+	{
+		// Skip crops that save less than this share of the frame: not worth an extra sprite rectangle.
+		const float MinSaving = 0.2f;
+
+		public SpriteFrameType Type { get; private init; }
+		public Size Size { get; private init; }
+		public Size FrameSize { get; private init; }
+		public float2 Offset { get; private init; }
+		public byte[] Data { get; private init; }
+		public bool DisableExportPadding => false;
+
+		public float2 PaddedOffset { get; private init; }
+		public Size PaddedSize { get; private init; }
+		public int2 CropOrigin { get; private init; }
+
+		public static ISpriteFrame Crop(ISpriteFrame frame, SpriteCropMode mode)
+		{
+			if (frame.Type != SpriteFrameType.Bgra32 && frame.Type != SpriteFrameType.Rgba32)
+				return frame;
+
+			var width = frame.Size.Width;
+			var height = frame.Size.Height;
+			var data = frame.Data;
+			if (width == 0 || height == 0 || data.Length < 4 * width * height)
+				return frame;
+
+			// Visible bounding box (alpha > 0)
+			int left = width, right = -1, top = -1, bottom = -1;
+			for (var y = 0; y < height; y++)
+			{
+				var row = 4 * y * width;
+				var first = -1;
+				for (var x = 0; x < width; x++)
+				{
+					if (data[row + 4 * x + 3] != 0)
+					{
+						first = x;
+						break;
+					}
+				}
+
+				if (first < 0)
+					continue;
+
+				var last = first;
+				for (var x = width - 1; x > first; x--)
+				{
+					if (data[row + 4 * x + 3] != 0)
+					{
+						last = x;
+						break;
+					}
+				}
+
+				if (top < 0)
+					top = y;
+
+				bottom = y;
+				left = Math.Min(left, first);
+				right = Math.Max(right, last);
+			}
+
+			int x0, y0, w, h;
+			if (top < 0)
+			{
+				// Fully transparent: keep an empty sprite
+				x0 = y0 = w = h = 0;
+			}
+			else if (mode == SpriteCropMode.Centred)
+			{
+				// Same margin on both sides of each axis, so the crop centre stays the frame centre
+				x0 = Math.Min(left, width - 1 - right);
+				y0 = Math.Min(top, height - 1 - bottom);
+				w = width - 2 * x0;
+				h = height - 2 * y0;
+			}
+			else
+			{
+				x0 = left;
+				y0 = top;
+				w = right - left + 1;
+				h = bottom - top + 1;
+			}
+
+			if (w * h > (1 - MinSaving) * width * height)
+				return frame;
+
+			var cropped = new byte[4 * w * h];
+			for (var y = 0; y < h; y++)
+				Buffer.BlockCopy(data, 4 * ((y0 + y) * width + x0), cropped, 4 * y * w, 4 * w);
+
+			return new CroppedFrame
+			{
+				Type = frame.Type,
+				Size = new Size(w, h),
+				FrameSize = frame.FrameSize,
+				Offset = frame.Offset + new float2(x0 + w / 2f - width / 2f, y0 + h / 2f - height / 2f),
+				Data = cropped,
+				PaddedOffset = frame.Offset,
+				PaddedSize = frame.Size,
+				CropOrigin = new int2(x0, y0)
+			};
+		}
+	}
+
+	/// <summary>
+	/// RAPX: sprites kept for the lifetime of the mod so that later maps (the skirmish after the menu
+	/// shellmap, or the menu after a match) reuse them instead of decoding every file again.
+	/// Only files that come from the mod (not from a map package) and need no per-sequence frame
+	/// adjustment are stored here. The sheets are owned by this store, not by any map.
+	/// </summary>
+	public sealed class SharedSpriteStore : IDisposable
+	{
+		public readonly Dictionary<SheetType, SheetBuilder> SheetBuilders;
+		readonly Dictionary<(string Filename, bool Premultiplied, SpriteCropMode Crop), Sprite[]> files = new();
+
+		public SharedSpriteStore(int bgraSheetSize, int indexedSheetSize)
+		{
+			SheetBuilders = SpriteCache.CreateSheetBuilders(bgraSheetSize, indexedSheetSize);
+		}
+
+		public bool TryGetFile(string filename, bool premultiplied, SpriteCropMode crop, out Sprite[] sprites)
+		{
+			return files.TryGetValue((filename, premultiplied, crop), out sprites);
+		}
+
+		public Sprite[] GetOrAddFile(string filename, bool premultiplied, SpriteCropMode crop, int frameCount)
+		{
+			return files.GetOrAdd((filename, premultiplied, crop), _ => new Sprite[frameCount]);
+		}
+
+		public void ReleaseBuffers()
+		{
+			foreach (var sb in SheetBuilders.Values)
+				sb.Current.ReleaseBuffer();
+		}
+
+		public void Dispose()
+		{
+			foreach (var sb in SheetBuilders.Values)
+				sb.Dispose();
+
+			files.Clear();
 		}
 	}
 }

@@ -50,6 +50,42 @@ namespace OpenRA.Graphics
 		}
 	}
 
+	/// <summary>How the sprite cache may trim fully transparent pixels from a file's frames when it loads them.</summary>
+	public enum SpriteCropMode
+	{
+		None,
+
+		/// <summary>Crop to the visible pixels.</summary>
+		Tight,
+
+		/// <summary>Crop evenly around the frame centre, so sprites rotated about their centre still turn about the same point.</summary>
+		Centred
+	}
+
+	/// <summary>
+	/// RAPX: a sprite cut down to its visible pixels that remembers the full frame it came from.
+	/// Sequence bounds and auto selection sizes use the full frame, so they stay as if the padding were still there.
+	/// </summary>
+	public class PaddedSprite : Sprite
+	{
+		/// <summary>Offset of the full frame's centre (the offset the uncropped sprite would have).</summary>
+		public readonly float3 PaddedOffset;
+
+		/// <summary>Size of the full frame (negative on a flipped axis, like <see cref="Sprite.Size"/>).</summary>
+		public readonly float2 PaddedSize;
+
+		/// <summary>Top-left of the cropped rectangle inside the full (unflipped) frame.</summary>
+		public readonly int2 CropOrigin;
+
+		public PaddedSprite(Sprite s, in float3 paddedOffset, in float2 paddedSize, int2 cropOrigin)
+			: base(s.Sheet, s.Bounds, s.ZRamp, s.Offset, s.Channel, s.BlendMode)
+		{
+			PaddedOffset = paddedOffset;
+			PaddedSize = paddedSize;
+			CropOrigin = cropOrigin;
+		}
+	}
+
 	public class SpriteWithSecondaryData : Sprite
 	{
 		public readonly Sheet SecondarySheet;
