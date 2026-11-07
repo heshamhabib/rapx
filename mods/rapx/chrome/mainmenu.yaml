@@ -216,9 +216,20 @@ Container@MAINMENU:
 							Height: 6
 							ImageCollection: px-deco
 							ImageName: title-line
-						Button@MUSIC_BUTTON:
+						Button@CATALOGUE_BUTTON:
+							Logic: PxCatalogueButtonLogic
 							X: 30
 							Y: 104
+							Width: PARENT_WIDTH - 60
+							Height: 42
+							Background: px-menu-button
+							Font: PXButton
+							Align: Left
+							LeftMargin: 24
+							Text: button-px-catalogue
+						Button@MUSIC_BUTTON:
+							X: 30
+							Y: 158
 							Width: PARENT_WIDTH - 60
 							Height: 42
 							Background: px-menu-button
@@ -228,7 +239,7 @@ Container@MAINMENU:
 							Text: label-music-title
 						Button@CREDITS_BUTTON:
 							X: 30
-							Y: 158
+							Y: 212
 							Width: PARENT_WIDTH - 60
 							Height: 42
 							Background: px-menu-button

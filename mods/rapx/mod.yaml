@@ -169,6 +169,7 @@ ChromeLayout:
 	ra|chrome/gamesave-loading.yaml
 	common|chrome/dropdowns.yaml
 	ra|chrome/musicplayer.yaml
+	ra|chrome/catalogue.yaml
 	common|chrome/tooltips.yaml
 	common|chrome/assetbrowser.yaml
 	common|chrome/missionbrowser.yaml
@@ -192,6 +193,7 @@ FluentMessages:
 	ra|fluent/carriers.ftl
 	ra|fluent/rocket-launchers.ftl
 	ra|fluent/air-defence.ftl
+	ra|fluent/catalogue.ftl
 
 AllowUnusedFluentMessagesInExternalPackages: false
 

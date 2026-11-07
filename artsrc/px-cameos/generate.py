@@ -88,6 +88,7 @@ def recolor(im, hue=(0.25, 0.45), min_s=0.35):
 
 
 def backdrop():
+    k = W / 240  # 1 for the sidebar tile; make_catalogue_art.py renders larger
     bg = Image.new("RGBA", (W, H))
     d = ImageDraw.Draw(bg)
     for y in range(H):
@@ -95,14 +96,14 @@ def backdrop():
         d.line([(0, y), (W, y)], fill=(int(38 - 20 * t), int(40 - 21 * t), int(47 - 24 * t), 255))
     grid = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     gd = ImageDraw.Draw(grid)
-    for x in range(0, W, 20):
-        gd.line([(x, 0), (x, H)], fill=(255, 255, 255, 10))
-    for y in range(0, H, 20):
-        gd.line([(0, y), (W, y)], fill=(255, 255, 255, 10))
+    for x in range(0, W, round(20 * k)):
+        gd.line([(x, 0), (x, H)], fill=(255, 255, 255, 10), width=round(k))
+    for y in range(0, H, round(20 * k)):
+        gd.line([(0, y), (W, y)], fill=(255, 255, 255, 10), width=round(k))
     bg.alpha_composite(grid)
     glow = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    ImageDraw.Draw(glow).ellipse([30, 14, 210, 150], fill=(226, 38, 38, 46))
-    bg.alpha_composite(glow.filter(ImageFilter.GaussianBlur(26)))
+    ImageDraw.Draw(glow).ellipse([30 * k, 14 * k, 210 * k, 150 * k], fill=(226, 38, 38, 46))
+    bg.alpha_composite(glow.filter(ImageFilter.GaussianBlur(26 * k)))
     return bg
 
 
@@ -168,10 +169,11 @@ def hd_cameo(image):
     scale = min((W * 0.84) / b.width, (H * 0.84) / b.height)
     b = b.resize((int(b.width * scale), int(b.height * scale)), Image.LANCZOS)
     img = backdrop()
+    k = W / 240
     sh = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    cx, by = W // 2, H - 10
-    ImageDraw.Draw(sh).ellipse([cx - b.width * 0.45, by - 16, cx + b.width * 0.45, by + 4], fill=(0, 0, 0, 150))
-    img.alpha_composite(sh.filter(ImageFilter.GaussianBlur(6)))
+    cx, by = W // 2, H - round(10 * k)
+    ImageDraw.Draw(sh).ellipse([cx - b.width * 0.45, by - 16 * k, cx + b.width * 0.45, by + 4 * k], fill=(0, 0, 0, 150))
+    img.alpha_composite(sh.filter(ImageFilter.GaussianBlur(6 * k)))
     img.alpha_composite(b, (cx - b.width // 2, by - b.height))
     return img
 

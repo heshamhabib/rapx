@@ -1,0 +1,31 @@
+# Extras > Catalogue: every nation's arsenal with the live in-game model, stats, weapons and dossier.
+# Everything inside is drawn by PxCatalogueWidget (OpenRA.Mods.RAPX/Widgets/PxCatalogueWidget.cs);
+# the texts it doesn't read from the rules are in fluent/catalogue.ftl.
+
+Container@PX_CATALOGUE_PANEL:
+	Logic: PxCatalogueLogic
+	X: 28
+	Y: 24
+	Width: WINDOW_WIDTH - 56
+	Height: WINDOW_HEIGHT - 48
+	Children:
+		PxCatalogue@CATALOGUE:
+			Width: PARENT_WIDTH
+			Height: PARENT_HEIGHT
+		Button@BACK_BUTTON:
+			X: PARENT_WIDTH - 22 - WIDTH
+			Y: 14
+			Width: 170
+			Height: 44
+			Background: px-key
+			Font: PXButton
+			Align: Left
+			LeftMargin: 50
+			Text: button-back
+			Key: escape
+			Children:
+				Image@ICON:
+					X: 18
+					Y: 13
+					ImageCollection: px-lobby-icons
+					ImageName: back
