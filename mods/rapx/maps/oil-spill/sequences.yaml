@@ -1,5 +1,4 @@
 oilb.husk: oilb
 	idle:
-		Filename: oilb.shp
-		Start: 1
-		Offset: 0,-6
+		Filename: ra|bits/hd/env/oilb-temperate-burnt.png
+		Scale: 0.3333

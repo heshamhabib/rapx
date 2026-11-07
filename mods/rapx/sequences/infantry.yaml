@@ -1,6 +1,5 @@
 e1:
 	Defaults:
-		Filename: e1.shp
 	stand:
 		Facings: 8
 	stand2:
@@ -71,16 +70,10 @@ e1:
 		Length: 18
 		Tick: 80
 	die6:
-		Filename: electro.tem
-		TilesetFilenames:
-			SNOW: electro.sno
 		Frames: 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
 		Length: *
 		Tick: 80
 	die-crushed:
-		Filename: corpse1.tem
-		TilesetFilenames:
-			SNOW: corpse1.sno
 		Length: *
 		Tick: 1600
 		ZOffset: -511
@@ -90,43 +83,33 @@ e1:
 		Facings: 8
 		Combine:
 			0:
-				Filename: minigun.shp
 				Length: 12
 				Frames: 0,1,2,3,4,5,0,1,2,3,4,5
 			1:
-				Filename: minigun.shp
 				Length: 12
 				Frames: 6,7,8,9,10,11,6,7,8,9,10,11
 			2:
-				Filename: minigun.shp
 				Length: 12
 				Frames: 12,13,14,15,16,17,12,13,14,15,16,17
 			3:
-				Filename: minigun.shp
 				Length: 12
 				Frames: 18,19,20,21,22,23,18,19,20,21,22,23
 			4:
-				Filename: minigun.shp
 				Length: 12
 				Frames: 24,25,26,27,28,29,24,25,26,27,28,29
 			5:
-				Filename: minigun.shp
 				Length: 12
 				Frames: 30,31,32,33,34,35,30,31,32,33,34,35
 			6:
-				Filename: minigun.shp
 				Length: 12
 				Frames: 36,37,38,39,40,41,36,37,38,39,40,41
 			7:
-				Filename: minigun.shp
 				Length: 12
 				Frames: 42,43,44,45,46,47,42,43,44,45,46,47
 	icon:
-		Filename: e1icon.shp
 
 e3:
 	Defaults:
-		Filename: e3.shp
 	stand:
 		Facings: 8
 	stand2:
@@ -172,16 +155,10 @@ e3:
 		Length: 18
 		Tick: 80
 	die6:
-		Filename: electro.tem
-		TilesetFilenames:
-			SNOW: electro.sno
 		Frames: 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
 		Length: *
 		Tick: 80
 	die-crushed:
-		Filename: corpse1.tem
-		TilesetFilenames:
-			SNOW: corpse1.sno
 		Length: 6
 		Tick: 1600
 		ZOffset: -511
@@ -203,11 +180,9 @@ e3:
 		Length: 10
 		Facings: 8
 	icon:
-		Filename: e3icon.shp
 
 e6:
 	Defaults:
-		Filename: e6.shp
 	stand:
 		Facings: 8
 	stand2:
@@ -249,16 +224,10 @@ e6:
 		Length: 18
 		Tick: 80
 	die6:
-		Filename: electro.tem
-		TilesetFilenames:
-			SNOW: electro.sno
 		Frames: 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
 		Length: *
 		Tick: 80
 	die-crushed:
-		Filename: corpse1.tem
-		TilesetFilenames:
-			SNOW: corpse1.sno
 		Length: 6
 		Tick: 1600
 		ZOffset: -511
@@ -276,11 +245,9 @@ e6:
 		Facings: 8
 		Tick: 100
 	icon:
-		Filename: e6icon.shp
 
 medi:
 	Defaults:
-		Filename: medi.shp
 	stand:
 		Facings: 8
 	run:
@@ -321,16 +288,10 @@ medi:
 		Length: 18
 		Tick: 80
 	die6:
-		Filename: electro.tem
-		TilesetFilenames:
-			SNOW: electro.sno
 		Frames: 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
 		Length: *
 		Tick: 80
 	die-crushed:
-		Filename: corpse1.tem
-		TilesetFilenames:
-			SNOW: corpse1.sno
 		Length: 6
 		Tick: 1600
 		ZOffset: -511
@@ -344,11 +305,9 @@ medi:
 		Facings: 8
 		Tick: 100
 	icon:
-		Filename: mediicon.shp
 
 mech:
 	Defaults:
-		Filename: mech.shp
 	stand:
 		Facings: 8
 	run:
@@ -389,16 +348,10 @@ mech:
 		Length: 18
 		Tick: 80
 	die6:
-		Filename: electro.tem
-		TilesetFilenames:
-			SNOW: electro.sno
 		Frames: 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
 		Length: *
 		Tick: 80
 	die-crushed:
-		Filename: corpse1.tem
-		TilesetFilenames:
-			SNOW: corpse1.sno
 		Length: 6
 		Tick: 1600
 		ZOffset: -511
@@ -412,11 +365,9 @@ mech:
 		Facings: 8
 		Tick: 100
 	icon:
-		Filename: mechicon.shp
 
 e2:
 	Defaults:
-		Filename: e2.shp
 	stand:
 		Facings: 8
 	stand2:
@@ -462,16 +413,10 @@ e2:
 		Length: 18
 		Tick: 80
 	die6:
-		Filename: electro.tem
-		TilesetFilenames:
-			SNOW: electro.sno
 		Frames: 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
 		Length: *
 		Tick: 80
 	die-crushed:
-		Filename: corpse1.tem
-		TilesetFilenames:
-			SNOW: corpse1.sno
 		Length: 6
 		Tick: 1600
 		ZOffset: -511
@@ -493,11 +438,9 @@ e2:
 		Length: 12
 		Facings: 8
 	icon:
-		Filename: e2icon.shp
 
 dog:
 	Defaults:
-		Filename: dog.shp
 	stand:
 		Facings: 8
 	walk:
@@ -544,26 +487,19 @@ dog:
 		Length: 14
 		Tick: 80
 	die6:
-		Filename: electdog.shp
 		Length: *
 		Tick: 80
 	die-crushed:
-		Filename: corpse1.tem
-		TilesetFilenames:
-			SNOW: corpse1.sno
 		Length: 6
 		Tick: 1600
 		ZOffset: -511
 	jump:
-		Filename: dogbullt.shp
 		Length: 4
 		Facings: 8
 	icon:
-		Filename: dogicon.shp
 
 spy:
 	Defaults:
-		Filename: spy.shp
 	stand:
 		Facings: 8
 	stand2:
@@ -607,16 +543,10 @@ spy:
 		Length: 18
 		Tick: 80
 	die6:
-		Filename: electro.tem
-		TilesetFilenames:
-			SNOW: electro.sno
 		Frames: 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
 		Length: *
 		Tick: 80
 	die-crushed:
-		Filename: corpse1.tem
-		TilesetFilenames:
-			SNOW: corpse1.sno
 		Length: 6
 		Tick: 1600
 		ZOffset: -511
@@ -638,11 +568,9 @@ spy:
 		Length: 8
 		Facings: 8
 	icon:
-		Filename: spyicon.shp
 
 e7:
 	Defaults:
-		Filename: e7.shp
 	stand:
 		Facings: 8
 	run:
@@ -654,25 +582,20 @@ e7:
 		Filename:
 		Combine:
 			0:
-				Filename: e7.shp
 				Length: 8
 				Frames: 58, 56, 64, 63, 71, 70, 79, 77
 			1:
-				Filename: e7.shp
 				Length: 2
 				Frames: 85, 84
 				Offset: 1, 0
 			2:
-				Filename: e7.shp
 				Length: 2
 				Frames: 92, 91
 			3:
-				Filename: e7.shp
 				Length: 2
 				Frames: 99, 98
 				Offset: 1, -2
 			4:
-				Filename: e7.shp
 				Length: 2
 				Frames: 107, 105
 				Offset: 0, -2
@@ -682,25 +605,20 @@ e7:
 		Filename:
 		Combine:
 			0:
-				Filename: e7.shp
 				Length: 8
 				Frames: 57, 56, 65, 63, 72, 70, 78, 77
 			1:
-				Filename: e7.shp
 				Length: 2
 				Frames: 86, 84
 				Offset: 1, 0
 			2:
-				Filename: e7.shp
 				Length: 2
 				Frames: 93, 91
 			3:
-				Filename: e7.shp
 				Length: 2
 				Frames: 100, 98
 				Offset: 1, -2
 			4:
-				Filename: e7.shp
 				Length: 2
 				Frames: 106, 105
 				Offset: 0, -2
@@ -735,16 +653,10 @@ e7:
 		Length: 18
 		Tick: 80
 	die6:
-		Filename: electro.tem
-		TilesetFilenames:
-			SNOW: electro.sno
 		Frames: 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
 		Length: *
 		Tick: 80
 	die-crushed:
-		Filename: corpse1.tem
-		TilesetFilenames:
-			SNOW: corpse1.sno
 		Length: 6
 		Tick: 1600
 		ZOffset: -511
@@ -766,16 +678,13 @@ e7:
 		Length: 2
 		Facings: 8
 	garrison-muzzle:
-		Filename: minigun.shp
 		Length: 3
 		Stride: 6
 		Facings: 8
 	icon:
-		Filename: e7icon.shp
 
 e4:
 	Defaults:
-		Filename: e4.shp
 	stand:
 		Facings: 8
 	stand2:
@@ -821,16 +730,10 @@ e4:
 		Length: 18
 		Tick: 80
 	die6:
-		Filename: electro.tem
-		TilesetFilenames:
-			SNOW: electro.sno
 		Frames: 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
 		Length: *
 		Tick: 80
 	die-crushed:
-		Filename: corpse1.tem
-		TilesetFilenames:
-			SNOW: corpse1.sno
 		Length: 6
 		Tick: 1600
 		ZOffset: -511
@@ -852,11 +755,9 @@ e4:
 		Length: 16
 		Facings: 8
 	icon:
-		Filename: e4icon.shp
 
 shok:
 	Defaults:
-		Filename: shok.shp
 	stand:
 		Facings: 8
 	stand2:
@@ -927,18 +828,11 @@ shok:
 		Length: 18
 		Tick: 80
 	die6:
-		Filename: electro.tem
-		TilesetFilenames:
-			SNOW: electro.sno
 		Frames: 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
 		Length: *
 		Tick: 80
 	die-crushed:
-		Filename: corpse1.tem
-		TilesetFilenames:
-			SNOW: corpse1.sno
 		Length: 6
 		Tick: 1600
 		ZOffset: -511
 	icon:
-		Filename: shokicon.shp

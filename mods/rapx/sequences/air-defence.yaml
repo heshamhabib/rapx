@@ -37,10 +37,10 @@ ad-msam-allies:
 		Scale: 0.2333
 	bib:
 		TilesetFilenames:
-			SNOW: mbSAM.sno
-			INTERIOR: mbSAM.int
-			TEMPERAT: mbSAM.tem
-			DESERT: mbSAM.des
+			SNOW: ra|bits/hd/ui/mbsam-snow.png
+			TEMPERAT: ra|bits/hd/ui/mbsam-temperate.png
+			DESERT: ra|bits/hd/ui/mbsam-desert.png
+		Scale: 0.3333
 		Length: *
 		Offset: 0,1
 	icon:
@@ -81,10 +81,10 @@ ad-msam-soviet:
 		Scale: 0.2333
 	bib:
 		TilesetFilenames:
-			SNOW: mbSAM.sno
-			INTERIOR: mbSAM.int
-			TEMPERAT: mbSAM.tem
-			DESERT: mbSAM.des
+			SNOW: ra|bits/hd/ui/mbsam-snow.png
+			TEMPERAT: ra|bits/hd/ui/mbsam-temperate.png
+			DESERT: ra|bits/hd/ui/mbsam-desert.png
+		Scale: 0.3333
 		Length: *
 		Offset: 0,1
 	icon:
@@ -125,10 +125,10 @@ ad-lsam-allies:
 		Scale: 0.2333
 	bib:
 		TilesetFilenames:
-			SNOW: mbSAM.sno
-			INTERIOR: mbSAM.int
-			TEMPERAT: mbSAM.tem
-			DESERT: mbSAM.des
+			SNOW: ra|bits/hd/ui/mbsam-snow.png
+			TEMPERAT: ra|bits/hd/ui/mbsam-temperate.png
+			DESERT: ra|bits/hd/ui/mbsam-desert.png
+		Scale: 0.3333
 		Length: *
 		Offset: 0,1
 	icon:
@@ -169,10 +169,10 @@ ad-lsam-soviet:
 		Scale: 0.2333
 	bib:
 		TilesetFilenames:
-			SNOW: mbSAM.sno
-			INTERIOR: mbSAM.int
-			TEMPERAT: mbSAM.tem
-			DESERT: mbSAM.des
+			SNOW: ra|bits/hd/ui/mbsam-snow.png
+			TEMPERAT: ra|bits/hd/ui/mbsam-temperate.png
+			DESERT: ra|bits/hd/ui/mbsam-desert.png
+		Scale: 0.3333
 		Length: *
 		Offset: 0,1
 	icon:
@@ -209,10 +209,10 @@ ad-bmd-allies:
 		Scale: 0.2333
 	bib:
 		TilesetFilenames:
-			SNOW: mbSAM.sno
-			INTERIOR: mbSAM.int
-			TEMPERAT: mbSAM.tem
-			DESERT: mbSAM.des
+			SNOW: ra|bits/hd/ui/mbsam-snow.png
+			TEMPERAT: ra|bits/hd/ui/mbsam-temperate.png
+			DESERT: ra|bits/hd/ui/mbsam-desert.png
+		Scale: 0.3333
 		Length: *
 		Offset: 0,1
 	icon:
@@ -249,10 +249,10 @@ ad-bmd-soviet:
 		Scale: 0.2333
 	bib:
 		TilesetFilenames:
-			SNOW: mbSAM.sno
-			INTERIOR: mbSAM.int
-			TEMPERAT: mbSAM.tem
-			DESERT: mbSAM.des
+			SNOW: ra|bits/hd/ui/mbsam-snow.png
+			TEMPERAT: ra|bits/hd/ui/mbsam-temperate.png
+			DESERT: ra|bits/hd/ui/mbsam-desert.png
+		Scale: 0.3333
 		Length: *
 		Offset: 0,1
 	icon:

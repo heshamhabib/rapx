@@ -192,11 +192,11 @@ Tick = function()
 		local delay = Utils.RandomInteger(1, 10)
 		Lighting.Flash("LightningStrike", delay)
 		Trigger.AfterDelay(delay, function()
-			Media.PlaySound("thunder" .. Utils.RandomInteger(1,6) .. ".aud")
+			Media.PlaySound("ra|audio/weather/thunder" .. Utils.RandomInteger(1,4) .. ".wav")
 		end)
 	end
 	if (Utils.RandomInteger(1, 200) == 10) then
-		Media.PlaySound("thunder-ambient.aud")
+		Media.PlaySound("ra|audio/weather/thunder3.wav")
 	end
 end
 

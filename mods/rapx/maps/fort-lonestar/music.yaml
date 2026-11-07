@@ -1,2 +1,4 @@
 rain: Rain (ambient)
 	Hidden: true
+	Filename: ra|audio/weather/rain-heavy
+	Extension: wav

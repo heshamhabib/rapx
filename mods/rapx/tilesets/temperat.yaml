@@ -69,7 +69,7 @@ Terrain:
 Templates:
 	Template@255:
 		Id: 255
-		Images: clear1.tem
+		Images: ra|bits/terrain-base/temperat/clear1.png
 		Size: 1,1
 		PickAny: True
 		Categories: Terrain
@@ -92,7 +92,7 @@ Templates:
 			15: Clear
 	Template@65535:
 		Id: 65535
-		Images: clear1.tem
+		Images: ra|bits/terrain-base/temperat/clear1.png
 		Size: 1,1
 		PickAny: True
 		Categories: Terrain
@@ -115,14 +115,14 @@ Templates:
 			15: Clear
 	Template@1:
 		Id: 1
-		Images: w1.tem
+		Images: ra|bits/terrain-base/temperat/w1.png
 		Size: 1,1
 		Categories: Terrain
 		Tiles:
 			0: Water
 	Template@2:
 		Id: 2
-		Images: w2.tem
+		Images: ra|bits/terrain-base/temperat/w2.png
 		Size: 2,2
 		Categories: Terrain
 		Tiles:
@@ -132,7 +132,7 @@ Templates:
 			3: Water
 	Template@3:
 		Id: 3
-		Images: sh01.tem
+		Images: ra|bits/terrain-base/temperat/sh01.png
 		Size: 4,5
 		Categories: Beach
 		Tiles:
@@ -149,7 +149,7 @@ Templates:
 			16: Water
 	Template@4:
 		Id: 4
-		Images: sh02.tem
+		Images: ra|bits/terrain-base/temperat/sh02.png
 		Size: 5,5
 		Categories: Beach
 		Tiles:
@@ -170,7 +170,7 @@ Templates:
 			22: Rock
 	Template@5:
 		Id: 5
-		Images: sh03.tem
+		Images: ra|bits/terrain-base/temperat/sh03.png
 		Size: 3,5
 		Categories: Beach
 		Tiles:
@@ -185,7 +185,7 @@ Templates:
 			12: Water
 	Template@6:
 		Id: 6
-		Images: sh04.tem
+		Images: ra|bits/terrain-base/temperat/sh04.png
 		Size: 3,3
 		Categories: Beach
 		Tiles:
@@ -200,7 +200,7 @@ Templates:
 			8: Water
 	Template@7:
 		Id: 7
-		Images: sh05.tem
+		Images: ra|bits/terrain-base/temperat/sh05.png
 		Size: 3,3
 		Categories: Beach
 		Tiles:
@@ -215,7 +215,7 @@ Templates:
 			8: River
 	Template@8:
 		Id: 8
-		Images: sh06.tem
+		Images: ra|bits/terrain-base/temperat/sh06.png
 		Size: 3,3
 		Categories: Beach
 		Tiles:
@@ -230,7 +230,7 @@ Templates:
 			8: Water
 	Template@9:
 		Id: 9
-		Images: sh07.tem
+		Images: ra|bits/terrain-base/temperat/sh07.png
 		Size: 3,3
 		Categories: Beach
 		Tiles:
@@ -245,7 +245,7 @@ Templates:
 			8: Water
 	Template@10:
 		Id: 10
-		Images: sh08.tem
+		Images: ra|bits/terrain-base/temperat/sh08.png
 		Size: 1,2
 		Categories: Beach
 		Tiles:
@@ -253,7 +253,7 @@ Templates:
 			1: Beach
 	Template@11:
 		Id: 11
-		Images: sh09.tem
+		Images: ra|bits/terrain-base/temperat/sh09.png
 		Size: 3,3
 		Categories: Beach
 		Tiles:
@@ -268,7 +268,7 @@ Templates:
 			8: Water
 	Template@12:
 		Id: 12
-		Images: sh10.tem
+		Images: ra|bits/terrain-base/temperat/sh10.png
 		Size: 5,6
 		Categories: Beach
 		Tiles:
@@ -289,7 +289,7 @@ Templates:
 			29: Water
 	Template@13:
 		Id: 13
-		Images: sh11.tem
+		Images: ra|bits/terrain-base/temperat/sh11.png
 		Size: 4,5
 		Categories: Beach
 		Tiles:
@@ -308,7 +308,7 @@ Templates:
 			19: Beach
 	Template@14:
 		Id: 14
-		Images: sh12.tem
+		Images: ra|bits/terrain-base/temperat/sh12.png
 		Size: 3,5
 		Categories: Beach
 		Tiles:
@@ -325,7 +325,7 @@ Templates:
 			14: Water
 	Template@15:
 		Id: 15
-		Images: sh13.tem
+		Images: ra|bits/terrain-base/temperat/sh13.png
 		Size: 6,5
 		Categories: Beach
 		Tiles:
@@ -349,7 +349,7 @@ Templates:
 			29: Beach
 	Template@16:
 		Id: 16
-		Images: sh14.tem
+		Images: ra|bits/terrain-base/temperat/sh14.png
 		Size: 4,4
 		Categories: Beach
 		Tiles:
@@ -367,7 +367,7 @@ Templates:
 			15: Beach
 	Template@17:
 		Id: 17
-		Images: sh15.tem
+		Images: ra|bits/terrain-base/temperat/sh15.png
 		Size: 5,3
 		Categories: Beach
 		Tiles:
@@ -383,7 +383,7 @@ Templates:
 			14: Beach
 	Template@18:
 		Id: 18
-		Images: sh16.tem
+		Images: ra|bits/terrain-base/temperat/sh16.png
 		Size: 3,3
 		Categories: Beach
 		Tiles:
@@ -398,7 +398,7 @@ Templates:
 			8: Clear
 	Template@19:
 		Id: 19
-		Images: sh17.tem
+		Images: ra|bits/terrain-base/temperat/sh17.png
 		Size: 2,1
 		Categories: Beach
 		Tiles:
@@ -406,7 +406,7 @@ Templates:
 			1: Clear
 	Template@20:
 		Id: 20
-		Images: sh18.tem
+		Images: ra|bits/terrain-base/temperat/sh18.png
 		Size: 3,3
 		Categories: Beach
 		Tiles:
@@ -421,7 +421,7 @@ Templates:
 			8: Rough
 	Template@21:
 		Id: 21
-		Images: sh19.tem
+		Images: ra|bits/terrain-base/temperat/sh19.png
 		Size: 4,5
 		Categories: Beach
 		Tiles:
@@ -442,7 +442,7 @@ Templates:
 			18: Clear
 	Template@22:
 		Id: 22
-		Images: sh20.tem
+		Images: ra|bits/terrain-base/temperat/sh20.png
 		Size: 5,4
 		Categories: Beach
 		Tiles:
@@ -461,7 +461,7 @@ Templates:
 			17: Beach
 	Template@23:
 		Id: 23
-		Images: sh21.tem
+		Images: ra|bits/terrain-base/temperat/sh21.png
 		Size: 5,3
 		Categories: Beach
 		Tiles:
@@ -478,7 +478,7 @@ Templates:
 			12: Beach
 	Template@24:
 		Id: 24
-		Images: sh22.tem
+		Images: ra|bits/terrain-base/temperat/sh22.png
 		Size: 6,5
 		Categories: Beach
 		Tiles:
@@ -501,7 +501,7 @@ Templates:
 			29: Beach
 	Template@25:
 		Id: 25
-		Images: sh23.tem
+		Images: ra|bits/terrain-base/temperat/sh23.png
 		Size: 5,5
 		Categories: Beach
 		Tiles:
@@ -525,7 +525,7 @@ Templates:
 			24: Beach
 	Template@26:
 		Id: 26
-		Images: sh24.tem
+		Images: ra|bits/terrain-base/temperat/sh24.png
 		Size: 3,4
 		Categories: Beach
 		Tiles:
@@ -539,7 +539,7 @@ Templates:
 			11: Clear
 	Template@27:
 		Id: 27
-		Images: sh25.tem
+		Images: ra|bits/terrain-base/temperat/sh25.png
 		Size: 3,3
 		Categories: Beach
 		Tiles:
@@ -554,7 +554,7 @@ Templates:
 			8: Beach
 	Template@28:
 		Id: 28
-		Images: sh26.tem
+		Images: ra|bits/terrain-base/temperat/sh26.png
 		Size: 3,3
 		Categories: Beach
 		Tiles:
@@ -569,7 +569,7 @@ Templates:
 			8: Beach
 	Template@29:
 		Id: 29
-		Images: sh27.tem
+		Images: ra|bits/terrain-base/temperat/sh27.png
 		Size: 3,3
 		Categories: Beach
 		Tiles:
@@ -584,7 +584,7 @@ Templates:
 			8: Rough
 	Template@30:
 		Id: 30
-		Images: sh28.tem
+		Images: ra|bits/terrain-base/temperat/sh28.png
 		Size: 3,3
 		Categories: Beach
 		Tiles:
@@ -598,7 +598,7 @@ Templates:
 			8: Rough
 	Template@31:
 		Id: 31
-		Images: sh29.tem
+		Images: ra|bits/terrain-base/temperat/sh29.png
 		Size: 1,2
 		Categories: Beach
 		Tiles:
@@ -606,7 +606,7 @@ Templates:
 			1: Clear
 	Template@32:
 		Id: 32
-		Images: sh30.tem
+		Images: ra|bits/terrain-base/temperat/sh30.png
 		Size: 3,2
 		Categories: Beach
 		Tiles:
@@ -618,7 +618,7 @@ Templates:
 			5: Rough
 	Template@33:
 		Id: 33
-		Images: sh31.tem
+		Images: ra|bits/terrain-base/temperat/sh31.png
 		Size: 6,5
 		Categories: Beach
 		Tiles:
@@ -646,7 +646,7 @@ Templates:
 			28: Clear
 	Template@34:
 		Id: 34
-		Images: sh32.tem
+		Images: ra|bits/terrain-base/temperat/sh32.png
 		Size: 4,4
 		Categories: Beach
 		Tiles:
@@ -663,7 +663,7 @@ Templates:
 			13: Clear
 	Template@35:
 		Id: 35
-		Images: sh33.tem
+		Images: ra|bits/terrain-base/temperat/sh33.png
 		Size: 3,4
 		Categories: Beach
 		Tiles:
@@ -678,7 +678,7 @@ Templates:
 			10: Beach
 	Template@36:
 		Id: 36
-		Images: sh34.tem
+		Images: ra|bits/terrain-base/temperat/sh34.png
 		Size: 6,5
 		Categories: Beach
 		Tiles:
@@ -700,7 +700,7 @@ Templates:
 			26: Water
 	Template@37:
 		Id: 37
-		Images: sh35.tem
+		Images: ra|bits/terrain-base/temperat/sh35.png
 		Size: 4,4
 		Categories: Beach
 		Tiles:
@@ -717,7 +717,7 @@ Templates:
 			14: Water
 	Template@38:
 		Id: 38
-		Images: sh36.tem
+		Images: ra|bits/terrain-base/temperat/sh36.png
 		Size: 4,3
 		Categories: Beach
 		Tiles:
@@ -732,7 +732,7 @@ Templates:
 			10: Water
 	Template@39:
 		Id: 39
-		Images: sh37.tem
+		Images: ra|bits/terrain-base/temperat/sh37.png
 		Size: 3,3
 		Categories: Beach
 		Tiles:
@@ -746,7 +746,7 @@ Templates:
 			8: Water
 	Template@40:
 		Id: 40
-		Images: sh38.tem
+		Images: ra|bits/terrain-base/temperat/sh38.png
 		Size: 2,1
 		Categories: Beach
 		Tiles:
@@ -754,7 +754,7 @@ Templates:
 			1: Beach
 	Template@41:
 		Id: 41
-		Images: sh39.tem
+		Images: ra|bits/terrain-base/temperat/sh39.png
 		Size: 3,3
 		Categories: Beach
 		Tiles:
@@ -769,7 +769,7 @@ Templates:
 			8: Water
 	Template@42:
 		Id: 42
-		Images: sh40.tem
+		Images: ra|bits/terrain-base/temperat/sh40.png
 		Size: 5,5
 		Categories: Beach
 		Tiles:
@@ -790,7 +790,7 @@ Templates:
 			24: Water
 	Template@43:
 		Id: 43
-		Images: sh41.tem
+		Images: ra|bits/terrain-base/temperat/sh41.png
 		Size: 4,4
 		Categories: Beach
 		Tiles:
@@ -808,7 +808,7 @@ Templates:
 			15: Water
 	Template@44:
 		Id: 44
-		Images: sh42.tem
+		Images: ra|bits/terrain-base/temperat/sh42.png
 		Size: 4,3
 		Categories: Beach
 		Tiles:
@@ -823,7 +823,7 @@ Templates:
 			11: Water
 	Template@45:
 		Id: 45
-		Images: sh43.tem
+		Images: ra|bits/terrain-base/temperat/sh43.png
 		Size: 3,3
 		Categories: Beach
 		Tiles:
@@ -838,7 +838,7 @@ Templates:
 			8: Water
 	Template@46:
 		Id: 46
-		Images: sh44.tem
+		Images: ra|bits/terrain-base/temperat/sh44.png
 		Size: 2,2
 		Categories: Beach
 		Tiles:
@@ -848,7 +848,7 @@ Templates:
 			3: Water
 	Template@47:
 		Id: 47
-		Images: sh45.tem
+		Images: ra|bits/terrain-base/temperat/sh45.png
 		Size: 3,3
 		Categories: Beach
 		Tiles:
@@ -863,7 +863,7 @@ Templates:
 			8: Beach
 	Template@48:
 		Id: 48
-		Images: sh46.tem
+		Images: ra|bits/terrain-base/temperat/sh46.png
 		Size: 2,2
 		Categories: Beach
 		Tiles:
@@ -873,7 +873,7 @@ Templates:
 			3: Beach
 	Template@49:
 		Id: 49
-		Images: sh47.tem
+		Images: ra|bits/terrain-base/temperat/sh47.png
 		Size: 3,3
 		Categories: Beach
 		Tiles:
@@ -885,7 +885,7 @@ Templates:
 			8: Water
 	Template@50:
 		Id: 50
-		Images: sh48.tem
+		Images: ra|bits/terrain-base/temperat/sh48.png
 		Size: 2,2
 		Categories: Beach
 		Tiles:
@@ -895,7 +895,7 @@ Templates:
 			3: Beach
 	Template@51:
 		Id: 51
-		Images: sh49.tem
+		Images: ra|bits/terrain-base/temperat/sh49.png
 		Size: 3,3
 		Categories: Beach
 		Tiles:
@@ -910,7 +910,7 @@ Templates:
 			8: Rock
 	Template@52:
 		Id: 52
-		Images: sh50.tem
+		Images: ra|bits/terrain-base/temperat/sh50.png
 		Size: 2,2
 		Categories: Beach
 		Tiles:
@@ -920,7 +920,7 @@ Templates:
 			3: Water
 	Template@53:
 		Id: 53
-		Images: sh51.tem
+		Images: ra|bits/terrain-base/temperat/sh51.png
 		Size: 3,3
 		Categories: Beach
 		Tiles:
@@ -933,7 +933,7 @@ Templates:
 			8: Clear
 	Template@54:
 		Id: 54
-		Images: sh52.tem
+		Images: ra|bits/terrain-base/temperat/sh52.png
 		Size: 3,3
 		Categories: Beach
 		Tiles:
@@ -946,7 +946,7 @@ Templates:
 			8: Water
 	Template@55:
 		Id: 55
-		Images: sh53.tem
+		Images: ra|bits/terrain-base/temperat/sh53.png
 		Size: 3,3
 		Categories: Beach
 		Tiles:
@@ -960,7 +960,7 @@ Templates:
 			8: Clear
 	Template@56:
 		Id: 56
-		Images: sh54.tem
+		Images: ra|bits/terrain-base/temperat/sh54.png
 		Size: 3,3
 		Categories: Beach
 		Tiles:
@@ -972,14 +972,14 @@ Templates:
 			6: Clear
 	Template@57:
 		Id: 57
-		Images: sh55.tem
+		Images: ra|bits/terrain-base/temperat/sh55.png
 		Size: 1,1
 		Categories: Debris
 		Tiles:
 			0: Rock
 	Template@58:
 		Id: 58
-		Images: sh56.tem
+		Images: ra|bits/terrain-base/temperat/sh56.png
 		Size: 2,1
 		Categories: Debris
 		Tiles:
@@ -987,7 +987,7 @@ Templates:
 			1: Rock
 	Template@135:
 		Id: 135
-		Images: s01.tem
+		Images: ra|bits/terrain-base/temperat/s01.png
 		Size: 2,2
 		Categories: Cliffs
 		Tiles:
@@ -997,7 +997,7 @@ Templates:
 			3: Rock
 	Template@136:
 		Id: 136
-		Images: s02.tem
+		Images: ra|bits/terrain-base/temperat/s02.png
 		Size: 2,3
 		Categories: Cliffs
 		Tiles:
@@ -1009,7 +1009,7 @@ Templates:
 			5: Rock
 	Template@137:
 		Id: 137
-		Images: s03.tem
+		Images: ra|bits/terrain-base/temperat/s03.png
 		Size: 2,2
 		Categories: Cliffs
 		Tiles:
@@ -1019,7 +1019,7 @@ Templates:
 			3: Rock
 	Template@138:
 		Id: 138
-		Images: s04.tem
+		Images: ra|bits/terrain-base/temperat/s04.png
 		Size: 2,2
 		Categories: Cliffs
 		Tiles:
@@ -1029,7 +1029,7 @@ Templates:
 			3: Rock
 	Template@139:
 		Id: 139
-		Images: s05.tem
+		Images: ra|bits/terrain-base/temperat/s05.png
 		Size: 2,2
 		Categories: Cliffs
 		Tiles:
@@ -1039,7 +1039,7 @@ Templates:
 			3: Rock
 	Template@140:
 		Id: 140
-		Images: s06.tem
+		Images: ra|bits/terrain-base/temperat/s06.png
 		Size: 2,3
 		Categories: Cliffs
 		Tiles:
@@ -1050,7 +1050,7 @@ Templates:
 			4: Rock
 	Template@141:
 		Id: 141
-		Images: s07.tem
+		Images: ra|bits/terrain-base/temperat/s07.png
 		Size: 2,2
 		Categories: Cliffs
 		Tiles:
@@ -1060,7 +1060,7 @@ Templates:
 			3: Rock
 	Template@142:
 		Id: 142
-		Images: s08.tem
+		Images: ra|bits/terrain-base/temperat/s08.png
 		Size: 2,2
 		Categories: Cliffs
 		Tiles:
@@ -1070,7 +1070,7 @@ Templates:
 			3: Rock
 	Template@143:
 		Id: 143
-		Images: s09.tem
+		Images: ra|bits/terrain-base/temperat/s09.png
 		Size: 3,2
 		Categories: Cliffs
 		Tiles:
@@ -1082,7 +1082,7 @@ Templates:
 			5: Rock
 	Template@144:
 		Id: 144
-		Images: s10.tem
+		Images: ra|bits/terrain-base/temperat/s10.png
 		Size: 2,2
 		Categories: Cliffs
 		Tiles:
@@ -1092,7 +1092,7 @@ Templates:
 			3: Rock
 	Template@145:
 		Id: 145
-		Images: s11.tem
+		Images: ra|bits/terrain-base/temperat/s11.png
 		Size: 2,2
 		Categories: Cliffs
 		Tiles:
@@ -1102,7 +1102,7 @@ Templates:
 			3: Rock
 	Template@146:
 		Id: 146
-		Images: s12.tem
+		Images: ra|bits/terrain-base/temperat/s12.png
 		Size: 2,2
 		Categories: Cliffs
 		Tiles:
@@ -1112,7 +1112,7 @@ Templates:
 			3: Rock
 	Template@147:
 		Id: 147
-		Images: s13.tem
+		Images: ra|bits/terrain-base/temperat/s13.png
 		Size: 3,2
 		Categories: Cliffs
 		Tiles:
@@ -1124,7 +1124,7 @@ Templates:
 			5: Rough
 	Template@148:
 		Id: 148
-		Images: s14.tem
+		Images: ra|bits/terrain-base/temperat/s14.png
 		Size: 2,2
 		Categories: Cliffs
 		Tiles:
@@ -1133,7 +1133,7 @@ Templates:
 			2: Rock
 	Template@149:
 		Id: 149
-		Images: s15.tem
+		Images: ra|bits/terrain-base/temperat/s15.png
 		Size: 2,2
 		Categories: Cliffs
 		Tiles:
@@ -1143,7 +1143,7 @@ Templates:
 			3: Rock
 	Template@150:
 		Id: 150
-		Images: s16.tem
+		Images: ra|bits/terrain-base/temperat/s16.png
 		Size: 2,3
 		Categories: Cliffs
 		Tiles:
@@ -1153,7 +1153,7 @@ Templates:
 			5: Rock
 	Template@151:
 		Id: 151
-		Images: s17.tem
+		Images: ra|bits/terrain-base/temperat/s17.png
 		Size: 2,2
 		Categories: Cliffs
 		Tiles:
@@ -1163,7 +1163,7 @@ Templates:
 			3: Rock
 	Template@152:
 		Id: 152
-		Images: s18.tem
+		Images: ra|bits/terrain-base/temperat/s18.png
 		Size: 2,2
 		Categories: Cliffs
 		Tiles:
@@ -1173,7 +1173,7 @@ Templates:
 			3: Rock
 	Template@153:
 		Id: 153
-		Images: s19.tem
+		Images: ra|bits/terrain-base/temperat/s19.png
 		Size: 2,2
 		Categories: Cliffs
 		Tiles:
@@ -1183,7 +1183,7 @@ Templates:
 			3: Rock
 	Template@154:
 		Id: 154
-		Images: s20.tem
+		Images: ra|bits/terrain-base/temperat/s20.png
 		Size: 2,3
 		Categories: Cliffs
 		Tiles:
@@ -1194,7 +1194,7 @@ Templates:
 			5: Rough
 	Template@155:
 		Id: 155
-		Images: s21.tem
+		Images: ra|bits/terrain-base/temperat/s21.png
 		Size: 1,2
 		Categories: Cliffs
 		Tiles:
@@ -1202,7 +1202,7 @@ Templates:
 			1: Rock
 	Template@156:
 		Id: 156
-		Images: s22.tem
+		Images: ra|bits/terrain-base/temperat/s22.png
 		Size: 2,1
 		Categories: Cliffs
 		Tiles:
@@ -1210,7 +1210,7 @@ Templates:
 			1: Rock
 	Template@157:
 		Id: 157
-		Images: s23.tem
+		Images: ra|bits/terrain-base/temperat/s23.png
 		Size: 3,2
 		Categories: Cliffs
 		Tiles:
@@ -1222,7 +1222,7 @@ Templates:
 			5: Rough
 	Template@158:
 		Id: 158
-		Images: s24.tem
+		Images: ra|bits/terrain-base/temperat/s24.png
 		Size: 2,2
 		Categories: Cliffs
 		Tiles:
@@ -1232,7 +1232,7 @@ Templates:
 			3: Rock
 	Template@159:
 		Id: 159
-		Images: s25.tem
+		Images: ra|bits/terrain-base/temperat/s25.png
 		Size: 2,2
 		Categories: Cliffs
 		Tiles:
@@ -1242,7 +1242,7 @@ Templates:
 			3: Rock
 	Template@160:
 		Id: 160
-		Images: s26.tem
+		Images: ra|bits/terrain-base/temperat/s26.png
 		Size: 2,2
 		Categories: Cliffs
 		Tiles:
@@ -1252,7 +1252,7 @@ Templates:
 			3: Rock
 	Template@161:
 		Id: 161
-		Images: s27.tem
+		Images: ra|bits/terrain-base/temperat/s27.png
 		Size: 3,2
 		Categories: Cliffs
 		Tiles:
@@ -1264,7 +1264,7 @@ Templates:
 			5: Rock
 	Template@162:
 		Id: 162
-		Images: s28.tem
+		Images: ra|bits/terrain-base/temperat/s28.png
 		Size: 2,2
 		Categories: Cliffs
 		Tiles:
@@ -1273,7 +1273,7 @@ Templates:
 			3: Rock
 	Template@163:
 		Id: 163
-		Images: s29.tem
+		Images: ra|bits/terrain-base/temperat/s29.png
 		Size: 2,2
 		Categories: Cliffs
 		Tiles:
@@ -1283,7 +1283,7 @@ Templates:
 			3: Rock
 	Template@164:
 		Id: 164
-		Images: s30.tem
+		Images: ra|bits/terrain-base/temperat/s30.png
 		Size: 2,2
 		Categories: Cliffs
 		Tiles:
@@ -1293,7 +1293,7 @@ Templates:
 			3: Rock
 	Template@165:
 		Id: 165
-		Images: s31.tem
+		Images: ra|bits/terrain-base/temperat/s31.png
 		Size: 2,2
 		Categories: Cliffs
 		Tiles:
@@ -1303,7 +1303,7 @@ Templates:
 			3: Rock
 	Template@166:
 		Id: 166
-		Images: s32.tem
+		Images: ra|bits/terrain-base/temperat/s32.png
 		Size: 2,2
 		Categories: Cliffs
 		Tiles:
@@ -1312,7 +1312,7 @@ Templates:
 			2: Rough
 	Template@167:
 		Id: 167
-		Images: s33.tem
+		Images: ra|bits/terrain-base/temperat/s33.png
 		Size: 2,2
 		Categories: Cliffs
 		Tiles:
@@ -1322,7 +1322,7 @@ Templates:
 			3: Rock
 	Template@168:
 		Id: 168
-		Images: s34.tem
+		Images: ra|bits/terrain-base/temperat/s34.png
 		Size: 2,2
 		Categories: Cliffs
 		Tiles:
@@ -1332,7 +1332,7 @@ Templates:
 			3: Rock
 	Template@169:
 		Id: 169
-		Images: s35.tem
+		Images: ra|bits/terrain-base/temperat/s35.png
 		Size: 2,2
 		Categories: Cliffs
 		Tiles:
@@ -1342,7 +1342,7 @@ Templates:
 			3: Rock
 	Template@170:
 		Id: 170
-		Images: s36.tem
+		Images: ra|bits/terrain-base/temperat/s36.png
 		Size: 2,2
 		Categories: Cliffs
 		Tiles:
@@ -1352,7 +1352,7 @@ Templates:
 			3: Rock
 	Template@171:
 		Id: 171
-		Images: s37.tem
+		Images: ra|bits/terrain-base/temperat/s37.png
 		Size: 2,2
 		Categories: Cliffs
 		Tiles:
@@ -1362,7 +1362,7 @@ Templates:
 			3: Rock
 	Template@172:
 		Id: 172
-		Images: s38.tem
+		Images: ra|bits/terrain-base/temperat/s38.png
 		Size: 2,2
 		Categories: Cliffs
 		Tiles:
@@ -1372,7 +1372,7 @@ Templates:
 			3: Rock
 	Template@59:
 		Id: 59
-		Images: wc01.tem
+		Images: ra|bits/terrain-base/temperat/wc01.png
 		Size: 2,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1382,7 +1382,7 @@ Templates:
 			3: Rock
 	Template@60:
 		Id: 60
-		Images: wc02.tem
+		Images: ra|bits/terrain-base/temperat/wc02.png
 		Size: 2,3
 		Categories: Water Cliffs
 		Tiles:
@@ -1394,7 +1394,7 @@ Templates:
 			5: Rock
 	Template@61:
 		Id: 61
-		Images: wc03.tem
+		Images: ra|bits/terrain-base/temperat/wc03.png
 		Size: 2,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1404,7 +1404,7 @@ Templates:
 			3: Rock
 	Template@62:
 		Id: 62
-		Images: wc04.tem
+		Images: ra|bits/terrain-base/temperat/wc04.png
 		Size: 2,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1414,7 +1414,7 @@ Templates:
 			3: Rock
 	Template@63:
 		Id: 63
-		Images: wc05.tem
+		Images: ra|bits/terrain-base/temperat/wc05.png
 		Size: 2,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1424,7 +1424,7 @@ Templates:
 			3: Rock
 	Template@64:
 		Id: 64
-		Images: wc06.tem
+		Images: ra|bits/terrain-base/temperat/wc06.png
 		Size: 2,3
 		Categories: Water Cliffs
 		Tiles:
@@ -1435,7 +1435,7 @@ Templates:
 			4: Rock
 	Template@65:
 		Id: 65
-		Images: wc07.tem
+		Images: ra|bits/terrain-base/temperat/wc07.png
 		Size: 2,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1445,7 +1445,7 @@ Templates:
 			3: Rock
 	Template@66:
 		Id: 66
-		Images: wc08.tem
+		Images: ra|bits/terrain-base/temperat/wc08.png
 		Size: 2,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1455,7 +1455,7 @@ Templates:
 			3: Rock
 	Template@67:
 		Id: 67
-		Images: wc09.tem
+		Images: ra|bits/terrain-base/temperat/wc09.png
 		Size: 3,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1467,7 +1467,7 @@ Templates:
 			5: Rock
 	Template@68:
 		Id: 68
-		Images: wc10.tem
+		Images: ra|bits/terrain-base/temperat/wc10.png
 		Size: 2,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1477,7 +1477,7 @@ Templates:
 			3: Rock
 	Template@69:
 		Id: 69
-		Images: wc11.tem
+		Images: ra|bits/terrain-base/temperat/wc11.png
 		Size: 2,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1487,7 +1487,7 @@ Templates:
 			3: Rock
 	Template@70:
 		Id: 70
-		Images: wc12.tem
+		Images: ra|bits/terrain-base/temperat/wc12.png
 		Size: 2,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1497,7 +1497,7 @@ Templates:
 			3: Rock
 	Template@71:
 		Id: 71
-		Images: wc13.tem
+		Images: ra|bits/terrain-base/temperat/wc13.png
 		Size: 3,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1509,7 +1509,7 @@ Templates:
 			5: Clear
 	Template@72:
 		Id: 72
-		Images: wc14.tem
+		Images: ra|bits/terrain-base/temperat/wc14.png
 		Size: 2,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1519,7 +1519,7 @@ Templates:
 			3: Beach
 	Template@73:
 		Id: 73
-		Images: wc15.tem
+		Images: ra|bits/terrain-base/temperat/wc15.png
 		Size: 2,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1529,7 +1529,7 @@ Templates:
 			3: Rock
 	Template@74:
 		Id: 74
-		Images: wc16.tem
+		Images: ra|bits/terrain-base/temperat/wc16.png
 		Size: 2,3
 		Categories: Water Cliffs
 		Tiles:
@@ -1539,7 +1539,7 @@ Templates:
 			5: Rock
 	Template@75:
 		Id: 75
-		Images: wc17.tem
+		Images: ra|bits/terrain-base/temperat/wc17.png
 		Size: 2,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1549,7 +1549,7 @@ Templates:
 			3: Rock
 	Template@76:
 		Id: 76
-		Images: wc18.tem
+		Images: ra|bits/terrain-base/temperat/wc18.png
 		Size: 2,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1559,7 +1559,7 @@ Templates:
 			3: Rock
 	Template@77:
 		Id: 77
-		Images: wc19.tem
+		Images: ra|bits/terrain-base/temperat/wc19.png
 		Size: 2,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1569,7 +1569,7 @@ Templates:
 			3: Rock
 	Template@78:
 		Id: 78
-		Images: wc20.tem
+		Images: ra|bits/terrain-base/temperat/wc20.png
 		Size: 2,3
 		Categories: Water Cliffs
 		Tiles:
@@ -1580,7 +1580,7 @@ Templates:
 			5: Rough
 	Template@79:
 		Id: 79
-		Images: wc21.tem
+		Images: ra|bits/terrain-base/temperat/wc21.png
 		Size: 1,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1588,7 +1588,7 @@ Templates:
 			1: Rock
 	Template@80:
 		Id: 80
-		Images: wc22.tem
+		Images: ra|bits/terrain-base/temperat/wc22.png
 		Size: 2,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1598,7 +1598,7 @@ Templates:
 			3: Rock
 	Template@81:
 		Id: 81
-		Images: wc23.tem
+		Images: ra|bits/terrain-base/temperat/wc23.png
 		Size: 3,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1610,7 +1610,7 @@ Templates:
 			5: Water
 	Template@82:
 		Id: 82
-		Images: wc24.tem
+		Images: ra|bits/terrain-base/temperat/wc24.png
 		Size: 2,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1620,7 +1620,7 @@ Templates:
 			3: Rock
 	Template@83:
 		Id: 83
-		Images: wc25.tem
+		Images: ra|bits/terrain-base/temperat/wc25.png
 		Size: 2,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1630,7 +1630,7 @@ Templates:
 			3: Rock
 	Template@84:
 		Id: 84
-		Images: wc26.tem
+		Images: ra|bits/terrain-base/temperat/wc26.png
 		Size: 2,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1640,7 +1640,7 @@ Templates:
 			3: Rock
 	Template@85:
 		Id: 85
-		Images: wc27.tem
+		Images: ra|bits/terrain-base/temperat/wc27.png
 		Size: 3,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1652,7 +1652,7 @@ Templates:
 			5: Rock
 	Template@86:
 		Id: 86
-		Images: wc28.tem
+		Images: ra|bits/terrain-base/temperat/wc28.png
 		Size: 2,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1661,7 +1661,7 @@ Templates:
 			3: Rock
 	Template@87:
 		Id: 87
-		Images: wc29.tem
+		Images: ra|bits/terrain-base/temperat/wc29.png
 		Size: 2,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1671,7 +1671,7 @@ Templates:
 			3: Rock
 	Template@88:
 		Id: 88
-		Images: wc30.tem
+		Images: ra|bits/terrain-base/temperat/wc30.png
 		Size: 2,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1681,7 +1681,7 @@ Templates:
 			3: Rock
 	Template@89:
 		Id: 89
-		Images: wc31.tem
+		Images: ra|bits/terrain-base/temperat/wc31.png
 		Size: 2,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1691,7 +1691,7 @@ Templates:
 			3: Rock
 	Template@90:
 		Id: 90
-		Images: wc32.tem
+		Images: ra|bits/terrain-base/temperat/wc32.png
 		Size: 2,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1700,7 +1700,7 @@ Templates:
 			2: Water
 	Template@91:
 		Id: 91
-		Images: wc33.tem
+		Images: ra|bits/terrain-base/temperat/wc33.png
 		Size: 2,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1710,7 +1710,7 @@ Templates:
 			3: Rock
 	Template@92:
 		Id: 92
-		Images: wc34.tem
+		Images: ra|bits/terrain-base/temperat/wc34.png
 		Size: 2,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1720,7 +1720,7 @@ Templates:
 			3: Rock
 	Template@93:
 		Id: 93
-		Images: wc35.tem
+		Images: ra|bits/terrain-base/temperat/wc35.png
 		Size: 2,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1730,7 +1730,7 @@ Templates:
 			3: Rock
 	Template@94:
 		Id: 94
-		Images: wc36.tem
+		Images: ra|bits/terrain-base/temperat/wc36.png
 		Size: 2,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1740,7 +1740,7 @@ Templates:
 			3: Rock
 	Template@95:
 		Id: 95
-		Images: wc37.tem
+		Images: ra|bits/terrain-base/temperat/wc37.png
 		Size: 2,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1750,7 +1750,7 @@ Templates:
 			3: Rock
 	Template@96:
 		Id: 96
-		Images: wc38.tem
+		Images: ra|bits/terrain-base/temperat/wc38.png
 		Size: 2,2
 		Categories: Water Cliffs
 		Tiles:
@@ -1760,7 +1760,7 @@ Templates:
 			3: Rock
 	Template@173:
 		Id: 173
-		Images: d01.tem
+		Images: ra|bits/terrain-base/temperat/d01.png
 		Size: 2,2
 		Categories: Road
 		Tiles:
@@ -1769,7 +1769,7 @@ Templates:
 			3: Clear
 	Template@174:
 		Id: 174
-		Images: d02.tem
+		Images: ra|bits/terrain-base/temperat/d02.png
 		Size: 2,2
 		Categories: Road
 		Tiles:
@@ -1779,7 +1779,7 @@ Templates:
 			3: Clear
 	Template@175:
 		Id: 175
-		Images: d03.tem
+		Images: ra|bits/terrain-base/temperat/d03.png
 		Size: 1,2
 		Categories: Road
 		Tiles:
@@ -1787,7 +1787,7 @@ Templates:
 			1: Road
 	Template@176:
 		Id: 176
-		Images: d04.tem
+		Images: ra|bits/terrain-base/temperat/d04.png
 		Size: 2,2
 		Categories: Road
 		Tiles:
@@ -1796,7 +1796,7 @@ Templates:
 			3: Clear
 	Template@177:
 		Id: 177
-		Images: d05.tem
+		Images: ra|bits/terrain-base/temperat/d05.png
 		Size: 3,4
 		Categories: Road
 		Tiles:
@@ -1810,7 +1810,7 @@ Templates:
 			10: Road
 	Template@178:
 		Id: 178
-		Images: d06.tem
+		Images: ra|bits/terrain-base/temperat/d06.png
 		Size: 2,3
 		Categories: Road
 		Tiles:
@@ -1821,7 +1821,7 @@ Templates:
 			5: Clear
 	Template@179:
 		Id: 179
-		Images: d07.tem
+		Images: ra|bits/terrain-base/temperat/d07.png
 		Size: 3,2
 		Categories: Road
 		Tiles:
@@ -1832,7 +1832,7 @@ Templates:
 			5: Clear
 	Template@180:
 		Id: 180
-		Images: d08.tem
+		Images: ra|bits/terrain-base/temperat/d08.png
 		Size: 3,2
 		Categories: Road
 		Tiles:
@@ -1842,7 +1842,7 @@ Templates:
 			5: Clear
 	Template@181:
 		Id: 181
-		Images: d09.tem
+		Images: ra|bits/terrain-base/temperat/d09.png
 		Size: 4,3
 		Categories: Road
 		Tiles:
@@ -1858,7 +1858,7 @@ Templates:
 			11: Clear
 	Template@182:
 		Id: 182
-		Images: d10.tem
+		Images: ra|bits/terrain-base/temperat/d10.png
 		Size: 4,2
 		Categories: Road
 		Tiles:
@@ -1870,7 +1870,7 @@ Templates:
 			7: Road
 	Template@183:
 		Id: 183
-		Images: d11.tem
+		Images: ra|bits/terrain-base/temperat/d11.png
 		Size: 2,3
 		Categories: Road
 		Tiles:
@@ -1880,7 +1880,7 @@ Templates:
 			4: Clear
 	Template@184:
 		Id: 184
-		Images: d12.tem
+		Images: ra|bits/terrain-base/temperat/d12.png
 		Size: 2,2
 		Categories: Road
 		Tiles:
@@ -1889,7 +1889,7 @@ Templates:
 			3: Road
 	Template@185:
 		Id: 185
-		Images: d13.tem
+		Images: ra|bits/terrain-base/temperat/d13.png
 		Size: 4,3
 		Categories: Road
 		Tiles:
@@ -1904,7 +1904,7 @@ Templates:
 			11: Road
 	Template@186:
 		Id: 186
-		Images: d14.tem
+		Images: ra|bits/terrain-base/temperat/d14.png
 		Size: 3,3
 		Categories: Road
 		Tiles:
@@ -1918,7 +1918,7 @@ Templates:
 			8: Road
 	Template@187:
 		Id: 187
-		Images: d15.tem
+		Images: ra|bits/terrain-base/temperat/d15.png
 		Size: 3,3
 		Categories: Road
 		Tiles:
@@ -1932,7 +1932,7 @@ Templates:
 			7: Clear
 	Template@188:
 		Id: 188
-		Images: d16.tem
+		Images: ra|bits/terrain-base/temperat/d16.png
 		Size: 3,3
 		Categories: Road
 		Tiles:
@@ -1947,7 +1947,7 @@ Templates:
 			8: Rock
 	Template@189:
 		Id: 189
-		Images: d17.tem
+		Images: ra|bits/terrain-base/temperat/d17.png
 		Size: 3,2
 		Categories: Road
 		Tiles:
@@ -1959,7 +1959,7 @@ Templates:
 			5: Clear
 	Template@190:
 		Id: 190
-		Images: d18.tem
+		Images: ra|bits/terrain-base/temperat/d18.png
 		Size: 3,3
 		Categories: Road
 		Tiles:
@@ -1974,7 +1974,7 @@ Templates:
 			8: Rock
 	Template@191:
 		Id: 191
-		Images: d19.tem
+		Images: ra|bits/terrain-base/temperat/d19.png
 		Size: 3,3
 		Categories: Road
 		Tiles:
@@ -1989,7 +1989,7 @@ Templates:
 			8: Clear
 	Template@192:
 		Id: 192
-		Images: d20.tem
+		Images: ra|bits/terrain-base/temperat/d20.png
 		Size: 3,3
 		Categories: Road
 		Tiles:
@@ -2003,7 +2003,7 @@ Templates:
 			8: Road
 	Template@193:
 		Id: 193
-		Images: d21.tem
+		Images: ra|bits/terrain-base/temperat/d21.png
 		Size: 3,2
 		Categories: Road
 		Tiles:
@@ -2015,7 +2015,7 @@ Templates:
 			5: Rough
 	Template@194:
 		Id: 194
-		Images: d22.tem
+		Images: ra|bits/terrain-base/temperat/d22.png
 		Size: 3,3
 		Categories: Road
 		Tiles:
@@ -2028,7 +2028,7 @@ Templates:
 			8: Clear
 	Template@195:
 		Id: 195
-		Images: d23.tem
+		Images: ra|bits/terrain-base/temperat/d23.png
 		Size: 3,3
 		Categories: Road
 		Tiles:
@@ -2041,7 +2041,7 @@ Templates:
 			7: Road
 	Template@196:
 		Id: 196
-		Images: d24.tem
+		Images: ra|bits/terrain-base/temperat/d24.png
 		Size: 3,3
 		Categories: Road
 		Tiles:
@@ -2054,7 +2054,7 @@ Templates:
 			8: Road
 	Template@197:
 		Id: 197
-		Images: d25.tem
+		Images: ra|bits/terrain-base/temperat/d25.png
 		Size: 3,3
 		Categories: Road
 		Tiles:
@@ -2067,7 +2067,7 @@ Templates:
 			8: Road
 	Template@198:
 		Id: 198
-		Images: d26.tem
+		Images: ra|bits/terrain-base/temperat/d26.png
 		Size: 2,2
 		Categories: Road
 		Tiles:
@@ -2075,7 +2075,7 @@ Templates:
 			2: Road
 	Template@199:
 		Id: 199
-		Images: d27.tem
+		Images: ra|bits/terrain-base/temperat/d27.png
 		Size: 2,2
 		Categories: Road
 		Tiles:
@@ -2083,7 +2083,7 @@ Templates:
 			2: Road
 	Template@200:
 		Id: 200
-		Images: d28.tem
+		Images: ra|bits/terrain-base/temperat/d28.png
 		Size: 2,2
 		Categories: Road
 		Tiles:
@@ -2092,7 +2092,7 @@ Templates:
 			2: Rough
 	Template@201:
 		Id: 201
-		Images: d29.tem
+		Images: ra|bits/terrain-base/temperat/d29.png
 		Size: 2,2
 		Categories: Road
 		Tiles:
@@ -2101,7 +2101,7 @@ Templates:
 			2: Road
 	Template@202:
 		Id: 202
-		Images: d30.tem
+		Images: ra|bits/terrain-base/temperat/d30.png
 		Size: 2,2
 		Categories: Road
 		Tiles:
@@ -2110,7 +2110,7 @@ Templates:
 			2: Road
 	Template@203:
 		Id: 203
-		Images: d31.tem
+		Images: ra|bits/terrain-base/temperat/d31.png
 		Size: 2,2
 		Categories: Road
 		Tiles:
@@ -2119,7 +2119,7 @@ Templates:
 			3: Road
 	Template@204:
 		Id: 204
-		Images: d32.tem
+		Images: ra|bits/terrain-base/temperat/d32.png
 		Size: 2,2
 		Categories: Road
 		Tiles:
@@ -2128,7 +2128,7 @@ Templates:
 			3: Clear
 	Template@205:
 		Id: 205
-		Images: d33.tem
+		Images: ra|bits/terrain-base/temperat/d33.png
 		Size: 2,2
 		Categories: Road
 		Tiles:
@@ -2137,7 +2137,7 @@ Templates:
 			3: Road
 	Template@206:
 		Id: 206
-		Images: d34.tem
+		Images: ra|bits/terrain-base/temperat/d34.png
 		Size: 3,3
 		Categories: Road
 		Tiles:
@@ -2150,7 +2150,7 @@ Templates:
 			7: Road
 	Template@207:
 		Id: 207
-		Images: d35.tem
+		Images: ra|bits/terrain-base/temperat/d35.png
 		Size: 3,3
 		Categories: Road
 		Tiles:
@@ -2163,7 +2163,7 @@ Templates:
 			7: Road
 	Template@208:
 		Id: 208
-		Images: d36.tem
+		Images: ra|bits/terrain-base/temperat/d36.png
 		Size: 2,2
 		Categories: Road
 		Tiles:
@@ -2171,7 +2171,7 @@ Templates:
 			3: Road
 	Template@209:
 		Id: 209
-		Images: d37.tem
+		Images: ra|bits/terrain-base/temperat/d37.png
 		Size: 2,2
 		Categories: Road
 		Tiles:
@@ -2179,7 +2179,7 @@ Templates:
 			3: Road
 	Template@210:
 		Id: 210
-		Images: d38.tem
+		Images: ra|bits/terrain-base/temperat/d38.png
 		Size: 2,2
 		Categories: Road
 		Tiles:
@@ -2188,7 +2188,7 @@ Templates:
 			3: Road
 	Template@211:
 		Id: 211
-		Images: d39.tem
+		Images: ra|bits/terrain-base/temperat/d39.png
 		Size: 2,2
 		Categories: Road
 		Tiles:
@@ -2197,7 +2197,7 @@ Templates:
 			3: Road
 	Template@212:
 		Id: 212
-		Images: d40.tem
+		Images: ra|bits/terrain-base/temperat/d40.png
 		Size: 2,2
 		Categories: Road
 		Tiles:
@@ -2206,7 +2206,7 @@ Templates:
 			3: Road
 	Template@213:
 		Id: 213
-		Images: d41.tem
+		Images: ra|bits/terrain-base/temperat/d41.png
 		Size: 2,2
 		Categories: Road
 		Tiles:
@@ -2215,7 +2215,7 @@ Templates:
 			3: Road
 	Template@214:
 		Id: 214
-		Images: d42.tem
+		Images: ra|bits/terrain-base/temperat/d42.png
 		Size: 2,2
 		Categories: Road
 		Tiles:
@@ -2224,7 +2224,7 @@ Templates:
 			3: Road
 	Template@215:
 		Id: 215
-		Images: d43.tem
+		Images: ra|bits/terrain-base/temperat/d43.png
 		Size: 2,2
 		Categories: Road
 		Tiles:
@@ -2233,21 +2233,21 @@ Templates:
 			3: Road
 	Template@227:
 		Id: 227
-		Images: d44.tem
+		Images: ra|bits/terrain-base/temperat/d44.png
 		Size: 1,1
 		Categories: Road
 		Tiles:
 			0: Road
 	Template@228:
 		Id: 228
-		Images: d45.tem
+		Images: ra|bits/terrain-base/temperat/d45.png
 		Size: 1,1
 		Categories: Road
 		Tiles:
 			0: Road
 	Template@231:
 		Id: 231
-		Images: rc01.tem
+		Images: ra|bits/terrain-base/temperat/rc01.png
 		Size: 2,2
 		Categories: River
 		Tiles:
@@ -2257,7 +2257,7 @@ Templates:
 			3: Rock
 	Template@232:
 		Id: 232
-		Images: rc02.tem
+		Images: ra|bits/terrain-base/temperat/rc02.png
 		Size: 2,2
 		Categories: River
 		Tiles:
@@ -2267,7 +2267,7 @@ Templates:
 			3: Rock
 	Template@233:
 		Id: 233
-		Images: rc03.tem
+		Images: ra|bits/terrain-base/temperat/rc03.png
 		Size: 2,2
 		Categories: River
 		Tiles:
@@ -2277,7 +2277,7 @@ Templates:
 			3: Rock
 	Template@234:
 		Id: 234
-		Images: rc04.tem
+		Images: ra|bits/terrain-base/temperat/rc04.png
 		Size: 2,2
 		Categories: River
 		Tiles:
@@ -2287,7 +2287,7 @@ Templates:
 			3: Rock
 	Template@112:
 		Id: 112
-		Images: rv01.tem
+		Images: ra|bits/terrain-base/temperat/rv01.png
 		Size: 5,4
 		Categories: River
 		Tiles:
@@ -2307,7 +2307,7 @@ Templates:
 			17: Rough
 	Template@113:
 		Id: 113
-		Images: rv02.tem
+		Images: ra|bits/terrain-base/temperat/rv02.png
 		Size: 5,3
 		Categories: River
 		Tiles:
@@ -2326,7 +2326,7 @@ Templates:
 			12: Rock
 	Template@114:
 		Id: 114
-		Images: rv03.tem
+		Images: ra|bits/terrain-base/temperat/rv03.png
 		Size: 4,4
 		Categories: River
 		Tiles:
@@ -2345,7 +2345,7 @@ Templates:
 			15: Rock
 	Template@115:
 		Id: 115
-		Images: rv04.tem
+		Images: ra|bits/terrain-base/temperat/rv04.png
 		Size: 4,4
 		Categories: River
 		Tiles:
@@ -2363,7 +2363,7 @@ Templates:
 			14: Rock
 	Template@116:
 		Id: 116
-		Images: rv05.tem
+		Images: ra|bits/terrain-base/temperat/rv05.png
 		Size: 3,3
 		Categories: River
 		Tiles:
@@ -2378,7 +2378,7 @@ Templates:
 			8: Rock
 	Template@117:
 		Id: 117
-		Images: rv06.tem
+		Images: ra|bits/terrain-base/temperat/rv06.png
 		Size: 3,2
 		Categories: River
 		Tiles:
@@ -2390,7 +2390,7 @@ Templates:
 			5: Rock
 	Template@118:
 		Id: 118
-		Images: rv07.tem
+		Images: ra|bits/terrain-base/temperat/rv07.png
 		Size: 3,2
 		Categories: River
 		Tiles:
@@ -2402,7 +2402,7 @@ Templates:
 			5: River
 	Template@119:
 		Id: 119
-		Images: rv08.tem
+		Images: ra|bits/terrain-base/temperat/rv08.png
 		Size: 2,2
 		Categories: River
 		Tiles:
@@ -2412,7 +2412,7 @@ Templates:
 			3: River
 	Template@120:
 		Id: 120
-		Images: rv09.tem
+		Images: ra|bits/terrain-base/temperat/rv09.png
 		Size: 2,2
 		Categories: River
 		Tiles:
@@ -2422,7 +2422,7 @@ Templates:
 			3: River
 	Template@121:
 		Id: 121
-		Images: rv10.tem
+		Images: ra|bits/terrain-base/temperat/rv10.png
 		Size: 2,2
 		Categories: River
 		Tiles:
@@ -2432,7 +2432,7 @@ Templates:
 			3: River
 	Template@122:
 		Id: 122
-		Images: rv11.tem
+		Images: ra|bits/terrain-base/temperat/rv11.png
 		Size: 2,2
 		Categories: River
 		Tiles:
@@ -2442,7 +2442,7 @@ Templates:
 			3: Rock
 	Template@123:
 		Id: 123
-		Images: rv12.tem
+		Images: ra|bits/terrain-base/temperat/rv12.png
 		Size: 3,4
 		Categories: River
 		Tiles:
@@ -2460,7 +2460,7 @@ Templates:
 			11: Rock
 	Template@124:
 		Id: 124
-		Images: rv13.tem
+		Images: ra|bits/terrain-base/temperat/rv13.png
 		Size: 4,4
 		Categories: River
 		Tiles:
@@ -2480,7 +2480,7 @@ Templates:
 			15: Rough
 	Template@229:
 		Id: 229
-		Images: rv14.tem
+		Images: ra|bits/terrain-base/temperat/rv14.png
 		Size: 1,2
 		Categories: River
 		Tiles:
@@ -2488,7 +2488,7 @@ Templates:
 			1: River
 	Template@230:
 		Id: 230
-		Images: rv15.tem
+		Images: ra|bits/terrain-base/temperat/rv15.png
 		Size: 2,1
 		Categories: River
 		Tiles:
@@ -2496,7 +2496,7 @@ Templates:
 			1: River
 	Template@235:
 		Id: 235
-		Images: br1a.tem
+		Images: ra|bits/terrain-base/temperat/br1a.png
 		Size: 4,3
 		Categories: Bridge
 		Tiles:
@@ -2511,7 +2511,7 @@ Templates:
 			11: Rock
 	Template@236:
 		Id: 236
-		Images: br1b.tem
+		Images: ra|bits/terrain-base/temperat/br1b.png
 		Size: 4,3
 		Categories: Bridge
 		Tiles:
@@ -2526,7 +2526,7 @@ Templates:
 			11: Rock
 	Template@237:
 		Id: 237
-		Images: br1c.tem
+		Images: ra|bits/terrain-base/temperat/br1c.png
 		Size: 4,3
 		Categories: Bridge
 		Tiles:
@@ -2541,7 +2541,7 @@ Templates:
 			11: Rock
 	Template@238:
 		Id: 238
-		Images: br2a.tem
+		Images: ra|bits/terrain-base/temperat/br2a.png
 		Size: 5,3
 		Categories: Bridge
 		Tiles:
@@ -2557,7 +2557,7 @@ Templates:
 			13: Rock
 	Template@239:
 		Id: 239
-		Images: br2b.tem
+		Images: ra|bits/terrain-base/temperat/br2b.png
 		Size: 5,3
 		Categories: Bridge
 		Tiles:
@@ -2573,7 +2573,7 @@ Templates:
 			13: Rock
 	Template@240:
 		Id: 240
-		Images: br2c.tem
+		Images: ra|bits/terrain-base/temperat/br2c.png
 		Size: 5,3
 		Categories: Bridge
 		Tiles:
@@ -2589,7 +2589,7 @@ Templates:
 			13: Rock
 	Template@241:
 		Id: 241
-		Images: br3a.tem
+		Images: ra|bits/terrain-base/temperat/br3a.png
 		Size: 4,2
 		Categories: Bridge
 		Tiles:
@@ -2600,7 +2600,7 @@ Templates:
 			7: Rock
 	Template@242:
 		Id: 242
-		Images: br3b.tem
+		Images: ra|bits/terrain-base/temperat/br3b.png
 		Size: 4,2
 		Categories: Bridge
 		Tiles:
@@ -2611,7 +2611,7 @@ Templates:
 			7: Rock
 	Template@243:
 		Id: 243
-		Images: br3c.tem
+		Images: ra|bits/terrain-base/temperat/br3c.png
 		Size: 4,2
 		Categories: Bridge
 		Tiles:
@@ -2622,7 +2622,7 @@ Templates:
 			7: Rock
 	Template@244:
 		Id: 244
-		Images: br3d.tem
+		Images: ra|bits/terrain-base/temperat/br3d.png
 		Size: 4,2
 		Categories: Bridge
 		Tiles:
@@ -2633,7 +2633,7 @@ Templates:
 			7: River
 	Template@245:
 		Id: 245
-		Images: br3e.tem
+		Images: ra|bits/terrain-base/temperat/br3e.png
 		Size: 4,2
 		Categories: Bridge
 		Tiles:
@@ -2644,7 +2644,7 @@ Templates:
 			7: Water
 	Template@246:
 		Id: 246
-		Images: br3f.tem
+		Images: ra|bits/terrain-base/temperat/br3f.png
 		Size: 4,2
 		Categories: Bridge
 		Tiles:
@@ -2655,7 +2655,7 @@ Templates:
 			7: Water
 	Template@380:
 		Id: 380
-		Images: br1x.tem
+		Images: ra|bits/terrain-base/temperat/br1x.png
 		Size: 5,3
 		Categories: Bridge
 		Tiles:
@@ -2666,7 +2666,7 @@ Templates:
 			14: Water
 	Template@381:
 		Id: 381
-		Images: br2x.tem
+		Images: ra|bits/terrain-base/temperat/br2x.png
 		Size: 5,1
 		Categories: Bridge
 		Tiles:
@@ -2674,7 +2674,7 @@ Templates:
 			4: Beach
 	Template@131:
 		Id: 131
-		Images: bridge1.tem
+		Images: ra|bits/terrain-base/temperat/bridge1.png
 		Size: 5,3
 		Categories: Bridge
 		Tiles:
@@ -2690,7 +2690,7 @@ Templates:
 			12: Rock
 	Template@132:
 		Id: 132
-		Images: bridge1d.tem
+		Images: ra|bits/terrain-base/temperat/bridge1d.png
 		Size: 5,3
 		Categories: Bridge
 		Tiles:
@@ -2706,7 +2706,7 @@ Templates:
 			12: Rock
 	Template@378:
 		Id: 378
-		Images: bridge1h.tem
+		Images: ra|bits/terrain-base/temperat/bridge1h.png
 		Size: 5,3
 		Categories: Bridge
 		Tiles:
@@ -2722,7 +2722,7 @@ Templates:
 			12: Rough
 	Template@382:
 		Id: 382
-		Images: bridge1x.tem
+		Images: ra|bits/terrain-base/temperat/bridge1x.png
 		Size: 5,4
 		Categories: Bridge
 		Tiles:
@@ -2736,7 +2736,7 @@ Templates:
 			19: Rock
 	Template@133:
 		Id: 133
-		Images: bridge2.tem
+		Images: ra|bits/terrain-base/temperat/bridge2.png
 		Size: 5,2
 		Categories: Bridge
 		Tiles:
@@ -2751,7 +2751,7 @@ Templates:
 			9: Rock
 	Template@134:
 		Id: 134
-		Images: bridge2d.tem
+		Images: ra|bits/terrain-base/temperat/bridge2d.png
 		Size: 5,2
 		Categories: Bridge
 		Tiles:
@@ -2766,7 +2766,7 @@ Templates:
 			9: Rock
 	Template@379:
 		Id: 379
-		Images: bridge2h.tem
+		Images: ra|bits/terrain-base/temperat/bridge2h.png
 		Size: 5,2
 		Categories: Bridge
 		Tiles:
@@ -2781,7 +2781,7 @@ Templates:
 			9: Rock
 	Template@383:
 		Id: 383
-		Images: bridge2x.tem
+		Images: ra|bits/terrain-base/temperat/bridge2x.png
 		Size: 5,5
 		Categories: Bridge
 		Tiles:
@@ -2800,7 +2800,7 @@ Templates:
 			24: Bridge
 	Template@247:
 		Id: 247
-		Images: f01.tem
+		Images: ra|bits/terrain-base/temperat/f01.png
 		Size: 3,3
 		Categories: Bridge
 		Tiles:
@@ -2815,7 +2815,7 @@ Templates:
 			8: Beach
 	Template@248:
 		Id: 248
-		Images: f02.tem
+		Images: ra|bits/terrain-base/temperat/f02.png
 		Size: 3,3
 		Categories: Bridge
 		Tiles:
@@ -2830,7 +2830,7 @@ Templates:
 			8: Beach
 	Template@249:
 		Id: 249
-		Images: f03.tem
+		Images: ra|bits/terrain-base/temperat/f03.png
 		Size: 3,3
 		Categories: Bridge
 		Tiles:
@@ -2845,7 +2845,7 @@ Templates:
 			8: Clear
 	Template@250:
 		Id: 250
-		Images: f04.tem
+		Images: ra|bits/terrain-base/temperat/f04.png
 		Size: 3,3
 		Categories: Bridge
 		Tiles:
@@ -2860,7 +2860,7 @@ Templates:
 			8: Beach
 	Template@251:
 		Id: 251
-		Images: f05.tem
+		Images: ra|bits/terrain-base/temperat/f05.png
 		Size: 3,3
 		Categories: Bridge
 		Tiles:
@@ -2875,7 +2875,7 @@ Templates:
 			8: Beach
 	Template@252:
 		Id: 252
-		Images: f06.tem
+		Images: ra|bits/terrain-base/temperat/f06.png
 		Size: 3,3
 		Categories: Bridge
 		Tiles:
@@ -2890,7 +2890,7 @@ Templates:
 			8: Clear
 	Template@129:
 		Id: 129
-		Images: ford1.tem
+		Images: ra|bits/terrain-base/temperat/ford1.png
 		Size: 3,3
 		Categories: Bridge
 		Tiles:
@@ -2905,7 +2905,7 @@ Templates:
 			8: Rough
 	Template@130:
 		Id: 130
-		Images: ford2.tem
+		Images: ra|bits/terrain-base/temperat/ford2.png
 		Size: 3,3
 		Categories: Bridge
 		Tiles:
@@ -2920,7 +2920,7 @@ Templates:
 			8: Clear
 	Template@125:
 		Id: 125
-		Images: falls1.tem
+		Images: ra|bits/terrain-base/temperat/falls1.png
 		Size: 3,3
 		Categories: River
 		Tiles:
@@ -2935,7 +2935,7 @@ Templates:
 			8: Rock
 	Template@126:
 		Id: 126
-		Images: falls1a.tem
+		Images: ra|bits/terrain-base/temperat/falls1a.png
 		Size: 3,3
 		Categories: Water Cliffs
 		Tiles:
@@ -2950,7 +2950,7 @@ Templates:
 			8: Rock
 	Template@127:
 		Id: 127
-		Images: falls2.tem
+		Images: ra|bits/terrain-base/temperat/falls2.png
 		Size: 3,2
 		Categories: River
 		Tiles:
@@ -2962,7 +2962,7 @@ Templates:
 			5: Rock
 	Template@128:
 		Id: 128
-		Images: falls2a.tem
+		Images: ra|bits/terrain-base/temperat/falls2a.png
 		Size: 3,2
 		Categories: Water Cliffs
 		Tiles:
@@ -2974,14 +2974,14 @@ Templates:
 			5: River
 	Template@97:
 		Id: 97
-		Images: b1.tem
+		Images: ra|bits/terrain-base/temperat/b1.png
 		Size: 1,1
 		Categories: Debris
 		Tiles:
 			0: Rock
 	Template@98:
 		Id: 98
-		Images: b2.tem
+		Images: ra|bits/terrain-base/temperat/b2.png
 		Size: 2,1
 		Categories: Debris
 		Tiles:
@@ -2989,7 +2989,7 @@ Templates:
 			1: Rock
 	Template@99:
 		Id: 99
-		Images: b3.tem
+		Images: ra|bits/terrain-base/temperat/b3.png
 		Size: 3,1
 		Categories: Debris
 		Tiles:
@@ -2998,56 +2998,56 @@ Templates:
 			2: Rock
 	Template@216:
 		Id: 216
-		Images: rf01.tem
+		Images: ra|bits/terrain-base/temperat/rf01.png
 		Size: 1,1
 		Categories: Debris
 		Tiles:
 			0: Rock
 	Template@217:
 		Id: 217
-		Images: rf02.tem
+		Images: ra|bits/terrain-base/temperat/rf02.png
 		Size: 1,1
 		Categories: Debris
 		Tiles:
 			0: Rock
 	Template@218:
 		Id: 218
-		Images: rf03.tem
+		Images: ra|bits/terrain-base/temperat/rf03.png
 		Size: 1,1
 		Categories: Debris
 		Tiles:
 			0: Rock
 	Template@219:
 		Id: 219
-		Images: rf04.tem
+		Images: ra|bits/terrain-base/temperat/rf04.png
 		Size: 1,1
 		Categories: Debris
 		Tiles:
 			0: Rock
 	Template@220:
 		Id: 220
-		Images: rf05.tem
+		Images: ra|bits/terrain-base/temperat/rf05.png
 		Size: 1,1
 		Categories: Debris
 		Tiles:
 			0: Rock
 	Template@221:
 		Id: 221
-		Images: rf06.tem
+		Images: ra|bits/terrain-base/temperat/rf06.png
 		Size: 1,1
 		Categories: Debris
 		Tiles:
 			0: Rock
 	Template@222:
 		Id: 222
-		Images: rf07.tem
+		Images: ra|bits/terrain-base/temperat/rf07.png
 		Size: 1,1
 		Categories: Debris
 		Tiles:
 			0: Rock
 	Template@223:
 		Id: 223
-		Images: rf08.tem
+		Images: ra|bits/terrain-base/temperat/rf08.png
 		Size: 1,2
 		Categories: Debris
 		Tiles:
@@ -3055,7 +3055,7 @@ Templates:
 			1: Rock
 	Template@224:
 		Id: 224
-		Images: rf09.tem
+		Images: ra|bits/terrain-base/temperat/rf09.png
 		Size: 1,2
 		Categories: Debris
 		Tiles:
@@ -3063,7 +3063,7 @@ Templates:
 			1: Rock
 	Template@225:
 		Id: 225
-		Images: rf10.tem
+		Images: ra|bits/terrain-base/temperat/rf10.png
 		Size: 2,1
 		Categories: Debris
 		Tiles:
@@ -3071,7 +3071,7 @@ Templates:
 			1: Rough
 	Template@226:
 		Id: 226
-		Images: rf11.tem
+		Images: ra|bits/terrain-base/temperat/rf11.png
 		Size: 2,1
 		Categories: Debris
 		Tiles:
@@ -3079,35 +3079,35 @@ Templates:
 			1: Rock
 	Template@103:
 		Id: 103
-		Images: p01.tem
+		Images: ra|bits/terrain-base/temperat/p01.png
 		Size: 1,1
 		Categories: Debris
 		Tiles:
 			0: Rock
 	Template@104:
 		Id: 104
-		Images: p02.tem
+		Images: ra|bits/terrain-base/temperat/p02.png
 		Size: 1,1
 		Categories: Debris
 		Tiles:
 			0: Rock
 	Template@105:
 		Id: 105
-		Images: p03.tem
+		Images: ra|bits/terrain-base/temperat/p03.png
 		Size: 1,1
 		Categories: Debris
 		Tiles:
 			0: Rock
 	Template@106:
 		Id: 106
-		Images: p04.tem
+		Images: ra|bits/terrain-base/temperat/p04.png
 		Size: 1,1
 		Categories: Debris
 		Tiles:
 			0: Rock
 	Template@107:
 		Id: 107
-		Images: p07.tem
+		Images: ra|bits/terrain-base/temperat/p07.png
 		Size: 4,2
 		Categories: Debris
 		Tiles:
@@ -3121,7 +3121,7 @@ Templates:
 			7: Clear
 	Template@108:
 		Id: 108
-		Images: p08.tem
+		Images: ra|bits/terrain-base/temperat/p08.png
 		Size: 3,2
 		Categories: Debris
 		Tiles:
@@ -3133,7 +3133,7 @@ Templates:
 			5: Clear
 	Template@109:
 		Id: 109
-		Images: p13.tem
+		Images: ra|bits/terrain-base/temperat/p13.png
 		Size: 3,2
 		Categories: Debris
 		Tiles:
@@ -3145,7 +3145,7 @@ Templates:
 			5: Rock
 	Template@110:
 		Id: 110
-		Images: p14.tem
+		Images: ra|bits/terrain-base/temperat/p14.png
 		Size: 2,1
 		Categories: Debris
 		Tiles:
@@ -3153,14 +3153,14 @@ Templates:
 			1: Rock
 	Template@500:
 		Id: 500
-		Images: sh57.tem
+		Images: ra|bits/terrain-base/temperat/sh57.png
 		Size: 1,1
 		Categories: Debris
 		Tiles:
 			0: Rock
 	Template@502:
 		Id: 502
-		Images: sh58.tem
+		Images: ra|bits/terrain-base/temperat/sh58.png
 		Size: 2,1
 		Categories: Debris
 		Tiles:
@@ -3168,7 +3168,7 @@ Templates:
 			1: Rock
 	Template@503:
 		Id: 503
-		Images: sh59.tem
+		Images: ra|bits/terrain-base/temperat/sh59.png
 		Size: 2,1
 		Categories: Debris
 		Tiles:
@@ -3176,7 +3176,7 @@ Templates:
 			1: Rock
 	Template@504:
 		Id: 504
-		Images: sh60.tem
+		Images: ra|bits/terrain-base/temperat/sh60.png
 		Size: 1,2
 		Categories: Debris
 		Tiles:
@@ -3184,21 +3184,21 @@ Templates:
 			1: Rock
 	Template@505:
 		Id: 505
-		Images: sh61.tem
+		Images: ra|bits/terrain-base/temperat/sh61.png
 		Size: 1,1
 		Categories: Debris
 		Tiles:
 			0: Rock
 	Template@506:
 		Id: 506
-		Images: sh62.tem
+		Images: ra|bits/terrain-base/temperat/sh62.png
 		Size: 1,1
 		Categories: Debris
 		Tiles:
 			0: Rock
 	Template@507:
 		Id: 507
-		Images: sh63.tem
+		Images: ra|bits/terrain-base/temperat/sh63.png
 		Size: 2,2
 		Categories: Debris
 		Tiles:
@@ -3208,14 +3208,14 @@ Templates:
 			3: Rock
 	Template@508:
 		Id: 508
-		Images: sh64.tem
+		Images: ra|bits/terrain-base/temperat/sh64.png
 		Size: 1,1
 		Categories: Debris
 		Tiles:
 			0: Rock
 	Template@519:
 		Id: 519
-		Images: sbridge1x.tem
+		Images: ra|bits/terrain-base/temperat/sbridge1x.png
 		Size: 3,4
 		Categories: Bridge
 		Tiles:
@@ -3227,7 +3227,7 @@ Templates:
 			11: Clear
 	Template@520:
 		Id: 520
-		Images: sbridge1.tem
+		Images: ra|bits/terrain-base/temperat/sbridge1.png
 		Size: 3,2
 		Categories: Bridge
 		Tiles:
@@ -3239,7 +3239,7 @@ Templates:
 			5: River
 	Template@521:
 		Id: 521
-		Images: sbridge1h.tem
+		Images: ra|bits/terrain-base/temperat/sbridge1h.png
 		Size: 3,2
 		Categories: Bridge
 		Tiles:
@@ -3251,7 +3251,7 @@ Templates:
 			5: River
 	Template@522:
 		Id: 522
-		Images: sbridge1d.tem
+		Images: ra|bits/terrain-base/temperat/sbridge1d.png
 		Size: 3,2
 		Categories: Bridge
 		Tiles:
@@ -3263,7 +3263,7 @@ Templates:
 			5: River
 	Template@523:
 		Id: 523
-		Images: sbridge3.tem
+		Images: ra|bits/terrain-base/temperat/sbridge3.png
 		Size: 4,2
 		Categories: Bridge
 		Tiles:
@@ -3276,7 +3276,7 @@ Templates:
 			7: River
 	Template@524:
 		Id: 524
-		Images: sbridge3h.tem
+		Images: ra|bits/terrain-base/temperat/sbridge3h.png
 		Size: 4,2
 		Categories: Bridge
 		Tiles:
@@ -3289,7 +3289,7 @@ Templates:
 			7: River
 	Template@525:
 		Id: 525
-		Images: sbridge3d.tem
+		Images: ra|bits/terrain-base/temperat/sbridge3d.png
 		Size: 4,2
 		Categories: Bridge
 		Tiles:
@@ -3302,7 +3302,7 @@ Templates:
 			7: River
 	Template@526:
 		Id: 526
-		Images: sbridge3x.tem
+		Images: ra|bits/terrain-base/temperat/sbridge3x.png
 		Size: 4,4
 		Categories: Bridge
 		Tiles:
@@ -3316,7 +3316,7 @@ Templates:
 			15: River
 	Template@527:
 		Id: 527
-		Images: sbridge4.tem
+		Images: ra|bits/terrain-base/temperat/sbridge4.png
 		Size: 4,2
 		Categories: Bridge
 		Tiles:
@@ -3329,7 +3329,7 @@ Templates:
 			7: Rock
 	Template@528:
 		Id: 528
-		Images: sbridge4h.tem
+		Images: ra|bits/terrain-base/temperat/sbridge4h.png
 		Size: 4,2
 		Categories: Bridge
 		Tiles:
@@ -3342,7 +3342,7 @@ Templates:
 			7: Rock
 	Template@529:
 		Id: 529
-		Images: sbridge4d.tem
+		Images: ra|bits/terrain-base/temperat/sbridge4d.png
 		Size: 4,2
 		Categories: Bridge
 		Tiles:
@@ -3355,7 +3355,7 @@ Templates:
 			7: Rock
 	Template@530:
 		Id: 530
-		Images: sbridge4x.tem
+		Images: ra|bits/terrain-base/temperat/sbridge4x.png
 		Size: 5,5
 		Categories: Bridge
 		Tiles:
@@ -3375,7 +3375,7 @@ Templates:
 			24: Road
 	Template@531:
 		Id: 531
-		Images: sbridge2.tem
+		Images: ra|bits/terrain-base/temperat/sbridge2.png
 		Size: 2,3
 		Categories: Bridge
 		Tiles:
@@ -3387,7 +3387,7 @@ Templates:
 			5: Rock
 	Template@532:
 		Id: 532
-		Images: sbridge2h.tem
+		Images: ra|bits/terrain-base/temperat/sbridge2h.png
 		Size: 2,3
 		Categories: Bridge
 		Tiles:
@@ -3399,7 +3399,7 @@ Templates:
 			5: Rock
 	Template@533:
 		Id: 533
-		Images: sbridge2d.tem
+		Images: ra|bits/terrain-base/temperat/sbridge2d.png
 		Size: 2,3
 		Categories: Bridge
 		Tiles:
@@ -3411,7 +3411,7 @@ Templates:
 			5: River
 	Template@534:
 		Id: 534
-		Images: sbridge2x.tem
+		Images: ra|bits/terrain-base/temperat/sbridge2x.png
 		Size: 4,4
 		Categories: Bridge
 		Tiles:
@@ -3427,7 +3427,7 @@ Templates:
 			15: Clear
 	Template@550:
 		Id: 550
-		Images: sccnr.tem
+		Images: ra|bits/terrain-base/temperat/sccnr.png
 		Size: 2,3
 		Categories: Water Cliffs
 		Tiles:
@@ -3439,7 +3439,7 @@ Templates:
 			5: Rock
 	Template@551:
 		Id: 551
-		Images: sccnl.tem
+		Images: ra|bits/terrain-base/temperat/sccnl.png
 		Size: 2,3
 		Categories: Water Cliffs
 		Tiles:
@@ -3451,7 +3451,7 @@ Templates:
 			5: Rock
 	Template@552:
 		Id: 552
-		Images: sccsr.tem
+		Images: ra|bits/terrain-base/temperat/sccsr.png
 		Size: 2,3
 		Categories: Water Cliffs
 		Tiles:
@@ -3463,7 +3463,7 @@ Templates:
 			5: Rock
 	Template@553:
 		Id: 553
-		Images: sccsl.tem
+		Images: ra|bits/terrain-base/temperat/sccsl.png
 		Size: 2,3
 		Categories: Water Cliffs
 		Tiles:
@@ -3475,7 +3475,7 @@ Templates:
 			5: Rock
 	Template@554:
 		Id: 554
-		Images: sccln.tem
+		Images: ra|bits/terrain-base/temperat/sccln.png
 		Size: 3,2
 		Categories: Water Cliffs
 		Tiles:
@@ -3487,7 +3487,7 @@ Templates:
 			5: Rock
 	Template@555:
 		Id: 555
-		Images: sccls.tem
+		Images: ra|bits/terrain-base/temperat/sccls.png
 		Size: 3,2
 		Categories: Water Cliffs
 		Tiles:
@@ -3499,7 +3499,7 @@ Templates:
 			5: Rock
 	Template@556:
 		Id: 556
-		Images: sccrn.tem
+		Images: ra|bits/terrain-base/temperat/sccrn.png
 		Size: 3,2
 		Categories: Water Cliffs
 		Tiles:
@@ -3511,7 +3511,7 @@ Templates:
 			5: Rock
 	Template@557:
 		Id: 557
-		Images: sccrs.tem
+		Images: ra|bits/terrain-base/temperat/sccrs.png
 		Size: 3,2
 		Categories: Water Cliffs
 		Tiles:
@@ -3523,70 +3523,70 @@ Templates:
 			5: Rock
 	Template@580:
 		Id: 580
-		Images: deca.tem
+		Images: ra|bits/terrain-base/temperat/deca.png
 		Size: 1,1
 		Categories: Debris
 		Tiles:
 			0: Rough
 	Template@581:
 		Id: 581
-		Images: decb.tem
+		Images: ra|bits/terrain-base/temperat/decb.png
 		Size: 1,1
 		Categories: Debris
 		Tiles:
 			0: Rough
 	Template@582:
 		Id: 582
-		Images: decc.tem
+		Images: ra|bits/terrain-base/temperat/decc.png
 		Size: 1,1
 		Categories: Debris
 		Tiles:
 			0: Rough
 	Template@583:
 		Id: 583
-		Images: decc.tem
+		Images: ra|bits/terrain-base/temperat/decc.png
 		Size: 1,1
 		Categories: Debris
 		Tiles:
 			0: Rough
 	Template@584:
 		Id: 584
-		Images: decd.tem
+		Images: ra|bits/terrain-base/temperat/decd.png
 		Size: 1,1
 		Categories: Debris
 		Tiles:
 			0: Rough
 	Template@585:
 		Id: 585
-		Images: dece.tem
+		Images: ra|bits/terrain-base/temperat/dece.png
 		Size: 1,1
 		Categories: Debris
 		Tiles:
 			0: Rough
 	Template@586:
 		Id: 586
-		Images: decf.tem
+		Images: ra|bits/terrain-base/temperat/decf.png
 		Size: 1,1
 		Categories: Debris
 		Tiles:
 			0: Rough
 	Template@587:
 		Id: 587
-		Images: decg.tem
+		Images: ra|bits/terrain-base/temperat/decg.png
 		Size: 1,1
 		Categories: Debris
 		Tiles:
 			0: Rough
 	Template@588:
 		Id: 588
-		Images: dech.tem
+		Images: ra|bits/terrain-base/temperat/dech.png
 		Size: 1,1
 		Categories: Debris
 		Tiles:
 			0: Rough
 	Template@590:
 		Id: 590
-		Images: fjord1.tem
+		Images: ra|bits/terrain-base/temperat/fjord1.png
 		Size: 1,2
 		Categories: Bridge
 		Tiles:
@@ -3594,7 +3594,7 @@ Templates:
 			1: Rough
 	Template@591:
 		Id: 591
-		Images: fjord2.tem
+		Images: ra|bits/terrain-base/temperat/fjord2.png
 		Size: 2,1
 		Categories: Bridge
 		Tiles:
@@ -3602,7 +3602,7 @@ Templates:
 			1: Rough
 	Template@400:
 		Id: 400
-		Images: hill01.tem
+		Images: ra|bits/terrain-base/temperat/hill01.png
 		Size: 4,3
 		Categories: Debris
 		Tiles:
@@ -3620,7 +3620,7 @@ Templates:
 			11: Clear
 	Template@401:
 		Id: 401
-		Images: cliffsl1.tem
+		Images: ra|bits/terrain-base/temperat/cliffsl1.png
 		Size: 1,2
 		Categories: Cliffs
 		Tiles:
@@ -3628,7 +3628,7 @@ Templates:
 			1: Rock
 	Template@402:
 		Id: 402
-		Images: cliffsl2.tem
+		Images: ra|bits/terrain-base/temperat/cliffsl2.png
 		Size: 1,2
 		Categories: Cliffs
 		Tiles:
@@ -3636,7 +3636,7 @@ Templates:
 			1: Rock
 	Template@403:
 		Id: 403
-		Images: cliffsl3.tem
+		Images: ra|bits/terrain-base/temperat/cliffsl3.png
 		Size: 2,1
 		Categories: Cliffs
 		Tiles:
@@ -3644,7 +3644,7 @@ Templates:
 			1: Rock
 	Template@404:
 		Id: 404
-		Images: cliffsl4.tem
+		Images: ra|bits/terrain-base/temperat/cliffsl4.png
 		Size: 2,1
 		Categories: Cliffs
 		Tiles:
@@ -3652,7 +3652,7 @@ Templates:
 			1: Rock
 	Template@405:
 		Id: 405
-		Images: cliffsw1.tem
+		Images: ra|bits/terrain-base/temperat/cliffsw1.png
 		Size: 1,2
 		Categories: Water Cliffs
 		Tiles:
@@ -3660,7 +3660,7 @@ Templates:
 			1: Rock
 	Template@406:
 		Id: 406
-		Images: cliffsw2.tem
+		Images: ra|bits/terrain-base/temperat/cliffsw2.png
 		Size: 1,2
 		Categories: Water Cliffs
 		Tiles:
@@ -3668,7 +3668,7 @@ Templates:
 			1: Rock
 	Template@407:
 		Id: 407
-		Images: cliffsw3.tem
+		Images: ra|bits/terrain-base/temperat/cliffsw3.png
 		Size: 2,1
 		Categories: Water Cliffs
 		Tiles:
@@ -3676,7 +3676,7 @@ Templates:
 			1: Rock
 	Template@408:
 		Id: 408
-		Images: cliffsw4.tem
+		Images: ra|bits/terrain-base/temperat/cliffsw4.png
 		Size: 2,1
 		Categories: Water Cliffs
 		Tiles:

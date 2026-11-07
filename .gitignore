@@ -92,3 +92,12 @@ __pycache__/
 
 # Downloaded Sketchfab robot bodies (raw glTF; prepared copies go to artsrc/units/soldiers/upload)
 artsrc/units/soldiers/sketchfab/
+
+# Exports of the original Red Alert art (IDEA-31): kept locally as references for the art pipeline, never published.
+# Regenerate with artsrc/env-inventory/export_classic.py (needs the installed game content).
+/artsrc/env-inventory/classic/
+/artsrc/env-inventory/classic-terrain/
+/artsrc/env-inventory/sheets/
+/artsrc/buildings/src/*-classic.png
+# Third-party reference pictures (not ours to publish)
+/artsrc/units/jets/reference/

@@ -18,3 +18,10 @@ Licence: Creative Commons Attribution 3.0 (credit in `mods/rapx/CREDITS`). Drawn
 | invisible.svg | Delapouite | Hide-map crate effect |
 | edged-shield.svg | Lorc | Invulnerability crate effect |
 | rocket.svg | Lorc | GPS satellite launch |
+| spanner.svg | Lorc | Repair icon |
+| power-lightning.svg | Lorc | Power-off icon |
+| tank.svg, anchor.svg, drop.svg, hospital-cross.svg, biohazard.svg, flying-flag.svg | Lorc | GPS dots |
+| helicopter.svg, truck.svg, house.svg, radio-tower.svg | Delapouite | GPS dots |
+| jet-fighter.svg | Delapouite | GPS dot (plane) |
+| video-camera.svg | Delapouite | Map editor camera marker |
+| plain-circle.svg | Delapouite | (downloaded, not used) |

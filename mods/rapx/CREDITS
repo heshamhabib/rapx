@@ -826,9 +826,11 @@ Icons
 
 * Support power icons, crate pickup effects and the GPS launch rocket use symbols from game-icons.net
     (https://game-icons.net): "Mushroom cloud", "Energy shield", "Teleport", "Parachute", "Satellite",
-    "Bombing run", "Radar sweep", "World", "Edged shield" and "Rocket" by Lorc, and "Jet fighter" and
-    "Invisible" by Delapouite, licensed under Creative Commons Attribution 3.0
-    (http://creativecommons.org/licenses/by/3.0/). Recoloured and given glow effects.
+    "Bombing run", "Radar sweep", "World", "Edged shield", "Rocket", "Spanner", "Power lightning", "Tank",
+    "Anchor", "Drop", "Hospital cross", "Biohazard" and "Flying flag" by Lorc, and "Jet fighter", "Invisible",
+    "Video camera", "Helicopter", "Truck", "House" and "Radio tower" by Delapouite, licensed under Creative
+    Commons Attribution 3.0 (http://creativecommons.org/licenses/by/3.0/). Recoloured and given glow effects;
+    also used for the power-off and repair icons, GPS dots, the heal crate effect and editor markers.
 
 Sounds
 

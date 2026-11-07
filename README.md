@@ -38,8 +38,8 @@ make.cmd
 launch-game.cmd
 ```
 
-On first launch the game asks to install the original Red Alert content. Choose **Quick Install** to download
-EA's freeware Red Alert files, or point it at your original CDs.
+Everything the game needs is in this repository: no Red Alert files are downloaded or installed, and it runs
+offline.
 
 ## Repository layout
 
@@ -47,7 +47,6 @@ EA's freeware Red Alert files, or point it at your original CDs.
 |---|---|
 | `OpenRA.Mods.RAPX/` | C# mod code: traits, widgets, projectiles, warheads, video loader, … |
 | `mods/rapx/` | The mod itself: rules, weapons, sequences, chrome (UI), HD art (`bits/`), maps, audio |
-| `mods/rapx-content/` | First-run content installer |
 | `engine/` | OpenRA engine `release-20250330` with the RAPX engine patches already applied |
 | `patches/` | The same engine changes as patch files, a record of what differs from stock OpenRA |
 | `artsrc/` | Art pipeline: scripts that generate the HD sprites, UI skin, flags, cameos, maps and sounds |
@@ -71,8 +70,10 @@ OpenRA release.
 - RAPX code and data: [GNU AGPL v3](LICENSE).
 - The OpenRA engine (`engine/`) and the OpenRA Mod SDK scripts: GNU GPL v3 ([engine/COPYING](engine/COPYING),
   [COPYING](COPYING)). Engine authors are listed in [engine/AUTHORS](engine/AUTHORS).
-- Command & Conquer: Red Alert is © Electronic Arts, released as freeware; its files are not included here and
-  are downloaded by the content installer.
+- Command & Conquer: Red Alert is © Electronic Arts. RAPX contains none of its art, sounds, music or videos: every
+  sprite, terrain tile, voice and sound effect is our own or third-party under the licences in
+  [mods/rapx/CREDITS](mods/rapx/CREDITS). Terrain tiles and building bibs keep the shapes of the classic templates (where
+  grass, cliff and water meet) so existing maps still fit, repainted with our own colours (artsrc/terrain/make_base_tiles.py).
 - 3D models, textures and sounds are by their respective authors under Creative Commons and other
   licenses; see [mods/rapx/CREDITS](mods/rapx/CREDITS). A few are licensed **NonCommercial**, so RAPX must not
   be sold.

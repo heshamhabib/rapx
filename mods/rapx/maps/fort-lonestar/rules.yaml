@@ -266,6 +266,8 @@ SHOK:
 
 SNIPER:
 	Inherits: ^Soldier
+	RenderSprites:
+		Image: snip
 	Valued:
 		Cost: 200
 	Tooltip:
@@ -329,7 +331,7 @@ SNIPER.soviets:
 	AutoTarget:
 		InitialStanceAI: AttackAnything
 	RenderSprites:
-		Image: SNIPER
+		Image: snip
 
 SPY:
 	Buildable:

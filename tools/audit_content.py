@@ -8,6 +8,8 @@ Every "not found" is a file still taken from the original game.
 
   python3 tools/audit_content.py            # summary: counts per area and the sprite list
   python3 tools/audit_content.py --full     # also every terrain tile
+  python3 tools/audit_content.py --bits     # also treat the classic-format files in bits/ (copied from OpenRA's
+                                            # RA mod, mostly edits of the original art) as missing
 """
 import collections
 import os
@@ -19,6 +21,7 @@ import tempfile
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 ENGINE = os.path.join(ROOT, "engine")
+CLASSIC_EXT = {"shp", "tem", "sno", "des", "int", "icn", "aud", "pal", "vqa", "wsa", "r8", "tmp"}
 
 
 def run_audit():
@@ -26,6 +29,11 @@ def run_audit():
     mod = os.path.join(tmp, "rapxaudit")
     shutil.copytree(os.path.join(ROOT, "mods", "rapx"), mod, ignore=shutil.ignore_patterns("movies", "maps"))
     os.makedirs(os.path.join(mod, "maps"))
+    if "--bits" in sys.argv:
+        for dirpath, _, files in os.walk(os.path.join(mod, "bits")):
+            for f in files:
+                if f.lower().rsplit(".", 1)[-1] in CLASSIC_EXT:
+                    os.remove(os.path.join(dirpath, f))
     path = os.path.join(mod, "mod.yaml")
     s = open(path).read()
     s = s.replace("$rapx: ra", "$rapxaudit: ra")

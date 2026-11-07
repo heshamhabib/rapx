@@ -48,16 +48,10 @@ snip:
 		Scale: 0.5
 	# The shared infantry effects his own image lacks: crushed corpse and the electrocution death
 	die-crushed:
-		Filename: corpse1.tem
-		TilesetFilenames:
-			SNOW: corpse1.sno
 		Length: 6
 		Tick: 1600
 		ZOffset: -511
 	die6:
-		Filename: electro.tem
-		TilesetFilenames:
-			SNOW: electro.sno
 		Frames: 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
 		Length: *
 		Tick: 80

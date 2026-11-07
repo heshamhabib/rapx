@@ -1,12 +1,2 @@
-miner:
-	idle:
-		Filename: miner.shp
-		Length: *
-		Tick: 400
-		ZOffset: -512
-	icon:
-		Filename: jmin.shp
-
-brick:
-	idle:
-		Filename: brick.shp
+# The mine layer drop uses the HD anti-vehicle mine (sequences/hd-props.yaml, hd-icons.yaml)
+miner: minv

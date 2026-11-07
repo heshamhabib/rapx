@@ -6,64 +6,16 @@ Metadata:
 
 PackageFormats: Mix
 
-FileSystem: ContentInstallerFileSystem
-	SystemPackages:
+# Every asset is our own (IDEA-31): no original Red Alert files are mounted, so the game needs no content download.
+FileSystem: DefaultFileSystem
+	Packages:
 		^EngineDir
 		$rapx: ra
 		^EngineDir|mods/common: common
-		~^SupportDir|Content/ra/v2/: content
 		common|scripts
 		ra|scripts
 		ra|uibits
-	ContentPackages:
-		content|allies.mix
-		content|conquer.mix
-		content|interior.mix
-		content|lores.mix: lores
-		content|hires.mix
-		content|local.mix
-		content|russian.mix
-		content|snow.mix
-		content|sounds.mix
-		content|speech.mix
-		content|temperat.mix
-		content|expand
-		content|expand/expand2.mix
-		content|expand/lores1.mix
-		content|expand/hires1.mix
-		content|cnc/desert.mix
-		~content|movies
-		~content|scores.mix
-		~content|general.mix
-		# Below are mod-provided (system) packages that need to be loaded after the content packages so they can override content assets.
 		ra|bits
-		ra|bits/desert
-	RequiredContentFiles:
-		content|expand/chrotnk1.aud
-		content|expand/fixit1.aud
-		content|expand/jburn1.aud
-		content|expand/jchrge1.aud
-		content|expand/jcrisp1.aud
-		content|expand/jdance1.aud
-		content|expand/jjuice1.aud
-		content|expand/jjump1.aud
-		content|expand/jlight1.aud
-		content|expand/jpower1.aud
-		content|expand/jshock1.aud
-		content|expand/jyes1.aud
-		content|expand/madchrg2.aud
-		content|expand/madexplo.aud
-		content|expand/mboss1.aud
-		content|expand/mhear1.aud
-		content|expand/mhotdig1.aud
-		content|expand/mhowdy1.aud
-		content|expand/mhuh1.aud
-		content|expand/mlaff1.aud
-		content|expand/mrise1.aud
-		content|expand/mwrench1.aud
-		content|expand/myeehaw1.aud
-		content|expand/myes1.aud
-	ContentInstallerMod: rapx-content
 
 MapFolders:
 	ra|maps: System
@@ -150,7 +102,6 @@ Sequences:
 
 TileSets:
 	ra|tilesets/snow.yaml
-	ra|tilesets/interior.yaml
 	ra|tilesets/temperat.yaml
 	ra|tilesets/desert.yaml
 
