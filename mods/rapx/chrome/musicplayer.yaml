@@ -1,0 +1,63 @@
+# Project X music window, opened from main menu Extras and the in-game menu. Replaces common|chrome/musicplayer.yaml.
+# The player itself is LOBBY_MUSIC_BIN (chrome/lobby-music.yaml), the same one the lobby Music tab shows.
+
+Background@MUSIC_PANEL:
+	Logic: PxMusicPanelLogic
+	X: (WINDOW_WIDTH - WIDTH) / 2
+	Y: (WINDOW_HEIGHT - HEIGHT) / 2
+	Width: 988
+	Height: 800
+	Background: px-lobby-frame
+	Children:
+		Background@TITLE_BADGE:
+			X: 24
+			Y: 20
+			Width: 48
+			Height: 48
+			Background: px-key-highlighted
+			Children:
+				Image@ICON:
+					X: 14
+					Y: 14
+					ImageCollection: px-lobby-icons
+					ImageName: tab-music
+		Label@TITLE:
+			X: 86
+			Y: 16
+			Width: 560
+			Height: 36
+			Font: PXDisplayLarge
+			Text: label-music-title
+		Label@SUBTITLE:
+			X: 88
+			Y: 52
+			Width: 400
+			Height: 16
+			Font: PXSidebarSmall
+			TextColor: FF6A55
+			Text: label-px-mainmenu-kicker
+		Container@PLAYER_ROOT:
+			X: 24
+			Y: 88
+			Width: PARENT_WIDTH - 48
+			Height: PARENT_HEIGHT - 88 - 24 - 48 - 16
+		Button@BACK_BUTTON:
+			X: PARENT_WIDTH - 24 - WIDTH
+			Y: PARENT_HEIGHT - 24 - HEIGHT
+			Width: 210
+			Height: 48
+			Background: px-key
+			Font: PXButton
+			Align: Left
+			LeftMargin: 50
+			Text: button-back
+			Key: escape
+			Children:
+				Image@ICON:
+					X: 18
+					Y: 15
+					ImageCollection: px-lobby-icons
+					ImageName: back
+		TooltipContainer@TOOLTIP_CONTAINER:
+			# Below the 32pt HD cursors (artsrc/px-cursors), as in the lobby
+			CursorOffset: 0, 32

@@ -1,0 +1,26 @@
+diff --git a/OpenRA.Mods.Common/Widgets/Logic/MainMenuLogic.cs b/OpenRA.Mods.Common/Widgets/Logic/MainMenuLogic.cs
+index 84101a3..ca9f8e8 100644
+--- a/OpenRA.Mods.Common/Widgets/Logic/MainMenuLogic.cs
++++ b/OpenRA.Mods.Common/Widgets/Logic/MainMenuLogic.cs
+@@ -142,7 +142,9 @@ public MainMenuLogic(Widget widget, World world, ModData modData)
+ 			var extrasMenu = widget.Get("EXTRAS_MENU");
+ 			extrasMenu.IsVisible = () => menuType == MenuType.Extras;
+ 
+-			extrasMenu.Get<ButtonWidget>("REPLAYS_BUTTON").OnClick = OpenReplayBrowserPanel;
++			var replaysButton = extrasMenu.GetOrNull<ButtonWidget>("REPLAYS_BUTTON");
++			if (replaysButton != null)
++				replaysButton.OnClick = OpenReplayBrowserPanel;
+ 
+ 			extrasMenu.Get<ButtonWidget>("MUSIC_BUTTON").OnClick = () =>
+ 			{
+@@ -154,7 +156,9 @@ public MainMenuLogic(Widget widget, World world, ModData modData)
+ 				});
+ 			};
+ 
+-			extrasMenu.Get<ButtonWidget>("MAP_EDITOR_BUTTON").OnClick = () => SwitchMenu(MenuType.MapEditor);
++			var mapEditorButton = extrasMenu.GetOrNull<ButtonWidget>("MAP_EDITOR_BUTTON");
++			if (mapEditorButton != null)
++				mapEditorButton.OnClick = () => SwitchMenu(MenuType.MapEditor);
+ 
+ 			var assetBrowserButton = extrasMenu.GetOrNull<ButtonWidget>("ASSETBROWSER_BUTTON");
+ 			if (assetBrowserButton != null)

@@ -216,7 +216,7 @@ Container@MAINMENU:
 							Height: 6
 							ImageCollection: px-deco
 							ImageName: title-line
-						Button@REPLAYS_BUTTON:
+						Button@MUSIC_BUTTON:
 							X: 30
 							Y: 104
 							Width: PARENT_WIDTH - 60
@@ -225,40 +225,10 @@ Container@MAINMENU:
 							Font: PXButton
 							Align: Left
 							LeftMargin: 24
-							Text: button-extras-menu-replays
-						Button@MUSIC_BUTTON:
-							X: 30
-							Y: 158
-							Width: PARENT_WIDTH - 60
-							Height: 42
-							Background: px-menu-button
-							Font: PXButton
-							Align: Left
-							LeftMargin: 24
 							Text: label-music-title
-						Button@MAP_EDITOR_BUTTON:
-							X: 30
-							Y: 212
-							Width: PARENT_WIDTH - 60
-							Height: 42
-							Background: px-menu-button
-							Font: PXButton
-							Align: Left
-							LeftMargin: 24
-							Text: label-map-editor-title
-						Button@ASSETBROWSER_BUTTON:
-							X: 30
-							Y: 266
-							Width: PARENT_WIDTH - 60
-							Height: 42
-							Background: px-menu-button
-							Font: PXButton
-							Align: Left
-							LeftMargin: 24
-							Text: button-extras-menu-assetbrowser
 						Button@CREDITS_BUTTON:
 							X: 30
-							Y: 320
+							Y: 158
 							Width: PARENT_WIDTH - 60
 							Height: 42
 							Background: px-menu-button

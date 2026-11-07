@@ -21,6 +21,7 @@ engine-quad-palette-sprite.patch
 engine-shared-sprites.patch
 engine-text-notification-pools.patch
 engine-viewport-clamp.patch
+engine-optional-extras-buttons.patch
 ```
 
 ## Upgrading the engine

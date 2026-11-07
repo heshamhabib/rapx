@@ -246,6 +246,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 			: base(modData)
 		{
 			GetGlyph = () => Glyph;
+			tooltipContainer = Exts.Lazy(FindTooltipContainer);
 		}
 
 		protected PxMusicButtonWidget(PxMusicButtonWidget other)
@@ -254,6 +255,21 @@ namespace OpenRA.Mods.RAPX.Widgets
 			Glyph = other.Glyph;
 			GetGlyph = other.GetGlyph;
 			Primary = other.Primary;
+			tooltipContainer = Exts.Lazy(FindTooltipContainer);
+		}
+
+		// The nearest container up the tree, so the player shows its tooltips inside whichever window holds it
+		// (the lobby or the music window, which can open over the in-game UI and its own tooltip container)
+		TooltipContainerWidget FindTooltipContainer()
+		{
+			for (var w = Parent; w != null; w = w.Parent)
+			{
+				var container = w.GetOrNull<TooltipContainerWidget>(TooltipContainer);
+				if (container != null)
+					return container;
+			}
+
+			return Ui.Root.Get<TooltipContainerWidget>(TooltipContainer);
 		}
 
 		public override Widget Clone() { return new PxMusicButtonWidget(this); }

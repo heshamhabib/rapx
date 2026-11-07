@@ -142,7 +142,9 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			var extrasMenu = widget.Get("EXTRAS_MENU");
 			extrasMenu.IsVisible = () => menuType == MenuType.Extras;
 
-			extrasMenu.Get<ButtonWidget>("REPLAYS_BUTTON").OnClick = OpenReplayBrowserPanel;
+			var replaysButton = extrasMenu.GetOrNull<ButtonWidget>("REPLAYS_BUTTON");
+			if (replaysButton != null)
+				replaysButton.OnClick = OpenReplayBrowserPanel;
 
 			extrasMenu.Get<ButtonWidget>("MUSIC_BUTTON").OnClick = () =>
 			{
@@ -154,7 +156,9 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 				});
 			};
 
-			extrasMenu.Get<ButtonWidget>("MAP_EDITOR_BUTTON").OnClick = () => SwitchMenu(MenuType.MapEditor);
+			var mapEditorButton = extrasMenu.GetOrNull<ButtonWidget>("MAP_EDITOR_BUTTON");
+			if (mapEditorButton != null)
+				mapEditorButton.OnClick = () => SwitchMenu(MenuType.MapEditor);
 
 			var assetBrowserButton = extrasMenu.GetOrNull<ButtonWidget>("ASSETBROWSER_BUTTON");
 			if (assetBrowserButton != null)
