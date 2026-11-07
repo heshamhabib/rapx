@@ -273,6 +273,92 @@ rect(0, 464, 64, 24, (200, 30, 30, 44))
 rect(0, 487, 64, 1, (*RED, 220))
 rect(0, 464, 3, 24, (*RED_BRIGHT, 255))
 
+# --- Checkbox frames: 24x24 cells at row y=192; 6px corners ---------------------------------
+# Recessed steel socket: chamfered TL/BR, dark well, bright corner brackets on TR/BL (corners only,
+# so the 12px tiled middle stays uniform).
+def checkbox_frame(x, y, fill, border, bracket, glow=None, s=24, cut=4, margin=1.0):
+    X, Y, S, m, c = x * SS, y * SS, s * SS, margin * SS, cut * SS
+    layer = Image.new("RGBA", sheet.size, (0, 0, 0, 0))
+    outline = chamfer_poly(X + m, Y + m, S - 2 * m, S - 2 * m, c, c)
+    if glow:
+        g = Image.new("RGBA", sheet.size, (0, 0, 0, 0))
+        ImageDraw.Draw(g).line(outline + [outline[0]], fill=glow, width=2 * SS, joint="curve")
+        layer.alpha_composite(g.filter(ImageFilter.GaussianBlur(1.2 * SS)))
+    d = ImageDraw.Draw(layer)
+    d.polygon(outline, fill=border)
+    d.polygon(chamfer_poly(X + m, Y + m, S - 2 * m, S - 2 * m, c, c, inset=SS), fill=(0, 0, 0, 255))
+    d.polygon(chamfer_poly(X + m, Y + m, S - 2 * m, S - 2 * m, c, c, inset=2 * SS), fill=fill)
+    # inner shadow along the top edge sells the recess
+    d.rectangle([X + m + c + 2 * SS, Y + m + 2 * SS, X + S - m - 2 * SS, Y + m + 3 * SS - 1], fill=(0, 0, 0, 120))
+    L, T = 5 * SS, SS
+    x0, y0, x1, y1 = X + m, Y + m, X + S - m, Y + S - m
+    d.rectangle([x1 - L, y0, x1, y0 + T], fill=bracket)
+    d.rectangle([x1 - T, y0, x1, y0 + L], fill=bracket)
+    d.rectangle([x0, y1 - T, x0 + L, y1], fill=bracket)
+    d.rectangle([x0, y1 - L, x0 + T, y1], fill=bracket)
+    sheet.alpha_composite(layer.crop((X, Y, X + S, Y + S)), (X, Y))
+
+
+checkbox_frames = [
+    # fill, border, bracket, glow
+    ((34, 30, 34, 245), (176, 170, 182, 255), (*RED_BRIGHT, 255), (*RED, 90)),       # normal
+    ((52, 20, 22, 245), (*RED_BRIGHT, 255), (255, 170, 150, 255), (*RED, 190)),       # hover
+    ((60, 14, 16, 245), (*RED_BRIGHT, 255), (255, 200, 180, 255), (*RED_BRIGHT, 180)),  # pressed / highlighted
+    ((20, 20, 22, 170), (*STEEL, 255), (110, 110, 118, 255), None),                   # disabled
+]
+for i, (fill, border, bracket, glow) in enumerate(checkbox_frames):
+    checkbox_frame(i * 24, 192, fill, border, bracket, glow)
+
+
+# --- Checkmarks: 16x16 cells at row y=216 (ticks) and y=232 (crosses) ------------------------
+# A glowing red indicator lamp with a white-hot symbol cut into it.
+def checkmark(x, y, symbol, lamp_top, lamp_bottom, ink, glow, ghost=False):
+    X, Y, S = x * SS, y * SS, 16 * SS
+    layer = Image.new("RGBA", sheet.size, (0, 0, 0, 0))
+    lamp = chamfer_poly(X + 2 * SS, Y + 2 * SS, 12 * SS, 12 * SS, 3 * SS, 3 * SS)
+    if symbol == "tick":
+        pts = [(X + 4.6 * SS, Y + 8.2 * SS), (X + 7.0 * SS, Y + 10.8 * SS), (X + 11.6 * SS, Y + 5.0 * SS)]
+    else:
+        pts = None
+    if glow:
+        g = Image.new("RGBA", sheet.size, (0, 0, 0, 0))
+        ImageDraw.Draw(g).polygon(lamp, fill=glow)
+        layer.alpha_composite(g.filter(ImageFilter.GaussianBlur(1.4 * SS)))
+    d = ImageDraw.Draw(layer)
+    if not ghost:
+        mask = Image.new("L", sheet.size, 0)
+        ImageDraw.Draw(mask).polygon(lamp, fill=255)
+        grad = Image.new("RGBA", sheet.size, (0, 0, 0, 0))
+        gd = ImageDraw.Draw(grad)
+        for yy in range(12 * SS):
+            t = yy / (12 * SS)
+            col = tuple(int(lamp_top[k] + (lamp_bottom[k] - lamp_top[k]) * t) for k in range(4))
+            gd.line([(X, Y + 2 * SS + yy), (X + S, Y + 2 * SS + yy)], fill=col)
+        # glossy highlight across the upper third
+        gd.rectangle([X + 4 * SS, Y + 3 * SS, X + 12 * SS, Y + 4 * SS], fill=(255, 255, 255, 60))
+        layer.paste(Image.alpha_composite(layer, grad), (0, 0), mask)
+        d = ImageDraw.Draw(layer)
+    w = int(1.9 * SS)
+    if pts:
+        d.line(pts, fill=ink, width=w, joint="curve")
+    else:
+        d.line([(X + 5.2 * SS, Y + 5.2 * SS), (X + 10.8 * SS, Y + 10.8 * SS)], fill=ink, width=w)
+        d.line([(X + 10.8 * SS, Y + 5.2 * SS), (X + 5.2 * SS, Y + 10.8 * SS)], fill=ink, width=w)
+    sheet.alpha_composite(layer.crop((X, Y, X + S, Y + S)), (X, Y))
+
+
+marks = [
+    # lamp_top, lamp_bottom, ink, glow, ghost
+    ((255, 96, 72, 255), (176, 22, 26, 255), (255, 244, 236, 255), (*RED, 200), False),      # checked
+    ((255, 140, 110, 255), (214, 34, 34, 255), (255, 255, 255, 255), (*RED_BRIGHT, 255), False),  # checked-hover
+    ((150, 24, 26, 255), (96, 14, 16, 255), (255, 210, 196, 255), (*RED, 160), False),       # checked-pressed
+    ((92, 90, 98, 255), (52, 50, 56, 255), (150, 148, 156, 255), None, False),               # checked-disabled
+    (None, None, (*RED_BRIGHT, 120), None, True),                                           # unchecked-hover (ghost)
+]
+for row, symbol in ((216, "tick"), (232, "cross")):
+    for i, (top, bottom, ink, glow, ghost) in enumerate(marks):
+        checkmark(i * 16, row, symbol, top, bottom, ink, glow, ghost)
+
 # --- Write 1x and 2x sheets -------------------------------------------------------------------
 for scale, name in ((1, "px-ui.png"), (2, "px-ui-2x.png")):
     out = sheet.resize((SHEET_W * scale, SHEET_H * scale), Image.LANCZOS)

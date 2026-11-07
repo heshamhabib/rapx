@@ -511,26 +511,32 @@ slider-thumb-disabled:
 	Inherits: button-disabled
 
 checkbox:
-	Inherits: px-field
+	Inherits: px-cbox
 
 checkmark-tick:
-	Inherits: ^Glyphs
+	Inherits: ^PXUI
 	Regions:
-		checked: 187, 0, 16, 16
-		checked-pressed: 204, 0, 16, 16
+		checked: 0, 216, 16, 16
+		checked-hover: 16, 216, 16, 16
+		checked-pressed: 32, 216, 16, 16
+		checked-disabled: 48, 216, 16, 16
 		unchecked: 0, 0, 0, 0
-		unchecked-pressed: 204, 0, 16, 16
+		unchecked-hover: 64, 216, 16, 16
+		unchecked-pressed: 64, 216, 16, 16
 
 checkmark-tick-highlighted:
 	Inherits: checkmark-tick
 
 checkmark-cross:
-	Inherits: ^Glyphs
+	Inherits: ^PXUI
 	Regions:
-		checked: 221, 0, 16, 16
-		checked-pressed: 238, 0, 16, 16
+		checked: 0, 232, 16, 16
+		checked-hover: 16, 232, 16, 16
+		checked-pressed: 32, 232, 16, 16
+		checked-disabled: 48, 232, 16, 16
 		unchecked: 0, 0, 0, 0
-		unchecked-pressed: 238, 0, 16, 16
+		unchecked-hover: 64, 232, 16, 16
+		unchecked-pressed: 64, 232, 16, 16
 
 checkmark-cross-highlighted:
 	Inherits: checkmark-cross
@@ -547,16 +553,16 @@ checkmark-mute-highlighted:
 	Inherits: checkmark-mute
 
 checkbox-hover:
-	Inherits: px-field-hover
+	Inherits: px-cbox-hover
 
 checkbox-pressed:
-	Inherits: checkbox-hover
+	Inherits: px-cbox-pressed
 
 checkbox-disabled:
-	Inherits: px-field-disabled
+	Inherits: px-cbox-disabled
 
 checkbox-highlighted:
-	Inherits: px-field-focused
+	Inherits: px-cbox-pressed
 
 checkbox-highlighted-hover:
 	Inherits: checkbox-highlighted

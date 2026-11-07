@@ -69,6 +69,22 @@ px-field-highlighted:
 px-field-highlighted-hover:
 	Inherits: px-field-focused
 
+px-cbox:
+	Inherits: ^PXUI
+	PanelRegion: 0, 192, 6, 6, 12, 12, 6, 6
+
+px-cbox-hover:
+	Inherits: ^PXUI
+	PanelRegion: 24, 192, 6, 6, 12, 12, 6, 6
+
+px-cbox-pressed:
+	Inherits: ^PXUI
+	PanelRegion: 48, 192, 6, 6, 12, 12, 6, 6
+
+px-cbox-disabled:
+	Inherits: ^PXUI
+	PanelRegion: 72, 192, 6, 6, 12, 12, 6, 6
+
 px-section:
 	Inherits: ^PXUI
 	PanelRegion: 0, 128, 8, 0, 48, 13, 8, 0
