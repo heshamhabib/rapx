@@ -334,6 +334,9 @@ MODELS = {
     "jet.su25": {"name": "Sk-25 Rook (Su-25)", "src": "inbox2/jet.su25__pbr__sukhoi_su_25/scene.gltf", "kind": "air", "out": "sk-25-rook", "frame": 160, "yaw": 0, "length": 6.9, "team": {"box": JET_BOX}},
     "jet.su27": {"name": "Sk-27 Flankard (Su-27)", "src": "inbox2/jet.su27__sukhoi_su_27p_flanker_b/scene.gltf", "kind": "air", "out": "sk-27-flankard", "frame": 160, "yaw": 0, "length": 8.5, "team": {"box": JET_BOX}},
     "jet.su47": {"name": "Sk-47 Berkov (Su-47)", "src": "inbox2/jet.su47__su_47_berkut/scene.gltf", "kind": "air", "out": "sk-47-berkov", "frame": 160, "yaw": 180, "length": 8.6, "team": {"box": JET_BOX}},
+    # Fatman bomber (USA only, rules/fatman.yaml): "Northrop YB-35 (low poly)" by Götz von Berlichingen, CC-BY-4.0
+    "jet.yb35": {"name": "YB-35 Fatman bomber", "src": "inbox4/yb35/scene.gltf", "kind": "air", "out": "yb-35-flying-wing",
+                 "frame": 256, "yaw": 180, "length": 5.0, "darken": 0.75, "team": {"box": FLAT_BOX}},
     "jet.tu160": {"name": "Tv-160 Swanwing (Tu-160)", "src": "inbox2/jet.tu160__tupolev_tu_160_blackjack_strategic_bomber/scene.gltf", "kind": "air", "out": "tv-160-swanwing", "frame": 288, "yaw": 180, "length": 14, "team": {"box": JET_BOX}},
     "jet.l39": {"name": "L-39U Albatross (L-39)", "src": "inbox2/jet.l39__l_39_albatros/scene.gltf", "kind": "air", "out": "l-39u-albatross", "frame": 160, "yaw": 180, "length": 5.9, "team": {"box": JET_BOX}},
     # An-225 slot: "C-17A Globemaster III" by VTX, CC-BY-NC-SA-4.0 (the textureless An-225 model looked flat white)

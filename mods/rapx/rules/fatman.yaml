@@ -1,0 +1,179 @@
+# Fatman strike (USA only): the Strategic Bomber Field holds one AB-35 Longwing flying-wing bomber. Like the nuke,
+# a support power charges on the field (only while the bomber exists); when it fires, the bomber takes off, drops the
+# Fatman bomb on the target (a smaller nuclear blast, weapons/fatman.yaml), flies on and returns to its pad.
+# Code: OpenRA.Mods.RAPX/Traits/PxFatmanStrike.cs. Art: artsrc/prompts/fatman-prompts.md (field),
+# artsrc/units/meshes/sketchfab_models.py jet.yb35 (bomber), artsrc/fx/make_fatman_fx.py (bomb).
+# Only one field and one bomber per player; both stay out of the airfield slot pool (PxAirfieldProductionQueue).
+# Must load before hd-building-fx.yaml (it adds to BMBF; see the Inherits note in mod.yaml).
+
+BMBF:
+	Inherits: ^Building
+	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
+	Buildable:
+		Queue: Building
+		BuildPaletteOrder: 134
+		Prerequisites: afld, techcenter, ~structures.usa, ~techlevel.high
+		Description: actor-bmbf.description
+		BuildLimit: 1
+	PxNationalUnit:
+		Factions: usa
+	Valued:
+		Cost: 2500
+	Tooltip:
+		Name: actor-bmbf.name
+	Selectable:
+		Class: bmbf
+		Bounds: 6144, 4096
+	HitShape:
+		UseTargetableCellsOffsets: true
+		Type: Rectangle
+			TopLeft: -3072, -2048
+			BottomRight: 3072, 2048
+	Building:
+		Footprint: xxxxxx xxxxxx xxxxxx xxxxxx
+		Dimensions: 6,4
+	Health:
+		HP: 150000
+	Armor:
+		Type: Wood
+	RevealsShroud:
+		MinRange: 4c0
+		Range: 5c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Power:
+		Amount: -100
+	Exit@1:
+		RequiresCondition: !being-captured
+		ExitCell: 2,2
+		Facing: 768
+	PxRallyPoint:
+	RallyPoint:
+		ForceSetType: Plane
+	CommandBarBlacklist:
+		DisableStop: false
+	Production:
+		Produces: Aircraft, Bomber
+	ProductionBar:
+		ProductionType: Aircraft
+	# One pad (airfield-slots.yaml, measured from the art)
+	Reservable:
+	WithResupplyAnimation:
+	ProvidesPrerequisite@buildingname:
+	PxFatmanStrikePower@fatman:
+		PauseOnCondition: disabled
+		Bombers: yb35
+		# The timer runs (and is shown) only while the bomber exists; it restarts if the bomber is lost
+		Prerequisites: fatman.bomber
+		OrderName: UsaFatmanStrike
+		Cursor: nuke
+		Icon: fatman
+		ChargeInterval: 9000
+		Name: actor-bmbf.fatmanpower-name
+		Description: actor-bmbf.fatmanpower-description
+		BeginChargeSpeechNotification: AbombPrepping
+		EndChargeSpeechNotification: AbombReady
+		SelectTargetSpeechNotification: SelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		IncomingSpeechNotification: AbombLaunchDetected
+		SelectTargetTextNotification: notification-select-target
+		InsufficientPowerTextNotification: notification-insufficient-power
+		BeginChargeTextNotification: notification-abomb-prepping
+		EndChargeTextNotification: notification-abomb-ready
+		IncomingTextNotification: notification-fatman-detected
+		IncomingSound: ra|audio/superweapons/nuke-siren.wav
+		DisplayTimerRelationships: Ally, Neutral, Enemy
+		DisplayBeacon: True
+		DisplayRadarPing: True
+		BeaconPoster: atomicon
+		ArrowSequence: arrow
+		BeaconSequence: pulse
+		ClockSequence: clock
+		CircleSequence: circles
+		SupportPowerPaletteOrder: 71
+	SupportPowerChargeBar:
+
+YB35:
+	Inherits: ^Plane
+	Buildable:
+		Queue: Aircraft
+		BuildAtProductionType: Bomber
+		BuildPaletteOrder: 230
+		Prerequisites: ~bmbf, ~structures.usa, ~techlevel.high
+		Description: actor-yb35.description
+		BuildLimit: 1
+	PxNationalUnit:
+		Factions: usa
+	Valued:
+		Cost: 3000
+	Tooltip:
+		Name: actor-yb35.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 30000
+	Armor:
+		Type: Light
+	RevealsShroud:
+		MinRange: 9c0
+		Range: 11c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 9c0
+		Type: GroundPosition
+	Aircraft:
+		CruiseAltitude: 2560
+		TurnSpeed: 10
+		Speed: 140
+		RepulsionSpeed: 40
+		MaximumPitch: 40
+		IdleBehavior: ReturnToBase
+		TakeOffOnCreation: false
+	# Piston engines (four pusher propellers)
+	-AmbientSound@PASS:
+	AmbientSound@ENGINE:
+		SoundFiles: ra|audio/aircraft/prop-engine.wav
+		RequiresCondition: airborne
+	Rearmable:
+		RearmActors: bmbf
+	# Drops the Fatman only when the field's support power sends it; no normal attack
+	PxStrategicBomber:
+		Weapon: Fatman
+		FallTicks: 58
+	ProvidesPrerequisite@bomber:
+		Prerequisite: fatman.bomber
+	RenderSprites:
+		Image: yb35
+	Selectable:
+		Bounds: 3000, 2800, 0, 0
+		DecorationBounds: 3328, 3104, 0, 220
+	PxAltitudeScale:
+		LandedScale: 0.6
+	-WithShadow:
+	WithShadow@SCALED:
+		Offset: 43, 128, 0
+		ZOffset: -129
+	SpawnActorOnDeath:
+		Actor: YB35.Husk
+	LeavesTrails:
+		Offsets: -853,0,171
+		MovingInterval: 2
+		Image: smokey
+		SpawnAtLastPosition: False
+		Type: CenterPosition
+		RequiresCondition: enable-smoke
+	GrantConditionOnDamageState@SmokeTrail:
+		Condition: enable-smoke
+
+YB35.Husk:
+	Inherits: MIG.Husk
+	RenderSprites:
+		Image: yb35
+	WithPxCrashFx:
+		Size: 2.40
+	Aircraft:
+		Speed: 140
+	Tooltip:
+		Name: actor-yb35.name

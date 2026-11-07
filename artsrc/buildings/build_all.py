@@ -75,6 +75,7 @@ BUILDINGS = {
     "abas": ("abas.png", 8, 1.0),
     "afbs": ("afbs.png", 10, 1.0),
     "sacm": ("sacm.png", 12, 1.0),
+    "bmbf": ("bmbf.png", 6, 1.0),  # Strategic Bomber Field (USA, Fatman bomber; artsrc/prompts/fatman-prompts.md)
     "tent": ("tent.png", 2, 1.0),
     "barr": ("barr.png", 2, 1.0),
     "kenn": ("kenn.png", 1, 1.0),
@@ -82,7 +83,7 @@ BUILDINGS = {
     "spen": ("spen.png", 3, 1.0),
     "atek": ("atek.png", 2, 1.0),
     "stek": ("stek.png", 3, 1.0),
-    "pdox": ("pdox.png", 2, 1.0),
+    # "pdox" (Chronosphere) removed from the game 2026-11-07
     "iron": ("iron.png", 2, 1.0),
     "gap": ("gap.png", 1, 1.0),
     "pbox": ("pbox.png", 1, 1.0),
@@ -108,11 +109,12 @@ NEW_BUILDINGS = {"oilr": ["idle", "damaged-idle", "make"], "ptwr": ["idle", "dam
                  "lnch": ["idle", "damaged-idle", "make"],
                  "supl": ["idle", "damaged-idle", "make"],
                  "asat": ["idle", "turret", "damaged-turret", "make"],
-                 "abas": AIRFIELD_SEQUENCES, "afbs": AIRFIELD_SEQUENCES, "sacm": AIRFIELD_SEQUENCES}
+                 "abas": AIRFIELD_SEQUENCES, "afbs": AIRFIELD_SEQUENCES, "sacm": AIRFIELD_SEQUENCES,
+                 "bmbf": AIRFIELD_SEQUENCES}
 
 # Airfields (IDEA-06) are drawn exactly on their footprint, not grown by BUILDING_SCALE: their parking pads are
 # the slots planes land on (Reservable SlotOffsets, written by make_airfield_slots.py) and must stay inside it.
-NOT_GROWN = {"afld", "abas", "afbs", "sacm"}
+NOT_GROWN = {"afld", "abas", "afbs", "sacm", "bmbf"}
 
 # Turreted defences: the render shows the whole defence with its gun, so it is drawn as the
 # (non-rotating, Facings 1) turret layer and the separate base layer is blanked.

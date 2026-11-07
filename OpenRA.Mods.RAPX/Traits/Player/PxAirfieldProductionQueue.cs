@@ -23,6 +23,7 @@ namespace OpenRA.Mods.RAPX.Traits
 		"A plane uses slots when one of its Rearmable.RearmActors has Reservable.SlotOffsets.",
 		"Helicopters (Aircraft.CanHover) never use slots.",
 		"Carrier decks (PxCarrierDeck) add their slots.",
+		"The Fatman bomber field (PxFatmanStrikePower) and its bomber (PxStrategicBomber) stay out of the pool.",
 		"Planes owned + planes queued can't exceed the total slots: the buttons grey out and extra orders are dropped.")]
 	public class PxAirfieldProductionQueueInfo : ClassicProductionQueueInfo
 	{
@@ -61,7 +62,9 @@ namespace OpenRA.Mods.RAPX.Traits
 			// Helicopters land on helipads or open ground, never on an airfield slot.
 			var aircraft = actor.TraitInfoOrDefault<AircraftInfo>();
 			var rearmable = actor.TraitInfoOrDefault<RearmableInfo>();
-			uses = aircraft != null && !aircraft.CanHover && rearmable != null && rearmable.RearmActors.Overlaps(slotAirfields);
+			// The Fatman bomber (PxStrategicBomber) has its own one-slot field and BuildLimit, outside the pool
+			uses = aircraft != null && !aircraft.CanHover && rearmable != null && rearmable.RearmActors.Overlaps(slotAirfields)
+				&& !actor.HasTraitInfo<PxStrategicBomberInfo>();
 			usesSlots[actor] = uses;
 			return uses;
 		}
@@ -74,7 +77,8 @@ namespace OpenRA.Mods.RAPX.Traits
 				countedTick = self.World.WorldTick;
 				totalSlots = 0;
 				foreach (var r in self.World.ActorsWithTrait<Reservable>())
-					if (r.Actor.Owner == self.Owner && !r.Actor.IsDead && r.Trait.Info.HasSlots)
+					if (r.Actor.Owner == self.Owner && !r.Actor.IsDead && r.Trait.Info.HasSlots
+						&& !r.Actor.Info.HasTraitInfo<PxFatmanStrikePowerInfo>())
 						totalSlots += r.Trait.SlotUsage().Total;
 
 				// Carrier decks (IDEA-08) add their slots too.

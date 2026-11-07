@@ -567,6 +567,9 @@ icon:
 	sonar:
 		Filename: ra|bits/hd/ui/icon-sonar.png
 		Scale: 0.25
+	fatman:
+		Filename: ra|bits/hd/ui/icon-fatman.png
+		Scale: 0.25
 
 minp:
 	idle:

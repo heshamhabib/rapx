@@ -307,7 +307,7 @@ Player:
 		ConstructionYardTypes: fact
 		AirUnitsTypes: mig, yak, heli, mh60
 		AircraftTargetType: AirborneActor
-		ProtectionTypes: harv, mcv, mslo, gap, spen, syrd, iron, pdox, tsla, agun, dome, pbox, hbox, gun, ftur, sam, atek, weap, fact, proc, silo, hpad, afld, afld.ukraine, powr, apwr, stek, barr, kenn, tent, fix
+		ProtectionTypes: harv, mcv, mslo, gap, spen, syrd, iron, tsla, agun, dome, pbox, hbox, gun, ftur, sam, atek, weap, fact, proc, silo, hpad, afld, afld.ukraine, powr, apwr, stek, barr, kenn, tent, fix
 		IgnoredEnemyTargetTypes: AirborneActor
 	McvManagerBotModule:
 		RequiresCondition: enable-rush-ai || enable-normal-ai || enable-turtle-ai || enable-naval-ai
@@ -365,7 +365,7 @@ Player:
 		NavalProductionTypes: spen, syrd
 		AirUnitsTypes: mig, yak, heli, mh60
 		AircraftTargetType: AirborneActor
-		ProtectionTypes: harv, mcv, mslo, gap, spen, syrd, iron, pdox, tsla, agun, dome, pbox, hbox, gun, ftur, sam, atek, weap, fact, proc, silo, hpad, afld, afld.ukraine, powr, apwr, stek, barr, kenn, tent, fix
+		ProtectionTypes: harv, mcv, mslo, gap, spen, syrd, iron, tsla, agun, dome, pbox, hbox, gun, ftur, sam, atek, weap, fact, proc, silo, hpad, afld, afld.ukraine, powr, apwr, stek, barr, kenn, tent, fix
 		IgnoredEnemyTargetTypes: AirborneActor
 	UnitBuilderBotModule@normal:
 		RequiresCondition: enable-normal-ai
@@ -427,7 +427,7 @@ Player:
 		NavalProductionTypes: spen, syrd
 		AirUnitsTypes: mig, yak, heli, mh60
 		AircraftTargetType: AirborneActor
-		ProtectionTypes: harv, mcv, mslo, gap, spen, syrd, iron, pdox, tsla, agun, dome, pbox, hbox, gun, ftur, sam, atek, weap, fact, proc, silo, hpad, afld, afld.ukraine, powr, apwr, stek, barr, kenn, tent, fix
+		ProtectionTypes: harv, mcv, mslo, gap, spen, syrd, iron, tsla, agun, dome, pbox, hbox, gun, ftur, sam, atek, weap, fact, proc, silo, hpad, afld, afld.ukraine, powr, apwr, stek, barr, kenn, tent, fix
 		IgnoredEnemyTargetTypes: AirborneActor
 	UnitBuilderBotModule@turtle:
 		RequiresCondition: enable-turtle-ai
@@ -498,7 +498,7 @@ Player:
 		NavalProductionTypes: spen, syrd
 		AirUnitsTypes: mig, yak, heli, mh60
 		AircraftTargetType: AirborneActor
-		ProtectionTypes: harv, mcv, mslo, gap, spen, syrd, iron, pdox, tsla, agun, dome, pbox, hbox, gun, ftur, sam, atek, weap, fact, proc, silo, hpad, afld, afld.ukraine, powr, apwr, stek, barr, kenn, tent, fix
+		ProtectionTypes: harv, mcv, mslo, gap, spen, syrd, iron, tsla, agun, dome, pbox, hbox, gun, ftur, sam, atek, weap, fact, proc, silo, hpad, afld, afld.ukraine, powr, apwr, stek, barr, kenn, tent, fix
 		IgnoredEnemyTargetTypes: AirborneActor
 	UnitBuilderBotModule@naval:
 		RequiresCondition: enable-naval-ai

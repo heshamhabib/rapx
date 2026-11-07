@@ -605,27 +605,6 @@ iron:
 		Offset: 0,-2
 	icon:
 
-pdox:
-	Defaults:
-	idle:
-	damaged-idle:
-		Start: 29
-	active:
-		Length: 29
-	damaged-active:
-		Start: 29
-		Length: 29
-	make:
-		Length: *
-	bib:
-		TilesetFilenames:
-			SNOW: ra|bits/hd/ui/mbpdox-snow.png
-			TEMPERAT: ra|bits/hd/ui/mbpdox-temperate.png
-			DESERT: ra|bits/hd/ui/mbpdox-desert.png
-		Scale: 0.3333
-		Length: *
-		Offset: 0,-4
-	icon:
 mslo:
 	Defaults:
 	idle:

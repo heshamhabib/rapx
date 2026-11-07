@@ -76,7 +76,7 @@ Player:
 		Name: build-category-strategic
 		Icon: strategic
 		Order: 100
-		Actors: pdox, iron, mslo
+		Actors: iron, mslo
 	PxBuildCategory@walls:
 		Queue: Defense
 		Name: build-category-walls

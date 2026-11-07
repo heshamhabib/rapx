@@ -35,6 +35,7 @@ AIRFIELDS = {
     "abas": (["ABAS"], (8, 7), (3, 2)),
     "afbs": (["AFBS"], (10, 6), (4, 2)),
     "sacm": (["SACM"], (12, 6), (5, 2)),
+    "bmbf": (["BMBF"], (6, 4), (1, 1)),  # one wide bomber pad (rules/fatman.yaml)
 }
 # Parked planes face the viewer (south): the pads are wider than deep and a MiG facing south is 33 x 24 px.
 FACING = 512
@@ -48,10 +49,11 @@ def sequence_offset(image):
     return int(x), int(y)
 
 
-def detect_pads(path):
+def detect_pads(path, single=False):
     """Centres (sprite px) of the green pad outlines. The outlines are thin and broken after scaling, so they are
     thickened until they close; roofs and other solid green parts are dropped (an outline covers little of its box).
-    Returns the detection with the most pads of a common size, and the typical pad size."""
+    Returns the detection with the most pads of a common size, and the typical pad size.
+    single: the art has one (wide) pad, so the biggest outline is it: no neighbours, wider aspect allowed."""
     im = np.asarray(Image.open(path).convert("RGBA")).astype(int)
     r, g, b, a = im[..., 0], im[..., 1], im[..., 2], im[..., 3]
     green = (g > 120) & (g > r + 40) & (g > b + 40) & (a > 128)
@@ -63,9 +65,11 @@ def detect_pads(path):
             ys, xs = np.nonzero(lab == i)
             w, h = np.ptp(xs) + 1, np.ptp(ys) + 1
             ring = green[ys.min():ys.max() + 1, xs.min():xs.max() + 1].mean()
-            if w > 30 and h > 20 and ring < 0.2 and 1.05 < w / h < 1.8:
+            if w > 30 and h > 20 and ring < 0.2 and 1.05 < w / h < (4.0 if single else 1.8):
                 found.append((xs.mean(), ys.mean(), w, h))
-        if found:
+        if found and single:
+            found = [max(found, key=lambda f: f[2] * f[3])]
+        elif found:
             median = np.median([f[2] * f[3] for f in found])
             found = [f for f in found if 0.7 * median < f[2] * f[3] < 1.4 * median]
             # Pads have neighbours; a lone match (a window, a sign on the tower) does not
@@ -80,6 +84,8 @@ def fit_grid(points, cols, rows):
     """The pads sit on a regular (slightly skewed) grid: centre(i, j) = O + i * U + j * V. Finds U (along a row)
     and V (to the next row) from the detected pads, fits the grid to them and returns all cols x rows centres,
     back row first, left to right."""
+    if cols == rows == 1:
+        return [tuple(points[0])], 1
     pts = np.array(points, dtype=float)
     diffs = [q - p for p in pts for q in pts if (q - p)[0] > 20 and abs((q - p)[1]) < 0.3 * (q - p)[0]]
     # Neighbour steps along a row; average them (a pad's detected box can be a little off-centre)
@@ -122,7 +128,7 @@ def main():
         path = os.path.join(HD, f"{image}.png")
         size = Image.open(path).size
         ox, oy = sequence_offset(image)
-        detected, (pw, ph) = detect_pads(path)
+        detected, (pw, ph) = detect_pads(path, single=cols * rows == 1)
         pads, found = fit_grid(detected, cols, rows)
         offsets, cells = [], set()
         for px, py in pads:

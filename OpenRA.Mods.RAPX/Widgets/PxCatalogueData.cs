@@ -16,6 +16,7 @@ using OpenRA.GameRules;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Warheads;
 using OpenRA.Mods.RAPX.Traits;
+using OpenRA.Mods.RAPX.Warheads;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.RAPX.Widgets
@@ -285,6 +286,19 @@ namespace OpenRA.Mods.RAPX.Widgets
 				e.Weapons.Add(CreateWeapon(arm.Weapon, arm.WeaponInfo));
 			}
 
+			// The Fatman bomber's bomb (PxStrategicBomber) is no armament: it falls once per Fatman Strike, so it shows the
+			// strike's charge time as its reload and stays out of the damage-per-second grades
+			var bomber = a.TraitInfoOrDefault<PxStrategicBomberInfo>();
+			if (bomber?.WeaponInfo != null)
+			{
+				var bomb = CreateWeapon(bomber.Weapon, bomber.WeaponInfo);
+				var charge = rules.Actors.Values.SelectMany(r => r.TraitInfos<PxFatmanStrikePowerInfo>())
+					.FirstOrDefault(p => p.Bombers.Contains(a.Name))?.ChargeInterval ?? 0;
+				bomb.Reload = charge / (float)Ticks;
+				bomb.Dps = 0;
+				e.Weapons.Add(bomb);
+			}
+
 			e.Dps = e.Weapons.Where(w => !w.Support).Select(w => w.Dps).DefaultIfEmpty(0).Max();
 			e.Range = e.Weapons.Where(w => !w.Support).Select(w => w.Range).DefaultIfEmpty(0).Max();
 			AddFeatures(e, aircraft, mobile);
@@ -321,6 +335,8 @@ namespace OpenRA.Mods.RAPX.Widgets
 		static string ProjectileKind(WeaponInfo w)
 		{
 			var name = w.Projectile?.GetType().Name ?? "";
+			if (name.Contains("GravityBomb") && w.Warheads.Any(h => h is PxRadiationWarhead))
+				return "Atomic bomb";
 			if (name.Contains("Laser") || name.Contains("Railgun"))
 				return "Energy beam";
 			if (name.Contains("Tesla") || name.Contains("Lightning"))

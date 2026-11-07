@@ -1,0 +1,53 @@
+# Fatman strike (USA, rules/fatman.yaml). The field's idle/damaged/make art is in hd-structures.yaml (build_all.py),
+# the large sidebar tiles in hd-icons.yaml.
+
+# Drawn as ground (like the airfields in airfields.yaml): ZOffset reaches past the pad (half the 4-cell depth),
+# so the parked bomber stays on top.
+bmbf:
+	idle:
+		ZOffset: -2048
+	damaged-idle:
+		ZOffset: -2048
+	active:
+		ZOffset: -2048
+	damaged-active:
+		ZOffset: -2048
+	icon:
+		Filename: ra|bits/hd/bmbfcameo.png
+
+# AB-35 Longwing (artsrc/units/meshes/make_sketchfab.py jet.yb35)
+yb35:
+	idle:
+		Filename: ra|bits/hd/units/yb-35-flying-wing.png
+		Start: 0
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	icon:
+		Filename: ra|bits/hd/yb35icon.png
+
+# The falling bomb (artsrc/fx/make_fatman_fx.py): turns slowly about its long axis
+fatman:
+	falling:
+		Filename: ra|bits/hd/fx/fatman-bomb.png
+		Start: 0
+		Length: 16
+		Tick: 60
+		Scale: 0.3333
+
+# The nuke's mushroom cloud (hd-nuke-fx.yaml) at 60% size and a little faster, for the 3-cell blast
+explosion:
+	fatman-nuke:
+		Filename: ra|bits/hd/fx/blast/nuke.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/fx/blast/nuke.png
+			SNOW: ra|bits/hd/fx/blast/nuke.png
+			DESERT: ra|bits/hd/fx/blast/nuke.png
+			INTERIOR: ra|bits/hd/fx/blast/nuke.png
+		Start: 0
+		Length: 100
+		Offset: 0,0
+		Scale: 0.353
+		ZOffset: 2047
+		Tick: 80

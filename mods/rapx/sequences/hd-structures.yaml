@@ -844,6 +844,75 @@ sacm:
 		Scale: 0.3333
 		Offset: 18,17
 
+bmbf:
+	idle:
+		Filename: ra|bits/hd/bmbf.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/bmbf.png
+			SNOW: ra|bits/hd/bmbf.png
+			DESERT: ra|bits/hd/bmbf.png
+			INTERIOR: ra|bits/hd/bmbf.png
+		Start: 0
+		Length: 1
+		Scale: 0.3333
+		Offset: 3,5
+	damaged-idle:
+		Filename: ra|bits/hd/bmbf-damaged.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/bmbf-damaged.png
+			SNOW: ra|bits/hd/bmbf-damaged.png
+			DESERT: ra|bits/hd/bmbf-damaged.png
+			INTERIOR: ra|bits/hd/bmbf-damaged.png
+		Start: 0
+		Length: 1
+		Scale: 0.3333
+		Offset: 3,5
+	active:
+		Filename: ra|bits/hd/bmbf.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/bmbf.png
+			SNOW: ra|bits/hd/bmbf.png
+			DESERT: ra|bits/hd/bmbf.png
+			INTERIOR: ra|bits/hd/bmbf.png
+		Start: 0
+		Length: 1
+		Scale: 0.3333
+		Offset: 3,5
+	damaged-active:
+		Filename: ra|bits/hd/bmbf-damaged.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/bmbf-damaged.png
+			SNOW: ra|bits/hd/bmbf-damaged.png
+			DESERT: ra|bits/hd/bmbf-damaged.png
+			INTERIOR: ra|bits/hd/bmbf-damaged.png
+		Start: 0
+		Length: 1
+		Scale: 0.3333
+		Offset: 3,5
+	make:
+		Filename: ra|bits/hd/bmbf-make.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/bmbf-make.png
+			SNOW: ra|bits/hd/bmbf-make.png
+			DESERT: ra|bits/hd/bmbf-make.png
+			INTERIOR: ra|bits/hd/bmbf-make.png
+		Start: 0
+		Length: 22
+		Tick: 45
+		Scale: 0.3333
+		Offset: 3,5
+	collapse:
+		Filename: ra|bits/hd/bmbf-collapse.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/bmbf-collapse.png
+			SNOW: ra|bits/hd/bmbf-collapse.png
+			DESERT: ra|bits/hd/bmbf-collapse.png
+			INTERIOR: ra|bits/hd/bmbf-collapse.png
+		Start: 0
+		Length: 16
+		Scale: 0.3333
+		Offset: 3,5
+
 tent:
 	idle:
 		Filename: ra|bits/hd/tent.png
@@ -1183,75 +1252,6 @@ stek:
 		Length: 16
 		Scale: 0.4167
 		Offset: 6,-15
-
-pdox:
-	idle:
-		Filename: ra|bits/hd/pdox.png
-		TilesetFilenames:
-			TEMPERAT: ra|bits/hd/pdox.png
-			SNOW: ra|bits/hd/pdox.png
-			DESERT: ra|bits/hd/pdox.png
-			INTERIOR: ra|bits/hd/pdox.png
-		Start: 0
-		Length: 1
-		Scale: 0.4167
-		Offset: 6,-3
-	damaged-idle:
-		Filename: ra|bits/hd/pdox-damaged.png
-		TilesetFilenames:
-			TEMPERAT: ra|bits/hd/pdox-damaged.png
-			SNOW: ra|bits/hd/pdox-damaged.png
-			DESERT: ra|bits/hd/pdox-damaged.png
-			INTERIOR: ra|bits/hd/pdox-damaged.png
-		Start: 0
-		Length: 1
-		Scale: 0.4167
-		Offset: 6,-3
-	active:
-		Filename: ra|bits/hd/pdox.png
-		TilesetFilenames:
-			TEMPERAT: ra|bits/hd/pdox.png
-			SNOW: ra|bits/hd/pdox.png
-			DESERT: ra|bits/hd/pdox.png
-			INTERIOR: ra|bits/hd/pdox.png
-		Start: 0
-		Length: 1
-		Scale: 0.4167
-		Offset: 6,-3
-	damaged-active:
-		Filename: ra|bits/hd/pdox-damaged.png
-		TilesetFilenames:
-			TEMPERAT: ra|bits/hd/pdox-damaged.png
-			SNOW: ra|bits/hd/pdox-damaged.png
-			DESERT: ra|bits/hd/pdox-damaged.png
-			INTERIOR: ra|bits/hd/pdox-damaged.png
-		Start: 0
-		Length: 1
-		Scale: 0.4167
-		Offset: 6,-3
-	make:
-		Filename: ra|bits/hd/pdox-make.png
-		TilesetFilenames:
-			TEMPERAT: ra|bits/hd/pdox-make.png
-			SNOW: ra|bits/hd/pdox-make.png
-			DESERT: ra|bits/hd/pdox-make.png
-			INTERIOR: ra|bits/hd/pdox-make.png
-		Start: 0
-		Length: 22
-		Tick: 45
-		Scale: 0.4167
-		Offset: 6,-3
-	collapse:
-		Filename: ra|bits/hd/pdox-collapse.png
-		TilesetFilenames:
-			TEMPERAT: ra|bits/hd/pdox-collapse.png
-			SNOW: ra|bits/hd/pdox-collapse.png
-			DESERT: ra|bits/hd/pdox-collapse.png
-			INTERIOR: ra|bits/hd/pdox-collapse.png
-		Start: 0
-		Length: 16
-		Scale: 0.4167
-		Offset: 6,-3
 
 iron:
 	idle:

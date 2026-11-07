@@ -2399,32 +2399,6 @@ pbox:
 		Offset: 0,0
 		Scale: 1
 
-pdox:
-	px-icon:
-		Filename: ra|bits/hd/icons/pdoxicon.png
-		TilesetFilenames:
-			TEMPERAT: ra|bits/hd/icons/pdoxicon.png
-			SNOW: ra|bits/hd/icons/pdoxicon.png
-			DESERT: ra|bits/hd/icons/pdoxicon.png
-			INTERIOR: ra|bits/hd/icons/pdoxicon.png
-		Start: 0
-		Length: 1
-		Facings: 1
-		Offset: 0,0
-		Scale: 0.5
-	icon:
-		Filename: ra|bits/hd/icons/small/pdoxicon.png
-		TilesetFilenames:
-			TEMPERAT: ra|bits/hd/icons/small/pdoxicon.png
-			SNOW: ra|bits/hd/icons/small/pdoxicon.png
-			DESERT: ra|bits/hd/icons/small/pdoxicon.png
-			INTERIOR: ra|bits/hd/icons/small/pdoxicon.png
-		Start: 0
-		Length: 1
-		Facings: 1
-		Offset: 0,0
-		Scale: 1
-
 powr:
 	px-icon:
 		Filename: ra|bits/hd/icons/powricon.png
@@ -3411,6 +3385,34 @@ asat:
 			SNOW: ra|bits/hd/icons/asatcameo.png
 			DESERT: ra|bits/hd/icons/asatcameo.png
 			INTERIOR: ra|bits/hd/icons/asatcameo.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+bmbf:
+	px-icon:
+		Filename: ra|bits/hd/icons/bmbfcameo.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/bmbfcameo.png
+			SNOW: ra|bits/hd/icons/bmbfcameo.png
+			DESERT: ra|bits/hd/icons/bmbfcameo.png
+			INTERIOR: ra|bits/hd/icons/bmbfcameo.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+yb35:
+	px-icon:
+		Filename: ra|bits/hd/icons/yb35icon.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/yb35icon.png
+			SNOW: ra|bits/hd/icons/yb35icon.png
+			DESERT: ra|bits/hd/icons/yb35icon.png
+			INTERIOR: ra|bits/hd/icons/yb35icon.png
 		Start: 0
 		Length: 1
 		Facings: 1

@@ -25,7 +25,7 @@ sys.path.insert(0, os.path.join(ROOT, "artsrc", "terrain"))
 import make_base_tiles as mbt  # noqa: E402  (utility() export helper)
 import make_ui_sprites as ui  # noqa: E402
 
-NAMES = ["SAM", "AGUN", "GAP", "FIX", "FTUR", "GUN", "HOSP", "IRON", "SILO", "PBOX", "PDOX", "TSLA"]
+NAMES = ["SAM", "AGUN", "GAP", "FIX", "FTUR", "GUN", "HOSP", "IRON", "SILO", "PBOX", "TSLA"]
 # tileset -> (gravel base colour, speckle colours)
 LOOK = {
     "temperate": ((112, 104, 92), [(80, 74, 66), (146, 138, 124), (60, 56, 50)]),

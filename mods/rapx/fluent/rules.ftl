@@ -42,7 +42,7 @@ faction-usa =
     .name = USA
     .description = USA: Arsenal of Democracy
      Full Union arsenal
-     Special units coming soon
+     Fatman Strike: AB-35 atomic bomber
 
 faction-england =
     .name = England
@@ -515,21 +515,6 @@ actor-iron =
     .grantexternalconditionpower-ironcurtain-name = Invulnerability
     .grantexternalconditionpower-ironcurtain-description = Grants invulnerability to a group of units
     for 20 seconds.
-
-actor-pdox =
-    .name = Chronosphere
-    .description =
-    Teleports a group of units across
-    the map for a short time.
-    Requires power to operate.
-    Maximum of one can be built.
-      Special Ability: Chronoshift
-    .chronoshiftpower-chronoshift-name = Chronoshift
-    .chronoshiftpower-chronoshift-description = Teleports a group of units across
-    the map for 20 seconds.
-    .chronoshiftpower-advancedchronoshift-name = Advanced Chronoshift
-    .chronoshiftpower-advancedchronoshift-description = Teleports a large group of units across
-    the map for 20 seconds.
 
 actor-tsla =
     .name = Tesla Coil

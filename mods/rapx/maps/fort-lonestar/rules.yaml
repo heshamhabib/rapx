@@ -453,10 +453,6 @@ IRON:
 	Buildable:
 		Prerequisites: ~disabled
 
-PDOX:
-	Buildable:
-		Prerequisites: ~disabled
-
 AGUN:
 	Buildable:
 		Prerequisites: ~disabled

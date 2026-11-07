@@ -40,6 +40,7 @@ Rules:
 	# Must load before the generated file below: an Inherits only lets a child keep what comes after it, so
 	# entries merged in from an earlier file get overwritten by the parent's (e.g. V2RL's portrait on HIMAX).
 	ra|rules/airfields.yaml
+	ra|rules/fatman.yaml
 	ra|rules/hd-building-fx.yaml
 	ra|rules/hd-env.yaml
 	ra|rules/jets.yaml
@@ -94,6 +95,7 @@ Sequences:
 	ra|sequences/hd-water-fx.yaml
 	ra|sequences/hd-blast-fx.yaml
 	ra|sequences/hd-nuke-fx.yaml
+	ra|sequences/fatman.yaml
 	ra|sequences/hd-beacon.yaml
 	ra|sequences/hd-parachute.yaml
 	ra|sequences/hd-infantry-deaths.yaml
@@ -199,6 +201,7 @@ FluentMessages:
 	ra|fluent/rocket-launchers.ftl
 	ra|fluent/air-defence.ftl
 	ra|fluent/catalogue.ftl
+	ra|fluent/fatman.ftl
 
 AllowUnusedFluentMessagesInExternalPackages: false
 
@@ -216,6 +219,7 @@ Weapons:
 	ra|weapons/naval-defence.yaml
 	ra|weapons/rocket-launchers.yaml
 	ra|weapons/air-defence.yaml
+	ra|weapons/fatman.yaml
 
 Voices:
 	ra|audio/voices.yaml

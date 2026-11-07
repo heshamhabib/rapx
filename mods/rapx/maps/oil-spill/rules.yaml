@@ -161,13 +161,6 @@ IRON:
 	Buildable:
 		Prerequisites: stek
 
-PDOX:
-	Buildable:
-		Prerequisites: atek
-	ChronoshiftPower@chronoshift:
-		-Prerequisites:
-	-ChronoshiftPower@advancedchronoshift:
-
 ATEK:
 	Buildable:
 		Prerequisites: dome, tent
