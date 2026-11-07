@@ -66,16 +66,16 @@ AFBS:
 		Name: actor-afbs.name
 	Selectable:
 		Class: afbs
-		Bounds: 12288, 9216
+		Bounds: 10240, 6144
 	HitShape:
 		Type: Rectangle
-			TopLeft: -6144, -4608
-			BottomRight: 6144, 4608
+			TopLeft: -5120, -3072
+			BottomRight: 5120, 3072
 	Building:
-		Footprint: xxxxxxxxxxxx xxxxxxxxxxxx xxxxxxxxxxxx xxxxxxxxxxxx xxxxxxxxxxxx xxxxxxxxxxxx xxxxxxxxxxxx xxxxxxxxxxxx xxxxxxxxxxxx
-		Dimensions: 12,9
+		Footprint: xxxxxxxxxx xxxxxxxxxx xxxxxxxxxx xxxxxxxxxx xxxxxxxxxx xxxxxxxxxx
+		Dimensions: 10,6
 	Exit@1:
-		ExitCell: 5,4
+		ExitCell: 4,3
 	Health:
 		HP: 350000
 	Power:
@@ -99,16 +99,16 @@ SACM:
 		Name: actor-sacm.name
 	Selectable:
 		Class: sacm
-		Bounds: 20480, 15360
+		Bounds: 12288, 6144
 	HitShape:
 		Type: Rectangle
-			TopLeft: -10240, -7680
-			BottomRight: 10240, 7680
+			TopLeft: -6144, -3072
+			BottomRight: 6144, 3072
 	Building:
-		Footprint: xxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxx
-		Dimensions: 20,15
+		Footprint: xxxxxxxxxxxx xxxxxxxxxxxx xxxxxxxxxxxx xxxxxxxxxxxx xxxxxxxxxxxx xxxxxxxxxxxx
+		Dimensions: 12,6
 	Exit@1:
-		ExitCell: 9,8
+		ExitCell: 5,3
 	Health:
 		HP: 600000
 	Power:

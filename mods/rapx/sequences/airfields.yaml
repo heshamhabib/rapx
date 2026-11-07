@@ -27,24 +27,24 @@ abas:
 
 afbs:
 	idle:
-		ZOffset: -5120
+		ZOffset: -3584
 	damaged-idle:
-		ZOffset: -5120
+		ZOffset: -3584
 	active:
-		ZOffset: -5120
+		ZOffset: -3584
 	damaged-active:
-		ZOffset: -5120
+		ZOffset: -3584
 	icon:
 		Filename: ra|bits/hd/afbscameo.png
 
 sacm:
 	idle:
-		ZOffset: -8192
+		ZOffset: -3584
 	damaged-idle:
-		ZOffset: -8192
+		ZOffset: -3584
 	active:
-		ZOffset: -8192
+		ZOffset: -3584
 	damaged-active:
-		ZOffset: -8192
+		ZOffset: -3584
 	icon:
 		Filename: ra|bits/hd/sacmcameo.png

@@ -33,8 +33,8 @@ WDIST = 1024  # world units per cell
 AIRFIELDS = {
     "afld": (["AFLD"], (6, 5), (2, 2)),
     "abas": (["ABAS"], (8, 7), (3, 2)),
-    "afbs": (["AFBS"], (12, 9), (4, 2)),
-    "sacm": (["SACM"], (20, 15), (5, 2)),
+    "afbs": (["AFBS"], (10, 6), (4, 2)),
+    "sacm": (["SACM"], (12, 6), (5, 2)),
 }
 # Parked planes face the viewer (south): the pads are wider than deep and a MiG facing south is 33 x 24 px.
 FACING = 512

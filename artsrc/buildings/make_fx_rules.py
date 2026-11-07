@@ -32,6 +32,7 @@ ROOT = os.path.normpath(os.path.join(HERE, "..", ".."))
 HD = os.path.join(ROOT, "mods", "rapx", "bits", "hd")
 SEQUENCES = os.path.join(ROOT, "mods", "rapx", "sequences", "hd-structures.yaml")
 STRUCTURES = os.path.join(ROOT, "mods", "rapx", "rules", "structures.yaml")
+AIRFIELD_RULES = os.path.join(ROOT, "mods", "rapx", "rules", "airfields.yaml")
 STYLE_SEQUENCES = os.path.join(ROOT, "mods", "rapx", "sequences", "hd-structures-styles.yaml")
 OUT = os.path.join(ROOT, "mods", "rapx", "rules", "hd-building-fx.yaml")
 PREVIEW = os.path.join(HERE, "preview")
@@ -132,6 +133,66 @@ FX = {
 }
 
 
+# Airfields (IDEA-06): lights around the apron chase like runway lights, the pads glow in a wave that sweeps across
+# the grid, the tower has a rotating beacon, blinking antennas and lit windows, a light circles the radar, and the
+# first pad throws welding sparks while a plane is being built. Pixel spots read off the sprites
+# (2026-11-07); the pad centres are measured by make_airfield_slots.py.
+WARM = "FFE6B0"
+CAB = "9FE0FF"
+AIRFIELD_FX = {
+    "afld": dict(
+        edge=[], flood=[(35, 235), (392, 277), (80, 95)],
+        beacon=(350, 62), antennas=[(387, 87)], cab=[(350, 90)], doors=[(345, 120)],
+        radar=(334, 47, 8, 3)),
+    "abas": dict(
+        edge=[], flood=[(75, 156), (59, 247), (31, 316), (65, 362), (400, 420), (465, 393)],
+        beacon=(487, 30), antennas=[(444, 88), (527, 72)], cab=[(482, 95)],
+        doors=[(144, 149), (212, 159), (300, 171), (370, 181), (521, 162)],
+        radar=(487, 37, 9, 4)),
+    "afbs": dict(
+        edge=[(37, 172), (127, 88), (248, 88), (365, 88), (485, 88), (703, 172), (710, 260),
+              (627, 347), (499, 347), (367, 347), (240, 347), (115, 347), (31, 259)],
+        flood=[], beacon=(627, 60), antennas=[(567, 73), (687, 73)], cab=[(633, 137)],
+        doors=[(632, 275), (587, 203), (675, 203)], radar=(627, 23, 16, 5)),
+    "sacm": dict(
+        edge=[(47, 212), (191, 159), (331, 159), (441, 159), (560, 159), (681, 159), (837, 210), (847, 288),
+              (855, 373), (710, 437), (572, 437), (441, 437), (311, 437), (175, 437), (27, 432), (32, 373),
+              (40, 289)],
+        flood=[], beacon=(773, 95), antennas=[(681, 123), (833, 123)], cab=[(767, 190)],
+        doors=[(773, 355)], radar=(773, 43, 22, 8)),
+}
+
+
+def pad_centres(bid):
+    """Pad centres (sprite px) as make_airfield_slots.py finds them: back row first, left to right."""
+    from make_airfield_slots import AIRFIELDS, detect_pads, fit_grid
+    _, _, (cols, rows) = AIRFIELDS[bid]
+    detected, _ = detect_pads(os.path.join(HD, f"{bid}.png"))
+    return fit_grid(detected, cols, rows)[0], cols
+
+
+def airfield_fx(bid):
+    spec = AIRFIELD_FX[bid]
+    fx = []
+    pads, cols = pad_centres(bid)
+    period = 120
+    for i, (x, y) in enumerate(pads):
+        # Each column lights up a little after the one to its left: a wave across the apron
+        fx.append(pulse(round(x), round(y), GREEN, 1.5, period=period, lo=0.0, hi=0.32, Phase=(i % cols) * period // (2 * cols)))
+    if spec["edge"]:
+        fx += chase(spec["edge"], AMBER, period=4 * len(spec["edge"]), size=0.45)
+    fx += [pulse(x, y, WARM, 1.0, period=80 + 7 * i, lo=0.45, hi=0.85) for i, (x, y) in enumerate(spec["flood"])]
+    fx.append(beacon(*spec["beacon"], RED, 0.7, period=40))
+    fx += [blink(x, y, RED, 0.45, period=50, Phase=25 * i) for i, (x, y) in enumerate(spec["antennas"])]
+    fx += [pulse(x, y, CAB, 1.2, period=140, lo=0.15, hi=0.45) for x, y in spec["cab"]]
+    fx += [pulse(x, y, WARM, 0.6, period=90 + 11 * i, lo=0.35, hi=0.75) for i, (x, y) in enumerate(spec["doors"])]
+    x, y, rx, ry = spec["radar"]
+    fx.append(dict(Type="Orbit", Offset=(x, y), Radius=(rx, ry), Color=WHITE, Size=0.5, Period=70, MinAlpha=0.0, MaxAlpha=0.8))
+    x, y = pads[0]
+    fx.append(sparks(round(x), round(y), 10, 5, rate=8))
+    return fx
+
+
 def read_offsets(path=SEQUENCES):
     """Image name -> Offset of its main sprite (the turret layer for turreted defences)."""
     found, current, seq = {}, None, None
@@ -151,14 +212,16 @@ def read_offsets(path=SEQUENCES):
 
 def actor_blocks():
     """Actor name -> list of its lines in structures.yaml."""
-    blocks, current = {}, None
-    with open(STRUCTURES) as f:
-        for line in f:
-            if re.match(r"^[A-Za-z0-9^]+:", line):
-                current = line.split(":")[0]
-                blocks[current] = []
-            elif current:
-                blocks[current].append(line.rstrip("\n"))
+    blocks = {}
+    for path in (STRUCTURES, AIRFIELD_RULES):
+        current = None
+        with open(path) as f:
+            for line in f:
+                if re.match(r"^[A-Za-z0-9^]+:", line):
+                    current = line.split(":")[0]
+                    blocks.setdefault(current, [])
+                elif current:
+                    blocks[current].append(line.rstrip("\n"))
     return blocks
 
 
@@ -358,7 +421,13 @@ def main():
                   f"\t\tSize: {0.8 + 0.2 * cells:g}"]
         if nations:
             lines.append("\t\tRequiresCondition: !pxstyled")
-        lines += fx_lines(FX.get(bid, []), w, h, offset, default)
+        own = airfield_fx(bid) if bid in AIRFIELD_FX else FX.get(bid, [])
+        lines += fx_lines(own, w, h, offset, default)
+        if preview and bid in AIRFIELD_FX:
+            save_preview(bid, os.path.join(HD, f"{bid}.png"), own)
+        # The bigger airfields inherit AFLD: drop any of its effects they don't replace
+        if bid in AIRFIELD_FX and bid != "afld":
+            lines += [f"\t-WithPxBuildingFx@{i}:" for i in range(len(own), len(airfield_fx("afld")))]
 
         # National styles: their own damage spots and effects, the default ones are switched off
         if nations:

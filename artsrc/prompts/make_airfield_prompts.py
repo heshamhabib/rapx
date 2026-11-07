@@ -82,25 +82,29 @@ AIRFIELDS = [
      ", the hangar roof caved in, the control tower cab shattered",
      "a military Air Base with jets parked on two rows of pads in front of a large closed hangar and a control tower",
      False),
-    ("afbs", "Air Force Base", (12, 9), 8, "jet parking pads",
-     "in two rows of 4 pads, in the middle-left of the base",
-     "the pad outlines and the shelter roof stripes",
-     "An Air Force Base: along the front edge a runway (12 tiles long, 2 tiles wide) with white centre-line and threshold "
-     "stripes. Along the whole back edge: a row of 6 hardened aircraft shelters (each 2 tiles wide and 3 tiles deep, "
-     "rounded thick concrete arches with closed blast doors facing the apron), where twelve more jets are kept inside. "
-     "In the middle-right: a control tower and a fuel depot with round tanks (together 4 x 4 tiles). Taxiways link everything.",
-     ", one hardened shelter collapsed, a fuel tank burst open and burning, craters in the runway",
-     "a big military Air Force Base with a runway, a row of hardened concrete aircraft shelters and parked jet fighters",
-     False),
-    ("sacm", "Strategic Air Command", (20, 15), 12, "jet parking pads",
-     "in two rows of 6 pads, in the centre of the base",
-     "the pad outlines, the hangar roof stripes and the radar tower top",
-     "A Strategic Air Command: a huge air base. Two parallel runways, each 20 tiles long and 3 tiles wide, one along "
-     "the front edge and one along the back edge. Between them, four large hangar blocks (each 4 x 4 tiles, big doors "
-     "closed), two on the left side and two on the right side, holding twenty-eight more jets inside. In the centre, "
-     "behind the pads: a tall radar tower with a big dish, a command bunker and a fuel farm. Taxiways link everything.",
-     ", one runway cratered, a hangar block collapsed, the radar dish torn off its tower",
-     "a huge Strategic Air Command air base seen from above at an angle, two runways, hangars, a radar tower and dozens of parked jets in rows",
+    # Compact redesign (2026-11-07, like sacm: only the pads and a tower; was 12x9 with a runway, 6 shelters and a
+    # fuel depot, art kept in artsrc/buildings/src/old/afbs-v1-12x9.png).
+    ("afbs", "Air Force Base", (10, 6), 8, "jet parking pads",
+     "in two straight rows of 4 pads each, filling the left four fifths of the base",
+     "the pad outlines and the tower roof",
+     "A compact Air Force Base: a plain concrete air apron with nothing on it but the parking pads and, along the "
+     "right edge, one control tower with a glass cab and a small rotating radar on top (2 x 2 tiles at its base). No "
+     "runways, no hangars, no shelters, no fuel tanks and no other buildings. A thin armoured kerb with small edge "
+     "lights runs around the apron.",
+     ", the radar torn off the tower, the cab windows shattered, cracks and craters across the apron",
+     "a compact military Air Force Base: two rows of jet fighters parked on pads next to a control tower",
+     True),
+    # Compact redesign (2026-11-07, user: only the pads and a tower, smallest possible; was 20x15 with runways and
+    # hangars, art kept in artsrc/buildings/src/old/sacm-v1-20x15.png).
+    ("sacm", "Strategic Air Command", (12, 6), 10, "jet parking pads",
+     "in two straight rows of 5 pads each, filling the left five sixths of the base",
+     "the pad outlines and the tower roof",
+     "A compact Strategic Air Command: a plain concrete air apron with nothing on it but the parking pads and, along "
+     "the right edge, one tall command tower with a radar dish on top (2 x 2 tiles at its base). No runways, no "
+     "hangars, no shelters, no fuel tanks and no other buildings. A thin armoured kerb with small edge lights runs "
+     "around the apron.",
+     ", the radar dish torn off the tower, the tower windows shattered, cracks and craters across the apron",
+     "a compact military Strategic Air Command: two rows of jet fighters parked on pads next to a tall command tower with a radar dish",
      True),
     ("hpad", "Helipad", (2, 2), 1, "helicopter landing pad", "filling most of the footprint, with a large H marking in the middle",
      "the landing circle markings",
@@ -128,7 +132,7 @@ AIRFIELDS = [
 ]
 
 # Slots kept inside hangars / shelters (not drawn as pads): IDEA-06 section 3.
-HIDDEN = {"afld": 0, "abas": 4, "afbs": 12, "sacm": 28}
+HIDDEN = {"afld": 0, "abas": 4, "afbs": 0, "sacm": 0}
 
 
 def main():
@@ -152,8 +156,8 @@ def main():
         "- The slot markings themselves (empty pad, \"reserved\" pad) are small overlay sprites drawn by code, not by ChatGPT.",
         "- Real scale (1 tile = 10 m): a jet pad is 2 x 2 tiles. Bigger bases keep the rest of their slots inside hangars",
         "  and shelters (planes taxi in and are hidden), so only some slots are drawn as pads.",
-        "- Strategic Air Command is drawn as two images: run `sacm` first, then",
-        "  `--only sacm-damaged --ref ../../assets/buildings/sacm.png`, and join them side by side (intact left) before",
+        "- Air Force Base and Strategic Air Command are drawn as two images each: run `afbs` first, then",
+        "  `--only afbs-damaged --ref ../../assets/buildings/afbs.png` (same for sacm), and join them side by side (intact left) before",
         "  `build_all.py`.",
         "",
         "New ids: `abas` Air Base, `afbs` Air Force Base, `sacm` Strategic Air Command, `hprt` Heliport, `acav` Air Cavalry",

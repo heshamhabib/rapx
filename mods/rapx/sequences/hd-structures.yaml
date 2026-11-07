@@ -717,7 +717,7 @@ afbs:
 		Start: 0
 		Length: 1
 		Scale: 0.3333
-		Offset: 0,21
+		Offset: 10,17
 	damaged-idle:
 		Filename: ra|bits/hd/afbs-damaged.png
 		TilesetFilenames:
@@ -728,7 +728,7 @@ afbs:
 		Start: 0
 		Length: 1
 		Scale: 0.3333
-		Offset: 0,21
+		Offset: 10,17
 	active:
 		Filename: ra|bits/hd/afbs.png
 		TilesetFilenames:
@@ -739,7 +739,7 @@ afbs:
 		Start: 0
 		Length: 1
 		Scale: 0.3333
-		Offset: 0,21
+		Offset: 10,17
 	damaged-active:
 		Filename: ra|bits/hd/afbs-damaged.png
 		TilesetFilenames:
@@ -750,7 +750,7 @@ afbs:
 		Start: 0
 		Length: 1
 		Scale: 0.3333
-		Offset: 0,21
+		Offset: 10,17
 	make:
 		Filename: ra|bits/hd/afbs-make.png
 		TilesetFilenames:
@@ -762,7 +762,7 @@ afbs:
 		Length: 22
 		Tick: 45
 		Scale: 0.3333
-		Offset: 0,21
+		Offset: 10,17
 	collapse:
 		Filename: ra|bits/hd/afbs-collapse.png
 		TilesetFilenames:
@@ -773,7 +773,7 @@ afbs:
 		Start: 0
 		Length: 16
 		Scale: 0.3333
-		Offset: 0,21
+		Offset: 10,17
 
 sacm:
 	idle:
@@ -786,7 +786,7 @@ sacm:
 		Start: 0
 		Length: 1
 		Scale: 0.3333
-		Offset: 16,27
+		Offset: 18,17
 	damaged-idle:
 		Filename: ra|bits/hd/sacm-damaged.png
 		TilesetFilenames:
@@ -797,7 +797,7 @@ sacm:
 		Start: 0
 		Length: 1
 		Scale: 0.3333
-		Offset: 16,27
+		Offset: 18,17
 	active:
 		Filename: ra|bits/hd/sacm.png
 		TilesetFilenames:
@@ -808,7 +808,7 @@ sacm:
 		Start: 0
 		Length: 1
 		Scale: 0.3333
-		Offset: 16,27
+		Offset: 18,17
 	damaged-active:
 		Filename: ra|bits/hd/sacm-damaged.png
 		TilesetFilenames:
@@ -819,7 +819,7 @@ sacm:
 		Start: 0
 		Length: 1
 		Scale: 0.3333
-		Offset: 16,27
+		Offset: 18,17
 	make:
 		Filename: ra|bits/hd/sacm-make.png
 		TilesetFilenames:
@@ -831,7 +831,7 @@ sacm:
 		Length: 22
 		Tick: 45
 		Scale: 0.3333
-		Offset: 16,27
+		Offset: 18,17
 	collapse:
 		Filename: ra|bits/hd/sacm-collapse.png
 		TilesetFilenames:
@@ -842,7 +842,7 @@ sacm:
 		Start: 0
 		Length: 16
 		Scale: 0.3333
-		Offset: 16,27
+		Offset: 18,17
 
 tent:
 	idle:
