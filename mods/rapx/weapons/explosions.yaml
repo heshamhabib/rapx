@@ -16,11 +16,11 @@
 		ValidTargets: Ground, Vehicle, Infantry
 	Warhead@2Eff: PxExplosion
 		Size: 1.2
-		ImpactSounds: kaboom22.aud
+		ImpactSounds: ra|audio/sfx/kaboom22.ogg
 		ValidTargets: Ground, Air, GroundActor, AirborneActor, WaterActor, Trees
 	Warhead@3EffWater: CreateEffect
 		Explosions: large_splash
-		ImpactSounds: splash9.aud
+		ImpactSounds: ra|audio/sfx/splash9.ogg
 		ValidTargets: Water, Underwater
 		InvalidTargets: Bridge
 
@@ -40,7 +40,7 @@ CrateNapalm:
 	Warhead@2Eff: PxFire
 		Size: 1.6
 		Duration: 80
-		ImpactSounds: firebl3.aud
+		ImpactSounds: ra|audio/sfx/firebl3.ogg
 		ValidTargets: Ground, Water, Air, GroundActor, AirborneActor, WaterActor, Trees
 	-Warhead@3EffWater:
 	Warhead@Smu: LeaveSmudge
@@ -77,14 +77,14 @@ VisualExplode:
 	-Warhead@1Dam:
 	Warhead@2Eff: PxExplosion
 		Size: 1.2
-		ImpactSounds: firebl3.aud
+		ImpactSounds: ra|audio/sfx/firebl3.ogg
 
 UnitExplodeShip:
 	Inherits: ^Explosion
 	-Warhead@Smu:
 	Warhead@2Eff: PxExplosion
 		Size: 1.8
-		ImpactSounds: kaboom25.aud
+		ImpactSounds: ra|audio/sfx/kaboom25.ogg
 		ValidTargets: Ground, Water
 	Warhead@3EffWater: CreateEffect
 		ValidTargets: Water
@@ -95,7 +95,7 @@ UnitExplodeSubmarine:
 	-Warhead@Smu:
 	Warhead@2Eff: CreateEffect
 		Explosions: large_splash
-		ImpactSounds: splash9.aud
+		ImpactSounds: ra|audio/sfx/splash9.ogg
 		ValidTargets: Water
 		ImpactActors: false
 	-Warhead@3EffWater:
@@ -106,7 +106,7 @@ UnitExplodeSmall:
 		Damage: 4000
 	Warhead@2Eff: PxExplosion
 		Size: 1.0
-		ImpactSounds: kaboom15.aud
+		ImpactSounds: ra|audio/sfx/kaboom15.ogg
 
 ArtilleryExplode:
 	Inherits: ^Explosion
@@ -114,7 +114,7 @@ ArtilleryExplode:
 		Damage: 15000
 	Warhead@2Eff: PxExplosion
 		Size: 1.3
-		ImpactSounds: kaboom22.aud
+		ImpactSounds: ra|audio/sfx/kaboom22.ogg
 
 V2Explode:
 	Inherits: SCUD
@@ -160,7 +160,7 @@ BarrelExplode:
 			Concrete: 10
 	Warhead@2Eff: PxExplosion
 		Size: 1.4
-		ImpactSounds: kaboom25.aud
+		ImpactSounds: ra|audio/sfx/kaboom25.ogg
 	Warhead@Smu: LeaveSmudge
 		SmudgeType: Crater
 
@@ -180,7 +180,7 @@ BarrelCluster:
 		DamageTypes: Prone50Percent, TriggerProne, FireDeath, Incendiary
 	Warhead@2Eff: PxExplosion
 		Size: 1.4
-		ImpactSounds: firebl3.aud
+		ImpactSounds: ra|audio/sfx/firebl3.ogg
 		Delay: 5
 	-Warhead@3EffWater:
 	Warhead@Smu: LeaveSmudge
@@ -197,7 +197,7 @@ ATMine:
 		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
 	Warhead@2Eff: PxExplosion
 		Size: 1.1
-		ImpactSounds: mineblo1.aud
+		ImpactSounds: ra|audio/sfx/mineblo1.ogg
 	Warhead@Smu: LeaveSmudge
 		SmudgeType: Crater
 		ValidTargets: Ground, GroundActor
@@ -209,7 +209,7 @@ APMine:
 		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
 	Warhead@2Eff: PxExplosion
 		Size: 0.8
-		ImpactSounds: mine1.aud
+		ImpactSounds: ra|audio/sfx/mine1.ogg
 	Warhead@Smu: LeaveSmudge
 		SmudgeType: Scorch
 
@@ -230,7 +230,7 @@ OreExplosion:
 		Size: 1,1
 	Warhead@2Eff: PxExplosion
 		Size: 1.0
-		ImpactSounds: kaboom25.aud
+		ImpactSounds: ra|audio/sfx/kaboom25.ogg
 
 CrateNuke:
 	ValidTargets: Ground, GroundActor, Trees, Water, WaterActor, Underwater, Air, AirborneActor
@@ -246,7 +246,7 @@ CrateNuke:
 	Warhead@2Res_impact: DestroyResource
 	Warhead@3Eff_impact: CreateEffect
 		Explosions: nuke
-		ImpactSounds: kaboom1.aud
+		ImpactSounds: ra|audio/sfx/kaboom1.ogg
 		ImpactActors: false
 	Warhead@4Dam_areanuke1: SpreadDamage
 		Spread: 1c0
@@ -263,7 +263,7 @@ CrateNuke:
 		Size: 4
 		Delay: 5
 	Warhead@6Eff_areanuke1: CreateEffect
-		ImpactSounds: kaboom22.aud
+		ImpactSounds: ra|audio/sfx/kaboom22.ogg
 		Delay: 5
 		ImpactActors: false
 	Warhead@6Smu_areanuke1: LeaveSmudge
@@ -291,7 +291,7 @@ MiniNuke:
 		Size: 1
 	Warhead@3Eff_impact: CreateEffect
 		Explosions: nuke
-		ImpactSounds: kaboom1.aud
+		ImpactSounds: ra|audio/sfx/kaboom1.ogg
 		ImpactActors: false
 	Warhead@4Dam_areanuke1: SpreadDamage
 		Spread: 2c0
@@ -308,7 +308,7 @@ MiniNuke:
 		Size: 2
 		Delay: 5
 	Warhead@6Eff_areanuke1: CreateEffect
-		ImpactSounds: kaboom22.aud
+		ImpactSounds: ra|audio/sfx/kaboom22.ogg
 		Delay: 5
 		ImpactActors: false
 	Warhead@7Dam_areanuke2: SpreadDamage

@@ -61,7 +61,7 @@ FORTCRATE:
 		Sequence: parabombs
 	HealActorsCrateAction:
 		SelectionShares: 30
-		Sound: heal2.aud
+		Sound: ra|audio/sfx/heal2.ogg
 		Sequence: heal
 	GiveCashCrateAction:
 		Amount: 400
@@ -73,7 +73,7 @@ FORTCRATE:
 	GrantExternalConditionCrateAction@ironcurtain:
 		SelectionShares: 10
 		Sequence: invuln
-		Sound: ironcur9.aud
+		Sound: ra|audio/sfx/ironcur9.ogg
 		Condition: invulnerability
 		Duration: 1200
 	ExplodeCrateAction@bigboom:
@@ -154,7 +154,7 @@ MOBILETENT:
 		IntoActor: tent
 		Offset: 0,0
 		Facing: 384
-		TransformSounds: placbldg.aud, build5.aud
+		TransformSounds: ra|audio/sfx/placbldg.ogg, ra|audio/sfx/build5.ogg
 		NoTransformNotification: BuildingCannotPlaceAudio
 		NoTransformTextNotification: notification-cannot-deploy-here
 	RenderSprites:

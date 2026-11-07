@@ -15,7 +15,7 @@ EnforcerRocket:
 	Inherits: Dragon
 	ReloadDelay: 90
 	Range: 6c0
-	Report: missile6.aud
+	Report: ra|audio/sfx/missile6.ogg
 	Projectile: PxRocket
 		Speed: 200
 		Arc: 0.15
@@ -99,7 +99,7 @@ SpyCarRocket:
 	Burst: 2
 	BurstDelays: 6
 	Range: 6c0
-	Report: missile6.aud
+	Report: ra|audio/sfx/missile6.ogg
 	Projectile: PxRocket
 		Speed: 220
 		Arc: 0.1

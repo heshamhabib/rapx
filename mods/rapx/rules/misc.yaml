@@ -39,7 +39,7 @@ CRATE:
 		SelectionShares: 5
 		Sequence: hide-map
 	HealActorsCrateAction:
-		Sound: heal2.aud
+		Sound: ra|audio/sfx/heal2.ogg
 		SelectionShares: 2
 		Sequence: heal
 	RevealMapCrateAction:
@@ -112,7 +112,7 @@ CRATE:
 	GrantExternalConditionCrateAction@invuln:
 		SelectionShares: 5
 		Sequence: invuln
-		Sound: ironcur9.aud
+		Sound: ra|audio/sfx/ironcur9.ogg
 		Condition: invulnerability
 		Duration: 600
 	GiveUnitCrateAction@lst:
@@ -168,7 +168,7 @@ HEALCRATE:
 	Tooltip:
 		Name: actor-healcrate-name
 	HealActorsCrateAction:
-		Sound: heal2.aud
+		Sound: ra|audio/sfx/heal2.ogg
 		SelectionShares: 1
 		Sequence: heal
 
@@ -390,7 +390,7 @@ powerproxy.sonarpulse:
 		Terrain: Water
 		AllowUnderShroud: false
 		LifeTime: 250
-		DeploySound: sonpulse.aud
+		DeploySound: ra|audio/sfx/sonpulse.ogg
 		EffectImage: moveflsh
 		EffectPalette: moveflash
 		SupportPowerPaletteOrder: 80

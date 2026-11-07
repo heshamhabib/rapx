@@ -85,9 +85,9 @@ Player:
 		ChargeInterval: 1500
 		Name: actor-player.chronoshiftpower-name
 		Description: actor-player.chronoshiftpower-description
-		SelectTargetSound: slcttgt1.aud
-		BeginChargeSound: chrochr1.aud
-		EndChargeSound: chrordy1.aud
+		SelectTargetSound: ra|audio/eva/union/slcttgt1.ogg
+		BeginChargeSound: ra|audio/eva/union/chrochr1.ogg
+		EndChargeSound: ra|audio/eva/union/chrordy1.ogg
 		KillCargo: true
 		Dimensions: 7, 7
 		Footprint: ___x___ __xxx__ _xxxxx_ xxxxxxx _xxxxx_ __xxx__ ___x___
@@ -107,7 +107,7 @@ Player:
 		EndChargeTextNotification: notification-ironcurtain.ready
 		Condition: invulnerability
 		Sequence: idle
-		OnFireSound: ironcur9.aud
+		OnFireSound: ra|audio/sfx/ironcur9.ogg
 		Dimensions: 3, 3
 		Footprint: _x_ xxx _x_
 		BlockedCursor: move-blocked
@@ -171,8 +171,8 @@ MINVV:
 	HiddenUnderFog:
 	Building:
 		TerrainTypes: Clear,Road
-		BuildSounds: placbldg.aud, build5.aud
-		UndeploySounds: cashturn.aud
+		BuildSounds: ra|audio/sfx/placbldg.ogg, ra|audio/sfx/build5.ogg
+		UndeploySounds: ra|audio/sfx/cashturn.ogg
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 10

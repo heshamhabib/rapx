@@ -1,7 +1,7 @@
 ^Cannon:
 	ReloadDelay: 50
 	Range: 4c768
-	Report: cannon1.aud
+	Report: ra|audio/sfx/cannon1.ogg
 	ValidTargets: Ground, Water, GroundActor, WaterActor
 	Projectile: Bullet
 		Speed: 682
@@ -24,11 +24,11 @@
 	Warhead@3Eff: PxExplosion
 		Size: 0.7
 		Smoke: 0.7
-		ImpactSounds: kaboom12.aud
+		ImpactSounds: ra|audio/sfx/kaboom12.ogg
 		ValidTargets: Ground, GroundActor, WaterActor, Trees
 	Warhead@4EffWater: CreateEffect
 		Explosions: small_splash
-		ImpactSounds: splash9.aud
+		ImpactSounds: ra|audio/sfx/splash9.ogg
 		ValidTargets: Water, Underwater
 		InvalidTargets: Bridge
 
@@ -36,7 +36,7 @@
 	Inherits: ^Cannon
 	ReloadDelay: 21
 	Range: 4c768
-	Report: cannon2.aud
+	Report: ra|audio/sfx/cannon2.ogg
 	Projectile: Bullet
 		Speed: 853
 		Image: 50CAL
@@ -94,7 +94,7 @@ TurretGun:
 	Inherits: ^Cannon
 	ReloadDelay: 30
 	Range: 6c512
-	Report: turret1.aud
+	Report: ra|audio/sfx/turret1.ogg
 	Warhead@1Dam: SpreadDamage
 		Damage: 6000
 		Versus:
@@ -126,14 +126,14 @@ TurretGun:
 	Warhead@3Eff: PxExplosion
 		Size: 1.2
 		Smoke: 1.2
-		ImpactSounds: kaboom15.aud
+		ImpactSounds: ra|audio/sfx/kaboom15.ogg
 	Warhead@4EffWater: CreateEffect
 		Explosions: med_splash
 
 155mm:
 	Inherits: ^Artillery
 	MinRange: 4c0
-	Report: tank5.aud
+	Report: ra|audio/sfx/tank5.ogg
 	TargetActorCenter: true
 	Projectile: Bullet
 		ContrailLength: 30
@@ -153,7 +153,7 @@ TurretGun:
 	ReloadDelay: 250
 	Range: 20c0
 	Burst: 2
-	Report: turret1.aud
+	Report: ra|audio/sfx/turret1.ogg
 	TargetActorCenter: true
 	Projectile: Bullet
 		Inaccuracy: 1c938
@@ -178,7 +178,7 @@ TurretGun:
 	Inherits: ^Cannon
 	ReloadDelay: 60
 	Range: 5c512
-	Report: cannon2.aud
+	Report: ra|audio/sfx/cannon2.ogg
 	InvalidTargets: Underwater
 	Warhead@1Dam: SpreadDamage
 		Spread: 256
@@ -196,7 +196,7 @@ Grenade:
 	Inherits: ^Artillery
 	ReloadDelay: 60
 	Range: 4c0
-	Report: grenade1.aud
+	Report: ra|audio/sfx/grenade1.ogg
 	Projectile: Bullet
 		Speed: 136
 		Inaccuracy: 554
@@ -213,7 +213,7 @@ Grenade:
 	Warhead@3Eff: PxExplosion
 		Size: 0.65
 		Smoke: 0.7
-		ImpactSounds: kaboom25.aud
+		ImpactSounds: ra|audio/sfx/kaboom25.ogg
 	Warhead@4EffWater: CreateEffect
 		Explosions: small_splash
 
@@ -236,15 +236,15 @@ DepthCharge:
 		DamageTypes: ExplosionDeath
 	Warhead@3Eff: CreateEffect
 		Explosions: med_explosion
-		ImpactSounds: kaboom15.aud
+		ImpactSounds: ra|audio/sfx/kaboom15.ogg
 		ValidTargets: Submarine
 		InvalidTargets: Underwater
 	Warhead@4EffWater: CreateEffect
 		Explosions: large_splash
-		ImpactSounds: splash9.aud
+		ImpactSounds: ra|audio/sfx/splash9.ogg
 		ValidTargets: Water, Underwater
 	Warhead@5EffSubmergedHitSound: CreateEffect
-		ImpactSounds: h2obomb2.aud
+		ImpactSounds: ra|audio/sfx/h2obomb2.ogg
 		ValidTargets: Underwater
 
 # XR-85 (France only, rules/vehicles.yaml XR85): a slow, very heavy long-range gun. Out-ranges every tank and
@@ -254,7 +254,7 @@ XR85Cannon:
 	ReloadDelay: 150
 	Range: 12c0
 	MinRange: 2c0
-	Report: cannon1.aud
+	Report: ra|audio/sfx/cannon1.ogg
 	Projectile: Bullet
 		Speed: 900
 		Blockable: False
@@ -270,4 +270,4 @@ XR85Cannon:
 	Warhead@3Eff: PxExplosion
 		Size: 2.2
 		Smoke: 2.0
-		ImpactSounds: kaboom25.aud
+		ImpactSounds: ra|audio/sfx/kaboom25.ogg

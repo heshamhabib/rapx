@@ -21,7 +21,7 @@
 	Warhead@3Eff: PxFire
 		Size: 1
 		Duration: 50
-		ImpactSounds: firebl3.aud
+		ImpactSounds: ra|audio/sfx/firebl3.ogg
 
 FireballLauncher:
 	Inherits: ^FireWeapon
@@ -83,7 +83,7 @@ Napalm:
 ^TeslaWeapon:
 	ReloadDelay: 3
 	Range: 7c0
-	Report: tesla1.aud
+	Report: ra|audio/sfx/tesla1.ogg
 	# HD lightning (OpenRA.Mods.RAPX/Projectiles/PxLightning.cs) instead of the classic litning sprites
 	Projectile: PxLightning
 	ValidTargets: Ground, Water, GroundActor, WaterActor
@@ -140,7 +140,7 @@ DogJaw:
 	ValidTargets: Infantry
 	ReloadDelay: 10
 	Range: 3c0
-	Report: dogg5p.aud
+	Report: ra|audio/dog/dogg5p.ogg
 	TargetActorCenter: true
 	Projectile: InstantHit
 	Warhead@1Dam: TargetDamage
@@ -151,7 +151,7 @@ DogJaw:
 Heal:
 	ReloadDelay: 80
 	Range: 4c0
-	Report: heal2.aud
+	Report: ra|audio/sfx/heal2.ogg
 	ValidTargets: Heal
 	Projectile: Bullet
 		Speed: 1c682
@@ -168,7 +168,7 @@ Heal:
 
 Repair:
 	Inherits: Heal
-	Report: fixit1.aud
+	Report: ra|audio/sfx/fixit1.ogg
 	ValidTargets: Repair
 	Warhead@1Eff: FlashTargetsInRadius
 		ValidTargets: Repair
@@ -183,7 +183,7 @@ Demolish:
 		ValidTargets: GroundActor, WaterActor
 	Warhead@2Eff: CreateEffect
 		Explosions: building
-		ImpactSounds: kaboom25.aud
+		ImpactSounds: ra|audio/sfx/kaboom25.ogg
 
 DemoTruckTargeting:
 	ValidTargets: DetonateAttack
@@ -218,5 +218,5 @@ MADTankDetonate:
 		Size: 7,6
 	Warhead@3Eff: CreateEffect
 		Explosions: med_explosion
-		ImpactSounds: mineblo1.aud
+		ImpactSounds: ra|audio/sfx/mineblo1.ogg
 		ImpactActors: false

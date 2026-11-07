@@ -489,7 +489,7 @@ IRON:
 		EndChargeTextNotification: notification-iron-curtain-ready
 		DisplayRadarPing: True
 		Condition: invulnerability
-		OnFireSound: ironcur9.aud
+		OnFireSound: ra|audio/sfx/ironcur9.ogg
 		SupportPowerPaletteOrder: 10
 		Dimensions: 3, 3
 		Footprint: _x_ xxx _x_
@@ -637,7 +637,7 @@ TSLA:
 		LocalOffset: 0,0,896
 	AttackTesla:
 		PauseOnCondition: disabled || build-incomplete
-		ChargeAudio: tslachg2.aud
+		ChargeAudio: ra|audio/sfx/tslachg2.ogg
 		MaxCharges: 3
 		ReloadDelay: 120
 	Power:
@@ -2207,8 +2207,8 @@ BRIK:
 	Tooltip:
 		Name: actor-brik.name
 	SoundOnDamageTransition:
-		DamagedSounds: crmble2.aud
-		DestroyedSounds: kaboom30.aud
+		DamagedSounds: ra|audio/sfx/crmble2.ogg
+		DestroyedSounds: ra|audio/sfx/kaboom30.ogg
 	Health:
 		HP: 40000
 	Armor:

@@ -1,6 +1,6 @@
-# Unit voices: our own (IDEA-31, artsrc/audio/generate_voices_kokoro.py), except DogVoice.
+# Unit voices: our own (IDEA-31, artsrc/audio/generate_voices_kokoro.py), DogVoice from CC0 recordings.
 GenericVoice:
-	DefaultVariant: .mp3
+	DefaultVariant: .ogg
 	DefaultPrefix: ra|audio/voices/
 	Prefixes:
 		allies: ra|audio/voices/union-inf1/,ra|audio/voices/union-inf2/
@@ -30,7 +30,7 @@ GenericVoice:
 		Zapped: deaths/dedman6
 
 VehicleVoice:
-	DefaultVariant: .mp3
+	DefaultVariant: .ogg
 	DefaultPrefix: ra|audio/voices/
 	Prefixes:
 		allies: ra|audio/voices/union-veh1/,ra|audio/voices/union-veh2/
@@ -56,7 +56,7 @@ VehicleVoice:
 		Action: ackno,affirm1
 
 EngineerVoice:
-	DefaultVariant: .mp3
+	DefaultVariant: .ogg
 	DefaultPrefix: ra|audio/voices/
 	Voices:
 		Select: engineer/eengin1,engineer/eyessir1
@@ -66,7 +66,7 @@ EngineerVoice:
 		Zapped: deaths/dedman6
 
 MedicVoice:
-	DefaultVariant: .mp3
+	DefaultVariant: .ogg
 	DefaultPrefix: ra|audio/voices/
 	Voices:
 		Select: medic/mrespon1,medic/myessir1
@@ -76,7 +76,7 @@ MedicVoice:
 		Zapped: deaths/dedman6
 
 MechanicVoice:
-	DefaultVariant: .mp3
+	DefaultVariant: .ogg
 	DefaultPrefix: ra|audio/voices/
 	Voices:
 		Select: mechanic/mhuh1,mechanic/mhowdy1,mechanic/mlaff1
@@ -87,7 +87,7 @@ MechanicVoice:
 		Zapped: deaths/dedman6
 
 TanyaVoice:
-	DefaultVariant: .mp3
+	DefaultVariant: .ogg
 	DefaultPrefix: ra|audio/voices/
 	Voices:
 		Select: tanya/yo1,tanya/yes1,tanya/yeah1
@@ -101,6 +101,9 @@ TanyaVoice:
 		Demolish: tanya/keepem1,tanya/tuffguy1
 
 DogVoice:
+	# CC0 recordings (artsrc/audio/make_dog_sounds.py, sources in artsrc/audio/dog/SOURCE.md)
+	DefaultVariant: .ogg
+	DefaultPrefix: ra|audio/dog/
 	Voices:
 		Select: dogw3px
 		Move: dogy1
@@ -110,7 +113,7 @@ DogVoice:
 		Zapped: dogw6
 
 SpyVoice:
-	DefaultVariant: .mp3
+	DefaultVariant: .ogg
 	DefaultPrefix: ra|audio/voices/
 	Voices:
 		Select: spy/syessir1,spy/scomnd1
@@ -121,7 +124,7 @@ SpyVoice:
 		Zapped: deaths/dedman6
 
 ShokVoice:
-	DefaultVariant: .mp3
+	DefaultVariant: .ogg
 	DefaultPrefix: ra|audio/voices/
 	Voices:
 		Select: shock/jjuice1,shock/jjump1,shock/jyes1

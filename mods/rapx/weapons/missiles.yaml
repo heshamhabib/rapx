@@ -2,7 +2,7 @@
 	ReloadDelay: 50
 	Range: 5c0
 	MinRange: 0c512
-	Report: missile6.aud
+	Report: ra|audio/sfx/missile6.ogg
 	ValidTargets: Ground, Water, GroundActor, WaterActor
 	# HD rocket (OpenRA.Mods.RAPX/Projectiles/PxRocket.cs)
 	Projectile: PxRocket
@@ -25,11 +25,11 @@
 		ValidTargets: Ground, Infantry
 	Warhead@3Eff: PxExplosion
 		Size: 1.0
-		ImpactSounds: kaboom25.aud
+		ImpactSounds: ra|audio/sfx/kaboom25.ogg
 		ValidTargets: Ground, Air, GroundActor, AirborneActor, WaterActor, Trees
 	Warhead@4EffWater: CreateEffect
 		Explosions: med_splash
-		ImpactSounds: splash9.aud
+		ImpactSounds: ra|audio/sfx/splash9.ogg
 		ValidTargets: Water, Underwater
 		InvalidTargets: Bridge
 
@@ -50,7 +50,7 @@ Maverick:
 	ReloadDelay: 50
 	Range: 9c0
 	MinRange: 2c0
-	Report: missile7.aud
+	Report: ra|audio/sfx/missile7.ogg
 	Burst: 2
 	BurstDelays: 7
 	# HD rocket (OpenRA.Mods.RAPX/Projectiles/PxRocket.cs)
@@ -133,18 +133,18 @@ MammothTusk:
 		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
 	Warhead@3Eff: PxExplosion
 		Size: 1.0
-		ImpactSounds: kaboom12.aud
+		ImpactSounds: ra|audio/sfx/kaboom12.ogg
 		ValidTargets: Ground, GroundActor, Trees
 	Warhead@5EffAir: PxExplosion
 		Size: 1.0
-		ImpactSounds: kaboom25.aud
+		ImpactSounds: ra|audio/sfx/kaboom25.ogg
 		ValidTargets: Air, AirborneActor
 
 Nike:
 	Inherits: ^AntiAirMissile
 	ReloadDelay: 15
 	Range: 7c512
-	Report: missile1.aud
+	Report: ra|audio/sfx/missile1.ogg
 	# HD rocket (OpenRA.Mods.RAPX/Projectiles/PxRocket.cs)
 	Projectile: PxRocket
 		Speed: 420
@@ -155,7 +155,7 @@ Nike:
 		Damage: 4500
 	Warhead@3Eff: PxExplosion
 		Size: 0.8
-		ImpactSounds: kaboom25.aud
+		ImpactSounds: ra|audio/sfx/kaboom25.ogg
 
 RedEye:
 	Inherits: Nike
@@ -201,7 +201,7 @@ StingerAA:
 			Light: 100
 	Warhead@3Eff: PxExplosion
 		Size: 0.7
-		ImpactSounds: kaboom25.aud
+		ImpactSounds: ra|audio/sfx/kaboom25.ogg
 
 APTusk:
 	Inherits: ^AntiGroundMissile
@@ -222,7 +222,7 @@ APTusk.stnk:
 TorpTube:
 	ReloadDelay: 100
 	Range: 9c0
-	Report: torpedo1.aud
+	Report: ra|audio/sfx/torpedo1.ogg
 	ValidTargets: Water, WaterActor, Underwater, Bridge
 	Burst: 2
 	BurstDelays: 15
@@ -244,11 +244,11 @@ TorpTube:
 		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
 	Warhead@3Eff: PxExplosion
 		Size: 1.2
-		ImpactSounds: kaboom15.aud
+		ImpactSounds: ra|audio/sfx/kaboom15.ogg
 		ValidTargets: Ground, WaterActor, Underwater, GroundActor, Bridge
 	Warhead@4EffWater: CreateEffect
 		Explosions: large_splash
-		ImpactSounds: splash9.aud
+		ImpactSounds: ra|audio/sfx/splash9.ogg
 		ValidTargets: Water
 		InvalidTargets: Bridge
 
@@ -283,10 +283,10 @@ TorpTube:
 		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
 	Warhead@3Eff: PxExplosion
 		Size: 1.3
-		ImpactSounds: kaboom15.aud
+		ImpactSounds: ra|audio/sfx/kaboom15.ogg
 	Warhead@4EffWater: CreateEffect
 		Explosions: large_splash
-		ImpactSounds: splash9.aud
+		ImpactSounds: ra|audio/sfx/splash9.ogg
 
 SubMissile:
 	Inherits: ^SubMissileDefault
@@ -312,7 +312,7 @@ SCUD:
 	ReloadDelay: 215
 	Range: 10c0
 	MinRange: 4c0
-	Report: missile1.aud
+	Report: ra|audio/sfx/missile1.ogg
 	-Projectile:
 	# HD rocket (OpenRA.Mods.RAPX/Projectiles/PxRocket.cs): the V2 rocket from the launcher's rail itself
 	# (pxmissile v2*, artsrc/units/vehicles/make_v2_rocket.sh). It leaves the rail slowly, then climbs and dives.
@@ -347,6 +347,6 @@ SCUD:
 		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath, Incendiary
 	Warhead@3Eff: PxExplosion
 		Size: 2.2
-		ImpactSounds: firebl3.aud
+		ImpactSounds: ra|audio/sfx/firebl3.ogg
 	Warhead@4EffWater: CreateEffect
 		Explosions: large_splash

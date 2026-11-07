@@ -377,7 +377,7 @@
 	GpsDot:
 		String: Infantry
 	Crushable:
-		CrushSound: squishy2.aud
+		CrushSound: ra|audio/sfx/squishy2.ogg
 		RequiresCondition: !treaty
 	PxTreatyProtection:
 		Condition: treaty
@@ -420,8 +420,8 @@
 		FallRate: 26
 		KilledOnImpassableTerrain: true
 		GroundCorpseSequence: corpse
-		GroundImpactSound: squishy2.aud
-		WaterImpactSound: splash9.aud
+		GroundImpactSound: ra|audio/sfx/squishy2.ogg
+		WaterImpactSound: ra|audio/sfx/splash9.ogg
 		WaterCorpseSequence: small_splash
 		ParachutingCondition: parachute
 	Cloneable:
@@ -529,8 +529,8 @@
 		InitialDelay: 0
 		CloakDelay: 50
 		CloakStyle: Color
-		CloakSound: subshow1.aud
-		UncloakSound: subshow1.aud
+		CloakSound: ra|audio/sfx/subshow1.ogg
+		UncloakSound: ra|audio/sfx/subshow1.ogg
 		CloakedCondition: underwater
 		PauseOnCondition: cloak-force-disabled
 	GrantConditionOnDamageState@UNCLOAK:
@@ -589,7 +589,7 @@
 		EjectOnGround: false
 		EjectInAir: true
 		AllowUnsuitableCell: true
-		ChuteSound: chute1.aud
+		ChuteSound: ra|audio/sfx/chute1.ogg
 	GpsDot:
 		String: Plane
 	Tooltip:
@@ -675,8 +675,8 @@
 		Footprint: x
 		TerrainTypes: Clear,Road
 		RequiresBaseProvider: True
-		BuildSounds: placbldg.aud, build5.aud
-		UndeploySounds: cashturn.aud
+		BuildSounds: ra|audio/sfx/placbldg.ogg, ra|audio/sfx/build5.ogg
+		UndeploySounds: ra|audio/sfx/cashturn.ogg
 	ActorPreviewPlaceBuildingPreview:
 		PreviewAlpha: 0.65
 	PxShowBuildRadiusWhilePlacing:
@@ -686,8 +686,8 @@
 		# Matches the Construction Yard's BaseProvider range, so anywhere inside the hex circle is buildable.
 		Adjacent: 26
 	SoundOnDamageTransition:
-		DamagedSounds: kaboom1.aud
-		DestroyedSounds: kaboom22.aud
+		DamagedSounds: ra|audio/sfx/kaboom1.ogg
+		DestroyedSounds: ra|audio/sfx/kaboom22.ogg
 	WithSpriteBody:
 	FireWarheadsOnDeath:
 		Type: Footprint
@@ -743,7 +743,7 @@
 		Condition: being-demolished
 	Sellable:
 		RequiresCondition: !build-incomplete && !being-captured && !being-demolished
-		SellSounds: cashturn.aud
+		SellSounds: ra|audio/sfx/cashturn.ogg
 		Notification: StructureSold
 	WithBuildingRepairDecoration:
 		Image: allyrepair
@@ -789,17 +789,17 @@
 	Building:
 		Dimensions: 1,1
 		Footprint: x
-		BuildSounds: placbldg.aud
+		BuildSounds: ra|audio/sfx/placbldg.ogg
 		TerrainTypes: Clear,Road
-		UndeploySounds: cashturn.aud
+		UndeploySounds: ra|audio/sfx/cashturn.ogg
 	FootprintPlaceBuildingPreview:
 		LineBuildFootprintAlpha: 0.65
 	RequiresBuildableArea:
 		AreaTypes: building
 		Adjacent: 26
 	SoundOnDamageTransition:
-		DamagedSounds: sandbag2.aud
-		DestroyedSounds: sandbag2.aud
+		DamagedSounds: ra|audio/sfx/sandbag2.ogg
+		DestroyedSounds: ra|audio/sfx/sandbag2.ogg
 	Crushable:
 		CrushClasses: wall
 		RequiresCondition: !treaty
@@ -817,7 +817,7 @@
 		Palette: effect
 	WithWallSpriteBody:
 	Sellable:
-		SellSounds: cashturn.aud
+		SellSounds: ra|audio/sfx/cashturn.ogg
 	Guardable:
 	FrozenUnderFog:
 	FrozenUnderFogUpdatedByGps:

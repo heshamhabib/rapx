@@ -17,7 +17,7 @@
 		DamageTypes: Prone50Percent, TriggerProne, FireDeath
 	Warhead@2Eff: CreateEffect
 		Explosions: small_explosion
-		ImpactSounds: kaboom25.aud
+		ImpactSounds: ra|audio/sfx/kaboom25.ogg
 		ValidTargets: Ground, GroundActor, WaterActor
 
 PrismTowerBeam:
@@ -77,7 +77,7 @@ PrismRelayBeam:
 OrbitalLaser:
 	ReloadDelay: 100
 	Range: 6c0
-	Report: tesla1.aud
+	Report: ra|audio/sfx/tesla1.ogg
 	ValidTargets: Ground, Water, Air, GroundActor, WaterActor, AirborneActor
 	Projectile: LaserZap
 		Width: 110
@@ -103,7 +103,7 @@ OrbitalLaser:
 		InvalidTargets: Vehicle, Structure, Wall, Husk, Trees
 	Warhead@3Eff: CreateEffect
 		Explosions: med_explosion
-		ImpactSounds: kaboom25.aud
+		ImpactSounds: ra|audio/sfx/kaboom25.ogg
 		ValidTargets: Ground, GroundActor, WaterActor
 	Warhead@4EffAir: CreateEffect
 		Explosions: med_explosion_air

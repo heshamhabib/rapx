@@ -9,7 +9,7 @@ Kokoro Vanguard takes. Then the same trim / console filter / level step as gener
   ~/.venvs/rapx-chatterbox/bin/python artsrc/audio/generate_vanguard_ru.py
   ~/.venvs/rapx-chatterbox/bin/python artsrc/audio/generate_vanguard_ru.py --only abldgin1,unitrdy1 --force
 
-Raw takes: assets/sounds/eva/vanguard-ru/<file>.wav. Game files: mods/rapx/audio/eva/vanguard/<file>.mp3.
+Raw takes: assets/sounds/eva/vanguard-ru/<file>.wav. Game files: mods/rapx/audio/eva/vanguard/<file>.ogg.
 The first run downloads the model (a few GB).
 """
 import argparse
@@ -93,7 +93,7 @@ def main():
                     fh.write(best[2])
                 if args.best_of > 1:
                     print(f"    kept seed {best[1]} ({best[0]:.2f}s off the Kokoro length)")
-            kv.process(raw, os.path.join(GAME, f + ".mp3"), 0, "console")
+            kv.process(raw, os.path.join(GAME, f + ".ogg"), 0, "console")
             made += 1
         except Exception as e:
             print(f"    FAILED {f}: {e}")

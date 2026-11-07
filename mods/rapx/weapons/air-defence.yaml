@@ -5,7 +5,7 @@
 
 # Tier 1 (AA Gun): a flak burst
 InterceptFlak:
-	Report: aacanon3.aud
+	Report: ra|audio/sfx/aacanon3.ogg
 	Projectile: Bullet
 		Speed: 600
 		Blockable: false
@@ -18,7 +18,7 @@ InterceptFlak:
 		Scorch: false
 
 ^Interceptor:
-	Report: missile6.aud
+	Report: ra|audio/sfx/missile6.ogg
 	Projectile: PxRocket
 		ThreatType: Interceptor
 		TrackTarget: false
@@ -47,7 +47,7 @@ InterceptSAM:
 # Tier 3 (Long-range SAM): Patriot / S-400 class, bigger and faster
 InterceptLong:
 	Inherits: ^Interceptor
-	Report: missile1.aud
+	Report: ra|audio/sfx/missile1.ogg
 	Projectile: PxRocket
 		Speed: 460
 		Length: 220
@@ -58,7 +58,7 @@ InterceptLong:
 # Tier 4 (Missile Shield): THAAD class, very fast, climbs high
 InterceptBMD:
 	Inherits: ^Interceptor
-	Report: missile1.aud
+	Report: ra|audio/sfx/missile1.ogg
 	Projectile: PxRocket
 		Speed: 620
 		Arc: 0.2

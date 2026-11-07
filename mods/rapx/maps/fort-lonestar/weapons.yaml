@@ -48,7 +48,7 @@ MammothTusk:
 TankNapalm:
 	ReloadDelay: 40
 	Range: 8c0
-	Report: aacanon3.aud
+	Report: ra|audio/sfx/aacanon3.ogg
 	ValidTargets: Ground, GroundActor
 	Burst: 6
 	BurstDelays: 1
@@ -74,7 +74,7 @@ TankNapalm:
 		SmudgeType: Scorch
 	Warhead@3Eff: CreateEffect
 		Explosions: small_explosion
-		ImpactSounds: firebl3.aud
+		ImpactSounds: ra|audio/sfx/firebl3.ogg
 
 ParaBomb:
 	ReloadDelay: 5
@@ -93,7 +93,7 @@ ParaBomb:
 		DamageTypes: Prone50Percent, TriggerProne, FireDeath
 	Warhead@3Eff: CreateEffect
 		Explosions: napalm
-		ImpactSounds: firebl3.aud
+		ImpactSounds: ra|audio/sfx/firebl3.ogg
 
 155mm:
 	ReloadDelay: 10
@@ -118,12 +118,12 @@ ParaBomb:
 		DamageTypes: Prone50Percent, TriggerProne, FireDeath
 	Warhead@3Eff: CreateEffect
 		Explosions: small_napalm
-		ImpactSounds: firebl3.aud
+		ImpactSounds: ra|audio/sfx/firebl3.ogg
 
 FLAK-23:
 	ReloadDelay: 10
 	Range: 8c0
-	Report: aacanon3.aud
+	Report: ra|audio/sfx/aacanon3.ogg
 	ValidTargets: AirborneActor, Ground, GroundActor
 	Projectile: Bullet
 		Speed: 1c682
@@ -164,7 +164,7 @@ SCUD:
 		AffectsParent: true
 	Warhead@3Eff: CreateEffect
 		Explosions: nuke
-		ImpactSounds: kaboom1.aud
+		ImpactSounds: ra|audio/sfx/kaboom1.ogg
 
 SilencedPPK:
 	Range: 25c0

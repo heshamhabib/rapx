@@ -4,6 +4,10 @@
 build the game. They are kept as a readable record of every RAPX change to the engine, and for moving to a
 newer OpenRA release.
 
+Removed from the engine copy (2026-11-07, IDEA-31): the `cnc`, `d2k` and `ts` game folders and their `-content`
+installers, which hold original Westwood/EA art and sounds and are never loaded by RAPX. Their C# code
+(`OpenRA.Mods.Cnc` etc.) is still built. The engine's own `make test`/`make install` targets still name them.
+
 Apply order (`hd-rendering` and `perf-smooth-motion` touch the same code, so order matters):
 
 ```

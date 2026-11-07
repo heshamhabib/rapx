@@ -2,7 +2,7 @@ BADR:
 	Inherits: ^NeutralPlane
 	ParaDrop:
 		DropRange: 4c0
-		ChuteSound: chute1.aud
+		ChuteSound: ra|audio/sfx/chute1.ogg
 	Health:
 		HP: 40000
 	Aircraft:

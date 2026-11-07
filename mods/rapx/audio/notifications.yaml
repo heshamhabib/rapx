@@ -1,6 +1,6 @@
 Speech:
 	# Our own announcers (IDEA-31, artsrc/audio/generate_voices_kokoro.py): Union = eva/union, Vanguard = eva/vanguard
-	DefaultVariant: .mp3
+	DefaultVariant: .ogg
 	DefaultPrefix: ra|audio/eva/union/
 	Prefixes:
 		soviet: ra|audio/eva/vanguard/
@@ -128,6 +128,9 @@ Speech:
 		Win: misnwon1
 
 Sounds:
+	# Our own interface sounds (IDEA-31, artsrc/audio/make_ui_sounds.py)
+	DefaultVariant: .ogg
+	DefaultPrefix: ra|audio/ui/
 	Notifications:
 		RadarUp: radaron2
 		RadarDown: radardn1
@@ -142,7 +145,7 @@ Sounds:
 		EnablePower: bleep12
 		ChatLine: rabeep1
 			InterruptType: Interrupt
-		PlayerJoined: bleep11
+		PlayerJoined: lobbyjoin
 			InterruptType: Interrupt
 		LobbyOptionChanged: bleep17
 			InterruptType: Interrupt

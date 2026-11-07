@@ -505,7 +505,7 @@ MCV:
 		IntoActor: fact
 		Offset: -1,-1
 		Facing: 384
-		TransformSounds: placbldg.aud, build5.aud
+		TransformSounds: ra|audio/sfx/placbldg.ogg, ra|audio/sfx/build5.ogg
 		NoTransformNotification: BuildingCannotPlaceAudio
 		NoTransformTextNotification: notification-cannot-deploy-here
 	# Union: Oshkosh M1070 (image mcv); Vanguard: Ural KS3574 crane truck (image mcv.vanguard)
@@ -661,7 +661,7 @@ MNLY:
 	MineImmune:
 	AmmoPool:
 		Ammo: 5
-		RearmSound: minelay1.aud
+		RearmSound: ra|audio/sfx/minelay1.ogg
 	DetectCloaked:
 		Range: 5c0
 		DetectionTypes: Mine
@@ -1052,8 +1052,8 @@ STNK:
 	Cloak:
 		InitialDelay: 125
 		CloakDelay: 175
-		CloakSound: appear1.aud
-		UncloakSound: appear1.aud
+		CloakSound: ra|audio/sfx/appear1.ogg
+		UncloakSound: ra|audio/sfx/appear1.ogg
 		PauseOnCondition: cloak-force-disabled
 		UncloakOn: Attack, Load, Unload, Heal, Dock
 	GrantConditionOnDamageState@UNCLOAK:

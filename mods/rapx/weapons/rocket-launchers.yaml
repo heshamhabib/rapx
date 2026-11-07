@@ -12,7 +12,7 @@
 	ReloadDelay: 300
 	Range: 13c0
 	MinRange: 3c0
-	Report: missile6.aud
+	Report: ra|audio/sfx/missile6.ogg
 	Projectile: PxRocket
 		ThreatType: Rocket
 		Image: pxmissile
@@ -37,7 +37,7 @@
 		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath, Incendiary
 	Warhead@3Eff: PxExplosion
 		Size: 1.2
-		ImpactSounds: kaboom25.aud
+		ImpactSounds: ra|audio/sfx/kaboom25.ogg
 
 # M270 family: GMLRS rockets, 3.94 m x 227 mm
 ^PxGmlrs:
@@ -134,7 +134,7 @@ RL_KASIRGA:
 	ReloadDelay: 420
 	Range: 15c0
 	MinRange: 4c0
-	Report: missile1.aud
+	Report: ra|audio/sfx/missile1.ogg
 	Burst: 4
 	BurstDelays: 15
 	Projectile: PxRocket
@@ -157,14 +157,14 @@ RL_KASIRGA:
 	Warhead@3Eff: PxExplosion
 		Style: Heavy
 		Size: 2.0
-		ImpactSounds: firebl3.aud
+		ImpactSounds: ra|audio/sfx/firebl3.ogg
 
 # Pakistan: guided long-range rockets, very accurate
 RL_FATAH:
 	Inherits: ^PxSalvoRocket
 	ReloadDelay: 360
 	Range: 14c0
-	Report: missile1.aud
+	Report: ra|audio/sfx/missile1.ogg
 	Burst: 4
 	BurstDelays: 15
 	Projectile: PxRocket
@@ -186,7 +186,7 @@ RL_FATAH:
 	Warhead@3Eff: PxExplosion
 		Style: Heavy
 		Size: 1.8
-		ImpactSounds: firebl3.aud
+		ImpactSounds: ra|audio/sfx/firebl3.ogg
 
 # Japan: anti-ship missiles from the canisters, flying low over the sea; huge damage vs ships, weak vs land
 RL_TYPE12:
@@ -194,7 +194,7 @@ RL_TYPE12:
 	ReloadDelay: 300
 	Range: 15c0
 	MinRange: 4c0
-	Report: missile1.aud
+	Report: ra|audio/sfx/missile1.ogg
 	Burst: 2
 	BurstDelays: 25
 	Projectile: PxRocket
@@ -234,7 +234,7 @@ RL_TYPE12:
 	Warhead@3EffShip: PxExplosion
 		Style: Naval
 		Size: 1.8
-		ImpactSounds: firebl3.aud
+		ImpactSounds: ra|audio/sfx/firebl3.ogg
 		OnlyOn: Ship
 
 # South Korea: rocket salvo (deploy: one heavy guided missile, RL_CHUNMU_MISSILE)
@@ -289,14 +289,14 @@ RL_TOZ:
 		Size: 1.6
 		FireColor: FFB46E
 		SmokeColor: 6E6458
-		ImpactSounds: firebl3.aud
+		ImpactSounds: ra|audio/sfx/firebl3.ogg
 
 # Ukraine: precision long-range rockets
 RL_VILKRA:
 	Inherits: ^PxSalvoRocket
 	ReloadDelay: 340
 	Range: 14c0
-	Report: missile1.aud
+	Report: ra|audio/sfx/missile1.ogg
 	Burst: 4
 	BurstDelays: 15
 	Projectile: PxRocket
@@ -409,7 +409,7 @@ RL_SAQR_BOMBLET:
 	Warhead@3Eff: PxExplosion
 		Style: Bomblet
 		Size: 0.8
-		ImpactSounds: kaboom12.aud
+		ImpactSounds: ra|audio/sfx/kaboom12.ogg
 		ValidTargets: Ground, GroundActor, WaterActor, Trees
 	Warhead@4EffWater: CreateEffect
 		Explosions: small_splash
@@ -422,7 +422,7 @@ RL_PHX:
 	ReloadDelay: 400
 	Range: 15c0
 	MinRange: 4c0
-	Report: missile1.aud
+	Report: ra|audio/sfx/missile1.ogg
 	Burst: 8
 	BurstDelays: 7
 	Projectile: PxRocket
@@ -450,7 +450,7 @@ RL_FAJIR:
 	Inherits: ^PxSalvoRocket
 	ReloadDelay: 320
 	Range: 14c0
-	Report: missile1.aud
+	Report: ra|audio/sfx/missile1.ogg
 	Burst: 4
 	BurstDelays: 12
 	Projectile: PxRocket
@@ -489,7 +489,7 @@ RL_MARZ_MINES:
 		Size: 0.8
 		Smoke: 0.4
 		Scorch: false
-		ImpactSounds: kaboom12.aud
+		ImpactSounds: ra|audio/sfx/kaboom12.ogg
 	Warhead@Cluster: FireCluster
 		Weapon: RL_MARZ_MINELET
 		RandomClusterCount: 3
@@ -519,7 +519,7 @@ RL_CHUNMU_MISSILE:
 	ReloadDelay: 420
 	Range: 15c0
 	MinRange: 4c0
-	Report: missile1.aud
+	Report: ra|audio/sfx/missile1.ogg
 	Projectile: PxRocket
 		ThreatType: Ballistic
 		Speed: 260
@@ -536,7 +536,7 @@ RL_CHUNMU_MISSILE:
 	Warhead@3Eff: PxExplosion
 		Style: Precision
 		Size: 2.2
-		ImpactSounds: firebl3.aud
+		ImpactSounds: ra|audio/sfx/firebl3.ogg
 
 # Iran Fajir-5, drone mode: 2 Shard-136 one-way attack drones: slow, low and very long range, launched by a booster
 RL_FAJIR_DRONE:
@@ -544,7 +544,7 @@ RL_FAJIR_DRONE:
 	ReloadDelay: 500
 	Range: 22c0
 	MinRange: 3c0
-	Report: missile1.aud
+	Report: ra|audio/sfx/missile1.ogg
 	Burst: 2
 	BurstDelays: 30
 	Projectile: PxRocket
@@ -573,4 +573,4 @@ RL_FAJIR_DRONE:
 	Warhead@3Eff: PxExplosion
 		Style: Heavy
 		Size: 1.3
-		ImpactSounds: firebl3.aud
+		ImpactSounds: ra|audio/sfx/firebl3.ogg

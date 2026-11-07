@@ -401,7 +401,7 @@ DefaultOrderGenerator: UnitOrderGenerator
 
 SupportsMapsFrom: ra
 
-SoundFormats: Aud, Wav, Mp3
+SoundFormats: Aud, Wav, Mp3, Ogg
 
 SpriteFormats: ShpD2, ShpTD, TmpRA, TmpTD, ShpTS, PngSheet
 

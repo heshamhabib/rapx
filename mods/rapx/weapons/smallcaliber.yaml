@@ -1,7 +1,7 @@
 ^AACannon:
 	ReloadDelay: 10
 	Range: 8c0
-	Report: aacanon3.aud
+	Report: ra|audio/sfx/aacanon3.ogg
 	ValidTargets: AirborneActor
 	Projectile: InstantHit
 	Warhead@1Dam: SpreadDamage
@@ -319,7 +319,7 @@ M60mg:
 ^SnipeWeapon:
 	ReloadDelay: 80
 	Range: 2c512
-	Report: gun5.aud
+	Report: ra|audio/weapons/sniper-shot1.wav, ra|audio/weapons/sniper-shot2.wav, ra|audio/weapons/sniper-shot3.wav
 	ValidTargets: Ground, Infantry, Barrel
 	Projectile: InstantHit
 		Blockable: true
@@ -338,7 +338,7 @@ M60mg:
 
 SilencedPPK:
 	Inherits: ^SnipeWeapon
-	Report: silppk.aud
+	Report: ra|audio/weapons/silenced-shot1.ogg, ra|audio/weapons/silenced-shot2.ogg, ra|audio/weapons/silenced-shot3.ogg
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
 

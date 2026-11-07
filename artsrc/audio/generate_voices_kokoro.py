@@ -10,7 +10,7 @@ The lines come from artsrc/prompts/make_sound_prompts.py, the same list as the G
   ~/.venvs/rapx-tts/bin/python artsrc/audio/generate_voices_kokoro.py --process-only   # redo filters, keep raw takes
 
 Raw takes go to assets/sounds/<folder>/<file>.wav; the game files (trimmed, filtered, levelled)
-go to mods/rapx/audio/<folder>/<file>.mp3 (64 kbit/s mono). Existing raw takes are reused unless --force.
+go to mods/rapx/audio/<folder>/<file>.ogg (Ogg Vorbis, see ogg.py). Existing raw takes are reused unless --force.
 The Vanguard announcer is made by generate_vanguard_ru.py (Russian accent); this script skips it unless --cast eva-vanguard.
 Voices picked by the user 2026-11-07: af_heart (Union EVA), am_onyx (Vanguard EVA), am_eric (units).
 """
@@ -27,6 +27,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
 sys.path.insert(0, os.path.join(ROOT, "artsrc", "prompts"))
 import make_sound_prompts as sp  # noqa: E402
+
+sys.path.insert(0, HERE)
+import ogg  # noqa: E402
 
 RAW = os.path.join(ROOT, "assets", "sounds")
 GAME = os.path.join(ROOT, "mods", "rapx", "audio")
@@ -59,7 +62,6 @@ DELIVERY_OF = {f: d for _k, f, _t, d in sp.EVA_NOW + sp.EVA_CAMPAIGN}
 
 SKIP_CAST = {"thief", "civ-male", "civ-female"}  # removed from the mod 2026-11-06
 REPLACED_CAST = {"eva-vanguard"}  # now generate_vanguard_ru.py; only made here with an explicit --cast
-MP3_BITRATE = "64k"  # voices are band-limited anyway; ~6x smaller than 16-bit WAV
 
 FILTERS = {
     "console": "highpass=f=120,lowpass=f=8000,acompressor=threshold=-20dB:ratio=3:attack=5:release=80",
@@ -134,8 +136,7 @@ def process(raw_path, game_path, pitch, filt):
     fade = min(len(a), int(RATE * 0.01))
     a[len(a) - fade:] *= np.linspace(1, 0, fade)
     sf.write(tmp, a, RATE, subtype="PCM_16")
-    subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", tmp, "-codec:a", "libmp3lame", "-b:a", MP3_BITRATE,
-                    game_path], check=True)
+    ogg.encode(tmp, game_path)
     os.remove(tmp)
 
 
@@ -164,7 +165,7 @@ def main():
         voice, speed, pitch, filt = VOICES[ck]
         speed *= EVA_SPEED.get(ck, {}).get(DELIVERY_OF.get(f), 1.0)
         raw = os.path.join(RAW, folder(ck), f + ".wav")
-        game = os.path.join(GAME, folder(ck), f + ".mp3")
+        game = os.path.join(GAME, folder(ck), f + ".ogg")
         try:
             if not args.process_only and (args.force or not os.path.exists(raw)):
                 if KPipeline is None:

@@ -1,0 +1,748 @@
+{
+ "cannon1": {
+  "query": "tank cannon shot",
+  "candidates": [
+   {
+    "id": "563010",
+    "user": "florianreichelt",
+    "title": "Explosion.mp3",
+    "duration": 4.96,
+    "preview": "https://cdn.freesound.org/previews/563/563010_6253486-hq.mp3"
+   },
+   {
+    "id": "441373",
+    "user": "LilMati",
+    "title": "Heavy Artillery Shot",
+    "duration": 0.51,
+    "preview": "https://cdn.freesound.org/previews/441/441373_6142149-hq.mp3"
+   },
+   {
+    "id": "854186",
+    "user": "qubodup",
+    "title": "Autocannon Three Shot Burst",
+    "duration": 1.94,
+    "preview": "https://cdn.freesound.org/previews/854/854186_71257-hq.mp3"
+   }
+  ]
+ },
+ "aacanon3": {
+  "query": "flak cannon",
+  "candidates": [
+   {
+    "id": "260939",
+    "user": "PicassoCT",
+    "title": "antiair.ogg",
+    "duration": 2.93,
+    "preview": "https://cdn.freesound.org/previews/260/260939_2665409-hq.mp3"
+   }
+  ]
+ },
+ "cannon2": {
+  "query": "autocannon",
+  "candidates": [
+   {
+    "id": "854186",
+    "user": "qubodup",
+    "title": "Autocannon Three Shot Burst",
+    "duration": 1.94,
+    "preview": "https://cdn.freesound.org/previews/854/854186_71257-hq.mp3"
+   }
+  ]
+ },
+ "tank5": {
+  "query": "artillery howitzer shot",
+  "candidates": [
+   {
+    "id": "448002",
+    "user": "Kneeling",
+    "title": "cannon.mp3",
+    "duration": 5.36,
+    "preview": "https://cdn.freesound.org/previews/448/448002_7811934-hq.mp3"
+   },
+   {
+    "id": "441373",
+    "user": "LilMati",
+    "title": "Heavy Artillery Shot",
+    "duration": 0.51,
+    "preview": "https://cdn.freesound.org/previews/441/441373_6142149-hq.mp3"
+   },
+   {
+    "id": "161343",
+    "user": "qubodup",
+    "title": "Howitzer Artillery Gun Shot Sound Effect 01",
+    "duration": 0.8,
+    "preview": "https://cdn.freesound.org/previews/161/161343_71257-hq.mp3"
+   }
+  ]
+ },
+ "turret1": {
+  "query": "cannon shot",
+  "candidates": [
+   {
+    "id": "448002",
+    "user": "Kneeling",
+    "title": "cannon.mp3",
+    "duration": 5.36,
+    "preview": "https://cdn.freesound.org/previews/448/448002_7811934-hq.mp3"
+   },
+   {
+    "id": "194312",
+    "user": "soundmatch24",
+    "title": " Laser gun Cannon shot.mp3 ",
+    "duration": 4.04,
+    "preview": "https://cdn.freesound.org/previews/194/194312_3402385-hq.mp3"
+   },
+   {
+    "id": "186950",
+    "user": "ReadeOnly",
+    "title": "toy_cannon_shot.wav",
+    "duration": 0.75,
+    "preview": "https://cdn.freesound.org/previews/186/186950_545448-hq.mp3"
+   }
+  ]
+ },
+ "grenade1": {
+  "query": "grenade launcher",
+  "candidates": [
+   {
+    "id": "163458",
+    "user": "LeMudCrab",
+    "title": "Grenade Launcher",
+    "duration": 0.44,
+    "preview": "https://cdn.freesound.org/previews/163/163458_2263027-hq.mp3"
+   },
+   {
+    "id": "432781",
+    "user": "jackyyang09",
+    "title": "Bottle Pop",
+    "duration": 0.62,
+    "preview": "https://cdn.freesound.org/previews/432/432781_6935003-hq.mp3"
+   },
+   {
+    "id": "162402",
+    "user": "qubodup",
+    "title": "M203 Grenade Launcher 1.flac",
+    "duration": 0.53,
+    "preview": "https://cdn.freesound.org/previews/162/162402_71257-hq.mp3"
+   }
+  ]
+ },
+ "missile1": {
+  "query": "missile launch",
+  "candidates": [
+   {
+    "id": "249817",
+    "user": "spookymodem",
+    "title": "Magic Missiles.wav",
+    "duration": 2.92,
+    "preview": "https://cdn.freesound.org/previews/249/249817_3756348-hq.mp3"
+   },
+   {
+    "id": "521377",
+    "user": "Jarusca",
+    "title": "Rocket Launch",
+    "duration": 1.41,
+    "preview": "https://cdn.freesound.org/previews/521/521377_10847299-hq.mp3"
+   },
+   {
+    "id": "189327",
+    "user": "Alxy",
+    "title": "missile lock on sound",
+    "duration": 4.98,
+    "preview": "https://cdn.freesound.org/previews/189/189327_3524188-hq.mp3"
+   }
+  ]
+ },
+ "missile6": {
+  "query": "rocket launch",
+  "candidates": [
+   {
+    "id": "521377",
+    "user": "Jarusca",
+    "title": "Rocket Launch",
+    "duration": 1.41,
+    "preview": "https://cdn.freesound.org/previews/521/521377_10847299-hq.mp3"
+   },
+   {
+    "id": "186956",
+    "user": "ReadeOnly",
+    "title": "woosh.wav",
+    "duration": 1.39,
+    "preview": "https://cdn.freesound.org/previews/186/186956_545448-hq.mp3"
+   },
+   {
+    "id": "65787",
+    "user": "iwilldstroyu",
+    "title": "laserrocket.wav",
+    "duration": 1.0,
+    "preview": "https://cdn.freesound.org/previews/65/65787_601368-hq.mp3"
+   }
+  ]
+ },
+ "missile7": {
+  "query": "missile whoosh",
+  "candidates": [
+   {
+    "id": "854473",
+    "user": "qubodup",
+    "title": "M142 HIMARS Rocket Launch 5",
+    "duration": 3.07,
+    "preview": "https://cdn.freesound.org/previews/854/854473_71257-hq.mp3"
+   }
+  ]
+ },
+ "torpedo1": {
+  "query": "underwater whoosh",
+  "candidates": [
+   {
+    "id": "461977",
+    "user": "rexen_devar",
+    "title": "submarine prop whooshing",
+    "duration": 1.27,
+    "preview": "https://cdn.freesound.org/previews/461/461977_9529609-hq.mp3"
+   }
+  ]
+ },
+ "h2obomb2": {
+  "query": "underwater explosion",
+  "candidates": [
+   {
+    "id": "519008",
+    "user": "Sheyvan",
+    "title": "Water Explosion",
+    "duration": 2.0,
+    "preview": "https://cdn.freesound.org/previews/519/519008_3248005-hq.mp3"
+   },
+   {
+    "id": "124544",
+    "user": "cubix",
+    "title": "underwater explosion.wav",
+    "duration": 5.59,
+    "preview": "https://cdn.freesound.org/previews/124/124544_276157-hq.mp3"
+   },
+   {
+    "id": "459150",
+    "user": "LilMati",
+    "title": "Retro, Underwater Explosion",
+    "duration": 1.22,
+    "preview": "https://cdn.freesound.org/previews/459/459150_6142149-hq.mp3"
+   }
+  ]
+ },
+ "kaboom1": {
+  "query": "massive explosion",
+  "candidates": [
+   {
+    "id": "259300",
+    "user": "unfa",
+    "title": "Huge Explosion",
+    "duration": 12.0,
+    "preview": "https://cdn.freesound.org/previews/259/259300_1038806-hq.mp3"
+   },
+   {
+    "id": "149966",
+    "user": "NenadSimic",
+    "title": "Muffled Distant Explosion",
+    "duration": 5.14,
+    "preview": "https://cdn.freesound.org/previews/149/149966_2514850-hq.mp3"
+   },
+   {
+    "id": "563015",
+    "user": "florianreichelt",
+    "title": "a loud gunshot in the woods",
+    "duration": 3.25,
+    "preview": "https://cdn.freesound.org/previews/563/563015_6253486-hq.mp3"
+   }
+  ]
+ },
+ "kaboom12": {
+  "query": "explosion medium",
+  "candidates": [
+   {
+    "id": "558969",
+    "user": "sandb1ns",
+    "title": "Fluorescent Lightbulb Break.wav",
+    "duration": 2.92,
+    "preview": "https://cdn.freesound.org/previews/558/558969_1474550-hq.mp3"
+   },
+   {
+    "id": "455547",
+    "user": "Kinoton",
+    "title": "Firework Single Rocket #2",
+    "duration": 2.25,
+    "preview": "https://cdn.freesound.org/previews/455/455547_2247456-hq.mp3"
+   },
+   {
+    "id": "514133",
+    "user": "JuveriSetila",
+    "title": "Medium Explosion.mp3",
+    "duration": 2.09,
+    "preview": "https://cdn.freesound.org/previews/514/514133_11274568-hq.mp3"
+   }
+  ]
+ },
+ "kaboom15": {
+  "query": "small explosion",
+  "candidates": [
+   {
+    "id": "315826",
+    "user": "bevibeldesign",
+    "title": "small explosion",
+    "duration": 1.01,
+    "preview": "https://cdn.freesound.org/previews/315/315826_4557960-hq.mp3"
+   },
+   {
+    "id": "145788",
+    "user": "Cyberios",
+    "title": "Small Explosion",
+    "duration": 0.52,
+    "preview": "https://cdn.freesound.org/previews/145/145788_2483826-hq.mp3"
+   },
+   {
+    "id": "193429",
+    "user": "unfa",
+    "title": "Projectile Hit",
+    "duration": 1.61,
+    "preview": "https://cdn.freesound.org/previews/193/193429_1038806-hq.mp3"
+   }
+  ]
+ },
+ "kaboom22": {
+  "query": "large explosion",
+  "candidates": [
+   {
+    "id": "482993",
+    "user": "V-ktor",
+    "title": "large explosion 1",
+    "duration": 3.87,
+    "preview": "https://cdn.freesound.org/previews/482/482993_8836484-hq.mp3"
+   },
+   {
+    "id": "232398",
+    "user": "cejordi84",
+    "title": "Explosion.wav",
+    "duration": 5.21,
+    "preview": "https://cdn.freesound.org/previews/232/232398_3270296-hq.mp3"
+   },
+   {
+    "id": "147584",
+    "user": "CaCtUs2003",
+    "title": "Far_Off_Boom.wav",
+    "duration": 3.29,
+    "preview": "https://cdn.freesound.org/previews/147/147584_1438822-hq.mp3"
+   }
+  ]
+ },
+ "kaboom25": {
+  "query": "bomb explosion",
+  "candidates": [
+   {
+    "id": "182429",
+    "user": "qubodup",
+    "title": "Explosion",
+    "duration": 3.0,
+    "preview": "https://cdn.freesound.org/previews/182/182429_71257-hq.mp3"
+   },
+   {
+    "id": "244345",
+    "user": "Willlewis",
+    "title": "Musket Explosion",
+    "duration": 1.91,
+    "preview": "https://cdn.freesound.org/previews/244/244345_1868310-hq.mp3"
+   },
+   {
+    "id": "431174",
+    "user": "Blankened",
+    "title": "Fireball Explosion.wav",
+    "duration": 1.08,
+    "preview": "https://cdn.freesound.org/previews/431/431174_6512859-hq.mp3"
+   }
+  ]
+ },
+ "kaboom30": {
+  "query": "debris falling",
+  "candidates": [
+   {
+    "id": "132929",
+    "user": "deleted_user_1887925",
+    "title": "Explosion and Rubble/Debris",
+    "duration": 7.55,
+    "preview": "https://cdn.freesound.org/previews/132/132929_1887925-hq.mp3"
+   },
+   {
+    "id": "461697",
+    "user": "leonelmail",
+    "title": "Body falls into debris",
+    "duration": 4.87,
+    "preview": "https://cdn.freesound.org/previews/461/461697_4437257-hq.mp3"
+   },
+   {
+    "id": "703247",
+    "user": "xkeril",
+    "title": "Big falling debris (crash)",
+    "duration": 4.67,
+    "preview": "https://cdn.freesound.org/previews/703/703247_13504080-hq.mp3"
+   }
+  ]
+ },
+ "crmble2": {
+  "query": "rubble debris",
+  "candidates": [
+   {
+    "id": "620229",
+    "user": "SieuAmThanh",
+    "title": "No\u0302\u0309 4",
+    "duration": 1.5,
+    "preview": "https://cdn.freesound.org/previews/620/620229_7554526-hq.mp3"
+   },
+   {
+    "id": "848472",
+    "user": "ElevatorFan2020",
+    "title": "Vintage Debris Smash",
+    "duration": 2.78,
+    "preview": "https://cdn.freesound.org/previews/848/848472_14269391-hq.mp3"
+   },
+   {
+    "id": "569510",
+    "user": "Sheyvan",
+    "title": "Stone Impact Rubble Debris 14",
+    "duration": 1.0,
+    "preview": "https://cdn.freesound.org/previews/569/569510_3248005-hq.mp3"
+   }
+  ]
+ },
+ "sandbag2": {
+  "query": "sandbag impact",
+  "candidates": [
+   {
+    "id": "676468",
+    "user": "NearTheAtmoshphere",
+    "title": "Stab 2",
+    "duration": 0.38,
+    "preview": "https://cdn.freesound.org/previews/676/676468_2578040-hq.mp3"
+   },
+   {
+    "id": "623691",
+    "user": "launchsite",
+    "title": "sandbag pick up and drop.wav",
+    "duration": 2.7,
+    "preview": "https://cdn.freesound.org/previews/623/623691_7281605-hq.mp3"
+   }
+  ]
+ },
+ "mine1": {
+  "query": "explosion close",
+  "candidates": [
+   {
+    "id": "213925",
+    "user": "Diboz",
+    "title": "pistol_riccochet.ogg",
+    "duration": 2.63,
+    "preview": "https://cdn.freesound.org/previews/213/213925_3930831-hq.mp3"
+   },
+   {
+    "id": "78457",
+    "user": "Sancho82",
+    "title": "Bum.wav",
+    "duration": 0.39,
+    "preview": "https://cdn.freesound.org/previews/78/78457_1223399-hq.mp3"
+   },
+   {
+    "id": "251759",
+    "user": "misosound",
+    "title": "BOOMING PUNCHY EXPLOSION - close, big SCHOEPS MK41.wav",
+    "duration": 2.99,
+    "preview": "https://cdn.freesound.org/previews/251/251759_960618-hq.mp3"
+   }
+  ]
+ },
+ "mineblo1": {
+  "query": "big explosion boom",
+  "candidates": [
+   {
+    "id": "155790",
+    "user": "deleted_user_1941307",
+    "title": "shipboard_railgun.mp3",
+    "duration": 2.0,
+    "preview": "https://cdn.freesound.org/previews/155/155790_1941307-hq.mp3"
+   },
+   {
+    "id": "184650",
+    "user": "Isaac200000",
+    "title": "Cannon1.wav",
+    "duration": 1.47,
+    "preview": "https://cdn.freesound.org/previews/184/184650_2906575-hq.mp3"
+   },
+   {
+    "id": "587193",
+    "user": "derplayer",
+    "title": "explosion_big_02.ogg",
+    "duration": 3.16,
+    "preview": "https://cdn.freesound.org/previews/587/587193_13123807-hq.mp3"
+   }
+  ]
+ },
+ "minelay1": {
+  "query": "metal latch clunk",
+  "candidates": [
+   {
+    "id": "389705",
+    "user": "suspensiondigital",
+    "title": "Box with Metal Latches Hit 2.wav",
+    "duration": 0.44,
+    "preview": "https://cdn.freesound.org/previews/389/389705_4511439-hq.mp3"
+   }
+  ]
+ },
+ "firebl3": {
+  "query": "fireball whoosh",
+  "candidates": [
+   {
+    "id": "171255",
+    "user": "qubodup",
+    "title": "Sliding Trailer Woosh",
+    "duration": 1.63,
+    "preview": "https://cdn.freesound.org/previews/171/171255_71257-hq.mp3"
+   },
+   {
+    "id": "683179",
+    "user": "NearTheAtmoshphere",
+    "title": "Fireball",
+    "duration": 1.63,
+    "preview": "https://cdn.freesound.org/previews/683/683179_2578040-hq.mp3"
+   }
+  ]
+ },
+ "splash9": {
+  "query": "water splash",
+  "candidates": [
+   {
+    "id": "9508",
+    "user": "petenice",
+    "title": "SPLASH.wav",
+    "duration": 2.03,
+    "preview": "https://cdn.freesound.org/previews/9/9508_26137-hq.mp3"
+   },
+   {
+    "id": "371274",
+    "user": "Mafon2",
+    "title": "Water Click",
+    "duration": 0.11,
+    "preview": "https://cdn.freesound.org/previews/371/371274_1196472-hq.mp3"
+   },
+   {
+    "id": "442773",
+    "user": "qubodup",
+    "title": "Big Water Splash",
+    "duration": 2.17,
+    "preview": "https://cdn.freesound.org/previews/442/442773_71257-hq.mp3"
+   }
+  ]
+ },
+ "squishy2": {
+  "query": "squish splat",
+  "candidates": [
+   {
+    "id": "445109",
+    "user": "Breviceps",
+    "title": "Mud Splat",
+    "duration": 0.36,
+    "preview": "https://cdn.freesound.org/previews/445/445109_9159316-hq.mp3"
+   },
+   {
+    "id": "445117",
+    "user": "Breviceps",
+    "title": "Cartoon Splat",
+    "duration": 0.53,
+    "preview": "https://cdn.freesound.org/previews/445/445117_9159316-hq.mp3"
+   },
+   {
+    "id": "360942",
+    "user": "gprosser",
+    "title": "splat.ogg",
+    "duration": 0.77,
+    "preview": "https://cdn.freesound.org/previews/360/360942_5406151-hq.mp3"
+   }
+  ]
+ },
+ "subshow1": {
+  "query": "bubbles surfacing",
+  "candidates": [
+   {
+    "id": "96124",
+    "user": "BMacZero",
+    "title": "Bubbles_Single1.wav",
+    "duration": 0.32,
+    "preview": "https://cdn.freesound.org/previews/96/96124_1554918-hq.mp3"
+   },
+   {
+    "id": "389468",
+    "user": "lzmraul",
+    "title": "Water_Surface_Bubbles.wav",
+    "duration": 3.93,
+    "preview": "https://cdn.freesound.org/previews/389/389468_6060491-hq.mp3"
+   },
+   {
+    "id": "758633",
+    "user": "Andrastos87",
+    "title": "Acid_Splash",
+    "duration": 4.07,
+    "preview": "https://cdn.freesound.org/previews/758/758633_2522180-hq.mp3"
+   }
+  ]
+ },
+ "chute1": {
+  "query": "parachute open",
+  "candidates": [
+   {
+    "id": "393056",
+    "user": "sbaneat",
+    "title": "Paraca\u00eddas.wav",
+    "duration": 1.35,
+    "preview": "https://cdn.freesound.org/previews/393/393056_6231982-hq.mp3"
+   }
+  ]
+ },
+ "build5": {
+  "query": "construction machinery",
+  "candidates": [
+   {
+    "id": "104349",
+    "user": "RutgerMuller",
+    "title": "Metal Machinery Rumbling in Large Basement 2.aif",
+    "duration": 5.5,
+    "preview": "https://cdn.freesound.org/previews/104/104349_179538-hq.mp3"
+   },
+   {
+    "id": "668980",
+    "user": "vestibule-door",
+    "title": "machinery siren.wav",
+    "duration": 5.12,
+    "preview": "https://cdn.freesound.org/previews/668/668980_14100561-hq.mp3"
+   },
+   {
+    "id": "435731",
+    "user": "scivirus",
+    "title": "Welding conveyor Single LOOP-10.wav",
+    "duration": 3.35,
+    "preview": "https://cdn.freesound.org/previews/435/435731_2328828-hq.mp3"
+   }
+  ]
+ },
+ "placbldg": {
+  "query": "heavy metal thud",
+  "candidates": [
+   {
+    "id": "244983",
+    "user": "ani_music",
+    "title": "ANI Big Pipe Hit",
+    "duration": 1.0,
+    "preview": "https://cdn.freesound.org/previews/244/244983_3008343-hq.mp3"
+   },
+   {
+    "id": "640204",
+    "user": "7of9Designs",
+    "title": "Heavy Metal Thud on Ground",
+    "duration": 0.75,
+    "preview": "https://cdn.freesound.org/previews/640/640204_12131847-hq.mp3"
+   },
+   {
+    "id": "813053",
+    "user": "AudioPapkin",
+    "title": "Big robot footstep 002",
+    "duration": 1.63,
+    "preview": "https://cdn.freesound.org/previews/813/813053_8698658-hq.mp3"
+   }
+  ]
+ },
+ "cashturn": {
+  "query": "cash register",
+  "candidates": [
+   {
+    "id": "209578",
+    "user": "Zott820",
+    "title": "Cash Register Purchase",
+    "duration": 2.75,
+    "preview": "https://cdn.freesound.org/previews/209/209578_2558531-hq.mp3"
+   },
+   {
+    "id": "184438",
+    "user": "CapsLok",
+    "title": "Cash Register Fake.wav",
+    "duration": 2.2,
+    "preview": "https://cdn.freesound.org/previews/184/184438_850742-hq.mp3"
+   },
+   {
+    "id": "144418",
+    "user": "zerolagtime",
+    "title": "Store Scanner Beep",
+    "duration": 1.22,
+    "preview": "https://cdn.freesound.org/previews/144/144418_62484-hq.mp3"
+   }
+  ]
+ },
+ "fixit1": {
+  "query": "ratchet wrench",
+  "candidates": [
+   {
+    "id": "399011",
+    "user": "Anthousai",
+    "title": "wrench 02.wav",
+    "duration": 0.63,
+    "preview": "https://cdn.freesound.org/previews/399/399011_5923045-hq.mp3"
+   },
+   {
+    "id": "551497",
+    "user": "AlaskaRobotics",
+    "title": "ratchet socket wrench tool",
+    "duration": 1.27,
+    "preview": "https://cdn.freesound.org/previews/551/551497_1282865-hq.mp3"
+   },
+   {
+    "id": "616628",
+    "user": "Loinnats",
+    "title": "Socket wrench.wav",
+    "duration": 1.06,
+    "preview": "https://cdn.freesound.org/previews/616/616628_6810382-hq.mp3"
+   }
+  ]
+ },
+ "tesla1": {
+  "query": "electric zap",
+  "candidates": [
+   {
+    "id": "136542",
+    "user": "JoelAudio",
+    "title": "ELECTRIC_ZAP_001.wav",
+    "duration": 0.75,
+    "preview": "https://cdn.freesound.org/previews/136/136542_1206321-hq.mp3"
+   },
+   {
+    "id": "512471",
+    "user": "michael_grinnell",
+    "title": "Electric zap.wav",
+    "duration": 0.22,
+    "preview": "https://cdn.freesound.org/previews/512/512471_7372230-hq.mp3"
+   },
+   {
+    "id": "189630",
+    "user": "elliott.klein",
+    "title": "Spark",
+    "duration": 0.17,
+    "preview": "https://cdn.freesound.org/previews/189/189630_2816253-hq.mp3"
+   }
+  ]
+ },
+ "tslachg2": {
+  "query": "electric charge up",
+  "candidates": [
+   {
+    "id": "483883",
+    "user": "SamsterBirdies",
+    "title": "Charge up",
+    "duration": 0.47,
+    "preview": "https://cdn.freesound.org/previews/483/483883_5487341-hq.mp3"
+   }
+  ]
+ }
+}
