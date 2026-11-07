@@ -1,0 +1,39 @@
+# HD ammo bars under selected aircraft (OpenRA.Mods.RAPX/Traits/Render/WithPxAmmoBars.cs).
+# Every ammo pool is sorted into a type by its weapon's name (longest prefix wins); pools of one type share a bar,
+# so a jet shows e.g. SRM / MRM / AGM / GUN rows whatever stations its loadout (jet-loadouts.yaml) spreads them over.
+
+^Plane:
+	WithPxAmmoBars:
+		WeaponTypes:
+			JetAAM.Short: srm
+			JetAAM.Medium: mrm
+			JetAAM.Long: lrm
+			JetAGM: agm
+			Maverick: agm
+			Hellfire: atgm
+			JetGBU: gbu
+			JetBomb: bomb
+			ParaBomb: bomb
+			JetRockets: rkt
+			JetGun: gun
+			ChainGun: gun
+		TypeLabels:
+			srm: SRM
+			mrm: MRM
+			lrm: LRM
+			agm: AGM
+			atgm: ATGM
+			gbu: GBU
+			bomb: BOMB
+			rkt: RKT
+			gun: GUN
+		TypeColors:
+			srm: 5AD2FF
+			mrm: 6E8CFF
+			lrm: B47CFF
+			agm: FF9632
+			atgm: FFB43C
+			gbu: FF5A46
+			bomb: E6463C
+			rkt: FFD246
+			gun: C8CDD7

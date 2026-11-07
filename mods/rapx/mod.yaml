@@ -102,6 +102,7 @@ Rules:
 	ra|rules/space.yaml
 	ra|rules/jet-loadouts.yaml
 	ra|rules/jet-trails.yaml
+	ra|rules/ammo-bars.yaml
 	ra|rules/rocket-launchers.yaml
 	ra|rules/air-defence.yaml
 

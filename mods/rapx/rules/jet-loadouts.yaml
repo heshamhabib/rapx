@@ -545,7 +545,6 @@ JET.F4:
 JET.GROM:
 	-Armament:
 	-AmmoPool:
-	-WithAmmoPipsDecoration:
 	AmmoPool@GROMS0:
 		Name: grom-s0
 		Armaments: grom-s0
@@ -680,7 +679,6 @@ JET.J20:
 JET.L39:
 	-Armament:
 	-AmmoPool:
-	-WithAmmoPipsDecoration:
 	AmmoPool@L39S0:
 		Name: l39-s0
 		Armaments: l39-s0
@@ -1001,10 +999,6 @@ JET.QAHER:
 	AmmoPool:
 		Ammo: 8
 		AmmoCondition: ammo
-	WithAmmoPipsDecoration:
-		Position: BottomLeft
-		Margin: 4, 3
-		RequiresSelection: true
 	AttackAircraft:
 		Armaments: primary
 	Rearmable:
@@ -1237,10 +1231,6 @@ JET.SR71:
 	AmmoPool:
 		Ammo: 8
 		AmmoCondition: ammo
-	WithAmmoPipsDecoration:
-		Position: BottomLeft
-		Margin: 4, 3
-		RequiresSelection: true
 	AttackAircraft:
 		Armaments: primary
 	Rearmable:
@@ -1727,7 +1717,6 @@ JET.VULCAN:
 JET.X47:
 	-Armament:
 	-AmmoPool:
-	-WithAmmoPipsDecoration:
 	AmmoPool@X47S0:
 		Name: x47-s0
 		Armaments: x47-s0
@@ -1766,10 +1755,6 @@ JET.YAK141:
 	AmmoPool:
 		Ammo: 8
 		AmmoCondition: ammo
-	WithAmmoPipsDecoration:
-		Position: BottomLeft
-		Margin: 4, 3
-		RequiresSelection: true
 	AttackAircraft:
 		Armaments: primary
 	Rearmable:
@@ -1862,10 +1847,6 @@ JET.ZEPPELIN:
 	AmmoPool:
 		Ammo: 8
 		AmmoCondition: ammo
-	WithAmmoPipsDecoration:
-		Position: BottomLeft
-		Margin: 4, 3
-		RequiresSelection: true
 	AttackAircraft:
 		Armaments: primary
 	Rearmable:
@@ -1881,7 +1862,6 @@ JET.ZEPPELIN:
 MIG:
 	-Armament:
 	-AmmoPool:
-	-WithAmmoPipsDecoration:
 	AmmoPool@MIGS0:
 		Name: mig-s0
 		Armaments: mig-s0

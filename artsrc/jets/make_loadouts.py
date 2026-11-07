@@ -86,8 +86,7 @@ GROUND_TARGETING = ["\tAutoTarget:", "\t\tInitialStance: HoldFire", "\t\tInitial
                     "\t\tValidTargets: Infantry, Vehicle, Ship, Underwater, Structure, Defense, Mine"]
 ORIGINAL_WEAPONS = ["\tArmament:", "\t\tWeapon: Maverick", "\t\tLocalOffset: 0,-640,0, 0,640,0", "\t\tLocalYaw: -40, 24",
                     "\t\tPauseOnCondition: !ammo", "\tAmmoPool:", "\t\tAmmo: 8", "\t\tAmmoCondition: ammo",
-                    "\tWithAmmoPipsDecoration:", "\t\tPosition: BottomLeft", "\t\tMargin: 4, 3",
-                    "\t\tRequiresSelection: true", "\tAttackAircraft:", "\t\tArmaments: primary"]
+                    "\tAttackAircraft:", "\t\tArmaments: primary"]
 AIR_TARGETING = ["\tAutoTarget:", "\t\tInitialStance: AttackAnything", "\t\tInitialStanceAI: AttackAnything",
                  "\tAutoTargetPriority@DEFAULT:", "\t\tValidTargets: AirborneActor",
                  "\tAutoTargetPriority@ATTACKANYTHING:", "\t\tValidTargets: AirborneActor"]
@@ -181,7 +180,7 @@ def main():
         lines = [f"\n{actor}:"]
         inherited = [p for p in ancestors(actor) if p in built]
         if not inherited:
-            lines += ["\t-Armament:", "\t-AmmoPool:", "\t-WithAmmoPipsDecoration:"]
+            lines += ["\t-Armament:", "\t-AmmoPool:"]
         for p in inherited:  # a loadout jet's weapons and overlays are its own, not its children's
             lines += [f"\t-{k}:" for k in built[p][0]]
         if actor in blocks:

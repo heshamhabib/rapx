@@ -119,10 +119,6 @@ MIG:
 		Prerequisites: aircraft.upgraded
 	Rearmable:
 		RearmActors: afld, afld.ukraine
-	WithAmmoPipsDecoration:
-		Position: BottomLeft
-		Margin: 4, 3
-		RequiresSelection: true
 	GrantConditionOnDamageState@SmokeTrail:
 		Condition: enable-smoke
 	WithProductionIconOverlay:
@@ -198,11 +194,6 @@ YAK:
 		DecorationBounds: 1280, 1194, 0, 85
 	Rearmable:
 		RearmActors: afld, afld.ukraine
-	WithAmmoPipsDecoration:
-		Position: BottomLeft
-		Margin: 4, 3
-		RequiresSelection: true
-		PipCount: 6
 	GrantConditionOnDamageState@SmokeTrail:
 		Condition: enable-smoke
 	WithProductionIconOverlay:
@@ -336,12 +327,9 @@ HELI:
 		Prerequisites: aircraft.upgraded
 	Selectable:
 		DecorationBounds: 1536, 1194
-	Rearmable:
-		RearmActors: hpad
-	WithAmmoPipsDecoration:
-		Position: BottomLeft
-		Margin: 4, 3
-		RequiresSelection: true
+	# Ammo refills over time wherever the helicopter is: no trip back to the helipad.
+	ReloadAmmoPool:
+		Delay: 75
 	GrantConditionOnDamageState@SmokeTrail:
 		Condition: enable-smoke
 	WithProductionIconOverlay:
@@ -412,13 +400,9 @@ HIND:
 		Prerequisites: aircraft.upgraded
 	Selectable:
 		DecorationBounds: 1621, 1365
-	Rearmable:
-		RearmActors: hpad
-	WithAmmoPipsDecoration:
-		Position: BottomLeft
-		Margin: 4, 3
-		RequiresSelection: true
-		PipCount: 6
+	# Ammo refills over time wherever the helicopter is: no trip back to the helipad.
+	ReloadAmmoPool:
+		Delay: 25
 	GrantConditionOnDamageState@SmokeTrail:
 		Condition: enable-smoke
 	WithProductionIconOverlay:
@@ -525,13 +509,9 @@ MH60:
 		Prerequisites: aircraft.upgraded
 	Selectable:
 		DecorationBounds: 1621, 1365
-	Rearmable:
-		RearmActors: hpad
-	WithAmmoPipsDecoration:
-		Position: BottomLeft
-		Margin: 4, 3
-		RequiresSelection: true
-		PipCount: 6
+	# Ammo refills over time wherever the helicopter is: no trip back to the helipad.
+	ReloadAmmoPool:
+		Delay: 25
 	GrantConditionOnDamageState@SmokeTrail:
 		Condition: enable-smoke
 	WithProductionIconOverlay:
