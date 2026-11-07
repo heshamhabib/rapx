@@ -1,13 +1,8 @@
 clock:
 	idle:
-		Filename: clock.shp
+		Filename: ra|bits/hd/ui/clock.png
 		Length: *
-
-powerdown:
-	disabled:
-		Filename: speed.shp
-		Start: 3
-		ZOffset: 2047
+		Scale: 0.3333
 
 120mm:
 	idle:
@@ -127,7 +122,8 @@ burn-s:
 
 pips:
 	Defaults:
-		Filename: pips.shp
+		Filename: ra|bits/hd/ui/pips.png
+		Scale: 0.3333
 	groups:
 		Length: 10
 		Frames: 9, 10, 11, 12, 13, 14, 15, 16, 17, 8
@@ -167,27 +163,31 @@ pips:
 		Tick: 300
 		Offset: 0, -6
 
+# Same art as PxRallyPoint (sequences/hd-rally.yaml), which draws the rally point
 rallypoint:
 	flag:
-		Filename: flagfly.shp
-		Length: *
+		Filename: ra|bits/hd/rally/flag.png
+		Length: 24
+		Tick: 45
+		Scale: 0.25
 		Offset: 11,-5
 		ZOffset: 2535
 	circles:
-		Filename: fpls.shp
-		Length: *
+		Filename: ra|bits/hd/rally/base.png
+		Scale: 0.25
 		ZOffset: 2047
 
 beacon:
 	Defaults:
 		ZOffset: 2535
 	arrow:
-		Filename: mouse.shp
+		Filename: ra|bits/hd/ui/paradirection.png
 		Start: 5
 		Offset: 1,-12
+		Scale: 0.3333
 	circles:
-		Filename: fpls.shp
-		Length: *
+		Filename: ra|bits/hd/rally/base.png
+		Scale: 0.25
 		ZOffset: 2047
 	atomicon:
 		Filename: lores|atomicon.shp
@@ -393,18 +393,11 @@ fb1:
 
 moveflsh:
 	idle:
-		Filename: moveflsh.tem
-		TilesetFilenames:
-			SNOW: moveflsh.sno
-			INTERIOR: moveflsh.int
+		Filename: ra|bits/hd/ui/moveflsh.png
 		Length: *
+		Scale: 0.3333
 		Tick: 80
 		ZOffset: 2047
-
-select:
-	repair:
-		Filename: select.shp
-		Start: 2
 
 poweroff:
 	offline:
@@ -420,32 +413,13 @@ allyrepair:
 		Tick: 160
 		ZOffset: 2047
 
-tabs:
-	Defaults:
-		Filename: tabs.shp
-	left-normal:
-	left-pressed:
-		Start: 1
-
 sputnik:
 	idle:
-		Filename: sputnik.shp
+		Filename: ra|bits/hd/ui/sputnik.png
+		Scale: 0.3333
 		Length: *
 		Offset: -4,0
 		ZOffset: 1023
-
-dd-crnr:
-	Defaults:
-		Filename: dd-crnr.shp
-	idle:
-		Length: *
-	top-left:
-	top-right:
-		Start: 1
-	bottom-left:
-		Start: 2
-	bottom-right:
-		Start: 3
 
 fb2:
 	idle:
@@ -479,8 +453,9 @@ wcrate:
 	land:
 		Start: 1
 	water:
-		Filename: wwcrate.shp
+		Filename: ra|bits/hd/ui/wcrate-water.png
 		Length: *
+		Scale: 0.3333
 		Tick: 500
 
 xcratea:
@@ -543,38 +518,17 @@ crate-effects:
 	Defaults:
 		ZOffset: 2047
 		Length: *
-	speed:
-		Filename: speed.shp
-	dollar:
-		Filename: dollar.shp
 	reveal-map:
-		Filename: earth.shp
+		Filename: ra|bits/hd/ui/crate-reveal-map.png
+		Scale: 0.3333
 	hide-map:
-		Filename: empulse.shp
-	fpower:
-		Filename: fpower.shp
-	gps:
-		Filename: gpsbox.shp
+		Filename: ra|bits/hd/ui/crate-hide-map.png
+		Scale: 0.3333
 	invuln:
-		Filename: invulbox.shp
+		Filename: ra|bits/hd/ui/crate-invuln.png
+		Scale: 0.3333
 	heal:
 		Filename: invun.shp
-	nuke:
-		Filename: missile2.shp
-	parabombs:
-		Filename: parabox.shp
-	sonar:
-		Filename: sonarbox.shp
-	stealth:
-		Filename: stealth2.shp
-	timequake:
-		Filename: tquake.shp
-	armor:
-		Filename: armor.shp
-	chrono:
-		Filename: chronbox.shp
-	airstrike:
-		Filename: deviator.shp
 	levelup:
 		Filename: levelup.shp
 		Tick: 200
@@ -723,21 +677,29 @@ gpsdot:
 
 icon:
 	abomb:
-		Filename: atomicon.shp
+		Filename: ra|bits/hd/ui/icon-abomb.png
+		Scale: 0.25
 	invuln:
-		Filename: infxicon.shp
+		Filename: ra|bits/hd/ui/icon-invuln.png
+		Scale: 0.25
 	chrono:
-		Filename: warpicon.shp
+		Filename: ra|bits/hd/ui/icon-chrono.png
+		Scale: 0.25
 	spyplane:
-		Filename: smigicon.shp
+		Filename: ra|bits/hd/ui/icon-spyplane.png
+		Scale: 0.25
 	paratroopers:
-		Filename: pinficon.shp
+		Filename: ra|bits/hd/ui/icon-paratroopers.png
+		Scale: 0.25
 	gps:
-		Filename: gpssicon.shp
+		Filename: ra|bits/hd/ui/icon-gps.png
+		Scale: 0.25
 	parabombs:
-		Filename: pbmbicon.shp
+		Filename: ra|bits/hd/ui/icon-parabombs.png
+		Scale: 0.25
 	sonar:
-		Filename: sonricon.shp
+		Filename: ra|bits/hd/ui/icon-sonar.png
+		Scale: 0.25
 
 minp:
 	idle:
@@ -755,7 +717,8 @@ minv:
 
 overlay:
 	Defaults:
-		Filename: trans.icn
+		Filename: ra|bits/hd/ui/overlay.png
+		Scale: 0.3333
 	build-valid:
 	build-invalid:
 		Start: 2
@@ -763,13 +726,6 @@ overlay:
 	target-select:
 		Start: 1
 	target-invalid:
-		Start: 2
-
-editor-overlay:
-	Defaults:
-		Filename: trans.icn
-	copy:
-	paste:
 		Start: 2
 
 resources:
@@ -810,7 +766,7 @@ resources:
 
 shroud:
 	shroud:
-		Filename: shadow.shp
+		Filename: ra|bits/hd/ui/shroud.png
 		Length: *
 
 # Note: The order of smudges and craters determines
@@ -924,37 +880,45 @@ ctflag:
 
 paradirection:
 	arrow-t:
-		Filename: mouse.shp
+		Filename: ra|bits/hd/ui/paradirection.png
 		Start: 1
 		Offset: 0, -19, 0
+		Scale: 0.3333
 	arrow-tr:
-		Filename: mouse.shp
+		Filename: ra|bits/hd/ui/paradirection.png
 		Start: 2
 		Offset: 15, -15, 0
+		Scale: 0.3333
 	arrow-r:
-		Filename: mouse.shp
+		Filename: ra|bits/hd/ui/paradirection.png
 		Start: 3
 		Offset: 19, 0, 0
+		Scale: 0.3333
 	arrow-br:
-		Filename: mouse.shp
+		Filename: ra|bits/hd/ui/paradirection.png
 		Start: 4
 		Offset: 15, 15, 0
+		Scale: 0.3333
 	arrow-b:
-		Filename: mouse.shp
+		Filename: ra|bits/hd/ui/paradirection.png
 		Start: 5
 		Offset: 0, 19, 0
+		Scale: 0.3333
 	arrow-bl:
-		Filename: mouse.shp
+		Filename: ra|bits/hd/ui/paradirection.png
 		Start: 6
 		Offset: -15, 15, 0
+		Scale: 0.3333
 	arrow-l:
-		Filename: mouse.shp
+		Filename: ra|bits/hd/ui/paradirection.png
 		Start: 7
 		Offset: -19, 0, 0
+		Scale: 0.3333
 	arrow-tl:
-		Filename: mouse.shp
+		Filename: ra|bits/hd/ui/paradirection.png
 		Start: 8
 		Offset: -15, -15, 0
+		Scale: 0.3333
 
 twinkle:
 	Defaults:

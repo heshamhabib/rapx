@@ -8,11 +8,12 @@ fcom:
 		Filename: fcommake.shp
 		Length: *
 	bib:
-		Filename: bib3.tem
+		Filename: ra|bits/hd/ui/bib3-temperate.png
 		TilesetFilenames:
-			SNOW: bib3.sno
-			DESERT: bib3.des
+			SNOW: ra|bits/hd/ui/bib3-snow.png
+			DESERT: ra|bits/hd/ui/bib3-desert.png
 		Length: *
+		Scale: 0.3333
 
 hosp:
 	Defaults:
@@ -61,13 +62,6 @@ oilb:
 		Start: 1
 		Length: *
 	make:
-	bib:
-		Filename: bib3.tem
-		TilesetFilenames:
-			SNOW: bib3.sno
-			DESERT: bib3.des
-		Length: *
-		Offset: 0,0
 
 fact:
 	Defaults:
@@ -84,12 +78,6 @@ fact:
 	damaged-build:
 		Start: 27
 		Length: 25
-	bib:
-		Filename: bib2.tem
-		TilesetFilenames:
-			SNOW: bib2.sno
-			DESERT: bib2.des
-		Length: *
 	icon:
 		Filename: facticon.shp
 oilr:
@@ -117,12 +105,6 @@ proc:
 		ZOffset: 0
 	make:
 		Filename: procmake.shp
-		Length: *
-	bib:
-		Filename: bib2.tem
-		TilesetFilenames:
-			SNOW: bib2.sno
-			DESERT: bib2.des
 		Length: *
 	icon:
 		Filename: procicon.shp
@@ -167,12 +149,6 @@ powr:
 	make:
 		Filename: powrmake.shp
 		Length: *
-	bib:
-		Filename: bib3.tem
-		TilesetFilenames:
-			SNOW: bib3.sno
-			DESERT: bib3.des
-		Length: *
 	icon:
 		Filename: powricon.shp
 apwr:
@@ -187,12 +163,6 @@ apwr:
 		Filename: apwrmake.shp
 		Length: *
 		Offset: 0,-10
-	bib:
-		Filename: bib2.tem
-		TilesetFilenames:
-			SNOW: bib2.sno
-			DESERT: bib2.des
-		Length: *
 	icon:
 		Filename: apwricon.shp
 barr:
@@ -209,12 +179,6 @@ barr:
 		Filename: barrmake.shp
 		Length: *
 		Offset: 0,-6
-	bib:
-		Filename: bib3.tem
-		TilesetFilenames:
-			SNOW: bib3.sno
-			DESERT: bib3.des
-		Length: *
 	icon:
 		Filename: barricon.shp
 
@@ -234,12 +198,6 @@ tent:
 		TilesetFilenames:
 			SNOW: tentmake.sno
 			DESERT: tentmake.des
-		Length: *
-	bib:
-		Filename: bib3.tem
-		TilesetFilenames:
-			SNOW: bib3.sno
-			DESERT: bib3.des
 		Length: *
 	icon:
 		Filename: tenticon.shp
@@ -275,12 +233,6 @@ dome:
 		Filename: domemake.shp
 		Length: *
 		Offset: 0,-4
-	bib:
-		Filename: bib3.tem
-		TilesetFilenames:
-			SNOW: bib3.sno
-			DESERT: bib3.des
-		Length: *
 	icon:
 		Filename: domeicon.shp
 atek:
@@ -296,12 +248,6 @@ atek:
 		Filename: sputdoor.shp
 		Length: *
 		Offset: -4,0
-	bib:
-		Filename: bib3.tem
-		TilesetFilenames:
-			SNOW: bib3.sno
-			DESERT: bib3.des
-		Length: *
 	icon:
 		Filename: atekicon.shp
 stek:
@@ -312,12 +258,6 @@ stek:
 		Start: 1
 	make:
 		Filename: stekmake.shp
-		Length: *
-	bib:
-		Filename: bib2.tem
-		TilesetFilenames:
-			SNOW: bib2.sno
-			DESERT: bib2.des
 		Length: *
 	icon:
 		Filename: stekicon.shp
@@ -341,12 +281,6 @@ weap:
 		Filename: weap2.shp
 		Start: 4
 		Length: 4
-	bib:
-		Filename: bib2.tem
-		TilesetFilenames:
-			SNOW: bib2.sno
-			DESERT: bib2.des
-		Length: *
 	icon:
 		Filename: weapicon.shp
 hpad:
@@ -369,12 +303,6 @@ hpad:
 		ZOffset: -1023
 	make:
 		Filename: hpadmake.shp
-		Length: *
-	bib:
-		Filename: bib3.tem
-		TilesetFilenames:
-			SNOW: bib3.sno
-			DESERT: bib3.des
 		Length: *
 	icon:
 		Filename: hpadicon.shp
@@ -804,11 +732,12 @@ miss:
 		Filename: missmake.shp
 		Length: *
 	bib:
-		Filename: bib2.tem
+		Filename: ra|bits/hd/ui/bib2-temperate.png
 		TilesetFilenames:
-			SNOW: bib2.sno
-			DESERT: bib2.des
+			SNOW: ra|bits/hd/ui/bib2-snow.png
+			DESERT: ra|bits/hd/ui/bib2-desert.png
 		Length: *
+		Scale: 0.3333
 
 brik:
 	Defaults:
