@@ -11,7 +11,9 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Traits;
+using OpenRA.Primitives;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.RAPX.Traits
@@ -19,6 +21,7 @@ namespace OpenRA.Mods.RAPX.Traits
 	[TraitLocation(SystemActors.Player)]
 	[Desc("Classic production queue that limits planes to the parking slots of the player's airfields (IDEA-06).",
 		"A plane uses slots when one of its Rearmable.RearmActors has Reservable.SlotOffsets.",
+		"Helicopters (Aircraft.CanHover) never use slots.",
 		"Carrier decks (PxCarrierDeck) add their slots.",
 		"Planes owned + planes queued can't exceed the total slots: the buttons grey out and extra orders are dropped.")]
 	public class PxAirfieldProductionQueueInfo : ClassicProductionQueueInfo
@@ -55,8 +58,10 @@ namespace OpenRA.Mods.RAPX.Traits
 				.Select(a => a.Name)
 				.ToHashSet();
 
+			// Helicopters land on helipads or open ground, never on an airfield slot.
+			var aircraft = actor.TraitInfoOrDefault<AircraftInfo>();
 			var rearmable = actor.TraitInfoOrDefault<RearmableInfo>();
-			uses = actor.HasTraitInfo<AircraftInfo>() && rearmable != null && rearmable.RearmActors.Overlaps(slotAirfields);
+			uses = aircraft != null && !aircraft.CanHover && rearmable != null && rearmable.RearmActors.Overlaps(slotAirfields);
 			usesSlots[actor] = uses;
 			return uses;
 		}
@@ -107,6 +112,45 @@ namespace OpenRA.Mods.RAPX.Traits
 			{
 				ignoreSlots = false;
 			}
+		}
+
+		protected override bool BuildUnit(ActorInfo unit)
+		{
+			// The AllTech cheat makes the base queue ignore BuildAtProductionType, so helicopters came out of the
+			// airfield and parked on a plane's slot. Keep them on the helipad whenever the player has one.
+			var type = unit.TraitInfo<BuildableInfo>().BuildAtProductionType;
+			if (!developerMode.AllTech || type == null)
+				return base.BuildUnit(unit);
+
+			var producers = self.World.ActorsWithTrait<Production>()
+				.Where(x => x.Actor.Owner == self.Owner && !x.Trait.IsTraitDisabled && x.Trait.Info.Produces.Contains(type))
+				.OrderByDescending(x => x.Actor.TraitOrDefault<PrimaryBuilding>()?.IsPrimary == true)
+				.ThenByDescending(x => x.Actor.ActorID)
+				.ToList();
+
+			if (producers.Count == 0)
+				return base.BuildUnit(unit);
+
+			foreach (var p in producers)
+			{
+				if (p.Trait.IsTraitPaused)
+					continue;
+
+				var inits = new TypeDictionary
+				{
+					new OwnerInit(self.Owner),
+					new FactionInit(BuildableInfo.GetInitialFaction(unit, p.Trait.Faction))
+				};
+
+				var item = Queue.First(i => i.Done && i.Item == unit.Name);
+				if (p.Trait.Produce(p.Actor, unit, type, inits, item.TotalCost))
+				{
+					EndProduction(item);
+					return true;
+				}
+			}
+
+			return false;
 		}
 
 		protected override void BeginProduction(ProductionItem item, bool hasPriority)
