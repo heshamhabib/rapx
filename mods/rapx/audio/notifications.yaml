@@ -1,4 +1,17 @@
 Speech:
+	# Our own announcers (IDEA-31, artsrc/audio/generate_voices_kokoro.py): Union = eva/union, Vanguard = eva/vanguard
+	DefaultVariant: .mp3
+	DefaultPrefix: ra|audio/eva/union/
+	Prefixes:
+		soviet: ra|audio/eva/vanguard/
+		russia: ra|audio/eva/vanguard/
+		ukraine: ra|audio/eva/vanguard/
+		cuba: ra|audio/eva/vanguard/
+		india: ra|audio/eva/vanguard/
+		china: ra|audio/eva/vanguard/
+		turkey: ra|audio/eva/vanguard/
+		pakistan: ra|audio/eva/vanguard/
+		iran: ra|audio/eva/vanguard/
 	Notifications:
 		AbombAvailable: aavail1
 		AbombLaunchDetected: alaunch1

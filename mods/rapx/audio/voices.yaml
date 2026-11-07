@@ -1,91 +1,104 @@
+# Unit voices: our own (IDEA-31, artsrc/audio/generate_voices_kokoro.py), except DogVoice.
 GenericVoice:
-	Variants:
-		allies: .v01,.v03
-		usa: .v01,.v03
-		england: .v01,.v03
-		france: .v01,.v03
-		germany: .v01,.v03
-		turkey: .r01,.r03
-		pakistan: .r01,.r03
-		iran: .r01,.r03
-		japan: .v01,.v03
-		southkorea: .v01,.v03
-		italy: .v01,.v03
-		soviet: .r01,.r03
-		russia: .r01,.r03
-		ukraine: .r01,.r03
-		cuba: .r01,.r03
-		india: .r01,.r03
-		egypt: .v01,.v03
-		china: .r01,.r03
+	DefaultVariant: .mp3
+	DefaultPrefix: ra|audio/voices/
+	Prefixes:
+		allies: ra|audio/voices/union-inf1/,ra|audio/voices/union-inf2/
+		usa: ra|audio/voices/union-inf1/,ra|audio/voices/union-inf2/
+		england: ra|audio/voices/union-inf1/,ra|audio/voices/union-inf2/
+		france: ra|audio/voices/union-inf1/,ra|audio/voices/union-inf2/
+		germany: ra|audio/voices/union-inf1/,ra|audio/voices/union-inf2/
+		japan: ra|audio/voices/union-inf1/,ra|audio/voices/union-inf2/
+		southkorea: ra|audio/voices/union-inf1/,ra|audio/voices/union-inf2/
+		italy: ra|audio/voices/union-inf1/,ra|audio/voices/union-inf2/
+		egypt: ra|audio/voices/union-inf1/,ra|audio/voices/union-inf2/
+		soviet: ra|audio/voices/vanguard-inf1/,ra|audio/voices/vanguard-inf2/
+		russia: ra|audio/voices/vanguard-inf1/,ra|audio/voices/vanguard-inf2/
+		ukraine: ra|audio/voices/vanguard-inf1/,ra|audio/voices/vanguard-inf2/
+		cuba: ra|audio/voices/vanguard-inf1/,ra|audio/voices/vanguard-inf2/
+		india: ra|audio/voices/vanguard-inf1/,ra|audio/voices/vanguard-inf2/
+		china: ra|audio/voices/vanguard-inf1/,ra|audio/voices/vanguard-inf2/
+		turkey: ra|audio/voices/vanguard-inf1/,ra|audio/voices/vanguard-inf2/
+		pakistan: ra|audio/voices/vanguard-inf1/,ra|audio/voices/vanguard-inf2/
+		iran: ra|audio/voices/vanguard-inf1/,ra|audio/voices/vanguard-inf2/
+	DisablePrefixes: Die, Burned, Zapped
 	Voices:
 		Select: await1,ready,report1,yessir1
 		Action: ackno,affirm1,noprob,overout,ritaway,roger,ugotit
-		Die: dedman1,dedman2,dedman3,dedman4,dedman5,dedman7,dedman8
-		Burned: dedman10
-		Zapped: dedman6
-	DisableVariants: Die, Burned, Zapped
+		Die: deaths/dedman1,deaths/dedman2,deaths/dedman3,deaths/dedman4,deaths/dedman5,deaths/dedman7,deaths/dedman8
+		Burned: deaths/dedman10
+		Zapped: deaths/dedman6
 
 VehicleVoice:
-	Variants:
-		allies: .v00,.v02
-		usa: .v00,.v02
-		england: .v00,.v02
-		france: .v00,.v02
-		germany: .v00,.v02
-		turkey: .r00,.r02
-		pakistan: .r00,.r02
-		iran: .r00,.r02
-		japan: .v00,.v02
-		southkorea: .v00,.v02
-		italy: .v00,.v02
-		soviet: .r00,.r02
-		russia: .r00,.r02
-		ukraine: .r00,.r02
-		cuba: .r00,.r02
-		india: .r00,.r02
-		egypt: .v00,.v02
-		china: .r00,.r02
+	DefaultVariant: .mp3
+	DefaultPrefix: ra|audio/voices/
+	Prefixes:
+		allies: ra|audio/voices/union-veh1/,ra|audio/voices/union-veh2/
+		usa: ra|audio/voices/union-veh1/,ra|audio/voices/union-veh2/
+		england: ra|audio/voices/union-veh1/,ra|audio/voices/union-veh2/
+		france: ra|audio/voices/union-veh1/,ra|audio/voices/union-veh2/
+		germany: ra|audio/voices/union-veh1/,ra|audio/voices/union-veh2/
+		japan: ra|audio/voices/union-veh1/,ra|audio/voices/union-veh2/
+		southkorea: ra|audio/voices/union-veh1/,ra|audio/voices/union-veh2/
+		italy: ra|audio/voices/union-veh1/,ra|audio/voices/union-veh2/
+		egypt: ra|audio/voices/union-veh1/,ra|audio/voices/union-veh2/
+		soviet: ra|audio/voices/vanguard-veh1/,ra|audio/voices/vanguard-veh2/
+		russia: ra|audio/voices/vanguard-veh1/,ra|audio/voices/vanguard-veh2/
+		ukraine: ra|audio/voices/vanguard-veh1/,ra|audio/voices/vanguard-veh2/
+		cuba: ra|audio/voices/vanguard-veh1/,ra|audio/voices/vanguard-veh2/
+		india: ra|audio/voices/vanguard-veh1/,ra|audio/voices/vanguard-veh2/
+		china: ra|audio/voices/vanguard-veh1/,ra|audio/voices/vanguard-veh2/
+		turkey: ra|audio/voices/vanguard-veh1/,ra|audio/voices/vanguard-veh2/
+		pakistan: ra|audio/voices/vanguard-veh1/,ra|audio/voices/vanguard-veh2/
+		iran: ra|audio/voices/vanguard-veh1/,ra|audio/voices/vanguard-veh2/
 	Voices:
 		Select: vehic1,yessir1,report1,await1
 		Action: ackno,affirm1
 
 EngineerVoice:
+	DefaultVariant: .mp3
+	DefaultPrefix: ra|audio/voices/
 	Voices:
-		Select: eengin1,eyessir1
-		Action: eaffirm1,emovout1
-		Die: dedman1,dedman2,dedman3,dedman4,dedman5,dedman7,dedman8
-		Burned: dedman10
-		Zapped: dedman6
+		Select: engineer/eengin1,engineer/eyessir1
+		Action: engineer/eaffirm1,engineer/emovout1
+		Die: deaths/dedman1,deaths/dedman2,deaths/dedman3,deaths/dedman4,deaths/dedman5,deaths/dedman7,deaths/dedman8
+		Burned: deaths/dedman10
+		Zapped: deaths/dedman6
 
 MedicVoice:
+	DefaultVariant: .mp3
+	DefaultPrefix: ra|audio/voices/
 	Voices:
-		Select: mrespon1,myessir1
-		Action: maffirm1,mmovout1
-		Die: dedman1,dedman2,dedman3,dedman4,dedman5,dedman7,dedman8
-		Burned: dedman10
-		Zapped: dedman6
+		Select: medic/mrespon1,medic/myessir1
+		Action: medic/maffirm1,medic/mmovout1
+		Die: deaths/dedman1,deaths/dedman2,deaths/dedman3,deaths/dedman4,deaths/dedman5,deaths/dedman7,deaths/dedman8
+		Burned: deaths/dedman10
+		Zapped: deaths/dedman6
 
 MechanicVoice:
+	DefaultVariant: .mp3
+	DefaultPrefix: ra|audio/voices/
 	Voices:
-		Select: mhuh1,mhowdy1,mlaff1
-		Move: mboss1,mhear1,myes1,mrise1
-		Action: mhotdig1,mwrench1,myeehaw1
-		Die: dedman1,dedman2,dedman3,dedman4,dedman5,dedman7,dedman8
-		Burned: dedman10
-		Zapped: dedman6
+		Select: mechanic/mhuh1,mechanic/mhowdy1,mechanic/mlaff1
+		Move: mechanic/mboss1,mechanic/mhear1,mechanic/myes1,mechanic/mrise1
+		Action: mechanic/mhotdig1,mechanic/mwrench1,mechanic/myeehaw1
+		Die: deaths/dedman1,deaths/dedman2,deaths/dedman3,deaths/dedman4,deaths/dedman5,deaths/dedman7,deaths/dedman8
+		Burned: deaths/dedman10
+		Zapped: deaths/dedman6
 
 TanyaVoice:
+	DefaultVariant: .mp3
+	DefaultPrefix: ra|audio/voices/
 	Voices:
-		Select: yo1,yes1,yeah1
-		Move: onit1,cmon1,rokroll1
-		Action: tuffguy1,bombit1
-		Die: tandeth1
-		Burned: tandeth1
-		Zapped: tandeth1
-		Build: laugh1
-		Kill: gotit1,lefty1
-		Demolish: keepem1,tuffguy1
+		Select: tanya/yo1,tanya/yes1,tanya/yeah1
+		Move: tanya/onit1,tanya/cmon1,tanya/rokroll1
+		Action: tanya/tuffguy1,tanya/bombit1
+		Die: tanya/tandeth1
+		Burned: tanya/tandeth1
+		Zapped: tanya/tandeth1
+		Build: tanya/laugh1
+		Kill: tanya/gotit1,tanya/lefty1
+		Demolish: tanya/keepem1,tanya/tuffguy1
 
 DogVoice:
 	Voices:
@@ -97,19 +110,23 @@ DogVoice:
 		Zapped: dogw6
 
 SpyVoice:
+	DefaultVariant: .mp3
+	DefaultPrefix: ra|audio/voices/
 	Voices:
-		Select: syessir1,scomnd1
-		Move: sonway1,sindeed1
-		Action: sking1
-		Die: dedman1,dedman2,dedman3,dedman4,dedman5,dedman7,dedman8
-		Burned: dedman10
-		Zapped: dedman6
+		Select: spy/syessir1,spy/scomnd1
+		Move: spy/sonway1,spy/sindeed1
+		Action: spy/sking1
+		Die: deaths/dedman1,deaths/dedman2,deaths/dedman3,deaths/dedman4,deaths/dedman5,deaths/dedman7,deaths/dedman8
+		Burned: deaths/dedman10
+		Zapped: deaths/dedman6
 
 ShokVoice:
+	DefaultVariant: .mp3
+	DefaultPrefix: ra|audio/voices/
 	Voices:
-		Select: jjuice1,jjump1,jyes1
-		Move: jdance1,jchrge1,jpower1
-		Attack: jburn1,jcrisp1,jshock1,jlight1
-		Die: dedman1,dedman2,dedman3,dedman4,dedman5,dedman7,dedman8
-		Burned: dedman10
-		Zapped: dedman6
+		Select: shock/jjuice1,shock/jjump1,shock/jyes1
+		Move: shock/jdance1,shock/jchrge1,shock/jpower1
+		Attack: shock/jburn1,shock/jcrisp1,shock/jshock1,shock/jlight1
+		Die: deaths/dedman1,deaths/dedman2,deaths/dedman3,deaths/dedman4,deaths/dedman5,deaths/dedman7,deaths/dedman8
+		Burned: deaths/dedman10
+		Zapped: deaths/dedman6

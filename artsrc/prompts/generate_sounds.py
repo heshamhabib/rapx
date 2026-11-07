@@ -30,9 +30,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.abspath(os.path.join(HERE, "..", "..", "assets", "sounds"))
 ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/interactions"
 MODEL = "gemini-3.8-flash-tts"
-# Skirmish focus: campaign announcer lines and civilians come later.
+# Skirmish focus: campaign announcer lines come later; civilians and the Thief are removed from the mod.
 SKIRMISH_GROUPS = {"eva-now", "units", "special"}
-SKIRMISH_SKIP_CAST = {"civ-male", "civ-female"}
+SKIRMISH_SKIP_CAST = {"civ-male", "civ-female", "thief"}  # units removed 2026-11-06
 
 
 def synthesize(key, model, voice, text, style):
