@@ -56,6 +56,12 @@ MODELS = [
     ("ftrk.pantsir", "Flak Truck", "8be7dcff46794b809560e2377561546e"),            # 96K6 Pantsir-S1 (ALI1388)
     ("harv.komatsu", "Ore Truck", "2bf4dcd62e484f01bcb446af263bd65c"),             # Komatsu HD-465-7EO
     ("ptnk.cyber", "Prism Tank", "8882ab6534e14ce6b09ed9cd65206290"),              # Cyber Tank (kraytay)
+    # Humanoid robots (IDEA-29), bodies for the 3D soldier pipeline (artsrc/units/soldiers/prep_sketchfab.py)
+    ("robot.cybt", "Cyborg Trooper", "890f5493c9c041c0a0923fc23b01d086"),         # Cyborg Soldier SciFi (3dUVpro)
+    ("robot.bdrd", "Battle Droid", "e4caf58f757d4a688e7abe8ef64e3b3a"),           # VX-09 Sentinel pack (another unit)
+    ("robot.rgun", "Railgun Robot", "e4caf58f757d4a688e7abe8ef64e3b3a"),          # VX-09 Sentinel (DevPoly3D)
+    ("robot.irgd", "Iron Guard", "de876bfdce1c47a4aa67670faee7208e"),             # Sci-Fi Soldier (evgenytvidov)
+    ("robot.taut", "Tesla Automaton", "3f18e4e7b6c643c4b7763febf1361ee4"),        # Heavy robot (Scarecrow_original)
     # Ships
     ("ss", "Submarine", "b5c0eae394c94e0caa91fa511bae4ca6"),             # U-85 Type VIIB U-boat
     ("msub", "Missile Submarine", "c9adff3a72d7462f8f82a35459a582d2"),   # Ohio class SSBN

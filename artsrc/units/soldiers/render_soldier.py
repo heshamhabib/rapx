@@ -37,6 +37,142 @@ bpy.ops.import_scene.fbx(filepath=FBX)
 arm = next(o for o in bpy.context.scene.objects if o.type == "ARMATURE")
 body = next(o for o in bpy.context.scene.objects if o.type == "MESH")
 
+# Robots built from separate hard parts (IDEA-29): each loose part follows a single bone rigidly, the one that holds
+# most of its transferred weight, so plates and limbs move like machinery instead of smearing across joints
+RIGID = {"bdrd", "rgun"}
+
+
+# Robots with other proportions: e1's skeleton (rest pose) refitted to them before binding. shoulder = the robot's
+# shoulder joint (x, z, metres; the pivot its arms were lowered about in prep_sketchfab.py), arm = shoulder to finger
+# tips. The animations rotate the bones, so they play the same on the refitted skeleton.
+# hip = the hip joint (x, z): the leg chain is moved there and scaled to reach the ground.
+FIT = {"bdrd": {"shoulder": (0.2, 1.40), "arm": 0.7},
+       "rgun": {"shoulder": (0.33, 1.31), "arm": 0.61},
+}
+# Bodies weighted by distance to the refitted bones (one-piece meshes too unlike a human for the surface transfer)
+PROXIMITY = set()
+
+
+def fit_skeleton(fit):
+    import numpy as np
+    bpy.context.view_layer.objects.active = arm
+    bpy.ops.object.mode_set(mode="EDIT")
+    eb = arm.data.edit_bones
+    inv = arm.matrix_world.inverted()
+    w = arm.matrix_world
+    sx, sz = fit["shoulder"]
+    for side, sgn in (("Left", 1), ("Right", -1)):
+        root = eb.get(f"mixamorig:{side}Arm")
+        clav = eb.get(f"mixamorig:{side}Shoulder")
+        if root is None:
+            continue
+        chain = [root] + list(root.children_recursive)
+        old_root = w @ root.head
+        tip = max(((w @ b.tail) - old_root).length for b in chain)
+        k = fit["arm"] / max(tip, 1e-3)
+        new_root = Vector((sgn * sx, old_root.y, sz))
+        for b in chain:
+            h, t = w @ b.head, w @ b.tail
+            b.head = inv @ (new_root + (h - old_root) * k)
+            b.tail = inv @ (new_root + (t - old_root) * k)
+        if clav is not None:
+            ch = w @ clav.head
+            clav.head = inv @ Vector((ch.x, ch.y, sz + 0.06))
+            clav.tail = inv @ new_root
+    if "hip" in fit:
+        hx, hz = fit["hip"]
+        for side, sgn in (("Left", 1), ("Right", -1)):
+            root = eb.get(f"mixamorig:{side}UpLeg")
+            if root is None:
+                continue
+            chain = [root] + list(root.children_recursive)
+            old_root = w @ root.head
+            k = hz / max(old_root.z, 1e-3)
+            new_root = Vector((sgn * hx, old_root.y, hz))
+            for b in chain:
+                h, t = w @ b.head, w @ b.tail
+                b.head = inv @ (new_root + Vector(((h - old_root).x * k * 0.6, (h - old_root).y * k, (h - old_root).z * k)))
+                b.tail = inv @ (new_root + Vector(((t - old_root).x * k * 0.6, (t - old_root).y * k, (t - old_root).z * k)))
+    bpy.ops.object.mode_set(mode="OBJECT")
+    print("skeleton fitted:", fit)
+
+
+def proximity_weights(obj, falloff=4.0):
+    """Every vertex weighted to its two nearest deform bones (rest pose) by inverse distance."""
+    import numpy as np
+    me = obj.data
+    n = len(me.vertices)
+    co = np.empty(n * 3)
+    me.vertices.foreach_get("co", co)
+    co = co.reshape(-1, 3)
+    groups = obj.vertex_groups
+    bones = [bn for bn in arm.data.bones if bn.use_deform and bn.name in groups
+             and not any(k in bn.name for k in ("Index", "Middle", "Ring", "Pinky", "Thumb"))]
+    heads = np.array([(arm.matrix_world @ bn.head_local)[:] for bn in bones])
+    tails = np.array([(arm.matrix_world @ bn.tail_local)[:] for bn in bones])
+    seg = tails - heads
+    L2 = np.maximum((seg ** 2).sum(1), 1e-9)
+    d = np.empty((n, len(bones)), np.float32)
+    for i in range(0, n, 20000):
+        c = co[i:i + 20000]
+        t = np.clip(((c[:, None, :] - heads[None]) * seg[None]).sum(2) / L2[None], 0, 1)
+        d[i:i + 20000] = np.sqrt(((c[:, None, :] - (heads[None] + t[..., None] * seg[None])) ** 2).sum(2))
+    order = np.argsort(d, 1)[:, :2]
+    d2 = np.take_along_axis(d, order, 1)
+    w = 1 / np.maximum(d2, 0.01) ** falloff
+    w /= w.sum(1, keepdims=True)
+    for g in groups:
+        g.remove(list(range(n)))
+    for k in range(2):
+        for bi in range(len(bones)):
+            idx = np.nonzero(order[:, k] == bi)[0]
+            for v, wt in zip(idx.tolist(), w[idx, k].tolist()):
+                groups[bones[bi].name].add([v], wt, "ADD")
+    print("proximity weights on", len(bones), "bones")
+
+
+def rigid_parts(obj):
+    """Each loose part of obj follows the deform bone nearest to its centre (rest pose), weight 1."""
+    import numpy as np
+    me = obj.data
+    n = len(me.vertices)
+    ed = np.empty(len(me.edges) * 2, np.int64)
+    me.edges.foreach_get("vertices", ed)
+    a, b = ed[0::2], ed[1::2]
+    label = np.arange(n)
+    while True:  # connected components by label propagation
+        m = np.minimum(label[a], label[b])
+        new_label = label.copy()
+        np.minimum.at(new_label, a, m)
+        np.minimum.at(new_label, b, m)
+        new_label = new_label[new_label]
+        if np.array_equal(new_label, label):
+            break
+        label = new_label
+    co = np.empty(n * 3)
+    me.vertices.foreach_get("co", co)
+    co = co.reshape(-1, 3)
+    parts, inv = np.unique(label, return_inverse=True)
+    cent = np.zeros((len(parts), 3))
+    np.add.at(cent, inv, co)
+    cent /= np.bincount(inv)[:, None]
+    groups = obj.vertex_groups
+    bones = [bn for bn in arm.data.bones if bn.use_deform and bn.name in groups]
+    heads = np.array([(arm.matrix_world @ bn.head_local)[:] for bn in bones])
+    tails = np.array([(arm.matrix_world @ bn.tail_local)[:] for bn in bones])
+    seg = tails - heads
+    L2 = np.maximum((seg ** 2).sum(1), 1e-9)
+    t = np.clip(((cent[:, None, :] - heads[None]) * seg[None]).sum(2) / L2[None], 0, 1)
+    near = heads[None] + t[..., None] * seg[None]
+    best = np.sqrt(((cent[:, None, :] - near) ** 2).sum(2)).argmin(1)
+    for g in groups:
+        g.remove(list(range(n)))
+    for bi in np.unique(best):
+        idx = list(map(int, np.nonzero(best[inv] == bi)[0]))
+        groups[bones[bi].name].add(idx, 1.0, "REPLACE")
+    print("rigid parts:", len(parts), "on", len(np.unique(best)), "bones")
+
+
 # Another soldier on e1's rig: when the clip is not this soldier's own (no Mixamo upload of his), his body
 # from upload/<id>.blend replaces the clip's mesh and takes its skin weights from the nearest surface
 # (all soldiers share the A-pose, 1.8 m height and orientation of prep_mixamo.py).
@@ -63,6 +199,12 @@ if body.name != UID and os.path.exists(os.path.join(HERE, "upload", f"{UID}.blen
     dt.layers_vgroup_select_dst = "NAME"
     bpy.context.view_layer.objects.active = new
     bpy.ops.object.modifier_apply(modifier="weights")
+    if UID in FIT:
+        fit_skeleton(FIT[UID])
+    if UID in RIGID:
+        rigid_parts(new)
+    elif UID in PROXIMITY:
+        proximity_weights(new)
     new.parent = arm
     new.matrix_parent_inverse = arm.matrix_world.inverted()
     mod = new.modifiers.new("Armature", "ARMATURE")
@@ -271,9 +413,12 @@ def make_tesla_gun():
 # Weapon prop per soldier (rifle by default) and where its muzzle flash sits (prop space)
 # None: empty hands (Grenadier throws; Engineer, Medic, Mechanic and Spy carry no gun)
 PROPS = {"e3": make_launcher, "snip": make_sniper_rifle, "e2": None, "e4": make_flamer, "e7": make_pistol,
-         "shok": make_tesla_gun, "e6": None, "medi": None, "mech": None, "spy": None}
+         "shok": make_tesla_gun, "e6": None, "medi": None, "mech": None, "spy": None,
+         # Humanoid robots (IDEA-29): Cyborg Trooper heavy auto-pistol, Railgun Robot's long railgun, Tesla Automaton
+         # throws lightning from its claws; the Battle Droid and Iron Guard carry the rifle
+         "cybt": make_pistol, "rgun": make_sniper_rifle, "taut": None}
 MUZZLE = {"e3": (0, 0.9, 0.1), "snip": (0, 0.85, 0.05), "e4": (0, 0.7, 0.03), "e7": (0, 0.2, 0.04),
-          "shok": (0, 0.56, 0.03)}
+          "shok": (0, 0.56, 0.03), "cybt": (0, 0.2, 0.04), "rgun": (0, 0.85, 0.05)}
 def load_weapon():
     """The model's own weapon (prep_sketchfab.py: upload/<id>-weapon.blend, grip at the origin, barrel along +Y)."""
     with bpy.data.libraries.load(os.path.join(HERE, "upload", f"{UID}-weapon.blend")) as (src, dst):

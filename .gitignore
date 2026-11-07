@@ -89,3 +89,6 @@ __pycache__/
 
 # GitHub Actions workflows stay local (pushing them needs the token workflow scope)
 /.github/workflows/
+
+# Downloaded Sketchfab robot bodies (raw glTF; prepared copies go to artsrc/units/soldiers/upload)
+artsrc/units/soldiers/sketchfab/

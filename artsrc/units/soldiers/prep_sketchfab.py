@@ -7,6 +7,12 @@ as upload/<id>-weapon.blend (object Weapon: grip at the origin, barrel along +Y,
 
   blender -b -P artsrc/units/soldiers/prep_sketchfab.py -- <id> <scene.gltf> <weapon bone prefix,...> [grip 0-1] [--armbands]
   (unrigged models standing in an A-pose work too: every mesh is the body; pass "" for the weapon bones)
+  Options for unrigged models (robots, IDEA-29):
+    --yaw=<deg>          turn the model (counter-clockwise, before anything else) so it faces -Y
+    --keep-near=<x>      a pack of several figures: keep the meshes whose centre is nearest x (model units)
+    --decimate=<ratio>   reduce a very heavy mesh (e.g. 0.08) before saving
+    --tpose=<sx>,<sz>[,<deg>]  T-pose arms: lower everything outside |x| > sx (metres of the 1.8 m body) about the
+                         shoulder pivot (+-sx, sz) by deg (default 42) into the rig's A-pose, blended at the shoulder
 
 grip: where the right hand holds the weapon, as a fraction of its length from the stock (default 0.3).
 """
@@ -23,6 +29,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 argv = sys.argv[sys.argv.index("--") + 1:]
 UID, GLTF, WEAPON_BONES = argv[0], argv[1], [b for b in argv[2].split(",") if b]
 GRIP = float(argv[3]) if len(argv) > 3 and not argv[3].startswith("--") else 0.3
+OPTS = {a.split("=")[0]: a.split("=", 1)[1] for a in sys.argv if a.startswith("--") and "=" in a}
 HEIGHT = 1.8
 
 bpy.ops.wm.read_factory_settings(use_empty=True)
@@ -38,6 +45,18 @@ if arm is None:
         o.data.transform(o.matrix_world)
         o.parent = None
         o.matrix_world = Matrix.Identity(4)
+        if "--yaw" in OPTS:
+            o.data.transform(Matrix.Rotation(math.radians(float(OPTS["--yaw"])), 4, "Z"))
+    if "--keep-near" in OPTS:
+        kx = float(OPTS["--keep-near"])
+        cent = {o: sum((v.co for v in o.data.vertices), Vector()) / max(1, len(o.data.vertices))
+                for o in scene.objects if o.type == "MESH"}
+        xs = sorted({round(c.x, 1) for c in cent.values()})
+        # the figure whose meshes cluster nearest kx: drop meshes farther than half the gap to the next figure
+        gap = min((abs(c.x - kx) for c in cent.values()))
+        for o, c in cent.items():
+            if abs(c.x - kx) > gap + float(OPTS.get("--keep-r", "1.5")):
+                bpy.data.objects.remove(o)
     for o in list(scene.objects):
         if o.type != "MESH":
             bpy.data.objects.remove(o)
@@ -120,6 +139,39 @@ body.data.transform(Matrix.Scale(scale, 4) @ shift)
 for p in body.data.polygons:
     p.use_smooth = True
 body["keep_materials"] = True
+
+if "--tpose" in OPTS:
+    # Lower T-pose arms into the A-pose of e1's rig: rotate every vertex outside the shoulder line about the
+    # shoulder pivot, the angle ramping in over a short band so the shoulder bends instead of tearing
+    parts = [float(v) for v in OPTS["--tpose"].split(",")]
+    sx, sz = parts[0], parts[1]
+    deg = math.radians(parts[2] if len(parts) > 2 else 42)
+    co = np.empty(len(body.data.vertices) * 3)
+    body.data.vertices.foreach_get("co", co)
+    co = co.reshape(-1, 3)
+    ax = np.abs(co[:, 0])
+    side = np.sign(co[:, 0])
+    f = np.clip((ax - sx) / 0.1, 0, 1)
+    f = f * f * (3 - 2 * f)
+    ang = -deg * f * side                      # right arm (x > 0) turns clockwise in XZ, the left mirrored
+    px = side * sx
+    dx, dz = co[:, 0] - px, co[:, 2] - sz
+    co[:, 0] = px + dx * np.cos(ang) - dz * np.sin(ang)
+    co[:, 2] = sz + dx * np.sin(ang) + dz * np.cos(ang)
+    body.data.vertices.foreach_set("co", co.ravel())
+    body.data.update()
+    # back to standing on the ground at 1.8 m
+    co2 = co
+    lo2, hi2 = co2.min(0), co2.max(0)
+    body.data.transform(Matrix.Translation(Vector((0, 0, -lo2[2]))))
+    print("arms lowered by %.0f degrees about (%.2f, %.2f)" % (math.degrees(deg), sx, sz))
+
+if "--decimate" in OPTS:
+    dec = body.modifiers.new("decimate", "DECIMATE")
+    dec.ratio = float(OPTS["--decimate"])
+    bpy.context.view_layer.objects.active = body
+    bpy.ops.object.modifier_apply(modifier="decimate")
+    print("decimated to", len(body.data.polygons), "faces")
 
 # Team colour: models have no pure-green areas, so add an armband round each upper arm (part of the body mesh,
 # so it takes the arm's skin weights and moves with it). PlayerColorShift recolours the green in game.
