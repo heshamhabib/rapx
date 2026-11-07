@@ -762,6 +762,153 @@ def shop_signs(neon, b, ground, x0, y0, x1, y1, h, rise, r):
         light(bx + bw / 2, by - 3, zb + 2, (1.0, 0.95, 0.85), 3000, 1.0, anim="steady", size=1.2)
 
 
+# ---------------------------------------------------------------------------------------------- Sketchfab buildings
+
+MODEL_SHARE = 0.85      # share of house lots that get a real 3D building (prep_buildings.py library) instead of a box
+# Models each district favours (weight x3); everything else can appear anywhere
+PREFER = {"courthouse": {"longworth", "midrise", "nyc", "block", "apartment", "artdeco"},
+          "foundry": {"factory", "brick", "row"}, "pier": {"brick", "row", "factory"}, "abbey": {"clocktower"}}
+LANDMARK_MODELS = {"cathedral"}          # placed by build_landmarks only
+LIB = {}
+
+
+def load_library():
+    """The prepared buildings (build/buildings.blend): {name: (mesh, info)}; their materials get snow on faces that
+    pointed up before the shear (face attribute 'upz')."""
+    path = os.path.join(BUILD, "buildings.blend")
+    if LIB or not os.path.exists(path):
+        return LIB
+    info = json.load(open(os.path.join(BUILD, "buildings.json")))
+    with bpy.data.libraries.load(path, link=False) as (src, dst):
+        dst.meshes = [n for n in src.meshes if n in info]
+    for me in dst.meshes:
+        LIB[me.name] = (me, info[me.name])
+    done = set()
+    for me, _ in LIB.values():
+        for mat in me.materials:
+            if mat and mat.name not in done:
+                add_snow(mat)
+                done.add(mat.name)
+    print(f"{len(LIB)} library buildings")
+    return LIB
+
+
+def add_snow(mat):
+    """Mixes snow into an imported material where the face pointed up (roofs, ledges, cornices)."""
+    nt = mat.node_tree
+    bsdf = next((n for n in nt.nodes if n.type == "BSDF_PRINCIPLED"), None)
+    if not bsdf:
+        return
+    sock = bsdf.inputs["Base Color"]
+    if sock.links:
+        base = sock.links[0].from_socket
+    else:
+        rgb = nt.nodes.new("ShaderNodeRGB")
+        rgb.outputs[0].default_value = sock.default_value
+        base = rgb.outputs[0]
+    coord = nt.nodes.new("ShaderNodeTexCoord")
+    up = attr(nt, "upz")
+    cover = edge(nt, smooth(nt, up.outputs["Fac"], 0.45, 0.8), noise(nt, coord, 0.4, 3.0), 0.3)
+    # Night: the photo textures are daylight; darken and cool them a little so they sit in the moonlit scene
+    night = mul(nt, base, (0.95, 0.97, 1.05))
+    nt.links.new(mix(nt, night, mul(nt, snow_color(nt, coord), (0.9, 0.92, 0.97)), cover), sock)
+    # Lit windows: dark, grey-blue texture pixels (glass) on walls, a random third of them per 1.6 m patch, glow warm
+    hsv = nt.nodes.new("ShaderNodeSeparateColor")
+    hsv.mode = "HSV"
+    nt.links.new(base, hsv.inputs[0])
+    glass = math_node(nt, "MULTIPLY", math_node(nt, "LESS_THAN", hsv.outputs[2], 0.22), math_node(nt, "LESS_THAN", hsv.outputs[1], 0.35))
+    patch = nt.nodes.new("ShaderNodeTexVoronoi")
+    patch.inputs["Scale"].default_value = 0.6
+    nt.links.new(coord.outputs["Object"], patch.inputs["Vector"])
+    lit = math_node(nt, "GREATER_THAN", sep_r(nt, patch.outputs["Color"]), 0.74)
+    wall = math_node(nt, "LESS_THAN", up.outputs["Fac"], 0.3)
+    glow = math_node(nt, "MULTIPLY", math_node(nt, "MULTIPLY", glass, lit), wall)
+    bsdf.inputs["Emission Color"].default_value = (*WINDOW_RGB, 1)
+    nt.links.new(math_node(nt, "MULTIPLY", glow, 2.5), bsdf.inputs["Emission Strength"])
+    mat.use_backface_culling = False
+
+
+def sep_r(nt, color):
+    s = nt.nodes.new("ShaderNodeSeparateColor")
+    nt.links.new(color, s.inputs[0])
+    return s.outputs[0]
+
+
+def allowed_height(b, grid):
+    """Tallest building (m) whose northward lean on this lot covers at most a quarter open cells; 18 m at least
+    (a four-storey house, as the box houses were)."""
+    x0, y0, x1, y1 = (int(round(v)) for v in b["rect"])
+    for h in (60, 48, 40, 32, 26, 22):
+        lean = math.ceil(h * SHEAR / 7.0)
+        cells = [grid[y][x] for x in range(x0, x1) for y in range(max(0, y0 - lean), y0)]
+        if not cells or sum(c == "." for c in cells) / len(cells) <= 0.25:
+            return h
+    return 18.0
+
+
+def pick_model(w, d, max_h, district, r, exclude=()):
+    """(name, (sx, sy, sz)) of a library building stretched to cover a w x d lot (m) exactly, or None. Blocked cells
+    must look blocked, so the model fills the whole lot: each side may stretch 0.65-1.5x and the two sides may
+    differ by 35 % at most; the height follows the smaller of the two and is squashed (to 0.7) under max_h."""
+    best = []
+    for name, (_, i) in LIB.items():
+        if i["model"] in LANDMARK_MODELS or name in exclude:
+            continue
+        sx, sy = w / i["w"], d / i["d"]
+        if not (0.65 <= sx <= 1.5 and 0.65 <= sy <= 1.5) or max(sx, sy) / min(sx, sy) > 1.35:
+            continue
+        s = min(sx, sy)
+        zs = min(1.0, max_h / (i["h"] * s))
+        if zs < 0.7:
+            continue
+        distort = max(sx, sy) / min(sx, sy)
+        weight = (1 / distort) * (3.0 if i["model"] in PREFER.get(district, ()) else 1.0) * (0.3 if i["model"] == "brownstone" else 1.0)
+        best.append((weight, name, (sx, sy, s * zs)))
+    if not best:
+        return None
+    best.sort(reverse=True)
+    top = best[:6]
+    pick = r.choices(top, weights=[b[0] for b in top])[0]
+    return pick[1], pick[2]
+
+
+def place_model(name, scale, cx, front_y, filler):
+    """A copy of a library building scaled by (sx, sy, sz), its front on the lot's south edge (y = front_y), sheared
+    like the rest. A plain snowy core block goes inside: many game models are only a facade and a roof."""
+    me0, i = LIB[name]
+    sx, sy, sz = scale
+    w, d, h = i["w"] * sx, i["d"] * sy, i["h"] * sz
+    cy = front_y + d / 2
+    me = me0.copy()
+    me.transform(OBLIQUE @ Matrix.Translation((cx, cy, 0)) @ Matrix.Diagonal((sx, sy, sz, 1)))
+    ob = bpy.data.objects.new(name, me)
+    bpy.context.collection.objects.link(ob)
+    filler.box(cx - w / 2 + 0.6, front_y + 0.8, cx + w / 2 - 0.6, front_y + d - 0.6, 0, h * 0.9, 2, (0.30, 0.30, 0.33))
+    return w, d, h
+
+
+def model_house(b, x0, y0, x1, y1, grid, r, filler):
+    """Fills a house lot with 1-3 library buildings side by side along its long side; False if none fits."""
+    if not LIB or r.random() > MODEL_SHARE:
+        return False
+    w, d = x1 - x0, y1 - y0
+    max_h = allowed_height(b, grid)
+    for k in (1, 2, 3):
+        if w / k < 6:
+            break
+        picks = []
+        for j in range(k):
+            p = pick_model(w / k, d, max_h, b["district"], r, exclude={q[0] for q in picks})
+            if not p:
+                break
+            picks.append(p)
+        if len(picks) == k:
+            for j, (name, scale) in enumerate(picks):
+                place_model(name, scale, x0 + (j + 0.5) * w / k, y0, filler)
+            return True
+    return False
+
+
 def build_city(L, m, rng):
     C = L["cell_m"]
     facade, roof = facade_material(), roof_material()
@@ -770,7 +917,8 @@ def build_city(L, m, rng):
     houses = Mesh("Houses")         # 0 facade, 1 roof, 2 trim (snowy stone), 3 iron
     neon = Mesh("Neon")             # 0 sign frame, 1.. neon colours, BILLBOARD, INK, STATUE
     nmats = neon_materials()
-    towers = 0
+    towers = models = 0
+    load_library()
     for i, b in enumerate(L["buildings"]):
         cx0, cy0, cx1, cy1 = b["rect"]
         x0, y1 = m(cx0, cy0)
@@ -789,6 +937,10 @@ def build_city(L, m, rng):
         if H:
             build_tower(houses, neon, x0, y0, x1, y1, H, color, rc, r, b["district"])
             towers += 1
+            continue
+        if model_house(b, x0, y0, x1, y1, L["grid"], r, houses):
+            models += 1
+            shop_signs(neon, b, L["ground"], x0, y0, x1, y1, h, 3.0, r)
             continue
         houses.box(x0, y0, x1, y1, 0, h, 0, color, top=False)
         houses.box(x0 - 0.2, y0 - 0.2, x1 + 0.2, y1 + 0.2, h, h + 0.6, 2, (0.5, 0.5, 0.55), top=False)   # cornice
@@ -853,7 +1005,7 @@ def build_city(L, m, rng):
     houses.finish([facade, roof, trim, metal])
     neon.finish(nmats)
     make_texts(nmats)
-    print(f"{towers} towers")
+    print(f"{towers} towers, {models} lots with 3D buildings")
 
 
 def build_wall(L, m):
@@ -954,15 +1106,21 @@ def build_landmarks(L, m, rng):
             lm.cylinder(cx + 10, cy + 12, 9, 9, 0, 16, 4, seg=24)
             light(cx + 8, cy - 14, 6, (1.0, 0.45, 0.15), 60000, 2.0, anim="fire", size=2.5)
         elif dist == "abbey":
-            # Asylum chapel: nave with a steep roof, a bell tower, a glowing rose window; a graveyard
+            # The gothic cathedral (library model) when there is one, else the asylum chapel; a graveyard round it
             lm.cur = {"lit": 0.25, "seed": 0.3}
-            lm.box(ax0 + 4, cy - 7, ax1 - 4, cy + 7, 0, 14, 1, top=False)
-            lm.gable_roof(ax0 + 4, cy - 7, ax1 - 4, cy + 7, 14, 10, 3, (0.18, 0.18, 0.22), 1, (1, 1, 1))
-            lm.box(ax0 + 4, cy - 4, ax0 + 12, cy + 4, 0, 30, 1, top=False)
-            lm.pyramid(ax0 + 3.5, cy - 4.5, ax0 + 12.5, cy + 4.5, 30, 46, 3, (0.18, 0.18, 0.22))
-            lm.cylinder(cx + 6, cy - 7.05, 3.2, 3.2, 6, 6.1, 6, seg=16)
-            lm.face([(cx + 6 + 3 * math.cos(2 * math.pi * k / 16), cy - 7.1, 8 + 3 * math.sin(2 * math.pi * k / 16)) for k in range(16)],
-                    6, (1, 1, 1), 0.0)
+            cath = next((n for n, (_, i) in LIB.items() if i["model"] == "cathedral"), None)
+            if cath:
+                i = LIB[cath][1]
+                s = min(w / i["w"], (ay1 - ay0) / i["d"])
+                place_model(cath, (s, s, s), cx, ay0, lm)
+            else:
+                lm.box(ax0 + 4, cy - 7, ax1 - 4, cy + 7, 0, 14, 1, top=False)
+                lm.gable_roof(ax0 + 4, cy - 7, ax1 - 4, cy + 7, 14, 10, 3, (0.18, 0.18, 0.22), 1, (1, 1, 1))
+                lm.box(ax0 + 4, cy - 4, ax0 + 12, cy + 4, 0, 30, 1, top=False)
+                lm.pyramid(ax0 + 3.5, cy - 4.5, ax0 + 12.5, cy + 4.5, 30, 46, 3, (0.18, 0.18, 0.22))
+                lm.cylinder(cx + 6, cy - 7.05, 3.2, 3.2, 6, 6.1, 6, seg=16)
+                lm.face([(cx + 6 + 3 * math.cos(2 * math.pi * k / 16), cy - 7.1, 8 + 3 * math.sin(2 * math.pi * k / 16))
+                         for k in range(16)], 6, (1, 1, 1), 0.0)
             yx, yy = L["landmarks"]["yards"][[d[3] for d in L["landmarks"]["yards"]].index("abbey")][:2]
             gx, gy = m(yx, yy)
             for _ in range(70):

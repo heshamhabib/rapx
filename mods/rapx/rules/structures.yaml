@@ -742,6 +742,9 @@ DOME:
 	WithPxBuildingPad:
 	ProvidesRadar:
 		RequiresCondition: !jammed && !disabled
+	RevealsMap:
+		RequiresCondition: !jammed && !disabled
+		RevealGeneratedShroud: False
 	InfiltrateForExploration:
 		Types: SpyInfiltrate
 		PlayerExperience: 10
@@ -1192,10 +1195,10 @@ WEAP:
 		Proxy: vehicles.upgraded
 		Types: SpyInfiltrate
 		PlayerExperience: 10
-	-ActorPreviewPlaceBuildingPreview:
-	SequencePlaceBuildingPreview:
+	PxPlaceBuildingPreview:
+		Preview: Sequence
 		Sequence: place
-		SequenceAlpha: 0.65
+		PreviewAlpha: 0.65
 
 FACT:
 	Inherits: ^Building
@@ -1402,10 +1405,10 @@ PROC:
 		Type: Rectangle
 			TopLeft: -1536, 598
 			BottomRight: -512, 1280
-	-ActorPreviewPlaceBuildingPreview:
-	SequencePlaceBuildingPreview:
+	PxPlaceBuildingPreview:
+		Preview: Sequence
 		Sequence: idle
-		SequenceAlpha: 0.65
+		PreviewAlpha: 0.65
 	WithResourceStoragePipsDecoration:
 		Position: BottomLeft
 		Margin: 4, 3

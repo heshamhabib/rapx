@@ -1,0 +1,82 @@
+{
+ "_note": "Per-model fixes for prep_buildings.py: scale to metres, rot = degrees about Z so the front faces south (-Y), skip = parts to drop",
+ "longworth": {
+  "scale": 0.1
+ },
+ "apartment": {
+  "scale": 3.0
+ },
+ "artdeco": {
+  "scale": 2.4
+ },
+ "block": {
+  "scale": 120
+ },
+ "brick": {
+  "scale": 1.0
+ },
+ "brownstone2": {
+  "scale": 1.0,
+  "skip": [
+   "brownstone2-0"
+  ]
+ },
+ "brownstone": {
+  "scale": 1.0
+ },
+ "cathedral": {
+  "scale": 0.15,
+  "material": "stone"
+ },
+ "cityblock": {
+  "scale": 1.0,
+  "skip": [
+   "cityblock-0"
+  ]
+ },
+ "clocktower": {
+  "scale": 0.0128
+ },
+ "deco": {
+  "scale": 1.5,
+  "skip": [
+   "deco-0"
+  ]
+ },
+ "factory": {
+  "scale": 8.0
+ },
+ "hotel": {
+  "scale": 1.2,
+  "skip": [
+   "hotel-0"
+  ]
+ },
+ "industrial": {
+  "scale": 0.01,
+  "skip": [
+   "industrial-0"
+  ]
+ },
+ "midrise": {
+  "scale": 120
+ },
+ "newyork": {
+  "scale": 0.1,
+  "skip": [
+   "newyork-0"
+  ]
+ },
+ "nyc": {
+  "scale": 3.3
+ },
+ "oldbuilding": {
+  "scale": 4.0,
+  "skip": [
+   "oldbuilding-0"
+  ]
+ },
+ "row": {
+  "scale": 0.3
+ }
+}

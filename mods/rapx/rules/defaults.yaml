@@ -677,7 +677,8 @@
 		RequiresBaseProvider: True
 		BuildSounds: ra|audio/sfx/placbldg.ogg, ra|audio/sfx/build5.ogg
 		UndeploySounds: ra|audio/sfx/cashturn.ogg
-	ActorPreviewPlaceBuildingPreview:
+	# Project X: hologram hex-cell footprint pad (PxFootprintHexRenderable) instead of the classic overlay tiles.
+	PxPlaceBuildingPreview:
 		PreviewAlpha: 0.65
 	PxShowBuildRadiusWhilePlacing:
 	RequiresBuildableArea:
@@ -792,7 +793,8 @@
 		BuildSounds: ra|audio/sfx/placbldg.ogg
 		TerrainTypes: Clear,Road
 		UndeploySounds: ra|audio/sfx/cashturn.ogg
-	FootprintPlaceBuildingPreview:
+	PxPlaceBuildingPreview:
+		Preview: Footprint
 		LineBuildFootprintAlpha: 0.65
 	RequiresBuildableArea:
 		AreaTypes: building

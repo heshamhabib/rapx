@@ -13,6 +13,7 @@ imports) into assets/inbox/new_3d_models_2/, plus a credits list for mods/rapx/C
   python3 tools/download_sketchfab.py --launchers  national rocket-launcher chassis (IDEA-17) into assets/inbox/launchers/
   python3 tools/download_sketchfab.py --airdef     air-defence tiers 2-4 (IDEA-26 B2) into assets/inbox/airdef/
   python3 tools/download_sketchfab.py --missiles   real missile models (fired sprites and jet stores) into assets/inbox/missiles/
+  python3 tools/download_sketchfab.py --ironward   city buildings for the Ironward painted map into assets/inbox/ironward-buildings/
 
 Sketchfab only hands out downloads to a logged-in account: put your API token (sketchfab.com -> Settings ->
 Password & API -> API Token) in ~/.sketchfab_token or the SKETCHFAB_TOKEN environment variable.
@@ -181,6 +182,31 @@ MISSILES = [
 ]
 
 
+# City buildings for the Ironward painted map (artsrc/maps/ironward/build_backdrop.py): placed into the house lots of the
+# Blender scene. The user's own pick, the Longworth Building (assets/inbox/longworth_building_low_poly_game_ready.zip,
+# Ruslan Malovsky, CC-BY-4.0), is used too.
+IRONWARD = [
+    ("row", "Chicago row buildings", "c4a3993ef1e84e6d9d5a15c78da88aae"),           # 99.Miles
+    ("brownstone", "Brownstone set", "b15e6344acd844eabc823e1cc8332574"),           # Daniel Zhabotinsky
+    ("industrial", "Old industrial building", "0dafa7aaadfd4666bb4a32776c84b14e"),  # Hrvoje Wächter
+    ("block", "City block 5", "73b1d5fc97ca46bab7f80b7c95001e79"),                  # ModelMaker
+    ("midrise", "Mid-rise building", "dc4f6a49d8a7462b9349936b8dc7256e"),           # ModelMaker
+    ("newyork", "New York buildings", "98faceefdc154d60a2b8617ca5e182e7"),          # 99.Miles
+    ("brick", "Old American brick building", "3170993b67ee4e58b27d69d5877f71bd"),   # Orzechu
+    ("artdeco", "Art deco tower", "80898b00703f4fbd9a0622c90193032a"),              # Oneironauticus
+    ("hotel", "Old hotel", "06b7d0bc033f4a35b1036243cadc2a9e"),                     # SebastianSosnowski
+    ("factory", "Abandoned factory", "5df9f2662a824117b1e6c5597b29b33f"),           # Klasy
+    ("oldbuilding", "Old building", "ce2281fd0dc84a748b143c8de6004fc0"),            # BumpkinCZ
+    ("cityblock", "School block under construction", "5c8aee93ca77449eb85ec439ea1d6dae"),  # Hubert Małyszek
+    ("deco", "Art deco building", "88067844b13b4bc0b7234aab9f70713d"),              # Wobbs_
+    ("brownstone2", "Brownstone set 2", "43548bdec0b84e62986e9f1df181ee32"),        # Dakta.Grower.Nzl
+    ("nyc", "NYC low poly building", "3f6d0db9954746d38d398c759e53524c"),           # AdarshMPro
+    ("apartment", "Apartment block", "58c2196f53fd48afbd4228521dc39b04"),           # Kerem Biçer
+    ("cathedral", "Gothic cathedral", "9192b34b2136494aaf519b032a6ad1da"),          # SenyorEtziba
+    ("clocktower", "Gothic clock tower", "aeb85300d0734071966c379d0c173527"),       # Darknest
+]
+
+
 def token():
     t = os.environ.get("SKETCHFAB_TOKEN")
     path = os.path.expanduser("~/.sketchfab_token")
@@ -235,6 +261,8 @@ def main():
         models, OUT = AIRDEF, os.path.join(ROOT, "assets", "inbox", "airdef")
     if "--launchers" in sys.argv:
         models, OUT = LAUNCHERS, os.path.join(ROOT, "assets", "inbox", "launchers")
+    if "--ironward" in sys.argv:
+        models, OUT = IRONWARD, os.path.join(ROOT, "assets", "inbox", "ironward-buildings")
     if "--cruisers" in sys.argv:
         models, OUT = CRUISERS, os.path.join(ROOT, "assets", "inbox", "cruisers")
     if args:

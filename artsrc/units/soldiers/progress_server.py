@@ -558,12 +558,48 @@ def active_jobs_raw():
         return []
 
 
+# GitHub push: bytes sent by git-remote-https (from nettop) against the repo's packed size
+_push = {"samples": [], "total": None}
+
+
+def push_status():
+    import subprocess
+
+    def git(*args):
+        return subprocess.run(["git", "-C", ROOT, *args], capture_output=True, text=True).stdout.strip()
+
+    pids = subprocess.run(["pgrep", "-f", "git-remote-https"], capture_output=True, text=True).stdout.split()
+    if not pids:
+        if not _push["samples"]:
+            return None
+        ok = git("rev-parse", "main") == git("rev-parse", "origin/main")
+        return {"state": "done" if ok else "stopped", "sent": _push["samples"][-1][1], "total": _push["total"]}
+
+    if _push["total"] is None:
+        m = re.search(r"size-pack: (\d+)", git("count-objects", "-v"))
+        _push["total"] = int(m.group(1)) * 1024 if m else None
+
+    sent = 0
+    for pid in pids:
+        out = subprocess.run(["nettop", "-p", pid, "-L", "1", "-x", "-J", "bytes_out"], capture_output=True, text=True).stdout
+        for line in out.splitlines():
+            if line.startswith("git-remote-http"):
+                sent += int(line.rstrip(",").split(",")[-1] or 0)
+
+    now = time.time()
+    samples = _push["samples"] = [x for x in _push["samples"] if now - x[0] < 30] + [(now, sent)]
+    rate = (samples[-1][1] - samples[0][1]) / (samples[-1][0] - samples[0][0]) if len(samples) > 1 and samples[-1][0] > samples[0][0] else None
+    total = _push["total"]
+    eta = (total - sent) / rate if rate and total and total > sent else None
+    return {"state": "pushing", "sent": sent, "total": total, "rate": rate, "eta": eta, "remote": git("remote", "get-url", "origin")}
+
+
 def status():
     soldiers = sorted(d for d in os.listdir(RENDER) if os.path.isdir(os.path.join(RENDER, d))) if os.path.isdir(RENDER) else []
     jobs = active_jobs()
     return {"time": time.strftime("%H:%M:%S"), "system": system(), "jobs": jobs, "overview": overview(jobs),
             "sketchfab": sketchfab_status(jobs), "loadouts": loadout_status(), "ironward": ironward_status(),
-            "soldiers": [soldier_status(s) for s in soldiers], "images": image_queue()}
+            "soldiers": [soldier_status(s) for s in soldiers], "images": image_queue(), "push": push_status()}
 
 
 PAGE = r"""<!doctype html>
@@ -843,6 +879,18 @@ function setTab(t) {
   if (last) draw(last);
 }
 document.getElementById("tabs").addEventListener("click", e => { const b = e.target.closest("button"); if (b) setTab(b.dataset.tab); });
+function pushPanel(p) {
+  if (!p) return "";
+  const mb = b => (b / 1e6).toFixed(0) + " MB";
+  const pct = p.total ? Math.min(100, 100 * p.sent / p.total) : 0;
+  const done = p.state === "done";
+  const pill = done ? '<span class="pill done">pushed</span>' : p.state === "stopped" ? '<span class="pill">stopped – check the terminal</span>' : '<span class="pill live">uploading</span>';
+  return '<section class="card"><div class="title"><h2>GitHub push</h2>' + pill + '</div>' +
+    '<div class="big">' + (done ? 100 : pct).toFixed(1) + '%</div><div class="stats"><span><b>' + mb(p.sent) + '</b> of ~' + (p.total ? mb(p.total) : "?") + ' sent</span>' +
+    (p.rate ? '<span><b>' + (p.rate / 1e6).toFixed(1) + ' MB/s</b></span>' : '') + (p.eta ? '<span>about <b>' + fmt(p.eta) + '</b> left</span>' : '') +
+    (p.remote ? '<span>' + esc(p.remote) + '</span>' : '') + '</div><div class="bar' + (done ? " ok" : "") + '"><i style="width:' + (done ? 100 : pct).toFixed(1) + '%"></i></div>' +
+    (done ? '' : '<div class="tag" style="margin-top:8px">Size is the local pack size, so the last few percent may finish early or run slightly over.</div>') + '</section>';
+}
 function draw(d) {
   const m = d.sketchfab;
   document.getElementById("badge-models").textContent = m && m.total ? m.done + "/" + m.total : "";
@@ -850,7 +898,7 @@ function draw(d) {
   document.getElementById("badge-loadouts").textContent = L && L.total ? L.done + "/" + L.total : "";
   const W = d.ironward;
   document.getElementById("badge-ironward").textContent = W && W.total ? W.done + "/" + W.total : "";
-  document.getElementById("main").innerHTML = jobsPanel(d.jobs) + (tab === "ironward" ? ironward(W) : tab === "loadouts" ? loadouts(L) : tab === "models" ? models(m) :
+  document.getElementById("main").innerHTML = pushPanel(d.push) + jobsPanel(d.jobs) + (tab === "ironward" ? ironward(W) : tab === "loadouts" ? loadouts(L) : tab === "models" ? models(m) :
     overview(d.overview) + (d.soldiers.length ? d.soldiers.map(soldier).join("") : '<div class="card empty">No renders yet.</div>') + images(d.images));
 }
 function level(v, warm, hot) { return v == null ? "ok" : v >= hot ? "hot" : v >= warm ? "warm" : "ok"; }
