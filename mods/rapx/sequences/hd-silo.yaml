@@ -12,8 +12,8 @@ mslo:
 			INTERIOR: ra|bits/hd/mslo.png
 		Start: 0
 		Length: 1
-		Scale: 0.3333
-		Offset: -27,-71
+		Scale: 0.4167
+		Offset: 2,-5
 	damaged-idle:
 		Filename: ra|bits/hd/mslo-damaged.png
 		TilesetFilenames:
@@ -23,8 +23,8 @@ mslo:
 			INTERIOR: ra|bits/hd/mslo-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.3333
-		Offset: -27,-71
+		Scale: 0.4167
+		Offset: 2,-5
 	make:
 		Filename: ra|bits/hd/mslo-make.png
 		TilesetFilenames:
@@ -35,8 +35,8 @@ mslo:
 		Start: 0
 		Length: 22
 		Tick: 45
-		Scale: 0.3333
-		Offset: -27,-71
+		Scale: 0.4167
+		Offset: 2,-5
 	active:
 		Filename: ra|bits/hd/mslo-active.png
 		TilesetFilenames:
@@ -47,8 +47,8 @@ mslo:
 		Start: 0
 		Length: 48
 		Tick: 60
-		Scale: 0.3333
-		Offset: -27,-71
+		Scale: 0.4167
+		Offset: 2,-60
 	damaged-active:
 		Filename: ra|bits/hd/mslo-damaged-active.png
 		TilesetFilenames:
@@ -59,8 +59,8 @@ mslo:
 		Start: 0
 		Length: 48
 		Tick: 60
-		Scale: 0.3333
-		Offset: -27,-71
+		Scale: 0.4167
+		Offset: 2,-60
 	collapse:
 		Filename: ra|bits/hd/mslo-collapse.png
 		TilesetFilenames:
@@ -70,8 +70,8 @@ mslo:
 			INTERIOR: ra|bits/hd/mslo-collapse.png
 		Start: 0
 		Length: 16
-		Scale: 0.3333
-		Offset: -27,-71
+		Scale: 0.4167
+		Offset: 2,-5
 
 atomic:
 	up:
@@ -95,6 +95,6 @@ atomic:
 			INTERIOR: ra|bits/hd/fx/blast/atomic-down.png
 		Start: 0
 		Length: 4
-		Scale: 0.3333
+		Scale: 0.6000
 		Offset: 0,0
 		ZOffset: 1023

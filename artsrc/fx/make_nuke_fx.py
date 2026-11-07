@@ -2,7 +2,7 @@
 """
 HD nuclear mushroom cloud (RedAlert Project X, IDEA-30).
 
-  python3 artsrc/fx/make_nuke_fx.py [--preview]
+  python3 artsrc/fx/make_nuke_fx.py [--preview]   (about 10 s of cloud: FRAMES x TICK)
 
 Writes mods/rapx/bits/hd/fx/blast/nuke.png and mods/rapx/sequences/hd-nuke-fx.yaml (listed after hd-blast-fx.yaml),
 replacing `explosion nuke`. The cloud is built from a few hundred "billows": lumpy spheres lit by a sun from the top
@@ -27,10 +27,14 @@ ROOT = os.path.normpath(os.path.join(HERE, "..", ".."))
 OUT = os.path.join(ROOT, "mods", "rapx", "bits", "hd", "fx", "blast")
 SEQUENCES = os.path.join(ROOT, "mods", "rapx", "sequences", "hd-nuke-fx.yaml")
 PREVIEW = os.path.join(HERE, "preview")
-D = 2.0                  # sprite pixels per world pixel
+D = 1.7                  # sprite pixels per world pixel (a soft cloud: lower than the units to save memory)
 SQUASH = 0.77
-FRAMES = 52
-TICK = 80                # ms per frame: about 4 seconds
+FRAMES = 100
+TICK = 100               # ms per frame: 10 seconds (user: let the cloud hang longer before it vanishes)
+# Story time t (shape, colour) against display time u: the fireball and the climb keep their pace (u 0-0.3), the
+# glowing cap then hangs and cools slowly (u 0.3-0.75) and only then turns brown, drifts and fades (u 0.75-1).
+STORY = ((0.0, 0.0), (0.3, 0.5), (0.75, 0.78), (1.0, 1.0))
+FADE = (0.75, 1.0)
 W, H = 250, 270          # canvas in world pixels
 GROUND = 62              # ground point above the bottom edge, world pixels
 SUN = np.array([-0.5, -0.62, 0.6])
@@ -119,11 +123,12 @@ def frames():
                  size=rng.uniform(5, 9, nb), light=rng.uniform(0.8, 1.1, nb), delay=rng.uniform(0, 0.08, nb))
     out = []
     for f in range(FRAMES):
-        t = f / (FRAMES - 1)
+        u = f / (FRAMES - 1)
+        t = float(np.interp(u, *zip(*STORY)))
         hc = 18 + 112 * (1 - np.exp(-3.4 * t))         # cap centre height
         rc = 16 + 46 * (1 - np.exp(-3.2 * t))           # cap radius: wide and flat like a mushroom cap
         cool = np.exp(-t / 0.75)                         # stays golden for most of the show
-        fade = 1 - smooth(0.78, 1.0, t)
+        fade = 1 - smooth(*FADE, u)
         items = []                                       # (depth, sx, sy, r, albedo, heat, alpha, seed, light)
 
         def add(x, y, z, r, albedo, heat, alpha, seed, light=1.0):

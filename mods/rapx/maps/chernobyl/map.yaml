@@ -61,7 +61,7 @@ Actors:
 		Health: 31
 	Actor2: mslo
 		Owner: Neutral
-		Location: 7,8
+		Location: 9,7
 		Health: 25
 	Actor3: oilb
 		Owner: Neutral

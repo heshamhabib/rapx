@@ -7,6 +7,7 @@ rl-himax:
 	Inherits: v2rl
 	icon:
 		Filename: ra|bits/hd/rl-himaxcameo.png
+		-TilesetFilenames:
 	idle:
 		Filename: ra|bits/hd/units/rl-himax.png
 		UseClassicFacings: False
@@ -17,6 +18,7 @@ rl-kasirga:
 	Inherits: v2rl
 	icon:
 		Filename: ra|bits/hd/rl-kasirgacameo.png
+		-TilesetFilenames:
 	idle:
 		Filename: ra|bits/hd/units/rl-kasirga.png
 		UseClassicFacings: False
@@ -27,6 +29,7 @@ rl-fatah:
 	Inherits: v2rl
 	icon:
 		Filename: ra|bits/hd/rl-fatahcameo.png
+		-TilesetFilenames:
 	idle:
 		Filename: ra|bits/hd/units/rl-fatah.png
 		UseClassicFacings: False
@@ -37,6 +40,7 @@ rl-chunmu:
 	Inherits: v2rl
 	icon:
 		Filename: ra|bits/hd/rl-chunmucameo.png
+		-TilesetFilenames:
 	idle:
 		Filename: ra|bits/hd/units/rl-chunmu.png
 		UseClassicFacings: False
@@ -47,6 +51,7 @@ rl-vilkra:
 	Inherits: v2rl
 	icon:
 		Filename: ra|bits/hd/rl-vilkracameo.png
+		-TilesetFilenames:
 	idle:
 		Filename: ra|bits/hd/units/rl-vilkra.png
 		UseClassicFacings: False
@@ -57,6 +62,7 @@ rl-phx16:
 	Inherits: v2rl
 	icon:
 		Filename: ra|bits/hd/rl-phx16cameo.png
+		-TilesetFilenames:
 	idle:
 		Filename: ra|bits/hd/units/rl-phx16.png
 		UseClassicFacings: False
@@ -67,6 +73,7 @@ rl-grad:
 	Inherits: v2rl
 	icon:
 		Filename: ra|bits/hd/rl-gradcameo.png
+		-TilesetFilenames:
 	idle:
 		Filename: ra|bits/hd/units/rl-grad.png
 		UseClassicFacings: False
@@ -77,6 +84,7 @@ rl-pinak:
 	Inherits: v2rl
 	icon:
 		Filename: ra|bits/hd/rl-pinakcameo.png
+		-TilesetFilenames:
 	idle:
 		Filename: ra|bits/hd/units/rl-pinak.png
 		UseClassicFacings: False
@@ -87,6 +95,7 @@ rl-saqr36:
 	Inherits: v2rl
 	icon:
 		Filename: ra|bits/hd/rl-saqr36cameo.png
+		-TilesetFilenames:
 	idle:
 		Filename: ra|bits/hd/units/rl-saqr36.png
 		UseClassicFacings: False
@@ -97,6 +106,7 @@ rl-fajir5:
 	Inherits: v2rl
 	icon:
 		Filename: ra|bits/hd/rl-fajir5cameo.png
+		-TilesetFilenames:
 	idle:
 		Filename: ra|bits/hd/units/rl-fajir5.png
 		UseClassicFacings: False
@@ -107,6 +117,7 @@ rl-type12:
 	Inherits: v2rl
 	icon:
 		Filename: ra|bits/hd/rl-type12cameo.png
+		-TilesetFilenames:
 	idle:
 		Filename: ra|bits/hd/units/rl-type12.png
 		UseClassicFacings: False
@@ -117,6 +128,7 @@ rl-hailstorm:
 	Inherits: arty
 	icon:
 		Filename: ra|bits/hd/rl-hailstormcameo.png
+		-TilesetFilenames:
 	idle:
 		Filename: ra|bits/hd/units/rl-hailstorm.png
 		UseClassicFacings: False
@@ -126,6 +138,7 @@ rl-lrx:
 	Inherits: arty
 	icon:
 		Filename: ra|bits/hd/rl-lrxcameo.png
+		-TilesetFilenames:
 	idle:
 		Filename: ra|bits/hd/units/rl-lrx.png
 		UseClassicFacings: False
@@ -135,6 +148,7 @@ rl-marz:
 	Inherits: arty
 	icon:
 		Filename: ra|bits/hd/rl-marzcameo.png
+		-TilesetFilenames:
 	idle:
 		Filename: ra|bits/hd/units/rl-marz.png
 		UseClassicFacings: False
@@ -144,6 +158,7 @@ rl-saetta:
 	Inherits: arty
 	icon:
 		Filename: ra|bits/hd/rl-saettacameo.png
+		-TilesetFilenames:
 	idle:
 		Filename: ra|bits/hd/units/rl-saetta.png
 		UseClassicFacings: False
@@ -153,6 +168,7 @@ rl-toz1:
 	Inherits: arty
 	icon:
 		Filename: ra|bits/hd/rl-toz1cameo.png
+		-TilesetFilenames:
 	idle:
 		Filename: ra|bits/hd/units/rl-toz1.png
 		UseClassicFacings: False

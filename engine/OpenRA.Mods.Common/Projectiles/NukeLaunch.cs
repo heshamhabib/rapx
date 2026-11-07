@@ -50,7 +50,8 @@ namespace OpenRA.Mods.Common.Effects
 		public NukeLaunch(Player firedBy, string image, WeaponInfo weapon, string weaponPalette, string upSequence, string downSequence,
 			WPos launchPos, WPos targetPos, WDist detonationAltitude, bool removeOnDetonation, WDist velocity, int launchDelay, int impactDelay,
 			bool skipAscent,
-			string trailImage, string[] trailSequences, string trailPalette, bool trailUsePlayerPalette, int trailDelay, int trailInterval)
+			string trailImage, string[] trailSequences, string trailPalette, bool trailUsePlayerPalette, int trailDelay, int trailInterval,
+			WDist descentVelocity = default)
 		{
 			this.firedBy = firedBy;
 			this.weapon = weapon;
@@ -73,7 +74,11 @@ namespace OpenRA.Mods.Common.Effects
 			var offset = new WVec(WDist.Zero, WDist.Zero, velocity * (impactDelay - turn));
 			ascendSource = launchPos;
 			ascendTarget = launchPos + offset;
-			descendSource = targetPos + offset;
+
+			// RAPX: the descent may be slower than the climb (it starts lower and takes the same time)
+			descendSource = descentVelocity.Length > 0
+				? targetPos + new WVec(WDist.Zero, WDist.Zero, descentVelocity * (impactDelay - turn))
+				: targetPos + offset;
 			descendTarget = targetPos;
 			this.detonationAltitude = detonationAltitude;
 			this.removeOnDetonation = removeOnDetonation;

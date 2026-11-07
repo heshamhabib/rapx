@@ -1,0 +1,51 @@
+diff --git a/OpenRA.Mods.Common/Projectiles/NukeLaunch.cs b/OpenRA.Mods.Common/Projectiles/NukeLaunch.cs
+index ea5e0a9..56e7053 100644
+--- a/OpenRA.Mods.Common/Projectiles/NukeLaunch.cs
++++ b/OpenRA.Mods.Common/Projectiles/NukeLaunch.cs
+@@ -50,7 +50,8 @@ public class NukeLaunch : IProjectile, ISpatiallyPartitionable
+ 		public NukeLaunch(Player firedBy, string image, WeaponInfo weapon, string weaponPalette, string upSequence, string downSequence,
+ 			WPos launchPos, WPos targetPos, WDist detonationAltitude, bool removeOnDetonation, WDist velocity, int launchDelay, int impactDelay,
+ 			bool skipAscent,
+-			string trailImage, string[] trailSequences, string trailPalette, bool trailUsePlayerPalette, int trailDelay, int trailInterval)
++			string trailImage, string[] trailSequences, string trailPalette, bool trailUsePlayerPalette, int trailDelay, int trailInterval,
++			WDist descentVelocity = default)
+ 		{
+ 			this.firedBy = firedBy;
+ 			this.weapon = weapon;
+@@ -73,7 +74,11 @@ public NukeLaunch(Player firedBy, string image, WeaponInfo weapon, string weapon
+ 			var offset = new WVec(WDist.Zero, WDist.Zero, velocity * (impactDelay - turn));
+ 			ascendSource = launchPos;
+ 			ascendTarget = launchPos + offset;
+-			descendSource = targetPos + offset;
++
++			// RAPX: the descent may be slower than the climb (it starts lower and takes the same time)
++			descendSource = descentVelocity.Length > 0
++				? targetPos + new WVec(WDist.Zero, WDist.Zero, descentVelocity * (impactDelay - turn))
++				: targetPos + offset;
+ 			descendTarget = targetPos;
+ 			this.detonationAltitude = detonationAltitude;
+ 			this.removeOnDetonation = removeOnDetonation;
+diff --git a/OpenRA.Mods.Common/Traits/SupportPowers/NukePower.cs b/OpenRA.Mods.Common/Traits/SupportPowers/NukePower.cs
+index a7a3307..62468bc 100644
+--- a/OpenRA.Mods.Common/Traits/SupportPowers/NukePower.cs
++++ b/OpenRA.Mods.Common/Traits/SupportPowers/NukePower.cs
+@@ -84,6 +84,9 @@ public class NukePowerInfo : SupportPowerInfo
+ 		[Desc("Visual ascent velocity in WDist / tick.")]
+ 		public readonly WDist FlightVelocity = new(512);
+ 
++		[Desc("RAPX: visual descent velocity in WDist / tick; zero uses " + nameof(FlightVelocity) + ".")]
++		public readonly WDist DescentVelocity = WDist.Zero;
++
+ 		[Desc("Descend immediately on the target.")]
+ 		public readonly bool SkipAscent = false;
+ 
+@@ -173,7 +176,8 @@ public void Activate(Actor self, WPos targetPosition)
+ 				launchPos,
+ 				targetPosition, info.DetonationAltitude, info.RemoveMissileOnDetonation,
+ 				info.FlightVelocity, info.MissileDelay, info.FlightDelay, skipAscent,
+-				info.TrailImage, info.TrailSequences, info.TrailPalette, info.TrailUsePlayerPalette, info.TrailDelay, info.TrailInterval);
++				info.TrailImage, info.TrailSequences, info.TrailPalette, info.TrailUsePlayerPalette, info.TrailDelay, info.TrailInterval,
++				info.DescentVelocity);
+ 
+ 			self.World.AddFrameEndTask(w => w.Add(missile));
+ 

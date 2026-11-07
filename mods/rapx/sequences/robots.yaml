@@ -69,12 +69,15 @@ scr2:
 mtnk:
 	icon:
 		Filename: ra|bits/hd/mtnkcameo.png
+		-TilesetFilenames:
 
 # XR-85 Tank Droid (France) and Spider Tank (Vanguard): bodies in hd-units.yaml; cameos from their renders
 xr85:
 	icon:
 		Filename: ra|bits/hd/xr85cameo.png
+		-TilesetFilenames:
 
 spdr:
 	icon:
 		Filename: ra|bits/hd/spdrcameo.png
+		-TilesetFilenames:

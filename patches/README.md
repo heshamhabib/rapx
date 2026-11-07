@@ -27,6 +27,7 @@ engine-shared-sprites.patch
 engine-text-notification-pools.patch
 engine-viewport-clamp.patch
 engine-optional-extras-buttons.patch
+engine-nuke-descent.patch
 ```
 
 ## Upgrading the engine

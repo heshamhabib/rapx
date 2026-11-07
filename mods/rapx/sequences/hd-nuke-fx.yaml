@@ -10,8 +10,8 @@ explosion:
 			DESERT: ra|bits/hd/fx/blast/nuke.png
 			INTERIOR: ra|bits/hd/fx/blast/nuke.png
 		Start: 0
-		Length: 52
+		Length: 100
 		Offset: 0,0
-		Scale: 0.5000
+		Scale: 0.5882
 		ZOffset: 2047
-		Tick: 80
+		Tick: 100

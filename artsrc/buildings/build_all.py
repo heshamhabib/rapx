@@ -96,12 +96,18 @@ BUILDINGS = {
     "oilr": ("oilr.png", 3, 1.0),
     "ptwr": ("ptwr.png", 1, 1.15),  # Prism Tower (Allied beam defence)
     "mi6": ("mi6.png", 2, 1.0),  # MI6 Headquarters (England only, unlocks the Spy)
+    "lnch": ("lnch.png", 2, 1.0),  # Launch Complex (IDEA-16 satellites; artsrc/prompts/space-prompts.md)
+    "supl": ("supl.png", 2, 1.0),  # Satellite Uplink (IDEA-16)
+    "asat": ("asat.png", 2, 1.0),  # ASAT Missile Site (IDEA-16; a SAM site underneath, so turret-style)
 }
 
 # Buildings with no classic art: the sequences they get (the classic ones are read from structures.yaml)
 AIRFIELD_SEQUENCES = ["idle", "damaged-idle", "active", "damaged-active", "make"]
 NEW_BUILDINGS = {"oilr": ["idle", "damaged-idle", "make"], "ptwr": ["idle", "damaged-idle", "make"],
                  "mi6": ["idle", "damaged-idle", "make"],
+                 "lnch": ["idle", "damaged-idle", "make"],
+                 "supl": ["idle", "damaged-idle", "make"],
+                 "asat": ["idle", "turret", "damaged-turret", "make"],
                  "abas": AIRFIELD_SEQUENCES, "afbs": AIRFIELD_SEQUENCES, "sacm": AIRFIELD_SEQUENCES}
 
 # Airfields (IDEA-06) are drawn exactly on their footprint, not grown by BUILDING_SCALE: their parking pads are
@@ -111,7 +117,7 @@ NOT_GROWN = {"afld", "abas", "afbs", "sacm"}
 # Turreted defences: the render shows the whole defence with its gun, so it is drawn as the
 # (non-rotating, Facings 1) turret layer and the separate base layer is blanked.
 # TODO: rotating guns need 32 facings, e.g. via an image-to-3D model.
-TURRETED = {"gun", "agun", "sam"}
+TURRETED = {"gun", "agun", "sam", "asat"}
 
 # Which existing sequences of a building get which HD image. Sequences a building
 # does not have are skipped; overlay sequences are blanked so classic art is not drawn on top.

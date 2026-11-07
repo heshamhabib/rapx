@@ -37,10 +37,12 @@ Rules:
 	ra|rules/aircraft.yaml
 	ra|rules/ships.yaml
 	ra|rules/hd-faction-styles.yaml
+	# Must load before the generated file below: an Inherits only lets a child keep what comes after it, so
+	# entries merged in from an earlier file get overwritten by the parent's (e.g. V2RL's portrait on HIMAX).
+	ra|rules/airfields.yaml
 	ra|rules/hd-building-fx.yaml
 	ra|rules/hd-env.yaml
 	ra|rules/jets.yaml
-	ra|rules/airfields.yaml
 	ra|rules/airfield-slots.yaml
 	ra|rules/prism.yaml
 	ra|rules/robots.yaml
@@ -69,7 +71,6 @@ Sequences:
 	ra|sequences/misc.yaml
 	ra|sequences/decorations.yaml
 	ra|sequences/prism.yaml
-	ra|sequences/robots.yaml
 	ra|sequences/carriers.yaml
 	ra|sequences/role-badges.yaml
 	ra|sequences/gapjet.yaml
@@ -79,8 +80,13 @@ Sequences:
 	ra|sequences/hd-bibs.yaml
 	ra|sequences/hd-resources.yaml
 	ra|sequences/hd-units.yaml
+	# After hd-units.yaml so its mtnk/xr85/spdr icons land after their Inherits and are not overwritten.
+	ra|sequences/robots.yaml
 	ra|sequences/hd-infantry.yaml
 	ra|sequences/hd-soldiers3d.yaml
+	# Must load before the generated file below: an Inherits only lets a child keep what comes after it, so
+	# entries merged in from an earlier file get overwritten by the parent's (e.g. V2RL's portrait on HIMAX).
+	ra|sequences/rocket-launchers.yaml
 	ra|sequences/hd-icons.yaml
 	ra|sequences/hd-fx.yaml
 	ra|sequences/hd-fire.yaml
@@ -97,7 +103,6 @@ Sequences:
 	ra|sequences/hd-props.yaml
 	ra|sequences/jet-loadouts.yaml
 	ra|sequences/hd-missiles.yaml
-	ra|sequences/rocket-launchers.yaml
 	ra|sequences/air-defence.yaml
 
 TileSets:

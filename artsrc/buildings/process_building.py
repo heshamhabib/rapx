@@ -102,8 +102,9 @@ def resize(crop, scale):
     return (np.clip(np.dstack([rgb, a]), 0, 1) * 255).astype(np.uint8), size
 
 
-def process(src, dst, cells, density=3.0, shadow_opacity=0.6, extra_scale=1.0, log=print):
-    """Process one render; returns (paths, size, offset). Wide images yield <dst> and <dst>-damaged."""
+def process(src, dst, cells, density=3.0, shadow_opacity=0.6, extra_scale=1.0, log=print, transform=None):
+    """Process one render; returns (paths, size, offset). Wide images yield <dst> and <dst>-damaged.
+    A `transform` dict gets the mapping from the source half to the sprite: sprite = (src - crop) * scale."""
     img = np.asarray(Image.open(src).convert("RGB"), dtype=np.float32) / 255
     h, w, _ = img.shape
 
@@ -126,6 +127,8 @@ def process(src, dst, cells, density=3.0, shadow_opacity=0.6, extra_scale=1.0, l
     cy0, cy1 = min(ys2.min(), by0), max(ys2.max() + 1, by1)
 
     scale = cells * CELL * density * extra_scale / (bx1 - bx0)
+    if transform is not None:
+        transform.update(crop=(cx0, cy0), scale=scale)
     stem, ext = os.path.splitext(dst)
     paths = [dst, f"{stem}-damaged{ext}"][:len(keyed)]
     for (rgba, _), path in zip(keyed, paths):

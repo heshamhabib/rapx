@@ -84,6 +84,9 @@ namespace OpenRA.Mods.Common.Traits
 		[Desc("Visual ascent velocity in WDist / tick.")]
 		public readonly WDist FlightVelocity = new(512);
 
+		[Desc("RAPX: visual descent velocity in WDist / tick; zero uses " + nameof(FlightVelocity) + ".")]
+		public readonly WDist DescentVelocity = WDist.Zero;
+
 		[Desc("Descend immediately on the target.")]
 		public readonly bool SkipAscent = false;
 
@@ -173,7 +176,8 @@ namespace OpenRA.Mods.Common.Traits
 				launchPos,
 				targetPosition, info.DetonationAltitude, info.RemoveMissileOnDetonation,
 				info.FlightVelocity, info.MissileDelay, info.FlightDelay, skipAscent,
-				info.TrailImage, info.TrailSequences, info.TrailPalette, info.TrailUsePlayerPalette, info.TrailDelay, info.TrailInterval);
+				info.TrailImage, info.TrailSequences, info.TrailPalette, info.TrailUsePlayerPalette, info.TrailDelay, info.TrailInterval,
+				info.DescentVelocity);
 
 			self.World.AddFrameEndTask(w => w.Add(missile));
 

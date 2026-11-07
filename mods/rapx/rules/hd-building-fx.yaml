@@ -7966,12 +7966,12 @@ OILR:
 MSLO:
 	WithPxCollapse:
 	WithPxDamageFx:
-		Points: 1,-7, -33,-12, 31,4, 24,-22
-		Size: 1.6
+		Points: 1,-4, -22,8, 22,8
+		Size: 1.2
 	WithPxBuildingFx@0:
 		RequiresCondition: !build-incomplete && !disabled
 		Type: Blink
-		Offset: -24.3,12.3
+		Offset: -9.2,-23.2
 		Color: FF3020
 		Size: 0.6
 		Period: 40
@@ -7979,16 +7979,24 @@ MSLO:
 	WithPxBuildingFx@1:
 		RequiresCondition: !build-incomplete && !disabled
 		Type: Blink
-		Offset: 30,5
+		Offset: 9.2,-23.2
 		Color: FF3020
 		Size: 0.6
 		Period: 40
-		Phase: 13
+		Phase: 20
 	WithPxBuildingFx@2:
 		RequiresCondition: !build-incomplete && !disabled
 		Type: Blink
-		Offset: -30,-11
-		Color: FF3020
-		Size: 0.6
-		Period: 40
-		Phase: 26
+		Offset: -8.8,11.2
+		Color: FFB040
+		Size: 0.5
+		Period: 60
+		Phase: 0
+	WithPxBuildingFx@3:
+		RequiresCondition: !build-incomplete && !disabled
+		Type: Blink
+		Offset: 8.5,11.2
+		Color: FFB040
+		Size: 0.5
+		Period: 60
+		Phase: 30

@@ -9,8 +9,6 @@ SUPL:
 	Inherits: ^Building
 	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
 	Inherits@shape: ^2x2Shape
-	RenderSprites:
-		Image: dome
 	Selectable:
 		Bounds: 2048, 2048
 	Buildable:
@@ -48,8 +46,6 @@ LNCH:
 	Inherits: ^Building
 	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
 	Inherits@shape: ^2x1Shape
-	RenderSprites:
-		Image: mslo
 	Selectable:
 		Bounds: 2048, 1024
 	Buildable:
@@ -91,8 +87,6 @@ LNCH:
 
 ASAT:
 	Inherits: SAM
-	RenderSprites:
-		Image: sam
 	Buildable:
 		Queue: Defense
 		BuildPaletteOrder: 110

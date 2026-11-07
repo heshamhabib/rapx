@@ -86,6 +86,53 @@ mi6:
 	icon:
 		Filename: ra|bits/hd/mi6cameo.png
 
+lnch:
+	icon:
+		Filename: ra|bits/hd/lnchcameo.png
+
+supl:
+	icon:
+		Filename: ra|bits/hd/suplcameo.png
+	# Same footprint as the Radar Dome: its ground pad fits
+	pad:
+		Filename: ra|bits/hd/pads/dome-temperate.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/pads/dome-temperate.png
+			SNOW: ra|bits/hd/pads/dome-snow.png
+			DESERT: ra|bits/hd/pads/dome-temperate.png
+			INTERIOR: ra|bits/hd/pads/dome-temperate.png
+		Scale: 0.3333
+		Offset: 7,0
+
+asat:
+	icon:
+		Filename: ra|bits/hd/asatcameo.png
+	# A SAM site underneath (rules/space.yaml ASAT inherits SAM): the same base marking and launch flash
+	bib:
+		Filename: ra|bits/hd/ui/mbsam-temperate.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/ui/mbsam-temperate.png
+			SNOW: ra|bits/hd/ui/mbsam-snow.png
+			DESERT: ra|bits/hd/ui/mbsam-desert.png
+			INTERIOR: ra|bits/hd/ui/mbsam-temperate.png
+		Scale: 0.3333
+		Length: *
+		Offset: 0,1
+	muzzle:
+		Filename: ra|bits/hd/fx/blast/muzzle-sam.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/fx/blast/muzzle-sam.png
+			SNOW: ra|bits/hd/fx/blast/muzzle-sam.png
+			DESERT: ra|bits/hd/fx/blast/muzzle-sam.png
+			INTERIOR: ra|bits/hd/fx/blast/muzzle-sam.png
+		Start: 0
+		Length: 18
+		Facings: 16
+		UseClassicFacings: False
+		Stride: 18
+		Offset: 0,0
+		Scale: 0.4000
+
 proc:
 	Defaults:
 	idle:

@@ -13,6 +13,7 @@ jet.f104:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/af-104-starflash.png
+		-TilesetFilenames:
 
 jet.f4:
 	Inherits: mig
@@ -25,6 +26,7 @@ jet.f4:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/af-4-spectre-ii.png
+		-TilesetFilenames:
 
 jet.f14:
 	Inherits: mig
@@ -37,6 +39,7 @@ jet.f14:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/af-14-bobcat.png
+		-TilesetFilenames:
 
 jet.f16:
 	Inherits: mig
@@ -49,6 +52,7 @@ jet.f16:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/af-16-fighting-kestrel.png
+		-TilesetFilenames:
 
 jet.a10:
 	Inherits: mig
@@ -61,6 +65,7 @@ jet.a10:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/aa-10-thunderhog.png
+		-TilesetFilenames:
 
 jet.f117:
 	Inherits: mig
@@ -73,6 +78,7 @@ jet.f117:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/af-117-nightjar.png
+		-TilesetFilenames:
 
 jet.sr71:
 	Inherits: mig
@@ -85,6 +91,7 @@ jet.sr71:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/sr-7-blackwing.png
+		-TilesetFilenames:
 
 jet.b52:
 	Inherits: mig
@@ -97,6 +104,7 @@ jet.b52:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/ab-52-stratoforce.png
+		-TilesetFilenames:
 
 jet.f22:
 	Inherits: mig
@@ -109,6 +117,7 @@ jet.f22:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/af-22-raptorex.png
+		-TilesetFilenames:
 
 jet.b2:
 	Inherits: mig
@@ -121,6 +130,7 @@ jet.b2:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/ab-2-wraith.png
+		-TilesetFilenames:
 
 jet.yf23:
 	Inherits: mig
@@ -133,6 +143,7 @@ jet.yf23:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/ayf-23-black-recluse.png
+		-TilesetFilenames:
 
 jet.x47:
 	Inherits: yak
@@ -145,6 +156,7 @@ jet.x47:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/ax-47-stingray.png
+		-TilesetFilenames:
 
 jet.v22:
 	Inherits: tran
@@ -187,6 +199,7 @@ jet.v22:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/kestrel-tiltrotor.png
+		-TilesetFilenames:
 
 jet.harrier:
 	Inherits: mig
@@ -199,6 +212,7 @@ jet.harrier:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/harrow.png
+		-TilesetFilenames:
 
 jet.m2000:
 	Inherits: mig
@@ -211,6 +225,7 @@ jet.m2000:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/mirago-2000.png
+		-TilesetFilenames:
 
 jet.rafale:
 	Inherits: mig
@@ -223,6 +238,7 @@ jet.rafale:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/rafal-f4.png
+		-TilesetFilenames:
 
 jet.typhoon:
 	Inherits: mig
@@ -235,6 +251,7 @@ jet.typhoon:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/typhon.png
+		-TilesetFilenames:
 
 jet.vulcan:
 	Inherits: mig
@@ -247,6 +264,7 @@ jet.vulcan:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/volcan.png
+		-TilesetFilenames:
 
 jet.seavixen:
 	Inherits: mig
@@ -259,6 +277,7 @@ jet.seavixen:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/sea-vixa.png
+		-TilesetFilenames:
 
 jet.mig3:
 	Inherits: yak
@@ -271,6 +290,7 @@ jet.mig3:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/mik-3-strela.png
+		-TilesetFilenames:
 
 jet.la11:
 	Inherits: yak
@@ -283,6 +303,7 @@ jet.la11:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/lav-11-fang.png
+		-TilesetFilenames:
 
 jet.mig21:
 	Inherits: mig
@@ -295,6 +316,7 @@ jet.mig21:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/mik-21-fishbone.png
+		-TilesetFilenames:
 
 jet.mig23:
 	Inherits: mig
@@ -307,6 +329,7 @@ jet.mig23:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/mik-23-flintlock.png
+		-TilesetFilenames:
 
 jet.mig25:
 	Inherits: mig
@@ -319,6 +342,7 @@ jet.mig25:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/mik-25-foxbane.png
+		-TilesetFilenames:
 
 jet.su25:
 	Inherits: mig
@@ -331,6 +355,7 @@ jet.su25:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/sk-25-rook.png
+		-TilesetFilenames:
 
 jet.su27:
 	Inherits: mig
@@ -343,6 +368,7 @@ jet.su27:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/sk-27-flankard.png
+		-TilesetFilenames:
 
 jet.su35:
 	Inherits: mig
@@ -355,6 +381,7 @@ jet.su35:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/sk-35-flankard-e.png
+		-TilesetFilenames:
 
 jet.tu160:
 	Inherits: mig
@@ -367,6 +394,7 @@ jet.tu160:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/tv-160-swanwing.png
+		-TilesetFilenames:
 
 jet.su47:
 	Inherits: mig
@@ -379,6 +407,7 @@ jet.su47:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/sk-47-berkov.png
+		-TilesetFilenames:
 
 jet.yak141:
 	Inherits: mig
@@ -391,6 +420,7 @@ jet.yak141:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/yk-141-freestyler.png
+		-TilesetFilenames:
 
 jet.grom:
 	Inherits: yak
@@ -403,6 +433,7 @@ jet.grom:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/grom-k.png
+		-TilesetFilenames:
 
 jet.zeppelin:
 	Inherits: mig
@@ -415,6 +446,7 @@ jet.zeppelin:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/zeppelin.png
+		-TilesetFilenames:
 
 jet.l39:
 	Inherits: yak
@@ -427,6 +459,7 @@ jet.l39:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/l-39u-albatross.png
+		-TilesetFilenames:
 
 jet.an225:
 	Inherits: tran
@@ -469,6 +502,7 @@ jet.an225:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/an-225-dreamer.png
+		-TilesetFilenames:
 
 jet.j20:
 	Inherits: mig
@@ -481,6 +515,7 @@ jet.j20:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/jx-20-jade-dragon.png
+		-TilesetFilenames:
 
 jet.swarm:
 	Inherits: yak
@@ -493,6 +528,7 @@ jet.swarm:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/swarm-drone.png
+		-TilesetFilenames:
 
 jet.saeqeh:
 	Inherits: mig
@@ -505,6 +541,7 @@ jet.saeqeh:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/saeqa.png
+		-TilesetFilenames:
 
 jet.qaher:
 	Inherits: mig
@@ -517,3 +554,4 @@ jet.qaher:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/qahir-x.png
+		-TilesetFilenames:

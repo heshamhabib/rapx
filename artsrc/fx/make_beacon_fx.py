@@ -209,7 +209,8 @@ def clock(geom, frames=48):
     rr = np.sqrt((xx - cx) ** 2 + (yy - cy) ** 2)
     out = []
     for i in range(frames):
-        p = i / (frames - 1)
+        # full a little before the end: the engine only shows the last frame at the very moment of impact
+        p = min(1.0, i / ((frames - 1) * 0.92))
         im = Image.new("RGBA", (w, h), (0, 0, 0, 0))
         # time still to run: darkened sweep over the disc
         dark = ((ang >= p * 360) & (rr < r * 0.98)).astype(np.float32) * 0.5

@@ -1957,3 +1957,159 @@ mi6:
 		Length: 16
 		Scale: 0.4167
 		Offset: 6,-5
+
+lnch:
+	idle:
+		Filename: ra|bits/hd/lnch.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/lnch.png
+			SNOW: ra|bits/hd/lnch.png
+			DESERT: ra|bits/hd/lnch.png
+			INTERIOR: ra|bits/hd/lnch.png
+		Start: 0
+		Length: 1
+		Scale: 0.4167
+		Offset: 8,-8
+	damaged-idle:
+		Filename: ra|bits/hd/lnch-damaged.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/lnch-damaged.png
+			SNOW: ra|bits/hd/lnch-damaged.png
+			DESERT: ra|bits/hd/lnch-damaged.png
+			INTERIOR: ra|bits/hd/lnch-damaged.png
+		Start: 0
+		Length: 1
+		Scale: 0.4167
+		Offset: 8,-8
+	make:
+		Filename: ra|bits/hd/lnch-make.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/lnch-make.png
+			SNOW: ra|bits/hd/lnch-make.png
+			DESERT: ra|bits/hd/lnch-make.png
+			INTERIOR: ra|bits/hd/lnch-make.png
+		Start: 0
+		Length: 22
+		Tick: 45
+		Scale: 0.4167
+		Offset: 8,-8
+	collapse:
+		Filename: ra|bits/hd/lnch-collapse.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/lnch-collapse.png
+			SNOW: ra|bits/hd/lnch-collapse.png
+			DESERT: ra|bits/hd/lnch-collapse.png
+			INTERIOR: ra|bits/hd/lnch-collapse.png
+		Start: 0
+		Length: 16
+		Scale: 0.4167
+		Offset: 8,-8
+
+supl:
+	idle:
+		Filename: ra|bits/hd/supl.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/supl.png
+			SNOW: ra|bits/hd/supl.png
+			DESERT: ra|bits/hd/supl.png
+			INTERIOR: ra|bits/hd/supl.png
+		Start: 0
+		Length: 1
+		Scale: 0.4167
+		Offset: 9,-3
+	damaged-idle:
+		Filename: ra|bits/hd/supl-damaged.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/supl-damaged.png
+			SNOW: ra|bits/hd/supl-damaged.png
+			DESERT: ra|bits/hd/supl-damaged.png
+			INTERIOR: ra|bits/hd/supl-damaged.png
+		Start: 0
+		Length: 1
+		Scale: 0.4167
+		Offset: 9,-3
+	make:
+		Filename: ra|bits/hd/supl-make.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/supl-make.png
+			SNOW: ra|bits/hd/supl-make.png
+			DESERT: ra|bits/hd/supl-make.png
+			INTERIOR: ra|bits/hd/supl-make.png
+		Start: 0
+		Length: 22
+		Tick: 45
+		Scale: 0.4167
+		Offset: 9,-3
+	collapse:
+		Filename: ra|bits/hd/supl-collapse.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/supl-collapse.png
+			SNOW: ra|bits/hd/supl-collapse.png
+			DESERT: ra|bits/hd/supl-collapse.png
+			INTERIOR: ra|bits/hd/supl-collapse.png
+		Start: 0
+		Length: 16
+		Scale: 0.4167
+		Offset: 9,-3
+
+asat:
+	idle:
+		Filename: ra|bits/hd/blank.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/blank.png
+			SNOW: ra|bits/hd/blank.png
+			DESERT: ra|bits/hd/blank.png
+			INTERIOR: ra|bits/hd/blank.png
+		Start: 0
+		Length: 1
+		Scale: 0.4167
+		Offset: 0,0
+	turret:
+		Filename: ra|bits/hd/asat.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/asat.png
+			SNOW: ra|bits/hd/asat.png
+			DESERT: ra|bits/hd/asat.png
+			INTERIOR: ra|bits/hd/asat.png
+		Start: 0
+		Length: 1
+		Scale: 0.4167
+		Offset: 8,1
+		Facings: 1
+		UseClassicFacings: false
+	damaged-turret:
+		Filename: ra|bits/hd/asat-damaged.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/asat-damaged.png
+			SNOW: ra|bits/hd/asat-damaged.png
+			DESERT: ra|bits/hd/asat-damaged.png
+			INTERIOR: ra|bits/hd/asat-damaged.png
+		Start: 0
+		Length: 1
+		Scale: 0.4167
+		Offset: 8,1
+		Facings: 1
+		UseClassicFacings: false
+	make:
+		Filename: ra|bits/hd/asat-make.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/asat-make.png
+			SNOW: ra|bits/hd/asat-make.png
+			DESERT: ra|bits/hd/asat-make.png
+			INTERIOR: ra|bits/hd/asat-make.png
+		Start: 0
+		Length: 22
+		Tick: 45
+		Scale: 0.4167
+		Offset: 8,1
+	collapse:
+		Filename: ra|bits/hd/asat-collapse.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/asat-collapse.png
+			SNOW: ra|bits/hd/asat-collapse.png
+			DESERT: ra|bits/hd/asat-collapse.png
+			INTERIOR: ra|bits/hd/asat-collapse.png
+		Start: 0
+		Length: 16
+		Scale: 0.4167
+		Offset: 8,1

@@ -1,9 +1,9 @@
 MSLO:
 	Inherits: ^ScienceBuilding
 	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
-	Inherits@shape: ^2x1Shape
+	Inherits@shape: ^2x2Shape
 	Selectable:
-		Bounds: 2048, 1024
+		Bounds: 2048, 2048
 	Valued:
 		Cost: 2500
 	Tooltip:
@@ -15,8 +15,8 @@ MSLO:
 		BuildLimit: 1
 		Description: actor-mslo.description
 	Building:
-		Footprint: xx
-		Dimensions: 2,1
+		Footprint: xx xx
+		Dimensions: 2,2
 	Health:
 		HP: 100000
 	Armor:
@@ -53,9 +53,13 @@ MSLO:
 		MissileImage: atomic
 		# Matches the silo's launch animation (artsrc/buildings/nuke_silo/make_silo.py): the missile takes over
 		# from the animation as it clears the shaft
-		MissileDelay: 48
-		SpawnOffset: -443,-33,2175
-		FlightVelocity: 395
+		MissileDelay: 33
+		SpawnOffset: -1,193,3061
+		FlightVelocity: 290
+		# The fall is slower than the climb (engine RAPX option): the bigger falling missile reads from further away
+		DescentVelocity: 140
+		# Keep the beacon (and its countdown clock) until the impact: the missile only leaves after MissileDelay
+		BeaconRemoveAdvance: -33
 		# Nuclear launch siren (CC0, artsrc/audio/siren/README.md) for the launcher and every other player
 		LaunchSound: ra|audio/superweapons/nuke-siren.wav
 		IncomingSound: ra|audio/superweapons/nuke-siren.wav

@@ -191,7 +191,8 @@ def main():
                     seqs += [f"\t{rotor}:", "\t\tFilename: ra|bits/hd/blank.png", "\t\tStart: 0", "\t\tLength: 1"]
                 for anim in ("open", "unload"):
                     seqs += [f"\t{anim}:"] + body
-        seqs += ["\ticon:", f"\t\tFilename: ra|bits/hd/jets/{file}.png", ""]
+        # The base's HD icon has TilesetFilenames, which beat Filename: drop them so this file shows.
+        seqs += ["\ticon:", f"\t\tFilename: ra|bits/hd/jets/{file}.png", "\t\t-TilesetFilenames:", ""]
 
     ftl = [HEADER.replace("#", "##")]
     for jid, file, name, real, tier, role, nations in JETS:

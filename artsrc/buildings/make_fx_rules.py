@@ -124,7 +124,8 @@ FX = {
     "spen": [blink(40, 35, RED, period=50), blink(205, 55, RED, period=50, Phase=25), sparks(115, 100, 18, 5)],
     "barr": [beacon(32, 20, RED, 0.6), blink(95, 96, AMBER, period=70)],
     "tent": [blink(66, 10, RED, period=50), blink(118, 12, RED, period=50, Phase=25)],
-    "mslo": [*chase([(93, 241), (256, 219), (76, 171)], RED, period=40)],   # corner lamps of the 3D silo
+    "mslo": [*chase([(52, 17), (107, 17)], RED, period=40),                 # tower-top beacons of the silo
+             *chase([(53, 120), (105, 120)], AMBER, period=60, size=0.5)],    # platform floodlights
     "silo": [steam(40, 12, 0.5, Rate=12)],
     "oilr": [
         dict(Type="Flame", Offset=(13, 34), Color="FFFFFF", Size=0.9, Rate=1.5, Life=90, Radius=(2, 1)),

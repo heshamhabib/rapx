@@ -10,3 +10,4 @@ jet.gapgen:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/ae-2-shroud-hawkcameo.png
+		-TilesetFilenames:

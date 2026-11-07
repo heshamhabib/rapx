@@ -2135,6 +2135,20 @@ mh60:
 		Offset: 0,0
 		Scale: 1
 
+lnch:
+	px-icon:
+		Filename: ra|bits/hd/icons/lnchcameo.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/lnchcameo.png
+			SNOW: ra|bits/hd/icons/lnchcameo.png
+			DESERT: ra|bits/hd/icons/lnchcameo.png
+			INTERIOR: ra|bits/hd/icons/lnchcameo.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
 mi6:
 	px-icon:
 		Filename: ra|bits/hd/icons/mi6cameo.png
@@ -3374,3 +3388,31 @@ yak:
 		Facings: 1
 		Offset: 0,0
 		Scale: 1
+
+supl:
+	px-icon:
+		Filename: ra|bits/hd/icons/suplcameo.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/suplcameo.png
+			SNOW: ra|bits/hd/icons/suplcameo.png
+			DESERT: ra|bits/hd/icons/suplcameo.png
+			INTERIOR: ra|bits/hd/icons/suplcameo.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+asat:
+	px-icon:
+		Filename: ra|bits/hd/icons/asatcameo.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/asatcameo.png
+			SNOW: ra|bits/hd/icons/asatcameo.png
+			DESERT: ra|bits/hd/icons/asatcameo.png
+			INTERIOR: ra|bits/hd/icons/asatcameo.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
