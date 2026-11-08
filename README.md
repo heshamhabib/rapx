@@ -5,10 +5,10 @@
 <h3 align="center">The Red Alert you remember, rebuilt as a modern HD real-time strategy game.</h3>
 
 <p align="center">
-  <a href="#-get-in-the-fight"><img src="https://img.shields.io/badge/PLAY-FREE-c8102e?style=for-the-badge" alt="Play free"></a>
-  <img src="https://img.shields.io/badge/Windows%20%7C%20macOS%20%7C%20Linux-1f2328?style=for-the-badge" alt="Windows, macOS, Linux">
-  <img src="https://img.shields.io/badge/16%20nations-2%20superpowers-1f2328?style=for-the-badge" alt="16 nations, 2 superpowers">
-  <a href="https://www.openra.net"><img src="https://img.shields.io/badge/built%20on-OpenRA-1f2328?style=for-the-badge" alt="Built on OpenRA"></a>
+  <a href="#-get-in-the-fight"><img src="docs/readme/badge-play.png" alt="Play free" height="28"></a>
+  <img src="docs/readme/badge-platforms.png" alt="Windows, macOS, Linux" height="28">
+  <img src="docs/readme/badge-nations.png" alt="16 nations, 2 superpowers" height="28">
+  <a href="https://www.openra.net"><img src="docs/readme/badge-openra.png" alt="Built on OpenRA" height="28"></a>
 </p>
 
 <p align="center">
@@ -120,12 +120,12 @@ intro. It is **free**, runs **offline**, and needs **no original game files**.
 
 <table>
   <tr>
-    <td align="center" width="50%">
+    <td align="center" valign="top" width="50%">
       <h3>🔵 The Union</h3>
       <img src="docs/readme/flags-union.png" alt="USA, England, France, Germany, Japan, South Korea, Italy, Egypt" width="100%">
-      <br><sub>USA · England · France · Germany · Japan · South Korea · Italy · Egypt</sub>
+      <br><sub>USA · England · France · Germany · Japan · Korea · Italy · Egypt</sub>
     </td>
-    <td align="center" width="50%">
+    <td align="center" valign="top" width="50%">
       <h3>🔴 The Vanguard</h3>
       <img src="docs/readme/flags-vanguard.png" alt="Russia, Ukraine, Cuba, India, China, Turkey, Pakistan, Iran" width="100%">
       <br><sub>Russia · Ukraine · Cuba · India · China · Turkey · Pakistan · Iran</sub>
