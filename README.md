@@ -36,8 +36,8 @@ modern RTS should have: hand-rendered 3D units, a full HD interface, living weat
 intro. It is **free**, runs **offline**, and needs **no original game files**.
 
 <p align="center">
-  <img src="docs/readme/air-battle.jpg" alt="An AF-14 Bobcat squadron takes off from a USA airfield into a missile duel over a snowy battlefield" width="100%">
-  <br><sub>USA jets scramble from their airfield as enemy missiles streak in</sub>
+  <img src="docs/readme/berlin-storm.jpg" alt="Prism tanks and Tesla tanks trade lasers and lightning in front of a ruined palace in Berlin during a thunderstorm" width="100%">
+  <br><sub>Berlin 1946, thunderstorm: Prism lasers and Tesla lightning in front of the ruined palace</sub>
 </p>
 
 ## 🎖️ What's inside
@@ -76,7 +76,8 @@ intro. It is **free**, runs **offline**, and needs **no original game files**.
     </td>
     <td valign="top">
       <h3>🌨️ Living weather</h3>
-      Blizzards, fog and strong winds roll across the map during battle, with a forecast in your sidebar.
+      Thunderstorms, rain, snow, blizzards, sandstorms, fog and strong winds roll across the map during
+      battle, with a forecast in your sidebar.
     </td>
   </tr>
   <tr>
@@ -93,19 +94,32 @@ intro. It is **free**, runs **offline**, and needs **no original game files**.
   </tr>
 </table>
 
+## ⛈️ Every map, every weather
+
+<table>
+  <tr>
+    <td width="50%"><img src="docs/readme/naval-rain.jpg" alt="Battleships and cruisers exchange missiles and shellfire in a rainy lagoon while a helicopter attacks"></td>
+    <td width="50%"><img src="docs/readme/desert-sandstorm.jpg" alt="Attack helicopters fire rockets at tanks and V2 launchers in a desert sandstorm"></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>Archipelago, rain: battleships and missile cruisers duel in the lagoon</sub></td>
+    <td align="center"><sub>Desert Rats, sandstorm: Hinds rocket a tank column</sub></td>
+  </tr>
+  <tr>
+    <td><img src="docs/readme/ironward-snow.jpg" alt="Prism tanks, Mammoth tanks and a Black Hawk fight at night in a snowy city"></td>
+    <td><img src="docs/readme/air-battle.jpg" alt="An AF-14 Bobcat squadron takes off from a USA airfield into a missile duel over a snowy battlefield"></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>Ironward, snow: a night battle at the city's edge</sub></td>
+    <td align="center"><sub>Jets scramble from their airfield as enemy missiles streak in</sub></td>
+  </tr>
+</table>
+
 ## 📸 Screenshots
 
 <table>
   <tr>
-    <td width="50%"><img src="docs/readme/base.jpg" alt="A USA base on a frozen map at the start of a match, with a ceasefire countdown"></td>
-    <td width="50%"><img src="docs/readme/winter.jpg" alt="Snow-covered pine forest, cliffs and a frozen lake"></td>
-  </tr>
-  <tr>
-    <td align="center"><sub>Build up your base while the ceasefire holds</sub></td>
-    <td align="center"><sub>HD terrain: winter forests and frozen lakes</sub></td>
-  </tr>
-  <tr>
-    <td><img src="docs/readme/catalogue-air.jpg" alt="Arsenal Catalogue showing USA aircraft with stats"></td>
+    <td width="50%"><img src="docs/readme/catalogue-air.jpg" alt="Arsenal Catalogue showing USA aircraft with stats"></td>
     <td><img src="docs/readme/catalogue-naval.jpg" alt="Arsenal Catalogue showing a USA cruiser with stats"></td>
   </tr>
   <tr>

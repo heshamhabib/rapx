@@ -107,6 +107,10 @@ namespace OpenRA.Mods.RAPX.Widgets
 			if (string.IsNullOrEmpty(notification.Text))
 				return;
 
+			// Dev screenshot runs (RAPX_SHOTS, see DevScreenshots): keep the "Saved screenshot" debug lines out of the shots
+			if (notification.Prefix == "Debug" && !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("RAPX_SHOTS")))
+				return;
+
 			var now = Game.RunTime;
 
 			// Repeats of the newest toast bump its counter instead of stacking a copy
