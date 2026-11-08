@@ -173,6 +173,16 @@ JetRockets.Pair:
 	Burst: 2
 	BurstDelays: 3
 
+# Helicopter rocket pods (loadout_table.py "ripple"): a stream of 10 rockets, alternating the two pods, a little spread
+JetRockets.Ripple:
+	Inherits: JetRockets
+	Burst: 10
+	BurstDelays: 2
+	ReloadDelay: 40
+	Report: ra|audio/sfx/missile6.ogg
+	Projectile: PxRocket
+		Inaccuracy: 0c512
+
 # --- Guns: hit aircraft and ground ---------------------------------------------------------------------------------
 JetGun.M61:
 	Inherits: ^HeavyMG

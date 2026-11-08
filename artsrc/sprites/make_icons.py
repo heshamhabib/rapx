@@ -36,6 +36,7 @@ POWERS = {
     "parabombs": ("bombing-run", (255, 170, 40)),
     "sonar": ("radar-sweep", (70, 240, 140)),
     "fatman": ("falling-bomb", (255, 205, 60)),  # USA Fatman bomber strike (rules/fatman.yaml)
+    "rds37": ("radioactive", (255, 70, 50)),  # Russia's thermonuclear strike (rules/fatman.yaml SBMB)
 }
 # crate effect sequence -> (symbol, colour, frames)
 CRATES = {

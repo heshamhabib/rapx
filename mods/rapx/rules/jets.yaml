@@ -38,6 +38,9 @@ AFLD:
 	ProvidesPrerequisite@jetwing.x47:
 		Factions: usa
 		Prerequisite: jetwing.x47
+	ProvidesPrerequisite@jetwing.f2:
+		Factions: japan
+		Prerequisite: jetwing.f2
 	ProvidesPrerequisite@jetwing.harrier:
 		Factions: allies, usa, england, italy, india
 		Prerequisite: jetwing.harrier
@@ -53,6 +56,9 @@ AFLD:
 	ProvidesPrerequisite@jetwing.vulcan:
 		Factions: england
 		Prerequisite: jetwing.vulcan
+	ProvidesPrerequisite@jetwing.he177:
+		Factions: germany
+		Prerequisite: jetwing.he177
 	ProvidesPrerequisite@jetwing.seavixen:
 		Factions: england
 		Prerequisite: jetwing.seavixen
@@ -77,6 +83,9 @@ AFLD:
 	ProvidesPrerequisite@jetwing.su27:
 		Factions: soviet, russia, ukraine, china
 		Prerequisite: jetwing.su27
+	ProvidesPrerequisite@jetwing.su30:
+		Factions: soviet, russia, india, china
+		Prerequisite: jetwing.su30
 	ProvidesPrerequisite@jetwing.su35:
 		Factions: soviet, russia, china, egypt, iran
 		Prerequisite: jetwing.su35
@@ -456,11 +465,37 @@ JET.V22:
 		Offset: 43, 128, 0
 		ZOffset: -129
 
+JET.F2:
+	Inherits: MIG
+	Buildable:
+		Prerequisites: ~afld, ~jetwing.f2, techcenter, ~techlevel.high
+		BuildPaletteOrder: 226
+		Description: actor-jet-f2.description
+	Valued:
+		Cost: 1700
+	Tooltip:
+		Name: actor-jet-f2.name
+	Health:
+		HP: 8500
+	Aircraft:
+		Speed: 210
+	PxNationalUnit:
+		Factions: japan
+	Selectable:
+		Bounds: 3000, 2800, 0, 0
+		DecorationBounds: 3328, 3104, 0, 220
+	PxAltitudeScale:
+		LandedScale: 0.6
+	-WithShadow:
+	WithShadow@SCALED:
+		Offset: 43, 128, 0
+		ZOffset: -129
+
 JET.HARRIER:
 	Inherits: MIG
 	Buildable:
 		Prerequisites: ~afld, ~jetwing.harrier, ~techlevel.medium
-		BuildPaletteOrder: 226
+		BuildPaletteOrder: 228
 		Description: actor-jet-harrier.description
 	Valued:
 		Cost: 1700
@@ -486,7 +521,7 @@ JET.M2000:
 	Inherits: MIG
 	Buildable:
 		Prerequisites: ~afld, ~jetwing.m2000, ~techlevel.medium
-		BuildPaletteOrder: 228
+		BuildPaletteOrder: 230
 		Description: actor-jet-m2000.description
 	Valued:
 		Cost: 2000
@@ -512,7 +547,7 @@ JET.RAFALE:
 	Inherits: MIG
 	Buildable:
 		Prerequisites: ~afld, ~jetwing.rafale, techcenter, ~techlevel.high
-		BuildPaletteOrder: 230
+		BuildPaletteOrder: 232
 		Description: actor-jet-rafale.description
 	Valued:
 		Cost: 2000
@@ -538,7 +573,7 @@ JET.TYPHOON:
 	Inherits: MIG
 	Buildable:
 		Prerequisites: ~afld, ~jetwing.typhoon, techcenter, ~techlevel.high
-		BuildPaletteOrder: 232
+		BuildPaletteOrder: 234
 		Description: actor-jet-typhoon.description
 	Valued:
 		Cost: 2000
@@ -564,7 +599,7 @@ JET.VULCAN:
 	Inherits: MIG
 	Buildable:
 		Prerequisites: ~afld, ~jetwing.vulcan, ~techlevel.medium
-		BuildPaletteOrder: 234
+		BuildPaletteOrder: 236
 		Description: actor-jet-vulcan.description
 	Valued:
 		Cost: 4000
@@ -586,11 +621,37 @@ JET.VULCAN:
 		Offset: 43, 128, 0
 		ZOffset: -129
 
+JET.HE177:
+	Inherits: MIG
+	Buildable:
+		Prerequisites: ~afld, ~jetwing.he177, ~techlevel.medium
+		BuildPaletteOrder: 238
+		Description: actor-jet-he177.description
+	Valued:
+		Cost: 4000
+	Tooltip:
+		Name: actor-jet-he177.name
+	Health:
+		HP: 25000
+	Aircraft:
+		Speed: 150
+	PxNationalUnit:
+		Factions: germany
+	Selectable:
+		Bounds: 3000, 2800, 0, 0
+		DecorationBounds: 3328, 3104, 0, 220
+	PxAltitudeScale:
+		LandedScale: 0.6
+	-WithShadow:
+	WithShadow@SCALED:
+		Offset: 43, 128, 0
+		ZOffset: -129
+
 JET.SEAVIXEN:
 	Inherits: MIG
 	Buildable:
 		Prerequisites: ~afld, ~jetwing.seavixen, ~techlevel.medium
-		BuildPaletteOrder: 236
+		BuildPaletteOrder: 240
 		Description: actor-jet-seavixen.description
 	Valued:
 		Cost: 1700
@@ -616,7 +677,7 @@ JET.MIG3:
 	Inherits: YAK
 	Buildable:
 		Prerequisites: ~afld, ~jetwing.mig3, ~techlevel.medium
-		BuildPaletteOrder: 238
+		BuildPaletteOrder: 242
 		Description: actor-jet-mig3.description
 	Valued:
 		Cost: 700
@@ -642,7 +703,7 @@ JET.LA11:
 	Inherits: YAK
 	Buildable:
 		Prerequisites: ~afld, ~jetwing.la11, ~techlevel.medium
-		BuildPaletteOrder: 240
+		BuildPaletteOrder: 244
 		Description: actor-jet-la11.description
 	Valued:
 		Cost: 700
@@ -668,7 +729,7 @@ JET.MIG21:
 	Inherits: MIG
 	Buildable:
 		Prerequisites: ~afld, ~jetwing.mig21, ~techlevel.medium
-		BuildPaletteOrder: 242
+		BuildPaletteOrder: 246
 		Description: actor-jet-mig21.description
 	Valued:
 		Cost: 1600
@@ -694,7 +755,7 @@ JET.MIG23:
 	Inherits: MIG
 	Buildable:
 		Prerequisites: ~afld, ~jetwing.mig23, ~techlevel.medium
-		BuildPaletteOrder: 244
+		BuildPaletteOrder: 248
 		Description: actor-jet-mig23.description
 	Valued:
 		Cost: 2000
@@ -720,7 +781,7 @@ JET.MIG25:
 	Inherits: MIG
 	Buildable:
 		Prerequisites: ~afld, ~jetwing.mig25, ~techlevel.medium
-		BuildPaletteOrder: 246
+		BuildPaletteOrder: 250
 		Description: actor-jet-mig25.description
 	Valued:
 		Cost: 1800
@@ -746,7 +807,7 @@ JET.SU25:
 	Inherits: MIG
 	Buildable:
 		Prerequisites: ~afld, ~jetwing.su25, ~techlevel.medium
-		BuildPaletteOrder: 248
+		BuildPaletteOrder: 252
 		Description: actor-jet-su25.description
 	Valued:
 		Cost: 1800
@@ -772,7 +833,7 @@ JET.SU27:
 	Inherits: MIG
 	Buildable:
 		Prerequisites: ~afld, ~jetwing.su27, ~techlevel.medium
-		BuildPaletteOrder: 250
+		BuildPaletteOrder: 254
 		Description: actor-jet-su27.description
 	Valued:
 		Cost: 1600
@@ -794,11 +855,37 @@ JET.SU27:
 		Offset: 43, 128, 0
 		ZOffset: -129
 
+JET.SU30:
+	Inherits: MIG
+	Buildable:
+		Prerequisites: ~afld, ~jetwing.su30, techcenter, ~techlevel.high
+		BuildPaletteOrder: 256
+		Description: actor-jet-su30.description
+	Valued:
+		Cost: 2000
+	Tooltip:
+		Name: actor-jet-su30.name
+	Health:
+		HP: 9000
+	Aircraft:
+		Speed: 223
+	PxNationalUnit:
+		Factions: soviet, russia, india, china
+	Selectable:
+		Bounds: 3000, 2800, 0, 0
+		DecorationBounds: 3328, 3104, 0, 220
+	PxAltitudeScale:
+		LandedScale: 0.6
+	-WithShadow:
+	WithShadow@SCALED:
+		Offset: 43, 128, 0
+		ZOffset: -129
+
 JET.SU35:
 	Inherits: MIG
 	Buildable:
 		Prerequisites: ~afld, ~jetwing.su35, techcenter, ~techlevel.high
-		BuildPaletteOrder: 252
+		BuildPaletteOrder: 258
 		Description: actor-jet-su35.description
 	Valued:
 		Cost: 2000
@@ -824,7 +911,7 @@ JET.TU160:
 	Inherits: MIG
 	Buildable:
 		Prerequisites: ~afld, ~jetwing.tu160, ~techlevel.medium
-		BuildPaletteOrder: 254
+		BuildPaletteOrder: 260
 		Description: actor-jet-tu160.description
 	Valued:
 		Cost: 4000
@@ -850,7 +937,7 @@ JET.SU47:
 	Inherits: MIG
 	Buildable:
 		Prerequisites: ~afld, ~jetwing.su47, techcenter, ~techlevel.high
-		BuildPaletteOrder: 256
+		BuildPaletteOrder: 262
 		Description: actor-jet-su47.description
 		BuildLimit: 1
 	Valued:
@@ -877,7 +964,7 @@ JET.YAK141:
 	Inherits: MIG
 	Buildable:
 		Prerequisites: ~afld, ~jetwing.yak141, techcenter, ~techlevel.high
-		BuildPaletteOrder: 258
+		BuildPaletteOrder: 264
 		Description: actor-jet-yak141.description
 		BuildLimit: 1
 	Valued:
@@ -904,7 +991,7 @@ JET.GROM:
 	Inherits: YAK
 	Buildable:
 		Prerequisites: ~afld, ~jetwing.grom, techcenter, ~techlevel.high
-		BuildPaletteOrder: 260
+		BuildPaletteOrder: 266
 		Description: actor-jet-grom.description
 		BuildLimit: 1
 	Valued:
@@ -929,13 +1016,9 @@ JET.GROM:
 
 JET.ZEPPELIN:
 	Inherits: MIG
-	-AmbientSound@PASS:
-	AmbientSound@ENGINE:
-		SoundFiles: ra|audio/aircraft/airship.wav
-		RequiresCondition: airborne
 	Buildable:
 		Prerequisites: ~afld, ~jetwing.zeppelin, techcenter, ~techlevel.high
-		BuildPaletteOrder: 262
+		BuildPaletteOrder: 268
 		Description: actor-jet-zeppelin.description
 		BuildLimit: 1
 	Valued:
@@ -962,7 +1045,7 @@ JET.L39:
 	Inherits: YAK
 	Buildable:
 		Prerequisites: ~afld, ~jetwing.l39, ~techlevel.medium
-		BuildPaletteOrder: 264
+		BuildPaletteOrder: 270
 		Description: actor-jet-l39.description
 	Valued:
 		Cost: 900
@@ -986,12 +1069,9 @@ JET.L39:
 
 JET.AN225:
 	Inherits: TRAN
-	AmbientSound@ENGINE:
-		SoundFiles: ra|audio/aircraft/jet-engine.wav
-		RequiresCondition: airborne
 	Buildable:
 		Prerequisites: ~hpad, ~jetwing.an225, techcenter, ~techlevel.high
-		BuildPaletteOrder: 266
+		BuildPaletteOrder: 272
 		Description: actor-jet-an225.description
 	Valued:
 		Cost: 1500
@@ -1014,7 +1094,7 @@ JET.J20:
 	Inherits: MIG
 	Buildable:
 		Prerequisites: ~afld, ~jetwing.j20, techcenter, ~techlevel.high
-		BuildPaletteOrder: 268
+		BuildPaletteOrder: 274
 		Description: actor-jet-j20.description
 	Valued:
 		Cost: 3000
@@ -1038,12 +1118,9 @@ JET.J20:
 
 JET.SWARM:
 	Inherits: YAK
-	AmbientSound@ENGINE:
-		SoundFiles: ra|audio/aircraft/drone-buzz.wav
-		RequiresCondition: airborne
 	Buildable:
 		Prerequisites: ~afld, ~jetwing.swarm, ~techlevel.medium
-		BuildPaletteOrder: 270
+		BuildPaletteOrder: 276
 		Description: actor-jet-swarm.description
 	Valued:
 		Cost: 1200
@@ -1069,7 +1146,7 @@ JET.SAEQEH:
 	Inherits: MIG
 	Buildable:
 		Prerequisites: ~afld, ~jetwing.saeqeh, ~techlevel.medium
-		BuildPaletteOrder: 272
+		BuildPaletteOrder: 278
 		Description: actor-jet-saeqeh.description
 	Valued:
 		Cost: 1600
@@ -1095,7 +1172,7 @@ JET.QAHER:
 	Inherits: MIG
 	Buildable:
 		Prerequisites: ~afld, ~jetwing.qaher, techcenter, ~techlevel.high
-		BuildPaletteOrder: 274
+		BuildPaletteOrder: 280
 		Description: actor-jet-qaher.description
 		BuildLimit: 1
 	Valued:

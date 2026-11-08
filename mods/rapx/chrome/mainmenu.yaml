@@ -317,6 +317,11 @@ Container@MAINMENU:
 							LeftMargin: 24
 							Text: button-back
 							Key: escape
+		PxVersionBadge@VERSION_BADGE:
+			X: 24
+			Y: WINDOW_HEIGHT - HEIGHT - 24
+			Width: 360
+			Height: 80
 		Container@PERFORMANCE_INFO:
 			Logic: PerfDebugLogic
 			Children:

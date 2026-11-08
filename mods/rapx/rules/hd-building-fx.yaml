@@ -6813,6 +6813,12 @@ BMBF:
 		Points: -1,1, 66,29, -67,30, 55,-40
 		Size: 2
 
+SBMB:
+	WithPxCollapse:
+	WithPxDamageFx:
+		Points: -1,-4, 67,28, -67,28, -61,-46
+		Size: 2
+
 TENT:
 	WithPxCollapse:
 	WithPxDamageFx:

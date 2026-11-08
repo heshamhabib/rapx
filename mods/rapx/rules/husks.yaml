@@ -247,7 +247,7 @@ HELI.Husk:
 		TurnSpeed: 16
 		Speed: 149
 	WithIdleOverlay:
-		Offset: 509,0,428
+		Offset: 468,-1,471
 		Sequence: rotor
 	LeavesTrails:
 		Offsets: -427,0,0
@@ -276,7 +276,7 @@ HIND.Husk:
 		TurnSpeed: 16
 		Speed: 112
 	WithIdleOverlay:
-		Offset: 267,0,489
+		Offset: 354,-2,367
 		Sequence: rotor
 	LeavesTrails:
 		Offsets: -427,0,0
@@ -506,3 +506,51 @@ MH60.Husk:
 		Type: GroundPosition
 	RenderSprites:
 		Image: MH60
+
+MI35.Husk:
+	Inherits: HIND.Husk
+	Tooltip:
+		Name: actor-mi35.name
+	WithIdleOverlay:
+		Offset: 221,22,394
+	RenderSprites:
+		Image: mi35
+
+KA52.Husk:
+	Inherits: HIND.Husk
+	Tooltip:
+		Name: actor-ka52.name
+	WithIdleOverlay:
+		Offset: 197,0,407
+	RenderSprites:
+		Image: ka52
+
+MI17.Husk:
+	Inherits: TRAN.Husk
+	-WithIdleOverlay@SECONDARY:
+	WithIdleOverlay@PRIMARY:
+		Offset: 211,-7,313
+	Tooltip:
+		Name: actor-mi17.name
+	RenderSprites:
+		Image: mi17
+
+AW101.Husk:
+	Inherits: TRAN.Husk
+	-WithIdleOverlay@SECONDARY:
+	WithIdleOverlay@PRIMARY:
+		Offset: 479,7,508
+	Tooltip:
+		Name: actor-aw101.name
+	RenderSprites:
+		Image: aw101
+
+TIGER.Husk:
+	Inherits: HELI.Husk
+	Tooltip:
+		Name: actor-tiger.name
+	WithIdleOverlay:
+		Offset: -23,-7,414
+	RenderSprites:
+		Image: tiger
+

@@ -119,3 +119,28 @@ actor-fajir5 =
     with very long range.
       Strong vs Infantry and Buildings
       Weak vs Vehicles and Aircraft
+
+actor-zolf =
+    .name = Zolfaghar
+    .description =
+    Ballistic missile truck: fires the two missiles on its
+    erector at targets 22 cells away, then reloads slowly.
+    Only long-range air defence can stop the missiles.
+      Strong vs Buildings and Ground units
+      Weak vs Aircraft and close combat
+
+actor-mlrs =
+    .name = Thunderhead MLRS
+    .description =
+    Tracked rocket tank: fires its whole rack of 19
+    rockets in one heavy stream, then reloads.
+      Strong vs Infantry, Buildings and groups of vehicles
+      Weak vs Aircraft and close combat
+
+actor-hlfr =
+    .name = Hailfire Rocket Truck
+    .description =
+    Fast rocket truck: fires a long stream of
+    30 light rockets from its launch tubes.
+      Strong vs Infantry and Buildings
+      Weak vs Tanks and Aircraft

@@ -1131,6 +1131,12 @@ FACT:
 	ProvidesPrerequisite@usa:
 		Factions: usa
 		Prerequisite: structures.usa
+	ProvidesPrerequisite@india:
+		Factions: india
+		Prerequisite: structures.india
+	ProvidesPrerequisite@tiger:
+		Factions: france, germany
+		Prerequisite: structures.tiger
 	ProvidesPrerequisite@france:
 		Factions: france
 		Prerequisite: structures.france

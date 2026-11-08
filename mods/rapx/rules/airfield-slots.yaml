@@ -25,3 +25,8 @@ BMBF:
 	Reservable:
 		SlotOffsets: -14,920,0
 		SlotFacings: 512
+
+SBMB:
+	Reservable:
+		SlotOffsets: -19,881,0
+		SlotFacings: 512

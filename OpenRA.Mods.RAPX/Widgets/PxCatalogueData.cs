@@ -445,7 +445,10 @@ namespace OpenRA.Mods.RAPX.Widgets
 					case PxCivilianDisguiseInfo: Add("Disguises as a civilian car"); break;
 					case PxInterceptorInfo: Add("Intercepts incoming missiles"); break;
 					case PxPointDefenseInfo: Add("Point defence vs missiles"); break;
-					case PxFlareDispenserInfo: Add("Flares decoy guided missiles"); break;
+					case PxFlareDispenserInfo fd when fd.Style == Effects.PxFlareStyle.Angel:
+						Add($"Angel flares: {fd.Salvos} huge salvos fool {fd.DecoyChance}% of guided missiles");
+						break;
+					case PxFlareDispenserInfo fd: Add($"Flares: {fd.Salvos} salvos fool {fd.DecoyChance}% of guided missiles"); break;
 					case JamsMissilesInfo: Add("Jams guided missiles"); break;
 					case PxShootAndScootInfo: Add("Shoot and scoot"); break;
 					case PxCarrierDeckInfo: Add("Flight deck: launches and rearms jets"); break;

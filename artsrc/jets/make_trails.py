@@ -22,8 +22,8 @@ OUT = os.path.join(MOD, "rules", "jet-trails.yaml")
 WORLD_PER_SPRITE_PX = 1024 / 24 / 3
 
 # Aircraft with no jet engine: propeller planes get vapour only, airships nothing
-PROPS = {"yak", "jet.mig3", "jet.la11"}
-SKIP = {"jet.zeppelin", "jet.swarm", "tran", "heli", "hind", "mh60", "jet.v22"}
+PROPS = {"yak", "jet.mig3", "jet.la11", "yb35", "tu95", "jet.he177"}
+SKIP = {"jet.zeppelin", "jet.swarm", "tran", "heli", "hind", "mh60", "jet.v22", "mi35", "ka52", "mi17", "aw101", "tiger"}
 # Aircraft built on a helicopter in the rules but needing their own wreck: (wreck to inherit, effect size)
 OWN_WRECK = {"jet.an225": ("MIG.Husk", 2.4), "jet.v22": ("TRAN.Husk", 1.2)}
 JETLESS_EXHAUST = {"jet.an225"}

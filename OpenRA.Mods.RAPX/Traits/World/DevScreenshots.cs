@@ -12,6 +12,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using OpenRA.GameRules;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Traits;
@@ -27,7 +28,7 @@ namespace OpenRA.Mods.RAPX.Traits
 		"reveals the map, takes a screenshot at each location and then quits.",
 		"When RAPX_MENU_SCRIPT is set (\"ms:action;ms:action;...\" with actions shot, stopvideo, quit, look [zoom],",
 		"focus <ACTOR> [zoom], reveal, select <ACTOR,...>,",
-		"build <ACTOR>, kill <ACTOR>, chip <N> (select sidebar category chip N, 0 = All), spawn <RAPX_SPAWN entries>, click <BUTTON_ID>, press <BUTTON_ID>,",
+		"build <ACTOR>, kill <ACTOR>, boom <WEAPON> +dx,+dy [height], chip <N> (select sidebar category chip N, 0 = All), spawn <RAPX_SPAWN entries>, click <BUTTON_ID>, press <BUTTON_ID>,",
 		"scheme <ra2|ra2-right|openra>, key <KEY [Mods]> or clickcell <left|right> +dx,+dy [double]),",
 		"runs those actions against the menus at the given times after the first shellmap load.",
 		"When RAPX_DEV_CHEATS is set (\"enable-tech;unlimited-power;...\"), runs those developer chat commands",
@@ -312,6 +313,24 @@ namespace OpenRA.Mods.RAPX.Traits
 				var target = Target.FromCell(currentWorld, cell);
 				foreach (var a in currentWorld.Actors.Where(a => a.IsInWorld && types.Contains(a.Info.Name)).ToList())
 					currentWorld.IssueOrder(new Order("Move", a, target, false));
+			}
+			else if (action.StartsWith("boom ", StringComparison.Ordinal) && currentWorld.LocalPlayer != null)
+			{
+				// "boom <weapon> +dx,+dy [height]": detonate that weapon's warheads at the cell at that offset from the local
+				// player's start (optionally that high up, in WDist), e.g. to preview explosions
+				var args = action[5..].Split(' ', StringSplitOptions.RemoveEmptyEntries);
+				if (!currentWorld.Map.Rules.Weapons.TryGetValue(args[0].ToLowerInvariant(), out var weapon))
+				{
+					Log.Write("debug", $"DevScreenshots: no weapon {args[0]}");
+					return;
+				}
+
+				var offset = FieldLoader.GetValue<int2>("offset", args[1].Replace("+", ""));
+				var cell = currentWorld.LocalPlayer.HomeLocation + new CVec(offset.X, offset.Y);
+				var pos = currentWorld.Map.CenterOfCell(cell) + new WVec(0, 0, args.Length > 2 ? Exts.ParseInt32Invariant(args[2]) : 0);
+				var source = currentWorld.LocalPlayer.PlayerActor;
+				currentWorld.AddFrameEndTask(w => weapon.Impact(Target.FromPos(pos),
+					new WarheadArgs { Weapon = weapon, SourceActor = source, ImpactPosition = pos, WeaponTarget = Target.FromPos(pos) }));
 			}
 			else if (action.StartsWith("spawn ", StringComparison.Ordinal))
 				SpawnActors(currentWorld, action[6..].Trim());

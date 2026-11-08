@@ -398,6 +398,8 @@ heli:
 		Scale: 0.3333
 
 hind:
+	icon:
+		Filename: ra|bits/hd/hindicon.png
 	idle:
 		Filename: ra|bits/hd/units/hind.png
 		Facings: 32
@@ -634,3 +636,272 @@ lst:
 		UseClassicFacings: False
 		Scale: 0.2333
 		Start: 0
+
+# --- 2026-11-07 additions (artsrc/units/meshes/make_sketchfab.py; sidebar tiles in hd-icons.yaml) ---
+cg:
+	idle:
+		Filename: ra|bits/hd/units/ca-ticonderoga.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/blank.png
+		Facings: 1
+		UseClassicFacings: False
+		Start: 0
+		Length: 1
+	icon:
+		Filename: ra|bits/hd/cgicon.png
+
+bb:
+	idle:
+		Filename: ra|bits/hd/units/bb.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/blank.png
+		Facings: 1
+		UseClassicFacings: False
+		Start: 0
+		Length: 1
+	icon:
+		Filename: ra|bits/hd/bbicon.png
+
+hcru:
+	idle:
+		Filename: ra|bits/hd/units/hcru.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/blank.png
+		Facings: 1
+		UseClassicFacings: False
+		Start: 0
+		Length: 1
+	icon:
+		Filename: ra|bits/hd/hcruicon.png
+
+lha:
+	idle:
+		Filename: ra|bits/hd/units/lha.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	open:
+		Filename: ra|bits/hd/units/lha.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+		Start: 0
+		Length: 1
+	close:
+		Filename: ra|bits/hd/units/lha.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+		Start: 0
+		Length: 1
+	unload:
+		Filename: ra|bits/hd/units/lha.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+		Start: 0
+	icon:
+		Filename: ra|bits/hd/lhaicon.png
+
+# M16 Quad AA Halftrack: hull 0-31, gun mount 32-63
+m16:
+	idle:
+		Filename: ra|bits/hd/units/m16.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/units/m16.png
+		Start: 32
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	icon:
+		Filename: ra|bits/hd/m16icon.png
+
+mi35:
+	idle:
+		Filename: ra|bits/hd/units/mi35.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	rotor:
+		Filename: ra|bits/hd/units/mi35-rotor.png
+		Start: 0
+		Length: 32
+		Tick: 25
+		Scale: 0.3333
+	slow-rotor:
+		Filename: ra|bits/hd/units/mi35-rotor.png
+		Start: 0
+		Length: 32
+		Tick: 50
+		Scale: 0.3333
+	icon:
+		Filename: ra|bits/hd/mi35icon.png
+
+ka52:
+	idle:
+		Filename: ra|bits/hd/units/ka52.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	rotor:
+		Filename: ra|bits/hd/units/ka52-rotor.png
+		Start: 0
+		Length: 32
+		Tick: 25
+		Scale: 0.3333
+	slow-rotor:
+		Filename: ra|bits/hd/units/ka52-rotor.png
+		Start: 0
+		Length: 32
+		Tick: 50
+		Scale: 0.3333
+	icon:
+		Filename: ra|bits/hd/ka52icon.png
+
+# BTR: hull 0-31, turret 32-63
+btr:
+	idle:
+		Filename: ra|bits/hd/units/btr.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/units/btr.png
+		Start: 32
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	icon:
+		Filename: ra|bits/hd/btricon.png
+
+kvst:
+	idle:
+		Filename: ra|bits/hd/units/kvst.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	icon:
+		Filename: ra|bits/hd/kvsticon.png
+
+mtrk:
+	idle:
+		Filename: ra|bits/hd/units/mtrk.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	icon:
+		Filename: ra|bits/hd/mtrkicon.png
+
+wbot:
+	idle:
+		Filename: ra|bits/hd/units/wbot.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	icon:
+		Filename: ra|bits/hd/wboticon.png
+
+hmmv:
+	idle:
+		Filename: ra|bits/hd/units/hmmv.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/units/hmmv.png
+		Start: 32
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	icon:
+		Filename: ra|bits/hd/hmmvicon.png
+
+sfng:
+	idle:
+		Filename: ra|bits/hd/units/sfng.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/units/sfng.png
+		Start: 32
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	icon:
+		Filename: ra|bits/hd/sfngicon.png
+
+mi17:
+	idle:
+		Filename: ra|bits/hd/units/mi17.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	rotor:
+		Filename: ra|bits/hd/units/mi17-rotor.png
+		Start: 0
+		Length: 32
+		Tick: 25
+		Scale: 0.3333
+	slow-rotor:
+		Filename: ra|bits/hd/units/mi17-rotor.png
+		Start: 0
+		Length: 32
+		Tick: 50
+		Scale: 0.3333
+	icon:
+		Filename: ra|bits/hd/mi17icon.png
+
+aw101:
+	idle:
+		Filename: ra|bits/hd/units/aw101.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	rotor:
+		Filename: ra|bits/hd/units/aw101-rotor.png
+		Start: 0
+		Length: 32
+		Tick: 25
+		Scale: 0.3333
+	slow-rotor:
+		Filename: ra|bits/hd/units/aw101-rotor.png
+		Start: 0
+		Length: 32
+		Tick: 50
+		Scale: 0.3333
+	icon:
+		Filename: ra|bits/hd/aw101icon.png
+
+tiger:
+	idle:
+		Filename: ra|bits/hd/units/tiger.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	rotor:
+		Filename: ra|bits/hd/units/tiger-rotor.png
+		Start: 0
+		Length: 32
+		Tick: 25
+		Scale: 0.3333
+	slow-rotor:
+		Filename: ra|bits/hd/units/tiger-rotor.png
+		Start: 0
+		Length: 32
+		Tick: 50
+		Scale: 0.3333
+	icon:
+		Filename: ra|bits/hd/tigericon.png

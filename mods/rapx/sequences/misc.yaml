@@ -570,6 +570,9 @@ icon:
 	fatman:
 		Filename: ra|bits/hd/ui/icon-fatman.png
 		Scale: 0.25
+	rds37:
+		Filename: ra|bits/hd/ui/icon-rds37.png
+		Scale: 0.25
 
 minp:
 	idle:

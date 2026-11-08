@@ -177,9 +177,10 @@ actor-tran =
 actor-heli =
     .name = Longbow
     .description =
-    Helicopter gunship with multi-purpose missiles.
-      Strong vs Buildings, Vehicles and Aircraft
-      Weak vs Infantry
+    Fast light attack helicopter with HOT
+    anti-tank missiles and a 20 mm cannon.
+      Strong vs Tanks and Vehicles
+      Weak vs Infantry and Anti-Air
 
 actor-hind =
     .name = Hind
@@ -1002,3 +1003,136 @@ actor-lsat =
     each linked satellite adds +40% to a shot
     (up to +200%). Needs a Satellite Uplink.
       Only ASAT Missile Sites can hit it
+
+## 2026-11-07 additions
+
+actor-m16 =
+    .name = Quad AA Halftrack
+    .description =
+    Cheap anti-aircraft vehicle with four
+    heavy machine guns on a turning mount.
+      Strong vs Aircraft and Infantry
+      Weak vs Tanks
+
+actor-cg =
+    .name = Missile Cruiser
+    .description =
+    Fires Tomahawk cruise missiles deep inland
+    and guards the fleet against aircraft.
+    USA only.
+      Strong vs Buildings and Aircraft
+      Weak vs Submarines
+
+actor-bb =
+    .name = Battleship
+    .description =
+    Huge, heavily armoured ship with 16-inch guns,
+    the longest-range guns at sea.
+      Strong vs Buildings, Ground units and Ships
+      Weak vs Submarines and Aircraft
+
+actor-hcru =
+    .name = Helicopter Cruiser
+    .description =
+    Anti-air and anti-submarine escort with
+    missiles, a close-in gun and depth charges.
+      Strong vs Aircraft and Submarines
+      Weak vs Ground units
+
+actor-lha =
+    .name = Amphibious Assault Ship
+    .description =
+    Carries twice as much as a Transport
+    to the beach and defends itself against aircraft.
+    USA only.
+      Strong vs Aircraft
+      Weak vs Ships and Submarines
+
+actor-btr =
+    .name = BTR
+    .description =
+    Fast wheeled armoured transport with a turret
+    autocannon. Carries 5 infantry. Russia only.
+      Strong vs Infantry and Light armor
+      Weak vs Tanks and Aircraft
+
+actor-mi35 =
+    .name = Mi-35M Hind-E
+    .description =
+    Armoured gunship with a chain gun and rockets
+    that also carries 5 infantry.
+      Strong vs Infantry and Vehicles
+      Weak vs Anti-Air
+
+actor-ka52 =
+    .name = Ka-52 Alligator
+    .description =
+    Fast attack helicopter with anti-tank missiles
+    and a cannon. Russia only.
+      Strong vs Tanks and Vehicles
+      Weak vs Anti-Air
+
+actor-kvst =
+    .name = KV Strider
+    .description =
+    Heavy walker: a KV tank body with a 152 mm gun
+    on two legs. Steps over walls and infantry.
+      Strong vs Vehicles and Buildings
+      Weak vs Aircraft
+
+actor-mtrk =
+    .name = Monster Truck
+    .description =
+    Very fast truck on giant wheels. No gun:
+    it runs over infantry, fences and sandbags. USA only.
+      Strong vs Infantry
+      Weak vs everything that shoots back
+
+actor-hmmv =
+    .name = Humvee
+    .description =
+    Tough scout car with a roof .50 cal machine gun.
+    Carries 4 infantry. USA only.
+      Strong vs Infantry and Light armor
+      Weak vs Tanks
+
+actor-sfng =
+    .name = Shockfang
+    .description =
+    Experimental cyber tank: its cannon fires a heavy
+    electric discharge. Maximum 1 can be built.
+      Strong vs Tanks and Vehicles
+      Weak vs Aircraft
+
+actor-wbot =
+    .name = War Robot
+    .description =
+    Two-legged combat mech with a chain gun
+    and anti-tank rockets.
+      Strong vs Infantry and Vehicles
+      Weak vs Aircraft
+
+actor-mi17 =
+    .name = Mi-17 Hip
+    .description =
+    Troop helicopter: carries 8 infantry
+    and defends itself with a door gun.
+      Unarmed against vehicles
+      Weak vs Anti-Air
+
+actor-aw101 =
+    .name = AW101 Merlin
+    .description =
+    Fast heavy transport helicopter.
+    Carries 10 infantry. India only.
+      Unarmed
+      Weak vs Anti-Air
+
+actor-tiger =
+    .name = Tiger
+    .description =
+    Heavy attack helicopter: HOT anti-tank missiles
+    and pods that fire a stream of rockets.
+    France and Germany only.
+      Strong vs Tanks, Vehicles and Infantry
+      Weak vs Anti-Air

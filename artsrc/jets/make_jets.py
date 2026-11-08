@@ -79,6 +79,8 @@ JETS = [
     ("yf23", "ayf-23-black-recluse", "AYF-23 Black Recluse", "Northrop YF-23", "X", "stealth", ["allies", "usa"]),
     ("x47", "ax-47-stingray", "AX-47 Stingray", "X-47B", "X", "drone", ["usa"]),
     ("v22", "kestrel-tiltrotor", "Kestrel Tiltrotor", "V-22 Osprey", 4, "transport", ["usa", "japan"]),
+    # --- Japan ---
+    ("f2", "af-2-zero-viper", "AF-2 Zero Viper", "Mitsubishi F-2", 4, "carrier", ["japan"]),
     # --- Europe ---
     ("harrier", "harrow", "Harrow", "Harrier / AV-8B", 3, "vtol", ["allies", "usa", "england", "italy", "india"]),
     ("m2000", "mirago-2000", "Mirago 2000", "Mirage 2000", 3, "multirole",
@@ -86,6 +88,7 @@ JETS = [
     ("rafale", "rafal-f4", "Rafal F4", "Dassault Rafale", 4, "multirole", ["france", "egypt", "india", "ukraine"]),
     ("typhoon", "typhon", "Typhon", "Eurofighter Typhoon", 4, "multirole", ["england", "germany", "italy", "turkey"]),
     ("vulcan", "volcan", "Volcan", "Avro Vulcan", 2, "bomber", ["england"]),
+    ("he177", "he-177-greif", "He-177 Greif", "Heinkel He 177 Greif", 0, "bomber", ["germany"]),
     ("seavixen", "sea-vixa", "Sea Vixa", "de Havilland Sea Vixen", 2, "carrier", ["england"]),
     # --- Vanguard shared roster and Russia ---
     ("mig3", "mik-3-strela", "MiK-3 Strela", "MiG-3", 0, "piston", ["soviet", "russia"]),
@@ -97,6 +100,8 @@ JETS = [
     ("mig25", "mik-25-foxbane", "MiK-25 Foxbane", "MiG-25", 3, "interceptor", ["soviet", "russia", "ukraine", "india"]),
     ("su25", "sk-25-rook", "Sk-25 Rook", "Sukhoi Su-25", 3, "attack", ["soviet", "russia", "ukraine", "iran"]),
     ("su27", "sk-27-flankard", "Sk-27 Flankard", "Sukhoi Su-27", 3, "fighter", ["soviet", "russia", "ukraine", "china"]),
+    ("su30", "sk-30-flankard-m", "Sk-30 Flankard-M", "Sukhoi Su-30SM / MKI", 4, "multirole",
+     ["soviet", "russia", "india", "china"]),
     ("su35", "sk-35-flankard-e", "Sk-35 Flankard-E", "Sukhoi Su-35", 4, "multirole",
      ["soviet", "russia", "china", "egypt", "iran"]),
     ("tu160", "tv-160-swanwing", "Tv-160 Swanwing", "Tupolev Tu-160", 3, "bomber", ["russia"]),

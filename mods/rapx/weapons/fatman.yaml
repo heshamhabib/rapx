@@ -1,4 +1,4 @@
-# The Fatman bomb (USA bomber strike, rules/fatman.yaml): a free-falling atomic bomb with about half the nuke's
+# Strategic bombs. The Fatman bomb (USA bomber strike, rules/fatman.yaml): a free-falling atomic bomb with about half the nuke's
 # reach (Atomic in superweapons.yaml): blast rings to 3 cells instead of 5, a smaller mushroom cloud
 # (explosion fatman-nuke in sequences/fatman.yaml) and a shorter radiation burst.
 
@@ -87,3 +87,44 @@ Fatman:
 		EdgeDamage: 45
 		DamageTypes: DefaultDeath
 		ValidTargets: Ground, Water, GroundActor, WaterActor
+
+# The RDS-37 hydrogen bomb (Russia's thermonuclear strike, rules/fatman.yaml TU95): bigger than the Fatman, still
+# smaller than the nuclear missile: blast rings to 4 cells, the mushroom at 80 %, a longer radiation burst.
+RDS37:
+	Inherits: Fatman
+	Projectile: GravityBomb
+		Image: rds37
+	Warhead@1Dam_impact: SpreadDamage
+		Damage: 14000
+	Warhead@4Eff_impact: CreateEffect
+		Explosions: rds37-nuke
+	Warhead@5Dam_area1: SpreadDamage
+		Damage: 5500
+	Warhead@9Dam_area2: SpreadDamage
+		Damage: 5000
+	Warhead@15Dam_area3: SpreadDamage
+		Spread: 4c0
+		Damage: 5000
+		Falloff: 1000, 368, 135, 50, 18, 7, 0
+		Delay: 15
+		ValidTargets: GroundActor, Trees, WaterActor, Underwater, AirborneActor
+		Versus:
+			Tree: 200
+			Concrete: 25
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath, Incendiary
+	Warhead@16Res_area3: DestroyResource
+		Size: 4
+		Delay: 15
+	Warhead@17Smu_area3: LeaveSmudge
+		SmudgeType: NukeScorch
+		ValidTargets: Ground, Infantry
+		Size: 4
+		Delay: 15
+	Warhead@12Shake: ShakeScreen
+		Duration: 18
+		Intensity: 4
+	Warhead@13FlashEffect: FlashEffect
+		Duration: 16
+	Warhead@14Radiation: PxRadiation
+		Radius: 4c512
+		Duration: 65

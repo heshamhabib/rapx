@@ -1,0 +1,122 @@
+# Angel flares (OpenRA.Mods.RAPX/Traits/PxFlareDispenser.cs, Style: Angel; drawn by Effects/PxFlareBurst.cs):
+# heavy aircraft and helicopters release big symmetrical "angel wing" salvos instead of the jets' quick fan.
+# Fewer salvos than the standard flares, but each one is huge, burns longer and fools most missiles.
+# Loaded after jets.yaml and aircraft.yaml so these values win. Helicopters lose flares in ^Helicopter, so they get
+# the whole definition here.
+
+# A-10 style ground-attack jet
+JET.A10:
+	PxFlareDispenser:
+		RequiresCondition: airborne
+		Style: Angel
+		Salvos: 2
+		ReloadDelay: 600
+		DecoyChance: 85
+		ReactionTicks: 16
+		CoverTicks: 45
+		FlaresPerSalvo: 32
+		Sounds: ra|audio/aircraft/flares1.wav, ra|audio/aircraft/flares2.wav, ra|audio/aircraft/flares3.wav
+
+# Su-25 style ground-attack jet
+JET.SU25:
+	PxFlareDispenser:
+		RequiresCondition: airborne
+		Style: Angel
+		Salvos: 2
+		ReloadDelay: 600
+		DecoyChance: 85
+		ReactionTicks: 16
+		CoverTicks: 45
+		FlaresPerSalvo: 32
+		Sounds: ra|audio/aircraft/flares1.wav, ra|audio/aircraft/flares2.wav, ra|audio/aircraft/flares3.wav
+
+# heavy bomber
+JET.B52:
+	PxFlareDispenser:
+		RequiresCondition: airborne
+		Style: Angel
+		Salvos: 2
+		ReloadDelay: 600
+		DecoyChance: 85
+		ReactionTicks: 16
+		CoverTicks: 45
+		FlaresPerSalvo: 32
+		Sounds: ra|audio/aircraft/flares1.wav, ra|audio/aircraft/flares2.wav, ra|audio/aircraft/flares3.wav
+
+# heavy bomber
+JET.TU160:
+	PxFlareDispenser:
+		RequiresCondition: airborne
+		Style: Angel
+		Salvos: 2
+		ReloadDelay: 600
+		DecoyChance: 85
+		ReactionTicks: 16
+		CoverTicks: 45
+		FlaresPerSalvo: 32
+		Sounds: ra|audio/aircraft/flares1.wav, ra|audio/aircraft/flares2.wav, ra|audio/aircraft/flares3.wav
+
+# heavy bomber
+JET.VULCAN:
+	PxFlareDispenser:
+		RequiresCondition: airborne
+		Style: Angel
+		Salvos: 2
+		ReloadDelay: 600
+		DecoyChance: 85
+		ReactionTicks: 16
+		CoverTicks: 45
+		FlaresPerSalvo: 32
+		Sounds: ra|audio/aircraft/flares1.wav, ra|audio/aircraft/flares2.wav, ra|audio/aircraft/flares3.wav
+
+# heavy transport
+JET.AN225:
+	PxFlareDispenser:
+		RequiresCondition: airborne
+		Style: Angel
+		Salvos: 2
+		ReloadDelay: 600
+		DecoyChance: 85
+		ReactionTicks: 16
+		CoverTicks: 45
+		FlaresPerSalvo: 32
+		Sounds: ra|audio/aircraft/flares1.wav, ra|audio/aircraft/flares2.wav, ra|audio/aircraft/flares3.wav
+
+# attack helicopter
+HELI:
+	PxFlareDispenser:
+		RequiresCondition: airborne
+		Style: Angel
+		Salvos: 2
+		ReloadDelay: 600
+		DecoyChance: 85
+		ReactionTicks: 16
+		CoverTicks: 45
+		FlaresPerSalvo: 32
+		Sounds: ra|audio/aircraft/flares1.wav, ra|audio/aircraft/flares2.wav, ra|audio/aircraft/flares3.wav
+
+# gunship (also MI35, KA52 through Inherits)
+HIND:
+	PxFlareDispenser:
+		RequiresCondition: airborne
+		Style: Angel
+		Salvos: 2
+		ReloadDelay: 600
+		DecoyChance: 85
+		ReactionTicks: 16
+		CoverTicks: 45
+		FlaresPerSalvo: 32
+		Sounds: ra|audio/aircraft/flares1.wav, ra|audio/aircraft/flares2.wav, ra|audio/aircraft/flares3.wav
+
+# utility helicopter
+MH60:
+	PxFlareDispenser:
+		RequiresCondition: airborne
+		Style: Angel
+		Salvos: 2
+		ReloadDelay: 600
+		DecoyChance: 85
+		ReactionTicks: 16
+		CoverTicks: 45
+		FlaresPerSalvo: 32
+		Sounds: ra|audio/aircraft/flares1.wav, ra|audio/aircraft/flares2.wav, ra|audio/aircraft/flares3.wav

@@ -36,6 +36,7 @@ AIRFIELDS = {
     "afbs": (["AFBS"], (10, 6), (4, 2)),
     "sacm": (["SACM"], (12, 6), (5, 2)),
     "bmbf": (["BMBF"], (6, 4), (1, 1)),  # one wide bomber pad (rules/fatman.yaml)
+    "sbmb": (["SBMB"], (6, 4), (1, 1)),
 }
 # Parked planes face the viewer (south): the pads are wider than deep and a MiG facing south is 33 x 24 px.
 FACING = 512

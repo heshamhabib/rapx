@@ -63,9 +63,11 @@ MSAM:
 		Range: 10c0
 	RenderSprites:
 		Image: ad-msam-allies
+		# National looks (2026-11-07): England's Sky Sabre, Russia's Buk-M3
 		FactionImages:
+			england: ad-msam-england
 			soviet: ad-msam-soviet
-			russia: ad-msam-soviet
+			russia: ad-msam-russia
 			ukraine: ad-msam-soviet
 			cuba: ad-msam-soviet
 			india: ad-msam-soviet
@@ -205,3 +207,72 @@ BMD:
 		DomeHeight: 1.0
 	Power:
 		Amount: -150
+
+# Flak Cannon (2026-11-07, every nation): a 1x1 heavy anti-aircraft gun between the AA Gun and the Medium SAM. Its twin
+# barrels turn to follow aircraft (32 directions), and its bursts can knock down drones and cruise missiles.
+# Art: artsrc/units/meshes/make_sketchfab.py flak.
+FLAK:
+	Inherits: ^Defense
+	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
+	Inherits@AUTOTARGET: ^AutoTargetAir
+	Inherits@shape: ^1x1Shape
+	Selectable:
+		Bounds: 1024, 1024
+	Buildable:
+		Queue: Defense
+		BuildPaletteOrder: 101
+		Prerequisites: dome, ~techlevel.medium
+		Description: actor-flak.description
+	Valued:
+		Cost: 900
+	Tooltip:
+		Name: actor-flak.name
+	Building:
+		Footprint: x
+		Dimensions: 1,1
+	Health:
+		HP: 45000
+	Armor:
+		Type: Heavy
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 9c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	WithBuildingBib:
+		HasMinibib: true
+	Turreted:
+		TurnSpeed: 60
+		InitialFacing: 0
+		RealignDelay: -1
+		RequiresCondition: !build-incomplete
+	WithSpriteTurret:
+		RequiresCondition: !build-incomplete
+		Recoils: false
+	Armament:
+		Weapon: FlakCannon
+		LocalOffset: 300,-160,420, 300,160,420
+	AttackTurreted:
+		PauseOnCondition: disabled || build-incomplete
+	PxInterceptor:
+		Range: 7c0
+		Rails: 2
+		ReloadDelay: 60
+		Speed: 600
+		Weapon: InterceptFlak
+		LocalOffset: 300,0,420
+		RequiresCondition: !disabled && !build-incomplete
+		Chances:
+			Rocket: 25
+			Drone: 55
+			Cruise: 45
+	PxRenderRangeDome:
+		RangeCircleType: aa
+		Shape: Dome
+		Color: B98CFF
+		DomeHeight: 0.75
+	Power:
+		Amount: -50
+	RenderSprites:
+		Image: flak

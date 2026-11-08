@@ -50,6 +50,8 @@ KINDS = {
     "gbu": (3.3, 0.36, 0.18, 1.5, True, (0.09, 0.1, 0.075), (0.95, 0.75, 0.1)),     # laser-guided bomb
     "hydra": (1.06, 0.07, 0.15, 3.2, False, (0.75, 0.76, 0.72), (0.95, 0.75, 0.1)),  # pod rocket in flight
     "pod": (2.0, 0.42, 0.0, 0.0, False, (0.25, 0.26, 0.23), (0.1, 0.1, 0.1)),        # rocket pod
+    "ataka": (1.83, 0.13, 0.12, 2.6, True, (0.16, 0.2, 0.12), (0.6, 0.12, 0.08)),     # 9M120 Ataka helicopter ATGM
+    "hot": (1.28, 0.136, 0.14, 2.8, False, (0.2, 0.22, 0.16), (0.95, 0.75, 0.1)),    # HOT helicopter ATGM (Gazelle, Tiger)
     # National rocket launchers (IDEA-17), the rocket each one fires
     "gmlrs_us": (3.94, 0.227, 0.12, 1.9, True, (0.45, 0.38, 0.24), (0.95, 0.75, 0.1)),   # GMLRS, HIMAX (sand)
     "gmlrs_uk": (3.94, 0.227, 0.12, 1.9, True, (0.12, 0.15, 0.08), (0.9, 0.9, 0.85)),    # Hailstorm (green)

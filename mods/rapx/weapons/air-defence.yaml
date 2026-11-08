@@ -89,3 +89,19 @@ LSAM_AA:
 		Damage: 9000
 	Warhead@3Eff: PxExplosion
 		Size: 1.0
+
+# Flak Cannon (rules/air-defence.yaml FLAK): twin heavy flak barrels; bursts in the air hurt every aircraft near them
+FlakCannon:
+	Inherits: FlakGun
+	ReloadDelay: 30
+	Range: 8c0
+	Burst: 2
+	BurstDelays: 4
+	Report: ra|audio/sfx/aacanon3.ogg
+	Projectile: PxTracer
+		Rounds: 1
+		Width: 28
+		Inaccuracy: 300
+	Warhead@1Dam: SpreadDamage
+		Spread: 640
+		Damage: 2200

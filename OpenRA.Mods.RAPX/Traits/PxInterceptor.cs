@@ -190,7 +190,7 @@ namespace OpenRA.Mods.RAPX.Traits
 
 			// Soonest impact first
 			return self.World.Effects.OfType<PxRocket>()
-				.Where(r => r.InFlight && r.Owner != null && self.Owner.RelationshipWith(r.Owner) == PlayerRelationship.Enemy
+				.Where(r => r.InFlight && r.Interceptable && r.Owner != null && self.Owner.RelationshipWith(r.Owner) == PlayerRelationship.Enemy
 					&& Info.Chances.TryGetValue(r.ThreatType, out var c) && c > 0
 					&& (r.TargetPosition - centre).HorizontalLengthSquared <= r2)
 				.OrderBy(r => r.TicksLeft)

@@ -32,9 +32,12 @@ Per unit id (the sprite it replaces):
   spin     tank kind: the turret is a spinner (radar dish): rendered as one turn in this many frames (default 32
            = turret facings)
   rotors   one list of parts per rotor (each gets its own hub offset; all rotors share one sheet)
+  rotor_cut  [(part, z0, z1), ...]: rotors merged into a body part: its loose pieces centred between z0 and z1
+           (model units after the yaw) become one more rotor each
   keep_near ((x, y), r): keep only the parts centred within r of (x, y), model units after the yaw
   snap     "length" / "wing": turn the plan view's long axis (fuselage, or the wings when they are longer)
            exactly onto the nose direction, for models posed at an angle
+  bake_skin  rigged model: freeze the skinned parts in their posed shape (else they fall back to the bind space)
   fix_normals  recalculate face normals outwards and drop custom normals (SketchUp exports with flipped faces)
   waterline  ship kind: z (model units) of the waterline; faces below it are cut off, so the hull sits on the
            water (the render's ground)
@@ -301,12 +304,13 @@ MODELS = {
     "tran": {"src": "inbox/boeing_ch-47_chinook_military_transport_aircraft/scene.gltf", "kind": "heli",
              "frame": 192, "yaw": 180, "length": 8.6,
              "rotors": [["Object_6", "Object_9"], ["Object_7", "Object_8"]], "blades": 3, "team": {"box": HELI_BOX}},
-    # Longbow: "Aérospatiale SA342 Gazelle" by VTX, CC-BY-NC-SA-4.0
-    "heli": {"src": "inbox/aerospatiale_sa342_gazelle/scene.gltf", "kind": "heli", "frame": 192, "yaw": 180,
-             "length": 7.0, "rotors": [["Object_136"]], "blades": 3, "team": {"box": HELI_BOX}},
-    # Hind: "CAIC Z-10ME" by VTX, CC-BY-NC-SA-4.0
-    "hind": {"src": "inbox/caic_z-10me/scene.gltf", "kind": "heli", "frame": 192, "yaw": 180, "length": 7.6,
-             "rotors": [["Object_8"]], "blades": 5, "team": {"box": HELI_BOX}},
+    # Longbow: "SA.342M Gazelle" by Jeyhun1985, CC-BY-4.0 (2026-11-08; was the SA342 Gazelle by VTX, CC-BY-NC-SA-4.0)
+    "heli": {"src": "inbox7/gazelle/scene.gltf", "kind": "heli", "frame": 192, "yaw": 180, "length": 6.8,
+             "rotors": [["Object_2"]], "blades": 3, "team": {"box": HELI_BOX}},
+    # Hind: "Hind Attack Helicopter" by Ashley Aslett, CC-BY-4.0 (2026-11-08; was the CAIC Z-10ME by VTX)
+    "hind": {"src": "inbox7/hindm/scene.gltf", "kind": "heli", "frame": 192, "yaw": 180, "length": 8.2,
+             "rotors": [["rotorblades_low__0", "rotorconnectingrods_low__0", "rotorbladehinge_low__0", "rotorrods_low__0",
+                         "rotorbladeblockjoint_low__0", "rotorhinges_low__0"]], "blades": 5, "drop": ["missile_low__0", "missilewires1_low__0", "missilewires2_low__0"], "team": {"box": HELI_BOX}},
     # Black Hawk: "Sikorsky CH-53E Sea Stallion" by Muhamad Mirza Arrafi, CC-BY-4.0
     "mh60": {"src": "inbox/sikorsky_ch-53e_sea_stallion/scene.gltf", "kind": "heli", "frame": 192, "yaw": 0,
              "length": 8.4, "rotors": [["Object_11"]], "blades": 7, "team": {"box": HELI_BOX}},
@@ -523,4 +527,114 @@ MODELS.update({
                       "kind": "vehicle", "frame": 256, "yaw": 180, "length": 11.0, "out": "ad-bmd-soviet",
                       "scrub_red": True, "team": {"box": (0.0, 1.0, 0.0, 0.5, 0.75, 1.0)}},
 })
+
+
+# --- 2026-11-07 batch (assets/inbox, all CC-BY-4.0; credits in mods/rapx/CREDITS) ---
+MODELS.update({
+    # Thermonuclear strike bomber (Russia, rules/tu95.yaml): "Tu-95M with RDS-37" by Jeyhun1985. The RDS-37 bomb
+    # under the fuselage is left out here; artsrc/fx/make_rds37_fx.py renders it as the falling bomb.
+    "jet.tu95": {"name": "Tv-95 Bear (Tu-95M)", "src": "inbox5/tu95/scene.gltf", "kind": "air", "out": "tv-95-bear",
+                 "frame": 288, "yaw": 180, "length": 14.0, "drop": ["Object_7", "Object_2", "Object_3", "Object_8"],
+                 "team": {"box": JET_BOX}},
+    # "Russian Su-30SM '45 Blue'" by 42manako
+    "jet.su30": {"name": "Sk-30 Flankard-M (Su-30SM)", "src": "inbox5/su30/scene.gltf", "kind": "air",
+                 "out": "sk-30-flankard-m", "frame": 160, "yaw": 180, "length": 8.6, "team": {"box": JET_BOX}},
+    # "JASDF F-2A Low Poly model" by Yi Tsung Lee
+    "jet.f2": {"name": "AF-2 Zero Viper (F-2A)", "src": "inbox5/f2a/scene.gltf", "kind": "air",
+               "out": "af-2-zero-viper", "frame": 160, "yaw": 180, "length": 6.0, "team": {"box": JET_BOX}},
+    # Ballistic missile truck (Iran, rules/national-arsenal.yaml): "Iranian Zolfaghar TELAR" by 42manako
+    "zolf": {"name": "Zolfaghar TEL", "src": "inbox5/zolfaghar/scene.gltf", "kind": "rocket", "frame": 224,
+             "yaw": 180, "length": 10.5, "rocket": ["Object_7"],
+             "team": {"box": (0.0, 1.0, 0.78, 1.0, 0.0, 0.62)}},  # the cab
+    # Medium SAM national looks (rules/air-defence.yaml FactionImages): "Sky Sabre SAM" and "Buk-M3 9K317 SAM" by
+    # Jeyhun1985
+    "ad.msam.england": {"name": "Medium SAM (Sky Sabre)", "src": "inbox5/skysabre/scene.gltf", "kind": "vehicle",
+                        "frame": 224, "yaw": 180, "length": 9.0, "out": "ad-msam-england",
+                        "team": {"box": (0.0, 1.0, 0.0, 1.0, 0.75, 1.0)}},
+    "ad.msam.russia": {"name": "Medium SAM (Buk-M3)", "src": "inbox5/bukm3/scene.gltf", "kind": "vehicle",
+                       "frame": 224, "yaw": 180, "length": 9.0, "out": "ad-msam-russia",
+                       "team": {"box": (0.0, 1.0, 0.0, 1.0, 0.8, 1.0)}},
+    # Anti-air halftrack (Union): "M16 MGMC halftrack" by 42manako (the quad-.50 mount turns as the turret)
+    "m16": {"name": "Quad AA Halftrack (M16)", "src": "inbox5/m16/scene.gltf", "kind": "tank", "frame": 192,
+            "yaw": 90, "length": 6.6,
+            "tank": {"turret": ["Object_28", "Object_22", "Object_18", "Object_19", "Object_20", "Object_21"],
+                     "ring": (20, 20), "pivot": (-0.07, -38.25), "muzzle": "Object_18"},
+            "team": {"box": (0.0, 1.0, 0.0, 1.0, 0.75, 1.0)}},
+    # Flak Cannon defence (all nations): "][.Air.Defense-Cannon.][" by -X-ScornGames; the whole mount turns
+    "flak": {"name": "Flak Cannon", "src": "inbox5/flak/scene.gltf", "kind": "vehicle", "frame": 192, "yaw": 180,
+             "length": 5.5, "team": {"box": (0.0, 1.0, 0.0, 1.0, 0.85, 1.0)}},
+    # Ships: "MOSKVA HELICOPTER CARRIER" and "USS TARAWA LHA-1" by MirzaArrafiERV_45, "Battleship-<Beta>" by
+    # -X-ScornGames; China's carrier now "Type-004 Aircraft Carrier" by MirzaArrafiERV_45
+    "hcru": {"name": "Helicopter Cruiser (Moskva)", "src": "inbox5/moskva/scene.gltf", "kind": "ship", "frame": 288,
+             "yaw": 180, "length": 17.0, "waterline": 0.08, "team": {"box": (0.3, 0.7, 0.45, 0.85, 0.5, 1.0)}},
+    "lha": {"name": "Amphibious Assault Ship (Tarawa)", "src": "inbox5/tarawa/scene.gltf", "kind": "ship",
+            "frame": 320, "yaw": 0, "length": 22.0, "waterline": 0.0, "fix_normals": True, "team": {"box": (0.55, 1.0, 0.0, 1.0, 0.45, 1.0)}},
+    "bb": {"name": "Battleship", "src": "inbox5/battleship/scene.gltf", "kind": "ship", "frame": 320, "yaw": 180,
+           "length": 20.0, "waterline": -1000.0, "darken": 0.55, "team": {"box": (0.25, 0.75, 0.3, 0.7, 0.55, 1.0)}},
+})
+# China's carrier: the Type-004 replaces the generic Fujian-style model (kept as cvcn.generic, not in game)
+MODELS["cvcn.generic"] = dict(MODELS["cvcn"], out="cvcn-generic")
+MODELS["cvcn"] = {"name": "China: Type-004 carrier", "src": "inbox5/type004/scene.gltf", "kind": "ship", "frame": 352,
+                  "yaw": 0, "length": 28.0, "waterline": 0.0, "team": {"box": (0.55, 1.0, 0.0, 1.0, 0.62, 1.0)}}
+
+# Russian additions (2026-11-08, CC-BY-4.0): "russian btr" by mamont nikita (a figure and a floor plate in the file are
+# left out, and the toon outline shell); "Russian Ka-52 Alligator" and "Russian Mil Mi-35M" by 42manako. The Ka-52
+# file has no rotor blades, only blur discs: those discs are its rotors.
+MODELS.update({
+    "btr": {"name": "BTR (Russia)", "src": "inbox5/btr/scene.gltf", "kind": "tank", "frame": 192, "yaw": 0,
+            "length": 7.6, "drop": ["Object_10", "Object_13", "Object_15", "Object_17", "Object_19", "Object_22"],
+            "scrub_white": True, "tank": {"turret": [], "cut": 5.4, "ring": (1.6, 1.6), "pivot": (0.0, 1.5)},
+            "team": {"box": (0.0, 1.0, 0.0, 1.0, 0.8, 1.0)}},
+    "ka52": {"name": "Ka-52 Alligator", "src": "inbox5/ka52/scene.gltf", "kind": "heli", "frame": 192, "yaw": 180,
+             "length": 7.5, "drop": ["Icosphere"], "bake_skin": True,
+             "rotors": [["Object_22", "Object_23"],
+                        ["ka52:ka52_second_rotor_run_ka52_02_ru_co_0", "ka52:ka52_second_rotor_run_ka52_rotorblur_ca_0"]],
+             "blades": 3, "team": {"box": HELI_BOX}},
+    "mi35": {"name": "Mi-35M Hind-E", "src": "inbox5/mi35/scene.gltf", "kind": "heli", "frame": 192, "yaw": 0,
+             "length": 8.6, "rotors": [["Object_14"]], "blades": 5, "drop": ["Object_13"], "team": {"box": HELI_BOX}},
+})
+
+# 2026-11-08 batch 3 (CC-BY-4.0): "KV-AT-ST" by Aruto, "hummer h1 monster truck" by amogusstrikesback2, "Low poly
+# Humvee" by SIpriv, "Heinkel He 177 (low poly)" by Götz von Berlichingen, "Shockfang - Cyberpunk Tank" by
+# tankmodifier, "robot_war machine" by rinzks3D
+MODELS.update({
+    "kvst": {"name": "KV Strider walker", "src": "inbox6/kvatst/scene.gltf", "kind": "vehicle", "frame": 256,
+             "yaw": 90, "length": 8.0, "team": {"box": (0.0, 1.0, 0.0, 1.0, 0.97, 1.0)}},
+    "mtrk": {"name": "Monster Truck", "src": "inbox6/monster/scene.gltf", "kind": "vehicle", "frame": 192, "yaw": 180,
+             "length": 6.4, "team": {"box": (0.0, 1.0, 0.0, 1.0, 0.9, 1.0)}},
+    "hmmv": {"name": "Humvee", "src": "inbox6/humvee/scene.gltf", "kind": "tank", "frame": 192, "yaw": 180,
+             "length": 5.6, "tank": {"turret": [], "cut": 3.6, "ring": (1.3, 1.3), "pivot": (0.0, 0.3)},
+             "team": {"box": (0.35, 0.65, 0.35, 0.65, 0.75, 1.0)}},
+    "jet.he177": {"name": "He-177 Greif", "src": "inbox6/he177/scene.gltf", "kind": "air", "out": "he-177-greif",
+                  "frame": 224, "yaw": 180, "length": 6.8, "team": {"box": JET_BOX}},
+    "sfng": {"name": "Shockfang", "src": "inbox6/shockfang/scene.gltf", "kind": "tank", "frame": 224, "yaw": 0,
+             "length": 8.8, "tank": {"turret": [], "cut": 0.45, "ring": (0.32, 0.38), "pivot": (0.0, -0.05)},
+             "team": {"box": (0.0, 1.0, 0.0, 1.0, 0.85, 1.0)}},
+    "wbot": {"name": "War Robot", "src": "inbox6/warbot/scene.gltf", "kind": "vehicle", "frame": 256, "yaw": 0,
+             "length": 7.5, "team": {"box": (0.0, 1.0, 0.0, 1.0, 0.92, 1.0)}},
+})
+
+# Vanguard helicopters (2026-11-08, CC-BY-4.0): "Mil Mi-17" by 42manako (rotor blades merged into the body: cut by
+# height), "Helicopter" (AgustaWestland AW101) by Gigantic Burger
+MODELS.update({
+    "mi17": {"name": "Mi-17 Hip", "src": "inbox7/mi17/scene.gltf", "kind": "heli", "frame": 192, "yaw": 0,
+             "length": 8.6, "rotor_cut": [("MI-8_Body1Mtl_0", 7.0, 8.5)], "blades": 5, "team": {"box": HELI_BOX}},
+    "aw101": {"name": "AW101 Merlin", "src": "inbox7/heli5/scene.gltf", "kind": "heli", "frame": 192, "yaw": 180,
+              "length": 8.4, "rotors": [["AW101_propellar_AW101-AW101_sha_0"]], "blades": 5, "team": {"box": HELI_BOX}},
+})
+
+# Union rocket tank (2026-11-08): "Rocket Launcher | free 3d" by Denis.Cherkasov1, CC-BY-4.0 (an M270-style launcher
+# with every rocket a separate part: they are the rockets that fly, artsrc/units/vehicles/make_v2_rocket.sh mlrs)
+MODELS["mlrs"] = {"name": "Thunderhead MLRS", "src": "inbox7/rlfree/scene.gltf", "kind": "rocket", "frame": 224,
+                  "yaw": 180, "length": 8.4, "darken": 0.45, "rocket": [f"Default_{i}_missle_0" for i in range(1, 30)],
+                  "team": {"box": (0.15, 0.85, 0.75, 1.0, 0.56, 0.62)}}
+
+# Tiger (France, Germany; 2026-11-08): "Eurocopter Tiger Attack Helicopter" by Muhamad Mirza Arrafi, CC-BY-4.0 (rotor
+# merged into the body: cut by height)
+MODELS["tiger"] = {"name": "Tiger", "src": "inbox7/tiger/scene.gltf", "kind": "heli", "frame": 192, "yaw": 0,
+                   "length": 7.4, "rotor_cut": [("Object_3", 70.0, 85.0)], "blades": 4, "team": {"box": HELI_BOX}}
+# Union rocket truck (2026-11-08): "Multiple Rocket Launcher Military Truck" by ItsKrish7, CC-BY-4.0 (closed launch
+# tubes: the rockets leave them, the tubes stay)
+MODELS["hlfr"] = {"name": "Hailfire Rocket Truck", "src": "inbox7/mrltruck/scene.gltf", "kind": "vehicle", "frame": 224,
+                  "yaw": -90, "length": 8.0, "team": {"box": (0.2, 0.8, 0.82, 1.0, 0.45, 0.62)}}
 

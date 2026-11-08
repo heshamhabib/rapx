@@ -84,6 +84,10 @@ def make(unit):
         if dirs:  # weapons-bay jets have nothing to show
             subprocess.run([sys.executable, os.path.join(ROOT, "artsrc", "units", "pack_trimmed.py"),
                             os.path.join(UNITS, f"{name}-stores.png")] + dirs, check=True)
+        if kind == "heli":  # armed helicopters (IDEA-34): the rotor sheet on top
+            blender([blend, "-P", os.path.join(HERE, "render_heli.py"), "--", render, str(frame), SAMPLES,
+                     str(cfg.get("blades", 4)), "rotor-only"], env)
+            pack(os.path.join(render, "rotor"), f"{name}-rotor")
         stamp(render, "finished")
         return
     elif kind == "heli":

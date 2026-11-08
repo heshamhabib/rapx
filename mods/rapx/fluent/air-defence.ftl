@@ -25,3 +25,12 @@ actor-bmd =
     Needs a Radar Dome for full range.
       Strong vs Ballistic and Hypersonic missiles
       Cannot shoot aircraft, drones or rockets
+
+actor-flak =
+    .name = Flak Cannon
+    .description =
+    Heavy twin anti-aircraft gun. Its bursts damage
+    every aircraft nearby and can knock down drones
+    and cruise missiles.
+      Strong vs Aircraft and Drones
+      Weak vs Ground units

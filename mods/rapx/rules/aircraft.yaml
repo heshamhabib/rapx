@@ -282,14 +282,7 @@ HELI:
 	RevealsShroud@GAPGEN:
 		Range: 10c0
 		Type: GroundPosition
-	Armament@PRIMARY:
-		Weapon: HellfireAA
-		LocalOffset: 0,-213,-85, 0,213,-85
-		PauseOnCondition: !ammo
-	Armament@SECONDARY:
-		Weapon: HellfireAG
-		LocalOffset: 0,213,-85, 0,-213,-85
-		PauseOnCondition: !ammo
+	# Weapons: its loadout in jet-loadouts.yaml (artsrc/jets/loadout_table.py heli: HOT missiles, 20 mm gun)
 	AttackAircraft:
 		FacingTolerance: 80
 		PersistentTargeting: false
@@ -302,11 +295,11 @@ HELI:
 		InitialStance: HoldFire
 		InitialStanceAI: HoldFire
 	WithIdleOverlay@ROTORAIR:
-		Offset: 509,0,428
+		Offset: 468,-1,471
 		Sequence: rotor
 		RequiresCondition: airborne
 	WithIdleOverlay@ROTORGROUND:
-		Offset: 509,0,428
+		Offset: 468,-1,471
 		Sequence: slow-rotor
 		RequiresCondition: !airborne
 	AmmoPool:
@@ -339,7 +332,14 @@ HELI:
 HIND:
 	Inherits: ^Helicopter
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
-	# Not buildable, not even with the build-everything cheat: no HD sidebar icon yet
+	# Vanguard attack helicopter (buildable since 2026-11-08, with its own HD model and icon). Its missiles, rocket pods
+	# and gun come from jet-loadouts.yaml (artsrc/jets/loadout_table.py hind): each fires from its pylon and leaves it
+	Buildable:
+		Queue: Aircraft
+		BuildAtProductionType: Helicopter
+		BuildPaletteOrder: 40
+		Prerequisites: ~hpad, ~structures.soviet, ~techlevel.medium
+		Description: actor-hind.description
 	Valued:
 		Cost: 1500
 	Tooltip:
@@ -373,11 +373,11 @@ HIND:
 		InitialStance: HoldFire
 		InitialStanceAI: HoldFire
 	WithIdleOverlay@ROTORAIR:
-		Offset: 267,0,489
+		Offset: 354,-2,367
 		Sequence: rotor
 		RequiresCondition: airborne
 	WithIdleOverlay@ROTORGROUND:
-		Offset: 267,0,489
+		Offset: 354,-2,367
 		Sequence: slow-rotor
 		RequiresCondition: !airborne
 	AmmoPool:
@@ -517,3 +517,170 @@ MH60:
 	WithProductionIconOverlay:
 		Types: Veterancy
 		Prerequisites: aircraft.upgraded
+
+# --- 2026-11-08: Vanguard attack helicopters (artsrc/units/meshes/make_sketchfab.py; rotor Offsets printed there) ---
+# Mi-35M Hind-E (Vanguard nations): a gunship that also carries 5 infantry
+MI35:
+	Inherits: HIND
+	Inherits@CARGOPIPS: ^CargoPips
+	Buildable:
+		Queue: Aircraft
+		BuildAtProductionType: Helicopter
+		BuildPaletteOrder: 41
+		Prerequisites: ~hpad, ~structures.soviet, ~techlevel.medium
+		Description: actor-mi35.description
+	Valued:
+		Cost: 1600
+	Tooltip:
+		Name: actor-mi35.name
+	Health:
+		HP: 16000
+	Aircraft:
+		Speed: 120
+	# Weapons: its loadout in jet-loadouts.yaml (artsrc/jets/loadout_table.py mi35)
+	-WithMuzzleOverlay:
+	Cargo:
+		Types: Infantry, Spy
+		MaxWeight: 5
+	WithIdleOverlay@ROTORAIR:
+		Offset: 221,22,394
+	WithIdleOverlay@ROTORGROUND:
+		Offset: 221,22,394
+	RenderSprites:
+		Image: mi35
+	SpawnActorOnDeath:
+		Actor: MI35.Husk
+
+# Ka-52 Alligator (Russia): a fast tank hunter with coaxial rotors (two rotor overlays on one hub)
+KA52:
+	Inherits: HIND
+	Buildable:
+		Queue: Aircraft
+		BuildAtProductionType: Helicopter
+		BuildPaletteOrder: 42
+		Prerequisites: ~hpad, techcenter, ~structures.russia, ~techlevel.high
+		Description: actor-ka52.description
+	PxNationalUnit:
+		Factions: russia
+	Valued:
+		Cost: 2000
+	Tooltip:
+		Name: actor-ka52.name
+	Health:
+		HP: 14000
+	Aircraft:
+		Speed: 150
+	# Weapons: its loadout in jet-loadouts.yaml (artsrc/jets/loadout_table.py ka52)
+	-WithMuzzleOverlay:
+	WithIdleOverlay@ROTORAIR:
+		Offset: 197,0,407
+	WithIdleOverlay@ROTORGROUND:
+		Offset: 197,0,407
+	WithIdleOverlay@ROTOR2AIR:
+		Offset: 197,0,548
+		Sequence: rotor
+		RequiresCondition: airborne
+	WithIdleOverlay@ROTOR2GROUND:
+		Offset: 197,0,548
+		Sequence: slow-rotor
+		RequiresCondition: !airborne
+	RenderSprites:
+		Image: ka52
+	SpawnActorOnDeath:
+		Actor: KA52.Husk
+
+# Mi-17 Hip (Vanguard nations): the Vanguard's troop helicopter, 8 infantry and a door gun
+MI17:
+	Inherits: TRAN
+	-AmbientSound@ENGINE:
+	AmbientSound@ENGINE:
+		SoundFiles: ra|audio/aircraft/rotor.wav
+		RequiresCondition: airborne
+	Buildable:
+		BuildPaletteOrder: 11
+		Prerequisites: ~hpad, ~structures.soviet, ~techlevel.medium
+		Description: actor-mi17.description
+	Valued:
+		Cost: 1000
+	Tooltip:
+		Name: actor-mi17.name
+	Health:
+		HP: 15000
+	-WithIdleOverlay@ROTOR2AIR:
+	-WithIdleOverlay@ROTOR2GROUND:
+	WithIdleOverlay@ROTOR1AIR:
+		Offset: 211,-7,313
+	WithIdleOverlay@ROTOR1GROUND:
+		Offset: 211,-7,313
+	Armament:
+		Weapon: M60mg
+		LocalOffset: 300,200,-100
+	AttackAircraft:
+		FacingTolerance: 80
+		PersistentTargeting: false
+		AttackType: Hover
+	AutoTarget:
+		InitialStance: ReturnFire
+		InitialStanceAI: ReturnFire
+	RenderSprites:
+		Image: mi17
+	SpawnActorOnDeath:
+		Actor: MI17.Husk
+
+# AW101 Merlin (India): a big three-engined transport, 10 infantry, fast
+AW101:
+	Inherits: TRAN
+	Buildable:
+		BuildPaletteOrder: 12
+		Prerequisites: ~hpad, ~structures.india, ~techlevel.medium
+		Description: actor-aw101.description
+	PxNationalUnit:
+		Factions: india
+	Valued:
+		Cost: 1200
+	Tooltip:
+		Name: actor-aw101.name
+	Health:
+		HP: 18000
+	Aircraft:
+		Speed: 150
+	Cargo:
+		MaxWeight: 10
+	-WithIdleOverlay@ROTOR2AIR:
+	-WithIdleOverlay@ROTOR2GROUND:
+	WithIdleOverlay@ROTOR1AIR:
+		Offset: 479,7,508
+	WithIdleOverlay@ROTOR1GROUND:
+		Offset: 479,7,508
+	RenderSprites:
+		Image: aw101
+	SpawnActorOnDeath:
+		Actor: AW101.Husk
+
+# Tiger (France, Germany): heavy multirole attack helicopter, HOT missiles and a rocket stream (its loadout in
+# jet-loadouts.yaml, artsrc/jets/loadout_table.py tiger)
+TIGER:
+	Inherits: HELI
+	Buildable:
+		BuildPaletteOrder: 41
+		Prerequisites: ~hpad, techcenter, ~structures.tiger, ~techlevel.high
+		Description: actor-tiger.description
+	PxNationalUnit:
+		Factions: france, germany
+	Valued:
+		Cost: 2000
+	Tooltip:
+		Name: actor-tiger.name
+	Health:
+		HP: 14000
+	Aircraft:
+		Speed: 140
+	WithIdleOverlay@ROTORAIR:
+		Offset: -23,-7,414
+	WithIdleOverlay@ROTORGROUND:
+		Offset: -23,-7,414
+	RenderSprites:
+		Image: tiger
+	SpawnActorOnDeath:
+		Actor: TIGER.Husk
+

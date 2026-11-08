@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 """
-The falling Fatman bomb (USA bomber strike, rules/fatman.yaml): renders the Sketchfab model "Atomic Bomb - FATMAN"
-(CaptainTux, CC-BY-4.0, artsrc/units/meshes/glb/sketchfab/inbox4/fatman) nose-down, slowly turning about its long
-axis while it falls, and packs the frames into mods/rapx/bits/hd/fx/fatman-bomb.png (image `fatman`, sequence
-`falling` in sequences/fatman.yaml).
+Falling strategic bombs for the bomber strikes (rules/fatman.yaml, rules/tu95.yaml): a Sketchfab model rendered
+nose-down, slowly turning about its long axis while it falls, packed into mods/rapx/bits/hd/fx/<name>-bomb.png
+(sequence `falling` in sequences/fatman.yaml).
 
-  python3 artsrc/fx/make_fatman_fx.py            (from the repo root; runs Blender itself)
+  python3 artsrc/fx/make_bomb_fx.py [fatman|rds37 ...]   (from the repo root; runs Blender itself; default: all)
 
-The bomb is drawn larger than real size (3.25 m = 8 world px) so it reads while it falls, like the nuke's falling
-missile (atomic.down Scale 1.8).
+  fatman  "Atomic Bomb - FATMAN" by CaptainTux (CC-BY-4.0), USA Fatman Strike
+  rds37   the RDS-37 under "Tu-95M with RDS-37" by Jeyhun1985 (CC-BY-4.0), Russia's thermonuclear strike
+
+Bombs are drawn larger than real size (a 3.25 m Fatman would be 8 world px) so they read while they fall, like the
+nuke's falling missile (atomic.down Scale 1.8).
 """
 import math
 import os
@@ -17,16 +19,23 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.normpath(os.path.join(HERE, "..", ".."))
-SRC = os.path.join(ROOT, "artsrc", "units", "meshes", "glb", "sketchfab", "inbox4", "fatman", "scene.gltf")
-RENDER = os.path.join(HERE, "preview", "fatman-bomb")
-OUT = os.path.join(ROOT, "mods", "rapx", "bits", "hd", "fx", "fatman-bomb.png")
+GLB = os.path.join(ROOT, "artsrc", "units", "meshes", "glb", "sketchfab")
+# name -> (glTF, parts kept (None = all), on-screen length in world px). Every model's nose points to -Y.
+BOMBS = {
+    "fatman": (os.path.join(GLB, "inbox4", "fatman", "scene.gltf"), None, 22),
+    "rds37": (os.path.join(GLB, "inbox5", "tu95", "scene.gltf"), ["Object_7", "Object_2", "Object_3", "Object_8"], 28),
+}
 FRAMES = 16
 FRAME_PX = 120  # sprite px (3 per world px): a 40 px world frame
-BOMB_WORLD_PX = 22  # bomb length on screen before the camera's foreshortening
 TILT = 18  # degrees off vertical, nose down and a little ahead
 
 
-def render():
+def paths(name):
+    return (os.path.join(HERE, "preview", f"{name}-bomb"),
+            os.path.join(ROOT, "mods", "rapx", "bits", "hd", "fx", f"{name}-bomb.png"))
+
+
+def render(name):
     import bpy
     from mathutils import Vector
 
@@ -36,8 +45,12 @@ def render():
     import render_sprites
 
     bpy.ops.wm.read_factory_settings(use_empty=True)
-    bpy.ops.import_scene.gltf(filepath=SRC)
+    src, keep, world_px = BOMBS[name]
+    render_dir = paths(name)[0]
+    bpy.ops.import_scene.gltf(filepath=src)
     bpy.context.view_layer.update()
+    for o in [o for o in bpy.data.objects if o.type == "MESH" and keep and o.name not in keep]:
+        bpy.data.objects.remove(o)
     meshes = [o for o in bpy.data.objects if o.type == "MESH"]
     pts = [o.matrix_world @ Vector(c) for o in meshes for c in o.bound_box]
     lo = Vector([min(p[i] for p in pts) for i in range(3)])
@@ -54,23 +67,25 @@ def render():
         o.location -= centre  # parented with an identity body: local = world
 
     body.rotation_mode = "YXZ"  # assigning an Euler copies its angles, not its order
-    unit_px = BOMB_WORLD_PX / length
+    unit_px = world_px / length
     render_sprites.setup(frame=FRAME_PX, samples=96, unit_px=unit_px)
     for i in range(FRAMES):
         spin = math.radians(i * 360 / FRAMES)
         # spin about the long axis (Y) first, then +90 about X turns the nose (-Y) to -Z (down); the tilt
         # leaves the nose leaning a little towards the viewer
         body.rotation_euler = (math.radians(90 - TILT), spin, 0)
-        render_sprites.render_to(os.path.join(RENDER, f"frame-{i:02d}.png"))
+        render_sprites.render_to(os.path.join(render_dir, f"frame-{i:02d}.png"))
 
 
 try:
-    import bpy  # noqa: F401  (inside Blender: render)
-except ImportError:  # plain Python: run Blender on this file, then pack
-    subprocess.run(["rm", "-rf", RENDER])
-    subprocess.run(["nice", "-n", "15", os.environ.get("BLENDER", "blender"), "-b", "-t", "4", "-P",
-                    os.path.abspath(__file__)], cwd=ROOT, check=True, capture_output=True)
-    subprocess.run([sys.executable, os.path.join(ROOT, "artsrc", "units", "pack_sprites.py"), RENDER, OUT],
-                   check=True)
+    import bpy  # noqa: F401  (inside Blender: render the bomb named after "--")
+except ImportError:  # plain Python: run Blender for each bomb, then pack
+    for bomb in sys.argv[1:] or list(BOMBS):
+        render_dir, out = paths(bomb)
+        subprocess.run(["rm", "-rf", render_dir])
+        subprocess.run(["nice", "-n", "15", os.environ.get("BLENDER", "blender"), "-b", "-t", "4", "-P",
+                        os.path.abspath(__file__), "--", bomb], cwd=ROOT, check=True, capture_output=True)
+        subprocess.run([sys.executable, os.path.join(ROOT, "artsrc", "units", "pack_sprites.py"), render_dir, out],
+                       check=True)
 else:
-    render()
+    render(sys.argv[sys.argv.index("--") + 1])

@@ -221,6 +221,7 @@
 World:
 	Inherits: ^BaseWorld
 	PxShuffleMusic:
+	PxStrikeFormations:
 	ChatCommands:
 	DevScreenshots:
 	PxPerfLog:

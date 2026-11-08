@@ -22,6 +22,9 @@ render_sprites.setup(frame=FRAME, samples=SAMPLES)
 body = bpy.data.objects["Body"]
 stores = sorted((o for o in body.children_recursive if "px_store" in o), key=lambda o: o.name)
 airframe = [o for o in body.children_recursive if o.type == "MESH" and o not in stores]
+for o in bpy.data.objects:  # helicopter rotors are their own roots: render_heli.py draws them
+    if o.type == "MESH" and o not in airframe and o not in stores:
+        o.hide_render = True
 
 
 def turn_all(prefix):

@@ -130,15 +130,65 @@ TurretGun:
 	Warhead@4EffWater: CreateEffect
 		Explosions: med_splash
 
+# Long-range shells (howitzer, naval guns): ^Artillery's damage and effects, but flown as an HD shell
+# (OpenRA.Mods.RAPX/Projectiles/PxRocket.cs) with a fire and smoke trail instead of a contrail line.
+# Standalone (not inheriting ^Cannon) so no Bullet-only fields reach the PxRocket projectile.
+^ArtilleryShell:
+	ReloadDelay: 85
+	Range: 12c0
+	Report: ra|audio/sfx/cannon1.ogg
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	Projectile: PxRocket
+		Speed: 204
+		Inaccuracy: 1c938
+		Interceptable: false
+		ThreatType: Shell
+		TrackTarget: false
+		Arc: 0.3
+		Length: 70
+		Width: 34
+		BodyColor: 3C3A36
+		NoseColor: 8C7A5A
+		FlameColor: FF9A3C
+		FlameSize: 0.8
+		FirePlume: 0.5
+		TrailLife: 30
+		LaunchPuffs: 0
+	Warhead@1Dam: SpreadDamage
+		Spread: 426
+		Damage: 23000
+		ValidTargets: GroundActor, WaterActor
+		Versus:
+			None: 90
+			Wood: 40
+			Light: 60
+			Heavy: 25
+			Concrete: 50
+		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Crater
+		ValidTargets: Ground, Infantry
+	# HD explosion (OpenRA.Mods.RAPX/Warheads/PxExplosionWarhead.cs)
+	Warhead@3Eff: PxExplosion
+		Size: 1.2
+		Smoke: 1.2
+		ImpactSounds: ra|audio/sfx/kaboom15.ogg
+		ValidTargets: Ground, GroundActor, WaterActor, Trees
+	Warhead@4EffWater: CreateEffect
+		Explosions: med_splash
+		ImpactSounds: ra|audio/sfx/splash9.ogg
+		ValidTargets: Water, Underwater
+		InvalidTargets: Bridge
+
 155mm:
-	Inherits: ^Artillery
+	Inherits: ^ArtilleryShell
 	MinRange: 4c0
 	Report: ra|audio/sfx/tank5.ogg
 	TargetActorCenter: true
-	Projectile: Bullet
-		ContrailLength: 30
+	Projectile: PxRocket
 		Speed: 170
 		Inaccuracy: 1c138
+		TrailSize: 0.8
 	Warhead@1Dam: SpreadDamage
 		Falloff: 100, 55, 20, 5
 		Versus:
@@ -148,16 +198,15 @@ TurretGun:
 		Smoke: 1.2
 
 8Inch:
-	Inherits: ^Artillery
+	Inherits: ^ArtilleryShell
 	MinRange: 3c0
 	ReloadDelay: 250
 	Range: 20c0
 	Burst: 2
 	Report: ra|audio/sfx/turret1.ogg
 	TargetActorCenter: true
-	Projectile: Bullet
+	Projectile: PxRocket
 		Inaccuracy: 1c938
-		ContrailLength: 30
 	Warhead@1Dam: SpreadDamage
 		Spread: 213
 		Damage: 2500
@@ -271,3 +320,27 @@ XR85Cannon:
 		Size: 2.2
 		Smoke: 2.0
 		ImpactSounds: ra|audio/sfx/kaboom25.ogg
+
+# Battleship (rules/ships.yaml BB): 16-inch main guns, the heaviest naval artillery
+16Inch:
+	Inherits: 8Inch
+	ReloadDelay: 300
+	Range: 24c0
+	Burst: 3
+	BurstDelays: 6
+	Report: ra|audio/sfx/turret1.ogg
+	Warhead@1Dam: SpreadDamage
+		Spread: 384
+		Damage: 4500
+	Warhead@3Eff: PxExplosion
+		Size: 2.4
+		Smoke: 1.6
+
+# KV Strider (rules/vehicles.yaml KVST): the KV-2-style 152 mm gun on its walker body
+KV152:
+	Inherits: 120mm
+	ReloadDelay: 110
+	Range: 6c0
+	Warhead@1Dam: SpreadDamage
+		Spread: 256
+		Damage: 7000

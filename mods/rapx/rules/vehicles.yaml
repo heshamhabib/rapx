@@ -1065,3 +1065,297 @@ STNK:
 	WithProductionIconOverlay:
 		Types: Veterancy
 		Prerequisites: vehicles.upgraded
+
+# Quad AA Halftrack (2026-11-07, Union): a cheap early anti-air vehicle, four .50 machine guns on a turning mount.
+# Art: artsrc/units/meshes/make_sketchfab.py m16 (hull + turret).
+M16:
+	Inherits: ^Vehicle
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 131
+		Prerequisites: ~vehicles.allies, ~techlevel.low
+		Description: actor-m16.description
+	Valued:
+		Cost: 550
+	Tooltip:
+		Name: actor-m16.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 14000
+	Armor:
+		Type: Light
+	Mobile:
+		TurnSpeed: 40
+		Speed: 108
+	RevealsShroud:
+		MinRange: 4c0
+		Range: 6c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Turreted:
+		TurnSpeed: 48
+		Offset: -480,0,0
+	Armament:
+		Weapon: QuadFifty
+		LocalOffset: 500,0,420
+	AttackTurreted:
+	WithSpriteTurret:
+	RenderSprites:
+		Image: m16
+	ProducibleWithLevel:
+		Prerequisites: vehicles.upgraded
+	Selectable:
+		DecorationBounds: 1536, 1536
+	WithProductionIconOverlay:
+		Types: Veterancy
+		Prerequisites: vehicles.upgraded
+
+# BTR (2026-11-08, Russia): an eight-wheeled armoured transport with a turret autocannon: carries 5 infantry and,
+# unlike the APC, fights. Art: artsrc/units/meshes/make_sketchfab.py btr (hull + turret).
+BTR:
+	Inherits: APC
+	Buildable:
+		BuildPaletteOrder: 121
+		Prerequisites: ~vehicles.russia, ~techlevel.low
+		Description: actor-btr.description
+	PxNationalUnit:
+		Factions: russia
+	Valued:
+		Cost: 950
+	Tooltip:
+		Name: actor-btr.name
+	Health:
+		HP: 30000
+	Mobile:
+		Speed: 140
+		Locomotor: wheeled
+	Turreted:
+		TurnSpeed: 40
+		Offset: 117,4,0
+	Armament:
+		Weapon: 25mm
+		LocalOffset: 200,0,310
+		-MuzzleSequence:
+	-AttackFrontal:
+	AttackTurreted:
+	-WithMuzzleOverlay:
+	WithSpriteTurret:
+	RenderSprites:
+		Image: btr
+
+# --- 2026-11-08 batch 3 (art: artsrc/units/meshes/make_sketchfab.py <image>) ---
+# KV Strider (Vanguard nations): a KV-style heavy tank body on two walker legs; steps over walls and infantry
+KVST:
+	Inherits: ^TrackedVehicle
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 175
+		Prerequisites: ~vehicles.soviet, fix, ~techlevel.medium
+		Description: actor-kvst.description
+	Valued:
+		Cost: 1800
+	Tooltip:
+		Name: actor-kvst.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 70000
+	Armor:
+		Type: Heavy
+	Mobile:
+		TurnSpeed: 16
+		Speed: 64
+		Locomotor: heavytracked
+	RevealsShroud:
+		MinRange: 4c0
+		Range: 7c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Armament:
+		Weapon: KV152
+		LocalOffset: 700,0,900
+	AttackFrontal:
+		FacingTolerance: 16
+	RenderSprites:
+		Image: kvst
+	Selectable:
+		DecorationBounds: 2048, 2600, 0, -400
+
+# Monster Truck (USA): huge wheels, no gun: it flattens infantry, fences and sandbags at speed
+MTRK:
+	Inherits: ^Vehicle
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 24
+		Prerequisites: ~vehicles.allies, ~techlevel.low
+		Description: actor-mtrk.description
+	PxNationalUnit:
+		Factions: usa
+	Valued:
+		Cost: 500
+	Tooltip:
+		Name: actor-mtrk.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 22000
+	Armor:
+		Type: Light
+	Mobile:
+		TurnSpeed: 40
+		Speed: 170
+		Locomotor: heavywheeled
+	RevealsShroud:
+		MinRange: 4c0
+		Range: 7c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	RenderSprites:
+		Image: mtrk
+	Selectable:
+		DecorationBounds: 1536, 1536
+
+# Humvee (USA): a tough scout car with a roof .50 cal; carries 4 infantry
+HMMV:
+	Inherits: ^Vehicle
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Inherits@CARGOPIPS: ^CargoPips
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 22
+		Prerequisites: ~vehicles.allies, ~techlevel.low
+		Description: actor-hmmv.description
+	PxNationalUnit:
+		Factions: usa
+	Valued:
+		Cost: 700
+	Tooltip:
+		Name: actor-hmmv.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 20000
+	Armor:
+		Type: Light
+	Mobile:
+		TurnSpeed: 40
+		Speed: 150
+		PauseOnCondition: notmobile || being-captured
+	RevealsShroud:
+		MinRange: 4c0
+		Range: 8c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Turreted:
+		TurnSpeed: 48
+	Armament:
+		Weapon: HMMV_M2
+		LocalOffset: 60,0,290
+	AttackTurreted:
+	WithSpriteTurret:
+	Cargo:
+		Types: Infantry, Spy
+		MaxWeight: 4
+		LoadingCondition: notmobile
+	RenderSprites:
+		Image: hmmv
+	Selectable:
+		DecorationBounds: 1280, 1280
+
+# Shockfang (Union, experimental, one per player): a cyber tank whose cannon fires a heavy electric discharge
+SFNG:
+	Inherits: ^TrackedVehicle
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 190
+		Prerequisites: ~vehicles.allies, techcenter, ~techlevel.high
+		Description: actor-sfng.description
+		BuildLimit: 1
+	Valued:
+		Cost: 3000
+	Tooltip:
+		Name: actor-sfng.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 80000
+	Armor:
+		Type: Heavy
+	Mobile:
+		TurnSpeed: 20
+		Speed: 80
+		Locomotor: heavytracked
+	RevealsShroud:
+		MinRange: 4c0
+		Range: 7c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Turreted:
+		TurnSpeed: 24
+		Offset: 19,0,0
+	Armament:
+		Weapon: ShockfangZap
+		LocalOffset: 770,0,223
+	AttackTurreted:
+	WithSpriteTurret:
+	RenderSprites:
+		Image: sfng
+	Selectable:
+		DecorationBounds: 1877, 1877
+
+# War Robot (Union): a two-legged combat mech with a chain gun and anti-tank rockets
+WBOT:
+	Inherits: ^TrackedVehicle
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 176
+		Prerequisites: ~vehicles.allies, fix, ~techlevel.medium
+		Description: actor-wbot.description
+	Valued:
+		Cost: 1700
+	Tooltip:
+		Name: actor-wbot.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 55000
+	Armor:
+		Type: Heavy
+	Mobile:
+		TurnSpeed: 20
+		Speed: 70
+		Locomotor: heavytracked
+	RevealsShroud:
+		MinRange: 4c0
+		Range: 7c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Armament@GUN:
+		Weapon: Vulcan
+		LocalOffset: 500,300,900
+	Armament@ROCKETS:
+		Weapon: Dragon
+		LocalOffset: 300,-300,1100
+	AttackFrontal:
+		FacingTolerance: 24
+	RenderSprites:
+		Image: wbot
+	Selectable:
+		DecorationBounds: 2048, 2600, 0, -400

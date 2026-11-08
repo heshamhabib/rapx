@@ -18,6 +18,10 @@ using OpenRA.Support;
 
 namespace OpenRA.Mods.RAPX.Effects
 {
+	/// <summary>Standard: a quick salvo fanning out behind the jet. Angel: the big "angel wings" salvo of heavy aircraft
+	/// and helicopters, released in pairs both sides at once, with large twinkling flares and long white smoke wings.</summary>
+	public enum PxFlareStyle { Standard, Angel }
+
 	/// <summary>
 	/// One salvo of countermeasure flares (PxFlareDispenser), purely cosmetic: the jet drops them one after another,
 	/// alternating left and right, so they fan out behind it like wings. Each flare is a flickering white-hot core in an
@@ -32,11 +36,17 @@ namespace OpenRA.Mods.RAPX.Effects
 		const int ZBias = 1536;
 		const int AverageLift = 24;
 
+		// Angel salvo: lighter drag and gravity, so the flares sail out in wide arcs and burn longer
+		const float AngelGravity = 1.1f;
+		const float AngelDrag = 0.95f;
+		const int AngelLift = 20;
+
 		sealed class Flare
 		{
 			public float X, Y, Z;
 			public float VX, VY, VZ;
 			public int Age, Life;
+			public float Phase;
 			public bool Released, Out;
 		}
 
@@ -45,22 +55,38 @@ namespace OpenRA.Mods.RAPX.Effects
 		readonly List<Flare> flares = new();
 		readonly PxParticles particles;
 		readonly MersenneTwister rng = new(Game.CosmeticRandom.Next());
+		readonly PxFlareStyle style;
 		float forwardX, forwardY;
 		WVec jetVelocity;
 		WPos jetLast;
 		int ticks;
 
-		public PxFlareBurst(Actor jet, WVec velocity, int count)
+		public PxFlareBurst(Actor jet, WVec velocity, int count, PxFlareStyle style = PxFlareStyle.Standard)
 		{
 			this.jet = jet;
+			this.style = style;
 			jetLast = jet.CenterPosition;
 			jetVelocity = velocity;
 			anchor = new WPos(jetLast.X, jetLast.Y, 0);
-			particles = new PxParticles(jet.World) { Max = 2400 };
+			particles = new PxParticles(jet.World) { Max = style == PxFlareStyle.Angel ? 5200 : 2400 };
+
+			// A hovering helicopter has no speed: the salvo goes off its nose direction instead
+			var nose = new WVec(0, -1024, 0).Rotate(WRot.FromYaw(jet.Orientation.Yaw));
+			forwardX = nose.X / 1024f;
+			forwardY = nose.Y / 1024f;
 			SetForward(velocity);
 			for (var i = 0; i < count; i++)
-				flares.Add(new Flare { Life = 48 + rng.Next(24) });
+				flares.Add(new Flare
+				{
+					Life = style == PxFlareStyle.Angel ? 95 + rng.Next(30) : 48 + rng.Next(24),
+					Phase = Rand(0, MathF.PI * 2)
+				});
+
+			if (style == PxFlareStyle.Angel)
+				Ignite();
 		}
+
+		bool Angel => style == PxFlareStyle.Angel;
 
 		void SetForward(WVec v)
 		{
@@ -78,16 +104,19 @@ namespace OpenRA.Mods.RAPX.Effects
 
 		/// <summary>Where the middle of a salvo is t ticks after release, relative to the release point (same flight
 		/// model as the flares, average kick): used to aim the missiles the flares fool.</summary>
-		public static WVec Drift(WVec jetVelocity, int t)
+		public static WVec Drift(WVec jetVelocity, int t, PxFlareStyle style = PxFlareStyle.Standard)
 		{
 			// Integer steps (fixed point x1024): the result aims synced missiles, so no float maths here
-			long vx = jetVelocity.X * 512L, vy = jetVelocity.Y * 512L, vz = (long)AverageLift * 1024;
+			var angel = style == PxFlareStyle.Angel;
+			var drag = angel ? 95 : 93;
+			var gravity = (long)((angel ? AngelGravity : Gravity) * 1024);
+			long vx = jetVelocity.X * 512L, vy = jetVelocity.Y * 512L, vz = (long)(angel ? AngelLift : AverageLift) * 1024;
 			long x = 0, y = 0, z = 0;
 			for (var i = 0; i < t; i++)
 			{
-				vx = vx * 93 / 100;
-				vy = vy * 93 / 100;
-				vz = vz * 93 / 100 - (long)(Gravity * 1024);
+				vx = vx * drag / 100;
+				vy = vy * drag / 100;
+				vz = vz * drag / 100 - gravity;
 				x += vx;
 				y += vy;
 				z += vz;
@@ -113,8 +142,9 @@ namespace OpenRA.Mods.RAPX.Effects
 				var f = flares[i];
 				if (!f.Released)
 				{
-					if (ticks >= i * ReleaseInterval)
-						Release(f, i % 2 == 0 ? 1 : -1);
+					// Angel flares leave in pairs, one each side on the same tick, so the wings stay symmetrical
+					if (ticks >= (Angel ? i / 2 : i * ReleaseInterval))
+						Release(f, i % 2 == 0 ? 1 : -1, Angel ? (float)(i / 2) / Math.Max(1, (flares.Count - 1) / 2) : 0);
 					else
 					{
 						burning = true;
@@ -126,19 +156,26 @@ namespace OpenRA.Mods.RAPX.Effects
 					continue;
 
 				burning = true;
-				f.VX *= Drag;
-				f.VY *= Drag;
-				f.VZ = f.VZ * Drag - Gravity;
+				var drag = Angel ? AngelDrag : Drag;
+				f.VX *= drag;
+				f.VY *= drag;
+				f.VZ = f.VZ * drag - (Angel ? AngelGravity : Gravity);
 				f.X += f.VX;
 				f.Y += f.VY;
 				f.Z += f.VZ;
 				if (++f.Age >= f.Life || f.Z <= 0)
 				{
 					f.Out = true;
+					if (Angel)
+						BurnOut(f);
+
 					continue;
 				}
 
-				Emit(f);
+				if (Angel)
+					EmitAngel(f);
+				else
+					Emit(f);
 			}
 
 			particles.Update(1);
@@ -147,7 +184,7 @@ namespace OpenRA.Mods.RAPX.Effects
 				world.AddFrameEndTask(w => w.Remove(this));
 		}
 
-		void Release(Flare f, int side)
+		void Release(Flare f, int side, float order)
 		{
 			f.Released = true;
 			f.X = jetLast.X;
@@ -157,17 +194,101 @@ namespace OpenRA.Mods.RAPX.Effects
 			// Kicked out sideways and a little back and up, keeping part of the jet's speed
 			var rightX = -forwardY;
 			var rightY = forwardX;
-			var sideways = side * Rand(38, 78);
-			var back = -Rand(8, 30);
+			float sideways, back;
+			if (Angel)
+			{
+				// Early pairs go up and out, later ones wider and flatter: together they draw the curved wings
+				sideways = side * (34 + 84 * order + Rand(-6, 6));
+				back = -(10 + 22 * order);
+				f.VZ = 30 - 16 * order + Rand(-3, 3);
+			}
+			else
+			{
+				sideways = side * Rand(38, 78);
+				back = -Rand(8, 30);
+				f.VZ = Rand(14, 34);
+			}
+
 			f.VX = jetVelocity.X * 0.5f + rightX * sideways + forwardX * back;
 			f.VY = jetVelocity.Y * 0.5f + rightY * sideways + forwardY * back;
-			f.VZ = Rand(14, 34);
 
 			// Ignition flash
 			var at = Local(f);
-			Add(PxParticleKind.Glow, at, 1.7f, 4, 0.9f, new float3(1f, 0.92f, 0.75f));
-			for (var i = 0; i < 4; i++)
-				Spark(at, 1.6f);
+			Add(PxParticleKind.Glow, at, Angel ? 2.6f : 1.7f, Angel ? 5 : 4, 0.9f, new float3(1f, 0.92f, 0.75f));
+			for (var i = 0; i < (Angel ? 7 : 4); i++)
+				Spark(at, Angel ? 2.2f : 1.6f);
+		}
+
+		void Ignite()
+		{
+			// The whole dispenser fires at once: a white flash round the aircraft and a hot shock ring
+			var at = new float3((jetLast.X - anchor.X) * PixelPerWorld, (jetLast.Y - anchor.Y) * PixelPerWorld, jetLast.Z * PixelPerWorld);
+			Add(PxParticleKind.Glow, at, 5.5f, 7, 0.85f, new float3(1f, 0.95f, 0.85f));
+			Add(PxParticleKind.Glow, at, 9f, 10, 0.3f, new float3(1f, 0.62f, 0.25f));
+			particles.Add(new PxParticle
+			{
+				Kind = PxParticleKind.Ring,
+				X = at.X,
+				Y = at.Y,
+				Z = at.Z,
+				Life = 16,
+				Size = 0.6f,
+				Grow = 5f,
+				Alpha = 0.7f,
+				Tint = new float3(1f, 0.85f, 0.6f),
+				Frame = rng.Next(Math.Max(1, particles.FrameCount(PxParticleKind.Ring))),
+				Angle = rng.Next(1024),
+			});
+
+			for (var i = 0; i < 18; i++)
+				Spark(at, 3f);
+		}
+
+		void EmitAngel(Flare f)
+		{
+			var at = Local(f);
+			var t = (float)f.Age / f.Life;
+			var heat = t < 0.75f ? 1f : (1 - t) / 0.25f;
+			var twinkle = 0.75f + 0.25f * MathF.Sin(f.Age * 1.9f + f.Phase);
+
+			// Big flickering white-hot core, a gold halo and a wide warm bloom that lights up the sky around it
+			Add(PxParticleKind.Glow, at, Rand(0.6f, 0.8f) * twinkle * (0.5f + 0.5f * heat), 1.6f, 1f, new float3(1f, 0.98f, 0.92f));
+			Add(PxParticleKind.Glow, at, 2.1f * heat * twinkle, 1.6f, 0.55f * heat, new float3(1f, 0.7f, 0.3f));
+			Add(PxParticleKind.Glow, at, 3.8f * heat, 1.6f, 0.16f * heat, new float3(1f, 0.5f, 0.2f));
+
+			// Thick white smoke: the lingering "angel wings"
+			if ((f.Age & 1) == 0)
+				particles.Add(new PxParticle
+				{
+					Kind = PxParticleKind.Smoke,
+					X = at.X + Rand(-0.5f, 0.5f),
+					Y = at.Y + Rand(-0.4f, 0.4f),
+					Z = at.Z,
+					VX = Rand(-0.03f, 0.03f),
+					VY = Rand(-0.02f, 0.02f),
+					VZ = Rand(0, 0.02f),
+					Drag = 0.04f,
+					Life = Rand(150, 190),
+					Size = Rand(0.28f, 0.36f),
+					Grow = 3.6f,
+					Alpha = 0.62f * (0.4f + 0.6f * heat),
+					Tint = new float3(0.95f, 0.93f, 0.9f),
+					Frame = rng.Next(Math.Max(1, particles.FrameCount(PxParticleKind.Smoke))),
+					Spin = Rand(-1.2f, 1.2f),
+					Angle = rng.Next(1024),
+				});
+
+			if (rng.NextFloat() < 0.6f * heat)
+				Spark(at, 0.8f);
+		}
+
+		void BurnOut(Flare f)
+		{
+			// Each flare dies with a last pop of sparks
+			var at = Local(f);
+			Add(PxParticleKind.Glow, at, 1.4f, 4, 0.6f, new float3(1f, 0.75f, 0.4f));
+			for (var i = 0; i < 5; i++)
+				Spark(at, 1.2f);
 		}
 
 		void Emit(Flare f)

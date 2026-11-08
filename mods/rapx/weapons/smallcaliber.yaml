@@ -382,3 +382,32 @@ SniperRifle:
 			Light: 12
 			Heavy: 4
 			Concrete: 4
+
+# M16 Quad AA Halftrack (rules/vehicles.yaml M16): four .50 machine guns on one mount, against aircraft first, infantry
+# and light vehicles too
+QuadFifty:
+	Inherits: ^HeavyMG
+	ReloadDelay: 12
+	Range: 6c0
+	Burst: 4
+	BurstDelays: 1
+	ValidTargets: AirborneActor, GroundActor, WaterActor
+	Warhead@1Dam: SpreadDamage
+		Damage: 700
+		ValidTargets: AirborneActor, GroundActor, WaterActor
+		Versus:
+			None: 150
+			Wood: 30
+			Light: 80
+			Heavy: 15
+			Concrete: 10
+
+# Humvee (rules/vehicles.yaml HMMV): the roof .50 cal
+HMMV_M2:
+	Inherits: ^HeavyMG
+	ReloadDelay: 18
+	Range: 5c512
+	ValidTargets: GroundActor, WaterActor, AirborneActor
+	Warhead@1Dam: SpreadDamage
+		Damage: 900
+		ValidTargets: GroundActor, WaterActor, AirborneActor

@@ -86,6 +86,10 @@ namespace OpenRA.Mods.RAPX.Projectiles
 		[Desc("Length and size of the exhaust flame, as a multiple of the default.")]
 		public readonly float FlameSize = 1f;
 
+		[Desc("Strength of the rolling orange fire plume behind the nozzle (0 = none), lighting the smoke warm like a",
+			"rocket motor's exhaust. Each rocket varies it a little, along with how warm and twisted its trail is.")]
+		public readonly float FirePlume = 1f;
+
 		[Desc("Smoke puffs emitted per tick of flight.")]
 		public readonly int TrailDensity = 2;
 
@@ -101,6 +105,10 @@ namespace OpenRA.Mods.RAPX.Projectiles
 		[Desc("What kind of threat air defence sees (PxInterceptor Chances): Rocket (artillery rockets, guided bombs),",
 			"Cruise, Ballistic, Hypersonic, Drone; any other name (e.g. AirToAir) is ignored by air defence.")]
 		public readonly string ThreatType = "Rocket";
+
+		[Desc("Point defence (PxPointDefense) and air defence (PxInterceptor) may shoot it down. False for artillery",
+			"shells, which only borrow the HD smoke trail.")]
+		public readonly bool Interceptable = true;
 
 		[Desc("Equivalent to sequence ZOffset. Controls Z sorting.")]
 		public readonly int ZOffset = 1024;
@@ -136,6 +144,13 @@ namespace OpenRA.Mods.RAPX.Projectiles
 
 		readonly WVec miss;
 
+		// This rocket's own random plume: how strong and how warm, and how its trail sways
+		readonly float fire;
+		readonly float warmth;
+		readonly float swayAmp;
+		readonly float swayFreq;
+		readonly float swayPhase;
+
 		public PxRocket(PxRocketInfo info, ProjectileArgs args)
 		{
 			this.info = info;
@@ -152,12 +167,21 @@ namespace OpenRA.Mods.RAPX.Projectiles
 
 			flightTicks = Math.Max(4, (target - origin).Length / Math.Max(1, info.Speed.Length));
 
+			fire = info.FirePlume * (0.7f + 0.6f * rng.NextFloat());
+			warmth = 0.45f + 0.55f * rng.NextFloat();
+			swayAmp = 0.5f + 2.5f * rng.NextFloat();
+			swayFreq = 0.15f + 0.35f * rng.NextFloat();
+			swayPhase = rng.NextFloat() * 6.283f;
+
 			// One step "behind" the launcher, so the first frame already faces the target
 			lastPos = origin - (target - origin) / flightTicks;
 		}
 
 		/// <summary>Still flying (not yet exploded or shot down): point defence (PxPointDefense) can engage it.</summary>
 		public bool InFlight => !exploded && launched;
+
+		/// <summary>Point and air defence may shoot it down.</summary>
+		public bool Interceptable => info.Interceptable;
 
 		public WPos Position => pos;
 
@@ -305,16 +329,34 @@ namespace OpenRA.Mods.RAPX.Projectiles
 			lastPos = pos;
 			pos = PositionAtTick(ticks);
 
-			// Trail: fresh smoke behind the rocket and a short-lived flame glow
+			// Trail, like a rocket motor's plume: a white-hot nozzle, a rolling orange fire plume right behind it, then
+			// fire-lit billowing smoke that twists (sways sideways) and lingers
 			var here = Local(pos);
 			var back = Local(lastPos);
+			var dx = here.X - back.X;
+			var dy = here.Y - back.Y;
+			var dl = Math.Max(0.01f, (float)Math.Sqrt(dx * dx + dy * dy));
+			var side = new float3(-dy / dl, dx / dl, 0);
+			var lit = new float3(grey.X, grey.Y * (1 - 0.14f * warmth), grey.Z * (1 - 0.34f * warmth));
 			for (var i = 0; i < info.TrailDensity; i++)
 			{
 				var f = (float)(i + 1) / info.TrailDensity;
-				var at = new float3(back.X + (here.X - back.X) * f, back.Y + (here.Y - back.Y) * f, back.Z + (here.Z - back.Z) * f);
-				Puff(PxParticleKind.Smoke, at, 3 * info.TrailSize, 0.32f * info.TrailSize, info.TrailLife, 0.7f, grey, 0.05f);
+				var sway = (float)Math.Sin((ticks + f) * swayFreq + swayPhase) * swayAmp * info.TrailSize;
+				var at = new float3(back.X + dx * f + side.X * sway, back.Y + dy * f + side.Y * sway * 0.6f, back.Z + (here.Z - back.Z) * f);
+				Puff(PxParticleKind.Billow, at, 2.5f * info.TrailSize, 0.2f * info.TrailSize, info.TrailLife, 0.75f, lit, 0.04f);
+				if (rng.NextFloat() < 0.5f)
+					Puff(PxParticleKind.Smoke, at, 3 * info.TrailSize, 0.3f * info.TrailSize, info.TrailLife * 0.8f, 0.5f, lit, 0.05f);
 			}
 
+			if (fire > 0)
+				for (var i = 0; i < 2; i++)
+				{
+					var f = rng.NextFloat();
+					var at = new float3(back.X + dx * f, back.Y + dy * f, back.Z + (here.Z - back.Z) * f);
+					Puff(PxParticleKind.Fireball, at, 1.5f * info.TrailSize, 0.16f * info.TrailSize * fire, 4 + 6 * fire, 0.85f, FlameTint, 0);
+				}
+
+			Puff(PxParticleKind.Glow, back, 0.5f, 0.25f * info.FlameSize, 3, 1f, new float3(1f, 0.97f, 0.9f), 0);
 			Puff(PxParticleKind.Flame, back, 1, 0.22f * info.FlameSize, 5, 0.9f, FlameTint, 0);
 
 			if (ticks >= flightTicks)

@@ -1,6 +1,9 @@
 ## mainmenu.yaml
 label-px-mainmenu-kicker = RED ALERT  //  PROJECT X
 label-px-mainmenu-title = Command Center
+label-px-version-kicker = PROJECT X  //  VERSION
+label-px-version-engine = OPENRA { $engine }
+label-px-version-build = OPENRA { $engine }  ·  COMMIT { $build }
 
 ## gamesave-loading.yaml
 label-gamesave-loading-screen-title = Loading Saved Game

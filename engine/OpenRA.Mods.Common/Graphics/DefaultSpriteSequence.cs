@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using OpenRA.Graphics;
 using OpenRA.Primitives;
 
@@ -35,22 +36,27 @@ namespace OpenRA.Mods.Common.Graphics
 			if (metadata.TryGetValue("IndexedSheetSize", out yaml))
 				IndexedSheetSize = FieldLoader.GetValue<int>("IndexedSheetSize", yaml.Value);
 
-			// RAPX: true colour files whose transparent borders are trimmed at load time
-			// (filename prefixes, minus any filename containing one of the exclude strings).
+			// RAPX: true colour files whose transparent borders are trimmed at load time. Both lists are
+			// filename globs: * matches within one folder, ** across folders.
 			if (metadata.TryGetValue("CropTransparent", out yaml))
-				cropPrefixes = FieldLoader.GetValue<string[]>("CropTransparent", yaml.Value);
+				cropIncludes = FieldLoader.GetValue<string[]>("CropTransparent", yaml.Value).Select(GlobToRegex).ToArray();
 
 			if (metadata.TryGetValue("CropTransparentExclude", out yaml))
-				cropExcludes = FieldLoader.GetValue<string[]>("CropTransparentExclude", yaml.Value);
+				cropExcludes = FieldLoader.GetValue<string[]>("CropTransparentExclude", yaml.Value).Select(GlobToRegex).ToArray();
 		}
 
-		readonly string[] cropPrefixes = Array.Empty<string>();
-		readonly string[] cropExcludes = Array.Empty<string>();
+		readonly Regex[] cropIncludes = Array.Empty<Regex>();
+		readonly Regex[] cropExcludes = Array.Empty<Regex>();
+
+		static Regex GlobToRegex(string glob)
+		{
+			var pattern = Regex.Escape(glob).Replace(@"\*\*", ".*").Replace(@"\*", "[^/]*");
+			return new Regex("^" + pattern + "$", RegexOptions.CultureInvariant);
+		}
 
 		public SpriteCropMode CropMode(string filename, bool rotates)
 		{
-			if (!cropPrefixes.Any(p => filename.StartsWith(p, StringComparison.Ordinal)) ||
-				cropExcludes.Any(e => filename.Contains(e, StringComparison.Ordinal)))
+			if (!cropIncludes.Any(r => r.IsMatch(filename)) || cropExcludes.Any(r => r.IsMatch(filename)))
 				return SpriteCropMode.None;
 
 			return rotates ? SpriteCropMode.Centred : SpriteCropMode.Tight;

@@ -15,6 +15,7 @@ Per unit:
      missile   kind the station fires (its pxmissile sprite); default: the "add" kind, else the family's missile for
                the jet's side (make_loadouts.py EAST_JETS / SIDE_MISSILES)
      shots     missiles per side (default 1; a triple rack fires 3 before its sprite goes)
+     ripple    rocket pods only: fire the pods in one fast stream (JetRockets.Ripple), not in pairs
      internal  True: a weapons bay (stealth jets, bombers): shots in total, nothing shown on the sprite
   strike     True: never engages aircraft on its own even if it carries air-to-air missiles
 """
@@ -157,5 +158,32 @@ LOADOUTS = {
     ]},
     "jet.x47": {"real_length": 11.6, "gun": None, "stations": [
         {"weapon": "JetGBU", "internal": True, "shots": 2},
+    ]},
+    # --- Attack helicopters (2026-11-08): missiles and pods fire from their pylons, reload in the field ----------
+    # Each one has its own firepower: Hind all-rounder, Mi-35M rocket barrage, Ka-52 tank hunter, Gazelle light
+    # missile scout, Tiger heavy multirole (missiles + rocket stream)
+    # Hind: the model's UB-32 pods stay (two pairs, ripple fire); its wing-tip missile racks become 2 Atakas a side
+    "hind": {"real_length": 17.5, "gun": "GSh30", "strike": True, "stations": [
+        {"weapon": "JetAGM", "add": "ataka", "at": (1.65, "lead"), "shots": 2},
+        {"weapon": "JetRockets", "model": (1.05, 0.86, 0.51, 0.12, 0.5, 0.15), "shots": 16, "ripple": True},
+        {"weapon": "JetRockets", "model": (0.78, 0.86, 0.57, 0.12, 0.5, 0.15), "shots": 16, "ripple": True},
+    ]},
+    # Ka-52 tank hunter: its tube racks fire 6 Atakas a side; the small pods a few rockets
+    "ka52": {"real_length": 16.0, "gun": "GSh30", "strike": True, "stations": [
+        {"weapon": "JetAGM", "model": (1.4, 0.66, 0.76, 0.16, 0.3, 0.15), "missile": "ataka", "shots": 6},
+        {"weapon": "JetRockets", "model": (1.04, 0.7, 0.83, 0.1, 0.35, 0.12), "shots": 4},
+    ]},
+    # Mi-35M rocket barrage: its S-8 pods come off the model; two big pods hung where they were, ripple fire
+    "mi35": {"real_length": 18.5, "gun": "GSh30", "strike": True, "stations": [
+        {"weapon": "JetRockets", "add": "pod", "at": (1.2, "lead"), "shots": 20, "ripple": True},
+    ]},
+    # Gazelle (Longbow): two HOT tubes a side on the model, a 20 mm gun; fast and light
+    "heli": {"real_length": 11.97, "gun": "M61", "strike": True, "stations": [
+        {"weapon": "JetAGM", "model": (1.05, 1.26, 0.55, 0.1, 0.2, 0.1), "missile": "hot", "shots": 2},
+    ]},
+    # Tiger: four HOT a side on the outer racks, the inner pods ripple-fire 68 mm rockets
+    "tiger": {"real_length": 14.08, "gun": "GSh30", "strike": True, "stations": [
+        {"weapon": "JetAGM", "model": (0.97, 0.57, 0.72, 0.12, 0.2, 0.1), "missile": "hot", "shots": 4},
+        {"weapon": "JetRockets", "model": (0.68, 0.6, 0.55, 0.12, 0.2, 0.15), "shots": 22, "ripple": True},
     ]},
 }

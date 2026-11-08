@@ -174,3 +174,48 @@ rl-toz1:
 		UseClassicFacings: False
 		Scale: 0.2333
 
+# Iran Zolfaghar TEL (rules/rocket-launchers.yaml ZOLF): loaded 0-31, empty erector 32-63
+zolf:
+	Inherits: v2rl
+	icon:
+		Filename: ra|bits/hd/zolficon.png
+		-TilesetFilenames:
+	idle:
+		Filename: ra|bits/hd/units/zolf.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	empty-idle:
+		Filename: ra|bits/hd/units/zolf.png
+		Start: 32
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+
+# Thunderhead MLRS (rules/rocket-launchers.yaml MLRS): loaded 0-31, empty rack 32-63
+mlrs:
+	Inherits: v2rl
+	icon:
+		Filename: ra|bits/hd/mlrsicon.png
+		-TilesetFilenames:
+	idle:
+		Filename: ra|bits/hd/units/mlrs.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	empty-idle:
+		Filename: ra|bits/hd/units/mlrs.png
+		Start: 32
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+
+# Hailfire Rocket Truck (rules/rocket-launchers.yaml HLFR)
+hlfr:
+	Inherits: v2rl
+	icon:
+		Filename: ra|bits/hd/hlfricon.png
+		-TilesetFilenames:
+	idle:
+		Filename: ra|bits/hd/units/hlfr.png
+		UseClassicFacings: False
+		Scale: 0.2333
+	-empty-idle:

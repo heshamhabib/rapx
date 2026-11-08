@@ -201,6 +201,19 @@ jet.v22:
 		Filename: ra|bits/hd/jets/kestrel-tiltrotor.png
 		-TilesetFilenames:
 
+jet.f2:
+	Inherits: mig
+	idle:
+		Filename: ra|bits/hd/units/af-2-zero-viper.png
+		Start: 0
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	icon:
+		Filename: ra|bits/hd/jets/af-2-zero-viper.png
+		-TilesetFilenames:
+
 jet.harrier:
 	Inherits: mig
 	idle:
@@ -264,6 +277,19 @@ jet.vulcan:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/volcan.png
+		-TilesetFilenames:
+
+jet.he177:
+	Inherits: mig
+	idle:
+		Filename: ra|bits/hd/units/he-177-greif.png
+		Start: 0
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	icon:
+		Filename: ra|bits/hd/jets/he-177-greif.png
 		-TilesetFilenames:
 
 jet.seavixen:
@@ -368,6 +394,19 @@ jet.su27:
 		Scale: 0.3333
 	icon:
 		Filename: ra|bits/hd/jets/sk-27-flankard.png
+		-TilesetFilenames:
+
+jet.su30:
+	Inherits: mig
+	idle:
+		Filename: ra|bits/hd/units/sk-30-flankard-m.png
+		Start: 0
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	icon:
+		Filename: ra|bits/hd/jets/sk-30-flankard-m.png
 		-TilesetFilenames:
 
 jet.su35:

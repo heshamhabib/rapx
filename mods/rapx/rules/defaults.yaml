@@ -634,11 +634,14 @@
 	PxFlareDispenser:
 		RequiresCondition: airborne
 		Sounds: ra|audio/aircraft/flares1.wav, ra|audio/aircraft/flares2.wav, ra|audio/aircraft/flares3.wav
+	# Jets given the same attack order fly and fire in V formations (OpenRA.Mods.RAPX/Traits/PxStrikeFormation.cs)
+	PxStrikeFormation:
 
 ^Helicopter:
 	Inherits: ^Plane
 	-AmbientSound@PASS:
 	-PxFlareDispenser:
+	-PxStrikeFormation:
 	AmbientSound@ENGINE:
 		SoundFiles: ra|audio/aircraft/rotor.wav
 		RequiresCondition: airborne

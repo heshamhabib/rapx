@@ -51,6 +51,26 @@ JetAAM.Short.r73.Pair:
 	Projectile: PxRocket
 		Sequence: r73
 
+JetAGM.ataka:
+	Inherits: JetAGM
+	Projectile: PxRocket
+		Sequence: ataka
+
+JetAGM.ataka.Pair:
+	Inherits: JetAGM.Pair
+	Projectile: PxRocket
+		Sequence: ataka
+
+JetAGM.hot:
+	Inherits: JetAGM
+	Projectile: PxRocket
+		Sequence: hot
+
+JetAGM.hot.Pair:
+	Inherits: JetAGM.Pair
+	Projectile: PxRocket
+		Sequence: hot
+
 JetAGM.kh29:
 	Inherits: JetAGM
 	Projectile: PxRocket
@@ -68,5 +88,10 @@ JetRockets.s8:
 
 JetRockets.s8.Pair:
 	Inherits: JetRockets.Pair
+	Projectile: PxRocket
+		Sequence: s8
+
+JetRockets.s8.Ripple:
+	Inherits: JetRockets.Ripple
 	Projectile: PxRocket
 		Sequence: s8

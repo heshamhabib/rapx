@@ -180,7 +180,7 @@ namespace OpenRA.Mods.RAPX.Traits
 			var protect = (long)Info.ProtectRadius.Length * Info.ProtectRadius.Length;
 			var centre = self.CenterPosition;
 			return self.World.Effects.OfType<PxRocket>()
-				.Where(r => r.InFlight && r.Owner != null && self.Owner.RelationshipWith(r.Owner) == PlayerRelationship.Enemy
+				.Where(r => r.InFlight && r.Interceptable && r.Owner != null && self.Owner.RelationshipWith(r.Owner) == PlayerRelationship.Enemy
 					&& (r.TargetPosition - centre).HorizontalLengthSquared <= protect)
 				.ToList();
 		}

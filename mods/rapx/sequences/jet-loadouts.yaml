@@ -690,3 +690,132 @@ jet.tu160:
 jet.grom:
 
 jet.x47:
+
+hind:
+	store-0R:
+		Filename: ra|bits/hd/units/hind-stores.png
+		Start: 0
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	store-0L:
+		Filename: ra|bits/hd/units/hind-stores.png
+		Start: 32
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	store-1R:
+		Filename: ra|bits/hd/units/hind-stores.png
+		Start: 64
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	store-1L:
+		Filename: ra|bits/hd/units/hind-stores.png
+		Start: 96
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	store-2R:
+		Filename: ra|bits/hd/units/hind-stores.png
+		Start: 128
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	store-2L:
+		Filename: ra|bits/hd/units/hind-stores.png
+		Start: 160
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+
+ka52:
+	store-0R:
+		Filename: ra|bits/hd/units/ka52-stores.png
+		Start: 0
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	store-0L:
+		Filename: ra|bits/hd/units/ka52-stores.png
+		Start: 32
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	store-1R:
+		Filename: ra|bits/hd/units/ka52-stores.png
+		Start: 64
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	store-1L:
+		Filename: ra|bits/hd/units/ka52-stores.png
+		Start: 96
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+
+mi35:
+	store-0R:
+		Filename: ra|bits/hd/units/mi35-stores.png
+		Start: 0
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	store-0L:
+		Filename: ra|bits/hd/units/mi35-stores.png
+		Start: 32
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+
+heli:
+	store-0R:
+		Filename: ra|bits/hd/units/heli-stores.png
+		Start: 0
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	store-0L:
+		Filename: ra|bits/hd/units/heli-stores.png
+		Start: 32
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+
+tiger:
+	store-0R:
+		Filename: ra|bits/hd/units/tiger-stores.png
+		Start: 0
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	store-0L:
+		Filename: ra|bits/hd/units/tiger-stores.png
+		Start: 32
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	store-1L:
+		Filename: ra|bits/hd/units/tiger-stores.png
+		Start: 64
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333

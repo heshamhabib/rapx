@@ -1,8 +1,8 @@
-# Fatman strike (USA only): the Strategic Bomber Field holds one AB-35 Longwing flying-wing bomber. Like the nuke,
+# Strategic bomber strikes. Fatman strike (USA only): the Strategic Bomber Field holds one AB-35 Longwing flying-wing bomber. Like the nuke,
 # a support power charges on the field (only while the bomber exists); when it fires, the bomber takes off, drops the
 # Fatman bomb on the target (a smaller nuclear blast, weapons/fatman.yaml), flies on and returns to its pad.
 # Code: OpenRA.Mods.RAPX/Traits/PxFatmanStrike.cs. Art: artsrc/prompts/fatman-prompts.md (field),
-# artsrc/units/meshes/sketchfab_models.py jet.yb35 (bomber), artsrc/fx/make_fatman_fx.py (bomb).
+# artsrc/units/meshes/sketchfab_models.py jet.yb35 (bomber), artsrc/fx/make_bomb_fx.py (bomb).
 # Only one field and one bomber per player; both stay out of the airfield slot pool (PxAirfieldProductionQueue).
 # Must load before hd-building-fx.yaml (it adds to BMBF; see the Inherits note in mod.yaml).
 
@@ -177,3 +177,89 @@ YB35.Husk:
 		Speed: 140
 	Tooltip:
 		Name: actor-yb35.name
+
+# Thermonuclear strike (Russia only): the Long-Range Aviation Base holds one Tv-95 Bear (Tu-95M), which drops the
+# RDS-37 hydrogen bomb (weapons/fatman.yaml RDS37): bigger than the Fatman, smaller than the nuclear missile, so it
+# charges longer. Same code as the Fatman strike. Art: artsrc/prompts/fatman-prompts.md sbmb (base),
+# sketchfab_models.py jet.tu95 (bomber), artsrc/fx/make_bomb_fx.py rds37 (bomb).
+SBMB:
+	Inherits: BMBF
+	Buildable:
+		BuildPaletteOrder: 135
+		Prerequisites: afld, techcenter, ~structures.russia, ~techlevel.high
+		Description: actor-sbmb.description
+	PxNationalUnit:
+		Factions: russia
+	Tooltip:
+		Name: actor-sbmb.name
+	Selectable:
+		Class: sbmb
+	RenderSprites:
+		Image: sbmb
+	-PxFatmanStrikePower@fatman:
+	PxFatmanStrikePower@rds37:
+		PauseOnCondition: disabled
+		Bombers: tu95
+		Prerequisites: rds37.bomber
+		OrderName: RussiaThermonuclearStrike
+		Cursor: nuke
+		Icon: rds37
+		ChargeInterval: 11250
+		Name: actor-sbmb.rds37power-name
+		Description: actor-sbmb.rds37power-description
+		BeginChargeSpeechNotification: AbombPrepping
+		EndChargeSpeechNotification: AbombReady
+		SelectTargetSpeechNotification: SelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		IncomingSpeechNotification: AbombLaunchDetected
+		SelectTargetTextNotification: notification-select-target
+		InsufficientPowerTextNotification: notification-insufficient-power
+		BeginChargeTextNotification: notification-abomb-prepping
+		EndChargeTextNotification: notification-abomb-ready
+		IncomingTextNotification: notification-fatman-detected
+		IncomingSound: ra|audio/superweapons/nuke-siren.wav
+		DisplayTimerRelationships: Ally, Neutral, Enemy
+		DisplayBeacon: True
+		DisplayRadarPing: True
+		BeaconPoster: atomicon
+		ArrowSequence: arrow
+		BeaconSequence: pulse
+		ClockSequence: clock
+		CircleSequence: circles
+		SupportPowerPaletteOrder: 72
+
+TU95:
+	Inherits: YB35
+	Buildable:
+		BuildPaletteOrder: 231
+		Prerequisites: ~sbmb, ~structures.russia, ~techlevel.high
+		Description: actor-tu95.description
+	PxNationalUnit:
+		Factions: russia
+	Valued:
+		Cost: 3500
+	Tooltip:
+		Name: actor-tu95.name
+	Health:
+		HP: 40000
+	Aircraft:
+		Speed: 150
+	Rearmable:
+		RearmActors: sbmb
+	PxStrategicBomber:
+		Weapon: RDS37
+	-ProvidesPrerequisite@bomber:
+	ProvidesPrerequisite@rds37bomber:
+		Prerequisite: rds37.bomber
+	RenderSprites:
+		Image: tu95
+	SpawnActorOnDeath:
+		Actor: TU95.Husk
+
+TU95.Husk:
+	Inherits: YB35.Husk
+	RenderSprites:
+		Image: tu95
+	Tooltip:
+		Name: actor-tu95.name
+

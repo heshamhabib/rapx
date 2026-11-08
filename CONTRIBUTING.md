@@ -13,3 +13,18 @@ Some issues to be aware of include:
 While your pull-request is in review it will be helpful if you join IRC to discuss the changes.
 
 See also the in-depth guide on [contributing](https://github.com/OpenRA/OpenRA/wiki/Contributing) on the main OpenRA project wiki.  Most of the content on this page also applies to the Mod SDK.
+
+## Versioning and releases
+
+RedAlert Project X uses [Semantic Versioning](https://semver.org) with a channel suffix, for example
+`0.1.0-pilot`. The version lives in `mods/rapx/mod.yaml` (`Metadata: Version:`) and is shown on the main menu.
+
+1. As you change things, add a line under `## [Unreleased]` in [CHANGELOG.md](CHANGELOG.md).
+2. Cut a release with `tools/release.sh`:
+   - `tools/release.sh patch` for fixes and balance (0.1.0 -> 0.1.1)
+   - `tools/release.sh minor` for new content or features (0.1.0 -> 0.2.0)
+   - `tools/release.sh major` for 1.0 and big breaking reworks
+   - add a channel to switch it: `tools/release.sh minor beta`, or `release` to drop the suffix
+   - `tools/release.sh --show` prints the current version
+3. The script updates `mod.yaml`, dates the changelog section, commits and tags `vX.Y.Z`.
+   Push with `git push origin main --follow-tags`.

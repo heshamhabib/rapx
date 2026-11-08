@@ -430,3 +430,95 @@ FAJIR5:
 		Color: FFD24A
 	RenderSprites:
 		Image: rl-fajir5
+
+# Iran's Zolfaghar TEL (2026-11-07): a ballistic missile truck, a step above the Fajr-5. It fires the two missiles on
+# its erector (the launcher sprite shows them while loaded, the empty erector while it reloads), 22 cells far.
+# Art: artsrc/units/meshes/make_sketchfab.py zolf; weapon weapons/rocket-launchers.yaml ZOLF_SRBM.
+ZOLF:
+	Inherits: ^PxRocketTruck
+	Buildable:
+		BuildPaletteOrder: 232
+		Prerequisites: dome, techcenter, ~rocketlauncher.iran, ~techlevel.high
+		Description: actor-zolf.description
+	PxNationalUnit:
+		Factions: iran
+	Valued:
+		Cost: 2200
+	Tooltip:
+		Name: actor-zolf.name
+	Health:
+		HP: 22000
+	Mobile:
+		Speed: 64
+	Armament:
+		Weapon: ZOLF_SRBM
+		# The two missiles on the erector (artsrc/units/vehicles/make_v2_rocket.sh zolf one measures their centre)
+		LocalOffset: -102,-94,417, -102,94,417
+		ReloadingCondition: reloading
+	AutoTarget:
+		ScanRadius: 16
+	WithFacingSpriteBody:
+		RequiresCondition: !reloading
+		Name: loaded
+	WithFacingSpriteBody@EMPTY:
+		RequiresCondition: reloading
+		Sequence: empty-idle
+		Name: reloading
+	RenderSprites:
+		Image: zolf
+
+# Thunderhead MLRS (2026-11-08, Union nations): a tracked rocket tank that empties its whole rack in one heavy stream of
+# rockets, the ones shown on the launcher (loaded sprite), then reloads (empty rack).
+# Art: artsrc/units/meshes/make_sketchfab.py mlrs; weapon weapons/rocket-launchers.yaml MLRS_STREAM.
+MLRS:
+	Inherits: ^PxRocketTracked
+	Buildable:
+		BuildPaletteOrder: 233
+		Prerequisites: dome, ~vehicles.allies, ~techlevel.medium
+		Description: actor-mlrs.description
+	Valued:
+		Cost: 1600
+	Tooltip:
+		Name: actor-mlrs.name
+	Health:
+		HP: 26000
+	Armament:
+		Weapon: MLRS_STREAM
+		# The rack (artsrc/units/vehicles/make_v2_rocket.sh mlrs first measures a rocket's centre)
+		LocalOffset: -253,-150,496, -253,150,496
+		ReloadingCondition: reloading
+	AutoTarget:
+		ScanRadius: 12
+	WithFacingSpriteBody:
+		RequiresCondition: !reloading
+		Name: loaded
+	WithFacingSpriteBody@EMPTY:
+		RequiresCondition: reloading
+		Sequence: empty-idle
+		Name: reloading
+	RenderSprites:
+		Image: mlrs
+
+# Hailfire Rocket Truck (2026-11-08, Union nations): the Thunderhead's lighter partner, a wheeled launcher that fires a
+# long stream of 30 light rockets from its tubes. Art: artsrc/units/meshes/make_sketchfab.py hlfr.
+HLFR:
+	Inherits: ^PxRocketTruck
+	Buildable:
+		BuildPaletteOrder: 234
+		Prerequisites: dome, ~vehicles.allies, ~techlevel.medium
+		Description: actor-hlfr.description
+	Valued:
+		Cost: 1200
+	Tooltip:
+		Name: actor-hlfr.name
+	Health:
+		HP: 18000
+	Mobile:
+		Speed: 96
+	Armament:
+		Weapon: HLFR_STREAM
+		LocalOffset: -300,0,380
+	AutoTarget:
+		ScanRadius: 11
+	RenderSprites:
+		Image: hlfr

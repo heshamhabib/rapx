@@ -18,6 +18,7 @@ Jets with air-to-air missiles fly combat air patrol: they engage enemy aircraft 
 
 import json
 import os
+import re
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -36,7 +37,7 @@ MISSILE_WEAPONS = os.path.join(ROOT, "mods", "rapx", "weapons", "jet-missiles.ya
 # "add" kind, else the family's missile for the jet's side. Families keep their own sprite (weapons/jet-ordnance.yaml)
 # for the Western default; other kinds get a generated variant <family>.<kind> in weapons/jet-missiles.yaml.
 EAST_JETS = {"mig", "jet.mig21", "jet.mig23", "jet.mig25", "jet.su25", "jet.su27", "jet.su35", "jet.su47", "jet.l39",
-             "jet.j20", "jet.tu160"}
+             "jet.j20", "jet.tu160", "hind", "mi35", "ka52"}
 SIDE_MISSILES = {
     "west": {"JetAAM.Short": "aim9", "JetAAM.Medium": "aim120", "JetAAM.Long": "aim54", "JetAGM": "agm65",
              "JetGBU": "gbu", "JetBomb": "mk82", "JetRockets": "hydra"},
@@ -95,6 +96,7 @@ AIR_TARGETING = ["\tAutoTarget:", "\t\tInitialStance: AttackAnything", "\t\tInit
 def main():
     rules, seqs = [HEADER], [HEADER]
     parent = parents()
+    aircraft_rules = open(os.path.join(ROOT, "mods", "rapx", "rules", "aircraft.yaml")).read()
     built = {}  # actor -> (trait keys it adds, is fighter)
     blocks = {}
     used = set()
@@ -138,7 +140,9 @@ def main():
                 pause += f" || {last_of_family[st['weapon']]}"
             last_of_family[st["weapon"]] = name
             # Air-to-air missiles one per shot (Burst 1 alternates the listed pylons); ground ordnance in pairs
-            weapon = family + (".Pair" if pair and not st["weapon"].startswith("JetAAM") else "")
+            # "ripple" (helicopter rocket pods, loadout_table.py): a fast stream from both pods, alternating pylons
+            ripple = table["stations"][i].get("ripple")
+            weapon = family + (".Ripple" if ripple else ".Pair" if pair and not st["weapon"].startswith("JetAAM") else "")
             muzzles = ", ".join(offset(s_["nose"], wdist, height) for s_ in stores)
             trait(f"AmmoPool@{tag}S{i}", f"Name: {name}", f"Armaments: {name}", f"Ammo: {st['shots'] * len(stores)}",
                   f"AmmoCondition: {name}")
@@ -162,8 +166,13 @@ def main():
                   f"LocalOffset: {offset((0, nose[1] + 0.8, nose[2]), wdist, height)}", f"PauseOnCondition: !{gun}")
             names.append(gun)
         lines += ["\tAttackAircraft:", f"\t\tArmaments: {', '.join(names)}"]
-        # Rearmable only refills the pools it lists (default: primary): every station and the gun, at the airfield
-        lines += ["\tRearmable:", f"\t\tAmmoPools: {', '.join(names)}"]
+        if cfg["kind"] == "heli":
+            # Helicopters reload in the field (no trip back to the helipad): every pool refills by itself
+            for n in names:
+                trait(f"ReloadAmmoPool@{n.upper().replace('-', '')}", f"AmmoPool: {n}", "Delay: 60")
+        else:
+            # Rearmable only refills the pools it lists (default: primary): every station and the gun, at the airfield
+            lines += ["\tRearmable:", f"\t\tAmmoPools: {', '.join(names)}"]
         fighter = any(st["weapon"].startswith("JetAAM") for st in data["stations"]) and not table.get("strike")
         built[actor] = (keys, fighter)
         blocks[actor] = lines
@@ -180,7 +189,13 @@ def main():
         lines = [f"\n{actor}:"]
         inherited = [p for p in ancestors(actor) if p in built]
         if not inherited:
-            lines += ["\t-Armament:", "\t-AmmoPool:"]
+            # Remove the classic weapon the actor (or its MIG/YAK base) had; actors whose own block has no unnamed
+            # Armament (the Longbow's were named, now removed by hand) only lose their ammo pool
+            own = re.search(rf"^{re.escape(actor)}:\n((?:\t.*\n)+)", aircraft_rules, re.M)
+            has_gun = own is None or "\tArmament:\n" in own.group(1) or re.search(r"\tInherits: (MIG|YAK|TRAN)\n", own.group(1))
+            lines += (["\t-Armament:"] if has_gun else []) + ["\t-AmmoPool:"]
+            if actor in blocks and MODELS.get(actor.lower(), {}).get("kind") == "heli":
+                lines += ["\t-ReloadAmmoPool:"]  # it refilled the removed "primary" pool
         for p in inherited:  # a loadout jet's weapons and overlays are its own, not its children's
             lines += [f"\t-{k}:" for k in built[p][0]]
         if actor in blocks:
@@ -201,7 +216,7 @@ def main():
     # Missile variants: the family's weapon with another missile sprite (Pair variants for ground ordnance pairs)
     out = [HEADER.rstrip("\n"), "# Missile variants fired by the jets' stations (make_loadouts.py SIDE_MISSILES).", ""]
     for family, kind in sorted(used):
-        for suffix in ("", ".Pair"):
+        for suffix in ("", ".Pair") + ((".Ripple",) if family == "JetRockets" else ()):
             out += [f"{family}.{kind}{suffix}:", f"\tInherits: {family}{suffix}", "\tProjectile: PxRocket",
                     f"\t\tSequence: {kind}", ""]
     open(MISSILE_WEAPONS, "w").write("\n".join(out))

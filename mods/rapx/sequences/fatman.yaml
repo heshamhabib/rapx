@@ -27,7 +27,7 @@ yb35:
 	icon:
 		Filename: ra|bits/hd/yb35icon.png
 
-# The falling bomb (artsrc/fx/make_fatman_fx.py): turns slowly about its long axis
+# The falling bomb (artsrc/fx/make_bomb_fx.py): turns slowly about its long axis
 fatman:
 	falling:
 		Filename: ra|bits/hd/fx/fatman-bomb.png
@@ -51,3 +51,51 @@ explosion:
 		Scale: 0.353
 		ZOffset: 2047
 		Tick: 80
+
+# Russia's thermonuclear strike (rules/fatman.yaml SBMB / TU95). The base's art is in hd-structures.yaml.
+sbmb:
+	idle:
+		ZOffset: -2048
+	damaged-idle:
+		ZOffset: -2048
+	active:
+		ZOffset: -2048
+	damaged-active:
+		ZOffset: -2048
+	icon:
+		Filename: ra|bits/hd/sbmbcameo.png
+
+# Tv-95 Bear (artsrc/units/meshes/make_sketchfab.py jet.tu95)
+tu95:
+	idle:
+		Filename: ra|bits/hd/units/tv-95-bear.png
+		Start: 0
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	icon:
+		Filename: ra|bits/hd/tu95icon.png
+
+rds37:
+	falling:
+		Filename: ra|bits/hd/fx/rds37-bomb.png
+		Start: 0
+		Length: 16
+		Tick: 60
+		Scale: 0.3333
+
+explosion:
+	rds37-nuke:
+		Filename: ra|bits/hd/fx/blast/nuke.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/fx/blast/nuke.png
+			SNOW: ra|bits/hd/fx/blast/nuke.png
+			DESERT: ra|bits/hd/fx/blast/nuke.png
+			INTERIOR: ra|bits/hd/fx/blast/nuke.png
+		Start: 0
+		Length: 100
+		Offset: 0,0
+		Scale: 0.47
+		ZOffset: 2047
+		Tick: 90

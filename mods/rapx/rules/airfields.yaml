@@ -58,7 +58,7 @@ AFBS:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 132
-		Prerequisites: abas, stek, ~techlevel.high
+		Prerequisites: afld, ~techlevel.medium
 		Description: actor-afbs.description
 	Valued:
 		Cost: 6000
@@ -90,7 +90,7 @@ SACM:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 133
-		Prerequisites: afbs, stek, ~techlevel.high
+		Prerequisites: afld, ~techlevel.medium
 		Description: actor-sacm.description
 		BuildLimit: 1
 	Valued:

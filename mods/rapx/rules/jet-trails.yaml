@@ -167,6 +167,25 @@ JET.F16.Husk:
 	Tooltip:
 		Name: actor-jet-f16.name
 
+JET.F2:
+	WithPxJetTrail:
+		RequiresCondition: airborne
+		Wingtips: -31,882,0, -31,-882,0
+		Engines: -721,0,0
+
+JET.F2:
+	SpawnActorOnDeath:
+		Actor: JET.F2.Husk
+
+JET.F2.Husk:
+	Inherits: MIG.Husk
+	RenderSprites:
+		Image: jet.f2
+	WithPxCrashFx:
+		Size: 0.93
+	Tooltip:
+		Name: actor-jet-f2.name
+
 JET.F22:
 	WithPxJetTrail:
 		RequiresCondition: airborne
@@ -244,6 +263,28 @@ JET.HARRIER.Husk:
 		Size: 0.84
 	Tooltip:
 		Name: actor-jet-harrier.name
+
+JET.HE177:
+	WithPxJetTrail:
+		RequiresCondition: airborne
+		Wingtips: 463,1877,0, 463,-1877,0
+		Engines: 0,0,0
+		Density: 0
+		Afterburner: false
+		VapourMin: 0.08
+
+JET.HE177:
+	SpawnActorOnDeath:
+		Actor: JET.HE177.Husk
+
+JET.HE177.Husk:
+	Inherits: MIG.Husk
+	RenderSprites:
+		Image: jet.he177
+	WithPxCrashFx:
+		Size: 1.98
+	Tooltip:
+		Name: actor-jet-he177.name
 
 JET.J20:
 	WithPxJetTrail:
@@ -548,6 +589,25 @@ JET.SU27.Husk:
 	Tooltip:
 		Name: actor-jet-su27.name
 
+JET.SU30:
+	WithPxJetTrail:
+		RequiresCondition: airborne
+		Wingtips: -416,1095,0, -416,-1095,0
+		Engines: -1205,0,0
+
+JET.SU30:
+	SpawnActorOnDeath:
+		Actor: JET.SU30.Husk
+
+JET.SU30.Husk:
+	Inherits: MIG.Husk
+	RenderSprites:
+		Image: jet.su30
+	WithPxCrashFx:
+		Size: 1.15
+	Tooltip:
+		Name: actor-jet-su30.name
+
 JET.SU35:
 	WithPxJetTrail:
 		RequiresCondition: airborne
@@ -665,8 +725,8 @@ JET.VULCAN.Husk:
 JET.X47:
 	WithPxJetTrail:
 		RequiresCondition: airborne
-		Wingtips: 517,612,0, 517,-612,0
-		Engines: -635,0,0
+		Wingtips: -113,1906,0, -113,-1906,0
+		Engines: -543,0,0
 
 JET.X47:
 	SpawnActorOnDeath:
@@ -677,7 +737,7 @@ JET.X47.Husk:
 	RenderSprites:
 		Image: jet.x47
 	WithPxCrashFx:
-		Size: 0.80
+		Size: 2.01
 	Tooltip:
 		Name: actor-jet-x47.name
 

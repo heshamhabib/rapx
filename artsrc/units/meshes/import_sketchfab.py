@@ -52,6 +52,13 @@ WDIST = WDIST_AIR if KIND in ("air", "heli") else WDIST_GROUND
 bpy.ops.wm.read_factory_settings(use_empty=True)
 bpy.ops.import_scene.gltf(filepath=os.path.join(HERE, "glb", "sketchfab", CFG["src"]))
 bpy.context.view_layer.update()
+if CFG.get("bake_skin"):
+    # Rigged models (Ka-52): the parts are stored in the skeleton's bind space; freeze each skinned part in its posed
+    # shape so it lands where the model shows it
+    dg = bpy.context.evaluated_depsgraph_get()
+    for o in [o for o in bpy.context.scene.objects if o.type == "MESH" and any(m.type == "ARMATURE" for m in o.modifiers)]:
+        o.data = bpy.data.meshes.new_from_object(o.evaluated_get(dg))
+        o.modifiers.clear()
 for o in [o for o in bpy.context.scene.objects if o.type == "MESH"]:
     mw = o.matrix_world.copy()
     if o.data.users > 1:
@@ -244,6 +251,44 @@ def cut(obj, keep, name_suffix):
     return top
 
 
+def split_islands(obj, keep, suffix):
+    """Moves the loose pieces of obj whose centre passes keep(centre) into a copy named obj.name + suffix.
+    Returns (the copy, faces moved)."""
+    bm = bmesh.new()
+    bm.from_mesh(obj.data)
+    bm.faces.ensure_lookup_table()
+    moved, seen = set(), set()
+    for f in bm.faces:
+        if f.index in seen:
+            continue
+        island, stack = [], [f]
+        seen.add(f.index)
+        while stack:
+            g = stack.pop()
+            island.append(g.index)
+            for e in g.edges:
+                for h in e.link_faces:
+                    if h.index not in seen:
+                        seen.add(h.index)
+                        stack.append(h)
+        vs = [v.co for i in island for v in bm.faces[i].verts]
+        if keep(sum(vs, Vector()) / len(vs)):
+            moved.update(island)
+    bm.free()
+    part = obj.copy()
+    part.data = obj.data.copy()
+    part.name = obj.name + suffix
+    bpy.context.scene.collection.objects.link(part)
+    for o, is_part in ((obj, False), (part, True)):
+        bm = bmesh.new()
+        bm.from_mesh(o.data)
+        bm.faces.ensure_lookup_table()
+        bmesh.ops.delete(bm, geom=[f for f in bm.faces if (f.index in moved) != is_part], context="FACES")
+        bm.to_mesh(o.data)
+        bm.free()
+    return part, len(moved)
+
+
 def root(name, parts, offset=Vector()):
     r = bpy.data.objects.new(name, None)
     bpy.context.scene.collection.objects.link(r)
@@ -298,47 +343,24 @@ elif KIND == "rocket":
     for name, z in CFG.get("rocket_above", {}).items():
         # Loose pieces of a shared part whose centre is above z (model units) are the rocket
         z_cut = (z - centre.z) * scale
-        obj = bpy.data.objects[name]
-        bm = bmesh.new()
-        bm.from_mesh(obj.data)
-        bm.faces.ensure_lookup_table()
-        high, seen = set(), set()
-        for f in bm.faces:
-            if f.index in seen:
-                continue
-            island, stack = [], [f]
-            seen.add(f.index)
-            while stack:
-                g = stack.pop()
-                island.append(g.index)
-                for e in g.edges:
-                    for h in e.link_faces:
-                        if h.index not in seen:
-                            seen.add(h.index)
-                            stack.append(h)
-            zs = [v.co.z for i in island for v in bm.faces[i].verts]
-            if sum(zs) / len(zs) > z_cut:
-                high.update(island)
-        bm.free()
-        rocket = obj.copy()
-        rocket.data = obj.data.copy()
-        rocket.name = obj.name + ".rocket"
-        bpy.context.scene.collection.objects.link(rocket)
-        for o, keep in ((obj, False), (rocket, True)):
-            bm = bmesh.new()
-            bm.from_mesh(o.data)
-            bm.faces.ensure_lookup_table()
-            bmesh.ops.delete(bm, geom=[f for f in bm.faces if (f.index in high) != keep], context="FACES")
-            bm.to_mesh(o.data)
-            bm.free()
+        rocket, n = split_islands(bpy.data.objects[name], lambda c, z_cut=z_cut: c.z > z_cut, ".rocket")
         rocket_parts.append(rocket)
-        print(f"rocket pieces from {name}: {len(high)} faces")
+        print(f"rocket pieces from {name}: {n} faces")
     body = root("Body", [o for o in meshes if o not in rocket_parts])
     rocket = root("Rocket", rocket_parts)
     rocket.parent = body
 else:
     rotor_parts = []
-    for i, names in enumerate(CFG.get("rotors", [])):
+    rotors = [list(r) for r in CFG.get("rotors", [])]
+    for name, z0, z1 in CFG.get("rotor_cut", []):
+        # Rotors merged into a body part: its loose pieces centred between z0 and z1 (model units) are one rotor
+        lo_z, hi_z = (z0 - centre.z) * scale, (z1 - centre.z) * scale
+        part, n = split_islands(bpy.data.objects[name], lambda c, lo_z=lo_z, hi_z=hi_z: lo_z < c.z <= hi_z,
+                                f".rotor{len(rotors)}")
+        print(f"rotor pieces from {name}: {n} faces")
+        rotors.append([part.name])
+        meshes.append(part)
+    for i, names in enumerate(rotors):
         parts = [bpy.data.objects[n] for n in names]
         rlo, rhi = bounds(parts)
         # The blades' centroid is the hub (a three-blade rotor's bounding box is off-centre)

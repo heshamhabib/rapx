@@ -117,6 +117,15 @@ actor-jet-v22 =
       Generation tier 4
       Flown by: USA, Japan
 
+actor-jet-f2 =
+    .name = AF-2 Zero Viper
+    .description =
+    Naval strike fighter.
+      Strong vs Ships and Vehicles
+      Weak vs Anti-Air
+      Generation tier 4
+      Flown by: Japan
+
 actor-jet-harrier =
     .name = Harrow
     .description =
@@ -161,6 +170,15 @@ actor-jet-vulcan =
       Weak vs Fighters and Anti-Air
       Generation tier 2
       Flown by: England
+
+actor-jet-he177 =
+    .name = He-177 Greif
+    .description =
+    Heavy bomber.
+      Strong vs Buildings
+      Weak vs Fighters and Anti-Air
+      Generation tier 0
+      Flown by: Germany
 
 actor-jet-seavixen =
     .name = Sea Vixa
@@ -233,6 +251,15 @@ actor-jet-su27 =
       Weak vs Anti-Air
       Generation tier 3
       Flown by: Vanguard, Russia, Ukraine, China
+
+actor-jet-su30 =
+    .name = Sk-30 Flankard-M
+    .description =
+    Multirole fighter.
+      Strong vs Buildings and Vehicles
+      Weak vs Anti-Air
+      Generation tier 4
+      Flown by: Vanguard, Russia, India, China
 
 actor-jet-su35 =
     .name = Sk-35 Flankard-E

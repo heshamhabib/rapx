@@ -8,7 +8,9 @@ hub on the origin.
                                 Flying and landed rotors play the same frames at different Ticks
                                 (sequences/hd-units.yaml: about one turn per 4 s flying, half that landed)
 
-  Blender -b <unit>.blend -P artsrc/units/meshes/render_heli.py -- <out dir> <frame px> <samples> <blades>
+  Blender -b <unit>.blend -P artsrc/units/meshes/render_heli.py -- <out dir> <frame px> <samples> <blades> [rotor-only]
+
+rotor-only skips the body (helicopters with weapon stations get it, and the weapon overlays, from render_loadout.py).
 """
 
 import math
@@ -23,6 +25,7 @@ import render_sprites  # noqa: E402
 
 argv = sys.argv[sys.argv.index("--") + 1:]
 OUT, FRAME, SAMPLES, BLADES = argv[0], int(argv[1]), int(argv[2]), int(argv[3])
+ROTOR_ONLY = len(argv) > 4 and argv[4] == "rotor-only"
 os.environ["PX_NO_GROUND"] = "1"
 render_sprites.setup(frame=FRAME, samples=SAMPLES)
 body = bpy.data.objects["Body"]
@@ -36,7 +39,7 @@ def show(root, visible):
 
 for r in rotors:
     show(r, False)
-for f in range(32):
+for f in range(0 if ROTOR_ONLY else 32):
     render_sprites.face(body, f, 32)
     render_sprites.render_to(os.path.join(OUT, "body", f"frame-{f:02d}.png"))
 

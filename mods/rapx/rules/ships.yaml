@@ -304,3 +304,211 @@ PT:
 	PxRenderDetectionCircle:
 	Selectable:
 		DecorationBounds: 1536, 1536
+
+# --- 2026-11-07 additions. Art: artsrc/units/meshes/make_sketchfab.py <image> (hull only; the guns fire from an
+# invisible turret, like the Cruiser). Air defence weapons: weapons/naval-defence.yaml.
+
+# USA missile cruiser (Ticonderoga): Tomahawk cruise missiles far inland, plus a medium SAM and a close-in gun
+CG:
+	Inherits: ^Ship
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Ship
+		BuildPaletteOrder: 55
+		Prerequisites: ~ships.usa, dome, ~techlevel.high
+		Description: actor-cg.description
+	PxNationalUnit:
+		Factions: usa
+	Valued:
+		Cost: 2600
+	Tooltip:
+		Name: actor-cg.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 70000
+	Armor:
+		Type: Heavy
+	Mobile:
+		TurnSpeed: 14
+		Speed: 60
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 8c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	Turreted:
+		TurnSpeed: 40
+		Offset: 0,0,256
+	Armament@MISSILE:
+		Weapon: TomahawkShip
+		LocalOffset: 900,0,200
+	Armament@SAM:
+		Weapon: NavalSAM
+		LocalOffset: -700,0,200
+	Armament@CIWS:
+		Weapon: CIWSGun
+		LocalOffset: 600,250,200
+	AttackTurreted:
+		TargetFrozenActors: True
+		ForceFireIgnoresActors: True
+	WithSpriteTurret:
+	RenderSprites:
+		Image: cg
+	Selectable:
+		DecorationBounds: 1877, 1877
+
+# Battleship (both sides, late game): the longest-range naval guns, heavy armour, slow
+BB:
+	Inherits: ^Ship
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Ship
+		BuildPaletteOrder: 58
+		Prerequisites: techcenter, ~techlevel.high
+		Description: actor-bb.description
+	Valued:
+		Cost: 4000
+	Tooltip:
+		Name: actor-bb.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 150000
+	Armor:
+		Type: Heavy
+	Mobile:
+		TurnSpeed: 8
+		Speed: 38
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 8c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	Turreted@PRIMARY:
+		Turret: primary
+		Offset: 1300,0,256
+		TurnSpeed: 10
+	Turreted@SECONDARY:
+		Turret: secondary
+		Offset: -1300,0,256
+		TurnSpeed: 10
+	Armament@PRIMARY:
+		Turret: primary
+		Weapon: 16Inch
+		LocalOffset: 600,-120,60, 600,0,60, 600,120,60
+	Armament@SECONDARY:
+		Name: secondary
+		Turret: secondary
+		Weapon: 16Inch
+		LocalOffset: 600,-120,60, 600,0,60, 600,120,60
+	Armament@CIWS:
+		Turret: primary
+		Weapon: CIWSGun
+		LocalOffset: 0,300,200
+	AttackTurreted:
+		Turrets: primary, secondary
+		TargetFrozenActors: True
+		ForceFireIgnoresActors: True
+	WithSpriteTurret@PRIMARY:
+		Turret: primary
+	WithSpriteTurret@SECONDARY:
+		Turret: secondary
+	RenderSprites:
+		Image: bb
+	Selectable:
+		DecorationBounds: 2200, 2200
+
+# Helicopter cruiser (Moskva, Vanguard nations): anti-air and anti-submarine escort
+HCRU:
+	Inherits: ^Ship
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Ship
+		BuildPaletteOrder: 56
+		Prerequisites: ~ships.soviet, hpad, ~techlevel.medium
+		Description: actor-hcru.description
+	Valued:
+		Cost: 2000
+	Tooltip:
+		Name: actor-hcru.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 75000
+	Armor:
+		Type: Heavy
+	Mobile:
+		TurnSpeed: 12
+		Speed: 54
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 8c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	Turreted:
+		TurnSpeed: 40
+		Offset: 0,0,256
+	Armament@SAM:
+		Weapon: NavalSAM
+		LocalOffset: 800,0,200
+	Armament@CIWS:
+		Weapon: CIWSGun
+		LocalOffset: 300,300,200
+	Armament@ASW:
+		Weapon: DepthCharge
+		LocalOffset: 0,0,0
+	AttackTurreted:
+		TargetFrozenActors: True
+	WithSpriteTurret:
+	RenderSprites:
+		Image: hcru
+	DetectCloaked:
+		DetectionTypes: Underwater
+		Range: 6c0
+	Selectable:
+		DecorationBounds: 1877, 1877
+
+# USA amphibious assault ship (Tarawa): carries a whole assault group (twice the landing craft) to the beach, with
+# its own short-range air defence
+LHA:
+	Inherits: LST
+	Buildable:
+		BuildPaletteOrder: 12
+		Prerequisites: ~ships.usa, hpad, ~techlevel.medium
+		Description: actor-lha.description
+	PxNationalUnit:
+		Factions: usa
+	Valued:
+		Cost: 1800
+	Tooltip:
+		Name: actor-lha.name
+	Health:
+		HP: 80000
+	Mobile:
+		Speed: 70
+	Cargo:
+		MaxWeight: 10
+	Turreted:
+		TurnSpeed: 40
+		Offset: 0,0,256
+	Armament@AA:
+		Weapon: StingerAA
+		LocalOffset: 500,300,200
+	Armament@CIWS:
+		Weapon: CIWSGun
+		LocalOffset: -500,-300,200
+	AttackTurreted:
+	AutoTarget:
+	AutoTargetPriority@AIR:
+		ValidTargets: AirborneActor
+	RenderSprites:
+		Image: lha
+	Selectable:
+		DecorationBounds: 2200, 2200

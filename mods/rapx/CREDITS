@@ -131,6 +131,13 @@ every model: recoloured for team colours, rendered as game sprites from
 * Vanguard Medium Tank (MTNK):
     "Soviet medium tank T-34-85" (Fab download; licence to confirm).
 
+* Medic (MEDI) body:
+    "Doctor Lab"
+    (https://sketchfab.com/3d-models/doctor-lab-dd29cf9290c8419e80561221416a8694)
+    by 00amza, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: team-colour armbands added, animated on the shared soldier skeleton.
+
 * Cyborg Trooper (CYBT):
     "Cyborg Soldier SciFi Character"
     (https://sketchfab.com/3d-models/cyborg-soldier-scifi-character-890f5493c9c041c0a0923fc23b01d086)
@@ -238,6 +245,192 @@ every model: recoloured for team colours, rendered as game sprites from
     by CaptainTux, licensed under Creative Commons Attribution
     (http://creativecommons.org/licenses/by/4.0/).
     Changes: rendered as a falling bomb from 16 angles.
+
+* Tv-95 Bear bomber (TU95) and the RDS-37 bomb:
+    "Tu-95M with RDS-37 ☢︎"
+    (https://sketchfab.com/3d-models/tu-95m-with-rds-37-ffac9bf027094f85a877a231941baa4f)
+    by Jeyhun1985, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: the bomb rendered separately as a falling bomb.
+
+* Sk-30 Flankard-M (JET.SU30):
+    "Russian Su-30SM "45 Blue""
+    (https://sketchfab.com/3d-models/russian-su-30sm-45-blue-8dc883ebe3c84da3834f10aae5d58386)
+    by 42manako, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* AF-2 Zero Viper (JET.F2):
+    "JASDF F-2A Low Poly model"
+    (https://sketchfab.com/3d-models/jasdf-f-2a-low-poly-model-e91124b750b74223bd5cb18d03a254cb)
+    by Yi Tsung Lee, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* Zolfaghar ballistic missile truck (ZOLF):
+    "Iranian Zolfaghar TELAR"
+    (https://sketchfab.com/3d-models/iranian-zolfaghar-telar-8c147470b49b44edb48623d2268843e1)
+    by 42manako, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: the missiles also rendered as flying sprites.
+
+* Medium SAM, England (MSAM):
+    "Sky Sabre SAM"
+    (https://sketchfab.com/3d-models/sky-sabre-sam-461cd7f020814360a2a48b4715ac792c)
+    by Jeyhun1985, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: shown as a defence building.
+
+* Medium SAM, Russia (MSAM):
+    "Buk-M3 9K317 SAM"
+    (https://sketchfab.com/3d-models/buk-m3-9k317-sam-923878eda87a4b28bae10799023086c5)
+    by Jeyhun1985, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: shown as a defence building.
+
+* Quad AA Halftrack (M16):
+    "M16 MGMC halftrack"
+    (https://sketchfab.com/3d-models/m16-mgmc-halftrack-da02b6dc1c904254811de2d3d29e1087)
+    by 42manako, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: the gun mount split off as a turning turret.
+
+* Flak Cannon (FLAK):
+    "][.Air.Defense-Cannon.][-✖-][.Alpha.α.፩.]["
+    (https://sketchfab.com/3d-models/airdefense-cannon-alpha-d350c50d3b544bf2828d6e1cca701a46)
+    by -X-ScornGames, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: shown as a defence building.
+
+* Helicopter Cruiser (HCRU):
+    "MOSKVA HELICOPTER CARRIER"
+    (https://sketchfab.com/3d-models/moskva-helicopter-carrier-535adcf1560245e48e93b3759f0237ae)
+    by Muhamad Mirza Arrafi, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: hull below the waterline removed.
+
+* Amphibious Assault Ship (LHA):
+    "USS TARAWA LHA-1 AMPHIBIOUS ASSAULT SHIP"
+    (https://sketchfab.com/3d-models/uss-tarawa-lha-1-amphibious-assault-ship-0d1692199c2847b3a8eae40e285d4ea1)
+    by Muhamad Mirza Arrafi, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: face normals recalculated.
+
+* Missile Cruiser (CG):
+    "Ticonderoga Missile Cruiser"
+    (https://sketchfab.com/3d-models/ticonderoga-missile-cruiser-397bd2b7bcd946e4b508869f4ca1e1cf)
+    by waelXcm, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: hull below the waterline removed.
+
+* Battleship (BB):
+    "Battleship-<✠>-Beta"
+    (https://sketchfab.com/3d-models/battleship-beta-156b02edeae04b15b71f8155bb034b70)
+    by -X-ScornGames, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: paint darkened.
+
+* BTR (BTR):
+    "russian btr"
+    (https://sketchfab.com/3d-models/russian-btr-e1d23aec3127469084e8f8b7ead252b4)
+    by mamont nikita, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: the figure and floor plate in the file left out, white markings painted over, turret split off.
+
+* Ka-52 Alligator (KA52):
+    "Russian Ka-52 Alligator"
+    (https://sketchfab.com/3d-models/russian-ka-52-alligator-9b31733ceed24be49b2f621487b35ea9)
+    by 42manako, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: the rotor blur discs used as the rotors.
+
+* Mi-35M Hind-E (MI35):
+    "Russian Mil Mi-35M"
+    (https://sketchfab.com/3d-models/russian-mil-mi-35m-cf353814ef14488599336f752b85d5d4)
+    by 42manako, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* KV Strider (KVST):
+    "KV-AT-ST"
+    (https://sketchfab.com/3d-models/kv-at-st-f74f17a131f54bbcb1f5b474631ffb3f)
+    by Aruto, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* Monster Truck (MTRK):
+    "hummer h1 monster truck"
+    (https://sketchfab.com/3d-models/hummer-h1-monster-truck-7e4f8f59f69647c2a51466e49723a053)
+    by amogusstrikesback2, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* Humvee (HMMV):
+    "Low poly Humvee"
+    (https://sketchfab.com/3d-models/low-poly-humvee-1183335985d34497a5b4be723758c0ba)
+    by SIpriv, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: turret split off.
+
+* He-177 Greif (JET.HE177):
+    "Heinkel He 177 (low poly)"
+    (https://sketchfab.com/3d-models/heinkel-he-177-low-poly-5aca29e45d7a4cd5b476f08e8d77521f)
+    by Götz von Berlichingen, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* Shockfang (SFNG):
+    "Shockfang - Cyberpunk Tank"
+    (https://sketchfab.com/3d-models/shockfang-cyberpunk-tank-a5365d241dd046fbbc04f8683781e4e1)
+    by tankmodifier, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: turret split off.
+
+* War Robot (WBOT):
+    "robot_war machine"
+    (https://sketchfab.com/3d-models/robot-war-machine-dec0ec7e1de74cb7ba51f48193ab93c3)
+    by rinzks3D, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* Hind (HIND):
+    "Hind Attack Helicopter"
+    (https://sketchfab.com/3d-models/hind-attack-helicopter-bb65bdfde2c54007a52dfbe1d91d930d)
+    by Ashley Aslett, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* Mi-17 Hip (MI17):
+    "Mil Mi-17"
+    (https://sketchfab.com/3d-models/mil-mi-17-fea07f35cee64a1cab596d65c5bf76c1)
+    by 42manako, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: rotor blades cut from the body.
+
+* AW101 Merlin (AW101):
+    "Helicopter"
+    (https://sketchfab.com/3d-models/helicopter-ef70283b1dea4ae8b18eec9231ce390e)
+    by Gigantic Burger, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* Longbow (HELI):
+    "SA.342M Gazelle"
+    (https://sketchfab.com/3d-models/sa342m-gazelle-275dc9a3b55d4996a1077aa1fb747034)
+    by Jeyhun1985, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: missiles split off as firing weapons.
+
+* Tiger (TIGER):
+    "Eurocopter Tiger Attack Helicopter"
+    (https://sketchfab.com/3d-models/eurocopter-tiger-attack-helicopter-a8ae9b61995a49a1a2fa2de57e8ce4ef)
+    by Muhamad Mirza Arrafi, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: rotor cut from the body, weapons split off.
+
+* Thunderhead MLRS (MLRS):
+    "Rocket Launcher | free 3d"
+    (https://sketchfab.com/3d-models/rocket-launcher-free-3d-61b9e78bcb884450b1fc1380e7f6743a)
+    by Denis.Cherkasov1, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: paint darkened; its rockets rendered as flying sprites.
+
+* Hailfire Rocket Truck (HLFR):
+    "Multiple Rocket Launcher Military Truck"
+    (https://sketchfab.com/3d-models/multiple-rocket-launcher-military-truck-303c46b5ede748288ae6ca6d085aae79)
+    by ItsKrish7, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
 
 * Swarm drone (JET.SWARM):
     "FPV Drone"
@@ -441,16 +634,6 @@ commercially.
     (https://sketchfab.com/3d-models/f-14a-tomcat-early-d76edb7f887d47d99a4ed1eb7b76567c)
     by VTX.
 
-* Longbow (HELI):
-    "Aérospatiale SA342 Gazelle"
-    (https://sketchfab.com/3d-models/aerospatiale-sa342-gazelle-4448a22ea130421e8e739a80913c2900)
-    by VTX.
-
-* Hind (HIND):
-    "CAIC Z-10ME"
-    (https://sketchfab.com/3d-models/caic-z-10me-3ee228332a06416b9257eb8c743e0c3c)
-    by VTX.
-
 * Flankard-E jet (JET.SU35):
     "Sukhoi Su-35 - Fighter Jet - Free"
     (https://sketchfab.com/3d-models/sukhoi-su-35-fighter-jet-free-3213a404e5cb4fb68f778b9acae5109c)
@@ -557,10 +740,10 @@ commercially.
     (http://creativecommons.org/licenses/by/4.0/).
     Changes: hull below the waterline removed.
 
-* Fujian Carrier (CVCN):
-    "Chinese Aircraft Carrier"
-    (https://sketchfab.com/3d-models/f9ddadfc6988414fa15da2cb1b1de545)
-    by businessyuen, licensed under Creative Commons Attribution
+* China's carrier (CVCN):
+    "Type-004 Aircraft Carrier"
+    (https://sketchfab.com/3d-models/type-004-aircraft-carrier-0953bebe3ae34d7582fe0e2bcff0925f)
+    by Muhamad Mirza Arrafi, licensed under Creative Commons Attribution
     (http://creativecommons.org/licenses/by/4.0/).
     Changes: hull below the waterline removed.
 

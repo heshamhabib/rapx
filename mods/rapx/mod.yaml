@@ -1,6 +1,6 @@
 Metadata:
 	Title: mod-title
-	Version: {DEV_VERSION}
+	Version: 0.1.0-pilot
 	Website: https://www.openra.net
 	WindowTitle: mod-windowtitle
 
@@ -19,7 +19,7 @@ FileSystem: DefaultFileSystem
 
 MapFolders:
 	ra|maps: System
-	~^SupportDir|maps/rapx/{DEV_VERSION}: User
+	~^SupportDir|maps/rapx/0.1.0-pilot: User
 
 Rules:
 	ra|rules/misc.yaml
@@ -60,6 +60,7 @@ Rules:
 	ra|rules/ammo-bars.yaml
 	ra|rules/rocket-launchers.yaml
 	ra|rules/air-defence.yaml
+	ra|rules/angel-flares.yaml
 
 Sequences:
 	ra|sequences/ships.yaml
@@ -372,11 +373,12 @@ VideoFormats: Vqa, Wsa, Rpv
 TerrainFormat: DefaultTerrain
 
 SpriteSequenceFormat: ClassicTilesetSpecificSpriteSequence
-	# RAPX: trim the transparent border of HD unit, infantry and building frames at load time (faster loads,
-	# less video memory; bounds and placement are unchanged). Effects, scenery, icons and UI art keep their full frames
-	# because some RAPX renderers size them from the sprite.
-	CropTransparent: ra|bits/hd/
-	CropTransparentExclude: /fx/, /env/, /tiles/, /icons/, /cash/, /ore/, /pads/, /rally/, cameo, rolebadges, blank
+	# RAPX: trim the transparent border of HD unit, infantry, prop and building frames at load time (faster loads,
+	# less video memory; bounds and placement are unchanged). Globs: * stays in one folder, ** crosses folders.
+	# Only list art drawn as normal world sprites: UI art, icons, effects and scenery are sized from the sprite by
+	# widgets and some RAPX renderers, so new folders stay uncropped until checked and added here.
+	CropTransparent: ra|bits/hd/units/**, ra|bits/hd/jets/**, ra|bits/hd/soldiers/**, ra|bits/hd/infantry/**, ra|bits/hd/styles/**, ra|bits/hd/props/**, ra|bits/hd/*.png
+	CropTransparentExclude: ra|bits/hd/*icon.png, ra|bits/hd/*cameo.png, ra|bits/hd/rolebadges.png, ra|bits/hd/blank.png
 
 AssetBrowser:
 	SpriteExtensions: .shp, .tmp, .tem, .des, .sno, .int

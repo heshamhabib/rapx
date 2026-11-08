@@ -258,3 +258,128 @@ ad-bmd-soviet:
 	icon:
 		Filename: ra|bits/hd/ad-bmd-sovietcameo.png
 
+ad-msam-england:
+	idle:
+		Filename: ra|bits/hd/blank.png
+		Length: 1
+		Scale: 0.4167
+	turret:
+		Filename: ra|bits/hd/units/ad-msam-england.png
+		Start: 8
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	damaged-turret:
+		Filename: ra|bits/hd/units/ad-msam-england.png
+		Start: 8
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	make:
+		Filename: ra|bits/hd/units/ad-msam-england.png
+		Start: 8
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	collapse:
+		Filename: ra|bits/hd/units/ad-msam-england.png
+		Start: 8
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	bib:
+		TilesetFilenames:
+			SNOW: ra|bits/hd/ui/mbsam-snow.png
+			TEMPERAT: ra|bits/hd/ui/mbsam-temperate.png
+			DESERT: ra|bits/hd/ui/mbsam-desert.png
+		Scale: 0.3333
+		Length: *
+		Offset: 0,1
+	icon:
+		Filename: ra|bits/hd/ad-msam-englandcameo.png
+
+ad-msam-russia:
+	idle:
+		Filename: ra|bits/hd/blank.png
+		Length: 1
+		Scale: 0.4167
+	turret:
+		Filename: ra|bits/hd/units/ad-msam-russia.png
+		Start: 8
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	damaged-turret:
+		Filename: ra|bits/hd/units/ad-msam-russia.png
+		Start: 8
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	make:
+		Filename: ra|bits/hd/units/ad-msam-russia.png
+		Start: 8
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	collapse:
+		Filename: ra|bits/hd/units/ad-msam-russia.png
+		Start: 8
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	bib:
+		TilesetFilenames:
+			SNOW: ra|bits/hd/ui/mbsam-snow.png
+			TEMPERAT: ra|bits/hd/ui/mbsam-temperate.png
+			DESERT: ra|bits/hd/ui/mbsam-desert.png
+		Scale: 0.3333
+		Length: *
+		Offset: 0,1
+	icon:
+		Filename: ra|bits/hd/ad-msam-russiacameo.png
+
+# Flak Cannon (rules/air-defence.yaml FLAK): the whole gun mount turns (32 directions), on the AA Gun's small bib
+flak:
+	idle:
+		Filename: ra|bits/hd/blank.png
+		Length: 1
+		Scale: 0.4167
+	turret:
+		Filename: ra|bits/hd/units/flak.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	damaged-turret:
+		Filename: ra|bits/hd/units/flak.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	make:
+		Filename: ra|bits/hd/units/flak.png
+		Start: 0
+		Length: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	collapse:
+		Filename: ra|bits/hd/units/flak.png
+		Start: 0
+		Length: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+	bib:
+		TilesetFilenames:
+			SNOW: ra|bits/hd/ui/mbagun-snow.png
+			TEMPERAT: ra|bits/hd/ui/mbagun-temperate.png
+			DESERT: ra|bits/hd/ui/mbagun-desert.png
+		Scale: 0.3333
+		Length: *
+	icon:
+		Filename: ra|bits/hd/flakicon.png

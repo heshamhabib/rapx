@@ -350,3 +350,18 @@ SCUD:
 		ImpactSounds: ra|audio/sfx/firebl3.ogg
 	Warhead@4EffWater: CreateEffect
 		Explosions: large_splash
+
+# Ticonderoga cruiser (rules/ships.yaml CG): Tomahawk land-attack cruise missiles from its vertical launchers
+TomahawkShip:
+	Inherits: ^SubMissileDefault
+	ReloadDelay: 400
+	Range: 22c0
+	MinRange: 4c0
+	TargetActorCenter: true
+	Projectile: PxRocket
+		WaterLaunch: false
+		Speed: 215
+		Arc: 0.3
+		TrackTarget: false
+	Warhead@1Dam: SpreadDamage
+		Damage: 4000

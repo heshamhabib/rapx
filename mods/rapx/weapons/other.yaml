@@ -220,3 +220,11 @@ MADTankDetonate:
 		Explosions: med_explosion
 		ImpactSounds: ra|audio/sfx/mineblo1.ogg
 		ImpactActors: false
+
+# Shockfang (rules/vehicles.yaml SFNG): a heavy electric discharge from its cannon
+ShockfangZap:
+	Inherits: TTankZap
+	ReloadDelay: 90
+	Range: 7c0
+	Warhead@1Dam: SpreadDamage
+		Damage: 12000

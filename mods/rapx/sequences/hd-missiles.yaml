@@ -143,6 +143,38 @@ pxmissile:
 		Facings: 32
 		UseClassicFacings: False
 		Scale: 0.2333
+	# Thunderhead MLRS: one of its own rockets (artsrc/units/vehicles/make_v2_rocket.sh mlrs first)
+	mlrs:
+		Filename: ra|bits/hd/fx/missile-mlrs.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	mlrs-climb:
+		Filename: ra|bits/hd/fx/missile-mlrs-climb.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	mlrs-dive:
+		Filename: ra|bits/hd/fx/missile-mlrs-dive.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	# Zolfaghar TEL: one of the missiles on its erector (artsrc/units/vehicles/make_v2_rocket.sh zolf one)
+	zolf:
+		Filename: ra|bits/hd/fx/missile-zolf.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	zolf-climb:
+		Filename: ra|bits/hd/fx/missile-zolf-climb.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	zolf-dive:
+		Filename: ra|bits/hd/fx/missile-zolf-dive.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
 	# Fajir-5 drone mode: Shard-136 delta-wing drone (artsrc/jets/make_rockets.sh shard136)
 	shard136:
 		Filename: ra|bits/hd/fx/missile-shard136.png
@@ -157,6 +189,18 @@ pxmissile:
 		Scale: 0.3333
 	kh29:
 		Filename: ra|bits/hd/fx/missile-kh29.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	# 9M120 Ataka, the attack helicopters' anti-tank missile (artsrc/jets/make_missiles.sh ataka)
+	ataka:
+		Filename: ra|bits/hd/fx/missile-ataka.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	# HOT, the Union attack helicopters' anti-tank missile (artsrc/jets/make_missiles.sh hot)
+	hot:
+		Filename: ra|bits/hd/fx/missile-hot.png
 		Facings: 32
 		UseClassicFacings: False
 		Scale: 0.3333

@@ -41,6 +41,10 @@ namespace OpenRA.Mods.RAPX.Traits
 		[Desc("Flares in one salvo (cosmetic).")]
 		public readonly int FlaresPerSalvo = 12;
 
+		[Desc("Look of a salvo: Standard (a quick fan behind the jet) or Angel (big symmetrical wings of large, long-burning",
+			"flares with a flash and shock ring on release, for heavy aircraft and helicopters).")]
+		public readonly PxFlareStyle Style = PxFlareStyle.Standard;
+
 		[Desc("Sound played when a salvo is released (one picked at random).")]
 		public readonly string[] Sounds = Array.Empty<string>();
 
@@ -122,7 +126,7 @@ namespace OpenRA.Mods.RAPX.Traits
 			burstAt = self.CenterPosition;
 			burstVelocity = velocity;
 			Log.Write("debug", $"PxFlareDispenser: {self.Info.Name} ({self.Owner.PlayerName}) released flares, {salvos} salvos left");
-			var burst = new PxFlareBurst(self, velocity, Info.FlaresPerSalvo);
+			var burst = new PxFlareBurst(self, velocity, Info.FlaresPerSalvo, Info.Style);
 			self.World.AddFrameEndTask(w => w.Add(burst));
 			if (Info.Sounds.Length > 0)
 				Game.Sound.Play(SoundType.World, Info.Sounds.Random(Game.CosmeticRandom), self.CenterPosition);
@@ -131,7 +135,7 @@ namespace OpenRA.Mods.RAPX.Traits
 		/// <summary>Where the flare cloud will be when a missile gets there.</summary>
 		WPos DecoyPoint(int ticksLeft)
 		{
-			return burstAt + PxFlareBurst.Drift(burstVelocity, Info.CoverTicks - cover + ticksLeft);
+			return burstAt + PxFlareBurst.Drift(burstVelocity, Info.CoverTicks - cover + ticksLeft, Info.Style);
 		}
 	}
 }
