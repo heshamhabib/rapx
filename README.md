@@ -1,26 +1,155 @@
-# RedAlert Project X (RAPX)
+<p align="center">
+  <img src="docs/readme/banner.jpg" alt="Red Alert: Project X" width="100%">
+</p>
 
-A modernised Command & Conquer: Red Alert, built as a mod on the [OpenRA](https://www.openra.net) engine.
+<h3 align="center">The Red Alert you remember, rebuilt as a modern HD real-time strategy game.</h3>
 
-- HD art: 3D-rendered units and buildings, national building styles, HD effects and money popups
-- Two sides, **Union** and **Vanguard**, with 18 playable nations and their flags
-- New buildings (Oil Rig, airfields with parking slots, …), weapons and maps
-- Fully reskinned menus, lobby and sidebar, plus a cinematic intro
-- RA2-style control schemes
+<p align="center">
+  <a href="#-get-in-the-fight"><img src="https://img.shields.io/badge/PLAY-FREE-c8102e?style=for-the-badge" alt="Play free"></a>
+  <img src="https://img.shields.io/badge/Windows%20%7C%20macOS%20%7C%20Linux-1f2328?style=for-the-badge" alt="Windows, macOS, Linux">
+  <img src="https://img.shields.io/badge/16%20nations-2%20superpowers-1f2328?style=for-the-badge" alt="16 nations, 2 superpowers">
+  <a href="https://www.openra.net"><img src="https://img.shields.io/badge/built%20on-OpenRA-1f2328?style=for-the-badge" alt="Built on OpenRA"></a>
+</p>
 
-This repository is **self-contained**: the patched OpenRA engine is included in `engine/`, so a single clone is
-all you need to build and play.
+<p align="center">
+  <img src="docs/readme/trailer.gif" alt="Scenes from the Project X cinematic intro" width="720">
+  <br><sub>Scenes from the game's cinematic intro</sub>
+</p>
 
-## Build and play
+---
 
-### Requirements
+## ☢️ The world is on alert
 
-- [.NET 6 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
-- Linux only: SDL 2, FreeType, OpenAL and Lua 5.1 system libraries
-  (e.g. `sudo apt install libfreetype6 libopenal1 liblua5.1-0 libsdl2-2.0-0`; other distros in
-  [engine/INSTALL.md](engine/INSTALL.md))
+Two superpowers. Sixteen nations. One battlefield.
 
-### macOS / Linux
+The **Union** and the **Vanguard** are at war, and you command one of them. Build your base, harvest ore, raise an
+army of tanks, jets, warships and battle robots, then bring it all down on your enemy before they launch first.
+
+**Project X** keeps the fast, classic base-building of Command & Conquer: Red Alert and gives it everything a
+modern RTS should have: hand-rendered 3D units, a full HD interface, living weather, superweapons and a cinematic
+intro. It is **free**, runs **offline**, and needs **no original game files**.
+
+<p align="center">
+  <img src="docs/readme/air-battle.jpg" alt="An AF-14 Bobcat squadron takes off from a USA airfield into a missile duel over a snowy battlefield" width="100%">
+  <br><sub>USA jets scramble from their airfield as enemy missiles streak in</sub>
+</p>
+
+## 🎖️ What's inside
+
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>🛩️ HD 3D-rendered armies</h3>
+      Every tank, jet, helicopter, warship, soldier and building is rendered from a real 3D model, with
+      national building styles, smooth motion and HD explosions, smoke and missile trails.
+    </td>
+    <td width="50%" valign="top">
+      <h3>🌍 16 nations, 2 superpowers</h3>
+      Pick from the USA, England, France, Germany, Japan, South Korea, Italy and Egypt in the
+      <b>Union</b>, or Russia, Ukraine, Cuba, India, China, Turkey, Pakistan and Iran in the <b>Vanguard</b>.
+      Nations bring their own exclusive units.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top">
+      <h3>✈️ A real air force</h3>
+      Airfields with parking slots, jets that rearm on the pad, layered air defence, flares, real missile
+      models and bombers. Helicopters reload in the field.
+    </td>
+    <td valign="top">
+      <h3>🤖 Battle robots</h3>
+      Cyborg Troopers, Battle Droids, Railgun Robots, Iron Guards and Tesla Automatons take the field
+      next to classic infantry.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top">
+      <h3>☢️ Superweapons</h3>
+      Nuclear Missile Silos, the USA's Fatman Strike from its bomber field, ASAT sites and more. Watch the
+      sky.
+    </td>
+    <td valign="top">
+      <h3>🌨️ Living weather</h3>
+      Blizzards, fog and strong winds roll across the map during battle, with a forecast in your sidebar.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top">
+      <h3>🖥️ A modern interface</h3>
+      Fully reskinned menus, lobby and sidebar, production tabs, hologram building placement, detailed unit
+      cards, a battle report and an observer view with live player stats. RA2-style controls available.
+    </td>
+    <td valign="top">
+      <h3>📖 Arsenal Catalogue</h3>
+      Browse every nation's units and buildings in <b>Extras</b>, with 3D previews, stats, weapons and
+      field dossiers.
+    </td>
+  </tr>
+</table>
+
+## 📸 Screenshots
+
+<table>
+  <tr>
+    <td width="50%"><img src="docs/readme/base.jpg" alt="A USA base on a frozen map at the start of a match, with a ceasefire countdown"></td>
+    <td width="50%"><img src="docs/readme/winter.jpg" alt="Snow-covered pine forest, cliffs and a frozen lake"></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>Build up your base while the ceasefire holds</sub></td>
+    <td align="center"><sub>HD terrain: winter forests and frozen lakes</sub></td>
+  </tr>
+  <tr>
+    <td><img src="docs/readme/catalogue-air.jpg" alt="Arsenal Catalogue showing USA aircraft with stats"></td>
+    <td><img src="docs/readme/catalogue-naval.jpg" alt="Arsenal Catalogue showing a USA cruiser with stats"></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>Arsenal Catalogue: aircraft</sub></td>
+    <td align="center"><sub>Arsenal Catalogue: navy</sub></td>
+  </tr>
+  <tr>
+    <td><img src="docs/readme/observer.jpg" alt="Observer view of a five-player match with a live player list"></td>
+    <td><img src="docs/readme/battle-report.jpg" alt="Battle report screen after a match"></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>Observer view with live stats for every player</sub></td>
+    <td align="center"><sub>Battle report</sub></td>
+  </tr>
+</table>
+
+## 🚩 Choose your side
+
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <h3>🔵 The Union</h3>
+      <img src="docs/readme/flags-union.png" alt="USA, England, France, Germany, Japan, South Korea, Italy, Egypt" width="100%">
+      <br><sub>USA · England · France · Germany · Japan · South Korea · Italy · Egypt</sub>
+    </td>
+    <td align="center" width="50%">
+      <h3>🔴 The Vanguard</h3>
+      <img src="docs/readme/flags-vanguard.png" alt="Russia, Ukraine, Cuba, India, China, Turkey, Pakistan, Iran" width="100%">
+      <br><sub>Russia · Ukraine · Cuba · India · China · Turkey · Pakistan · Iran</sub>
+    </td>
+  </tr>
+</table>
+
+## 🎮 Get in the fight
+
+Skirmish against AI from Easy to Brutal, or play multiplayer with friends on more than 80 maps. Everything the game
+needs is in this repository: nothing else to download, no original Red Alert files, no internet connection
+required.
+
+### 1. Install the .NET 6 SDK
+
+Download it from [dotnet.microsoft.com](https://dotnet.microsoft.com/download/dotnet/6.0).
+
+Linux only: you also need SDL 2, FreeType, OpenAL and Lua 5.1
+(e.g. `sudo apt install libfreetype6 libopenal1 liblua5.1-0 libsdl2-2.0-0`; other distros in
+[engine/INSTALL.md](engine/INSTALL.md)).
+
+### 2. Build and launch
+
+**macOS / Linux**
 
 ```sh
 git clone https://github.com/heshamhabib/rapx.git
@@ -29,7 +158,7 @@ make
 ./launch-game.sh
 ```
 
-### Windows
+**Windows**
 
 ```bat
 git clone https://github.com/heshamhabib/rapx.git
@@ -38,10 +167,13 @@ make.cmd
 launch-game.cmd
 ```
 
-Everything the game needs is in this repository: no Red Alert files are downloaded or installed, and it runs
-offline.
+That's it: the game opens with the cinematic intro, then straight to the main menu.
 
-## Repository layout
+---
+
+## 🛠️ For modders and contributors
+
+### Repository layout
 
 | Path | What it is |
 |---|---|
@@ -51,19 +183,19 @@ offline.
 | `patches/` | The same engine changes as patch files, a record of what differs from stock OpenRA |
 | `artsrc/` | Art pipeline: scripts that generate the HD sprites, UI skin, flags, cameos, maps and sounds |
 | `tools/` | Helper scripts (video encoder, perf bench, art audit) |
-| `docs/` | Campaign story, research notes, asset inventories |
+| `docs/` | Campaign story, research notes, asset inventories, README images |
 | `packaging/` | Scripts for building Windows / macOS / Linux installers |
 
 Raw source art (Blender scenes, 3D model downloads and intermediate renders, tens of GB) is not part of the
 repository; `artsrc/` holds the scripts and the inputs needed to regenerate the shipped art.
 
-## The engine
+### The engine
 
-`engine/` is OpenRA [`release-20250330`](https://github.com/OpenRA/OpenRA/releases/tag/release-20250330) with
-the patches in [`patches/`](patches/) applied (HD rendering, 64-bit cash, airfield slots, production tabs,
-smooth motion, …). `mod.config` sets `AUTOMATIC_ENGINE_MANAGEMENT="False"`, so `make` builds this copy and
-never downloads a stock engine over it. See [patches/README.md](patches/README.md) for upgrading to a newer
-OpenRA release.
+This repository is **self-contained**: `engine/` is OpenRA
+[`release-20250330`](https://github.com/OpenRA/OpenRA/releases/tag/release-20250330) with the patches in
+[`patches/`](patches/) applied (HD rendering, 64-bit cash, airfield slots, production tabs, smooth motion, …).
+`mod.config` sets `AUTOMATIC_ENGINE_MANAGEMENT="False"`, so `make` builds this copy and never downloads a stock
+engine over it. See [patches/README.md](patches/README.md) for upgrading to a newer OpenRA release.
 
 ## License and credits
 
@@ -78,4 +210,6 @@ OpenRA release.
   licenses; see [mods/rapx/CREDITS](mods/rapx/CREDITS). A few are licensed **NonCommercial**, so RAPX must not
   be sold.
 
-RAPX is a free fan project and is not affiliated with or endorsed by Electronic Arts or the OpenRA team.
+<p align="center">
+  <sub>RAPX is a free fan project and is not affiliated with or endorsed by Electronic Arts or the OpenRA team.</sub>
+</p>
