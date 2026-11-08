@@ -5,6 +5,7 @@
 <h3 align="center">The Red Alert you remember, rebuilt as a modern HD real-time strategy game.</h3>
 
 <p align="center">
+  <a href="#-pilot-version-tell-us-what-you-think"><img src="docs/readme/badge-pilot.png" alt="Pilot version" height="28"></a>
   <a href="#-get-in-the-fight"><img src="docs/readme/badge-play.png" alt="Play free" height="28"></a>
   <img src="docs/readme/badge-platforms.png" alt="Windows, macOS, Linux" height="28">
   <img src="docs/readme/badge-nations.png" alt="16 nations, 2 superpowers" height="28">
@@ -15,6 +16,11 @@
   <img src="docs/readme/trailer.gif" alt="Scenes from the Project X cinematic intro" width="720">
   <br><sub>Scenes from the game's cinematic intro</sub>
 </p>
+
+> [!IMPORTANT]
+> **This is a pilot version.** Project X is in early access: expect rough edges, missing pieces and the
+> occasional bug, and expect things to change between updates. Your feedback decides what gets fixed and built
+> next, so [tell us what you think](#-pilot-version-tell-us-what-you-think).
 
 ---
 
@@ -168,6 +174,22 @@ launch-game.cmd
 ```
 
 That's it: the game opens with the cinematic intro, then straight to the main menu.
+
+## 🐞 Pilot version: tell us what you think
+
+You are playing an early build, and every report helps. Found a bug, hit a crash, have an idea for a new unit,
+map or nation, or just want to say what you loved or hated? Send an email to
+**[heshamhabib5@gmail.com](mailto:heshamhabib5@gmail.com?subject=%5BRAPX%5D%20)** with **`[RAPX]`** at the start of the subject line, so it doesn't get lost.
+
+| Sending a... | Subject example | What helps |
+|---|---|---|
+| 🐛 **Bug or crash** | `[RAPX] Bug: jets stuck on the airfield` | What you did, what happened, your OS. Screenshots (Ctrl+P in game) and the log files from the OpenRA `Logs` folder (`~/Library/Application Support/OpenRA/Logs` on macOS, `%APPDATA%\OpenRA\Logs` on Windows, `~/.config/openra/Logs` on Linux) help a lot. |
+| ⚠️ **Issue** | `[RAPX] Issue: game slow on large maps` | Your PC / Mac specs, the map name and how many players. |
+| 💡 **Idea** | `[RAPX] Idea: a Brazilian nation` | As much or as little detail as you like. Sketches welcome. |
+
+<p align="center">
+  <a href="mailto:heshamhabib5@gmail.com?subject=%5BRAPX%5D%20"><b>✉️ Email your feedback</b></a>
+</p>
 
 ---
 
