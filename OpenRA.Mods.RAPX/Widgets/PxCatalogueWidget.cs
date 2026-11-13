@@ -775,8 +775,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 			// Title block
 			var fade = Math.Clamp(age / 300f, 0, 1);
 			var role = (selected.Role ?? "").ToUpperInvariant();
-			PxWarChrome.DrawSpaced(header, role, s.X + 22, s.Y + 18, 2, Alpha(Accent, fade));
-			Text(displayLarge, selected.Name.ToUpperInvariant(), s.X + 20, s.Y + 34, Alpha(Color.White, fade));
+			var roleRight = s.Right - 22;
 
 			var sideCount = data.Nations.Count(n => n.Side == nation.Side);
 			if (selected.Nations.Count == 1 || selected.Nations.Count < sideCount)
@@ -785,9 +784,22 @@ namespace OpenRA.Mods.RAPX.Widgets
 				var bw = PxWarChrome.SpacedWidth(tiny, badge, 1) + 16;
 				var by = s.Y + 18;
 				var bx = s.Right - 22 - bw;
+				roleRight = bx - 14;
 				Fill(new Rectangle(bx, by, bw, 18), selected.Nations.Count == 1 ? Gold : side);
 				PxWarChrome.DrawSpaced(tiny, badge, bx + 8, by + 2, 1, selected.Nations.Count == 1 ? Color.FromArgb(30, 22, 4) : Color.White);
 			}
+
+			// A long role line stops before the badge (or the frame) with "..." instead of running under it
+			if (PxWarChrome.SpacedWidth(header, role, 2) > roleRight - (s.X + 22))
+			{
+				while (role.Length > 1 && PxWarChrome.SpacedWidth(header, role + "...", 2) > roleRight - (s.X + 22))
+					role = role[..^1];
+
+				role = role.TrimEnd(' ', ',') + "...";
+			}
+
+			PxWarChrome.DrawSpaced(header, role, s.X + 22, s.Y + 18, 2, Alpha(Accent, fade));
+			Text(displayLarge, selected.Name.ToUpperInvariant(), s.X + 20, s.Y + 34, Alpha(Color.White, fade));
 
 			var tier = $"{PxCatalogueData.Categories[category].ToUpperInvariant()}  ·  {selected.Actor.Name.ToUpperInvariant()}";
 			PxWarChrome.DrawSpaced(tiny, tier, s.X + 22, s.Bottom - 24, 1, Faint);

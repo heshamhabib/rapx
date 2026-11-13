@@ -235,6 +235,122 @@ cybt:
 		UseClassicFacings: False
 		Scale: 0.2000
 
+dog:
+	stand:
+		Filename: ra|bits/hd/soldiers/dog/idle.png
+		Start: 0
+		Length: 1
+		Stride: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2000
+	stand2:
+		Filename: ra|bits/hd/soldiers/dog/aim.png
+		Start: 0
+		Length: 1
+		Stride: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2000
+	idle1:
+		Filename: ra|bits/hd/soldiers/dog/idle.png
+		Start: 0
+		Length: 1
+		Stride: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 280
+	run:
+		Filename: ra|bits/hd/soldiers/dog/run.png
+		Start: 0
+		Length: 8
+		Stride: 8
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 100
+	walk:
+		Filename: ra|bits/hd/soldiers/dog/run.png
+		Start: 0
+		Length: 8
+		Stride: 8
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 100
+	shoot:
+		Filename: ra|bits/hd/soldiers/dog/shoot.png
+		Start: 0
+		Length: 6
+		Stride: 6
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 70
+	eat:
+		Filename: ra|bits/hd/soldiers/dog/shoot.png
+		Start: 0
+		Length: 6
+		Stride: 6
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 70
+	die1:
+		Filename: ra|bits/hd/soldiers/dog/die1.png
+		Start: 0
+		Length: 10
+		Stride: 10
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 80
+	die2:
+		Filename: ra|bits/hd/soldiers/dog/die2.png
+		Start: 0
+		Length: 10
+		Stride: 10
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 80
+	die3:
+		Filename: ra|bits/hd/soldiers/dog/die1.png
+		Start: 0
+		Length: 10
+		Stride: 10
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 80
+	die4:
+		Filename: ra|bits/hd/soldiers/dog/die2.png
+		Start: 0
+		Length: 10
+		Stride: 10
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 80
+	die5:
+		Filename: ra|bits/hd/soldiers/dog/die2.png
+		Start: 0
+		Length: 10
+		Stride: 10
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 80
+	parachute:
+		Filename: ra|bits/hd/soldiers/dog/idle.png
+		Start: 0
+		Length: 1
+		Stride: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2000
+
 e1:
 	stand:
 		Filename: ra|bits/hd/soldiers/e1/idle.png
@@ -1386,6 +1502,122 @@ e7:
 		Frames: 0, 1, 2, 3, 4, 5
 	parachute:
 		Filename: ra|bits/hd/soldiers/e7/idle.png
+		Start: 0
+		Length: 1
+		Stride: 8
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2000
+
+enfw:
+	stand:
+		Filename: ra|bits/hd/soldiers/enfw/idle.png
+		Start: 0
+		Length: 1
+		Stride: 8
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2000
+	stand2:
+		Filename: ra|bits/hd/soldiers/enfw/aim.png
+		Start: 0
+		Length: 1
+		Stride: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2000
+	idle1:
+		Filename: ra|bits/hd/soldiers/enfw/idle.png
+		Start: 0
+		Length: 8
+		Stride: 8
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 280
+	run:
+		Filename: ra|bits/hd/soldiers/enfw/run.png
+		Start: 0
+		Length: 8
+		Stride: 8
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 100
+	shoot:
+		Filename: ra|bits/hd/soldiers/enfw/shoot.png
+		Start: 0
+		Length: 6
+		Stride: 6
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 70
+	die1:
+		Filename: ra|bits/hd/soldiers/enfw/die1.png
+		Start: 0
+		Length: 10
+		Stride: 10
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 80
+	die6:
+		Filename: ra|bits/hd/soldiers/enfw/die1.png
+		Start: 0
+		Length: 10
+		Stride: 10
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 80
+	die-crushed:
+		Filename: ra|bits/hd/soldiers/enfw/die1.png
+		Start: 0
+		Length: 10
+		Stride: 10
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 80
+	die2:
+		Filename: ra|bits/hd/soldiers/enfw/die2.png
+		Start: 0
+		Length: 10
+		Stride: 10
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 80
+	die3:
+		Filename: ra|bits/hd/soldiers/enfw/die1.png
+		Start: 0
+		Length: 10
+		Stride: 10
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 80
+	die4:
+		Filename: ra|bits/hd/soldiers/enfw/die2.png
+		Start: 0
+		Length: 10
+		Stride: 10
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 80
+	die5:
+		Filename: ra|bits/hd/soldiers/enfw/die2.png
+		Start: 0
+		Length: 10
+		Stride: 10
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 80
+	parachute:
+		Filename: ra|bits/hd/soldiers/enfw/idle.png
 		Start: 0
 		Length: 1
 		Stride: 8
@@ -2569,6 +2801,122 @@ spy:
 		Start: 0
 		Length: 1
 		Stride: 8
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2000
+
+strd:
+	stand:
+		Filename: ra|bits/hd/soldiers/strd/idle.png
+		Start: 0
+		Length: 1
+		Stride: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2000
+	stand2:
+		Filename: ra|bits/hd/soldiers/strd/aim.png
+		Start: 0
+		Length: 1
+		Stride: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2000
+	idle1:
+		Filename: ra|bits/hd/soldiers/strd/idle.png
+		Start: 0
+		Length: 1
+		Stride: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 280
+	run:
+		Filename: ra|bits/hd/soldiers/strd/run.png
+		Start: 0
+		Length: 8
+		Stride: 8
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 100
+	shoot:
+		Filename: ra|bits/hd/soldiers/strd/shoot.png
+		Start: 0
+		Length: 6
+		Stride: 6
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 70
+	die1:
+		Filename: ra|bits/hd/soldiers/strd/die1.png
+		Start: 0
+		Length: 10
+		Stride: 10
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 80
+	die6:
+		Filename: ra|bits/hd/soldiers/strd/die1.png
+		Start: 0
+		Length: 10
+		Stride: 10
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 80
+	die-crushed:
+		Filename: ra|bits/hd/soldiers/strd/die1.png
+		Start: 0
+		Length: 10
+		Stride: 10
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 80
+	die2:
+		Filename: ra|bits/hd/soldiers/strd/die2.png
+		Start: 0
+		Length: 10
+		Stride: 10
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 80
+	die3:
+		Filename: ra|bits/hd/soldiers/strd/die1.png
+		Start: 0
+		Length: 10
+		Stride: 10
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 80
+	die4:
+		Filename: ra|bits/hd/soldiers/strd/die2.png
+		Start: 0
+		Length: 10
+		Stride: 10
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 80
+	die5:
+		Filename: ra|bits/hd/soldiers/strd/die2.png
+		Start: 0
+		Length: 10
+		Stride: 10
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2000
+		Tick: 80
+	parachute:
+		Filename: ra|bits/hd/soldiers/strd/idle.png
+		Start: 0
+		Length: 1
+		Stride: 1
 		Facings: 32
 		UseClassicFacings: False
 		Scale: 0.2000

@@ -63,6 +63,11 @@ MODELS = [
     ("robot.rgun", "Railgun Robot", "e4caf58f757d4a688e7abe8ef64e3b3a"),          # VX-09 Sentinel (DevPoly3D)
     ("robot.irgd", "Iron Guard", "de876bfdce1c47a4aa67670faee7208e"),             # Sci-Fi Soldier (evgenytvidov)
     ("robot.taut", "Tesla Automaton", "3f18e4e7b6c643c4b7763febf1361ee4"),        # Heavy robot (Scarecrow_original)
+    # Non-humanoid units (own animation route)
+    ("other.enfw", "Enforcer Walker", "27ba717c173a40b7841d2f2c6a89d823"),        # Medium Mech Striker (MSGDI), 41 clips
+    ("other.strd", "Strider", "5a8a1d83d1674c3982340c38bf52f069"),              # Quadruped Mech walker (jungle_jim)
+    ("other.sdrn", "Spider Drone", "1fc37cea747149a4833d468764eb2af7"),         # Steampunk Spider (samuelsurovic), rigged
+    ("other.dog", "Attack Dog", "aeb5a68a63eb4033847f0c9ecd6704cb"),            # Doberman Walk Cycle (joshpurple)
     # Ships
     ("ss", "Submarine", "b5c0eae394c94e0caa91fa511bae4ca6"),             # U-85 Type VIIB U-boat
     ("msub", "Missile Submarine", "c9adff3a72d7462f8f82a35459a582d2"),   # Ohio class SSBN

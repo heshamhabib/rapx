@@ -18,6 +18,10 @@ checkbox-reusable-engineers =
     .label = Reusable Engineers
     .description = Engineers stay on the battlefield after capturing a structure
 
+checkbox-superweapons =
+    .label = Superweapons
+    .description = Allows the Missile Silo and its nuclear missile to be built
+
 notification-insufficient-funds = Insufficient funds.
 notification-new-construction-options = New construction options.
 notification-cannot-deploy-here = Cannot deploy here.
@@ -920,6 +924,9 @@ bot-hard-ai =
 bot-brutal-ai =
     .name = Brutal AI
 
+bot-naval-ai =
+    .name = Naval AI
+
 
 ## PxTreatyManager (IDEA-10)
 dropdown-peace-treaty =
@@ -1064,11 +1071,18 @@ actor-mi35 =
       Strong vs Infantry and Vehicles
       Weak vs Anti-Air
 
+actor-mi26 =
+    .name = Mi-26 Halo
+    .description =
+    The world's heaviest transport helicopter:
+    carries 12 infantry anywhere on the map.
+      Unarmed
+
 actor-ka52 =
     .name = Ka-52 Alligator
     .description =
     Fast attack helicopter with anti-tank missiles
-    and a cannon. Russia only.
+    and a cannon. Requires Tech Center.
       Strong vs Tanks and Vehicles
       Weak vs Anti-Air
 

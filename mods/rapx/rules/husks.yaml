@@ -516,6 +516,15 @@ MI35.Husk:
 	RenderSprites:
 		Image: mi35
 
+MI26.Husk:
+	Inherits: HIND.Husk
+	Tooltip:
+		Name: actor-mi26.name
+	WithIdleOverlay:
+		Offset: 285,-4,402
+	RenderSprites:
+		Image: mi26
+
 KA52.Husk:
 	Inherits: HIND.Husk
 	Tooltip:

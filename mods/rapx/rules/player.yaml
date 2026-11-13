@@ -235,6 +235,13 @@ Player:
 		Enabled: False
 		DisplayOrder: 9
 		Prerequisites: global-reusable-engineers
+	LobbyPrerequisiteCheckbox@SUPERWEAPONS:
+		ID: superweapons
+		Label: checkbox-superweapons.label
+		Description: checkbox-superweapons.description
+		Enabled: True
+		DisplayOrder: 11
+		Prerequisites: global-superweapons
 	FrozenActorLayer:
 	BaseAttackNotifier:
 		TextNotification: notification-base-under-attack

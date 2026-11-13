@@ -210,7 +210,7 @@ TRAN:
 		Queue: Aircraft
 		BuildAtProductionType: Helicopter
 		BuildPaletteOrder: 10
-		Prerequisites: ~hpad, ~techlevel.medium
+		Prerequisites: ~hpad, ~aircraft.allies, ~techlevel.medium
 		Description: actor-tran.description
 	Valued:
 		Cost: 900
@@ -448,7 +448,7 @@ MH60:
 		Queue: Aircraft
 		BuildAtProductionType: Helicopter
 		BuildPaletteOrder: 20
-		Prerequisites: ~hpad, ~techlevel.medium
+		Prerequisites: ~hpad, ~aircraft.allies, ~techlevel.medium
 		Description: actor-mh60.description
 	Valued:
 		Cost: 1500
@@ -551,6 +551,36 @@ MI35:
 	SpawnActorOnDeath:
 		Actor: MI35.Husk
 
+# Mi-26 Halo: the Vanguard's heavy transport helicopter (the Union's Chinook), one eight-blade rotor
+MI26:
+	Inherits: TRAN
+	Buildable:
+		BuildPaletteOrder: 11
+		Prerequisites: ~hpad, ~structures.soviet, ~techlevel.medium
+		Description: actor-mi26.description
+	Valued:
+		Cost: 1200
+	Tooltip:
+		Name: actor-mi26.name
+	Health:
+		HP: 20000
+	Aircraft:
+		Speed: 112
+	WithIdleOverlay@ROTOR1AIR:
+		Offset: 285,-4,402
+	WithIdleOverlay@ROTOR1GROUND:
+		Offset: 285,-4,402
+	-WithIdleOverlay@ROTOR2AIR:
+	-WithIdleOverlay@ROTOR2GROUND:
+	Cargo:
+		MaxWeight: 12
+	RenderSprites:
+		Image: mi26
+	SpawnActorOnDeath:
+		Actor: MI26.Husk
+	Selectable:
+		DecorationBounds: 2200, 2000
+
 # Ka-52 Alligator (Russia): a fast tank hunter with coaxial rotors (two rotor overlays on one hub)
 KA52:
 	Inherits: HIND
@@ -558,10 +588,8 @@ KA52:
 		Queue: Aircraft
 		BuildAtProductionType: Helicopter
 		BuildPaletteOrder: 42
-		Prerequisites: ~hpad, techcenter, ~structures.russia, ~techlevel.high
+		Prerequisites: ~hpad, techcenter, ~structures.soviet, ~techlevel.high
 		Description: actor-ka52.description
-	PxNationalUnit:
-		Factions: russia
 	Valued:
 		Cost: 2000
 	Tooltip:

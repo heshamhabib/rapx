@@ -364,7 +364,8 @@ MODELS = {
     # An-225 slot: "C-17A Globemaster III" by VTX, CC-BY-NC-SA-4.0 (the textureless An-225 model looked flat white)
     "jet.an225": {"name": "An-225 Dreamer (C-17A Globemaster III)", "src": "inbox/c-17a_globemaster_iii/scene.gltf", "kind": "air", "out": "an-225-dreamer", "frame": 288, "yaw": 0, "length": 18.9, "team": {"box": JET_BOX}},
     "jet.j20": {"name": "JX-20 Jade Dragon (J-20)", "src": "inbox2/jet.j20__chinese_chengdu_j_20/scene.gltf", "kind": "air", "out": "jx-20-jade-dragon", "frame": 160, "yaw": 0, "length": 8.1, "team": {"box": JET_BOX}},
-    "jet.saeqeh": {"name": "Saeqa (F-5E / Saeqeh)", "src": "inbox2/jet.saeqeh__northrop_f_5e_tiger_ii/scene.gltf", "kind": "air", "out": "saeqa", "frame": 160, "yaw": 180, "length": 6.7, "team": {"box": JET_BOX}},
+    "jet.saeqeh": {"name": "Saeqa (F-5E / Saeqeh)", "src": "inbox2/jet.saeqeh__northrop_f_5e_tiger_ii/scene.gltf", "kind": "air", "out": "saeqa", "frame": 160, "yaw": 180, "length": 6.7, "team": {"box": JET_BOX},
+                   "drop_texels": [(58, 1), (22, 0), (54, 1), (14, 0), (73, 2)]},  # US markings (palette faces)
     "jet.grom": {"name": "Grom-K drone", "src": "inbox2/jet.grom__stealth_drone_concept/scene.gltf", "kind": "air", "out": "grom-k", "frame": 160, "yaw": 90, "length": 6.4, "team": {"box": FLAT_BOX}},
     "jet.v22": {"name": "Kestrel tiltrotor (V-22)", "src": "inbox2/jet.v22__bell_boeing_v_22_osprey_military_helicopter/scene.gltf", "kind": "air", "out": "kestrel-tiltrotor", "frame": 160, "yaw": 0, "length": 7.4, "team": {"box": JET_BOX}},
     "yak": {"name": "Yak Attack Plane (Yak-9)", "src": "inbox2/yak__yak9/scene.gltf", "kind": "air", "frame": 160, "yaw": -139, "length": 4.8, "team": {"box": JET_BOX}},
@@ -608,6 +609,10 @@ MODELS.update({
              "rotors": [["Object_22", "Object_23"],
                         ["ka52:ka52_second_rotor_run_ka52_02_ru_co_0", "ka52:ka52_second_rotor_run_ka52_rotorblur_ca_0"]],
              "blades": 3, "team": {"box": HELI_BOX}},
+    # Vanguard heavy transport helicopter (the Union's Chinook): "MI-26 Soviet Helicopter" by Savy, CC-BY-4.0
+    "mi26": {"name": "Mi-26 Halo", "src": "inbox2/heli.mi26/scene.gltf", "kind": "heli", "frame": 224, "yaw": -90,
+             "length": 10.0, "drop": ["Cube"], "rotor_cut": [("Object_4", 2.40, 2.80)], "blades": 8,
+             "team": {"box": HELI_BOX}},
     "mi35": {"name": "Mi-35M Hind-E", "src": "inbox5/mi35/scene.gltf", "kind": "heli", "frame": 192, "yaw": 0,
              "length": 8.6, "rotors": [["Object_14"]], "blades": 5, "drop": ["Object_13"], "team": {"box": HELI_BOX}},
 })

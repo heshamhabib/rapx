@@ -107,7 +107,7 @@ ROSTER = [
     ("rgun", "Railgun Robot", "Humanoid robots"), ("irgd", "Iron Guard", "Humanoid robots"),
     ("taut", "Tesla Automaton", "Humanoid robots"),
     ("enfw", "Enforcer Walker", "Other (own approach)"), ("strd", "Strider", "Other (own approach)"),
-    ("sdrn", "Spider Drone", "Other (own approach)"), ("dog", "Attack Dog", "Other (own approach)"),
+    ("dog", "Attack Dog", "Other (own approach)"),
 ]
 STEPS = ["concept", "views", "3D body", "rig-ready", "animations", "rendered", "in game"]
 UNITS_DIR = os.path.join(ROOT, "assets", "units")

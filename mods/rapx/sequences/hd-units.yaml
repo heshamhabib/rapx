@@ -770,6 +770,27 @@ ka52:
 	icon:
 		Filename: ra|bits/hd/ka52icon.png
 
+mi26:
+	idle:
+		Filename: ra|bits/hd/units/mi26.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	rotor:
+		Filename: ra|bits/hd/units/mi26-rotor.png
+		Start: 0
+		Length: 32
+		Tick: 25
+		Scale: 0.3333
+	slow-rotor:
+		Filename: ra|bits/hd/units/mi26-rotor.png
+		Start: 0
+		Length: 32
+		Tick: 50
+		Scale: 0.3333
+	icon:
+		Filename: ra|bits/hd/mi26icon.png
+
 # BTR: hull 0-31, turret 32-63
 btr:
 	idle:

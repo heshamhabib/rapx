@@ -73,6 +73,34 @@ for o in list(bpy.context.scene.objects):
             part in o.name for part in CFG.get("drop_contains", ())):
         bpy.data.objects.remove(o)
 meshes = [o for o in bpy.context.scene.objects if o.type == "MESH"]
+if CFG.get("drop_texels"):
+    # Markings modelled as faces coloured from a small palette texture (the F-5): drop the faces whose UV centre
+    # falls on one of these (column, row) texels of their material's base colour texture
+    import bmesh
+    for o in meshes:
+        bm = bmesh.new()
+        bm.from_mesh(o.data)
+        uv = bm.loops.layers.uv.active
+        sizes = {}
+        for i, slot in enumerate(o.material_slots):
+            mat = slot.material
+            img = next((n.image for n in mat.node_tree.nodes if n.type == "TEX_IMAGE" and n.image), None) if mat and mat.node_tree else None
+            sizes[i] = tuple(img.size) if img else None
+        doomed = []
+        for f in bm.faces:
+            size = sizes.get(f.material_index)
+            if not size or not uv:
+                continue
+            u = sum(l[uv].uv[0] for l in f.loops) / len(f.loops)
+            v = sum(l[uv].uv[1] for l in f.loops) / len(f.loops)
+            texel = (min(size[0] - 1, max(0, int(u * size[0]))), min(size[1] - 1, max(0, int((1 - v) * size[1]))))
+            if list(texel) in [list(t) for t in CFG["drop_texels"]]:
+                doomed.append(f)
+        if doomed:
+            bmesh.ops.delete(bm, geom=doomed, context="FACES")
+            bm.to_mesh(o.data)
+            print(f"marking faces dropped from {o.name}: {len(doomed)}")
+        bm.free()
 if "attach" in CFG:
     # A second model mounted on this one (the Tesla Tank: the RA2 Tesla coil on a T-62 hull), in model units
     # after the yaw: its base centred on "at" (x, y, z), scaled to "height". Tanks use it as the turret.

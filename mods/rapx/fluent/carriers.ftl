@@ -7,6 +7,7 @@ actor-cv1 =
     A floating airbase with SAM launchers for defence.
       Strong vs Aircraft, Missiles
       Weak vs Ships, Submarines
+    Maximum 1: another can be built once it is lost.
 
 actor-cv2 =
     .name = Battle Carrier
@@ -15,6 +16,7 @@ actor-cv2 =
     Bigger deck, tougher hull, more SAM launchers.
       Strong vs Aircraft, Missiles
       Weak vs Ships, Submarines
+    Maximum 1: another can be built once it is lost.
 
 actor-cv3 =
     .name = Supercarrier
@@ -23,6 +25,7 @@ actor-cv3 =
     Heavily armoured flagship of the fleet.
       Strong vs Aircraft, Missiles
       Weak vs Ships, Submarines
+    Maximum 1: another can be built once it is lost.
 
 actor-cv4 =
     .name = Future Carrier
@@ -31,6 +34,7 @@ actor-cv4 =
     defences. The most powerful ship afloat.
       Strong vs Aircraft, Missiles
       Weak vs Ships, Submarines
+    Maximum 1: another can be built once it is lost.
 
 ## National carriers: each nation builds only its own
 
@@ -41,6 +45,7 @@ actor-cvgb =
     and twin islands.
       Strong vs Aircraft, Missiles
       Weak vs Ships, Submarines
+    Maximum 1: another can be built once it is lost.
 
 actor-cvfr =
     .name = Charles de Gaulle Carrier
@@ -49,6 +54,7 @@ actor-cvfr =
     the pride of the Marine nationale.
       Strong vs Aircraft, Missiles
       Weak vs Ships, Submarines
+    Maximum 1: another can be built once it is lost.
 
 actor-cvjp =
     .name = Kaga Carrier
@@ -57,6 +63,7 @@ actor-cvjp =
     carrier for jump-jet fighters.
       Strong vs Aircraft, Missiles
       Weak vs Ships, Submarines
+    Maximum 1: another can be built once it is lost.
 
 actor-cvit =
     .name = Cavour Light Carrier
@@ -65,6 +72,7 @@ actor-cvit =
     and helicopters.
       Strong vs Aircraft, Missiles
       Weak vs Ships, Submarines
+    Maximum 1: another can be built once it is lost.
 
 actor-cveg =
     .name = Mistral Helicopter Carrier
@@ -73,6 +81,7 @@ actor-cveg =
     Cheap and quick to build.
       Strong vs Aircraft, Missiles
       Weak vs Ships, Submarines
+    Maximum 1: another can be built once it is lost.
 
 actor-cvsu =
     .name = Kiev Aviation Cruiser
@@ -81,6 +90,7 @@ actor-cvsu =
     aft and missile launchers forward.
       Strong vs Aircraft, Missiles
       Weak vs Ships, Submarines
+    Maximum 1: another can be built once it is lost.
 
 actor-cvru =
     .name = Kuznetsov Carrier
@@ -89,6 +99,7 @@ actor-cvru =
     a ski-jump bow and strong SAM defences.
       Strong vs Aircraft, Missiles
       Weak vs Ships, Submarines
+    Maximum 1: another can be built once it is lost.
 
 actor-cvin =
     .name = Vikrant Carrier
@@ -97,6 +108,7 @@ actor-cvin =
     a ski-jump bow.
       Strong vs Aircraft, Missiles
       Weak vs Ships, Submarines
+    Maximum 1: another can be built once it is lost.
 
 actor-cvcn =
     .name = Fujian Carrier
@@ -105,6 +117,7 @@ actor-cvcn =
     electromagnetic catapults.
       Strong vs Aircraft, Missiles
       Weak vs Ships, Submarines
+    Maximum 1: another can be built once it is lost.
 
 actor-cvtr =
     .name = Anadolu Drone Carrier
@@ -113,6 +126,7 @@ actor-cvtr =
     Launches swarms of attack drones.
       Strong vs Aircraft, Missiles
       Weak vs Ships, Submarines
+    Maximum 1: another can be built once it is lost.
 
 actor-cvir =
     .name = Bagheri Drone Carrier
@@ -121,6 +135,7 @@ actor-cvir =
     deck for drones. Cheap, but fragile.
       Strong vs Aircraft, Missiles
       Weak vs Ships, Submarines
+    Maximum 1: another can be built once it is lost.
 
 ## Flight deck (IDEA-08 2c A1): HUD above the selected carrier, deploy key cycles the mode
 label-carrier-deck-title = FLIGHT DECK

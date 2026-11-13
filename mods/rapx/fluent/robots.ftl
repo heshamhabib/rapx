@@ -20,7 +20,7 @@ actor-cybt =
 actor-bdrd =
     .name = Battle Droid
     .description =
-    Cheap Union combat droid with a forearm blaster.
+    Cheap Union combat droid with a blaster rifle.
     Built in numbers.
       Strong vs Infantry
       Weak vs Vehicles, Aircraft
@@ -61,8 +61,8 @@ actor-sdrn =
 actor-taut =
     .name = Tesla Automaton
     .description =
-    Clanking Vanguard robot that throws Tesla
-    lightning from its claws.
+    Heavy Vanguard robot that throws Tesla
+    lightning from its hands.
       Strong vs Infantry, Robots
       Weak vs Vehicles, Aircraft
 

@@ -164,6 +164,29 @@ every model: recoloured for team colours, rendered as game sprites from
 
     All robots: animated with Mixamo animations on a shared skeleton; team-colour armbands added.
 
+* Enforcer Walker (ENFW):
+    "Medium Mech Striker" (https://sketchfab.com/3d-models/medium-mech-striker-27ba717c173a40b7841d2f2c6a89d823)
+    by MSGDI, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: blue paint turned into team colour; its own animations rendered from 32 directions.
+
+* Strider (STRD):
+    "Quadruped Mech walker" (https://sketchfab.com/3d-models/quadruped-mech-walker-5a8a1d83d1674c3982340c38bf52f069)
+    by jungle_jim, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: walking gait animated, blue stripe turned into team colour.
+
+* Spider Drone (SDRN):
+    "Steampunk Spider" (https://sketchfab.com/3d-models/steampunk-spider-1fc37cea747149a4833d468764eb2af7)
+    by samuelsurovic, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+
+* Attack Dog (DOG):
+    "Doberman Walk Cycle" (https://sketchfab.com/3d-models/doberman-walk-cycle-aeb5a68a63eb4033847f0c9ecd6704cb)
+    by joshpurple, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: bite and death animated from the walk cycle.
+
 * Heavy Tank (3TNK):
     "T-72B3 Main Battle Tank" (https://skfb.ly/pwSFv)
     by Muhamad Mirza Arrafi, licensed under Creative Commons Attribution
@@ -521,6 +544,10 @@ Aircraft (second set)
 * B-52 (JET.B52):
     "Boeing B-52D Stratofortress — Duxford" (https://sketchfab.com/3d-models/boeing-b-52d-stratofortress-duxford-ec3485da9ec3462aab91863edd707afa)
     by mgg8, licensed under CC0 Public Domain.
+
+* Mi-26 Halo transport helicopter (MI26):
+    "MI-26 Soviet Helicopter" (https://sketchfab.com/3d-models/mi-26-soviet-helicopter-8505d0114a6649cbbc765b95526cb4a1)
+    by Savy, licensed under CC Attribution.
 
 * C-17A Globemaster III airborne transport (C17):
     "c-17a globemaster" (https://sketchfab.com/3d-models/c-17a-globemaster-22fbf464a08b497d82b638120c9f1767)

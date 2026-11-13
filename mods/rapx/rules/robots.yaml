@@ -189,7 +189,7 @@ SDRN:
 	Buildable:
 		Queue: Vehicle
 		BuildPaletteOrder: 150
-		Prerequisites: ~vehicles.soviet, ~techlevel.medium
+		Prerequisites: ~disabled  # removed from the game (2026-11-13)
 		Description: actor-sdrn.description
 	Valued:
 		Cost: 300

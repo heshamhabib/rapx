@@ -11,7 +11,7 @@ MSLO:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 140
-		Prerequisites: techcenter, ~techlevel.unrestricted
+		Prerequisites: techcenter, ~techlevel.unrestricted, ~global-superweapons
 		BuildLimit: 1
 		Description: actor-mslo.description
 	Building:
@@ -1386,7 +1386,8 @@ HPAD:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 120
-		Prerequisites: dome, ~structures.allies, ~techlevel.medium
+		# Both sides (2026-11-13): each only sees its own helicopters (Union: ~aircraft.allies, Vanguard: ~structures.soviet)
+		Prerequisites: dome, ~techlevel.medium
 		Description: actor-hpad.description
 	Valued:
 		Cost: 500

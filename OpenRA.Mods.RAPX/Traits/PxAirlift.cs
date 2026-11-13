@@ -116,6 +116,12 @@ namespace OpenRA.Mods.RAPX.Traits
 		/// <summary>Troopers aboard.</summary>
 		public int Aboard => pool?.CurrentAmmoCount ?? 0;
 
+		/// <summary>Troopers aboard a full load.</summary>
+		public int Capacity => pool?.Info.Ammo ?? 0;
+
+		/// <summary>True between a drop order and the end of the drop.</summary>
+		public bool DropOrdered => dropOrdered;
+
 		IEnumerable<IOrderTargeter> IIssueOrder.Orders
 		{
 			get { yield return new AirdropOrderTargeter(this); }

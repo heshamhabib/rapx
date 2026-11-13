@@ -189,6 +189,8 @@ def utility(*args):
 
 def classic_cameos(filenames):
     """Export classic cameos to RGBA images, keyed by filename. Temporary files live in engine/."""
+    if not filenames:  # every cameo has HD art: no need for the classic game content
+        return {}
     utility("--extract", "temperat.pal", *filenames)
     result = {}
     try:

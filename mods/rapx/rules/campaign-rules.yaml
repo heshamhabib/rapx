@@ -26,6 +26,10 @@ Player:
 		Enabled: False
 		Locked: True
 		Visible: False
+	LobbyPrerequisiteCheckbox@SUPERWEAPONS:
+		Enabled: True
+		Locked: True
+		Visible: False
 	DeveloperMode:
 		CheckboxVisible: False
 	ModularBot@CampaignAI:

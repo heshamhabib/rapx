@@ -38,6 +38,7 @@ CV1:
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Buildable:
 		Queue: Ship
+		BuildLimit: 1
 		BuildAtProductionType: Ship
 		BuildPaletteOrder: 60
 		Prerequisites: ~ships.usa, hpad, ~techlevel.medium
@@ -81,6 +82,7 @@ CV2:
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Buildable:
 		Queue: Ship
+		BuildLimit: 1
 		BuildAtProductionType: Ship
 		BuildPaletteOrder: 61
 		Prerequisites: ~ships.usa, hpad, dome, ~techlevel.medium
@@ -128,6 +130,7 @@ CV3:
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Buildable:
 		Queue: Ship
+		BuildLimit: 1
 		BuildAtProductionType: Ship
 		BuildPaletteOrder: 62
 		Prerequisites: ~ships.usa, hpad, atek, ~techlevel.high
@@ -175,6 +178,7 @@ CV4:
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Buildable:
 		Queue: Ship
+		BuildLimit: 1
 		BuildAtProductionType: Ship
 		BuildPaletteOrder: 63
 		Prerequisites: ~ships.usa, hpad, atek, ~techlevel.high
@@ -226,6 +230,7 @@ CVGB:
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Buildable:
 		Queue: Ship
+		BuildLimit: 1
 		BuildAtProductionType: Ship
 		BuildPaletteOrder: 64
 		Prerequisites: ~ships.england, hpad, atek, ~techlevel.high
@@ -273,6 +278,7 @@ CVFR:
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Buildable:
 		Queue: Ship
+		BuildLimit: 1
 		BuildAtProductionType: Ship
 		BuildPaletteOrder: 64
 		Prerequisites: ~ships.france, hpad, atek, ~techlevel.high
@@ -320,6 +326,7 @@ CVJP:
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Buildable:
 		Queue: Ship
+		BuildLimit: 1
 		BuildAtProductionType: Ship
 		BuildPaletteOrder: 64
 		Prerequisites: ~ships.japan, hpad, dome, ~techlevel.medium
@@ -367,6 +374,7 @@ CVIT:
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Buildable:
 		Queue: Ship
+		BuildLimit: 1
 		BuildAtProductionType: Ship
 		BuildPaletteOrder: 64
 		Prerequisites: ~ships.italy, hpad, dome, ~techlevel.medium
@@ -414,6 +422,7 @@ CVEG:
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Buildable:
 		Queue: Ship
+		BuildLimit: 1
 		BuildAtProductionType: Ship
 		BuildPaletteOrder: 64
 		Prerequisites: ~ships.egypt, hpad, ~techlevel.medium
@@ -457,6 +466,7 @@ CVSU:
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Buildable:
 		Queue: Ship
+		BuildLimit: 1
 		BuildAtProductionType: Ship
 		BuildPaletteOrder: 64
 		Prerequisites: ~ships.sovietvanilla, afld, dome, ~techlevel.medium
@@ -508,6 +518,7 @@ CVRU:
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Buildable:
 		Queue: Ship
+		BuildLimit: 1
 		BuildAtProductionType: Ship
 		BuildPaletteOrder: 64
 		Prerequisites: ~ships.russia, afld, stek, ~techlevel.high
@@ -559,6 +570,7 @@ CVIN:
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Buildable:
 		Queue: Ship
+		BuildLimit: 1
 		BuildAtProductionType: Ship
 		BuildPaletteOrder: 64
 		Prerequisites: ~ships.india, afld, stek, ~techlevel.high
@@ -606,6 +618,7 @@ CVCN:
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Buildable:
 		Queue: Ship
+		BuildLimit: 1
 		BuildAtProductionType: Ship
 		BuildPaletteOrder: 64
 		Prerequisites: ~ships.china, afld, stek, ~techlevel.high
@@ -657,6 +670,7 @@ CVTR:
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Buildable:
 		Queue: Ship
+		BuildLimit: 1
 		BuildAtProductionType: Ship
 		BuildPaletteOrder: 64
 		Prerequisites: ~ships.turkey, afld, ~techlevel.medium
@@ -700,6 +714,7 @@ CVIR:
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Buildable:
 		Queue: Ship
+		BuildLimit: 1
 		BuildAtProductionType: Ship
 		BuildPaletteOrder: 64
 		Prerequisites: ~ships.iran, afld, ~techlevel.medium

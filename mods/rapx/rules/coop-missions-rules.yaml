@@ -10,6 +10,8 @@ Player:
 		Visible: True
 	LobbyPrerequisiteCheckbox@REUSABLEENGINEERS:
 		Visible: True
+	LobbyPrerequisiteCheckbox@SUPERWEAPONS:
+		Visible: True
 	DeveloperMode:
 		CheckboxVisible: True
 
