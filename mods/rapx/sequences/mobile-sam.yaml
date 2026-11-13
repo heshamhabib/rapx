@@ -1,0 +1,41 @@
+# Mobile SAM launchers (rules/mobile-sam.yaml). Sheets from artsrc/units/meshes/make_sketchfab.py: hull 0-31 and
+# turret 32-63 (gurz, spyder), body 0-31 (meads); px-icon in hd-icons.yaml (artsrc/px-cameos/generate.py).
+
+gurz:
+	idle:
+		Filename: ra|bits/hd/units/gurz.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/units/gurz.png
+		Start: 32
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	icon:
+		Filename: ra|bits/hd/gurzicon.png
+
+meads:
+	idle:
+		Filename: ra|bits/hd/units/meads.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	icon:
+		Filename: ra|bits/hd/meadsicon.png
+
+spyder:
+	idle:
+		Filename: ra|bits/hd/units/spyder.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	turret:
+		Filename: ra|bits/hd/units/spyder.png
+		Start: 32
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	icon:
+		Filename: ra|bits/hd/spydericon.png

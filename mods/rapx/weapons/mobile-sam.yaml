@@ -1,0 +1,196 @@
+# Mobile SAM launchers (rules/mobile-sam.yaml): each system has its own missile, flight, rate of fire, blast and sound.
+# Missiles: PxRocket (OpenRA.Mods.RAPX/Projectiles/PxRocket.cs) Profile / Corkscrew / ColdLaunch / CoastStart /
+# DivertTicks / FlareResistance; blasts: PxExplosion Styles Fragmentation, HitToKill, Fireball. Sounds:
+# artsrc/audio/make_sam_sounds.py -> audio/weapons/sam/.
+
+# --- Gurz Mace (Vanguard): ripples of four small, fast infrared missiles that roll in a corkscrew, proximity
+# fragmentation warheads (black flak puffs); a 35 mm cannon for anything that comes close.
+GurzMissile:
+	Inherits: ^AntiAirMissile
+	ReloadDelay: 70
+	Range: 9c0
+	Burst: 4
+	BurstDelays: 5
+	Report: ra|audio/weapons/sam/gurz-launch1.ogg, ra|audio/weapons/sam/gurz-launch2.ogg, ra|audio/weapons/sam/gurz-launch3.ogg
+	Projectile: PxRocket
+		Speed: 520
+		Arc: 0.04
+		Inaccuracy: 128
+		Corkscrew: 180
+		CorkscrewPeriod: 8
+		Length: 150
+		Width: 30
+		Fins: 0.8
+		Canards: true
+		BodyColor: F0F0EA
+		NoseColor: 2A2C2E
+		BandColor: C8281E
+		NoseLength: 0.16
+		FlameColor: FFE6B4
+		FlameSize: 0.8
+		FirePlume: 0.4
+		SmokeColor: F4F4F4
+		TrailSize: 0.6
+		TrailDensity: 3
+		TrailLife: 35
+		LaunchPuffs: 5
+		FlareResistance: 30
+	Warhead@1Dam: SpreadDamage
+		Spread: 384
+		Damage: 2600
+	Warhead@3Eff: PxExplosion
+		Style: Fragmentation
+		Size: 0.7
+		ImpactSounds: ra|audio/weapons/sam/gurz-burst1.ogg, ra|audio/weapons/sam/gurz-burst2.ogg, ra|audio/weapons/sam/gurz-burst3.ogg
+
+Gurz35mm:
+	Inherits: FlakGun
+	ReloadDelay: 24
+	Range: 6c0
+	Burst: 2
+	BurstDelays: 3
+	Report: ra|audio/weapons/sam/gurz-cannon1.ogg, ra|audio/weapons/sam/gurz-cannon2.ogg
+	Projectile: PxTracer
+		Rounds: 2
+		RoundInterval: 2
+		Speed: 1400
+		Width: 26
+		Color: FFC864
+		Inaccuracy: 300
+	Warhead@1Dam: SpreadDamage
+		Spread: 512
+		Damage: 1100
+	-Warhead@2Eff:
+	Warhead@3Eff: PxExplosion
+		Style: Fragmentation
+		Size: 0.35
+		Smoke: 0.6
+		ValidTargets: AirborneActor
+
+# --- Aegis Lance (Union, MEADS): two big hit-to-kill interceptors per salvo, thrown up out of the canisters by gas,
+# lit overhead, bending over onto the target; side thrusters fire in the last moments. Long range, slow reload.
+MeadsMissile:
+	Inherits: ^AntiAirMissile
+	ReloadDelay: 110
+	Range: 14c0
+	MinRange: 2c0
+	Burst: 2
+	BurstDelays: 18
+	Report: ra|audio/weapons/sam/meads-launch1.ogg, ra|audio/weapons/sam/meads-launch2.ogg
+	Projectile: PxRocket
+		Speed: 560
+		Profile: Vertical
+		Climb: 0.35
+		MinClimb: 2c0
+		ColdLaunch: 8
+		LaunchEase: 0.5
+		DivertTicks: 8
+		Length: 260
+		Width: 48
+		Fins: 0.6
+		BodyColor: EDEDE8
+		NoseColor: 3A3D40
+		BandColor: 2E3236
+		NoseLength: 0.18
+		FlameColor: FFD278
+		FlameSize: 1.3
+		FirePlume: 0.9
+		SmokeColor: FAFAFA
+		TrailSize: 1.3
+		TrailDensity: 3
+		TrailLife: 70
+		LaunchPuffs: 14
+		FlareResistance: 90
+	Warhead@1Dam: SpreadDamage
+		Spread: 256
+		Damage: 9500
+	Warhead@3Eff: PxExplosion
+		Style: HitToKill
+		Size: 1.0
+		ImpactSounds: ra|audio/weapons/sam/meads-hit1.ogg, ra|audio/weapons/sam/meads-hit2.ogg
+
+# Its missile defence (PxInterceptor): the same interceptor at incoming missiles (cosmetic, the trait decides the kill)
+InterceptMeads:
+	Inherits: ^Interceptor
+	Report: ra|audio/weapons/sam/meads-launch1.ogg, ra|audio/weapons/sam/meads-launch2.ogg
+	Projectile: PxRocket
+		Speed: 560
+		Profile: Vertical
+		Climb: 0.35
+		MinClimb: 2c0
+		ColdLaunch: 8
+		LaunchEase: 0.5
+		DivertTicks: 8
+		Length: 260
+		Width: 48
+		Fins: 0.6
+		BodyColor: EDEDE8
+		NoseColor: 3A3D40
+		BandColor: 2E3236
+		FlameSize: 1.3
+		TrailSize: 1.3
+		TrailLife: 70
+		LaunchPuffs: 14
+	Warhead@1Eff: PxExplosion
+		Style: HitToKill
+		Size: 0.8
+		ImpactSounds: ra|audio/weapons/sam/meads-hit1.ogg, ra|audio/weapons/sam/meads-hit2.ogg
+
+# --- Spyder Talon (India): a Python short-range infrared missile and a Derby radar missile from the same launcher.
+# Both loft out of the tilted canisters and dive onto the target; the Derby's dual-pulse motor coasts between its two
+# burns. Blast-fragmentation warheads: big orange fireballs in a ring of black smoke.
+SpyderPython:
+	Inherits: ^AntiAirMissile
+	ReloadDelay: 60
+	Range: 9c0
+	Report: ra|audio/weapons/sam/spyder-launch1.ogg, ra|audio/weapons/sam/spyder-launch2.ogg
+	Projectile: PxRocket
+		Speed: 480
+		Profile: Loft
+		Climb: 0.22
+		MinClimb: 1c0
+		Length: 190
+		Width: 38
+		Fins: 0.9
+		Canards: true
+		BodyColor: F2F2EE
+		NoseColor: 2B5BA8
+		NoseLength: 0.2
+		FlameColor: FFC060
+		FirePlume: 1.1
+		SmokeColor: E6E6E6
+		TrailSize: 0.9
+		TrailLife: 50
+		LaunchPuffs: 9
+		FlareResistance: 60
+	Warhead@1Dam: SpreadDamage
+		Spread: 448
+		Damage: 4200
+	Warhead@3Eff: PxExplosion
+		Style: Fireball
+		Size: 0.85
+		ImpactSounds: ra|audio/weapons/sam/spyder-blast1.ogg, ra|audio/weapons/sam/spyder-blast2.ogg
+
+SpyderDerby:
+	Inherits: SpyderPython
+	ReloadDelay: 100
+	Range: 12c0
+	Projectile: PxRocket
+		Speed: 440
+		Climb: 0.38
+		CoastStart: 14
+		CoastTicks: 8
+		Length: 230
+		Width: 42
+		Canards: false
+		Fins: 1.1
+		BodyColor: DADDE0
+		NoseColor: 1F4F9E
+		BandColor: FFC83C
+		TrailSize: 1.1
+		TrailLife: 60
+		FlareResistance: 85
+	Warhead@1Dam: SpreadDamage
+		Damage: 6500
+	Warhead@3Eff: PxExplosion
+		Size: 1.2

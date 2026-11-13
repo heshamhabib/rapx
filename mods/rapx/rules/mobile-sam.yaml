@@ -1,0 +1,128 @@
+# Mobile SAM launchers (2026-11-12): one air-defence truck per side, built at the War Factory with a Radar Dome.
+#   Vanguard   GURZ  Gurz Mace (GURZ 150)    short range, fast ripples + 35 mm cannon, turning combat module
+#   Union      MEADS Aegis Lance (MEADS)      long range, vertical hit-to-kill interceptors, also stops missiles
+#   India      SPYD  Spyder Talon (SPYDER)    replaces the Gurz for India: Python + Derby missiles, turning launcher
+# Weapons: weapons/mobile-sam.yaml. Art: artsrc/units/meshes/make_sketchfab.py gurz meads spyder (models by Chenzoss,
+# CC-BY-4.0, mods/rapx/CREDITS). Missiles leave from the launch tubes of the model (offsets measured from the meshes).
+
+^PxMobileSam:
+	Inherits: ^Vehicle
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetAir
+	Buildable:
+		Queue: Vehicle
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Armor:
+		Type: Light
+	Mobile:
+		TurnSpeed: 28
+		Speed: 90
+	RevealsShroud:
+		MinRange: 4c0
+		Range: 8c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	ProducibleWithLevel:
+		Prerequisites: vehicles.upgraded
+	WithProductionIconOverlay:
+		Types: Veterancy
+		Prerequisites: vehicles.upgraded
+	Selectable:
+		DecorationBounds: 1900, 1900
+
+GURZ:
+	Inherits: ^PxMobileSam
+	Buildable:
+		BuildPaletteOrder: 135
+		Prerequisites: dome, ~vehicles.soviet, ~!rocketlauncher.india, ~techlevel.medium
+		Description: actor-gurz.description
+	Valued:
+		Cost: 1400
+	Tooltip:
+		Name: actor-gurz.name
+	Health:
+		HP: 20000
+	Turreted:
+		TurnSpeed: 28
+		# The rear combat module of the model (make_sketchfab.py gurz prints it)
+		Offset: -588,0,0
+	Armament@MISSILES:
+		Weapon: GurzMissile
+		# The missile pods on both sides of the module
+		LocalOffset: 53,-240,467, 53,240,467
+	Armament@GUN:
+		Weapon: Gurz35mm
+		LocalOffset: 520,0,761
+	AttackTurreted:
+	WithSpriteTurret:
+	RenderSprites:
+		Image: gurz
+
+MEADS:
+	Inherits: ^PxMobileSam
+	Buildable:
+		BuildPaletteOrder: 135
+		Prerequisites: dome, ~vehicles.allies, ~techlevel.medium
+		Description: actor-meads.description
+	Valued:
+		Cost: 2000
+	Tooltip:
+		Name: actor-meads.name
+	Health:
+		HP: 22000
+	Mobile:
+		TurnSpeed: 20
+		Speed: 78
+	RevealsShroud:
+		Range: 9c0
+	# The erected launcher fires straight up, so the truck never has to turn to shoot
+	Armament:
+		Weapon: MeadsMissile
+		# The tops of the four canisters on the erector
+		LocalOffset: -526,-224,690, -526,224,690, -526,-117,690, -526,117,690
+	AttackFollow:
+	PxInterceptor:
+		Range: 14c0
+		Rails: 2
+		ReloadDelay: 160
+		Speed: 560
+		Weapon: InterceptMeads
+		LocalOffset: -526,0,690
+		Chances:
+			Rocket: 20
+			Drone: 50
+			Cruise: 75
+			Ballistic: 55
+	RenderSprites:
+		Image: meads
+
+SPYD:
+	Inherits: ^PxMobileSam
+	Buildable:
+		BuildPaletteOrder: 135
+		Prerequisites: dome, ~rocketlauncher.india, ~techlevel.medium
+		Description: actor-spyd.description
+	PxNationalUnit:
+		Factions: india
+	Valued:
+		Cost: 1600
+	Tooltip:
+		Name: actor-spyd.name
+	Health:
+		HP: 18000
+	Turreted:
+		TurnSpeed: 20
+		Offset: -439,51,0
+	# Python and Derby share the canister row: alternate noses
+	Armament@PYTHON:
+		Weapon: SpyderPython
+		LocalOffset: 300,-190,620, 300,63,620
+	Armament@DERBY:
+		Weapon: SpyderDerby
+		LocalOffset: 300,-63,620, 300,190,620
+	AttackTurreted:
+	WithSpriteTurret:
+	RenderSprites:
+		Image: spyder

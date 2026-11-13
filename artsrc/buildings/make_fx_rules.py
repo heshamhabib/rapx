@@ -34,6 +34,7 @@ SEQUENCES = os.path.join(ROOT, "mods", "rapx", "sequences", "hd-structures.yaml"
 STRUCTURES = os.path.join(ROOT, "mods", "rapx", "rules", "structures.yaml")
 AIRFIELD_RULES = os.path.join(ROOT, "mods", "rapx", "rules", "airfields.yaml")
 FATMAN_RULES = os.path.join(ROOT, "mods", "rapx", "rules", "fatman.yaml")  # BMBF bomber field
+AIRBORNE_RULES = os.path.join(ROOT, "mods", "rapx", "rules", "airborne.yaml")
 STYLE_SEQUENCES = os.path.join(ROOT, "mods", "rapx", "sequences", "hd-structures-styles.yaml")
 OUT = os.path.join(ROOT, "mods", "rapx", "rules", "hd-building-fx.yaml")
 PREVIEW = os.path.join(HERE, "preview")
@@ -215,7 +216,7 @@ def read_offsets(path=SEQUENCES):
 def actor_blocks():
     """Actor name -> list of its lines in structures.yaml (and the other building rules)."""
     blocks = {}
-    for path in (STRUCTURES, AIRFIELD_RULES, FATMAN_RULES):
+    for path in (STRUCTURES, AIRFIELD_RULES, FATMAN_RULES, AIRBORNE_RULES):
         current = None
         with open(path) as f:
             for line in f:

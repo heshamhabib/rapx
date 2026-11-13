@@ -302,6 +302,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 			e.Dps = e.Weapons.Where(w => !w.Support).Select(w => w.Dps).DefaultIfEmpty(0).Max();
 			e.Range = e.Weapons.Where(w => !w.Support).Select(w => w.Range).DefaultIfEmpty(0).Max();
 			AddFeatures(e, aircraft, mobile);
+			AddAirliftFeatures(e);
 			return e;
 		}
 
@@ -398,6 +399,32 @@ namespace OpenRA.Mods.RAPX.Widgets
 			}).ToArray();
 
 			return weapon;
+		}
+
+		/// <summary>Airborne Base and transports (IDEA-42): the troops a transport drops are no armament, so they are listed here.</summary>
+		void AddAirliftFeatures(Entry e)
+		{
+			var airlift = e.Actor.TraitInfoOrDefault<PxAirliftInfo>();
+			if (airlift != null)
+			{
+				var total = airlift.Troops.Values.Sum();
+				var troops = string.Join(", ", airlift.Troops.Select(kv =>
+					$"{kv.Value} {(rules.Actors.TryGetValue(kv.Key.ToLowerInvariant(), out var t) ? ActorName(t) : kv.Key)}"));
+				e.Features.Add($"Airborne drop: {total} paratroopers ({troops})");
+
+				var pool = e.Actor.TraitInfos<AmmoPoolInfo>().FirstOrDefault(p => p.Name == airlift.AmmoPool);
+				if (pool != null)
+				{
+					var seconds = pool.Ammo * pool.ReloadDelay / pool.ReloadCount / Ticks;
+					e.Features.Add($"Reloads its paratroopers on its pad in {seconds} s, paying their price");
+				}
+			}
+
+			if (e.Actor.HasTraitInfo<PxAirliftBaseInfo>())
+			{
+				var pads = e.Actor.TraitInfoOrDefault<ReservableInfo>()?.SlotOffsets.Length ?? 0;
+				e.Features.Add($"{pads} transport pads: builds and reloads airborne transports only");
+			}
 		}
 
 		static void AddFeatures(Entry e, AircraftInfo aircraft, MobileInfo mobile)

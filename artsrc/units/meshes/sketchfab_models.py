@@ -29,6 +29,8 @@ Per unit id (the sprite it replaces):
            "ring" (rx, ry) around "pivot" (x, y) go with the turret, plus the gun in front), "muzzle" part
   rocket   parts that are the rocket (hidden on the empty launcher frames); rocket_above {part: z} adds the
            loose pieces of a shared part whose centre is above z (model units)
+  hull_boxes  tank kind: (x0, x1, y0, y1, z0, z1) model units after the yaw; faces inside stay on the hull
+  turret_yaw  tank kind: degrees (counter-clockwise) that turn a turret modelled facing sideways onto the nose
   spin     tank kind: the turret is a spinner (radar dish): rendered as one turn in this many frames (default 32
            = turret facings)
   rotors   one list of parts per rotor (each gets its own hub offset; all rotors share one sheet)
@@ -322,6 +324,22 @@ MODELS = {
     "jet.f117": {"name": "Nightjar (F-117)", "src": "inbox2/jet.f117__lockheed_f_117a_nighthawk_stealth_bomber/scene.gltf", "kind": "air", "out": "af-117-nightjar", "frame": 160, "yaw": 180, "length": 8.0, "team": {"box": JET_BOX}},
     "jet.sr71": {"name": "Blackwing (SR-71)", "src": "inbox2/jet.sr71__lockheed_sr_71__blackbird/scene.gltf", "kind": "air", "out": "sr-7-blackwing", "frame": 160, "yaw": 90, "length": 10.7, "team": {"box": JET_BOX}},
     "jet.b52": {"name": "Stratoforce (B-52)", "src": "inbox2/jet.b52__boeing_b_52d_stratofortress___duxford/scene.gltf", "kind": "air", "out": "ab-52-stratoforce", "frame": 224, "yaw": 180, "length": 13.6, "team": {"box": JET_BOX}},
+    # Germany's flying-wing bomber: "Horten Ho IX / Gotha Go 229" by helijah, CC-BY-4.0
+    "jet.ho229": {"name": "Nachtflügel (Ho 229)", "src": "inbox2/jet.ho229__horten_ho_ix_gotha_go_229/scene.gltf", "kind": "air", "out": "hg-229-nachtfluegel", "frame": 224, "yaw": -90, "length": 5.0,
+                  "team": {"boxes": [FLAT_BOX, (0.0, 0.06, 0.0, 0.5, 0.0, 1.0), (0.94, 1.0, 0.0, 0.5, 0.0, 1.0)]}},  # wingtips
+    # Ukraine's airborne transport (rules/airborne.yaml IL76): "Ukrainian Il-76MD" by 42manako, CC-BY-4.0
+    "il76": {"name": "Il-76MD (Ukraine airlift)", "src": "inbox2/il76__ukrainian_il_76md/scene.gltf", "kind": "air", "out": "il-76md", "frame": 288, "yaw": -90, "length": 10.0, "team": {"box": JET_BOX}},
+    # USA's airborne transport (rules/airborne.yaml C130): "Lockheed C-130 Hercules" by Dave Love SketchFab, CC-BY-4.0
+    "c130": {"name": "C-130 Hercules (USA airlift)", "src": "inbox2/c130__lockheed_c_130_hercules/scene.gltf", "kind": "air", "out": "c-130-hercules", "frame": 224, "yaw": 180, "length": 6.8, "team": {"box": JET_BOX}},
+    # IDEA-42 airborne transports (rules/airborne.yaml), one per nation; all CC-BY-4.0 (credits in mods/rapx/CREDITS)
+    "airlift.c17": {"name": "C-17A Globemaster III (England airlift)", "src": "inbox2/airlift.c17/scene.gltf", "kind": "air", "out": "c-17a-globemaster", "frame": 288, "yaw": 0, "length": 11.1, "team": {"box": JET_BOX}},  # by Kevin Love SketchFab
+    "airlift.y20": {"name": "Xi'an Y-20 (China airlift)", "src": "inbox2/airlift.y20/scene.gltf", "kind": "air", "out": "y-20-kunpeng", "frame": 288, "yaw": 0, "length": 10.1, "team": {"box": JET_BOX}},  # by 42manako
+    "airlift.c141": {"name": "C-141 Starlifter (Union airlift)", "src": "inbox2/airlift.c141/scene.gltf", "kind": "air", "out": "c-141-starlifter", "frame": 288, "yaw": 0, "length": 10.9, "team": {"box": JET_BOX}},  # by Muhamad Mirza Arrafi
+    "airlift.b17t": {"name": "B-17 Flying Fortress (Germany airlift)", "src": "inbox2/airlift.b17t/scene.gltf", "kind": "air", "out": "b-17-airlift", "frame": 224, "yaw": 180, "length": 4.9, "team": {"box": JET_BOX}},  # by maykel-bv
+    "airlift.b29t": {"name": "B-29 Superfortress (Vanguard airlift)", "src": "inbox2/airlift.b29t/scene.gltf", "kind": "air", "out": "b-29-airlift", "frame": 224, "yaw": 180, "snap": "wing", "length": 6.5, "team": {"box": JET_BOX}},  # by Spark_Customs
+    "airlift.b314": {"name": "Boeing 314 Clipper (Italy airlift)", "src": "inbox2/airlift.b314/scene.gltf", "kind": "air", "out": "boeing-314-clipper", "frame": 224, "yaw": -90, "length": 6.9, "team": {"box": JET_BOX}},  # by Thales
+    "airlift.e8c": {"name": "Boeing 707 / E-8C (Iran airlift)", "src": "inbox2/airlift.e8c/scene.gltf", "kind": "air", "out": "e-8c-airlift", "frame": 288, "yaw": 180, "length": 10.0, "team": {"box": JET_BOX}},  # by Muhamad Mirza Arrafi
+    "airlift.b52t": {"name": "B-52 Stratofortress (Egypt airlift)", "src": "inbox2/airlift.b52t/scene.gltf", "kind": "air", "out": "b-52-airlift", "frame": 288, "yaw": 180, "length": 9.3, "team": {"box": JET_BOX}},  # by hruschak30
     "jet.b2": {"name": "Wraith (B-2)", "src": "inbox2/jet.b2__b_2_spirit/scene.gltf", "kind": "air", "out": "ab-2-wraith", "frame": 256, "yaw": 0, "length": 6.5, "team": {"box": FLAT_BOX}},
     "jet.yf23": {"name": "Black Recluse (YF-23)", "src": "inbox2/jet.yf23__rigged_northrop_yf_23/scene.gltf", "kind": "air", "out": "ayf-23-black-recluse", "frame": 160, "yaw": 90, "length": 8.1, "team": {"box": JET_BOX},
                  "drop": ["Icosphere", "Object_13", "Object_33", "Object_37", "Object_43"]},  # helper sphere, flat inner panel, landing gear,
@@ -596,7 +614,7 @@ MODELS.update({
 
 # 2026-11-08 batch 3 (CC-BY-4.0): "KV-AT-ST" by Aruto, "hummer h1 monster truck" by amogusstrikesback2, "Low poly
 # Humvee" by SIpriv, "Heinkel He 177 (low poly)" by Götz von Berlichingen, "Shockfang - Cyberpunk Tank" by
-# tankmodifier, "robot_war machine" by rinzks3D
+# tankmodifier ("robot_war machine" by rinzks3D was removed 2026-11-12, user's call; sprite in old-sketchfab/wbot.png)
 MODELS.update({
     "kvst": {"name": "KV Strider walker", "src": "inbox6/kvatst/scene.gltf", "kind": "vehicle", "frame": 256,
              "yaw": 90, "length": 8.0, "team": {"box": (0.0, 1.0, 0.0, 1.0, 0.97, 1.0)}},
@@ -610,8 +628,6 @@ MODELS.update({
     "sfng": {"name": "Shockfang", "src": "inbox6/shockfang/scene.gltf", "kind": "tank", "frame": 224, "yaw": 0,
              "length": 8.8, "tank": {"turret": [], "cut": 0.45, "ring": (0.32, 0.38), "pivot": (0.0, -0.05)},
              "team": {"box": (0.0, 1.0, 0.0, 1.0, 0.85, 1.0)}},
-    "wbot": {"name": "War Robot", "src": "inbox6/warbot/scene.gltf", "kind": "vehicle", "frame": 256, "yaw": 0,
-             "length": 7.5, "team": {"box": (0.0, 1.0, 0.0, 1.0, 0.92, 1.0)}},
 })
 
 # Vanguard helicopters (2026-11-08, CC-BY-4.0): "Mil Mi-17" by 42manako (rotor blades merged into the body: cut by
@@ -638,3 +654,25 @@ MODELS["tiger"] = {"name": "Tiger", "src": "inbox7/tiger/scene.gltf", "kind": "h
 MODELS["hlfr"] = {"name": "Hailfire Rocket Truck", "src": "inbox7/mrltruck/scene.gltf", "kind": "vehicle", "frame": 224,
                   "yaw": -90, "length": 8.0, "team": {"box": (0.2, 0.8, 0.82, 1.0, 0.45, 0.62)}}
 
+
+# Mobile SAM launchers (2026-11-12, rules/mobile-sam.yaml), all by Chenzoss, CC-BY-4.0: "GÜRZ 150 air defence system"
+# (Vanguard: the whole rear combat module turns, its middle box and the cab stay), "meads air defense launcher truck"
+# (Union: the erected launcher fires straight up, so it stays fixed) and "spyder air defense" (India: the canister
+# launcher is modelled turned to the left front, turret_yaw brings it to the nose; the deck railing stays on the hull)
+MODELS.update({
+    "gurz": {"name": "Gurz Mace (GÜRZ 150)", "src": "inbox8/gurz/scene.gltf", "kind": "tank", "frame": 256,
+             "yaw": 180, "length": 9.2,
+             "tank": {"turret": [], "mixed": {"Object_2": -0.215, "Object_3": -0.215, "Object_4": -0.215},
+                      "ring": (0.42, 0.58), "pivot": (0.0, -0.66),
+                      "hull_boxes": [(-0.4, 0.4, -0.47, 0.25, -0.3, 0.0)]},
+             "team": {"box": (0.0, 1.0, 0.6, 1.0, 0.66, 0.76)}},  # the cab roof
+    "meads": {"name": "Aegis Lance (MEADS)", "src": "inbox8/meads/scene.gltf", "kind": "vehicle", "frame": 256,
+              "yaw": 180, "length": 9.6, "team": {"box": (0.0, 1.0, 0.8, 1.0, 0.4, 0.5)}},  # the cab roof
+    "spyder": {"name": "Spyder Talon (SPYDER)", "src": "inbox8/spyder/scene.gltf", "kind": "tank", "frame": 256,
+               "yaw": 180, "length": 8.8,
+               "tank": {"turret": [], "mixed": {"Object_2": -0.09, "Object_3": -0.09, "Object_4": -0.09},
+                        "ring": (0.47, 0.47), "pivot": (-0.06, -0.52), "turret_yaw": -63,
+                        "hull_boxes": [(-0.33, -0.24, -1.0, 0.2, -0.2, 0.13), (0.38, 0.5, -1.0, 0.2, -0.2, 0.13),
+                                       (-0.5, 0.5, -1.0, -0.92, -0.2, 0.13)]},
+               "team": {"box": (0.0, 1.0, 0.8, 1.0, 0.62, 1.0)}},
+})

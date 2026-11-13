@@ -24,6 +24,7 @@ namespace OpenRA.Mods.RAPX.Traits
 		"Helicopters (Aircraft.CanHover) never use slots.",
 		"Carrier decks (PxCarrierDeck) add their slots.",
 		"The Fatman bomber field (PxFatmanStrikePower) and its bomber (PxStrategicBomber) stay out of the pool.",
+		"Airborne Bases (PxAirliftBase) have a pool of their own for the airlift transports (PxAirlift).",
 		"Planes owned + planes queued can't exceed the total slots: the buttons grey out and extra orders are dropped.")]
 	public class PxAirfieldProductionQueueInfo : ClassicProductionQueueInfo
 	{
@@ -36,9 +37,10 @@ namespace OpenRA.Mods.RAPX.Traits
 		readonly Dictionary<ActorInfo, bool> usesSlots = new();
 		HashSet<string> slotAirfields;
 
+		// Index 0: the jets' pool, 1: the airlift transports' pool (Airborne Bases)
+		readonly int[] totalSlots = new int[2];
+		readonly int[] ownedPlanes = new int[2];
 		int countedTick = -1;
-		int totalSlots;
-		int ownedPlanes;
 
 		// Set while the base queue cancels unbuildable items, so planes already queued are not cancelled at the limit.
 		bool ignoreSlots;
@@ -69,40 +71,45 @@ namespace OpenRA.Mods.RAPX.Traits
 			return uses;
 		}
 
+		static int Pool(ActorInfo actor) { return actor.HasTraitInfo<PxAirliftInfo>() ? 1 : 0; }
+
 		/// <summary>Slots of the player's airfields that are not taken by a plane or by a plane in production.</summary>
-		public int FreeSlots()
+		public int FreeSlots() { return FreeSlots(0); }
+
+		/// <summary>Free slots of one pool: 0 = jets (airfields, carrier decks), 1 = airlift transports (Airborne Bases).</summary>
+		public int FreeSlots(int pool)
 		{
 			if (countedTick != self.World.WorldTick)
 			{
 				countedTick = self.World.WorldTick;
-				totalSlots = 0;
+				totalSlots[0] = totalSlots[1] = 0;
 				foreach (var r in self.World.ActorsWithTrait<Reservable>())
 					if (r.Actor.Owner == self.Owner && !r.Actor.IsDead && r.Trait.Info.HasSlots
 						&& !r.Actor.Info.HasTraitInfo<PxFatmanStrikePowerInfo>())
-						totalSlots += r.Trait.SlotUsage().Total;
+						totalSlots[r.Actor.Info.HasTraitInfo<PxAirliftBaseInfo>() ? 1 : 0] += r.Trait.SlotUsage().Total;
 
 				// Carrier decks (IDEA-08) add their slots too.
 				foreach (var d in self.World.ActorsWithTrait<PxCarrierDeck>())
 					if (d.Actor.Owner == self.Owner && !d.Actor.IsDead)
-						totalSlots += d.Trait.Info.Slots;
+						totalSlots[0] += d.Trait.Info.Slots;
 
-				ownedPlanes = 0;
+				ownedPlanes[0] = ownedPlanes[1] = 0;
 				foreach (var a in self.World.ActorsHavingTrait<Aircraft>())
 					if (a.Owner == self.Owner && !a.IsDead && UsesSlots(a.Info))
-						ownedPlanes++;
+						ownedPlanes[Pool(a.Info)]++;
 			}
 
 			var rules = self.World.Map.Rules;
-			return totalSlots - ownedPlanes - Queue.Count(i => UsesSlots(rules.Actors[i.Item]));
+			return totalSlots[pool] - ownedPlanes[pool] - Queue.Count(i => UsesSlots(rules.Actors[i.Item]) && Pool(rules.Actors[i.Item]) == pool);
 		}
 
 		public override IEnumerable<ActorInfo> BuildableItems()
 		{
 			var items = base.BuildableItems();
-			if (ignoreSlots || FreeSlots() > 0)
+			if (ignoreSlots)
 				return items;
 
-			return items.Where(a => !UsesSlots(a));
+			return items.Where(a => !UsesSlots(a) || FreeSlots(Pool(a)) > 0);
 		}
 
 		protected override void TickInner(Actor self, bool allProductionPaused)
@@ -160,7 +167,8 @@ namespace OpenRA.Mods.RAPX.Traits
 		protected override void BeginProduction(ProductionItem item, bool hasPriority)
 		{
 			// One order can queue several planes (shift-click): stop at the last free slot.
-			if (UsesSlots(self.World.Map.Rules.Actors[item.Item]) && FreeSlots() <= 0)
+			var actor = self.World.Map.Rules.Actors[item.Item];
+			if (UsesSlots(actor) && FreeSlots(Pool(actor)) <= 0)
 				return;
 
 			base.BeginProduction(item, hasPriority);

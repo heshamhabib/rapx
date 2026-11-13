@@ -6819,6 +6819,12 @@ SBMB:
 		Points: -1,-4, 67,28, -67,28, -61,-46
 		Size: 2
 
+ABRN:
+	WithPxCollapse:
+	WithPxDamageFx:
+		Points: 1,8, -165,41, 164,41, 110,-60
+		Size: 3.8
+
 TENT:
 	WithPxCollapse:
 	WithPxDamageFx:

@@ -2,13 +2,19 @@
 # artsrc/units/meshes/sketchfab_models.py jet.gapgen) that hides the ground under it from enemies while airborne,
 # like the Mobile Gap Generator. Order it somewhere and it circles there.
 
+# Built at the Airfield by any Union nation (it used to need aircraft.allies, which only the Helipad gives)
+AFLD:
+	ProvidesPrerequisite@gapjet:
+		Factions: allies, usa, england, france, germany, japan, southkorea, italy, egypt
+		Prerequisite: aircraft.gapjet
+
 JET.GAPGEN:
 	Inherits: ^Plane
 	Buildable:
 		Queue: Aircraft
 		BuildAtProductionType: Plane
 		BuildPaletteOrder: 228
-		Prerequisites: ~afld, ~aircraft.allies, atek, ~techlevel.high
+		Prerequisites: ~afld, ~aircraft.gapjet, atek, ~techlevel.high
 		Description: actor-jet-gapgen.description
 	Valued:
 		Cost: 1800

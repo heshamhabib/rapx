@@ -37,6 +37,7 @@ AIRFIELDS = {
     "sacm": (["SACM"], (12, 6), (5, 2)),
     "bmbf": (["BMBF"], (6, 4), (1, 1)),  # one wide bomber pad (rules/fatman.yaml)
     "sbmb": (["SBMB"], (6, 4), (1, 1)),
+    "abrn": (["ABRN"], (14, 6), (3, 1)),  # three transport pads (rules/airborne.yaml, IDEA-42)
 }
 # Parked planes face the viewer (south): the pads are wider than deep and a MiG facing south is 33 x 24 px.
 FACING = 512
@@ -102,7 +103,8 @@ def fit_grid(points, cols, rows):
             # Pads of the same row reduce to (almost) nothing: only real row steps count
             if np.hypot(*(d - k * u)) > 0.4 * np.hypot(*u):
                 candidates.append(d - k * u)
-    v = min(candidates, key=lambda d: np.hypot(*d))
+    # One row of pads (Airborne Base): no row step, any direction across the row does
+    v = min(candidates, key=lambda d: np.hypot(*d)) if candidates else np.array([-u[1], u[0]])
     # Integer grid index of every pad relative to the first, then least squares for O, U, V
     basis = np.array([u, v]).T
     idx = np.rint(np.linalg.solve(basis, (pts - pts[0]).T).T).astype(int)

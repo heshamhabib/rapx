@@ -20,6 +20,19 @@ using OpenRA.Traits;
 
 namespace OpenRA.Mods.RAPX.Projectiles
 {
+	/// <summary>How a PxRocket flies to its target.</summary>
+	public enum PxRocketProfile
+	{
+		/// <summary>A flat arc (Arc) from the launcher to the target.</summary>
+		Arc,
+
+		/// <summary>Straight up out of a vertical launcher, then bending over onto the target (Climb sets how high).</summary>
+		Vertical,
+
+		/// <summary>Up out of a tilted launcher, high over the first third of the way, then diving onto the target.</summary>
+		Loft,
+	}
+
 	[Desc("High-definition rocket: a drawn rocket body with a white-hot exhaust flame flying an arc to its target, a launch",
 		"blast, and a thick HD smoke trail (pxfx particles) that billows, drifts and lingers after the impact.")]
 	public class PxRocketInfo : IProjectileInfo
@@ -113,6 +126,53 @@ namespace OpenRA.Mods.RAPX.Projectiles
 		[Desc("Equivalent to sequence ZOffset. Controls Z sorting.")]
 		public readonly int ZOffset = 1024;
 
+		[Desc("Flight path: Arc (default), Vertical (vertical launch that bends over onto the target) or Loft (climbs out",
+			"of a tilted launcher and dives onto the target).")]
+		public readonly PxRocketProfile Profile = PxRocketProfile.Arc;
+
+		[Desc("Vertical / Loft: height of the climb, as a fraction of the distance.")]
+		public readonly float Climb = 0.5f;
+
+		[Desc("Vertical / Loft: the climb is at least this high.")]
+		public readonly WDist MinClimb = new(1024);
+
+		[Desc("Cold launch: for this many ticks the missile is thrown out of its canister by gas, motor off (a white gas",
+			"cloud, no flame), then the motor ignites with a flash. Pair with LaunchEase.")]
+		public readonly int ColdLaunch = 0;
+
+		[Desc("Corkscrew: the missile spirals around its flight line this far (a short-range missile rolling as it",
+			"flies), most in the middle of the flight.")]
+		public readonly WDist Corkscrew = WDist.Zero;
+
+		[Desc("Ticks per turn of the corkscrew.")]
+		public readonly int CorkscrewPeriod = 10;
+
+		[Desc("Dual-pulse motor: the first pulse burns out at this tick, the missile coasts (no flame, a thin trail) for",
+			"CoastTicks, then the second pulse lights with a flash. 0 = one long burn.")]
+		public readonly int CoastStart = 0;
+
+		[Desc("Ticks the missile coasts between the two motor pulses.")]
+		public readonly int CoastTicks = 0;
+
+		[Desc("Hit-to-kill seeker: over the last this many ticks the attitude control motors fire, a ring of tiny",
+			"sideways jets around the nose.")]
+		public readonly int DivertTicks = 0;
+
+		[Desc("Percent chance that the seeker ignores a jet's flares (PxFlareDispenser): radar seekers high, old IR low.")]
+		public readonly int FlareResistance = 0;
+
+		[Desc("Size of the tail fins (0 = none) of the drawn body.")]
+		public readonly float Fins = 1f;
+
+		[Desc("Small steering fins behind the nose of the drawn body.")]
+		public readonly bool Canards = false;
+
+		[Desc("Colour of a band around the drawn body (transparent = none).")]
+		public readonly Color BandColor = Color.Transparent;
+
+		[Desc("Length of the drawn nose cone, as a fraction of the body.")]
+		public readonly float NoseLength = 0.22f;
+
 		public IProjectile Create(ProjectileArgs args) { return new PxRocket(this, args); }
 	}
 
@@ -151,6 +211,9 @@ namespace OpenRA.Mods.RAPX.Projectiles
 		readonly float swayFreq;
 		readonly float swayPhase;
 
+		// Corkscrew phase: from the launch point (synced), so the rockets of one salvo spiral out of step
+		readonly double spiralPhase;
+
 		public PxRocket(PxRocketInfo info, ProjectileArgs args)
 		{
 			this.info = info;
@@ -165,13 +228,17 @@ namespace OpenRA.Mods.RAPX.Projectiles
 				target += miss;
 			}
 
-			flightTicks = Math.Max(4, (target - origin).Length / Math.Max(1, info.Speed.Length));
+			// A cold-launched missile always gets to light its motor before it arrives
+			flightTicks = Math.Max(4, (target - origin).Length / Math.Max(1, info.Speed.Length)) + info.ColdLaunch / 2;
+			if (info.ColdLaunch > 0)
+				flightTicks = Math.Max(flightTicks, info.ColdLaunch + 6);
 
 			fire = info.FirePlume * (0.7f + 0.6f * rng.NextFloat());
 			warmth = 0.45f + 0.55f * rng.NextFloat();
 			swayAmp = 0.5f + 2.5f * rng.NextFloat();
 			swayFreq = 0.15f + 0.35f * rng.NextFloat();
 			swayPhase = rng.NextFloat() * 6.283f;
+			spiralPhase = ((origin.X + 3 * origin.Y + 7 * origin.Z) & 1023) * Math.PI / 512;
 
 			// One step "behind" the launcher, so the first frame already faces the target
 			lastPos = origin - (target - origin) / flightTicks;
@@ -187,6 +254,9 @@ namespace OpenRA.Mods.RAPX.Projectiles
 
 		/// <summary>Where it will hit.</summary>
 		public WPos TargetPosition => target;
+
+		/// <summary>Percent chance that the seeker ignores flares.</summary>
+		public int FlareResistance => info.FlareResistance;
 
 		/// <summary>Kind of threat for air defence (PxInterceptor).</summary>
 		public string ThreatType => info.ThreatType;
@@ -207,9 +277,44 @@ namespace OpenRA.Mods.RAPX.Projectiles
 			// Lured by flares: already at full speed, flies straight at them
 			var u = Decoyed ? t : t + info.LaunchEase * (t * t - t);
 			var dist = (target - origin).Length;
-			var height = Decoyed ? 0 : (int)(Math.Sin(u * Math.PI) * dist * info.Arc);
-			return WPos.Lerp(origin, target, (int)(u * 1024), 1024) + new WVec(0, 0, height);
+			WPos p;
+			if (Decoyed || info.Profile == PxRocketProfile.Arc)
+			{
+				var height = Decoyed ? 0 : (int)(Math.Sin(u * Math.PI) * dist * info.Arc);
+				p = WPos.Lerp(origin, target, (int)(u * 1024), 1024) + new WVec(0, 0, height);
+			}
+			else
+			{
+				// Quadratic Bezier: leaves along origin -> control (straight up, or up and forward) and ends on the target
+				var climb = Math.Max(info.MinClimb.Length, (int)(dist * info.Climb));
+				var control = (info.Profile == PxRocketProfile.Loft ? WPos.Lerp(origin, target, 1, 3) : origin) + new WVec(0, 0, climb);
+				var a = (1 - u) * (1 - u);
+				var b = 2 * u * (1 - u);
+				var c = u * u;
+				p = new WPos(
+					(int)(a * origin.X + b * control.X + c * target.X),
+					(int)(a * origin.Y + b * control.Y + c * target.Y),
+					(int)(a * origin.Z + b * control.Z + c * target.Z));
+			}
+
+			if (info.Corkscrew.Length > 0 && !Decoyed)
+			{
+				// Spiral around the flight line: sideways and up/down, widest in the middle of the flight
+				var d = target - origin;
+				var h = Math.Max(1f, (float)Math.Sqrt(d.HorizontalLengthSquared));
+				var turn = tick * 2 * Math.PI / Math.Max(2, info.CorkscrewPeriod) + spiralPhase;
+				var r = info.Corkscrew.Length * Math.Sin(Math.Min(1f, t * 1.4f) * Math.PI);
+				var side = r * Math.Sin(turn);
+				p += new WVec((int)(-d.Y / h * side), (int)(d.X / h * side), (int)(r * Math.Cos(turn)));
+			}
+
+			return p;
 		}
+
+		/// <summary>The motor is burning (not yet lit after a cold launch, or coasting between two pulses).</summary>
+		bool MotorLit => Decoyed || (ticks >= info.ColdLaunch && !Coasting);
+
+		bool Coasting => info.CoastTicks > 0 && ticks >= info.CoastStart && ticks < info.CoastStart + info.CoastTicks;
 
 		/// <summary>The player who fired it (null if unknown).</summary>
 		public Player Owner => args.SourceActor?.Owner;
@@ -305,12 +410,18 @@ namespace OpenRA.Mods.RAPX.Projectiles
 			{
 				launched = true;
 
-				// Launch blast: a burst of smoke and a hot glow at the pod
+				// Launch blast: a burst of smoke and a hot glow at the pod; a cold launch throws out a white gas cloud instead
 				var at = Local(launch);
+				var gas = new float3(0.95f, 0.95f, 0.97f);
 				for (var i = 0; i < info.LaunchPuffs; i++)
-					Puff(PxParticleKind.Smoke, at, 10 * info.TrailSize, 0.55f * info.TrailSize, info.TrailLife * 0.8f, 0.8f, grey, 0.15f);
+					Puff(PxParticleKind.Smoke, at, 10 * info.TrailSize, 0.55f * info.TrailSize, info.TrailLife * 0.8f, 0.8f,
+						info.ColdLaunch > 0 ? gas : grey, info.ColdLaunch > 0 ? 0.3f : 0.15f);
 
-				Puff(PxParticleKind.Glow, at, 2, 0.7f * info.FlameSize, 6, 1f, FlameTint, 0);
+				if (info.ColdLaunch > 0)
+					for (var i = 0; i < info.LaunchPuffs / 2; i++)
+						Puff(PxParticleKind.Billow, at, 6 * info.TrailSize, 0.4f * info.TrailSize, info.TrailLife, 0.7f, gas, 0.02f);
+				else
+					Puff(PxParticleKind.Glow, at, 2, 0.7f * info.FlameSize, 6, 1f, FlameTint, 0);
 				if (info.WaterLaunch)
 				{
 					var white = new float3(1f, 1f, 1f);
@@ -333,31 +444,64 @@ namespace OpenRA.Mods.RAPX.Projectiles
 			// fire-lit billowing smoke that twists (sways sideways) and lingers
 			var here = Local(pos);
 			var back = Local(lastPos);
-			var dx = here.X - back.X;
-			var dy = here.Y - back.Y;
-			var dl = Math.Max(0.01f, (float)Math.Sqrt(dx * dx + dy * dy));
-			var side = new float3(-dy / dl, dx / dl, 0);
-			var lit = new float3(grey.X, grey.Y * (1 - 0.14f * warmth), grey.Z * (1 - 0.34f * warmth));
-			for (var i = 0; i < info.TrailDensity; i++)
+			var lit = MotorLit;
+			if (!Decoyed && (ticks == info.ColdLaunch || (info.CoastTicks > 0 && ticks == info.CoastStart + info.CoastTicks)) && ticks > 1)
 			{
-				var f = (float)(i + 1) / info.TrailDensity;
-				var sway = (float)Math.Sin((ticks + f) * swayFreq + swayPhase) * swayAmp * info.TrailSize;
-				var at = new float3(back.X + dx * f + side.X * sway, back.Y + dy * f + side.Y * sway * 0.6f, back.Z + (here.Z - back.Z) * f);
-				Puff(PxParticleKind.Billow, at, 2.5f * info.TrailSize, 0.2f * info.TrailSize, info.TrailLife, 0.75f, lit, 0.04f);
-				if (rng.NextFloat() < 0.5f)
-					Puff(PxParticleKind.Smoke, at, 3 * info.TrailSize, 0.3f * info.TrailSize, info.TrailLife * 0.8f, 0.5f, lit, 0.05f);
+				// Ignition (after a cold launch or a coast): a flash and a burst of exhaust smoke
+				Puff(PxParticleKind.Glow, back, 1, 0.8f * info.FlameSize, 5, 1f, new float3(1f, 0.97f, 0.9f), 0);
+				for (var i = 0; i < 3; i++)
+					Puff(PxParticleKind.Fireball, back, 2, 0.25f * info.FlameSize, 7, 0.9f, FlameTint, 0);
+				for (var i = 0; i < 6; i++)
+					Puff(PxParticleKind.Billow, back, 4 * info.TrailSize, 0.35f * info.TrailSize, info.TrailLife, 0.8f, grey, 0.05f);
 			}
 
-			if (fire > 0)
-				for (var i = 0; i < 2; i++)
+			if (!lit)
+			{
+				// Motor off: only a wisp of gas behind the missile
+				if (ticks % 2 == 0)
+					Puff(PxParticleKind.Smoke, back, 1.5f, 0.15f * info.TrailSize, info.TrailLife * 0.4f, 0.35f, new float3(0.95f, 0.95f, 0.97f), 0.02f);
+			}
+			else
+			{
+				var dx = here.X - back.X;
+				var dy = here.Y - back.Y;
+				var dl = Math.Max(0.01f, (float)Math.Sqrt(dx * dx + dy * dy));
+				var side = new float3(-dy / dl, dx / dl, 0);
+				var tint = new float3(grey.X, grey.Y * (1 - 0.14f * warmth), grey.Z * (1 - 0.34f * warmth));
+				for (var i = 0; i < info.TrailDensity; i++)
 				{
-					var f = rng.NextFloat();
-					var at = new float3(back.X + dx * f, back.Y + dy * f, back.Z + (here.Z - back.Z) * f);
-					Puff(PxParticleKind.Fireball, at, 1.5f * info.TrailSize, 0.16f * info.TrailSize * fire, 4 + 6 * fire, 0.85f, FlameTint, 0);
+					var f = (float)(i + 1) / info.TrailDensity;
+					var sway = (float)Math.Sin((ticks + f) * swayFreq + swayPhase) * swayAmp * info.TrailSize;
+					var at = new float3(back.X + dx * f + side.X * sway, back.Y + dy * f + side.Y * sway * 0.6f, back.Z + (here.Z - back.Z) * f);
+					Puff(PxParticleKind.Billow, at, 2.5f * info.TrailSize, 0.2f * info.TrailSize, info.TrailLife, 0.75f, tint, 0.04f);
+					if (rng.NextFloat() < 0.5f)
+						Puff(PxParticleKind.Smoke, at, 3 * info.TrailSize, 0.3f * info.TrailSize, info.TrailLife * 0.8f, 0.5f, tint, 0.05f);
 				}
 
-			Puff(PxParticleKind.Glow, back, 0.5f, 0.25f * info.FlameSize, 3, 1f, new float3(1f, 0.97f, 0.9f), 0);
-			Puff(PxParticleKind.Flame, back, 1, 0.22f * info.FlameSize, 5, 0.9f, FlameTint, 0);
+				if (fire > 0)
+					for (var i = 0; i < 2; i++)
+					{
+						var f = rng.NextFloat();
+						var at = new float3(back.X + dx * f, back.Y + dy * f, back.Z + (here.Z - back.Z) * f);
+						Puff(PxParticleKind.Fireball, at, 1.5f * info.TrailSize, 0.16f * info.TrailSize * fire, 4 + 6 * fire, 0.85f, FlameTint, 0);
+					}
+
+				Puff(PxParticleKind.Glow, back, 0.5f, 0.25f * info.FlameSize, 3, 1f, new float3(1f, 0.97f, 0.9f), 0);
+				Puff(PxParticleKind.Flame, back, 1, 0.22f * info.FlameSize, 5, 0.9f, FlameTint, 0);
+			}
+
+			if (info.DivertTicks > 0 && !Decoyed && flightTicks - ticks <= info.DivertTicks)
+			{
+				// Attitude control motors: tiny jets squirting sideways from a ring behind the nose
+				var jets = new float3(1f, 0.92f, 0.75f);
+				for (var i = 0; i < 3; i++)
+				{
+					var a = rng.NextFloat() * 6.283f;
+					var dir = new float3((float)Math.Cos(a), (float)Math.Sin(a) * 0.6f, (float)Math.Sin(a * 1.7f) * 0.5f);
+					Puff(PxParticleKind.Glow, here + 1.2f * dir, 0.3f, 0.12f, 2, 1f, jets, 0);
+					Puff(PxParticleKind.Smoke, here + 3f * dir, 1, 0.1f, 14, 0.55f, new float3(0.95f, 0.95f, 0.95f), 0.02f);
+				}
+			}
 
 			if (ticks >= flightTicks)
 			{
@@ -376,7 +520,7 @@ namespace OpenRA.Mods.RAPX.Projectiles
 			if (!exploded && !wr.World.FogObscures(pos))
 			{
 				var sprite = info.Image != null;
-				yield return new PxRocketRenderable(info, pos, lastPos, !sprite);
+				yield return new PxRocketRenderable(info, pos, lastPos, !sprite, MotorLit);
 				if (sprite)
 				{
 					var d = pos - lastPos;
@@ -397,13 +541,15 @@ namespace OpenRA.Mods.RAPX.Projectiles
 		readonly PxRocketInfo info;
 		readonly WPos last;
 		readonly bool body;
+		readonly bool lit;
 
-		public PxRocketRenderable(PxRocketInfo info, WPos pos, WPos last, bool body = true)
+		public PxRocketRenderable(PxRocketInfo info, WPos pos, WPos last, bool body = true, bool lit = true)
 		{
 			this.info = info;
 			Pos = pos;
 			this.last = last;
 			this.body = body;
+			this.lit = lit;
 		}
 
 		public WPos Pos { get; }
@@ -411,7 +557,7 @@ namespace OpenRA.Mods.RAPX.Projectiles
 		public bool IsDecoration => true;
 
 		public IRenderable WithZOffset(int newOffset) { return this; }
-		public IRenderable OffsetBy(in WVec vec) { return new PxRocketRenderable(info, Pos + vec, last + vec, body); }
+		public IRenderable OffsetBy(in WVec vec) { return new PxRocketRenderable(info, Pos + vec, last + vec, body, lit); }
 		public IRenderable AsDecoration() { return this; }
 		public IFinalizedRenderable PrepareRender(WorldRenderer wr) { return this; }
 
@@ -431,25 +577,46 @@ namespace OpenRA.Mods.RAPX.Projectiles
 			var w = Math.Max(1.5f, wr.ScreenVector(new WVec(info.Width, WDist.Zero, WDist.Zero))[0]);
 			var tail = head - bodyLen * dir;
 
-			// Exhaust: a flickering flame cone with a glow, hottest at the nozzle
-			var flick = 0.8f + 0.2f * Game.CosmeticRandom.NextFloat();
-			var flameEnd = tail - bodyLen * 0.9f * info.FlameSize * flick * dir;
-			cr.DrawLine(tail, flameEnd, w * 3.2f, Alpha(info.FlameColor, 0.25f));
-			cr.DrawLine(tail, flameEnd, w * 1.6f, Alpha(info.FlameColor, 0.7f));
-			cr.DrawLine(tail, tail - bodyLen * 0.45f * dir, w * 0.8f, Color.FromArgb(255, 255, 250, 225));
-			var g = w * 2.6f;
-			cr.FillEllipse(tail - new float3(g, g * 0.75f, 0), tail + new float3(g, g * 0.75f, 0), Alpha(info.FlameColor, 0.35f * flick));
+			// Exhaust: a flickering flame cone with a glow, hottest at the nozzle (none while the motor is off)
+			if (lit)
+			{
+				var flick = 0.8f + 0.2f * Game.CosmeticRandom.NextFloat();
+				var flameEnd = tail - bodyLen * 0.9f * info.FlameSize * flick * dir;
+				cr.DrawLine(tail, flameEnd, w * 3.2f, Alpha(info.FlameColor, 0.25f));
+				cr.DrawLine(tail, flameEnd, w * 1.6f, Alpha(info.FlameColor, 0.7f));
+				cr.DrawLine(tail, tail - bodyLen * 0.45f * dir, w * 0.8f, Color.FromArgb(255, 255, 250, 225));
+				var g = w * 2.6f;
+				cr.FillEllipse(tail - new float3(g, g * 0.75f, 0), tail + new float3(g, g * 0.75f, 0), Alpha(info.FlameColor, 0.35f * flick));
+			}
 
 			if (!body)
 				return;
 
-			// Body, fins and a light nose
-			var finRoot = tail + bodyLen * 0.2f * dir;
-			cr.DrawLine(finRoot, tail - w * 0.9f * normal - w * 0.5f * dir, Math.Max(1, w * 0.45f), info.BodyColor);
-			cr.DrawLine(finRoot, tail + w * 0.9f * normal - w * 0.5f * dir, Math.Max(1, w * 0.45f), info.BodyColor);
+			// Body, fins (and canards behind the nose), a band and a light nose
+			if (info.Fins > 0)
+			{
+				var finRoot = tail + bodyLen * 0.2f * dir;
+				var fin = w * 0.9f * info.Fins;
+				cr.DrawLine(finRoot, tail - fin * normal - w * 0.5f * dir, Math.Max(1, w * 0.45f), info.BodyColor);
+				cr.DrawLine(finRoot, tail + fin * normal - w * 0.5f * dir, Math.Max(1, w * 0.45f), info.BodyColor);
+			}
+
 			cr.DrawLine(tail, head, w, info.BodyColor);
+			if (info.Canards)
+			{
+				var root = head - bodyLen * (info.NoseLength + 0.08f) * dir;
+				cr.DrawLine(root, root - w * 0.75f * normal - w * 0.4f * dir, Math.Max(1, w * 0.35f), info.BodyColor);
+				cr.DrawLine(root, root + w * 0.75f * normal - w * 0.4f * dir, Math.Max(1, w * 0.35f), info.BodyColor);
+			}
+
+			if (info.BandColor.A > 0)
+			{
+				var band = tail + bodyLen * 0.55f * dir;
+				cr.DrawLine(band, band + bodyLen * 0.1f * dir, w * 1.05f, info.BandColor);
+			}
+
 			cr.DrawLine(tail + w * 0.25f * normal, head - bodyLen * 0.2f * dir + w * 0.25f * normal, Math.Max(1, w * 0.3f), Alpha(Color.White, 0.25f));
-			cr.DrawLine(head - bodyLen * 0.22f * dir, head, w * 0.9f, info.NoseColor);
+			cr.DrawLine(head - bodyLen * info.NoseLength * dir, head, w * 0.9f, info.NoseColor);
 		}
 
 		public void RenderDebugGeometry(WorldRenderer wr) { }

@@ -345,6 +345,9 @@ Player:
 			phx16: 30
 			fajir5: 30
 			ftrk: 30
+			gurz: 15
+			meads: 15
+			spyd: 15
 			1tnk: 50
 			2tnk: 50
 			3tnk: 50
@@ -356,6 +359,9 @@ Player:
 			harv: 8
 			jeep: 4
 			ftrk: 4
+			gurz: 3
+			meads: 3
+			spyd: 3
 	SquadManagerBotModule@normal:
 		RequiresCondition: enable-normal-ai && !treaty
 		SquadSize: 40
@@ -398,6 +404,9 @@ Player:
 			phx16: 30
 			fajir5: 30
 			ftrk: 30
+			gurz: 15
+			meads: 15
+			spyd: 15
 			1tnk: 40
 			2tnk: 50
 			3tnk: 50
@@ -418,6 +427,9 @@ Player:
 			harv: 8
 			jeep: 4
 			ftrk: 4
+			gurz: 3
+			meads: 3
+			spyd: 3
 	SquadManagerBotModule@turtle:
 		RequiresCondition: enable-turtle-ai && !treaty
 		SquadSize: 10
@@ -460,6 +472,9 @@ Player:
 			phx16: 30
 			fajir5: 30
 			ftrk: 50
+			gurz: 15
+			meads: 15
+			spyd: 15
 			1tnk: 50
 			2tnk: 50
 			3tnk: 50
@@ -481,6 +496,9 @@ Player:
 			harv: 8
 			jeep: 4
 			ftrk: 4
+			gurz: 3
+			meads: 3
+			spyd: 3
 			mnly: 2
 	MinelayerBotModule@turtle:
 		RequiresCondition: enable-turtle-ai
@@ -505,6 +523,9 @@ Player:
 		UnitsToBuild:
 			harv: 1
 			ftrk: 40
+			gurz: 15
+			meads: 15
+			spyd: 15
 			arty: 40
 			v2rl: 40
 			himax: 30
@@ -536,6 +557,9 @@ Player:
 		UnitLimits:
 			harv: 4
 			ftrk: 3
+			gurz: 3
+			meads: 3
+			spyd: 3
 			arty: 1
 			v2rl: 1
 			himax: 1

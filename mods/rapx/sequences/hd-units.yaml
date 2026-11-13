@@ -804,14 +804,6 @@ mtrk:
 	icon:
 		Filename: ra|bits/hd/mtrkicon.png
 
-wbot:
-	idle:
-		Filename: ra|bits/hd/units/wbot.png
-		Facings: 32
-		UseClassicFacings: False
-		Scale: 0.2333
-	icon:
-		Filename: ra|bits/hd/wboticon.png
 
 hmmv:
 	idle:

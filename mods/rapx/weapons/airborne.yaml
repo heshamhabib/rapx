@@ -1,0 +1,12 @@
+# Il-76MD tail turret (rules/airborne.yaml IL76): twin GSh-23 23 mm guns, against aircraft only
+JetGun.GSh23Tail:
+	Inherits: JetGun.M61
+	Burst: 8
+	BurstDelays: 2
+	ReloadDelay: 45
+	Range: 4c512
+	MinRange: 0c0
+	ValidTargets: AirborneActor
+	Warhead@1Dam: SpreadDamage
+		Damage: 1500
+		ValidTargets: AirborneActor

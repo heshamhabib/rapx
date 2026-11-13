@@ -1104,13 +1104,6 @@ actor-sfng =
       Strong vs Tanks and Vehicles
       Weak vs Aircraft
 
-actor-wbot =
-    .name = War Robot
-    .description =
-    Two-legged combat mech with a chain gun
-    and anti-tank rockets.
-      Strong vs Infantry and Vehicles
-      Weak vs Aircraft
 
 actor-mi17 =
     .name = Mi-17 Hip

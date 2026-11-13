@@ -1369,6 +1369,20 @@ jet.b2:
 		Offset: 0,0
 		Scale: 0.5
 
+jet.ho229:
+	px-icon:
+		Filename: ra|bits/hd/icons/hg-229-nachtfluegel.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/hg-229-nachtfluegel.png
+			SNOW: ra|bits/hd/icons/hg-229-nachtfluegel.png
+			DESERT: ra|bits/hd/icons/hg-229-nachtfluegel.png
+			INTERIOR: ra|bits/hd/icons/hg-229-nachtfluegel.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
 jet.b52:
 	px-icon:
 		Filename: ra|bits/hd/icons/ab-52-stratoforce.png
@@ -3339,6 +3353,160 @@ bmbf:
 		Offset: 0,0
 		Scale: 0.5
 
+il76:
+	px-icon:
+		Filename: ra|bits/hd/icons/il76icon.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/il76icon.png
+			SNOW: ra|bits/hd/icons/il76icon.png
+			DESERT: ra|bits/hd/icons/il76icon.png
+			INTERIOR: ra|bits/hd/icons/il76icon.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+c130:
+	px-icon:
+		Filename: ra|bits/hd/icons/c130icon.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/c130icon.png
+			SNOW: ra|bits/hd/icons/c130icon.png
+			DESERT: ra|bits/hd/icons/c130icon.png
+			INTERIOR: ra|bits/hd/icons/c130icon.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+abrn:
+	px-icon:
+		Filename: ra|bits/hd/icons/abrncameo.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/abrncameo.png
+			SNOW: ra|bits/hd/icons/abrncameo.png
+			DESERT: ra|bits/hd/icons/abrncameo.png
+			INTERIOR: ra|bits/hd/icons/abrncameo.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+c17:
+	px-icon:
+		Filename: ra|bits/hd/icons/c17icon.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/c17icon.png
+			SNOW: ra|bits/hd/icons/c17icon.png
+			DESERT: ra|bits/hd/icons/c17icon.png
+			INTERIOR: ra|bits/hd/icons/c17icon.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+y20:
+	px-icon:
+		Filename: ra|bits/hd/icons/y20icon.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/y20icon.png
+			SNOW: ra|bits/hd/icons/y20icon.png
+			DESERT: ra|bits/hd/icons/y20icon.png
+			INTERIOR: ra|bits/hd/icons/y20icon.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+c141:
+	px-icon:
+		Filename: ra|bits/hd/icons/c141icon.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/c141icon.png
+			SNOW: ra|bits/hd/icons/c141icon.png
+			DESERT: ra|bits/hd/icons/c141icon.png
+			INTERIOR: ra|bits/hd/icons/c141icon.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+b17t:
+	px-icon:
+		Filename: ra|bits/hd/icons/b17ticon.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/b17ticon.png
+			SNOW: ra|bits/hd/icons/b17ticon.png
+			DESERT: ra|bits/hd/icons/b17ticon.png
+			INTERIOR: ra|bits/hd/icons/b17ticon.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+b29t:
+	px-icon:
+		Filename: ra|bits/hd/icons/b29ticon.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/b29ticon.png
+			SNOW: ra|bits/hd/icons/b29ticon.png
+			DESERT: ra|bits/hd/icons/b29ticon.png
+			INTERIOR: ra|bits/hd/icons/b29ticon.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+b314:
+	px-icon:
+		Filename: ra|bits/hd/icons/b314icon.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/b314icon.png
+			SNOW: ra|bits/hd/icons/b314icon.png
+			DESERT: ra|bits/hd/icons/b314icon.png
+			INTERIOR: ra|bits/hd/icons/b314icon.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+e8c:
+	px-icon:
+		Filename: ra|bits/hd/icons/e8cicon.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/e8cicon.png
+			SNOW: ra|bits/hd/icons/e8cicon.png
+			DESERT: ra|bits/hd/icons/e8cicon.png
+			INTERIOR: ra|bits/hd/icons/e8cicon.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+b52t:
+	px-icon:
+		Filename: ra|bits/hd/icons/b52ticon.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/b52ticon.png
+			SNOW: ra|bits/hd/icons/b52ticon.png
+			DESERT: ra|bits/hd/icons/b52ticon.png
+			INTERIOR: ra|bits/hd/icons/b52ticon.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
 yb35:
 	px-icon:
 		Filename: ra|bits/hd/icons/yb35icon.png
@@ -3605,19 +3773,6 @@ sfng:
 		Offset: 0,0
 		Scale: 0.5
 
-wbot:
-	px-icon:
-		Filename: ra|bits/hd/icons/wboticon.png
-		TilesetFilenames:
-			TEMPERAT: ra|bits/hd/icons/wboticon.png
-			SNOW: ra|bits/hd/icons/wboticon.png
-			DESERT: ra|bits/hd/icons/wboticon.png
-			INTERIOR: ra|bits/hd/icons/wboticon.png
-		Start: 0
-		Length: 1
-		Facings: 1
-		Offset: 0,0
-		Scale: 0.5
 
 jet.su30:
 	px-icon:
@@ -3779,6 +3934,48 @@ mi35:
 			SNOW: ra|bits/hd/icons/mi35icon.png
 			DESERT: ra|bits/hd/icons/mi35icon.png
 			INTERIOR: ra|bits/hd/icons/mi35icon.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+gurz:
+	px-icon:
+		Filename: ra|bits/hd/icons/gurzicon.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/gurzicon.png
+			SNOW: ra|bits/hd/icons/gurzicon.png
+			DESERT: ra|bits/hd/icons/gurzicon.png
+			INTERIOR: ra|bits/hd/icons/gurzicon.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+meads:
+	px-icon:
+		Filename: ra|bits/hd/icons/meadsicon.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/meadsicon.png
+			SNOW: ra|bits/hd/icons/meadsicon.png
+			DESERT: ra|bits/hd/icons/meadsicon.png
+			INTERIOR: ra|bits/hd/icons/meadsicon.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+spyder:
+	px-icon:
+		Filename: ra|bits/hd/icons/spydericon.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/spydericon.png
+			SNOW: ra|bits/hd/icons/spydericon.png
+			DESERT: ra|bits/hd/icons/spydericon.png
+			INTERIOR: ra|bits/hd/icons/spydericon.png
 		Start: 0
 		Length: 1
 		Facings: 1

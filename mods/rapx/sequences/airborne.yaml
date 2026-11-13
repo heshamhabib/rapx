@@ -1,0 +1,124 @@
+# Airborne Base (rules/airborne.yaml): its art is in hd-structures.yaml (build_all.py), the sidebar tile in hd-icons.yaml.
+# Drawn as ground: ZOffset reaches past the pads (half the 6-cell depth), so parked transports stay on top.
+abrn:
+	idle:
+		ZOffset: -3072
+	damaged-idle:
+		ZOffset: -3072
+	active:
+		ZOffset: -3072
+	damaged-active:
+		ZOffset: -3072
+	icon:
+		Filename: ra|bits/hd/abrncameo.png
+
+# Airborne transports (rules/airborne.yaml): Sketchfab models rendered at the jets' 2.6x (Scale 1/3)
+il76:
+	idle:
+		Filename: ra|bits/hd/units/il-76md.png
+		Start: 0
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	icon:
+		Filename: ra|bits/hd/il76icon.png
+
+c130:
+	idle:
+		Filename: ra|bits/hd/units/c-130-hercules.png
+		Start: 0
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	icon:
+		Filename: ra|bits/hd/c130icon.png
+
+c17:
+	idle:
+		Filename: ra|bits/hd/units/c-17a-globemaster.png
+		Start: 0
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	icon:
+		Filename: ra|bits/hd/c17icon.png
+
+y20:
+	idle:
+		Filename: ra|bits/hd/units/y-20-kunpeng.png
+		Start: 0
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	icon:
+		Filename: ra|bits/hd/y20icon.png
+
+c141:
+	idle:
+		Filename: ra|bits/hd/units/c-141-starlifter.png
+		Start: 0
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	icon:
+		Filename: ra|bits/hd/c141icon.png
+
+b17t:
+	idle:
+		Filename: ra|bits/hd/units/b-17-airlift.png
+		Start: 0
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	icon:
+		Filename: ra|bits/hd/b17ticon.png
+
+b29t:
+	idle:
+		Filename: ra|bits/hd/units/b-29-airlift.png
+		Start: 0
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	icon:
+		Filename: ra|bits/hd/b29ticon.png
+
+b314:
+	idle:
+		Filename: ra|bits/hd/units/boeing-314-clipper.png
+		Start: 0
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	icon:
+		Filename: ra|bits/hd/b314icon.png
+
+e8c:
+	idle:
+		Filename: ra|bits/hd/units/e-8c-airlift.png
+		Start: 0
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	icon:
+		Filename: ra|bits/hd/e8cicon.png
+
+b52t:
+	idle:
+		Filename: ra|bits/hd/units/b-52-airlift.png
+		Start: 0
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	icon:
+		Filename: ra|bits/hd/b52ticon.png

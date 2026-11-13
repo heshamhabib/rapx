@@ -28,6 +28,9 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 		[Desc("Weapon name prefix -> ammo type. The longest matching prefix wins; unmatched weapons get their own type.")]
 		public readonly Dictionary<string, string> WeaponTypes = new();
 
+		[Desc("AmmoPool name -> ammo type, for pools no armament fires (e.g. the paratroopers aboard a PxAirlift transport).")]
+		public readonly Dictionary<string, string> PoolTypes = new();
+
 		[Desc("Ammo type -> short label shown in front of its bar.")]
 		public readonly Dictionary<string, string> TypeLabels = new();
 
@@ -98,10 +101,12 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 
 				// A pool shared by several armaments takes the type of the first one.
 				var weapon = armaments.FirstOrDefault(a => pool.Info.Armaments.Contains(a.Info.Name))?.Info.Weapon;
-				if (weapon == null)
+				string type;
+				if (weapon != null)
+					type = TypeOf(weapon);
+				else if (!info.PoolTypes.TryGetValue(pool.Info.Name, out type))
 					continue;
 
-				var type = TypeOf(weapon);
 				if (!byType.TryGetValue(type, out var group))
 				{
 					group = new Group

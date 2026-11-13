@@ -30,3 +30,8 @@ SBMB:
 	Reservable:
 		SlotOffsets: -19,881,0
 		SlotFacings: 512
+
+ABRN:
+	Reservable:
+		SlotOffsets: -4338,1454,0, 3,1458,0, 4343,1462,0
+		SlotFacings: 512, 512, 512

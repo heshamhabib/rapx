@@ -309,8 +309,14 @@ if KIND == "tank":
 
     with_gun = "cut" in t  # merged parts: the gun in front of the turret goes with it too
 
+    # hull_boxes: (x0, x1, y0, y1, z0, z1) model units after the yaw; faces inside stay on the hull (railings, a cab
+    # roof in front of the turret)
+    keep_hull = [(model_point(b[0::2]), model_point(b[1::2])) for b in t.get("hull_boxes", [])]
+
     def in_turret(c, z_cut):
         if c.z <= z_cut:
+            return False
+        if any(a.x <= c.x <= b.x and a.y <= c.y <= b.y and a.z <= c.z <= b.z for a, b in keep_hull):
             return False
         dx, dy = (c.x - pivot.x) / rx, (c.y - pivot.y) / ry
         gun = with_gun and c.y > pivot.y and abs(c.x - pivot.x) < rx * 0.6
@@ -329,6 +335,11 @@ if KIND == "tank":
         for o in turret_parts:
             bpy.data.objects.remove(o)
         turret_parts = attached
+    if t.get("turret_yaw"):
+        # A turret modelled turned to one side (SPYDER's launcher): turn it about the pivot to face the nose
+        turn = Matrix.Translation(pivot) @ Matrix.Rotation(math.radians(t["turret_yaw"]), 4, "Z") @ Matrix.Translation(-pivot)
+        for o in turret_parts:
+            o.data.transform(turn)
     hull_parts = [o for o in bpy.context.scene.objects if o.type == "MESH" and o not in turret_parts]
     root("Hull", hull_parts)
     turret = root("Turret", turret_parts, Vector((pivot.x, pivot.y, 0)))  # turns about the actor centre

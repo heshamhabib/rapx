@@ -1,0 +1,450 @@
+# Airborne transports (IDEA-42 in docs/DESIGN-IDEAS.md): each nation's heavy transport is built on the Airborne Base
+# (ABRN, its 3 pads are their own slot pool: PxAirliftBase / PxAirfieldProductionQueue) and carries a 40-man paratrooper
+# force (PxAirlift, counted as the "troops" ammo pool). Right-click the ground while it is loaded: it flies there,
+# drops the whole stick in a line and flies home, where the troopers are put back aboard in about a minute (one every
+# 37 ticks) and paid for at their normal price. The PARA bar under the selected plane shows who is aboard.
+# Models: artsrc/units/meshes/sketchfab_models.py il76 / c130.
+
+# The Airborne Base: the same 14x6 building for every nation, three transport pads (airfield-slots.yaml, measured
+# from the art by artsrc/buildings/make_airfield_slots.py). Drawn exactly on its footprint (build_all.py NOT_GROWN).
+ABRN:
+	Inherits: ^Building
+	Inherits@PRIMARY: ^PrimaryBuilding
+	Buildable:
+		Queue: Building
+		BuildPaletteOrder: 136
+		Prerequisites: afld, ~techlevel.medium
+		Description: actor-abrn.description
+	Valued:
+		Cost: 2000
+	Tooltip:
+		Name: actor-abrn.name
+	Selectable:
+		Class: abrn
+		Bounds: 14336, 6144
+	HitShape:
+		UseTargetableCellsOffsets: true
+		Type: Rectangle
+			TopLeft: -7168, -3072
+			BottomRight: 7168, 3072
+	Building:
+		Footprint: xxxxxxxxxxxxxx xxxxxxxxxxxxxx xxxxxxxxxxxxxx xxxxxxxxxxxxxx xxxxxxxxxxxxxx xxxxxxxxxxxxxx
+		Dimensions: 14,6
+	Health:
+		HP: 160000
+	Armor:
+		Type: Wood
+	RevealsShroud:
+		MinRange: 4c0
+		Range: 6c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Power:
+		Amount: -60
+	Exit@1:
+		RequiresCondition: !being-captured
+		ExitCell: 7,3
+		Facing: 768
+	PxRallyPoint:
+	RallyPoint:
+		ForceSetType: Plane
+	CommandBarBlacklist:
+		DisableStop: false
+	Production:
+		Produces: Aircraft, Airlift
+	ProductionBar:
+		ProductionType: Aircraft
+	Reservable:
+	WithResupplyAnimation:
+		RequiresCondition: !build-incomplete
+	PxAirliftBase:
+	ProvidesPrerequisite@buildingname:
+	ProvidesPrerequisite@ukraine:
+		Factions: ukraine, russia, india
+		Prerequisite: airlift.ukraine
+	ProvidesPrerequisite@usa:
+		Factions: usa, france, japan, southkorea, turkey, pakistan
+		Prerequisite: airlift.usa
+	ProvidesPrerequisite@england:
+		Factions: england
+		Prerequisite: airlift.england
+	ProvidesPrerequisite@china:
+		Factions: china
+		Prerequisite: airlift.china
+	ProvidesPrerequisite@allies:
+		Factions: allies
+		Prerequisite: airlift.allies
+	ProvidesPrerequisite@germany:
+		Factions: germany
+		Prerequisite: airlift.germany
+	ProvidesPrerequisite@soviet:
+		Factions: soviet, cuba
+		Prerequisite: airlift.soviet
+	ProvidesPrerequisite@italy:
+		Factions: italy
+		Prerequisite: airlift.italy
+	ProvidesPrerequisite@iran:
+		Factions: iran
+		Prerequisite: airlift.iran
+	ProvidesPrerequisite@egypt:
+		Factions: egypt
+		Prerequisite: airlift.egypt
+	Targetable:
+		TargetTypes: GroundActor, C4, DetonateAttack, Structure
+
+^AirliftTransport:
+	Inherits: ^Plane
+	Buildable:
+		Queue: Aircraft
+		BuildAtProductionType: Airlift
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Armor:
+		Type: Light
+	RevealsShroud:
+		MinRange: 7c0
+		Range: 9c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 7c0
+		Type: GroundPosition
+	Aircraft:
+		CruiseAltitude: 2560
+		TurnSpeed: 8
+		RepulsionSpeed: 40
+		MaximumPitch: 40
+		IdleBehavior: ReturnToBase
+		TakeOffOnCreation: false
+	AmmoPool@TROOPS:
+		Name: troops
+		Ammo: 40
+		ReloadDelay: 37
+		ReloadCount: 1
+	Rearmable:
+		RearmActors: abrn
+		AmmoPools: troops
+	PxAirlift:
+		AmmoPool: troops
+		Troops:
+			E1: 30
+			E3: 10
+		ChuteSound: ra|audio/sfx/chute1.ogg
+	WithPxAmmoBars:
+		PoolTypes:
+			troops: para
+		TypeLabels:
+			para: PARA
+		TypeColors:
+			para: 8CDC5A
+	LeavesTrails:
+		Offsets: -853,0,171
+		MovingInterval: 2
+		Image: smokey
+		SpawnAtLastPosition: False
+		Type: CenterPosition
+		RequiresCondition: enable-smoke
+	GrantConditionOnDamageState@SmokeTrail:
+		Condition: enable-smoke
+	Selectable:
+		Bounds: 3400, 2800, 0, 0
+		DecorationBounds: 3600, 3000, 0, 200
+
+# Ukraine, Russia, India: Il-76MD, with the twin GSh-23 23 mm guns of its tail turret firing at enemy aircraft
+IL76:
+	Inherits: ^AirliftTransport
+	Inherits@AUTOTARGET: ^AutoTargetAir
+	Buildable:
+		BuildPaletteOrder: 240
+		Prerequisites: ~abrn, ~airlift.ukraine, ~techlevel.medium
+		Description: actor-il76.description
+	PxNationalUnit:
+		Factions: ukraine, russia, india
+	Valued:
+		Cost: 8000
+	Tooltip:
+		Name: actor-il76.name
+	Health:
+		HP: 40000
+	Aircraft:
+		Speed: 140
+	Turreted@TAIL:
+		Turret: tail
+		Offset: -1700,0,300
+		TurnSpeed: 40
+		InitialFacing: 512
+	Armament@TAIL:
+		Name: tailgun
+		Turret: tail
+		Weapon: JetGun.GSh23Tail
+		LocalOffset: 120,0,0
+		RequiresCondition: airborne
+	AttackTurreted:
+		Armaments: tailgun
+		Turrets: tail
+	AutoTarget:
+		AllowMovement: false
+		InitialStanceAI: Defend
+	SpawnActorOnDeath:
+		Actor: IL76.Husk
+
+IL76.Husk:
+	Inherits: MIG.Husk
+	RenderSprites:
+		Image: il76
+	Tooltip:
+		Name: actor-il76.name
+
+# USA, France, Japan, South Korea, Turkey, Pakistan: C-130 Hercules (unarmed)
+C130:
+	Inherits: ^AirliftTransport
+	Buildable:
+		BuildPaletteOrder: 241
+		Prerequisites: ~abrn, ~airlift.usa, ~techlevel.medium
+		Description: actor-c130.description
+	PxNationalUnit:
+		Factions: usa, france, japan, southkorea, turkey, pakistan
+	Valued:
+		Cost: 7500
+	Tooltip:
+		Name: actor-c130.name
+	Health:
+		HP: 32000
+	Aircraft:
+		Speed: 130
+	-AmbientSound@PASS:
+	AmbientSound@ENGINE:
+		SoundFiles: ra|audio/aircraft/prop-engine.wav
+		RequiresCondition: airborne
+	SpawnActorOnDeath:
+		Actor: C130.Husk
+
+C130.Husk:
+	Inherits: MIG.Husk
+	RenderSprites:
+		Image: c130
+	Tooltip:
+		Name: actor-c130.name
+
+# More nations' transports (2026-11-13; models in sketchfab_models.py airlift.*). Propeller planes are cheaper, slower and weaker.
+
+C17:
+	Inherits: ^AirliftTransport
+	Buildable:
+		BuildPaletteOrder: 242
+		Prerequisites: ~abrn, ~airlift.england, ~techlevel.medium
+		Description: actor-c17.description
+	PxNationalUnit:
+		Factions: england
+	Valued:
+		Cost: 8500
+	Tooltip:
+		Name: actor-c17.name
+	Health:
+		HP: 45000
+	Aircraft:
+		Speed: 150
+	SpawnActorOnDeath:
+		Actor: C17.Husk
+
+C17.Husk:
+	Inherits: MIG.Husk
+	RenderSprites:
+		Image: c17
+	Tooltip:
+		Name: actor-c17.name
+
+Y20:
+	Inherits: ^AirliftTransport
+	Buildable:
+		BuildPaletteOrder: 243
+		Prerequisites: ~abrn, ~airlift.china, ~techlevel.medium
+		Description: actor-y20.description
+	PxNationalUnit:
+		Factions: china
+	Valued:
+		Cost: 8000
+	Tooltip:
+		Name: actor-y20.name
+	Health:
+		HP: 42000
+	Aircraft:
+		Speed: 145
+	SpawnActorOnDeath:
+		Actor: Y20.Husk
+
+Y20.Husk:
+	Inherits: MIG.Husk
+	RenderSprites:
+		Image: y20
+	Tooltip:
+		Name: actor-y20.name
+
+C141:
+	Inherits: ^AirliftTransport
+	Buildable:
+		BuildPaletteOrder: 244
+		Prerequisites: ~abrn, ~airlift.allies, ~techlevel.medium
+		Description: actor-c141.description
+	PxNationalUnit:
+		Factions: allies
+	Valued:
+		Cost: 8000
+	Tooltip:
+		Name: actor-c141.name
+	Health:
+		HP: 40000
+	Aircraft:
+		Speed: 150
+	SpawnActorOnDeath:
+		Actor: C141.Husk
+
+C141.Husk:
+	Inherits: MIG.Husk
+	RenderSprites:
+		Image: c141
+	Tooltip:
+		Name: actor-c141.name
+
+B17T:
+	Inherits: ^AirliftTransport
+	Buildable:
+		BuildPaletteOrder: 245
+		Prerequisites: ~abrn, ~airlift.germany, ~techlevel.medium
+		Description: actor-b17t.description
+	PxNationalUnit:
+		Factions: germany
+	Valued:
+		Cost: 7000
+	Tooltip:
+		Name: actor-b17t.name
+	Health:
+		HP: 30000
+	Aircraft:
+		Speed: 120
+	-AmbientSound@PASS:
+	AmbientSound@ENGINE:
+		SoundFiles: ra|audio/aircraft/prop-engine.wav
+		RequiresCondition: airborne
+	SpawnActorOnDeath:
+		Actor: B17T.Husk
+
+B17T.Husk:
+	Inherits: MIG.Husk
+	RenderSprites:
+		Image: b17t
+	Tooltip:
+		Name: actor-b17t.name
+
+B29T:
+	Inherits: ^AirliftTransport
+	Buildable:
+		BuildPaletteOrder: 246
+		Prerequisites: ~abrn, ~airlift.soviet, ~techlevel.medium
+		Description: actor-b29t.description
+	PxNationalUnit:
+		Factions: soviet, cuba
+	Valued:
+		Cost: 7500
+	Tooltip:
+		Name: actor-b29t.name
+	Health:
+		HP: 34000
+	Aircraft:
+		Speed: 130
+	-AmbientSound@PASS:
+	AmbientSound@ENGINE:
+		SoundFiles: ra|audio/aircraft/prop-engine.wav
+		RequiresCondition: airborne
+	SpawnActorOnDeath:
+		Actor: B29T.Husk
+
+B29T.Husk:
+	Inherits: MIG.Husk
+	RenderSprites:
+		Image: b29t
+	Tooltip:
+		Name: actor-b29t.name
+
+B314:
+	Inherits: ^AirliftTransport
+	Buildable:
+		BuildPaletteOrder: 247
+		Prerequisites: ~abrn, ~airlift.italy, ~techlevel.medium
+		Description: actor-b314.description
+	PxNationalUnit:
+		Factions: italy
+	Valued:
+		Cost: 7000
+	Tooltip:
+		Name: actor-b314.name
+	Health:
+		HP: 30000
+	Aircraft:
+		Speed: 115
+	-AmbientSound@PASS:
+	AmbientSound@ENGINE:
+		SoundFiles: ra|audio/aircraft/prop-engine.wav
+		RequiresCondition: airborne
+	SpawnActorOnDeath:
+		Actor: B314.Husk
+
+B314.Husk:
+	Inherits: MIG.Husk
+	RenderSprites:
+		Image: b314
+	Tooltip:
+		Name: actor-b314.name
+
+E8C:
+	Inherits: ^AirliftTransport
+	Buildable:
+		BuildPaletteOrder: 248
+		Prerequisites: ~abrn, ~airlift.iran, ~techlevel.medium
+		Description: actor-e8c.description
+	PxNationalUnit:
+		Factions: iran
+	Valued:
+		Cost: 8000
+	Tooltip:
+		Name: actor-e8c.name
+	Health:
+		HP: 38000
+	Aircraft:
+		Speed: 150
+	SpawnActorOnDeath:
+		Actor: E8C.Husk
+
+E8C.Husk:
+	Inherits: MIG.Husk
+	RenderSprites:
+		Image: e8c
+	Tooltip:
+		Name: actor-e8c.name
+
+B52T:
+	Inherits: ^AirliftTransport
+	Buildable:
+		BuildPaletteOrder: 249
+		Prerequisites: ~abrn, ~airlift.egypt, ~techlevel.medium
+		Description: actor-b52t.description
+	PxNationalUnit:
+		Factions: egypt
+	Valued:
+		Cost: 8500
+	Tooltip:
+		Name: actor-b52t.name
+	Health:
+		HP: 48000
+	Aircraft:
+		Speed: 140
+	SpawnActorOnDeath:
+		Actor: B52T.Husk
+
+B52T.Husk:
+	Inherits: MIG.Husk
+	RenderSprites:
+		Image: b52t
+	Tooltip:
+		Name: actor-b52t.name

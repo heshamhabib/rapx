@@ -144,6 +144,9 @@ LOADOUTS = {
     "jet.b2": {"real_length": 21.0, "gun": None, "stations": [
         {"weapon": "JetGBU", "internal": True, "shots": 8},
     ]},
+    "jet.ho229": {"real_length": 7.5, "gun": None, "stations": [
+        {"weapon": "JetGBU", "internal": True, "shots": 8},
+    ]},
     "jet.b52": {"real_length": 48.5, "gun": None, "stations": [
         {"weapon": "JetBomb", "internal": True, "shots": 14},
     ]},

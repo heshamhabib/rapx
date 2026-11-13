@@ -814,6 +814,43 @@ JET.HE177:
 	AutoTargetPriority@ATTACKANYTHING:
 		ValidTargets: Infantry, Vehicle, Ship, Underwater, Structure, Defense, Mine
 
+JET.HO229:
+	-AmmoPool@MIGS0:
+	-Armament@MIGS0:
+	-WithIdleOverlay@MIGSTORE0R:
+	-WithIdleOverlay@MIGSTORE0L:
+	-AmmoPool@MIGS1:
+	-Armament@MIGS1:
+	-WithIdleOverlay@MIGSTORE1R:
+	-WithIdleOverlay@MIGSTORE1L:
+	-AmmoPool@MIGS2:
+	-Armament@MIGS2:
+	-WithIdleOverlay@MIGSTORE2R:
+	-WithIdleOverlay@MIGSTORE2L:
+	-AmmoPool@MIGGUN:
+	-Armament@MIGGUN:
+	AmmoPool@HO229S0:
+		Name: ho229-s0
+		Armaments: ho229-s0
+		Ammo: 8
+		AmmoCondition: ho229-s0
+	Armament@HO229S0:
+		Name: ho229-s0
+		Weapon: JetGBU
+		LocalOffset: 0,0,-120
+		PauseOnCondition: !ho229-s0
+	AttackAircraft:
+		Armaments: ho229-s0
+	Rearmable:
+		AmmoPools: ho229-s0
+	AutoTarget:
+		InitialStance: HoldFire
+		InitialStanceAI: HoldFire
+	AutoTargetPriority@DEFAULT:
+		ValidTargets: Infantry, Vehicle, Ship, Underwater, Defense, Mine
+	AutoTargetPriority@ATTACKANYTHING:
+		ValidTargets: Infantry, Vehicle, Ship, Underwater, Structure, Defense, Mine
+
 JET.J20:
 	-AmmoPool@MIGS0:
 	-Armament@MIGS0:

@@ -286,6 +286,25 @@ JET.HE177.Husk:
 	Tooltip:
 		Name: actor-jet-he177.name
 
+JET.HO229:
+	WithPxJetTrail:
+		RequiresCondition: airborne
+		Wingtips: -108,2190,0, -108,-2190,0
+		Engines: -435,0,0
+
+JET.HO229:
+	SpawnActorOnDeath:
+		Actor: JET.HO229.Husk
+
+JET.HO229.Husk:
+	Inherits: MIG.Husk
+	RenderSprites:
+		Image: jet.ho229
+	WithPxCrashFx:
+		Size: 2.31
+	Tooltip:
+		Name: actor-jet-ho229.name
+
 JET.J20:
 	WithPxJetTrail:
 		RequiresCondition: airborne

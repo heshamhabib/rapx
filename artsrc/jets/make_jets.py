@@ -76,6 +76,7 @@ JETS = [
     ("b52", "ab-52-stratoforce", "AB-52 Stratoforce", "B-52 Stratofortress", 2, "bomber", ["usa"]),
     ("f22", "af-22-raptorex", "AF-22 Raptorex", "F-22 Raptor", 5, "stealth", ["allies", "usa"]),
     ("b2", "ab-2-wraith", "AB-2 Wraith", "B-2 Spirit", 5, "bomber", ["allies", "usa"]),
+    ("ho229", "hg-229-nachtfluegel", "HG-229 Nachtflügel", "Horten Ho 229", 5, "bomber", ["germany"]),
     ("yf23", "ayf-23-black-recluse", "AYF-23 Black Recluse", "Northrop YF-23", "X", "stealth", ["allies", "usa"]),
     ("x47", "ax-47-stingray", "AX-47 Stingray", "X-47B", "X", "drone", ["usa"]),
     ("v22", "kestrel-tiltrotor", "Kestrel Tiltrotor", "V-22 Osprey", 4, "transport", ["usa", "japan"]),

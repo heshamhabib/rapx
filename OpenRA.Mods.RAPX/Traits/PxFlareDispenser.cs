@@ -111,7 +111,7 @@ namespace OpenRA.Mods.RAPX.Traits
 					Release();
 				}
 
-				if (self.World.SharedRandom.Next(100) < Info.DecoyChance)
+				if (self.World.SharedRandom.Next(100) < Info.DecoyChance * (100 - rocket.FlareResistance) / 100)
 					rocket.Decoy(DecoyPoint(rocket.TicksLeft));
 			}
 		}

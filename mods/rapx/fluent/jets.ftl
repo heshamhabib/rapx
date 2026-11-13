@@ -90,6 +90,15 @@ actor-jet-b2 =
       Generation tier 5
       Flown by: Union, USA
 
+actor-jet-ho229 =
+    .name = HG-229 Nachtflügel
+    .description =
+    Heavy bomber.
+      Strong vs Buildings
+      Weak vs Fighters and Anti-Air
+      Generation tier 5
+      Flown by: Germany
+
 actor-jet-yf23 =
     .name = AYF-23 Black Recluse
     .description =

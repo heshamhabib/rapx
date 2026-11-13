@@ -41,6 +41,7 @@ Rules:
 	# entries merged in from an earlier file get overwritten by the parent's (e.g. V2RL's portrait on HIMAX).
 	ra|rules/airfields.yaml
 	ra|rules/fatman.yaml
+	ra|rules/airborne.yaml
 	ra|rules/hd-building-fx.yaml
 	ra|rules/hd-env.yaml
 	ra|rules/jets.yaml
@@ -60,6 +61,7 @@ Rules:
 	ra|rules/ammo-bars.yaml
 	ra|rules/rocket-launchers.yaml
 	ra|rules/air-defence.yaml
+	ra|rules/mobile-sam.yaml
 	ra|rules/angel-flares.yaml
 
 Sequences:
@@ -97,6 +99,7 @@ Sequences:
 	ra|sequences/hd-blast-fx.yaml
 	ra|sequences/hd-nuke-fx.yaml
 	ra|sequences/fatman.yaml
+	ra|sequences/airborne.yaml
 	ra|sequences/hd-beacon.yaml
 	ra|sequences/hd-parachute.yaml
 	ra|sequences/hd-infantry-deaths.yaml
@@ -107,6 +110,7 @@ Sequences:
 	ra|sequences/jet-loadouts.yaml
 	ra|sequences/hd-missiles.yaml
 	ra|sequences/air-defence.yaml
+	ra|sequences/mobile-sam.yaml
 
 TileSets:
 	ra|tilesets/snow.yaml
@@ -201,8 +205,10 @@ FluentMessages:
 	ra|fluent/carriers.ftl
 	ra|fluent/rocket-launchers.ftl
 	ra|fluent/air-defence.ftl
+	ra|fluent/mobile-sam.ftl
 	ra|fluent/catalogue.ftl
 	ra|fluent/fatman.ftl
+	ra|fluent/airborne.ftl
 
 AllowUnusedFluentMessagesInExternalPackages: false
 
@@ -220,7 +226,9 @@ Weapons:
 	ra|weapons/naval-defence.yaml
 	ra|weapons/rocket-launchers.yaml
 	ra|weapons/air-defence.yaml
+	ra|weapons/mobile-sam.yaml
 	ra|weapons/fatman.yaml
+	ra|weapons/airborne.yaml
 
 Voices:
 	ra|audio/voices.yaml

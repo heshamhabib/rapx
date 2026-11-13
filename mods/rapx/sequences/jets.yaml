@@ -132,6 +132,19 @@ jet.b2:
 		Filename: ra|bits/hd/jets/ab-2-wraith.png
 		-TilesetFilenames:
 
+jet.ho229:
+	Inherits: mig
+	idle:
+		Filename: ra|bits/hd/units/hg-229-nachtfluegel.png
+		Start: 0
+		Length: 1
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.3333
+	icon:
+		Filename: ra|bits/hd/jets/hg-229-nachtfluegel.png
+		-TilesetFilenames:
+
 jet.yf23:
 	Inherits: mig
 	idle:

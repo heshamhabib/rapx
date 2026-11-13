@@ -380,11 +380,6 @@ every model: recoloured for team colours, rendered as game sprites from
     (http://creativecommons.org/licenses/by/4.0/).
     Changes: turret split off.
 
-* War Robot (WBOT):
-    "robot_war machine"
-    (https://sketchfab.com/3d-models/robot-war-machine-dec0ec7e1de74cb7ba51f48193ab93c3)
-    by rinzks3D, licensed under Creative Commons Attribution
-    (http://creativecommons.org/licenses/by/4.0/).
 
 * Hind (HIND):
     "Hind Attack Helicopter"
@@ -526,6 +521,50 @@ Aircraft (second set)
 * B-52 (JET.B52):
     "Boeing B-52D Stratofortress — Duxford" (https://sketchfab.com/3d-models/boeing-b-52d-stratofortress-duxford-ec3485da9ec3462aab91863edd707afa)
     by mgg8, licensed under CC0 Public Domain.
+
+* C-17A Globemaster III airborne transport (C17):
+    "c-17a globemaster" (https://sketchfab.com/3d-models/c-17a-globemaster-22fbf464a08b497d82b638120c9f1767)
+    by Kevin Love SketchFab, licensed under CC Attribution.
+
+* Y-20 airborne transport (Y20):
+    "Xi'an Y-20" (https://sketchfab.com/3d-models/xian-y-20-1df63a1d32cc4e9289c63c8b8c735d28)
+    by 42manako, licensed under CC Attribution.
+
+* C-141 Starlifter airborne transport (C141):
+    "Lockheed C-141 Starlifter" (https://sketchfab.com/3d-models/lockheed-c-141-starlifter-26e2f284ce584d65aebc1e77722af458)
+    by Muhamad Mirza Arrafi, licensed under CC Attribution.
+
+* B-17 airborne transport (B17T):
+    "Boeing B-17 Flying Fortress" (https://sketchfab.com/3d-models/boeing-b-17-flying-fortress-473f99fba3cb44ef97d0e40100e89d72)
+    by maykel-bv, licensed under CC Attribution.
+
+* B-29 airborne transport (B29T):
+    "Boeing B-29 Superfortress" (https://sketchfab.com/3d-models/boeing-b-29-superfortress-5b051209bff445ff88eab3bd94fdfdfd)
+    by Spark_Customs, licensed under CC Attribution.
+
+* Boeing 314 airborne transport (B314):
+    "Boeing 314 Yankee Clipper - Stormworks" (https://sketchfab.com/3d-models/boeing-314-yankee-clipper-stormworks-06d3ac9c8a0447848863a9481d66a48c)
+    by Thales, licensed under CC Attribution.
+
+* Boeing 707 airborne transport (E8C):
+    "Northrop Grumman E-8C JOINT STARS" (https://sketchfab.com/3d-models/northrop-grumman-e-8c-joint-stars-f502a2ccbb1b47c68a7c87d9e14a351f)
+    by Muhamad Mirza Arrafi, licensed under CC Attribution.
+
+* B-52 airborne transport (B52T):
+    "Boeing B-52 Stratofortress" (https://sketchfab.com/3d-models/boeing-b-52-stratofortress-44b4fdb01ef640c0ad7c5ba0f9ac30ca)
+    by hruschak30, licensed under CC Attribution.
+
+* C-130 Hercules airborne transport (C130):
+    "Lockheed C-130 Hercules" (https://sketchfab.com/3d-models/lockheed-c-130-hercules-5acfb2eb4f204f51ab418856c116b68e)
+    by Dave Love SketchFab, licensed under CC Attribution.
+
+* Il-76MD airborne transport (IL76):
+    "Ukrainian Il-76MD" (https://sketchfab.com/3d-models/ukrainian-il-76md-1acd000e27764cddb7b9b1255de86e0c)
+    by 42manako, licensed under CC Attribution.
+
+* Ho 229 (JET.HO229):
+    "Horten Ho IX / Gotha Go 229" (https://sketchfab.com/3d-models/horten-ho-ix-gotha-go-229-fira25l1WptpPWMZCYwKyQ9j2g6)
+    by helijah, licensed under CC Attribution.
 
 * B-2 (JET.B2):
     "b-2 spirit" (https://sketchfab.com/3d-models/b-2-spirit-06464acbeca94381893c037b6dfa3d12)
@@ -872,6 +911,14 @@ commercially.
     by 42manako, licensed under Creative Commons Attribution
     (http://creativecommons.org/licenses/by/4.0/).
     Changes: red markings removed; shown as a defence building.
+
+* Mobile SAM launchers: "GÜRZ 150 air defence system"
+    (https://sketchfab.com/3d-models/gurz-150-air-defence-system-1ee3eb7dbc6040498aa5b442c8ba152c),
+    "meads air defense launcher truck"
+    (https://sketchfab.com/3d-models/meads-air-defense-launcher-truck-22f93b546cae48e0be9bb811bae2be1c) and
+    "spyder air defense" (https://sketchfab.com/3d-models/spyder-air-defense-1e70db6dd2ef4ca78863f1ba9b562ecf)
+    by Chenzoss, licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+    Changes: launchers cut off as turning turrets (GÜRZ, SPYDER), team colours added.
 
 Missiles and bombs (fired sprites and the weapons hung on jets)
 

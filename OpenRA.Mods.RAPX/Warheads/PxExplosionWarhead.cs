@@ -44,6 +44,18 @@ namespace OpenRA.Mods.RAPX.Warheads
 
 		/// <summary>Cluster bomblet: a small sharp pop with sparks and a puff of grey smoke.</summary>
 		Bomblet,
+
+		/// <summary>Proximity-fused fragmentation warhead: a sharp flash, a sphere of fragment streaks and a black flak
+		/// puff that hangs in the air.</summary>
+		Fragmentation,
+
+		/// <summary>Hit-to-kill interceptor: a blinding blue-white flash, a shock ring, a shower of white-hot sparks and
+		/// tumbling wreckage, a cloud of white vapour; no fireball.</summary>
+		HitToKill,
+
+		/// <summary>Blast-fragmentation warhead: a big orange fireball inside a ring of black smoke, burning debris
+		/// falling out of it trailing smoke.</summary>
+		Fireball,
 	}
 
 	[Desc("High-definition explosion (pxfx particles, cosmetic only): a white flash, a rolling fireball, a shock ring,",
@@ -311,6 +323,97 @@ namespace OpenRA.Mods.RAPX.Warheads
 						Add(PxParticleKind.Smoke, 2 * k, height + Rand(1, 3) * k, Rand(0.4f, 0.6f) * k, 1.8f, Rand(30, 50), 0.7f,
 							0.3f * k, Rand(0.15f, 0.35f), 0, 0.03f, Shade(grey, Rand(0.55f, 0.75f)));
 					break;
+
+				case PxExplosionStyle.Fragmentation:
+				{
+					Add(PxParticleKind.Glow, 0, height, 0.9f * k, 0.3f, 3, 1f, 0, 0, 0, 0, new float3(1f, 0.95f, 0.75f));
+					Add(PxParticleKind.Glow, 0, height, 0.5f * k, 0.8f, 7, 0.8f, 0, 0, 0, 0, new float3(1f, 0.6f, 0.25f));
+
+					// The fragment sphere: fast pale streaks in every direction, then slower orange ones
+					for (var i = 0; i < (int)(30 * k) + 10; i++)
+						Add(PxParticleKind.Spark, 1 * k, height + Rand(-2, 2) * k, Rand(0.2f, 0.35f), 0, Rand(7, 12), 1f,
+							7f * k, Rand(-3f, 3f), 0.02f, 0.02f, new float3(1f, 0.95f, 0.75f));
+
+					for (var i = 0; i < (int)(14 * k) + 4; i++)
+						Add(PxParticleKind.Spark, 1 * k, height, Rand(0.15f, 0.3f), 0, Rand(14, 24), 1f,
+							3.5f * k, Rand(-1f, 2f), 0.08f, 0.03f, new float3(1f, Rand(0.45f, 0.65f), 0.2f));
+
+					for (var i = 0; i < 4; i++)
+						Add(PxParticleKind.Flame, 1.5f * k, height + Rand(0, 1) * k, Rand(0.3f, 0.45f) * k, 0.3f, Rand(5, 8), 1f,
+							0.6f * k, Rand(0.1f, 0.4f), 0, 0.15f, fire);
+
+					// Black flak puff: a dense clump that swells, hangs and slowly drifts apart
+					for (var i = 0; i < (int)(9 * k * info.Smoke) + 4; i++)
+						Add(PxParticleKind.Billow, 2 * k, height + Rand(-1, 2) * k, Rand(0.45f, 0.65f) * k, 1.7f, Rand(80, 120), 0.95f,
+							0.35f * k, Rand(0.05f, 0.2f), 0, 0.04f, Shade(new float3(0.16f, 0.15f, 0.15f), Rand(0.7f, 1.3f)));
+
+					for (var i = 0; i < (int)(4 * k * info.Smoke) + 2; i++)
+						Add(PxParticleKind.Smoke, 3 * k, height + Rand(0, 3) * k, Rand(0.4f, 0.6f) * k, 2.4f, Rand(90, 130), 0.5f,
+							0.5f * k, Rand(0.1f, 0.3f), 0, 0.03f, Shade(grey, Rand(0.3f, 0.45f)));
+					return;
+				}
+
+				case PxExplosionStyle.HitToKill:
+				{
+					// Impact flash: blue-white, then the burning wreck glows orange
+					Add(PxParticleKind.Glow, 0, height, 1.8f * k, 0.5f, 4, 1f, 0, 0, 0, 0, new float3(0.85f, 0.92f, 1f));
+					Add(PxParticleKind.Glow, 0, height, 0.9f * k, 0.9f, 12, 0.85f, 0, 0, 0, 0, new float3(1f, 0.7f, 0.4f));
+					Add(PxParticleKind.Ring, 0, height, 0.4f * k, 3.4f, 11, 0.75f, 0, 0, 0, 0, white);
+					Add(PxParticleKind.Ring, 0, height, 0.25f * k, 2.2f, 16, 0.5f, 0, 0, 0, 0, new float3(0.8f, 0.9f, 1f));
+
+					// White-hot spark shower, blown along the interceptor's path and falling
+					for (var i = 0; i < (int)(36 * k) + 10; i++)
+						Add(PxParticleKind.Spark, 1 * k, height + Rand(-1, 2) * k, Rand(0.2f, 0.4f), 0, Rand(14, 28), 1f,
+							6f * k, Rand(-1f, 4f), 0.12f, 0.03f, new float3(Rand(0.85f, 1f), Rand(0.9f, 1f), 1f));
+
+					// Tumbling wreckage trailing fire and smoke as it falls
+					for (var i = 0; i < (int)(10 * k) + 3; i++)
+						Add(PxParticleKind.Chunk, 2 * k, height, Rand(0.4f, 0.8f), 0, Rand(45, 75), 1f,
+							2.4f * k, Rand(0.5f, 3f), 0.14f, 0.01f, new float3(0.35f, 0.34f, 0.33f));
+
+					for (var i = 0; i < (int)(8 * k) + 3; i++)
+						Add(PxParticleKind.Flame, 2 * k, height, Rand(0.2f, 0.35f) * k, 0.2f, Rand(20, 35), 1f,
+							2.2f * k, Rand(0.5f, 2.5f), 0.12f, 0.01f, fire);
+
+					// White vapour cloud where the two met
+					for (var i = 0; i < (int)(8 * k * info.Smoke) + 3; i++)
+						Add(PxParticleKind.Smoke, 2 * k, height + Rand(-1, 2) * k, Rand(0.4f, 0.6f) * k, 2.2f, Rand(50, 80), 0.6f,
+							0.8f * k, Rand(0, 0.25f), 0, 0.05f, Shade(new float3(0.95f, 0.96f, 1f), Rand(0.85f, 1f)));
+					return;
+				}
+
+				case PxExplosionStyle.Fireball:
+				{
+					Add(PxParticleKind.Glow, 0, height, 1.9f * k, 0.6f, 9, 1f, 0, 0, 0, 0, new float3(1f, 0.85f, 0.55f));
+
+					// The fireball: big rolling balls of flame swelling out of the centre
+					for (var i = 0; i < (int)(14 * k) + 5; i++)
+						Add(PxParticleKind.Fireball, 2.5f * k, height + Rand(-1, 3) * k, Rand(0.8f, 1.2f) * k, 1f, Rand(18, 28), 1f,
+							1.1f * k, Rand(0.2f, 0.8f), 0, 0.1f, Shade(fire, Rand(0.9f, 1.05f)));
+
+					for (var i = 0; i < (int)(8 * k) + 3; i++)
+						Add(PxParticleKind.Flame, 3 * k, height + Rand(0, 2) * k, Rand(0.5f, 0.8f) * k, 0.5f, Rand(12, 20), 1f,
+							1.8f * k, Rand(0.2f, 1f), 0, 0.1f, fire);
+
+					// A ring of black smoke thrown out around it
+					var arms = random.Next(12, 18);
+					for (var j = 0; j < arms; j++)
+						AddDir(PxParticleKind.Billow, MathF.PI * 2 * j / arms + Rand(-0.1f, 0.1f), 3 * k, height + Rand(-1, 1) * k,
+							Rand(0.45f, 0.65f) * k, 2f, Rand(80, 120) * info.Smoke, 0.9f, Rand(1.2f, 1.8f) * k, Rand(-0.1f, 0.2f), 0, 0.05f,
+							Shade(new float3(0.18f, 0.17f, 0.16f), Rand(0.8f, 1.3f)));
+
+					// Burning debris arcing down out of the cloud
+					for (var i = 0; i < (int)(7 * k) + 3; i++)
+						Add(PxParticleKind.Flame, 2 * k, height, Rand(0.25f, 0.4f) * k, 0.1f, Rand(30, 50), 1f,
+							3f * k, Rand(1f, 3f), 0.15f, 0.01f, fire);
+
+					for (var i = 0; i < (int)(16 * k) + 5; i++)
+						Add(PxParticleKind.Spark, 1.5f * k, height + 1, Rand(0.25f, 0.45f), 0, Rand(12, 20), 1f,
+							4.5f * k, Rand(-1f, 3f), 0.06f, 0.03f, white);
+
+					Embers(k);
+					return;
+				}
 
 				default:
 					// Flash and shock ring
