@@ -476,6 +476,23 @@ h2::after { content: ""; flex: 1; min-width: 40px; height: 1px; background: line
 .lightbox-close { position: absolute; top: 8px; right: 8px; width: 44px; height: 44px; border: 0; background: var(--accent); font-size: 26px; cursor: pointer; }
 
 /* ---------- DEPLOY ---------- */
+.repo {
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: clamp(16px, 3vw, 28px);
+  margin-bottom: clamp(32px, 5vw, 52px); padding: clamp(18px, 3vw, 26px) clamp(18px, 3vw, 30px);
+  background: linear-gradient(110deg, rgba(255,92,70,.12), var(--panel) 50%); border: 1px solid var(--line); border-left: 3px solid var(--accent);
+}
+.repo-icon { width: 52px; height: 52px; color: var(--ink); }
+.repo-text .kicker { margin-bottom: 6px; font-size: 11px; }
+.repo-name { display: inline-block; font: 400 clamp(17px, 2vw, 22px)/1.2 var(--mono); color: var(--ink); border-bottom: 1px solid var(--accent); word-break: break-all; }
+.repo-name:hover { color: #fff; }
+.repo-text p:last-child { margin: 8px 0 0; color: var(--dim); font-size: 15px; }
+.repo-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+@media (max-width: 900px) {
+  .repo { grid-template-columns: auto 1fr; }
+  .repo-actions { grid-column: 1 / -1; }
+  .repo-icon { width: 40px; height: 40px; align-self: start; }
+}
+
 .deploy { display: grid; grid-template-columns: 1.3fr 1fr; gap: clamp(24px, 4vw, 48px); align-items: start; }
 @media (max-width: 900px) { .deploy { grid-template-columns: minmax(0, 1fr); } }
 .steps { margin: 0; padding: 0; list-style: none; counter-reset: s; }
