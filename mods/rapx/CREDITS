@@ -1,5 +1,7 @@
 RedAlert Project X
 
+Created by Hesham Habib (heshamhabib5@gmail.com)
+
 Built on OpenRA and Command & Conquer: Red Alert.
 
 3D models
@@ -182,10 +184,10 @@ every model: recoloured for team colours, rendered as game sprites from
     (http://creativecommons.org/licenses/by/4.0/).
 
 * Attack Dog (DOG):
-    "Doberman Walk Cycle" (https://sketchfab.com/3d-models/doberman-walk-cycle-aeb5a68a63eb4033847f0c9ecd6704cb)
-    by joshpurple, licensed under Creative Commons Attribution
+    "Police Dog" (https://sketchfab.com/3d-models/police-dog-414a3970c7674bc0bedbab32350f56b6)
+    by Chenchanchong, licensed under Creative Commons Attribution
     (http://creativecommons.org/licenses/by/4.0/).
-    Changes: bite and death animated from the walk cycle.
+    Changes: armour vest turned into team colour; its own animations rendered from 32 directions.
 
 * Heavy Tank (3TNK):
     "T-72B3 Main Battle Tank" (https://skfb.ly/pwSFv)
