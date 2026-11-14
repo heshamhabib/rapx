@@ -399,7 +399,7 @@
         <h3>${esc(CD.creator.name)}</h3>
         <p>Design, code, art pipeline and everything in between.</p>
       </div>
-      <a class="btn btn-primary" href="mailto:${esc(CD.creator.email)}?subject=%5BRAPX%5D%20"><span>${esc(CD.creator.email)}</span></a>`;
+      <button class="btn btn-primary" type="button" data-copy="${esc(CD.creator.email)}" title="Copy email address"><span>${esc(CD.creator.email)}</span></button>`;
   }
 
   if (C.length) {
@@ -443,6 +443,20 @@
       renderCredits();
     });
   }
+
+  // Email buttons copy the address: a mailto: link opens a blank page when no mail app is set up
+  document.addEventListener("click", async ev => {
+    const b = ev.target.closest("[data-copy]");
+    if (!b) return;
+    const label = $("span", b), text = label.textContent;
+    try {
+      await navigator.clipboard.writeText(b.dataset.copy);
+      label.textContent = "Copied ✓";
+    } catch (_) {
+      label.textContent = b.dataset.copy;
+    }
+    setTimeout(() => label.textContent = text, 1800);
+  });
 
   // ---------- GALLERY, DEPLOY, MOTION ----------
   const lb = $("#lightbox");
