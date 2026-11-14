@@ -63,7 +63,7 @@ PTWR:
 		Name: actor-ptwr.name
 	Selectable:
 		Bounds: 1024, 1024
-		DecorationBounds: 1024, 1792, 0, -384
+		DecorationBounds: 1024, 3800, 0, -1300
 	Health:
 		HP: 40000
 	Armor:
@@ -76,14 +76,117 @@ PTWR:
 		Range: 6c0
 	Armament:
 		Weapon: PrismTowerBeam
-		LocalOffset: 0,0,1200
+		LocalOffset: 0,0,2700
 	AttackOmni:
 		PauseOnCondition: disabled || build-incomplete || prism-feeding
+	GrantConditionOnAttack@FIRING:
+		Condition: prism-firing
+		RevokeDelay: 25
+	# Living tower (IDEA-22 style): the crystal crown floats above its collar (sprite split by build_all.py FLOAT_TOP)
+	# and rises while charging; energy cushion, orbiting rings, rising motes, crystal glints, base lights, and arcs
+	# around the crown while it fires or feeds another tower. Everything rests on low power.
+	WithPxFloatingOverlay:
+		RequiresCondition: !build-incomplete
+		PauseOnCondition: disabled
+		ChargeCondition: prism-firing || prism-feeding
+		Hover: 1.5
+		Bob: 0.8
+	WithPxBuildingFx@cushion:
+		RequiresCondition: !disabled && !build-incomplete
+		Type: Pulse
+		Offset: 2.5,-47
+		Color: 7FE8FF
+		Size: 0.9
+		Period: 40
+		MinAlpha: 0.35
+		MaxAlpha: 0.85
+	WithPxBuildingFx@aura:
+		RequiresCondition: !disabled && !build-incomplete
+		Type: Pulse
+		Offset: 2.5,-60
+		Color: A8F0FF
+		Size: 2.2
+		Period: 70
+		MinAlpha: 0.12
+		MaxAlpha: 0.38
+	WithPxBuildingFx@glints:
+		RequiresCondition: !disabled && !build-incomplete
+		Type: Glints
+		Offset: 2.5,-61
+		Radius: 9,6
+		Color: FFFFFF
+		Size: 0.35
+		Rate: 6
+		Life: 10
+	WithPxBuildingFx@ring1:
+		RequiresCondition: !disabled && !build-incomplete
+		Type: Orbit
+		Offset: 2.5,-33
+		Radius: 7,2.4
+		Color: 6FE0FF
+		Size: 0.5
+		Period: 45
+		MinAlpha: 0.1
+		MaxAlpha: 0.9
+	WithPxBuildingFx@ring2:
+		RequiresCondition: !disabled && !build-incomplete
+		Type: Orbit
+		Offset: 2.5,-19
+		Radius: 7,2.4
+		Color: 6FE0FF
+		Size: 0.5
+		Period: 62
+		Phase: 31
+		MinAlpha: 0.1
+		MaxAlpha: 0.9
+	WithPxBuildingFx@motes:
+		RequiresCondition: !disabled && !build-incomplete
+		Type: Motes
+		Offset: 2.5,-6
+		Radius: 3,0.5
+		Color: 9FEFFF
+		Size: 0.22
+		Rate: 5
+		Life: 70
+		MaxAlpha: 0.85
+	WithPxBuildingFx@baseleft:
+		RequiresCondition: !disabled && !build-incomplete
+		Type: Blink
+		Offset: -6,8
+		Color: 9FEFFF
+		Size: 0.35
+		Period: 60
+		Phase: 0
+	WithPxBuildingFx@baseright:
+		RequiresCondition: !disabled && !build-incomplete
+		Type: Blink
+		Offset: 11,8
+		Color: 9FEFFF
+		Size: 0.35
+		Period: 60
+		Phase: 30
+	WithPxBuildingFx@chargearcs:
+		RequiresCondition: !disabled && (prism-firing || prism-feeding)
+		Type: Arcs
+		Offset: 2.5,-62
+		Radius: 10,7
+		Color: BFF4FF
+		Size: 0.6
+		Rate: 3
+	WithPxBuildingFx@chargeglow:
+		RequiresCondition: !disabled && (prism-firing || prism-feeding)
+		Type: Pulse
+		Offset: 2.5,-63
+		Color: D8FAFF
+		Size: 3.2
+		Period: 12
+		MinAlpha: 0.45
+		MaxAlpha: 1
 	PxPrismRelay:
 		RequiresCondition: !disabled && !build-incomplete
 		RelayWeapon: PrismRelayBeam
 		LinkRange: 6c0
-		BeamOffset: 0,0,1200
+		BeamOffset: 0,0,2700
 	Power:
 		Amount: -75
 	ProvidesPrerequisite@buildingname:

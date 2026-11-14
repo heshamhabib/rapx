@@ -15,8 +15,10 @@ for ID in ${*:-cybt bdrd rgun irgd taut}; do
 	echo "===== $ID ($(date +%H:%M))"
 	sh artsrc/units/soldiers/build_soldier.sh $ID idle aim run shoot die1 die2 > artsrc/units/soldiers/render/$ID-chain.log 2>&1
 	python3 artsrc/units/soldiers/write_sequences.py >/dev/null
-	PX_THROTTLE=0 PX_CAMEO=$PWD/assets/units/renders/$ID.png nice -n 10 blender -b -P artsrc/units/soldiers/render_soldier.py -- \
-		$ID artsrc/units/soldiers/anim/e1/aim.fbx /tmp/unused 1 1 128 2>&1 | grep -E "^cameo"
+	# Front view like the infantry concepts; the Railgun Robot aims (its rifle floats in the idle pose)
+	FACE=15; POSE=idle; [ $ID = rgun ] && FACE=18 && POSE=aim
+	PX_THROTTLE=0 PX_CAMEO_FACING=$FACE PX_CAMEO=$PWD/assets/units/renders/$ID.png nice -n 10 blender -b -P artsrc/units/soldiers/render_soldier.py -- \
+		$ID artsrc/units/soldiers/anim/e1/$POSE.fbx /tmp/unused 1 1 128 2>&1 | grep -E "^cameo"
 	echo "$ID done"
 done
 PATH="$HOME/.dotnet:$PATH" DOTNET_ROOT="$HOME/.dotnet" python3 artsrc/px-cameos/generate.py | tail -1

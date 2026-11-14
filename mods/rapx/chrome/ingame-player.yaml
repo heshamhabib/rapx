@@ -35,6 +35,11 @@ Container@PLAYER_WIDGETS:
 			Y: 0
 			Width: 380
 			Height: 88
+		PxEnemyRemaining@PX_ENEMY_REMAINING:
+			X: WINDOW_WIDTH - 400 - WIDTH - 10
+			Y: 10
+			Width: 230
+			Height: 46
 		Background@PX_SELECTION_PANEL:
 			Logic: PxSelectionPanelLogic
 			Y: WINDOW_HEIGHT - HEIGHT

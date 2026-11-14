@@ -107,7 +107,10 @@ namespace OpenRA.Mods.Common.Traits
 
 			slot.ReservedFor = forActor;
 			slot.ReservedForAircraft = forAircraft;
-			if (Info.HasSlots)
+
+			// RAPX: helicopters may set down on an airfield, but a parking slot is never their home (it would use up a
+			// jet's slot for good).
+			if (Info.HasSlots && forAircraft?.Info.CanHover != true)
 			{
 				slot.Home = forActor;
 				ClearHomeElsewhere(self, forActor);

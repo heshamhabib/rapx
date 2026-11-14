@@ -67,7 +67,7 @@ MODELS = [
     ("other.enfw", "Enforcer Walker", "27ba717c173a40b7841d2f2c6a89d823"),        # Medium Mech Striker (MSGDI), 41 clips
     ("other.strd", "Strider", "5a8a1d83d1674c3982340c38bf52f069"),              # Quadruped Mech walker (jungle_jim)
     ("other.sdrn", "Spider Drone", "1fc37cea747149a4833d468764eb2af7"),         # Steampunk Spider (samuelsurovic), rigged
-    ("other.dog", "Attack Dog", "aeb5a68a63eb4033847f0c9ecd6704cb"),            # Doberman Walk Cycle (joshpurple)
+    ("other.dog", "Attack Dog", "414a3970c7674bc0bedbab32350f56b6"),            # Police Dog (Chenchanchong), rigged
     # Ships
     ("ss", "Submarine", "b5c0eae394c94e0caa91fa511bae4ca6"),             # U-85 Type VIIB U-boat
     ("msub", "Missile Submarine", "c9adff3a72d7462f8f82a35459a582d2"),   # Ohio class SSBN

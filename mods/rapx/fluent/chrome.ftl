@@ -364,6 +364,12 @@ label-peace-treaty-war-sub = ALL UNITS ENGAGE
 label-peace-treaty-votes = END-TREATY VOTES { $votes }/{ $needed }
 label-peace-treaty-hint = TYPE /ENDTREATY TO VOTE FOR WAR
 
+## Enemy remaining counter (top right of the battlefield)
+label-px-enemy-remaining-structures = ENEMY STRUCTURES
+label-px-enemy-remaining-forces = ENEMY FORCES
+label-px-enemy-remaining-detail-structures = { $buildings } BUILDINGS · { $mobile } MCV
+label-px-enemy-remaining-detail-forces = { $buildings } BUILDINGS · { $mobile } UNITS
+
 ## PxCategoryBar (IDEA-05)
 label-px-category-all = All
 label-px-category-other = Other

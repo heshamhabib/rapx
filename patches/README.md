@@ -15,6 +15,7 @@ Apply order (`hd-rendering` and `perf-smooth-motion` touch the same code, so ord
 engine-hd-rendering.patch
 engine-perf-smooth-motion.patch
 engine-airfield-slots.patch
+engine-heli-no-airfield-home.patch
 engine-carrier-deck.patch
 engine-hidpi-cursors.patch
 engine-long-cash.patch

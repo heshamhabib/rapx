@@ -2003,28 +2003,50 @@ oilr:
 		Offset: 5,-2
 
 ptwr:
+	top:
+		Filename: ra|bits/hd/ptwr-top.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/ptwr-top.png
+			SNOW: ra|bits/hd/ptwr-top.png
+			DESERT: ra|bits/hd/ptwr-top.png
+			INTERIOR: ra|bits/hd/ptwr-top.png
+		Start: 0
+		Length: 1
+		Scale: 0.4167
+		Offset: 30,-78
+	damaged-top:
+		Filename: ra|bits/hd/ptwr-damaged-top.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/ptwr-damaged-top.png
+			SNOW: ra|bits/hd/ptwr-damaged-top.png
+			DESERT: ra|bits/hd/ptwr-damaged-top.png
+			INTERIOR: ra|bits/hd/ptwr-damaged-top.png
+		Start: 0
+		Length: 1
+		Scale: 0.4167
+		Offset: 30,-78
 	idle:
-		Filename: ra|bits/hd/ptwr.png
+		Filename: ra|bits/hd/ptwr-body.png
 		TilesetFilenames:
-			TEMPERAT: ra|bits/hd/ptwr.png
-			SNOW: ra|bits/hd/ptwr.png
-			DESERT: ra|bits/hd/ptwr.png
-			INTERIOR: ra|bits/hd/ptwr.png
+			TEMPERAT: ra|bits/hd/ptwr-body.png
+			SNOW: ra|bits/hd/ptwr-body.png
+			DESERT: ra|bits/hd/ptwr-body.png
+			INTERIOR: ra|bits/hd/ptwr-body.png
 		Start: 0
 		Length: 1
 		Scale: 0.4167
-		Offset: 8,-2
+		Offset: 30,-78
 	damaged-idle:
-		Filename: ra|bits/hd/ptwr.png
+		Filename: ra|bits/hd/ptwr-damaged-body.png
 		TilesetFilenames:
-			TEMPERAT: ra|bits/hd/ptwr.png
-			SNOW: ra|bits/hd/ptwr.png
-			DESERT: ra|bits/hd/ptwr.png
-			INTERIOR: ra|bits/hd/ptwr.png
+			TEMPERAT: ra|bits/hd/ptwr-damaged-body.png
+			SNOW: ra|bits/hd/ptwr-damaged-body.png
+			DESERT: ra|bits/hd/ptwr-damaged-body.png
+			INTERIOR: ra|bits/hd/ptwr-damaged-body.png
 		Start: 0
 		Length: 1
 		Scale: 0.4167
-		Offset: 8,-2
+		Offset: 30,-78
 	make:
 		Filename: ra|bits/hd/ptwr-make.png
 		TilesetFilenames:
@@ -2036,7 +2058,7 @@ ptwr:
 		Length: 22
 		Tick: 45
 		Scale: 0.4167
-		Offset: 8,-2
+		Offset: 30,-78
 	collapse:
 		Filename: ra|bits/hd/ptwr-collapse.png
 		TilesetFilenames:
@@ -2047,7 +2069,7 @@ ptwr:
 		Start: 0
 		Length: 16
 		Scale: 0.4167
-		Offset: 8,-2
+		Offset: 30,-78
 
 mi6:
 	idle:

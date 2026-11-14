@@ -64,6 +64,7 @@ namespace OpenRA.Mods.RAPX.Traits
 			// Helicopters land on helipads or open ground, never on an airfield slot.
 			var aircraft = actor.TraitInfoOrDefault<AircraftInfo>();
 			var rearmable = actor.TraitInfoOrDefault<RearmableInfo>();
+
 			// The Fatman bomber (PxStrategicBomber) has its own one-slot field and BuildLimit, outside the pool
 			uses = aircraft != null && !aircraft.CanHover && rearmable != null && rearmable.RearmActors.Overlaps(slotAirfields)
 				&& !actor.HasTraitInfo<PxStrategicBomberInfo>();
@@ -103,13 +104,23 @@ namespace OpenRA.Mods.RAPX.Traits
 			return totalSlots[pool] - ownedPlanes[pool] - Queue.Count(i => UsesSlots(rules.Actors[i.Item]) && Pool(rules.Actors[i.Item]) == pool);
 		}
 
+		/// <summary>Whether the player owns a working building that produces this unit's BuildAtProductionType.</summary>
+		bool HasProducer(ActorInfo unit)
+		{
+			var type = unit.TraitInfoOrDefault<BuildableInfo>()?.BuildAtProductionType;
+			return type == null || self.World.ActorsWithTrait<Production>()
+				.Any(x => x.Actor.Owner == self.Owner && !x.Actor.IsDead && !x.Trait.IsTraitDisabled && x.Trait.Info.Produces.Contains(type));
+		}
+
 		public override IEnumerable<ActorInfo> BuildableItems()
 		{
 			var items = base.BuildableItems();
 			if (ignoreSlots)
 				return items;
 
-			return items.Where(a => !UsesSlots(a) || FreeSlots(Pool(a)) > 0);
+			// Helicopters need a helipad even with the AllTech cheat (which ignores BuildAtProductionType): without
+			// one the engine built them at the airfield, where they took a jet's parking slot as their home.
+			return items.Where(a => (!UsesSlots(a) || FreeSlots(Pool(a)) > 0) && (!developerMode.AllTech || HasProducer(a)));
 		}
 
 		protected override void TickInner(Actor self, bool allProductionPaused)
@@ -139,8 +150,10 @@ namespace OpenRA.Mods.RAPX.Traits
 				.ThenByDescending(x => x.Actor.ActorID)
 				.ToList();
 
+			// No building of this type (e.g. the helipad was lost after the order): wait for one instead of letting
+			// the engine fall back to the airfield, where a helicopter would take a jet's slot.
 			if (producers.Count == 0)
-				return base.BuildUnit(unit);
+				return false;
 
 			foreach (var p in producers)
 			{

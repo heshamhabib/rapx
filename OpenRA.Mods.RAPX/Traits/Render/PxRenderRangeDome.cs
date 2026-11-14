@@ -98,29 +98,74 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 		}
 	}
 
-	public class PxRenderRangeDome : IRenderAnnotationsWhenSelected, IRenderAnnotations
+	public class PxRenderRangeDome : IRenderAnnotationsWhenSelected, IRenderAnnotations, INotifyCreated
 	{
 		public readonly PxRenderRangeDomeInfo Info;
 		readonly Actor self;
-		readonly AttackBase attack;
-		readonly PxInterceptor[] interceptors;
+		AttackBase attack;
+		PxInterceptor[] interceptors = Array.Empty<PxInterceptor>();
 
 		public PxRenderRangeDome(Actor self, PxRenderRangeDomeInfo info)
 		{
 			Info = info;
 			this.self = self;
+		}
+
+		void INotifyCreated.Created(Actor self)
+		{
+			// Look the weapons up once every trait exists: inherited from ^Defense, this trait is constructed
+			// before the actor's AttackBase and PxInterceptors, so a constructor lookup finds nothing
 			attack = self.TraitOrDefault<AttackBase>();
 			interceptors = self.TraitsImplementing<PxInterceptor>().ToArray();
 		}
 
-		WDist Range()
+		WDist Range(out bool offline)
 		{
-			var range = attack == null ? WDist.Zero
-				: Info.RangeCircleMode == RangeCircleMode.Minimum ? attack.GetMinimumRange() : attack.GetMaximumRange();
-			if (Info.RangeCircleMode == RangeCircleMode.Maximum)
+			// AttackBase.GetMaximumRange skips paused armaments (low power, still building, a Prism Tower feeding its
+			// neighbour), which made the dome vanish when selected, so read them directly: paused still counts as
+			// covered. Weapons and interceptors switched off entirely keep showing as a footprint only.
+			var range = WDist.Zero;
+			var offlineRange = WDist.Zero;
+			if (Info.RangeCircleMode == RangeCircleMode.Minimum)
+			{
+				if (attack != null)
+				{
+					var min = WDist.MaxValue;
+					foreach (var a in attack.Armaments)
+						if (!a.IsTraitDisabled && a.Weapon.MinRange < min)
+							min = a.Weapon.MinRange;
+
+					if (min != WDist.MaxValue)
+						range = min;
+				}
+			}
+			else
+			{
+				if (attack != null)
+				{
+					foreach (var a in attack.Armaments)
+					{
+						var r = a.MaxRange();
+						var active = !attack.IsTraitDisabled && !a.IsTraitDisabled;
+						if (active && r > range)
+							range = r;
+						else if (!active && r > offlineRange)
+							offlineRange = r;
+					}
+				}
+
 				foreach (var i in interceptors)
+				{
 					if (!i.IsTraitDisabled && i.EffectiveRange > range)
 						range = i.EffectiveRange;
+					else if (i.IsTraitDisabled && i.EffectiveRange > offlineRange)
+						offlineRange = i.EffectiveRange;
+				}
+			}
+
+			offline = range == WDist.Zero && offlineRange > WDist.Zero;
+			if (offline)
+				return offlineRange;
 
 			return range == WDist.Zero ? Info.FallbackRange : range;
 		}
@@ -130,11 +175,11 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 			if (!self.IsInWorld || !self.Owner.IsAlliedWith(self.World.RenderPlayer))
 				yield break;
 
-			var range = Range();
+			var range = Range(out var offline);
 			if (range == WDist.Zero)
 				yield break;
 
-			yield return Info.RangeRenderable(self.CenterPosition, range, lite);
+			yield return Info.RangeRenderable(self.CenterPosition, range, lite || offline);
 		}
 
 		IEnumerable<IRenderable> IRenderAnnotationsWhenSelected.RenderAnnotations(Actor self, WorldRenderer wr)

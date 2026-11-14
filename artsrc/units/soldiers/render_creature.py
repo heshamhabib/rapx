@@ -43,10 +43,12 @@ CFG = {
                        "run": ("Armature|spider_walk_fast_1", None), "shoot": ("Armature|spider_attack_1", None),
                        "die1": ("Armature|spider_dead", None), "die2": ("Armature|spider_dead", None)},
              "team": ("top", 0.9), "inplace": True},
-    "dog": {"src": "other.dog__doberman_walk_cycle", "yaw": 180, "length": 1.15, "frame": 192,
-            "clips": {"idle": (None, None), "aim": (None, None), "run": ("", None), "shoot": (None, "lunge"),
-                      "die1": (None, "fall"), "die2": (None, "fall")},
-            "team": None, "inplace": True},
+    # Police Dog (Chenchanchong, CC BY): rigged German Shepherd in a police vest with its own clips; the bite is
+    # the bark lunge, deaths fall over from the idle pose; team colour on the armour vest
+    "dog": {"src": "other.dog__police_dog", "yaw": 236, "length": 1.15, "frame": 192, "drop": ["Icosphere"],
+            "clips": {"idle": ("Dog  idle", None), "aim": ("Dog  idle", None), "run": ("Dog run", None),
+                      "shoot": ("Dog Bark", None), "die1": ("Dog  idle", "fall"), "die2": ("Dog  idle", "fall")},
+            "team": ("material", "armor"), "inplace": True},
     "strd": {"src": "other.strd__quadruped_mech_walker", "yaw": 180, "length": 4.2, "frame": 384,
              "clips": {"idle": (None, None), "aim": (None, None), "run": (None, "walk"), "shoot": (None, "recoil"),
                        "die1": (None, "fall"), "die2": (None, "fall")},
@@ -63,6 +65,10 @@ bpy.ops.wm.read_factory_settings(use_empty=True)
 bpy.ops.import_scene.gltf(filepath=os.path.join(SF, C["src"], "scene.gltf"))
 scene = bpy.context.scene
 bpy.context.view_layer.update()
+
+# Stray helper meshes some files carry (e.g. a unit sphere at the origin)
+for o in [o for o in scene.objects if o.type == "MESH" and o.name.split(".")[0] in C.get("drop", ())]:
+    bpy.data.objects.remove(o)
 
 # Root empty: everything top-level hangs under it, so facing turns the whole unit
 root = bpy.data.objects.new("UnitRoot", None)
@@ -88,9 +94,13 @@ def world_points():
 
 
 # Size and ground: measured in the rest / first frame, applied through an inner scale empty
+# root (facing) -> poser (procedural moves, pivot = the unit's centre on the ground) -> inner (yaw, scale, offset)
+poser = bpy.data.objects.new("UnitPose", None)
+scene.collection.objects.link(poser)
+poser.parent = root
 inner = bpy.data.objects.new("UnitScale", None)
 scene.collection.objects.link(inner)
-inner.parent = root
+inner.parent = poser
 for o in tops:
     o.parent = inner
 inner.rotation_euler = (0, 0, math.radians(C.get("yaw", 0)))
@@ -130,7 +140,12 @@ if team:
         sep.mode = "HSV"
         nt.links.new(src, sep.inputs[0])
         h, s, v = sep.outputs
-        if team[0] == "hue":
+        if team[0] == "material":
+            if not m.name.startswith(team[1]):
+                continue
+            one = nt.nodes.new("ShaderNodeValue"); one.outputs[0].default_value = 0.85
+            fac = one.outputs[0]
+        elif team[0] == "hue":
             gt = nt.nodes.new("ShaderNodeMath"); gt.operation = "GREATER_THAN"; gt.inputs[1].default_value = team[1]
             lt = nt.nodes.new("ShaderNodeMath"); lt.operation = "LESS_THAN"; lt.inputs[1].default_value = team[2]
             sat = nt.nodes.new("ShaderNodeMath"); sat.operation = "GREATER_THAN"; sat.inputs[1].default_value = 0.2
@@ -279,14 +294,16 @@ def pose_legs(t):
 def pose(i, f):
     scene.frame_set(f)
     loc, rot = procedural(i)
-    inner.location = base_loc + loc
+    inner.location = base_loc
+    poser.location = (0, 0, 0)
+    poser.rotation_euler = (0, 0, 0)
     if C.get("inplace") and mode is None:
         # clips that walk forward (root motion baked into the mesh): keep the body centred on the cell
-        inner.rotation_euler = base_rot
         bpy.context.view_layer.update()
         p = world_points() @ np.array(root.matrix_world.inverted())[:3, :3].T
         inner.location = inner.location - Vector(((p[:, 0].min() + p[:, 0].max()) / 2, (p[:, 1].min() + p[:, 1].max()) / 2, 0))
-    inner.rotation_euler = (base_rot[0] + rot[0], base_rot[1] + rot[1], base_rot[2] + rot[2])
+    poser.location = loc
+    poser.rotation_euler = rot
     if LEGS:
         bpy.context.view_layer.update()
         pose_legs(i / NF)

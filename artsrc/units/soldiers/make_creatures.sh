@@ -7,9 +7,8 @@ while pgrep -f "build_soldier[.]sh|make_robots[.]sh" >/dev/null; do sleep 60; do
 S=${SAMPLES:-40}
 for ID in ${*:-enfw strd sdrn dog}; do
 	echo "===== $ID ($(date +%H:%M))"
-	IDLE=1; [ $ID = enfw ] && IDLE=auto:8
-	# the dog's clip holds six 24-frame strides: one stride, not the whole clip
-	RUN=auto:8; [ $ID = dog ] && RUN=1,4,7,10,13,16,19,22
+	IDLE=1; case $ID in enfw|dog) IDLE=auto:8 ;; esac
+	RUN=auto:8
 	for spec in "idle|$IDLE||32" "aim|1||32" "run|$RUN||32" "shoot|auto:6||32" "die1|span:10|PX_DEG=135|1" "die2|span:10|PX_DEG=225|1"; do
 		seq=${spec%%|*}; rest=${spec#*|}; frames=${rest%%|*}; rest=${rest#*|}; opts=${rest%%|*}; facings=${rest#*|}
 		R=artsrc/units/soldiers/render/$ID/$seq

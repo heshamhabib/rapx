@@ -547,9 +547,18 @@ if os.environ.get("PX_CAMEO"):
     scene.render.resolution_x, scene.render.resolution_y = W, H
     scene.frame_set(frames[0])
     root.location = (0, 0, 0)
-    render_sprites.face(root, 12, 32)
+    # PX_CAMEO_FACING (of 32, 16 = straight at the camera): 15 shows the front like the infantry concept art
+    render_sprites.face(root, int(os.environ.get("PX_CAMEO_FACING", "12")), 32)
+    if os.environ.get("PX_CAMEO_REST"):
+        # standing straight with relaxed arms (the body's A-pose), like the infantry concept art
+        arm.data.pose_position = "REST"
     bpy.context.view_layer.update()
     place_gun()
+    if os.environ.get("PX_CAMEO_REST") and gun is not None:
+        # relaxed hands can't aim: the weapon hangs from the right hand, barrel down and slightly forward
+        rh = arm.matrix_world @ arm.pose.bones["mixamorig:RightHand"].head
+        gun.matrix_world = Matrix.Translation(rh) @ root.matrix_world.to_3x3().to_4x4() @ Matrix.Rotation(math.radians(-100), 4, "X")
+        bpy.context.view_layer.update()
     cam = scene.camera
     cam.location = Vector((0, -50 * math.cos(elev), 50 * math.sin(elev)))
     cam.rotation_euler = (math.radians(90) - elev, 0, 0)

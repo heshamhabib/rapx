@@ -303,15 +303,70 @@ def grown(offset, cells, scale=BUILDING_SCALE):
     return (round(scale * offset[0]), round(ay + scale * (offset[1] - ay)))
 
 
+# Tall, thin buildings: process() centres the bounding box on the cell, which drops a tower's base far below its
+# cell. For these the base (lowest solid row of the intact sprite) is put this many world px below the cell centre
+# instead, like the squat 1x1 defences (Tesla Coil ~19, turret ~14).
+BASE_AT = {"ptwr": 16}
+
+
+def base_anchored(bid, offset, scale, prefix=""):
+    """Sequence Offset (sprite px) that puts the sprite's lowest solid row BASE_AT[bid] world px below the centre."""
+    path = os.path.join(OUT, prefix + bid + ".png")
+    a = np.asarray(Image.open(path).convert("RGBA"))
+    h = a.shape[0]
+    bottom = np.nonzero((a[..., 3] > 200).any(1))[0].max()
+    seq_scale = scale / DENSITY
+    return (offset[0], round(BASE_AT[bid] / seq_scale - bottom + h / 2))
+
+
+# Buildings with a part that moves on its own (WithPxFloatingOverlay): (body top, part bottom) in screen y (world px,
+# up is negative, relative to the cell centre). The part (rows above `part bottom`) goes to <id>-top.png /
+# <id>-damaged-top.png, the body (rows below `body top`) to <id>-body.png / <id>-damaged-body.png; the rows in between
+# are in both, so lifting the part a few pixels never opens a see-through gap. idle / damaged-idle use the body and new
+# `top` / `damaged-top` sequences draw the part. Same canvas and Offset, so at rest they line up exactly.
+# Prism Tower: the crystal crown; both keep the dark crystal mount between the crystals and the collar.
+FLOAT_TOP = {"ptwr": (-49, -46)}
+
+
+def split_float_top(bid, offset, scale, prefix, damaged_file):
+    """Writes the body / top files of a FLOAT_TOP building. Returns {sequence name: file}."""
+    seq_scale = scale / DENSITY
+    files = {}
+    for src, stem in ((prefix + bid + ".png", prefix + bid), (prefix + damaged_file, prefix + bid + "-damaged")):
+        path = os.path.join(OUT, src)
+        if not os.path.exists(path):
+            continue
+        img = Image.open(path).convert("RGBA")
+        a = np.asarray(img).copy()
+        h = a.shape[0]
+        body_top, part_bottom = (int(round(y / seq_scale + h / 2 - offset[1])) for y in FLOAT_TOP[bid])
+        top, body = a.copy(), a.copy()
+        top[part_bottom:] = 0
+        body[:body_top] = 0
+        Image.fromarray(top).save(os.path.join(OUT, stem + "-top.png"), optimize=True)
+        Image.fromarray(body).save(os.path.join(OUT, stem + "-body.png"), optimize=True)
+        damaged = stem.endswith("-damaged")
+        files["damaged-idle" if damaged else "idle"] = stem + "-body.png"
+        files["damaged-top" if damaged else "top"] = stem + "-top.png"
+    return files
+
+
 def sequences_for(bid, names, offset, prefix, damaged_file, has_damaged=True):
     """Sequence blocks for one building image; files are relative to bits/hd (prefix = subfolder)."""
     scale = 1.0 if bid in NOT_GROWN else BUILDING_SCALE
     offset = grown(offset, BUILDINGS[bid][1], scale)
+    if bid in BASE_AT:
+        offset = base_anchored(bid, offset, scale, prefix)
     f = lambda name: prefix + name
     yaml = []
     seq_block = lambda *a, **k: _seq_block(*a, scale=scale, **k)
+    floating = split_float_top(bid, offset, scale, prefix, damaged_file) if bid in FLOAT_TOP and not prefix else {}
+    for name in [n for n in ("top", "damaged-top") if n in floating]:
+        yaml += seq_block(name, floating[name], offset, 1)
     for name in names:
-        if bid in TURRETED and name in ("turret", "recoil"):
+        if name in floating:
+            yaml += seq_block(name, floating[name], offset, 1)
+        elif bid in TURRETED and name in ("turret", "recoil"):
             yaml += seq_block(name, f(f"{bid}.png"), offset, 1) + ["\t\tFacings: 1", "\t\tUseClassicFacings: false"]
         elif bid in TURRETED and name in ("damaged-turret", "damaged-recoil"):
             yaml += seq_block(name, f(damaged_file), offset, 1) + ["\t\tFacings: 1", "\t\tUseClassicFacings: false"]

@@ -70,11 +70,13 @@ namespace OpenRA.Mods.RAPX.Widgets
 			var font = Game.Renderer.Fonts[Font];
 			var label = GetText();
 			var textColor = disabled ? GetColorDisabled() : on ? Color.White : Color.FromArgb(185, 186, 194);
-			font.DrawText(label, new float2(tile.Right + 12, rb.Y + 7), textColor);
+			// Label and hint form a 38px block, centred so shorter rows still read cleanly
+			var textTop = rb.Y + (rb.Height - 38) / 2;
+			font.DrawText(label, new float2(tile.Right + 12, textTop), textColor);
 
 			var hintFont = Game.Renderer.Fonts[HintFont];
 			var hint = WidgetUtils.TruncateText(GetHint() ?? "", rb.Right - 50 - tile.Right - 12, hintFont);
-			hintFont.DrawText(hint, new float2(tile.Right + 12, rb.Y + 27), PxDraw.Dim);
+			hintFont.DrawText(hint, new float2(tile.Right + 12, textTop + 20), PxDraw.Dim);
 
 			// Checkbox
 			var box = ChromeProvider.TryGetImage(CheckboxCollection, (on ? "on" : "off") + (disabled ? "-disabled" : hover ? "-hover" : ""));
@@ -132,7 +134,8 @@ namespace OpenRA.Mods.RAPX.Widgets
 
 			var valueFont = Game.Renderer.Fonts[ValueFont];
 			var value = WidgetUtils.TruncateText((GetText() ?? "").ToUpperInvariant(), rb.Width - 24, valueFont);
-			valueFont.DrawText(value, new float2(rb.X + 12, rb.Y + 40), disabled ? PxDraw.Dim : ValueColor);
+			// Value sits 40px down on a full card, moving up (clear of the title) when cards are shortened to fit
+			valueFont.DrawText(value, new float2(rb.X + 12, rb.Y + Math.Min(40, rb.Height - 32)), disabled ? PxDraw.Dim : ValueColor);
 		}
 	}
 }

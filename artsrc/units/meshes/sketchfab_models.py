@@ -528,13 +528,14 @@ MODELS.update({
     "ad.msam.soviet": {"name": "Medium SAM (Buk)", "src": "airdef/msam.soviet__buk_missile_system/scene.gltf",
                        "kind": "vehicle", "frame": 224, "yaw": 180, "length": 9.0, "out": "ad-msam-soviet",
                        "team": {"box": (0.0, 1.0, 0.0, 1.0, 0.82, 1.0)}},
+    # Long-range SAMs: length 12.5 / frame 352 (2026-11-14; 10-11 in a 256 frame was cropped and read small)
     # Long-range SAM (Allies): "MIM-104 Patriot Surface-To-Air Missile (SAM)" by MirzaArrafiERV_45, CC-BY-4.0
     "ad.lsam.allies": {"name": "Long-range SAM (Patriot)", "src": "airdef/lsam.allies__mim_104_patriot_surface_to_/scene.gltf",
-                       "kind": "vehicle", "frame": 256, "yaw": 90, "length": 10.0, "out": "ad-lsam-allies",
+                       "kind": "vehicle", "frame": 352, "yaw": 90, "length": 12.5, "out": "ad-lsam-allies",
                        "team": {"box": (0.0, 1.0, 0.0, 1.0, 0.8, 1.0)}},
     # Long-range SAM (Soviets): "s-400" by sami1230, CC-BY-4.0 (untextured: Soviet olive paint)
     "ad.lsam.soviet": {"name": "Long-range SAM (S-400)", "src": "airdef/lsam.soviet__s_400/scene.gltf",
-                       "kind": "vehicle", "frame": 256, "yaw": 180, "length": 11.0, "out": "ad-lsam-soviet",
+                       "kind": "vehicle", "frame": 352, "yaw": 180, "length": 12.5, "out": "ad-lsam-soviet",
                        "paint": (0.40, 0.40, 0.28), "paint_strength": 1.0,
                        "team": {"box": (0.0, 1.0, 0.0, 0.5, 0.75, 1.0)}},
     # Missile Shield (Allies): "Terminal High Altitude Area Defense (THAAD)" by Chenzoss, CC-BY-4.0
@@ -625,8 +626,9 @@ MODELS.update({
              "yaw": 90, "length": 8.0, "team": {"box": (0.0, 1.0, 0.0, 1.0, 0.97, 1.0)}},
     "mtrk": {"name": "Monster Truck", "src": "inbox6/monster/scene.gltf", "kind": "vehicle", "frame": 192, "yaw": 180,
              "length": 6.4, "team": {"box": (0.0, 1.0, 0.0, 1.0, 0.9, 1.0)}},
-    "hmmv": {"name": "Humvee", "src": "inbox6/humvee/scene.gltf", "kind": "tank", "frame": 192, "yaw": 180,
-             "length": 5.6, "tank": {"turret": [], "cut": 3.6, "ring": (1.3, 1.3), "pivot": (0.0, 0.3)},
+    # yaw 0 (was 180, which drove it backwards: user report 2026-11-14)
+    "hmmv": {"name": "Humvee", "src": "inbox6/humvee/scene.gltf", "kind": "tank", "frame": 192, "yaw": 0,
+             "length": 5.6, "tank": {"turret": [], "cut": 3.6, "ring": (1.3, 1.3), "pivot": (0.0, -0.3)},
              "team": {"box": (0.35, 0.65, 0.35, 0.65, 0.75, 1.0)}},
     "jet.he177": {"name": "He-177 Greif", "src": "inbox6/he177/scene.gltf", "kind": "air", "out": "he-177-greif",
                   "frame": 224, "yaw": 180, "length": 6.8, "team": {"box": JET_BOX}},

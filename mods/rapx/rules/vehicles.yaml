@@ -1188,10 +1188,11 @@ KVST:
 	Selectable:
 		DecorationBounds: 2048, 2600, 0, -400
 
-# Monster Truck (USA): huge wheels, no gun: it flattens infantry, fences and sandbags at speed
+# Monster Truck (USA): huge wheels, no gun: it flattens infantry, fences and sandbags at speed; carries 4 infantry
 MTRK:
 	Inherits: ^Vehicle
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@CARGOPIPS: ^CargoPips
 	Buildable:
 		Queue: Vehicle
 		BuildPaletteOrder: 24
@@ -1213,12 +1214,17 @@ MTRK:
 		TurnSpeed: 40
 		Speed: 170
 		Locomotor: heavywheeled
+		PauseOnCondition: notmobile || being-captured
 	RevealsShroud:
 		MinRange: 4c0
 		Range: 7c0
 		RevealGeneratedShroud: False
 	RevealsShroud@GAPGEN:
 		Range: 4c0
+	Cargo:
+		Types: Infantry, Spy
+		MaxWeight: 4
+		LoadingCondition: notmobile
 	RenderSprites:
 		Image: mtrk
 	Selectable:

@@ -24,13 +24,17 @@ using OpenRA.Traits;
 namespace OpenRA.Mods.RAPX.Traits.Render
 {
 	[Desc("Fighter aerobatics drawn from the existing top-down sprites (cosmetic only): the jet banks into turns",
-		"(the sprite narrows across the wings, the low wing darker), flicks an aileron roll when hit or now and then in",
-		"a dogfight, firing decoy flares, and turns smoothly between its rendered facings.",
+		"(the sprite narrows across the wings, the low wing darker), optionally flicks an aileron roll when hit or now and",
+		"then in a dogfight (Rolls, off by default), and turns smoothly between its rendered facings.",
 		"Put it after PxAltitudeScale and WithShadow so the shadow banks and rolls too.")]
 	public class WithPxAerobaticsInfo : ConditionalTraitInfo, Requires<BodyOrientationInfo>
 	{
-		[Desc("Steepest bank in a hard turn, degrees.")]
-		public readonly int MaxBank = 65;
+		[Desc("Steepest bank in a hard turn, degrees. Kept shallow: a flat sprite squashed much looks like folded paper.")]
+		public readonly int MaxBank = 25;
+
+		[Desc("Flick aileron rolls when hit or in a dogfight. Off: squashing the flat sprite through a full turn looked",
+			"like a sheet of paper flipping (user's call, 2026-11-14).")]
+		public readonly bool Rolls = false;
 
 		[Desc("Turn rate (WAngle per tick) that gives the steepest bank.")]
 		public readonly int FullBankTurn = 20;
@@ -76,6 +80,9 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 
 		void StartRoll(Actor self, bool withFlares)
 		{
+			if (!Info.Rolls)
+				return;
+
 			if (rollTick >= 0)
 				return;
 

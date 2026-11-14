@@ -1098,7 +1098,8 @@ actor-mtrk =
     .name = Monster Truck
     .description =
     Very fast truck on giant wheels. No gun:
-    it runs over infantry, fences and sandbags. USA only.
+    it runs over infantry, fences and sandbags.
+    Carries 4 infantry. USA only.
       Strong vs Infantry
       Weak vs everything that shoots back
 

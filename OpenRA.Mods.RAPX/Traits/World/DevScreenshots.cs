@@ -280,6 +280,26 @@ namespace OpenRA.Mods.RAPX.Traits
 
 				Log.Write("debug", $"DevScreenshots: {attackers.Count} attackers ordered at {args[1]}");
 			}
+			else if (action == "slots" && currentWorld.LocalPlayer != null)
+			{
+				// "slots": log the local player's airfield slot pools and which aircraft use them, and which aircraft
+				// the Aircraft queue offers right now (a helicopter missing from it while slots are full = the bug)
+				var player = currentWorld.LocalPlayer.PlayerActor;
+				foreach (var q in player.TraitsImplementing<PxAirfieldProductionQueue>())
+				{
+					var buildable = string.Join(",", q.BuildableItems().Select(i => i.Name));
+					Log.Write("debug", $"DevScreenshots: slots jets free {q.FreeSlots(0)} airlift free {q.FreeSlots(1)} | buildable {buildable}");
+				}
+
+				foreach (var r in currentWorld.ActorsWithTrait<Reservable>().Where(r => r.Actor.Owner == currentWorld.LocalPlayer && r.Trait.Info.HasSlots))
+					Log.Write("debug", $"DevScreenshots: slots pads {r.Actor.Info.Name} free {r.Trait.SlotUsage().Free}/{r.Trait.SlotUsage().Total}");
+
+				foreach (var a in currentWorld.Actors.Where(a => a.Owner == currentWorld.LocalPlayer && a.IsInWorld && a.Info.HasTraitInfo<AircraftInfo>()))
+				{
+					var home = Reservable.HomeOf(a);
+					Log.Write("debug", $"DevScreenshots: slots aircraft {a.Info.Name} #{a.ActorID} home slot at [{home?.Info.Name}]");
+				}
+			}
 			else if (action.StartsWith("ammo ", StringComparison.Ordinal))
 			{
 				// "ammo <type>": log the ammo left in every pool of the local player's actors of that type

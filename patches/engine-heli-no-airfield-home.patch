@@ -1,0 +1,16 @@
+diff --git a/engine/OpenRA.Mods.Common/Traits/Buildings/Reservable.cs b/engine/OpenRA.Mods.Common/Traits/Buildings/Reservable.cs
+index e4521df..91acffc 100644
+--- a/engine/OpenRA.Mods.Common/Traits/Buildings/Reservable.cs
++++ b/engine/OpenRA.Mods.Common/Traits/Buildings/Reservable.cs
+@@ -107,7 +107,10 @@ public IDisposable Reserve(Actor self, Actor forActor, Aircraft forAircraft)
+ 
+ 			slot.ReservedFor = forActor;
+ 			slot.ReservedForAircraft = forAircraft;
+-			if (Info.HasSlots)
++
++			// RAPX: helicopters may set down on an airfield, but a parking slot is never their home (it would use up a
++			// jet's slot for good).
++			if (Info.HasSlots && forAircraft?.Info.CanHover != true)
+ 			{
+ 				slot.Home = forActor;
+ 				ClearHomeElsewhere(self, forActor);

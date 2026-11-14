@@ -32,11 +32,15 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 		Blink,
 		Beacon,
 		Orbit,
+		Motes,
+		Glints,
 	}
 
 	[Desc("A live effect on an HD building: chimney smoke or steam, welding sparks, electric arcs,",
 		"pulsing or blinking lights, a rotating beacon or a light orbiting a dome.",
 		"Flame is a burning gas flare: flickering flames with a glow and a trail of dark smoke.",
+		"Motes are specks of light rising from Offset (spread over Radius.X) for Life ticks, e.g. energy climbing a column.",
+		"Glints are short bright twinkles at random points of the Radius area, e.g. light catching crystals.",
 		"Use several instances (WithPxBuildingFx@name) for several effects.")]
 	public class WithPxBuildingFxInfo : ConditionalTraitInfo, Requires<BuildingInfo>
 	{
@@ -179,6 +183,39 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 			var c = new float3(Info.Color.R, Info.Color.G, Info.Color.B) / 255f;
 			switch (Info.Type)
 			{
+				case PxBuildingFxType.Motes:
+				{
+					particles.Add(new PxParticle
+					{
+						Kind = PxParticleKind.Glow,
+						X = o.X + Rand(-Info.Radius.X, Info.Radius.X),
+						Y = o.Y + Rand(-Info.Radius.Y, Info.Radius.Y),
+						VX = Rand(-0.02f, 0.02f),
+						VZ = Rand(0.4f, 0.6f),
+						Life = Info.Life * Rand(0.85f, 1.1f),
+						Size = Info.Size * Rand(0.7f, 1.2f),
+						Alpha = Info.MaxAlpha * Rand(0.6f, 1f),
+						Tint = c,
+					});
+					break;
+				}
+
+				case PxBuildingFxType.Glints:
+				{
+					particles.Add(new PxParticle
+					{
+						Kind = PxParticleKind.Glow,
+						X = o.X + Rand(-Info.Radius.X, Info.Radius.X),
+						Y = o.Y + Rand(-Info.Radius.Y, Info.Radius.Y),
+						Life = Info.Life * Rand(0.7f, 1.2f),
+						Size = Info.Size * Rand(0.6f, 1.1f),
+						Grow = -0.6f,
+						Alpha = Info.MaxAlpha,
+						Tint = c,
+					});
+					break;
+				}
+
 				case PxBuildingFxType.Smoke:
 				case PxBuildingFxType.Steam:
 				{

@@ -48,14 +48,19 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 		public override object Create(ActorInitializer init) { return new PxRenderDetectionCircle(init.Self, this); }
 	}
 
-	public class PxRenderDetectionCircle : IRenderAnnotationsWhenSelected
+	public class PxRenderDetectionCircle : IRenderAnnotationsWhenSelected, INotifyCreated
 	{
 		readonly PxRenderDetectionCircleInfo info;
-		readonly DetectCloaked[] detectCloaked;
+		DetectCloaked[] detectCloaked = Array.Empty<DetectCloaked>();
 
 		public PxRenderDetectionCircle(Actor self, PxRenderDetectionCircleInfo info)
 		{
 			this.info = info;
+		}
+
+		// Traits listed after this one don't exist yet in the constructor
+		void INotifyCreated.Created(Actor self)
+		{
 			detectCloaked = self.TraitsImplementing<DetectCloaked>().ToArray();
 		}
 
