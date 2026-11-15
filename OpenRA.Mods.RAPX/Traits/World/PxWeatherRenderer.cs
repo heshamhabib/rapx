@@ -27,7 +27,8 @@ namespace OpenRA.Mods.RAPX.Traits
 		protected PxWeatherPass(string vertexShader, string fragmentShader, PostProcessPassType type)
 		{
 			this.type = type;
-			if (!string.IsNullOrEmpty(System.Environment.GetEnvironmentVariable("RAPX_NO_WEATHER")))
+			if (!Game.Settings.Graphics.WeatherEffects ||
+				!string.IsNullOrEmpty(System.Environment.GetEnvironmentVariable("RAPX_NO_WEATHER")))
 				return;
 
 			Shader = Game.Renderer.CreateShader(new ModShaderBindings(Game.ModData.DefaultFileSystem, vertexShader, fragmentShader,

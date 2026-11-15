@@ -36,6 +36,17 @@ namespace OpenRA.Mods.RAPX.Widgets.Logic
 			var smoothMotion = widget.Get<CheckboxWidget>("PX_SMOOTH_MOTION_CHECKBOX");
 			smoothMotion.IsChecked = () => ds.SmoothMotion;
 			smoothMotion.OnClick = () => ds.SmoothMotion ^= true;
+
+			// The passes these two switch off are built when a world loads, so the change lands on the next
+			// match rather than the one being played. Both are the difference between a slideshow and a
+			// playable frame rate on an integrated GPU.
+			var groundEffects = widget.Get<CheckboxWidget>("PX_GROUND_EFFECTS_CHECKBOX");
+			groundEffects.IsChecked = () => ds.GroundEffects;
+			groundEffects.OnClick = () => ds.GroundEffects ^= true;
+
+			var weatherEffects = widget.Get<CheckboxWidget>("PX_WEATHER_EFFECTS_CHECKBOX");
+			weatherEffects.IsChecked = () => ds.WeatherEffects;
+			weatherEffects.OnClick = () => ds.WeatherEffects ^= true;
 		}
 	}
 }

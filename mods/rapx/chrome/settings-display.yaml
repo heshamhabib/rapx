@@ -357,6 +357,32 @@ Container@DISPLAY_PANEL:
 					Width: PARENT_WIDTH - 24
 					Height: 50
 					Children:
+						Container@PX_GROUND_EFFECTS_CHECKBOX_CONTAINER:
+							X: 10
+							Width: PARENT_WIDTH / 2 - 20
+							Children:
+								Checkbox@PX_GROUND_EFFECTS_CHECKBOX:
+									Width: PARENT_WIDTH
+									Height: 20
+									Font: Regular
+									Text: checkbox-px-ground-effects.label
+									TooltipContainer: SETTINGS_TOOLTIP_CONTAINER
+									TooltipText: checkbox-px-ground-effects.tooltip
+						Container@PX_WEATHER_EFFECTS_CHECKBOX_CONTAINER:
+							X: PARENT_WIDTH / 2 + 10
+							Width: PARENT_WIDTH / 2 - 20
+							Children:
+								Checkbox@PX_WEATHER_EFFECTS_CHECKBOX:
+									Width: PARENT_WIDTH
+									Height: 20
+									Font: Regular
+									Text: checkbox-px-weather-effects.label
+									TooltipContainer: SETTINGS_TOOLTIP_CONTAINER
+									TooltipText: checkbox-px-weather-effects.tooltip
+				Container@ROW:
+					Width: PARENT_WIDTH - 24
+					Height: 50
+					Children:
 						Container@GL_PROFILE_DROPDOWN_CONTAINER:
 							X: 10
 							Width: PARENT_WIDTH / 2 - 20
