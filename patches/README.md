@@ -31,6 +31,7 @@ engine-optional-extras-buttons.patch
 engine-nuke-descent.patch
 engine-intel-uhd-debug-callback.patch
 engine-radar-resize.patch
+engine-launcher-extra-args.patch
 ```
 
 ## Upgrading the engine

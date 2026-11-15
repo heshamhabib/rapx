@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>winexe</OutputType>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>disable</Nullable>
+		<AssemblyName>$(LauncherName)</AssemblyName>
+		<ApplicationIcon>$(LauncherIcon)</ApplicationIcon>
+
+		<!-- Builds to the top of the source tree, next to mods/ and engine/, so the game is where you
+		     would look for it. make.ps1 is what invokes this; the output is gitignored. -->
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<OutputPath>$(MSBuildThisFileDirectory)..</OutputPath>
+
+		<Product>RedAlert Project X</Product>
+		<AssemblyTitle>$(DisplayName)</AssemblyTitle>
+	</PropertyGroup>
+
+</Project>

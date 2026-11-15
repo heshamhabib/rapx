@@ -33,11 +33,12 @@ namespace OpenRA.WindowsLauncher
 		static string modID;
 		static string displayName;
 		static string faqUrl;
+		static string extraArgs;
 
 		static int Main(string[] args)
 		{
-			// The modID, displayName, and faqUrl variables are embedded in the assembly metadata by defining
-			// -p:ModID="mymod", -p:DisplayName="My Mod", -p:FaqUrl="https://my.tld/faq" when compiling the project
+			// The modID, displayName, faqUrl and extraArgs variables are embedded in the assembly metadata by defining
+			// -p:ModID="mymod", -p:DisplayName="My Mod", -p:FaqUrl="https://my.tld/faq", -p:ExtraArgs="..." when compiling the project
 			var attributes = Assembly.GetExecutingAssembly().GetCustomAttributes();
 			foreach (var a in attributes)
 			{
@@ -48,6 +49,7 @@ namespace OpenRA.WindowsLauncher
 						case "ModID": modID = metadata.Value; break;
 						case "DisplayName": displayName = metadata.Value; break;
 						case "FaqUrl": faqUrl = metadata.Value; break;
+						case "ExtraArgs": extraArgs = metadata.Value; break;
 					}
 				}
 			}
@@ -96,7 +98,14 @@ namespace OpenRA.WindowsLauncher
 			if (!launcherArgs.Exists(x => x.StartsWith("Game.Mod=", StringComparison.Ordinal)))
 				launcherArgs.Add("Game.Mod=" + modID);
 
-			var psi = new ProcessStartInfo(launcherPath, string.Join(" ", launcherArgs));
+			// ExtraArgs is a verbatim command line fragment rather than a list, so that a baked-in path
+			// containing spaces keeps the quoting its author gave it. A launcher built against a source
+			// tree uses it to point the engine at the directories it was built from.
+			var commandLine = string.Join(" ", launcherArgs);
+			if (!string.IsNullOrEmpty(extraArgs))
+				commandLine += " " + extraArgs;
+
+			var psi = new ProcessStartInfo(launcherPath, commandLine);
 
 			try
 			{

@@ -22,11 +22,122 @@ function All-Command
 	if ($lastexitcode -ne 0)
 	{
 		Write-Host "Build failed. If just the development tools failed to build, try installing Visual Studio. You may also still be able to run the game." -ForegroundColor Red
+		return
 	}
-	else
+
+	Write-Host "Build succeeded." -ForegroundColor Green
+	Launcher-Command
+}
+
+# MSBuild reads a space, comma or semicolon in a -p: value as the end of the switch, so anything that
+# can contain one - a display name, a path, the engine arguments below - has to be percent escaped.
+function EscapeProperty($value)
+{
+	if (!$value)
 	{
-		Write-Host "Build succeeded." -ForegroundColor Green
+		return ""
 	}
+
+	return $value.Replace('%', '%25').Replace(' ', '%20').Replace(',', '%2C').Replace(';', '%3B')
+}
+
+function LauncherName
+{
+	if ($env:PACKAGING_WINDOWS_LAUNCHER_NAME)
+	{
+		return $env:PACKAGING_WINDOWS_LAUNCHER_NAME
+	}
+
+	return $modID
+}
+
+# On a laptop with switchable graphics, Windows hands OpenGL to the integrated GPU unless the executable
+# is listed here, which costs a lot of frames. The engine's own OpenRA.exe may already be registered from
+# before the launcher existed; this names the executables the game now actually runs as.
+# GpuPreference=2 is "High performance". Undo it in Settings > Display > Graphics.
+function Gpu-Command
+{
+	$launcherName = LauncherName
+	$key = "HKCU:\Software\Microsoft\DirectX\UserGpuPreferences"
+
+	if (!(Test-Path $key))
+	{
+		New-Item -Path $key -Force | Out-Null
+	}
+
+	$targets = @(
+		[System.IO.Path]::GetFullPath((Join-Path $templateDir "$launcherName.exe")),
+		[System.IO.Path]::GetFullPath((Join-Path $templateDir ($env:ENGINE_DIRECTORY + "/bin/$launcherName.exe")))
+	)
+
+	foreach ($target in $targets)
+	{
+		Set-ItemProperty -Path $key -Name $target -Value "GpuPreference=2;"
+		Write-Host "High performance GPU: $target" -ForegroundColor Green
+	}
+}
+
+function Launcher-Command
+{
+	$launcherName = LauncherName
+
+	$artworkDir = [System.IO.Path]::GetFullPath((Join-Path $templateDir "packaging/artwork"))
+	$icon = Join-Path $artworkDir ($modID + ".ico")
+	$newestArtwork = Get-ChildItem (Join-Path $artworkDir "icon_*.png") | Sort-Object LastWriteTimeUtc | Select-Object -Last 1
+
+	if (!(Test-Path $icon) -or (Get-Item $icon).LastWriteTimeUtc -lt $newestArtwork.LastWriteTimeUtc)
+	{
+		Write-Host "Building icon from $($artworkDir)..." -ForegroundColor Cyan
+		& (Join-Path $templateDir "tools/make-ico.ps1") -ArtworkDir $artworkDir -OutFile $icon
+	}
+
+	# The launcher relaunches itself to host the game, so the game window belongs to the launcher and
+	# wears its icon. That second process needs to be told where this source tree keeps the engine and
+	# the mods, because neither sits next to the binaries the way they do in a packaged install. Both
+	# paths are relative to the launcher, so the tree can still be moved or renamed.
+	$extraArgs = "Engine.EngineDir=.. Engine.ModSearchPaths=../../mods,./mods"
+
+	$project = [System.IO.Path]::GetFullPath((Join-Path $templateDir ($env:ENGINE_DIRECTORY + "/OpenRA.WindowsLauncher/OpenRA.WindowsLauncher.csproj")))
+
+	Write-Host "Building $launcherName.exe..." -ForegroundColor Cyan
+	dotnet build $project -c $configuration --nologo -p:TargetPlatform=win-x64 `
+		"-p:LauncherName=$(EscapeProperty $launcherName)" `
+		"-p:LauncherIcon=$(EscapeProperty $icon)" `
+		"-p:ModID=$(EscapeProperty $modID)" `
+		"-p:DisplayName=$(EscapeProperty $env:PACKAGING_DISPLAY_NAME)" `
+		"-p:FaqUrl=$(EscapeProperty $env:PACKAGING_FAQ_URL)" `
+		"-p:ExtraArgs=$(EscapeProperty $extraArgs)"
+
+	if ($lastexitcode -ne 0)
+	{
+		Write-Host "Launcher build failed. Run the game with launch-game.cmd instead." -ForegroundColor Red
+		return
+	}
+
+	$exe = [System.IO.Path]::GetFullPath((Join-Path $templateDir ($env:ENGINE_DIRECTORY + "/bin/$launcherName.exe")))
+	if (!(Test-Path $exe))
+	{
+		Write-Host "Launcher build reported success but $exe is missing." -ForegroundColor Red
+		return
+	}
+
+	# That exe has to live next to the engine assemblies it loads, which is no place to go looking for a
+	# game, so build a second small one at the top of the tree that hands over to it. See RAPX.Launcher.
+	$stub = Join-Path $templateDir "RAPX.Launcher/RAPX.Launcher.csproj"
+
+	dotnet build $stub -c $configuration --nologo `
+		"-p:LauncherName=$(EscapeProperty $launcherName)" `
+		"-p:LauncherIcon=$(EscapeProperty $icon)" `
+		"-p:DisplayName=$(EscapeProperty $env:PACKAGING_DISPLAY_NAME)"
+
+	if ($lastexitcode -ne 0)
+	{
+		Write-Host "Failed to build $launcherName.exe. Run the game with $exe instead." -ForegroundColor Red
+		return
+	}
+
+	Write-Host "Built $(Join-Path $templateDir "$launcherName.exe")" -ForegroundColor Green
+	Write-Host "Double click $launcherName.exe in this folder to play." -ForegroundColor Green
 }
 
 function Clean-Command
@@ -202,10 +313,13 @@ function ParseConfigFile($fileName)
 	$names = @("MOD_ID", "ENGINE_VERSION", "AUTOMATIC_ENGINE_MANAGEMENT", "AUTOMATIC_ENGINE_SOURCE",
 		"AUTOMATIC_ENGINE_EXTRACT_DIRECTORY", "AUTOMATIC_ENGINE_TEMP_ARCHIVE_NAME", "ENGINE_DIRECTORY")
 
+	# Used by the Windows launcher. Not required: it falls back to the mod id and empty strings.
+	$optionalNames = @("PACKAGING_WINDOWS_LAUNCHER_NAME", "PACKAGING_DISPLAY_NAME", "PACKAGING_FAQ_URL")
+
 	$reader = [System.IO.File]::OpenText($fileName)
 	while($null -ne ($line = $reader.ReadLine()))
 	{
-		foreach ($name in $names)
+		foreach ($name in ($names + $optionalNames))
 		{
 			ReadConfigLine $line $name
 		}
@@ -396,6 +510,8 @@ if ($command.Length -gt 1)
 switch ($execute)
 {
 	"all" { All-Command }
+	"launcher" { Launcher-Command }
+	"gpu" { Gpu-Command }
 	"version" { Version-Command }
 	"clean" { Clean-Command }
 	"test" { Test-Command }

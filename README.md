@@ -184,8 +184,16 @@ make
 git clone https://github.com/heshamhabib/rapx.git
 cd rapx
 make.cmd
-launch-game.cmd
 ```
+
+`make.cmd` builds **RAPX.exe** in the folder you cloned into: double click it to play, or pin it to the
+taskbar like any other game. (It hands over to a second copy of itself in `enginein`, which is where
+OpenRA requires the executable to sit so it can find the mod assemblies next to it.) `launch-game.cmd`
+still works if you prefer a console window or want to pass arguments.
+
+On a laptop with switchable graphics, run `make.cmd gpu` once: Windows otherwise gives OpenGL to the
+integrated GPU, which costs a lot of frames. It is a per-user setting you can undo in
+Settings > Display > Graphics.
 
 That's it: the game opens with the cinematic intro, then straight to the main menu.
 
