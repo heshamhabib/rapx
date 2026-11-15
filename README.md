@@ -241,6 +241,49 @@ This repository is **self-contained**: `engine/` is OpenRA
 `mod.config` sets `AUTOMATIC_ENGINE_MANAGEMENT="False"`, so `make` builds this copy and never downloads a stock
 engine over it. See [patches/README.md](patches/README.md) for upgrading to a newer OpenRA release.
 
+### Building the Windows installer
+
+Day-to-day development uses `make.ps1 all`, which builds in place and leaves you running the game from
+`RAPX.exe` in the repository root. To produce a **setup.exe** that installs the game like any other Windows
+program -- Start Menu entry, desktop shortcut, Add/Remove Programs entry, uninstaller -- run the packaging
+script from a Git Bash / MSYS2 shell:
+
+```sh
+./packaging/windows/buildpackage.sh playtest-20261115 ./releases
+```
+
+That writes two files into `releases/`:
+
+| File | What it is |
+|---|---|
+| `RedAlertProjectX-<tag>-x64.exe` | The installer. Installs to `Program Files`, registers the mod, offers to launch the game when it finishes |
+| `RedAlertProjectX-<tag>-x64-winportable.zip` | The same build as a portable folder, no installation |
+
+The script needs these on `PATH` (NSIS and ImageMagick are found automatically in their default
+`Program Files` locations):
+
+| Tool | Install with |
+|---|---|
+| NSIS | `winget install NSIS.NSIS` |
+| ImageMagick | `winget install ImageMagick.ImageMagick` |
+| Python 3 | any CPython -- the Microsoft Store `python3` stub is detected and skipped |
+| .NET SDK | already required to build the game |
+
+The upstream Mod SDK script was written to cross-build from Linux and insisted on `wine64`; it now detects a
+native Windows shell and runs the Microsoft tooling directly, so **wine is not needed**. Only `x64` is built by
+default -- set `PACKAGING_WINDOWS_PLATFORMS="x86 x64"` in `mod.config` to also build the 32-bit installer.
+
+#### Installer artwork
+
+The setup wizard is themed to match the game rather than using the stock grey NSIS look: the key art on the
+welcome and finish pages, the logo in the page header, dark pages and a red progress bar.
+
+None of that artwork is committed. [`packaging/windows/generate-theme.sh`](packaging/windows/generate-theme.sh)
+renders it at build time from `mods/rapx/uibits/menu-background-full.png` and the Rajdhani font, so **changing
+the menu art changes the installer too**. The source art, the crop regions and the colours are set in the
+`PACKAGING_WINDOWS_THEME_*` block of [`mod.config`](mod.config); the two crop geometries are regions of the key
+art and need revisiting if that image is ever replaced.
+
 ## License and credits
 
 - RAPX code and data: [GNU AGPL v3](LICENSE).

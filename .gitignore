@@ -112,3 +112,14 @@ artsrc/units/soldiers/sketchfab/
 /*.runtimeconfig.json
 *.lnk
 artsrc/audio/elephant/source/*.wav
+
+# Windows installer packaging: the staging tree, the wizard artwork generated from the
+# menu key art by packaging/windows/generate-theme.sh, the python3 shim and the rcedit
+# helper the script downloads. All rebuilt on every packaging run.
+/packaging/windows/build/
+/packaging/windows/theme/
+/packaging/windows/.shim/
+/packaging/windows/rcedit-x64.exe
+
+# Built installers
+/releases/

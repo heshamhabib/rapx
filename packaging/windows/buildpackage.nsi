@@ -18,6 +18,55 @@
 !include "MUI2.nsh"
 !include "FileFunc.nsh"
 !include "WordFunc.nsh"
+!include "WinMessages.nsh"
+!include "LogicLib.nsh"
+
+;***************************
+;Interface theme
+;
+;The bitmaps referenced here are generated at build time from the mod's own menu
+;key art by packaging/windows/generate-theme.sh, so the wizard matches the game
+;chrome rather than shipping the stock grey NSIS look. The colours come from
+;mod.config.
+;***************************
+!define MUI_ICON "${SRCDIR}\${MOD_ID}.ico"
+!define MUI_UNICON "${SRCDIR}\${MOD_ID}.ico"
+
+;MUI2 defines .onGUIInit itself, so the outer-window repaint hooks in here instead.
+!define MUI_CUSTOMFUNCTION_GUIINIT DarkenWindow
+!define MUI_CUSTOMFUNCTION_UNGUIINIT un.DarkenWindow
+
+!define MUI_BGCOLOR "${THEME_BGCOLOR}"
+!define MUI_TEXTCOLOR "${THEME_TEXTCOLOR}"
+
+!define MUI_HEADERIMAGE
+!define MUI_HEADERIMAGE_RIGHT
+!define MUI_HEADERIMAGE_BITMAP "${THEME_DIR}\header.bmp"
+!define MUI_HEADERIMAGE_BITMAP_STRETCH "FitControl"
+!define MUI_HEADERIMAGE_UNBITMAP "${THEME_DIR}\header.bmp"
+!define MUI_HEADERIMAGE_UNBITMAP_STRETCH "FitControl"
+
+;Rendered at 3x so they stay sharp when NSIS scales them up on HiDPI displays.
+!define MUI_WELCOMEFINISHPAGE_BITMAP "${THEME_DIR}\welcome.bmp"
+!define MUI_WELCOMEFINISHPAGE_BITMAP_STRETCH "FitControl"
+!define MUI_UNWELCOMEFINISHPAGE_BITMAP "${THEME_DIR}\welcome.bmp"
+!define MUI_UNWELCOMEFINISHPAGE_BITMAP_STRETCH "FitControl"
+
+;SetCtlColors cannot recolour the label of a themed checkbox (NSIS bug #443), so the
+;"run now" tick on the finish page would be drawn in the system text colour -- black
+;on black here. MUI only works around that in high contrast mode unless this is set,
+;and it affects nothing outside the finish page.
+!define MUI_FORCECLASSICCONTROLS
+
+!define MUI_FINISHPAGE_LINK_COLOR "${THEME_ACCENTCOLOR}"
+
+;Dark install log. The progress bar on that page is recoloured in InstFilesPageShow,
+;because a visually styled bar ignores the colours set here.
+!define MUI_INSTFILESPAGE_COLORS "${THEME_TEXTCOLOR} ${THEME_BGCOLOR}"
+!define MUI_INSTFILESPAGE_PROGRESSBAR "smooth"
+
+!define MUI_WELCOMEPAGE_TITLE "${PACKAGING_DISPLAY_NAME}"
+!define MUI_WELCOMEPAGE_TEXT "Setup will install ${PACKAGING_DISPLAY_NAME} ${TAG} on your computer.$\r$\n$\r$\nClose any running copy of the game before continuing.$\r$\n$\r$\nClick Next to continue."
 
 Name "${PACKAGING_DISPLAY_NAME}"
 OutFile "${OUTFILE}"
@@ -45,7 +94,9 @@ SetCompressor lzma
 RequestExecutionLevel admin
 
 !insertmacro MUI_PAGE_WELCOME
+!define MUI_PAGE_CUSTOMFUNCTION_SHOW DarkenPage
 !insertmacro MUI_PAGE_LICENSE "${PACKAGING_WINDOWS_LICENSE_FILE}"
+!define MUI_PAGE_CUSTOMFUNCTION_SHOW DarkenPage
 !insertmacro MUI_PAGE_DIRECTORY
 
 !define MUI_STARTMENUPAGE_REGISTRY_ROOT "HKLM"
@@ -54,16 +105,100 @@ RequestExecutionLevel admin
 !define MUI_STARTMENUPAGE_DEFAULTFOLDER "OpenRA"
 
 Var StartMenuFolder
+!define MUI_PAGE_CUSTOMFUNCTION_SHOW DarkenPage
 !insertmacro MUI_PAGE_STARTMENU Application $StartMenuFolder
 
+!define MUI_PAGE_CUSTOMFUNCTION_SHOW DarkenPage
 !insertmacro MUI_PAGE_COMPONENTS
+!define MUI_PAGE_CUSTOMFUNCTION_SHOW InstFilesPageShow
 !insertmacro MUI_PAGE_INSTFILES
+
+;A finish page so setup ends the way a game installer is expected to, with the
+;option to play straight away.
+!define MUI_FINISHPAGE_RUN
+!define MUI_FINISHPAGE_RUN_TEXT "Launch ${PACKAGING_DISPLAY_NAME}"
+!define MUI_FINISHPAGE_RUN_FUNCTION LaunchGame
+!define MUI_FINISHPAGE_LINK "Visit the ${PACKAGING_DISPLAY_NAME} website"
+!define MUI_FINISHPAGE_LINK_LOCATION "${PACKAGING_WEBSITE_URL}"
+!insertmacro MUI_PAGE_FINISH
 
 !insertmacro MUI_UNPAGE_CONFIRM
 !insertmacro MUI_UNPAGE_INSTFILES
 !insertmacro MUI_UNPAGE_FINISH
 
 !insertmacro MUI_LANGUAGE "English"
+
+;***************************
+;Interface callbacks
+;***************************
+Function DarkenWindow
+
+	;The page dialogs sit inside an outer window that keeps the system colours, which
+	;would frame every darkened page in a light border. Paint the outer window and its
+	;branding strip to match.
+	SetCtlColors $HWNDPARENT "${THEME_TEXTCOLOR}" "${THEME_BGCOLOR}"
+	GetDlgItem $R0 $HWNDPARENT 1256
+	SetCtlColors $R0 "${THEME_TEXTCOLOR}" "${THEME_BGCOLOR}"
+
+FunctionEnd
+
+Function un.DarkenWindow
+
+	SetCtlColors $HWNDPARENT "${THEME_TEXTCOLOR}" "${THEME_BGCOLOR}"
+	GetDlgItem $R0 $HWNDPARENT 1256
+	SetCtlColors $R0 "${THEME_TEXTCOLOR}" "${THEME_BGCOLOR}"
+
+FunctionEnd
+
+Function DarkenPage
+
+	;MUI_BGCOLOR only reaches the header strip and the welcome/finish pages; the
+	;interior pages are ordinary Win32 dialogs that would stay system-light next to a
+	;black header. Repaint the page dialog and every control on it. The Back/Next/Cancel
+	;buttons live on the outer window and are deliberately left native, so they still
+	;look and behave like standard Windows buttons.
+	FindWindow $R0 "#32770" "" $HWNDPARENT
+	SetCtlColors $R0 "${THEME_TEXTCOLOR}" "${THEME_BGCOLOR}"
+
+	StrCpy $R1 1000
+	${Do}
+		GetDlgItem $R2 $R0 $R1
+		${If} $R2 <> 0
+			;Group box captions and check marks are painted by the visual styles engine in
+			;the system text colour, which is invisible against a dark page. Dropping the
+			;theme on the control falls back to the classic renderer, which honours the
+			;colours set below. Buttons on the outer window keep their theme.
+			System::Call 'uxtheme::SetWindowTheme(p $R2, w " ", w " ")'
+			SetCtlColors $R2 "${THEME_TEXTCOLOR}" "${THEME_BGCOLOR}"
+		${EndIf}
+		IntOp $R1 $R1 + 1
+	${LoopUntil} $R1 > 1100
+
+FunctionEnd
+
+Function InstFilesPageShow
+
+	;Same treatment as the other pages: InstallColors only reaches the log control, so
+	;the status text and the area around the progress bar would stay system-light.
+	Call DarkenPage
+
+	;A themed progress bar is drawn by the visual styles engine, which ignores
+	;PBM_SETBARCOLOR. Drop the theme on that one control first, then paint it in the
+	;mod's accent colour so the install page matches the rest of the wizard.
+	System::Call 'uxtheme::SetWindowTheme(p $mui.InstFilesPage.ProgressBar, w " ", w " ")'
+	SendMessage $mui.InstFilesPage.ProgressBar ${PBM_SETBARCOLOR} 0 ${THEME_ACCENT_BGR}
+	SendMessage $mui.InstFilesPage.ProgressBar ${PBM_SETBKCOLOR} 0 ${THEME_BG_BGR}
+
+FunctionEnd
+
+Function LaunchGame
+
+	;Setup runs elevated, and a game started directly from here would inherit that --
+	;writing its settings and logs into the administrator profile instead of the
+	;player's. Going via explorer.exe hands the launch back to the logged-in user.
+	Exec '"$WINDIR\explorer.exe" "$INSTDIR\${PACKAGING_WINDOWS_LAUNCHER_NAME}.exe"'
+
+FunctionEnd
 
 ;***************************
 ;Section Definitions
