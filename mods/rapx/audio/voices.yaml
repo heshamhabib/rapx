@@ -1,12 +1,13 @@
 # Unit voices: our own (IDEA-31, artsrc/audio/generate_voices_kokoro.py), DogVoice from CC0 recordings.
 # Japan, South Korea and China share the East Asian accent voices (artsrc/audio/generate_eastasia.py).
+# England has British voices (artsrc/audio/generate_england.py).
 GenericVoice:
 	DefaultVariant: .ogg
 	DefaultPrefix: ra|audio/voices/
 	Prefixes:
 		allies: ra|audio/voices/union-inf1/,ra|audio/voices/union-inf2/
 		usa: ra|audio/voices/union-inf1/,ra|audio/voices/union-inf2/
-		england: ra|audio/voices/union-inf1/,ra|audio/voices/union-inf2/
+		england: ra|audio/voices/england-inf1/,ra|audio/voices/england-inf2/
 		france: ra|audio/voices/union-inf1/,ra|audio/voices/union-inf2/
 		germany: ra|audio/voices/union-inf1/,ra|audio/voices/union-inf2/
 		japan: ra|audio/voices/eastasia-inf1/,ra|audio/voices/eastasia-inf2/
@@ -36,7 +37,7 @@ VehicleVoice:
 	Prefixes:
 		allies: ra|audio/voices/union-veh1/,ra|audio/voices/union-veh2/
 		usa: ra|audio/voices/union-veh1/,ra|audio/voices/union-veh2/
-		england: ra|audio/voices/union-veh1/,ra|audio/voices/union-veh2/
+		england: ra|audio/voices/england-veh1/,ra|audio/voices/england-veh2/
 		france: ra|audio/voices/union-veh1/,ra|audio/voices/union-veh2/
 		germany: ra|audio/voices/union-veh1/,ra|audio/voices/union-veh2/
 		japan: ra|audio/voices/eastasia-veh1/,ra|audio/voices/eastasia-veh2/

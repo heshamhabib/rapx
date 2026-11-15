@@ -1,9 +1,10 @@
 Speech:
 	# Our own announcers (IDEA-31, artsrc/audio/generate_voices_kokoro.py): Union = eva/union, Vanguard = eva/vanguard,
-	# Japan/South Korea/China = eva/eastasia (generate_eastasia.py)
+	# Japan/South Korea/China = eva/eastasia (generate_eastasia.py), England = eva/england (generate_england.py)
 	DefaultVariant: .ogg
 	DefaultPrefix: ra|audio/eva/union/
 	Prefixes:
+		england: ra|audio/eva/england/
 		japan: ra|audio/eva/eastasia/
 		southkorea: ra|audio/eva/eastasia/
 		soviet: ra|audio/eva/vanguard/
