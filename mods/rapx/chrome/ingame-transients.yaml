@@ -8,7 +8,7 @@ Container@TRANSIENTS_PANEL:
 			Height: 0
 			IgnoredPools: Transients, Feedback
 		PxToasts@PX_TOASTS:
-			X: WINDOW_WIDTH - 400 - WIDTH - 16
+			X: WINDOW_WIDTH - 320 - WIDTH - 16
 			Y: WINDOW_HEIGHT - 150 - 16 - HEIGHT
 			Width: 400
 			Height: 420

@@ -86,6 +86,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 		readonly PxWeatherManager weather;
 		readonly Lazy<TooltipContainerWidget> tooltipContainer;
 		SpriteFont labelFont, nameFont, digitFont;
+		int labelHeight, nameHeight;
 
 		[ObjectCreator.UseCtor]
 		public PxWeatherBadgeWidget(World world)
@@ -134,6 +135,11 @@ namespace OpenRA.Mods.RAPX.Widgets
 			labelFont ??= Game.Renderer.Fonts[LabelFont];
 			nameFont ??= Game.Renderer.Fonts[NameFont];
 			digitFont ??= Game.Renderer.Fonts[DigitFont];
+			if (labelHeight == 0)
+			{
+				labelHeight = labelFont.Measure("W").Y;
+				nameHeight = nameFont.Measure("W").Y;
+			}
 
 			var rb = RenderBounds;
 			var t = Game.RunTime / 1000f;
@@ -154,26 +160,32 @@ namespace OpenRA.Mods.RAPX.Widgets
 			var plate = new Rectangle(rb.X + 5, rb.Y + 4, 38, rb.Height - 8);
 			DrawPlate(plate, accent, flash, current, t);
 
+			// The badge is laid out from its own height: a label row, a name row and the timeline along the
+			// bottom edge. Hardcoded offsets would run the timeline through the name row on a short badge.
+			var timelineY = rb.Bottom - 4;
+			var labelRow = rb.Y + Math.Max(2, (timelineY - 2 - rb.Y - labelHeight - 1 - nameHeight) / 2);
+			var nameRow = labelRow + labelHeight + 1;
+
 			// Current weather
 			var x0 = plate.Right + 10;
 			var divider = rb.Right - ForecastWidth;
 			var title = FluentProvider.GetMessage(Title);
-			labelFont.DrawText(title, new float2(x0, rb.Y + 5), LabelColor);
+			labelFont.DrawText(title, new float2(x0, labelRow), LabelColor);
 			if (fade < 1)
 			{
 				var tag = "· " + FluentProvider.GetMessage(Changing);
-				labelFont.DrawText(tag, new float2(x0 + labelFont.Measure(title).X + 5, rb.Y + 5), Alpha(accent, 0.6f + 0.4f * pulse));
+				labelFont.DrawText(tag, new float2(x0 + labelFont.Measure(title).X + 5, labelRow), Alpha(accent, 0.6f + 0.4f * pulse));
 			}
 
 			var name = WidgetUtils.TruncateText(PxWeatherManager.WeatherName(current).ToUpperInvariant(), divider - x0 - 8, nameFont);
-			nameFont.DrawTextWithShadow(name, new float2(x0, rb.Y + 19), Mix(TextColor, Color.White, flash),
+			nameFont.DrawTextWithShadow(name, new float2(x0, nameRow), Mix(TextColor, Color.White, flash),
 				Color.FromArgb(160, 0, 0, 0), 1);
 
 			// Divider
 			WidgetUtils.FillRectWithColor(new Rectangle(divider, rb.Y + 8, 1, rb.Height - 17), Color.FromArgb(46, 255, 255, 255));
 
-			DrawForecast(new Rectangle(divider + 10, rb.Y, rb.Right - divider - 18, rb.Height), warning, pulse);
-			DrawTimeline(new Rectangle(x0, rb.Bottom - 6, rb.Right - 8 - x0, 2), accent, warning, pulse);
+			DrawForecast(new Rectangle(divider + 10, rb.Y, rb.Right - divider - 18, rb.Height), labelRow, nameRow, warning, pulse);
+			DrawTimeline(new Rectangle(x0, timelineY, rb.Right - 8 - x0, 2), accent, warning, pulse);
 		}
 
 		void DrawPlate(Rectangle r, Color accent, float flash, PxWeatherType type, float t)
@@ -284,32 +296,36 @@ namespace OpenRA.Mods.RAPX.Widgets
 			}
 		}
 
-		void DrawForecast(Rectangle r, bool warning, float pulse)
+		void DrawForecast(Rectangle r, int labelRow, int nameRow, bool warning, float pulse)
 		{
 			if (!weather.HasForecast)
 			{
-				labelFont.DrawText(FluentProvider.GetMessage(ForecastLabel), new float2(r.X, r.Y + 5), LabelColor);
-				nameFont.DrawText(FluentProvider.GetMessage(Stable), new float2(r.X, r.Y + 19), LabelColor);
+				labelFont.DrawText(FluentProvider.GetMessage(ForecastLabel), new float2(r.X, labelRow), LabelColor);
+				nameFont.DrawText(FluentProvider.GetMessage(Stable), new float2(r.X, nameRow), LabelColor);
 				return;
 			}
 
 			// Top line: NEXT / INCOMING and the countdown; bottom line: the next weather's icon and name
 			var next = weather.Next;
 			var labelColor = warning ? Mix(WarningColor, Color.White, 0.25f * pulse) : LabelColor;
-			labelFont.DrawText(FluentProvider.GetMessage(warning ? IncomingShort : NextShort), new float2(r.X, r.Y + 5), labelColor);
+			var label = FluentProvider.GetMessage(warning ? IncomingShort : NextShort);
+			labelFont.DrawText(label, new float2(r.X, labelRow), labelColor);
 
+			// The countdown shares the label row, so it keeps clear of the label it sits beside
 			var time = FormatTime(SecondsLeft);
 			var size = digitFont.Measure(time);
 			var digits = warning ? Mix(WarningColor, Color.White, 0.3f * pulse) : TextColor;
-			digitFont.DrawTextWithShadow(time, new float2(r.Right - size.X, r.Y + 3), digits, Color.FromArgb(160, 0, 0, 0), 1);
+			var timeX = Math.Max(r.X + labelFont.Measure(label).X + 6, r.Right - size.X);
+			digitFont.DrawTextWithShadow(time, new float2(timeX, labelRow - (size.Y - labelHeight) / 2), digits,
+				Color.FromArgb(160, 0, 0, 0), 1);
 
 			var small = ChromeProvider.GetImage(IconCollection, next.ToString().ToLowerInvariant() + "-small");
 			if (small != null)
-				DrawTinted(small, new float2(r.X + 8, r.Y + 30), 17, Mix(Accent(next), Color.White, 0.35f), 1, 0);
+				DrawTinted(small, new float2(r.X + 8, nameRow + nameHeight / 2f), 17, Mix(Accent(next), Color.White, 0.35f), 1, 0);
 
 			var nameX = r.X + 21;
 			var nextName = WidgetUtils.TruncateText(PxWeatherManager.WeatherName(next).ToUpperInvariant(), r.Right - nameX, labelFont);
-			labelFont.DrawText(nextName, new float2(nameX, r.Y + 24), Mix(Accent(next), Color.White, 0.5f));
+			labelFont.DrawText(nextName, new float2(nameX, nameRow + (nameHeight - labelHeight) / 2), Mix(Accent(next), Color.White, 0.5f));
 		}
 
 		void DrawTimeline(Rectangle r, Color accent, bool warning, float pulse)

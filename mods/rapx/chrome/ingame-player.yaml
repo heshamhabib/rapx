@@ -31,19 +31,19 @@ Container@PLAYER_WIDGETS:
 			Width: 330
 			Order: Descending
 		PxTreatyBanner@PX_TREATY_BANNER:
-			X: (WINDOW_WIDTH - 400 - WIDTH) / 2
+			X: (WINDOW_WIDTH - 320 - WIDTH) / 2
 			Y: 0
 			Width: 380
 			Height: 88
 		PxEnemyRemaining@PX_ENEMY_REMAINING:
-			X: WINDOW_WIDTH - 400 - WIDTH - 10
+			X: WINDOW_WIDTH - 320 - WIDTH - 10
 			Y: 10
 			Width: 230
 			Height: 46
 		Background@PX_SELECTION_PANEL:
 			Logic: PxSelectionPanelLogic
 			Y: WINDOW_HEIGHT - HEIGHT
-			Width: WINDOW_WIDTH - 400
+			Width: WINDOW_WIDTH - 320
 			Height: 150
 			Background: px-bottombar
 			Children:
@@ -441,7 +441,7 @@ Container@PLAYER_WIDGETS:
 													Text: label-px-panel-rally
 		Container@MUTE_INDICATOR:
 			Logic: MuteIndicatorLogic
-			X: WINDOW_WIDTH - WIDTH - 420
+			X: WINDOW_WIDTH - WIDTH - 340
 			Y: 10
 			Width: 200
 			Height: 25
@@ -462,56 +462,56 @@ Container@PLAYER_WIDGETS:
 		Background@PX_SIDEBAR:
 			Logic: PxSidebarLogic
 			X: WINDOW_WIDTH - WIDTH
-			Width: 400
+			Width: 320
 			Height: WINDOW_HEIGHT
 			Background: px-sidebar-bg
 			Children:
 				LogicTicker@PX_SIDEBAR_TICKER:
 				Image@FACTION_EMBLEM:
-					X: 18
-					Y: 10
+					X: 12
+					Y: 4
 					Width: 44
 					Height: 44
 					ImageCollection: px-emblems
 					ImageName: soviet
 				Label@FACTION_NAME:
-					X: 72
-					Y: 11
-					Width: 212
-					Height: 24
+					X: 64
+					Y: 6
+					Width: 164
+					Height: 22
 					Font: PXSidebarTitle
 				Label@PLAYER_NAME:
-					X: 72
-					Y: 35
-					Width: 212
-					Height: 16
+					X: 64
+					Y: 28
+					Width: 164
+					Height: 14
 					Font: PXSidebarSmall
 					TextColor: FF6A55
 				Container@TOP_BUTTONS:
 					Logic: MenuButtonsChromeLogic
-					X: 18
-					Y: 10
-					Width: 368
-					Height: 102
+					X: 12
+					Y: 4
+					Width: 296
+					Height: 86
 					Children:
 						Button@HOME_BUTTON:
-							X: 274
-							Width: 44
-							Height: 44
+							X: 224
+							Width: 34
+							Height: 34
 							Background: px-key
 							TooltipText: button-top-buttons-home-tooltip
 							TooltipContainer: TOOLTIP_CONTAINER
 							VisualHeight: 0
 							Children:
 								Image@ICON:
-									X: 10
-									Y: 10
+									X: 5
+									Y: 5
 									ImageCollection: px-order-icons
 									ImageName: home
 						MenuButton@OPTIONS_BUTTON:
-							X: 324
-							Width: 44
-							Height: 44
+							X: 262
+							Width: 34
+							Height: 34
 							Background: px-key
 							Key: escape
 							TooltipText: button-top-buttons-options-tooltip
@@ -520,15 +520,15 @@ Container@PLAYER_WIDGETS:
 							VisualHeight: 0
 							Children:
 								Image@ICON:
-									X: 10
-									Y: 10
+									X: 5
+									Y: 5
 									ImageCollection: px-order-icons
 									ImageName: options
 						Button@REPAIR_BUTTON:
 							Logic: RepairOrderButtonLogic
-							Y: 52
-							Width: 88
-							Height: 50
+							Y: 46
+							Width: 71
+							Height: 40
 							Background: px-key
 							Key: Repair
 							TooltipText: button-top-buttons-repair-tooltip
@@ -536,12 +536,12 @@ Container@PLAYER_WIDGETS:
 							VisualHeight: 0
 							Children:
 								Image@ICON:
-									X: 32
-									Y: 6
+									X: 23
+									Y: 2
 									ImageCollection: px-order-icons
 								Label@LABEL:
-									Y: 31
-									Width: 88
+									Y: 25
+									Width: 71
 									Height: 14
 									Align: Center
 									Font: PXSidebarSmall
@@ -549,10 +549,10 @@ Container@PLAYER_WIDGETS:
 									Text: label-px-sidebar-repair
 						Button@SELL_BUTTON:
 							Logic: SellOrderButtonLogic
-							X: 93
-							Y: 52
-							Width: 88
-							Height: 50
+							X: 75
+							Y: 46
+							Width: 71
+							Height: 40
 							Background: px-key
 							Key: Sell
 							TooltipText: button-top-buttons-sell-tooltip
@@ -560,12 +560,12 @@ Container@PLAYER_WIDGETS:
 							VisualHeight: 0
 							Children:
 								Image@ICON:
-									X: 32
-									Y: 6
+									X: 23
+									Y: 2
 									ImageCollection: px-order-icons
 								Label@LABEL:
-									Y: 31
-									Width: 88
+									Y: 25
+									Width: 71
 									Height: 14
 									Align: Center
 									Font: PXSidebarSmall
@@ -573,10 +573,10 @@ Container@PLAYER_WIDGETS:
 									Text: label-px-sidebar-sell
 						Button@POWER_BUTTON:
 							Logic: PowerdownOrderButtonLogic
-							X: 186
-							Y: 52
-							Width: 88
-							Height: 50
+							X: 150
+							Y: 46
+							Width: 71
+							Height: 40
 							Background: px-key
 							Key: PowerDown
 							TooltipText: button-top-buttons-power-tooltip
@@ -584,12 +584,12 @@ Container@PLAYER_WIDGETS:
 							VisualHeight: 0
 							Children:
 								Image@ICON:
-									X: 32
-									Y: 6
+									X: 23
+									Y: 2
 									ImageCollection: px-order-icons
 								Label@LABEL:
-									Y: 31
-									Width: 88
+									Y: 25
+									Width: 71
 									Height: 14
 									Align: Center
 									Font: PXSidebarSmall
@@ -597,10 +597,10 @@ Container@PLAYER_WIDGETS:
 									Text: label-px-sidebar-power
 						Button@BEACON_BUTTON:
 							Logic: BeaconOrderButtonLogic
-							X: 279
-							Y: 52
-							Width: 89
-							Height: 50
+							X: 225
+							Y: 46
+							Width: 71
+							Height: 40
 							Background: px-key
 							Key: PlaceBeacon
 							TooltipText: button-top-buttons-beacon-tooltip
@@ -608,206 +608,206 @@ Container@PLAYER_WIDGETS:
 							VisualHeight: 0
 							Children:
 								Image@ICON:
-									X: 32
-									Y: 6
+									X: 23
+									Y: 2
 									ImageCollection: px-order-icons
 								Label@LABEL:
-									Y: 31
-									Width: 89
+									Y: 25
+									Width: 71
 									Height: 14
 									Align: Center
 									Font: PXSidebarSmall
 									TextColor: CFD0D6
 									Text: label-px-sidebar-beacon
 				Background@WEATHER_WELL:
-					X: 18
-					Y: 62
-					Width: 368
-					Height: 48
+					X: 12
+					Y: 50
+					Width: 296
+					Height: 40
 					Background: px-well
 					Children:
 						PxWeatherBadge@WEATHER_BADGE:
-							Width: 368
-							Height: 48
+							Width: 296
+							Height: 40
 							TooltipContainer: TOOLTIP_CONTAINER
 				Background@RADAR_WELL:
-					X: 18
-					Y: 120
-					Width: 368
-					Height: 214
+					X: 12
+					Y: 94
+					Width: 296
+					Height: 120
 					Background: px-well
 					Children:
 						Image@RADAR_ICON:
-							X: 10
-							Y: 8
+							X: 8
+							Y: 5
 							ImageCollection: px-sidebar-bits
 							ImageName: radar
 						Label@RADAR_LABEL:
-							X: 30
-							Y: 5
-							Width: 100
-							Height: 20
+							X: 26
+							Y: 3
+							Width: 90
+							Height: 16
 							Font: PXSidebarSmall
 							TextColor: C8C8CF
 							Text: label-px-sidebar-radar
 						ColorBlock@RADAR_DOT:
-							X: 290
-							Y: 12
+							X: 222
+							Y: 8
 							Width: 7
 							Height: 7
 						Label@RADAR_STATUS:
-							X: 302
-							Y: 5
-							Width: 58
-							Height: 20
+							X: 234
+							Y: 3
+							Width: 54
+							Height: 16
 							Font: PXDigitsSmall
 						Container@RADAR:
 							Logic: IngameRadarDisplayLogic
-							X: 6
-							Y: 26
-							Width: 356
-							Height: 182
+							X: 5
+							Y: 22
+							Width: 286
+							Height: 94
 							Children:
 								LogicTicker@RADAR_TICKER:
 								Container@RADAR_OFFLINE:
-									Width: 356
-									Height: 182
+									Width: 286
+									Height: 94
 									Children:
 										Label@NO_SIGNAL:
-											Y: 74
-											Width: 356
+											Y: 30
+											Width: 286
 											Height: 20
 											Align: Center
 											Font: PXSidebarLabel
 											TextColor: 6E6F78
 											Text: label-px-sidebar-no-radar
 										Label@BUILD_RADAR:
-											Y: 94
-											Width: 356
+											Y: 50
+											Width: 286
 											Height: 16
 											Align: Center
 											Font: PXSidebarSmall
 											TextColor: 55565E
 											Text: label-px-sidebar-build-radar
 								ColorBlock@RADAR_FADETOBLACK:
-									Width: 356
-									Height: 182
+									Width: 286
+									Height: 94
 								Radar@RADAR_MINIMAP:
 									WorldInteractionController: INTERACTION_CONTROLLER
-									Width: 356
-									Height: 182
+									Width: 286
+									Height: 94
 									SoundUp: RadarUp
 									SoundDown: RadarDown
 								VideoPlayer@PLAYER:
-									Width: 356
-									Height: 182
+									Width: 286
+									Height: 94
 									Skippable: false
 								PxRadarOverlay@RADAR_OVERLAY:
-									Width: 356
-									Height: 182
+									Width: 286
+									Height: 94
 				Background@CASH_WELL:
-					X: 18
-					Y: 342
-					Width: 214
-					Height: 52
+					X: 12
+					Y: 218
+					Width: 176
+					Height: 40
 					Background: px-well
 					Children:
 						Image@CASH_ICON:
-							X: 10
-							Y: 12
+							X: 8
+							Y: 6
 							ImageCollection: px-sidebar-bits
 							ImageName: cash
 						Label@CASH_LABEL:
-							X: 46
-							Y: 5
-							Width: 150
-							Height: 14
+							X: 42
+							Y: 2
+							Width: 126
+							Height: 13
 							Font: PXSidebarSmall
 							TextColor: 9D9EA6
 							Text: label-px-sidebar-credits
 						Container@CASH_COUNTER:
 							Logic: IngameCashCounterLogic
-							X: 46
-							Y: 18
-							Width: 160
-							Height: 30
+							X: 42
+							Y: 14
+							Width: 126
+							Height: 24
 							Children:
 								PxCashLabel@CASH:
-									Width: 160
-									Height: 30
-									Font: PXDigits
+									Width: 126
+									Height: 24
+									Font: PXDigitsMedium
 									TextColor: FFD166
 									TooltipContainer: TOOLTIP_CONTAINER
 									TooltipTemplate: SIMPLE_TOOLTIP
 				Background@TIME_WELL:
-					X: 238
-					Y: 342
-					Width: 148
-					Height: 52
+					X: 192
+					Y: 218
+					Width: 116
+					Height: 40
 					Background: px-well
 					Children:
 						Label@TIME_LABEL:
-							X: 12
-							Y: 5
-							Width: 130
-							Height: 14
+							X: 10
+							Y: 2
+							Width: 98
+							Height: 13
 							Font: PXSidebarSmall
 							TextColor: 9D9EA6
 							Text: label-px-sidebar-time
 						Label@GAME_TIMER:
 							Logic: GameTimerLogic
-							X: 12
-							Y: 18
-							Width: 130
-							Height: 30
-							Font: PXDigits
+							X: 10
+							Y: 14
+							Width: 98
+							Height: 24
+							Font: PXDigitsMedium
 				Background@POWER_WELL:
-					X: 18
-					Y: 400
-					Width: 368
-					Height: 30
+					X: 12
+					Y: 262
+					Width: 296
+					Height: 24
 					Background: px-well
 					Children:
 						Image@POWER_ICON:
-							X: 10
-							Y: 5
+							X: 8
+							Y: 3
 							ImageCollection: px-sidebar-bits
 							ImageName: power-normal
 						Label@POWER_LABEL:
-							X: 34
-							Y: 6
-							Width: 50
+							X: 30
+							Y: 3
+							Width: 44
 							Height: 16
 							Font: PXSidebarSmall
 							TextColor: 9D9EA6
 							Text: label-px-sidebar-power
 						PxPowerBar@POWER_BAR:
-							X: 84
-							Y: 9
-							Width: 212
+							X: 78
+							Y: 7
+							Width: 160
 							Height: 10
 						Label@POWER_TEXT:
-							X: 300
-							Y: 6
-							Width: 58
+							X: 242
+							Y: 3
+							Width: 46
 							Height: 16
 							Align: Right
 							Font: PXDigitsSmall
 				Container@SIDEBAR_PRODUCTION:
 					Logic: ClassicProductionLogic
-					Y: 438
-					Width: 400
-					Height: WINDOW_HEIGHT - 438
+					Y: 290
+					Width: 320
+					Height: WINDOW_HEIGHT - 290
 					Children:
 						LogicTicker@PRODUCTION_TICKER:
 						Container@PRODUCTION_TYPES:
-							X: 18
-							Width: 368
-							Height: 46
+							X: 12
+							Width: 296
+							Height: 38
 							Children:
 								ProductionTypeButton@BUILDING:
-									Width: 57
-									Height: 46
+									Width: 46
+									Height: 38
 									VisualHeight: 0
 									Background: px-key
 									TooltipText: button-production-types-building-tooltip
@@ -816,13 +816,13 @@ Container@PLAYER_WIDGETS:
 									Key: ProductionTypeBuilding
 									Children:
 										Image@ICON:
-											X: 14
-											Y: 9
+											X: 9
+											Y: 5
 											ImageCollection: px-production-icons
 								ProductionTypeButton@DEFENSE:
-									X: 62
-									Width: 57
-									Height: 46
+									X: 50
+									Width: 46
+									Height: 38
 									VisualHeight: 0
 									Background: px-key
 									TooltipText: button-production-types-defense-tooltip
@@ -831,13 +831,13 @@ Container@PLAYER_WIDGETS:
 									Key: ProductionTypeDefense
 									Children:
 										Image@ICON:
-											X: 14
-											Y: 9
+											X: 9
+											Y: 5
 											ImageCollection: px-production-icons
 								ProductionTypeButton@INFANTRY:
-									X: 124
-									Width: 57
-									Height: 46
+									X: 100
+									Width: 46
+									Height: 38
 									VisualHeight: 0
 									Background: px-key
 									TooltipText: button-production-types-infantry-tooltip
@@ -846,13 +846,13 @@ Container@PLAYER_WIDGETS:
 									Key: ProductionTypeInfantry
 									Children:
 										Image@ICON:
-											X: 14
-											Y: 9
+											X: 9
+											Y: 5
 											ImageCollection: px-production-icons
 								ProductionTypeButton@VEHICLE:
-									X: 186
-									Width: 57
-									Height: 46
+									X: 150
+									Width: 46
+									Height: 38
 									VisualHeight: 0
 									Background: px-key
 									TooltipText: button-production-types-vehicle-tooltip
@@ -861,13 +861,13 @@ Container@PLAYER_WIDGETS:
 									Key: ProductionTypeVehicle
 									Children:
 										Image@ICON:
-											X: 14
-											Y: 9
+											X: 9
+											Y: 5
 											ImageCollection: px-production-icons
 								ProductionTypeButton@AIRCRAFT:
-									X: 248
-									Width: 57
-									Height: 46
+									X: 200
+									Width: 46
+									Height: 38
 									VisualHeight: 0
 									Background: px-key
 									TooltipText: button-production-types-aircraft-tooltip
@@ -876,13 +876,13 @@ Container@PLAYER_WIDGETS:
 									Key: ProductionTypeAircraft
 									Children:
 										Image@ICON:
-											X: 14
-											Y: 9
+											X: 9
+											Y: 5
 											ImageCollection: px-production-icons
 								ProductionTypeButton@NAVAL:
-									X: 310
-									Width: 58
-									Height: 46
+									X: 250
+									Width: 46
+									Height: 38
 									VisualHeight: 0
 									Background: px-key
 									TooltipText: button-production-types-naval-tooltip
@@ -891,77 +891,77 @@ Container@PLAYER_WIDGETS:
 									Key: ProductionTypeNaval
 									Children:
 										Image@ICON:
-											X: 15
-											Y: 9
+											X: 9
+											Y: 5
 											ImageCollection: px-production-icons
 						Label@QUEUE_TITLE:
-							X: 18
-							Y: 53
-							Width: 150
-							Height: 20
+							X: 12
+							Y: 40
+							Width: 140
+							Height: 18
 							Font: PXSidebarLabel
 						Label@QUEUE_COUNT:
-							X: 170
-							Y: 54
-							Width: 162
-							Height: 18
+							X: 152
+							Y: 41
+							Width: 108
+							Height: 16
 							Align: Right
 							Font: PXSidebarSmall
 							TextColor: 9D9EA6
 						ColorBlock@QUEUE_RULE:
-							X: 18
-							Y: 74
-							Width: 368
+							X: 12
+							Y: 59
+							Width: 296
 							Height: 1
 							Color: E2262699
 						Button@SCROLL_UP_BUTTON:
-							X: 338
-							Y: 51
-							Width: 22
-							Height: 20
+							X: 264
+							Y: 39
+							Width: 20
+							Height: 18
 							VisualHeight: 0
 							Background: px-key
 							TooltipText: button-production-types-scroll-up-tooltip
 							TooltipContainer: TOOLTIP_CONTAINER
 							Children:
 								Image@ICON:
-									X: 3
-									Y: 2
+									X: 2
+									Y: 1
 									ImageCollection: scrollpanel-decorations
 									ImageName: up
 						Button@SCROLL_DOWN_BUTTON:
-							X: 364
-							Y: 51
-							Width: 22
-							Height: 20
+							X: 288
+							Y: 39
+							Width: 20
+							Height: 18
 							VisualHeight: 0
 							Background: px-key
 							TooltipText: button-production-types-scroll-down-tooltip
 							TooltipContainer: TOOLTIP_CONTAINER
 							Children:
 								Image@ICON:
-									X: 3
-									Y: 2
+									X: 2
+									Y: 1
 									ImageCollection: scrollpanel-decorations
 									ImageName: down
 						PxCategoryBar@CATEGORY_BAR:
-							X: 18
-							Y: 80
-							Width: 368
-							Height: 30
+							X: 12
+							Y: 62
+							Width: 296
+							Height: 26
 						PxProductionPalette@PRODUCTION_PALETTE:
-							X: 18
-							Y: 116
+							X: 12
+							Y: 92
 							TooltipContainer: TOOLTIP_CONTAINER
 							ReadyText: productionpalette-sidebar-production-palette.ready
 							HoldText: productionpalette-sidebar-production-palette.hold
-							IconSize: 120, 80
+							IconSize: 96, 58
 							IconMargin: 4, 4
 							HotkeyPrefix: Production
 							HotkeyCount: 24
 							SelectProductionBuildingHotkey: SelectProductionBuilding
 		Container@HPF_ROOT:
 			Logic: LoadIngameHierarchicalPathFinderOverlayLogic
-			X: WINDOW_WIDTH - WIDTH - 420
+			X: WINDOW_WIDTH - WIDTH - 340
 			Y: 40
 			Width: 175

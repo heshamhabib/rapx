@@ -220,16 +220,15 @@ namespace OpenRA.Mods.RAPX.Widgets.Logic
 				count.GetText = () => palette.CurrentQueue == null ? "" : cached.Update(palette.TotalIconCount);
 			}
 
-			const int BottomMargin = 12;
+			const int BottomMargin = 10;
 			var rowHeight = palette.IconSize.Y + palette.IconMargin.Y;
 
-			// The sidebar stack is authored for a tall window: the header, radar, cash/time, power and the
-			// production header eat a fixed 554px before the first cameo row. On a short window - a 720p
-			// screen, or a UI scale that divides the window down - that leaves room for a single row of
-			// buildings. Give the radar back to the palette until MinimumIconRows fit, then pull the wells
-			// below the radar up by the same amount.
-			const int MinimumIconRows = 3;
-			const int MinimumRadarHeight = 120;
+			// The sidebar stack is authored to put the first cameo row at 382px, which leaves exactly five
+			// rows on the 1280x720 design canvas. A shorter window - or a map with a weather badge, which
+			// pushes everything below the header down - costs rows. Give the radar back to the palette
+			// until MinimumIconRows fit, then pull the wells below the radar up by the same amount.
+			const int MinimumIconRows = 5;
+			const int MinimumRadarHeight = 94;
 			var radarWell = widget.GetOrNull("RADAR_WELL");
 			if (radarWell != null)
 			{
