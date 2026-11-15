@@ -98,6 +98,7 @@ Sequences:
 	ra|sequences/hd-water-fx.yaml
 	ra|sequences/hd-blast-fx.yaml
 	ra|sequences/hd-nuke-fx.yaml
+	ra|sequences/hd-blast-particles.yaml
 	ra|sequences/fatman.yaml
 	ra|sequences/airborne.yaml
 	ra|sequences/hd-beacon.yaml

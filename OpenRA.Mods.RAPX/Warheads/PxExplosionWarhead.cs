@@ -18,6 +18,7 @@ using OpenRA.Graphics;
 using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Warheads;
 using OpenRA.Mods.RAPX.Graphics;
+using OpenRA.Mods.RAPX.Traits;
 using OpenRA.Primitives;
 using OpenRA.Support;
 using OpenRA.Traits;
@@ -58,9 +59,12 @@ namespace OpenRA.Mods.RAPX.Warheads
 		Fireball,
 	}
 
-	[Desc("High-definition explosion (pxfx particles, cosmetic only): a white flash, a rolling fireball, a shock ring,",
-		"sparks, debris and a column of smoke that rises and drifts. Air bursts skip the ground debris and scorch.",
-		"Does nothing on open water (pair it with the classic splash warhead), but does explode on ships. Plays ImpactSounds like CreateEffect.")]
+	[Desc("High-definition explosion (pxfx particles, cosmetic only): a detonation glare that lights the ground, a shock",
+		"front and a dust wave racing out over it, a rolling fireball that cools into a lit column of smoke drifting",
+		"with the wind, dirt and burning debris trailing smoke, embers, and now and then a second cook-off. Big blasts",
+		"shake the screen and bend the picture (PxBlastWaves); soldiers they kill are thrown (PxBlastRegistry,",
+		"WithPxBlastDeath). Air bursts skip the ground effects. Does nothing on open water (pair it with the classic",
+		"splash warhead), but does explode on ships. Plays ImpactSounds like CreateEffect.")]
 	public class PxExplosionWarhead : Warhead
 	{
 		[Desc("Overall size: 1 = a rocket hit, 0.6 = a grenade, 2 = a heavy shell or V2.")]
@@ -69,7 +73,7 @@ namespace OpenRA.Mods.RAPX.Warheads
 		[Desc("Amount of smoke, as a multiple of the default.")]
 		public readonly float Smoke = 1f;
 
-		[Desc("Look of the blast: Standard, Precision, Heavy, Thermobaric, Naval or Bomblet.")]
+		[Desc("Look of the blast: Standard, Precision, Heavy, Thermobaric, Naval, Bomblet, Fragmentation, HitToKill or Fireball.")]
 		public readonly PxExplosionStyle Style = PxExplosionStyle.Standard;
 
 		[Desc("Fire colour (tint of the flames and fireball).")]
@@ -88,9 +92,18 @@ namespace OpenRA.Mods.RAPX.Warheads
 		[Desc("Leave a short-lived scorch mark on the ground.")]
 		public readonly bool Scorch = true;
 
-		[Desc("Chance (0-1) that a ground blast keeps burning for a few seconds afterwards (Standard, Heavy, Thermobaric",
-			"and Naval only, Size 0.9 or more).")]
-		public readonly float LingerChance = 0.4f;
+		[Desc("Chance (0-1) that a ground blast keeps burning for a few seconds afterwards (Standard, Heavy, Thermobaric,",
+			"Naval and Fireball only, Size 0.9 or more).")]
+		public readonly float LingerChance = 0.45f;
+
+		[Desc("Shake the screen, scaled by Size and the distance to the camera (Size 0.9 or more).")]
+		public readonly bool Shake = true;
+
+		[Desc("Register the blast with PxBlastRegistry: soldiers it kills are thrown, units around it are shoved.")]
+		public readonly bool Throw = true;
+
+		[Desc("Draw the pressure wave over the picture (PxBlastWaves).")]
+		public readonly bool Wave = true;
 
 		[Desc("Sounds to play on impact.")]
 		public readonly string[] ImpactSounds = Array.Empty<string>();
@@ -124,6 +137,21 @@ namespace OpenRA.Mods.RAPX.Warheads
 					return;
 			}
 
+			if (Throw && !air)
+				world.WorldActor.TraitOrDefault<PxBlastRegistry>()?.Register(world, pos, Size);
+
+			if (Shake && Size >= 0.9f)
+			{
+				var shaker = world.WorldActor.TraitOrDefault<ScreenShaker>();
+				if (shaker != null)
+				{
+					// The shaker's own falloff is steep (1/distance squared, capped at 10 px): small blasts get a fraction of it
+					var intensity = Size > 2f ? (int)(Size * Size / 2) : 1;
+					var multiplier = Size > 2f ? 1f : Math.Min(1f, 0.3f + 0.64f * (Size - 0.9f));
+					shaker.AddEffect((int)(5 + 5 * Size), pos, intensity, new float2(multiplier, multiplier));
+				}
+			}
+
 			world.AddFrameEndTask(w => w.Add(new PxExplosionEffect(w, pos, this, air)));
 
 			var sound = ImpactSounds.RandomOrDefault(world.LocalRandom);
@@ -136,6 +164,47 @@ namespace OpenRA.Mods.RAPX.Warheads
 	{
 		const int ScorchZ = -2048;
 
+		/// <summary>How much of each ingredient a style gets, as multiples of the Standard blast.</summary>
+		readonly struct Recipe
+		{
+			public readonly float Flash, Light, Shock, Dust, Fire, FireSize, Rise, Smoke, Column, Soot, Debris, Burning, Sparks, Embers, Pops, Wave;
+
+			public Recipe(float flash, float light, float shock, float dust, float fire, float fireSize, float rise, float smoke, float column,
+				float soot, float debris, float burning, float sparks, float embers, float pops, float wave)
+			{
+				Flash = flash;
+				Light = light;
+				Shock = shock;
+				Dust = dust;
+				Fire = fire;
+				FireSize = fireSize;
+				Rise = rise;
+				Smoke = smoke;
+				Column = column;
+				Soot = soot;
+				Debris = debris;
+				Burning = burning;
+				Sparks = sparks;
+				Embers = embers;
+				Pops = pops;
+				Wave = wave;
+			}
+		}
+
+		static readonly Dictionary<PxExplosionStyle, Recipe> Recipes = new()
+		{
+			//                                       flash light shock dust  fire  fsize rise  smoke col   soot  debris burn  sparks ember pops  wave
+			{ PxExplosionStyle.Standard, new Recipe(1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.9f, 1.0f, 1.0f, 0.6f, 0.5f, 1.0f, 0.3f, 1.0f, 1.0f, 0.25f, 1.0f) },
+			{ PxExplosionStyle.Precision, new Recipe(1.3f, 0.8f, 0.8f, 0.5f, 0.6f, 0.8f, 0.8f, 0.5f, 0.0f, 0.3f, 0.5f, 0.2f, 2.0f, 1.2f, 0.0f, 0.8f) },
+			{ PxExplosionStyle.Heavy, new Recipe(1.2f, 1.3f, 1.3f, 1.6f, 1.3f, 1.1f, 1.1f, 1.4f, 1.3f, 0.6f, 1.6f, 0.35f, 1.0f, 1.3f, 0.4f, 1.3f) },
+			{ PxExplosionStyle.Thermobaric, new Recipe(1.6f, 1.8f, 1.6f, 1.4f, 1.8f, 1.35f, 1.4f, 1.4f, 1.4f, 0.75f, 0.6f, 0.2f, 0.6f, 1.0f, 0.2f, 1.7f) },
+			{ PxExplosionStyle.Naval, new Recipe(1.0f, 0.8f, 0.0f, 0.0f, 1.2f, 1.0f, 1.0f, 1.5f, 1.2f, 0.9f, 0.7f, 0.5f, 1.0f, 1.2f, 0.4f, 0.8f) },
+			{ PxExplosionStyle.Bomblet, new Recipe(0.7f, 0.5f, 0.5f, 0.6f, 0.5f, 0.7f, 0.6f, 0.5f, 0.0f, 0.4f, 0.5f, 0.1f, 1.0f, 0.6f, 0.0f, 0.5f) },
+			{ PxExplosionStyle.Fragmentation, new Recipe(1.0f, 0.3f, 0.6f, 0.4f, 0.4f, 0.6f, 0.3f, 1.2f, 0.0f, 1.0f, 0.3f, 0.0f, 3.0f, 1.2f, 0.0f, 0.6f) },
+			{ PxExplosionStyle.HitToKill, new Recipe(1.6f, 0.3f, 0.6f, 0.3f, 0.25f, 0.6f, 0.3f, 0.9f, 0.0f, 0.0f, 1.2f, 0.6f, 3.0f, 0.8f, 0.0f, 0.7f) },
+			{ PxExplosionStyle.Fireball, new Recipe(1.2f, 1.4f, 1.1f, 1.2f, 1.7f, 1.25f, 0.9f, 1.3f, 0.9f, 0.85f, 1.2f, 0.5f, 1.0f, 1.4f, 0.5f, 1.3f) },
+		};
+
 		readonly World world;
 		readonly WPos pos;
 		readonly WPos ground;
@@ -144,7 +213,13 @@ namespace OpenRA.Mods.RAPX.Warheads
 		readonly PxParticles particles;
 		readonly ISpriteSequence scorch;
 		readonly MersenneTwister random = new(Game.CosmeticRandom.Next());
+		readonly PxWeatherManager weather;
+		readonly PxBlastWaves waves;
 		readonly float height;
+		readonly float3 dust;
+		readonly float3 fire;
+		readonly float3 smoke;
+		readonly Recipe recipe;
 
 		// A fire left burning at the impact (LingerChance): how long, and when the next flames are due
 		float burn;
@@ -163,25 +238,42 @@ namespace OpenRA.Mods.RAPX.Warheads
 			var above = world.Map.DistanceAboveTerrain(pos).Length;
 			ground = pos - new WVec(0, 0, above);
 			height = above * 24f / 1024f;
-			particles = new PxParticles(world) { Max = 600 };
+			particles = new PxParticles(world) { Max = (int)(500 + 350 * info.Size) };
 			scorch = particles.Sequence("scorch");
+			weather = world.WorldActor.TraitOrDefault<PxWeatherManager>();
+			if (weather != null && !weather.Enabled)
+				weather = null;
+
+			waves = world.WorldActor.TraitOrDefault<PxBlastWaves>();
+			recipe = Recipes[info.Style];
+
+			// Dust takes the colour of the ground; smoke goes from the warhead's colour towards soot
+			dust = world.Map.Tileset switch
+			{
+				"SNOW" => new float3(0.9f, 0.92f, 0.95f),
+				"DESERT" => new float3(0.76f, 0.66f, 0.48f),
+				_ => new float3(0.52f, 0.44f, 0.34f),
+			};
+
+			var white = new float3(1, 1, 1);
+			fire = Lerp(white, Tint(info.FireColor), 0.4f);
+			smoke = Lerp(Tint(info.SmokeColor), new float3(0.1f, 0.1f, 0.1f), recipe.Soot);
 		}
 
 		float Rand(float min, float max) { return min + random.NextFloat() * (max - min); }
 
 		static float3 Shade(float3 c, float f) { return new float3(c.X * f, c.Y * f, c.Z * f); }
 
-		void Add(PxParticleKind kind, float spread, float z, float size, float grow, float life, float alpha,
-			float speed, float vz, float gravity, float drag, float3 tint)
-		{
-			AddDir(kind, Rand(0, MathF.PI * 2), Rand(0, spread), z, size, grow, life, alpha, Rand(0.4f, 1f) * speed, vz, gravity, drag, tint);
-		}
+		static float3 Lerp(float3 a, float3 b, float t) { return new float3(a.X + (b.X - a.X) * t, a.Y + (b.Y - a.Y) * t, a.Z + (b.Z - a.Z) * t); }
 
-		/// <summary>A particle at distance r from the centre in direction a, flying outwards along it at speed s.</summary>
-		void AddDir(PxParticleKind kind, float a, float r, float z, float size, float grow, float life, float alpha,
-			float s, float vz, float gravity, float drag, float3 tint)
+		static float3 Tint(Color c) { return new float3(c.R / 255f, c.G / 255f, c.B / 255f); }
+
+		/// <summary>A particle at distance r from the centre in direction a, flying outwards along it at speed s.
+		/// Delay holds it back that many ticks.</summary>
+		PxParticle Make(PxParticleKind kind, float a, float r, float z, float size, float grow, float life, float alpha,
+			float s, float vz, float gravity, float drag, float3 tint, float delay = 0)
 		{
-			particles.Add(new PxParticle
+			return new PxParticle
 			{
 				Kind = kind,
 				X = MathF.Cos(a) * r,
@@ -192,6 +284,7 @@ namespace OpenRA.Mods.RAPX.Warheads
 				VZ = vz,
 				Gravity = gravity,
 				Drag = drag,
+				Age = -delay,
 				Life = life * Rand(0.75f, 1.25f),
 				Size = size * Rand(0.8f, 1.2f),
 				Grow = grow,
@@ -200,369 +293,289 @@ namespace OpenRA.Mods.RAPX.Warheads
 				Frame = random.Next(Math.Max(1, particles.FrameCount(kind))),
 				Spin = Rand(-3, 3),
 				Angle = random.Next(1024),
-			});
+			};
 		}
 
-		static float3 Tint(Color c) { return new float3(c.R / 255f, c.G / 255f, c.B / 255f); }
+		/// <summary>A particle somewhere within spread of the centre, flying outwards.</summary>
+		PxParticle Make(PxParticleKind kind, float spread, float z, float size, float grow, float life, float alpha,
+			float speed, float vz, float gravity, float drag, float3 tint, float delay = 0)
+		{
+			return Make(kind, Rand(0, MathF.PI * 2), Rand(0, spread), z, size, grow, life, alpha, Rand(0.4f, 1f) * speed, vz, gravity, drag, tint, delay);
+		}
+
+		void Add(PxParticleKind kind, float spread, float z, float size, float grow, float life, float alpha,
+			float speed, float vz, float gravity, float drag, float3 tint, float delay = 0)
+		{
+			particles.Add(Make(kind, spread, z, size, grow, life, alpha, speed, vz, gravity, drag, tint, delay));
+		}
+
+		float3 SmokeShade() { return Shade(smoke, Rand(0.75f, 1.15f)); }
+
+		/// <summary>Smoke lit orange by the fire inside it, cooling to its own grey.</summary>
+		float3 FireLit() { return new float3(Rand(0.85f, 1f), Rand(0.45f, 0.6f), Rand(0.18f, 0.3f)); }
 
 		void Start()
 		{
 			started = true;
 			var k = info.Size;
+			var r = recipe;
+			var s = info.Smoke;
 			var white = new float3(1, 1, 1);
-			var fire = Tint(info.FireColor);
-			var grey = Tint(info.SmokeColor);
-			var dust = new float3(0.62f, 0.55f, 0.45f);
 
+			waves?.Add(ground, k * r.Wave, air);
+			if (weather != null)
+			{
+				var f = weather.Frame();
+				particles.Wind = f.WindDir * (0.06f + 0.55f * f.Wind);
+			}
+			else
+				particles.Wind = new float2(0.08f, -0.02f);
+
+			// --- Detonation: glare, bloom and the light it throws on the ground ---
+			var flashTint = info.Style == PxExplosionStyle.HitToKill ? new float3(0.88f, 0.94f, 1f) : white;
+			if (r.Flash > 0)
+			{
+				particles.Add(Make(PxParticleKind.Flash, 0, 0, height, (1.0f + 0.9f * k) * r.Flash, -0.25f, 3.5f, 1f, 0, 0, 0, 0, flashTint));
+				particles.Add(Make(PxParticleKind.Flash, 0, 0, height, (0.6f + 0.5f * k) * r.Flash, 0.6f, 6f, 0.7f, 0, 0, 0, 0, flashTint));
+				particles.Add(Make(PxParticleKind.Glow, 0, 0, height, 1.4f * k * r.Flash, 0.6f, 8, 1f, 0, 0, 0, 0,
+					info.Style == PxExplosionStyle.HitToKill ? flashTint : new float3(1f, 0.85f, 0.6f)));
+			}
+
+			if (!air && r.Light > 0)
+				particles.Add(Make(PxParticleKind.Light, 0, 0, 0, (1.2f + 1.2f * k) * r.Light, 0.15f, 7 + 2 * k, 0.9f, 0, 0, 0, 0, new float3(1f, 0.85f, 0.6f)));
+
+			// --- Ground waves: the shock front, then the dust it lifts ---
+			if (!air)
+			{
+				if (r.Shock > 0)
+				{
+					particles.Add(Make(PxParticleKind.Shock, 0, 0, 0, (0.9f + 1.0f * k) * r.Shock, 0, 9 + 3 * k, 0.85f, 0, 0, 0, 0, white));
+					if (info.Style == PxExplosionStyle.Thermobaric)
+						particles.Add(Make(PxParticleKind.Shock, 0, 0, 0, (1.1f + 1.3f * k) * r.Shock, 0, 16 + 5 * k, 0.6f, 0, 0, 0, 0, new float3(1f, 0.92f, 0.8f), 4));
+				}
+
+				if (r.Dust > 0)
+				{
+					particles.Add(Make(PxParticleKind.Dust, 0, 0, 0, (0.6f + 0.7f * k) * r.Dust, 0.25f, 20 + 10 * k, 0.9f, 0, 0, 0, 0, dust));
+					particles.Add(Make(PxParticleKind.Dust, 0, 0, 0, (0.45f + 0.55f * k) * r.Dust, 0.35f, 24 + 10 * k, 0.6f, 0, 0, 0, 0, Shade(dust, 0.9f), 2));
+
+					// Dust thrown out low along the ground
+					for (var i = 0; i < (int)(8 * k * r.Dust) + 2; i++)
+					{
+						var p = Make(PxParticleKind.Smoke2, 3 * k, 0.5f, Rand(0.35f, 0.5f) * k, 2.2f, Rand(35, 60), 0.7f,
+							1.8f * k, Rand(0.2f, 0.5f), 0, 0.08f, Shade(dust, Rand(0.85f, 1.1f)), Rand(0, 2));
+						p.Wind = 1;
+						particles.Add(p);
+					}
+				}
+			}
+
+			// --- The fireball: lumps of flame swelling out of the centre, flame tongues around them ---
+			var fireSpread = (air ? 1.5f : 1.2f) * k;
+			var fireCount = (int)((5 + 7 * k) * r.Fire);
+			for (var i = 0; i < fireCount; i++)
+			{
+				var p = Make(PxParticleKind.Fire2, fireSpread, height + 0.5f + Rand(0, 2 * k), Rand(0.55f, 0.85f) * k * r.FireSize, 0.9f,
+					Rand(16, 26), 1f, Rand(0.3f, 1.1f) * k, Rand(0.5f, 1.3f) * r.Rise, air ? 0.01f : 0, 0.1f, Shade(fire, Rand(0.92f, 1.05f)), Rand(0, 2.5f));
+				p.Frame = random.Next(2) * 16;
+				p.Spin = Rand(-1.5f, 1.5f);
+				particles.Add(p);
+			}
+
+			for (var i = 0; i < (int)((4 + 5 * k) * r.Fire); i++)
+				Add(PxParticleKind.Flame, 2 * k, height + Rand(0, 2 * k), Rand(0.4f, 0.7f) * k * r.FireSize, 0.4f, Rand(10, 16), 1f,
+					1.4f * k, Rand(0.3f, 1.0f) * r.Rise, 0, 0.12f, Tint(info.FireColor), Rand(0, 1));
+
+			// --- Smoke: lit by the fire while it boils out, then its own colour as it rises ---
+			var soot = Shade(smoke, 0.8f);
+			for (var i = 0; i < (int)((8 + 8 * k) * s * r.Smoke); i++)
+			{
+				var p = Make(PxParticleKind.Smoke2, 1.5f * k, height + Rand(1, 4 * k), Rand(0.5f, 0.8f) * k, 2.6f, Rand(60, 110) * (1 + 0.2f * k), 0.9f,
+					0.7f * k, Rand(0.3f, 0.7f) * r.Rise, air ? 0.004f : 0, 0.05f, Shade(FireLit(), Rand(0.8f, 1.1f)), Rand(1, 6));
+				p.FadeTint = true;
+				p.TintEnd = SmokeShade();
+				p.Wind = 1;
+				particles.Add(p);
+			}
+
+			if (!air && r.Column > 0)
+			{
+				for (var i = 0; i < (int)((10 + 10 * k) * s * r.Column); i++)
+				{
+					var p = Make(PxParticleKind.Smoke2, 1.0f * k, Rand(2 * k, 6 * k), Rand(0.55f, 0.85f) * k, 3.0f, Rand(100, 160) * (1 + 0.3f * k), 0.95f,
+						0.25f * k, Rand(0.9f, 1.7f) * r.Column, 0, 0.025f, Shade(FireLit(), 0.6f), Rand(5, 16));
+					p.FadeTint = true;
+					p.TintEnd = Shade(soot, Rand(0.8f, 1.1f));
+					p.Wind = 0.8f;
+					particles.Add(p);
+				}
+
+				// Mushroom cap spreading at the top of big columns
+				if (k >= 1.2f)
+					for (var i = 0; i < (int)(6 * k * s); i++)
+					{
+						var p = Make(PxParticleKind.Smoke2, 1.5f * k, Rand(10 * k, 14 * k), Rand(0.8f, 1.2f) * k, 2.6f, Rand(120, 180), 0.9f,
+							0.6f * k, Rand(0.5f, 0.9f), 0, 0.03f, SmokeShade(), Rand(14, 28));
+						p.Wind = 1;
+						particles.Add(p);
+					}
+			}
+
+			// --- Debris: dirt and metal arcing out, some of it burning and trailing smoke ---
+			var debrisTint = Shade(dust, 1.05f);
+			for (var i = 0; i < (int)((8 + 10 * k) * r.Debris); i++)
+			{
+				var burning = random.NextFloat() < r.Burning;
+				var p = Make(PxParticleKind.Debris, 1.5f * k, height + 1, Rand(0.6f, 1.2f) * (0.7f + 0.3f * k), 0, Rand(35, 65), 1f,
+					Rand(1.5f, 4.5f) * k, Rand(2f, 5.5f) * MathF.Sqrt(k), 0.22f, 0.015f, burning ? new float3(1f, 0.8f, 0.6f) : debrisTint, Rand(0, 1.5f));
+				p.Spin = Rand(4, 9) * (random.Next(2) == 0 ? -1 : 1);
+				p.Dusty = !air;
+				p.TrailTint = dust;
+				if (burning)
+				{
+					p.TrailKind = PxParticleKind.Smoke2;
+					p.TrailRate = 0.35f;
+					p.TrailSize = 0.2f * (0.6f + 0.4f * k);
+					p.TrailLife = 22;
+					p.TrailTint = Shade(soot, 0.9f);
+				}
+
+				particles.Add(p);
+			}
+
+			// Burning fragments: flames arcing down with their own smoke trails
+			for (var i = 0; i < (int)((4 + 5 * k) * r.Burning * 2); i++)
+			{
+				var p = Make(PxParticleKind.Flame, 1.5f * k, height + 1, Rand(0.22f, 0.38f) * k, 0.1f, Rand(25, 45), 1f,
+					3f * k, Rand(2f, 4.5f), 0.15f, 0.01f, Tint(info.FireColor), Rand(0, 1));
+				p.TrailKind = PxParticleKind.Smoke2;
+				p.TrailRate = 0.4f;
+				p.TrailSize = 0.18f * (0.6f + 0.4f * k);
+				p.TrailLife = 20;
+				p.TrailTint = Shade(soot, 0.9f);
+				particles.Add(p);
+			}
+
+			Embers(k, r.Embers);
+			Sparks(k, r.Sparks);
+
+			// --- Style extras ---
 			switch (info.Style)
 			{
-				case PxExplosionStyle.Precision:
-					Add(PxParticleKind.Glow, 0, height, 1.1f * k, 0.4f, 5, 1f, 0, 0, 0, 0, new float3(1f, 0.97f, 0.9f));
-					if (!air)
-						Add(PxParticleKind.Ring, 0, 0, 0.6f * k, 1.4f, 10, 0.9f, 0, 0, 0, 0, white);
-
-					for (var i = 0; i < (int)(6 * k) + 3; i++)
-						Add(PxParticleKind.Flame, 2 * k, height + Rand(0, 2 * k), Rand(0.4f, 0.7f) * k, 0.4f, Rand(8, 14), 1f,
-							0.9f * k, Rand(0.3f, 1f), 0, 0.15f, fire);
-
-					for (var i = 0; i < (int)(20 * k) + 6; i++)
-						Add(PxParticleKind.Spark, 1.5f * k, height + 2, Rand(0.25f, 0.5f), 0, Rand(10, 20), 1f,
-							4.5f * k, Rand(1.5f, 4f), air ? 0.05f : 0.22f, 0.03f, new float3(1f, 0.95f, 0.8f));
-
-					for (var i = 0; i < (int)(5 * k * info.Smoke) + 2; i++)
-						Add(PxParticleKind.Smoke, 3 * k, height + Rand(2, 5) * k, Rand(0.4f, 0.6f) * k, 2f, Rand(40, 70), 0.75f,
-							0.4f * k, Rand(0.2f, 0.45f), 0, 0.03f, Shade(grey, Rand(0.35f, 0.6f)));
-					break;
-
-				case PxExplosionStyle.Heavy:
-					Add(PxParticleKind.Glow, 0, height, 1.8f * k, 0.7f, 10, 1f, 0, 0, 0, 0, new float3(1f, 0.85f, 0.6f));
-					if (!air)
-					{
-						Add(PxParticleKind.Ring, 0, 0, 1.2f * k, 1.8f, 20, 0.8f, 0, 0, 0, 0, white);
-
-						// Dust thrown out low along the ground
-						for (var i = 0; i < (int)(10 * k); i++)
-							Add(PxParticleKind.Billow, 5 * k, 1, Rand(0.5f, 0.8f) * k, 2.2f, Rand(50, 80), 0.7f,
-								1.6f * k, Rand(0.05f, 0.2f), 0, 0.05f, Shade(dust, Rand(0.75f, 1f)));
-
-						for (var i = 0; i < (int)(12 * k); i++)
-							Add(PxParticleKind.Chunk, 3 * k, 2, Rand(0.5f, 1f), 0, Rand(35, 60), 1f,
-								2.8f * k, Rand(2f, 4.5f), 0.22f, 0.02f, new float3(0.5f, 0.45f, 0.4f));
-					}
-
-					for (var i = 0; i < (int)(8 * k) + 4; i++)
-						Add(PxParticleKind.Fireball, 3 * k, height + Rand(1, 5 * k), Rand(0.6f, 1f) * k, 0.8f, Rand(16, 26), 1f,
-							1f * k, Rand(0.6f, 1.4f), 0, 0.1f, fire);
-
-					for (var i = 0; i < (int)(12 * k) + 4; i++)
-						Add(PxParticleKind.Spark, 2 * k, height + 2, Rand(0.3f, 0.6f), 0, Rand(12, 22), 1f,
-							4f * k, Rand(1.5f, 3.5f), air ? 0.05f : 0.2f, 0.04f, white);
-
-					// Tall smoke column
-					for (var i = 0; i < (int)(14 * k * info.Smoke) + 4; i++)
-						Add(PxParticleKind.Plume, 3 * k, height + Rand(4, 16) * k, Rand(0.6f, 0.9f) * k, 2.6f, Rand(80, 130), 0.85f,
-							0.3f * k, Rand(0.4f, 0.9f), 0, 0.03f, Shade(grey, Rand(0.4f, 0.7f)));
-					break;
-
-				case PxExplosionStyle.Thermobaric:
-					// Pressure flash and two shock rings (the cloud lights, then the blast wave)
-					Add(PxParticleKind.Glow, 0, height + 3, 2.6f * k, 0.9f, 14, 1f, 0, 0, 0, 0, new float3(1f, 0.95f, 0.75f));
-					if (!air)
-					{
-						Add(PxParticleKind.Ring, 0, 0, 1.4f * k, 2.2f, 18, 0.9f, 0, 0, 0, 0, new float3(1f, 0.9f, 0.75f));
-						Add(PxParticleKind.Ring, 0, 0, 0.8f * k, 3.2f, 30, 0.6f, 0, 0, 0, 0, white);
-					}
-
-					// Huge fireball that swells and rises
-					for (var i = 0; i < (int)(16 * k) + 6; i++)
-						Add(PxParticleKind.Fireball, 5 * k, height + Rand(1, 6 * k), Rand(0.8f, 1.3f) * k, 1.1f, Rand(22, 36), 1f,
-							1.6f * k, Rand(0.8f, 1.8f), -0.01f, 0.08f, Shade(fire, Rand(0.9f, 1.05f)));
-
-					for (var i = 0; i < (int)(10 * k) + 4; i++)
-						Add(PxParticleKind.Flame, 6 * k, height + Rand(0, 3 * k), Rand(0.5f, 0.9f) * k, 0.6f, Rand(16, 26), 1f,
-							2.2f * k, Rand(0.2f, 0.7f), 0, 0.1f, fire);
-
-					// Dark mushroom of soot above it
-					for (var i = 0; i < (int)(14 * k * info.Smoke) + 4; i++)
-						Add(PxParticleKind.Billow, 4 * k, height + Rand(8, 18) * k, Rand(0.7f, 1.1f) * k, 2.8f, Rand(90, 140), 0.85f,
-							0.7f * k, Rand(0.6f, 1.1f), 0, 0.04f, Shade(grey, Rand(0.25f, 0.45f)));
-					break;
-
-				case PxExplosionStyle.Naval:
-					Add(PxParticleKind.Glow, 0, height, 1.6f * k, 0.6f, 9, 1f, 0, 0, 0, 0, new float3(1f, 0.88f, 0.65f));
-					for (var i = 0; i < (int)(10 * k) + 4; i++)
-						Add(PxParticleKind.Fireball, 3 * k, height + Rand(2, 6 * k), Rand(0.6f, 1f) * k, 0.8f, Rand(18, 30), 1f,
-							0.9f * k, Rand(0.6f, 1.3f), 0, 0.1f, fire);
-
-					// Spray thrown up around the hull
-					for (var i = 0; i < (int)(10 * k); i++)
-						Add(PxParticleKind.Foam, 6 * k, 1, Rand(0.4f, 0.7f) * k, 1.4f, Rand(30, 50), 0.85f,
-							1.4f * k, Rand(1.5f, 3f), 0.15f, 0.04f, white);
-
-					for (var i = 0; i < (int)(12 * k) + 4; i++)
-						Add(PxParticleKind.Spark, 2 * k, height + 3, Rand(0.3f, 0.6f), 0, Rand(12, 22), 1f,
-							3.5f * k, Rand(1.5f, 3.5f), 0.15f, 0.04f, white);
-
-					// Burning fuel: thick black smoke
-					for (var i = 0; i < (int)(14 * k * info.Smoke) + 4; i++)
-						Add(PxParticleKind.Plume, 3 * k, height + Rand(4, 14) * k, Rand(0.6f, 0.9f) * k, 2.6f, Rand(90, 140), 0.9f,
-							0.35f * k, Rand(0.4f, 0.9f), 0, 0.03f, Shade(grey, Rand(0.15f, 0.3f)));
-					break;
-
-				case PxExplosionStyle.Bomblet:
-					Add(PxParticleKind.Glow, 0, height, 0.9f * k, 0.4f, 4, 1f, 0, 0, 0, 0, new float3(1f, 0.92f, 0.75f));
-					for (var i = 0; i < 3; i++)
-						Add(PxParticleKind.Flame, 1.5f * k, height + Rand(0, 1.5f * k), Rand(0.4f, 0.6f) * k, 0.3f, Rand(6, 10), 1f,
-							0.8f * k, Rand(0.2f, 0.6f), 0, 0.15f, fire);
-
-					for (var i = 0; i < 6; i++)
-						Add(PxParticleKind.Spark, 1 * k, height + 1, Rand(0.2f, 0.4f), 0, Rand(8, 14), 1f,
-							3f * k, Rand(1f, 2.5f), 0.25f, 0.04f, white);
-
-					for (var i = 0; i < (int)(3 * info.Smoke) + 1; i++)
-						Add(PxParticleKind.Smoke, 2 * k, height + Rand(1, 3) * k, Rand(0.4f, 0.6f) * k, 1.8f, Rand(30, 50), 0.7f,
-							0.3f * k, Rand(0.15f, 0.35f), 0, 0.03f, Shade(grey, Rand(0.55f, 0.75f)));
-					break;
-
 				case PxExplosionStyle.Fragmentation:
-				{
-					Add(PxParticleKind.Glow, 0, height, 0.9f * k, 0.3f, 3, 1f, 0, 0, 0, 0, new float3(1f, 0.95f, 0.75f));
-					Add(PxParticleKind.Glow, 0, height, 0.5f * k, 0.8f, 7, 0.8f, 0, 0, 0, 0, new float3(1f, 0.6f, 0.25f));
-
-					// The fragment sphere: fast pale streaks in every direction, then slower orange ones
+					// The fragment sphere: fast pale streaks in every direction, down as well as up
 					for (var i = 0; i < (int)(30 * k) + 10; i++)
 						Add(PxParticleKind.Spark, 1 * k, height + Rand(-2, 2) * k, Rand(0.2f, 0.35f), 0, Rand(7, 12), 1f,
 							7f * k, Rand(-3f, 3f), 0.02f, 0.02f, new float3(1f, 0.95f, 0.75f));
 
-					for (var i = 0; i < (int)(14 * k) + 4; i++)
-						Add(PxParticleKind.Spark, 1 * k, height, Rand(0.15f, 0.3f), 0, Rand(14, 24), 1f,
-							3.5f * k, Rand(-1f, 2f), 0.08f, 0.03f, new float3(1f, Rand(0.45f, 0.65f), 0.2f));
+					// A dense black flak clump that hangs in the air
+					for (var i = 0; i < (int)(8 * k * s) + 4; i++)
+					{
+						var p = Make(PxParticleKind.Smoke2, 1.5f * k, height + Rand(-1, 2) * k, Rand(0.45f, 0.65f) * k, 1.7f, Rand(80, 120), 0.95f,
+							0.35f * k, Rand(0.05f, 0.2f), 0, 0.04f, Shade(new float3(0.16f, 0.15f, 0.15f), Rand(0.7f, 1.3f)), Rand(0, 2));
+						p.Wind = 1;
+						particles.Add(p);
+					}
 
-					for (var i = 0; i < 4; i++)
-						Add(PxParticleKind.Flame, 1.5f * k, height + Rand(0, 1) * k, Rand(0.3f, 0.45f) * k, 0.3f, Rand(5, 8), 1f,
-							0.6f * k, Rand(0.1f, 0.4f), 0, 0.15f, fire);
-
-					// Black flak puff: a dense clump that swells, hangs and slowly drifts apart
-					for (var i = 0; i < (int)(9 * k * info.Smoke) + 4; i++)
-						Add(PxParticleKind.Billow, 2 * k, height + Rand(-1, 2) * k, Rand(0.45f, 0.65f) * k, 1.7f, Rand(80, 120), 0.95f,
-							0.35f * k, Rand(0.05f, 0.2f), 0, 0.04f, Shade(new float3(0.16f, 0.15f, 0.15f), Rand(0.7f, 1.3f)));
-
-					for (var i = 0; i < (int)(4 * k * info.Smoke) + 2; i++)
-						Add(PxParticleKind.Smoke, 3 * k, height + Rand(0, 3) * k, Rand(0.4f, 0.6f) * k, 2.4f, Rand(90, 130), 0.5f,
-							0.5f * k, Rand(0.1f, 0.3f), 0, 0.03f, Shade(grey, Rand(0.3f, 0.45f)));
-					return;
-				}
+					break;
 
 				case PxExplosionStyle.HitToKill:
-				{
-					// Impact flash: blue-white, then the burning wreck glows orange
-					Add(PxParticleKind.Glow, 0, height, 1.8f * k, 0.5f, 4, 1f, 0, 0, 0, 0, new float3(0.85f, 0.92f, 1f));
-					Add(PxParticleKind.Glow, 0, height, 0.9f * k, 0.9f, 12, 0.85f, 0, 0, 0, 0, new float3(1f, 0.7f, 0.4f));
-					Add(PxParticleKind.Ring, 0, height, 0.4f * k, 3.4f, 11, 0.75f, 0, 0, 0, 0, white);
-					Add(PxParticleKind.Ring, 0, height, 0.25f * k, 2.2f, 16, 0.5f, 0, 0, 0, 0, new float3(0.8f, 0.9f, 1f));
-
-					// White-hot spark shower, blown along the interceptor's path and falling
+					// White-hot spark shower and a cloud of white vapour where the two met
 					for (var i = 0; i < (int)(36 * k) + 10; i++)
 						Add(PxParticleKind.Spark, 1 * k, height + Rand(-1, 2) * k, Rand(0.2f, 0.4f), 0, Rand(14, 28), 1f,
 							6f * k, Rand(-1f, 4f), 0.12f, 0.03f, new float3(Rand(0.85f, 1f), Rand(0.9f, 1f), 1f));
 
-					// Tumbling wreckage trailing fire and smoke as it falls
-					for (var i = 0; i < (int)(10 * k) + 3; i++)
-						Add(PxParticleKind.Chunk, 2 * k, height, Rand(0.4f, 0.8f), 0, Rand(45, 75), 1f,
-							2.4f * k, Rand(0.5f, 3f), 0.14f, 0.01f, new float3(0.35f, 0.34f, 0.33f));
+					for (var i = 0; i < (int)(8 * k * s) + 3; i++)
+					{
+						var p = Make(PxParticleKind.Smoke2, 2 * k, height + Rand(-1, 2) * k, Rand(0.4f, 0.6f) * k, 2.2f, Rand(50, 80), 0.6f,
+							0.8f * k, Rand(0, 0.25f), 0, 0.05f, Shade(new float3(0.95f, 0.96f, 1f), Rand(0.85f, 1f)), Rand(0, 2));
+						p.Wind = 1;
+						particles.Add(p);
+					}
 
-					for (var i = 0; i < (int)(8 * k) + 3; i++)
-						Add(PxParticleKind.Flame, 2 * k, height, Rand(0.2f, 0.35f) * k, 0.2f, Rand(20, 35), 1f,
-							2.2f * k, Rand(0.5f, 2.5f), 0.12f, 0.01f, fire);
+					break;
 
-					// White vapour cloud where the two met
-					for (var i = 0; i < (int)(8 * k * info.Smoke) + 3; i++)
-						Add(PxParticleKind.Smoke, 2 * k, height + Rand(-1, 2) * k, Rand(0.4f, 0.6f) * k, 2.2f, Rand(50, 80), 0.6f,
-							0.8f * k, Rand(0, 0.25f), 0, 0.05f, Shade(new float3(0.95f, 0.96f, 1f), Rand(0.85f, 1f)));
-					return;
-				}
-
-				case PxExplosionStyle.Fireball:
-				{
-					Add(PxParticleKind.Glow, 0, height, 1.9f * k, 0.6f, 9, 1f, 0, 0, 0, 0, new float3(1f, 0.85f, 0.55f));
-
-					// The fireball: big rolling balls of flame swelling out of the centre
-					for (var i = 0; i < (int)(14 * k) + 5; i++)
-						Add(PxParticleKind.Fireball, 2.5f * k, height + Rand(-1, 3) * k, Rand(0.8f, 1.2f) * k, 1f, Rand(18, 28), 1f,
-							1.1f * k, Rand(0.2f, 0.8f), 0, 0.1f, Shade(fire, Rand(0.9f, 1.05f)));
-
-					for (var i = 0; i < (int)(8 * k) + 3; i++)
-						Add(PxParticleKind.Flame, 3 * k, height + Rand(0, 2) * k, Rand(0.5f, 0.8f) * k, 0.5f, Rand(12, 20), 1f,
-							1.8f * k, Rand(0.2f, 1f), 0, 0.1f, fire);
-
-					// A ring of black smoke thrown out around it
-					var arms = random.Next(12, 18);
-					for (var j = 0; j < arms; j++)
-						AddDir(PxParticleKind.Billow, MathF.PI * 2 * j / arms + Rand(-0.1f, 0.1f), 3 * k, height + Rand(-1, 1) * k,
-							Rand(0.45f, 0.65f) * k, 2f, Rand(80, 120) * info.Smoke, 0.9f, Rand(1.2f, 1.8f) * k, Rand(-0.1f, 0.2f), 0, 0.05f,
-							Shade(new float3(0.18f, 0.17f, 0.16f), Rand(0.8f, 1.3f)));
-
-					// Burning debris arcing down out of the cloud
-					for (var i = 0; i < (int)(7 * k) + 3; i++)
-						Add(PxParticleKind.Flame, 2 * k, height, Rand(0.25f, 0.4f) * k, 0.1f, Rand(30, 50), 1f,
-							3f * k, Rand(1f, 3f), 0.15f, 0.01f, fire);
-
-					for (var i = 0; i < (int)(16 * k) + 5; i++)
-						Add(PxParticleKind.Spark, 1.5f * k, height + 1, Rand(0.25f, 0.45f), 0, Rand(12, 20), 1f,
-							4.5f * k, Rand(-1f, 3f), 0.06f, 0.03f, white);
-
-					Embers(k);
-					return;
-				}
-
-				default:
-					// Flash and shock ring
-					Add(PxParticleKind.Glow, 0, height, 1.4f * k, 0.6f, 8, 1f, 0, 0, 0, 0, new float3(1f, 0.9f, 0.7f));
-					if (!air)
-						Add(PxParticleKind.Ring, 0, 0, 0.9f * k, 1.6f, 16, 0.8f, 0, 0, 0, 0, white);
-
-					// Rolling fireball: flames pushed outwards and up, shrinking as they burn out
-					for (var i = 0; i < (int)(10 * k) + 4; i++)
-						Add(PxParticleKind.Flame, 4 * k, height + Rand(0, 4 * k), Rand(0.5f, 0.9f) * k, 0.5f, Rand(12, 20), 1f,
-							1.2f * k, Rand(0.3f, 1.2f), 0, 0.12f, fire);
-
-					// Sparks and debris
-					for (var i = 0; i < (int)(10 * k) + 4; i++)
-						Add(PxParticleKind.Spark, 2 * k, height + 2, Rand(0.3f, 0.6f), 0, Rand(10, 18), 1f,
-							3.5f * k, Rand(1f, 3f), air ? 0.05f : 0.2f, 0.04f, white);
-
-					if (!air)
-						for (var i = 0; i < (int)(6 * k); i++)
-							Add(PxParticleKind.Chunk, 3 * k, 2, Rand(0.4f, 0.9f), 0, Rand(30, 50), 1f,
-								2.2f * k, Rand(1.5f, 3.5f), 0.22f, 0.02f, new float3(0.55f, 0.5f, 0.45f));
-
-					// Smoke: dark and dense at first, rising and spreading
-					for (var i = 0; i < (int)(10 * k * info.Smoke) + 3; i++)
-						Add(PxParticleKind.Smoke, 6 * k, height + Rand(2, 8) * k, Rand(0.5f, 0.8f) * k, 2.4f, Rand(55, 95), 0.85f,
-							0.5f * k, Rand(0.25f, 0.6f), 0, 0.03f, Shade(grey, Rand(0.55f, 0.85f)));
+				case PxExplosionStyle.Naval:
+					// Spray thrown up around the hull
+					for (var i = 0; i < (int)(10 * k); i++)
+						Add(PxParticleKind.Foam, 6 * k, 1, Rand(0.4f, 0.7f) * k, 1.4f, Rand(30, 50), 0.85f,
+							1.4f * k, Rand(1.5f, 3f), 0.15f, 0.04f, white);
 					break;
 			}
 
-			if (info.Style is PxExplosionStyle.Bomblet)
-				return;
+			// --- Second cook-offs: ammunition or fuel going up a moment later ---
+			if (!air && k >= 0.9f && random.NextFloat() < r.Pops)
+			{
+				var pops = random.Next(1, 4);
+				for (var j = 0; j < pops; j++)
+					Pop(k, Rand(8, 45), Rand(0, MathF.PI * 2), Rand(0.5f, 2f) * k);
+			}
 
-			Embers(k);
-			if (info.Style is PxExplosionStyle.Precision)
-				return;
-
-			AddCharacter(k, fire);
-
-			if (!air && k >= 0.9f && random.NextFloat() < info.LingerChance)
+			if (!air && k >= 0.9f && r.Column > 0 && random.NextFloat() < info.LingerChance)
 				burn = burnLeft = Rand(90, 220) * Math.Min(k, 2f);
 		}
 
-		/// <summary>Glowing embers thrown out of every blast, arcing down and burning out.</summary>
-		void Embers(float k)
+		/// <summary>A small secondary blast at (a, r) from the centre, delay ticks later.</summary>
+		void Pop(float k, float delay, float a, float dist)
 		{
-			for (var i = 0; i < (int)(14 * k) + 6; i++)
-				Add(PxParticleKind.Spark, 2 * k, height + Rand(1, 4) * k, Rand(0.12f, 0.28f), 0, Rand(25, 45), 1f,
-					3.6f * k, Rand(1.5f, 4.5f), air ? 0.06f : 0.13f, 0.02f, new float3(1f, Rand(0.45f, 0.7f), Rand(0.15f, 0.3f)));
+			var ox = MathF.Cos(a) * dist;
+			var oy = MathF.Sin(a) * dist * 0.6f;
+			void At(PxParticle p)
+			{
+				p.X += ox;
+				p.Y += oy;
+				particles.Add(p);
+			}
+
+			var size = Rand(0.35f, 0.55f) * k;
+			At(Make(PxParticleKind.Flash, 0, 0, 1, 0.6f + 0.4f * size, -0.2f, 3, 0.9f, 0, 0, 0, 0, new float3(1, 1, 1), delay));
+			At(Make(PxParticleKind.Light, 0, 0, 0, 0.9f + 0.6f * size, 0.1f, 6, 0.7f, 0, 0, 0, 0, new float3(1f, 0.85f, 0.6f), delay));
+			for (var i = 0; i < 3; i++)
+			{
+				var p = Make(PxParticleKind.Fire2, 0.6f * size, 1, size * Rand(0.9f, 1.2f), 0.8f, Rand(12, 18), 1f, 0.5f, Rand(0.4f, 0.9f), 0, 0.1f, fire, delay + Rand(0, 1));
+				p.Frame = random.Next(2) * 16;
+				At(p);
+			}
+
+			for (var i = 0; i < 8; i++)
+				At(Make(PxParticleKind.Spark, 0.5f, 1.5f, Rand(0.25f, 0.45f), 0, Rand(8, 14), 1f, 3.5f * size + 1, Rand(1, 3), 0.2f, 0.04f, new float3(1, 1, 1), delay));
+
+			for (var i = 0; i < 6; i++)
+			{
+				var p = Make(PxParticleKind.Ember, 0.5f, 1.5f, Rand(0.6f, 1.1f), 0, Rand(20, 35), 1f, 3f * size + 1, Rand(1.5f, 3.5f), 0.12f, 0.02f,
+					new float3(1f, Rand(0.5f, 0.75f), Rand(0.15f, 0.3f)), delay);
+				p.Align = true;
+				At(p);
+			}
+
+			for (var i = 0; i < 3; i++)
+			{
+				var p = Make(PxParticleKind.Smoke2, 0.8f * size, 1.5f, Rand(0.35f, 0.5f) * k, 2.4f, Rand(45, 70), 0.85f, 0.4f, Rand(0.4f, 0.8f), 0, 0.05f, FireLit(), delay + 1);
+				p.FadeTint = true;
+				p.TintEnd = SmokeShade();
+				p.Wind = 1;
+				At(p);
+			}
 		}
 
-		/// <summary>Gives each blast its own random shape: a rising column, a sideways burst, a fiery core with radiating
-		/// smoke arms, a debris blast with dirt streaks, or a round fireball in a grey haze. Charcoal smoke is lit orange
-		/// from the fire inside it.</summary>
-		void AddCharacter(float k, float3 fire)
+		/// <summary>Glowing embers thrown out of every blast, streaking along their flight and burning out.</summary>
+		void Embers(float k, float amount)
 		{
-			var smoke = info.Smoke;
-			float3 Charcoal() => Shade(new float3(0.2f, 0.19f, 0.18f), Rand(0.7f, 1.3f));
-			float3 FireLit() => new(Rand(0.5f, 0.75f), Rand(0.26f, 0.38f), Rand(0.1f, 0.16f));
-			var brown = new float3(0.45f, 0.36f, 0.27f);
-
-			switch (random.Next(5))
+			for (var i = 0; i < (int)((16 + 14 * k) * amount); i++)
 			{
-				case 0:
-					// Column: fire at the base, a charcoal column climbing above it, lit from below
-					for (var i = 0; i < (int)(6 * k) + 3; i++)
-						Add(PxParticleKind.Fireball, 3 * k, height + Rand(0, 3) * k, Rand(0.7f, 1f) * k, 0.8f, Rand(18, 28), 1f,
-							0.6f * k, Rand(0.3f, 0.8f), 0, 0.1f, fire);
-
-					for (var i = 0; i < (int)(10 * k * smoke) + 4; i++)
-					{
-						var up = Rand(0, 1);
-						Add(PxParticleKind.Billow, 2.5f * k, height + (4 + 16 * up) * k, Rand(0.6f, 0.9f) * k, 2.4f, Rand(100, 150), 0.9f,
-							0.3f * k, Rand(0.8f, 1.4f), 0, 0.03f, up < 0.3f ? FireLit() : Charcoal());
-					}
-
-					break;
-
-				case 1:
-					// Sideways burst: brown billows thrown out wide and low, fire between them
-					for (var i = 0; i < (int)(12 * k * smoke) + 4; i++)
-						Add(PxParticleKind.Billow, 2 * k, height + Rand(2, 6) * k, Rand(0.5f, 0.8f) * k, 2f, Rand(70, 110), 0.85f,
-							2.4f * k, Rand(0.1f, 0.4f), 0, 0.06f, random.NextFloat() < 0.4f ? FireLit() : Shade(brown, Rand(0.6f, 1f)));
-
-					for (var i = 0; i < (int)(8 * k) + 3; i++)
-						Add(PxParticleKind.Fireball, 2 * k, height + Rand(1, 4) * k, Rand(0.5f, 0.8f) * k, 0.7f, Rand(14, 22), 1f,
-							1.6f * k, Rand(0.2f, 0.6f), 0, 0.08f, fire);
-
-					break;
-
-				case 2:
-				{
-					// Fiery core with grey smoke arms radiating out of it
-					for (var i = 0; i < (int)(12 * k) + 4; i++)
-						Add(PxParticleKind.Fireball, 3 * k, height + Rand(1, 4) * k, Rand(0.8f, 1.2f) * k, 0.9f, Rand(20, 30), 1f,
-							0.6f * k, Rand(0.2f, 0.6f), 0, 0.1f, fire);
-
-					var arms = random.Next(6, 10);
-					for (var j = 0; j < arms; j++)
-					{
-						var a = MathF.PI * 2 * (j + Rand(-0.3f, 0.3f)) / arms;
-						var z = height + Rand(2, 6) * k;
-						for (var i = 0; i < 4; i++)
-							AddDir(PxParticleKind.Billow, a + Rand(-0.12f, 0.12f), 2 * k, z, Rand(0.35f, 0.55f) * k * (1 + 0.2f * i), 2.2f,
-								Rand(60, 90) * smoke, 0.75f, (0.8f + 0.6f * i) * k, Rand(0.1f, 0.3f), 0, 0.05f, Shade(new float3(0.5f, 0.49f, 0.47f), Rand(0.7f, 1.1f)));
-					}
-
-					break;
-				}
-
-				case 3:
-				{
-					// Debris blast: charcoal clumps, a spray of embers and chunks, and dirt streaks shooting out
-					for (var i = 0; i < (int)(8 * k * smoke) + 3; i++)
-						Add(PxParticleKind.Billow, 3 * k, height + Rand(2, 8) * k, Rand(0.55f, 0.85f) * k, 2.2f, Rand(80, 120), 0.9f,
-							1.2f * k, Rand(0.3f, 0.7f), 0, 0.04f, random.NextFloat() < 0.35f ? FireLit() : Charcoal());
-
-					Embers(k);
-					if (air)
-						break;
-
-					for (var i = 0; i < (int)(10 * k); i++)
-						Add(PxParticleKind.Chunk, 2 * k, 3, Rand(0.4f, 0.9f), 0, Rand(35, 60), 1f,
-							3.2f * k, Rand(2.5f, 5f), 0.22f, 0.02f, new float3(0.4f, 0.32f, 0.26f));
-
-					var rays = random.Next(5, 9);
-					for (var j = 0; j < rays; j++)
-					{
-						var a = Rand(0, MathF.PI * 2);
-						var vz = Rand(0.8f, 2.2f);
-						for (var i = 0; i < 6; i++)
-							AddDir(PxParticleKind.Smoke, a, 1, height + 2, Rand(0.18f, 0.28f) * k, 1.4f, Rand(25, 40), 0.6f,
-								(1.2f + 0.8f * i) * k, vz * (1 + 0.3f * i), 0.06f, 0.08f, Shade(new float3(0.78f, 0.62f, 0.48f), Rand(0.8f, 1f)));
-					}
-
-					break;
-				}
-
-				default:
-					// Round fireball wrapped in a soft grey haze
-					for (var i = 0; i < (int)(14 * k) + 5; i++)
-						Add(PxParticleKind.Fireball, 2 * k, height + Rand(2, 5) * k, Rand(0.8f, 1.2f) * k, 1f, Rand(22, 34), 1f,
-							0.5f * k, Rand(0.3f, 0.7f), 0, 0.1f, Shade(fire, Rand(0.9f, 1.05f)));
-
-					for (var i = 0; i < (int)(12 * k * smoke) + 4; i++)
-						Add(PxParticleKind.Smoke, 3 * k, height + Rand(2, 6) * k, Rand(0.6f, 0.9f) * k, 2.6f, Rand(70, 110), 0.5f,
-							1.3f * k, Rand(0.2f, 0.5f), 0, 0.04f, Shade(new float3(0.75f, 0.74f, 0.72f), Rand(0.8f, 1.05f)));
-
-					break;
+				var p = Make(PxParticleKind.Ember, 1.5f * k, height + Rand(1, 3) * k, Rand(0.6f, 1.3f), 0, Rand(25, 50), 1f,
+					Rand(2.5f, 5f) * k, Rand(1.5f, 5f), air ? 0.06f : 0.12f, 0.02f, new float3(1f, Rand(0.5f, 0.75f), Rand(0.15f, 0.3f)));
+				p.Align = true;
+				particles.Add(p);
 			}
+		}
+
+		/// <summary>White-hot sparks, fast and short-lived.</summary>
+		void Sparks(float k, float amount)
+		{
+			for (var i = 0; i < (int)((10 + 10 * k) * amount); i++)
+				Add(PxParticleKind.Spark, 2 * k, height + 2, Rand(0.3f, 0.6f), 0, Rand(8, 16), 1f,
+					4f * k, Rand(1f, 3f), air ? 0.05f : 0.2f, 0.04f, new float3(1, 1, 1));
 		}
 
 		/// <summary>The fire left at the impact: flames licking up and dark smoke, dying down as it burns out.</summary>
@@ -576,19 +589,27 @@ namespace OpenRA.Mods.RAPX.Warheads
 			var k = info.Size;
 			var heat = Math.Clamp(burnLeft / burn, 0, 1);
 			nextFlame = Rand(1.5f, 3f) / (0.4f + 0.6f * heat);
-			Add(PxParticleKind.Fireball, 2 * k, Rand(0, 1), Rand(0.25f, 0.45f) * k * (0.5f + 0.5f * heat), 0.6f, Rand(12, 20), 0.9f,
-				0.1f, Rand(0.4f, 0.9f), 0, 0.1f, Tint(info.FireColor));
+			var p = Make(PxParticleKind.Fire2, 1.5f * k, Rand(0, 1), Rand(0.22f, 0.4f) * k * (0.5f + 0.5f * heat), 0.6f, Rand(12, 20), 0.9f,
+				0.1f, Rand(0.4f, 0.9f), 0, 0.1f, fire);
+			p.Frame = random.Next(2) * 16;
+			particles.Add(p);
+
+			if (random.NextFloat() < 0.7f)
+				Add(PxParticleKind.Flame, 1.5f * k, Rand(0, 1), Rand(0.3f, 0.5f) * k * (0.5f + 0.5f * heat), 0.4f, Rand(10, 16), 0.9f,
+					0.2f, Rand(0.4f, 0.9f), 0, 0.1f, Tint(info.FireColor));
 
 			if (random.NextFloat() < 0.6f)
-				Add(PxParticleKind.Billow, 2 * k, Rand(4, 8) * k * 0.5f, Rand(0.35f, 0.55f) * k, 2.2f, Rand(60, 90), 0.7f,
+			{
+				var q = Make(PxParticleKind.Smoke2, 1.5f * k, Rand(3, 6) * k * 0.5f, Rand(0.3f, 0.5f) * k, 2.2f, Rand(60, 90), 0.7f,
 					0.15f, Rand(0.5f, 0.9f), 0, 0.03f, Shade(new float3(0.22f, 0.21f, 0.2f), Rand(0.8f, 1.2f)));
+				q.Wind = 1;
+				particles.Add(q);
+			}
 		}
-
-		float Total => (info.Style is PxExplosionStyle.Heavy or PxExplosionStyle.Thermobaric or PxExplosionStyle.Naval ? 220 : 160) + burn;
 
 		public void Tick(World world)
 		{
-			if (time > Total)
+			if ((time > 40 && burnLeft <= 0 && particles.Items.Count == 0) || time > 1200)
 				world.AddFrameEndTask(w => w.Remove(this));
 		}
 

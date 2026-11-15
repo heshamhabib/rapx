@@ -249,6 +249,8 @@ World:
 	PxWeatherManager:
 	PxWeatherGround:
 	PxWeatherSky:
+	PxBlastRegistry:
+	PxBlastWaves:
 	PxCashPopups:
 	DevCommands:
 	DebugVisualizationCommands:

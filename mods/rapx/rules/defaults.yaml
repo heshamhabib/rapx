@@ -306,6 +306,9 @@
 		OpeningSequence: open
 		Offset: 0,0,200
 		RequiresCondition: parachute
+	WithPxBlastShove:
+		Distance: 1.6
+		Hop: 0.8
 	HitShape:
 	MapEditorData:
 		Categories: Vehicle
@@ -357,11 +360,15 @@
 		DeathTypes:
 			DefaultDeath: 1
 			BulletDeath: 2
-			SmallExplosionDeath: 3
-			ExplosionDeath: 4
 			FireDeath: 5
 			ElectricityDeath: 6
 		CrushedSequence: die-crushed
+	# Explosion deaths: thrown by the blast (OpenRA.Mods.RAPX/Traits/Render/WithPxBlastDeath.cs), die3/die4 without one
+	WithPxBlastDeath:
+		DeathTypes:
+			SmallExplosionDeath: 3
+			ExplosionDeath: 4
+	WithPxBlastShove:
 	AttackMove:
 	Passenger:
 		CargoType: Infantry

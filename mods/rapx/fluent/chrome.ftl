@@ -425,7 +425,7 @@ checkbox-px-ground-effects =
 
 checkbox-px-weather-effects =
     .label = Weather Effects
-    .tooltip = Rain, snow, fog, sandstorms and the light each weather casts. The weather still changes and is still announced, it is just not drawn. Applies to the next match.
+    .tooltip = Rain, snow, fog, sandstorms and the light each weather casts, and the pressure waves of big explosions bending the picture. The weather still changes and is still announced, it is just not drawn. Applies to the next match.
 
 ## Observer sidebar
 label-px-observer-title = OBSERVER
