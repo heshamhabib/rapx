@@ -419,6 +419,14 @@ checkbox-px-smooth-motion =
     .label = Smooth Unit Motion
     .tooltip = Draw moving units between game ticks so they glide at the full frame rate instead of stepping 25 times a second.
 
+checkbox-px-ground-effects =
+    .label = Ground Effects
+    .tooltip = Terrain detail textures and moving cloud shadows. Costs the same every frame whatever is happening, so it is the first thing to turn off on a laptop's built-in graphics. Applies to the next match.
+
+checkbox-px-weather-effects =
+    .label = Weather Effects
+    .tooltip = Rain, snow, fog, sandstorms and the light each weather casts. The weather still changes and is still announced, it is just not drawn. Applies to the next match.
+
 ## Observer sidebar
 label-px-observer-title = OBSERVER
 label-px-observer-live = LIVE

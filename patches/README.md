@@ -32,6 +32,7 @@ engine-nuke-descent.patch
 engine-intel-uhd-debug-callback.patch
 engine-radar-resize.patch
 engine-launcher-extra-args.patch
+engine-effects-settings.patch
 ```
 
 ## Upgrading the engine

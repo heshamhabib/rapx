@@ -1,0 +1,17 @@
+--- a/OpenRA.Game/Settings.cs
++++ b/OpenRA.Game/Settings.cs
+@@ -203,6 +203,14 @@ public class GraphicSettings
+ 		[Desc("Draw moving units at positions interpolated between game ticks, so motion is smooth at any frame rate.")]
+ 		public bool SmoothMotion = true;
+ 
++		[Desc("Draw the full-screen ground passes: terrain detail textures and moving cloud shadows.",
++			"These cost a fixed amount of fill rate every frame, which integrated GPUs do not have to spare.")]
++		public bool GroundEffects = true;
++
++		[Desc("Draw the weather passes: rain, snow, fog, sand and the light each weather casts.",
++			"The weather itself still changes and is still announced; only the full-screen drawing stops.")]
++		public bool WeatherEffects = true;
++
+ 		[Desc("When drawing is slower than the game, run several game ticks per frame so the game keeps its real speed.")]
+ 		public bool LogicCatchUp = true;
+ 		public float UIScale = 1;

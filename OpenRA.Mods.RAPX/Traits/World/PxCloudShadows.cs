@@ -61,6 +61,7 @@ namespace OpenRA.Mods.RAPX.Traits
 
 			// RAPX_NO_CLOUDS disables the effect for before/after comparisons
 			enabled = (info.Tilesets.Count == 0 || info.Tilesets.Contains(world.Map.Tileset)) &&
+				Game.Settings.Graphics.GroundEffects &&
 				string.IsNullOrEmpty(System.Environment.GetEnvironmentVariable("RAPX_NO_CLOUDS"));
 			if (!enabled)
 				return;

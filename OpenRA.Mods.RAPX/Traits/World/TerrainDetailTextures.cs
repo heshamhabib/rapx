@@ -142,6 +142,7 @@ namespace OpenRA.Mods.RAPX.Traits
 
 			// RAPX_NO_TERRAIN_DETAIL disables the effect for before/after comparisons
 			Active = info.Tilesets.Contains(world.Map.Tileset) &&
+				Game.Settings.Graphics.GroundEffects &&
 				string.IsNullOrEmpty(System.Environment.GetEnvironmentVariable("RAPX_NO_TERRAIN_DETAIL"));
 			if (!Active)
 				return;
