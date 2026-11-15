@@ -536,11 +536,12 @@ namespace OpenRA.Platforms.Default
 					Features ^= GLFeatures.DebugMessagesCallback;
 			}
 
-			// Older Intel on Windows is broken too
+			// Intel on Windows is broken too, UHD Graphics included: its driver reports a shader recompile
+			// performance warning on almost every draw, and each synchronous callback stalls the render thread
 			if (Features.HasFlag(GLFeatures.DebugMessagesCallback) && Platform.CurrentPlatform == PlatformType.Windows)
 			{
 				var renderer = glGetString(GL_RENDERER);
-				if (renderer.Contains("HD Graphics") && !renderer.Contains("UHD Graphics"))
+				if (renderer.Contains("HD Graphics"))
 					Features ^= GLFeatures.DebugMessagesCallback;
 			}
 

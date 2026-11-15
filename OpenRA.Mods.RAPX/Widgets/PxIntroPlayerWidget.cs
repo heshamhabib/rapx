@@ -53,10 +53,10 @@ namespace OpenRA.Mods.RAPX.Widgets
 		public float BarrageDuration = 3.2f;
 
 		[Desc("Sounds played as each barrage shell lands (picked at random).")]
-		public string[] ImpactSounds = { "kaboom22.aud", "kaboom15.aud" };
+		public string[] ImpactSounds = { "ra|audio/sfx/kaboom22.ogg", "ra|audio/sfx/kaboom15.ogg" };
 
 		[Desc("Sound of the final blast.")]
-		public string BlastSound = "kaboom25.aud";
+		public string BlastSound = "ra|audio/sfx/kaboom25.ogg";
 
 		[Desc("Size of a tile in video pixels.")]
 		public int TileSize = 8;
