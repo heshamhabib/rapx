@@ -344,3 +344,24 @@ KV152:
 	Warhead@1Dam: SpreadDamage
 		Spread: 256
 		Damage: 7000
+
+# Elephanta (rules/vehicles.yaml ELPH): the twin heavy cannon on the war elephant's back, one shell per barrel
+ElephantaGun:
+	Inherits: ^Cannon
+	ReloadDelay: 85
+	Range: 7c0
+	Burst: 2
+	BurstDelays: 8
+	Report: ra|audio/sfx/cannon2.ogg
+	Warhead@1Dam: SpreadDamage
+		Spread: 256
+		Damage: 8000
+		Versus:
+			None: 45
+			Wood: 80
+			Light: 90
+			Heavy: 110
+			Concrete: 70
+	Warhead@3Eff: PxExplosion
+		Size: 2.0
+		Smoke: 1.4

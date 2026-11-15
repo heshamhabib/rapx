@@ -68,6 +68,99 @@ DOG:
 		VoiceSet: DogVoice
 	-TakeCover:
 
+# Nile Crocodile (Egypt only; art: artsrc/units/meshes/render_croc.py, sounds: artsrc/audio/make_croc_sounds.py).
+# Lunges at soldiers and dogs and kills them in one bite, then stops to swallow. Swims (crocodile locomotor): in
+# water it sinks to the eyes and, lying still, cannot be seen.
+CROC:
+	Inherits: ^Soldier
+	Buildable:
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 55
+		Prerequisites: ~barracks, ~structures.egypt, ~techlevel.infonly
+		Description: actor-croc.description
+	PxNationalUnit:
+		Factions: egypt
+	Valued:
+		Cost: 400
+	Tooltip:
+		Name: actor-croc.name
+		GenericName: actor-croc.generic-name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Selectable:
+		Bounds: 900, 640, 0, -120
+		DecorationBounds: 900, 640, 0, -120
+	Health:
+		HP: 6000
+	Armor:
+		Type: Light
+	Mobile:
+		Speed: 64
+		Locomotor: crocodile
+		Voice: Move
+		PauseOnCondition: attack-cooldown || eating
+	Guard:
+		Voice: Move
+	Passenger:
+		Voice: Move
+	RevealsShroud:
+		Range: 5c0
+	Armament:
+		Weapon: CrocJaws
+		ReloadingCondition: attack-cooldown
+	-AttackFrontal:
+	# The lunge: a short, fast rush at the prey
+	AttackLeap:
+		Voice: Attack
+		Speed: 300
+		PauseOnCondition: attacking || attack-cooldown
+	AttackMove:
+		Voice: Move
+	# Swallowing the prey takes a while
+	GrantConditionOnAttack:
+		Condition: eating
+		RevokeDelay: 50
+	AutoTarget:
+		InitialStance: AttackAnything
+	AutoTargetPriority@DEFAULT:
+		ValidTargets: Infantry
+	Targetable:
+		TargetTypes: GroundActor, Infantry
+	GrantConditionOnTerrain@SWIM:
+		TerrainTypes: Water, River
+		Condition: swimming
+	WithInfantryBody:
+		MoveSequence: walk
+		StandSequences: stand
+		IdleSequences: idle1
+		DefaultAttackSequence: eat
+		RequiresCondition: !swimming && !parachute
+	WithInfantryBody@SWIM:
+		MoveSequence: swim
+		StandSequences: swim
+		DefaultAttackSequence: eat
+		RequiresCondition: swimming && !parachute
+	WithInfantryBody@PARACHUTE:
+		RequiresCondition: parachute
+		Palette: player-noshadow
+		IsPlayerPalette: true
+	# Faster in the water than on land
+	SpeedMultiplier@SWIM:
+		Modifier: 160
+		RequiresCondition: swimming
+	# Lurking: still in the water, only the eyes show
+	Cloak:
+		InitialDelay: 50
+		CloakDelay: 75
+		UncloakOn: Attack, Move, Unload, Damage
+		IsPlayerPalette: true
+		RequiresCondition: swimming
+	IgnoresDisguise:
+	Voiced:
+		VoiceSet: CrocVoice
+	-TakeCover:
+
 E1:
 	Inherits: ^Soldier
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove

@@ -109,8 +109,8 @@ fact.china:
 			INTERIOR: ra|bits/hd/styles/china/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 1,-7
+		Scale: 0.5000
+		Offset: 2,-14
 	make:
 		Filename: ra|bits/hd/styles/china/fact-make.png
 		TilesetFilenames:
@@ -121,8 +121,8 @@ fact.china:
 		Start: 0
 		Length: 22
 		Tick: 45
-		Scale: 0.4167
-		Offset: 1,-7
+		Scale: 0.5000
+		Offset: 2,-14
 	build:
 		Filename: ra|bits/hd/styles/china/fact.png
 		TilesetFilenames:
@@ -132,8 +132,8 @@ fact.china:
 			INTERIOR: ra|bits/hd/styles/china/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 1,-7
+		Scale: 0.5000
+		Offset: 2,-14
 	damaged-idle:
 		Filename: ra|bits/hd/styles/china/fact-damaged.png
 		TilesetFilenames:
@@ -143,8 +143,8 @@ fact.china:
 			INTERIOR: ra|bits/hd/styles/china/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 1,-7
+		Scale: 0.5000
+		Offset: 2,-14
 	damaged-build:
 		Filename: ra|bits/hd/styles/china/fact-damaged.png
 		TilesetFilenames:
@@ -154,8 +154,8 @@ fact.china:
 			INTERIOR: ra|bits/hd/styles/china/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 1,-7
+		Scale: 0.5000
+		Offset: 2,-14
 	collapse:
 		Filename: ra|bits/hd/styles/china/fact-collapse.png
 		TilesetFilenames:
@@ -165,8 +165,8 @@ fact.china:
 			INTERIOR: ra|bits/hd/styles/china/fact-collapse.png
 		Start: 0
 		Length: 16
-		Scale: 0.4167
-		Offset: 1,-7
+		Scale: 0.5000
+		Offset: 2,-14
 
 powr.china:
 	Inherits: powr
@@ -474,8 +474,8 @@ fact.cuba:
 			INTERIOR: ra|bits/hd/styles/cuba/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 6,-4
+		Scale: 0.5000
+		Offset: 8,-9
 	make:
 		Filename: ra|bits/hd/styles/cuba/fact-make.png
 		TilesetFilenames:
@@ -486,8 +486,8 @@ fact.cuba:
 		Start: 0
 		Length: 22
 		Tick: 45
-		Scale: 0.4167
-		Offset: 6,-4
+		Scale: 0.5000
+		Offset: 8,-9
 	build:
 		Filename: ra|bits/hd/styles/cuba/fact.png
 		TilesetFilenames:
@@ -497,8 +497,8 @@ fact.cuba:
 			INTERIOR: ra|bits/hd/styles/cuba/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 6,-4
+		Scale: 0.5000
+		Offset: 8,-9
 	damaged-idle:
 		Filename: ra|bits/hd/styles/cuba/fact-damaged.png
 		TilesetFilenames:
@@ -508,8 +508,8 @@ fact.cuba:
 			INTERIOR: ra|bits/hd/styles/cuba/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 6,-4
+		Scale: 0.5000
+		Offset: 8,-9
 	damaged-build:
 		Filename: ra|bits/hd/styles/cuba/fact-damaged.png
 		TilesetFilenames:
@@ -519,8 +519,8 @@ fact.cuba:
 			INTERIOR: ra|bits/hd/styles/cuba/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 6,-4
+		Scale: 0.5000
+		Offset: 8,-9
 	collapse:
 		Filename: ra|bits/hd/styles/cuba/fact-collapse.png
 		TilesetFilenames:
@@ -530,8 +530,8 @@ fact.cuba:
 			INTERIOR: ra|bits/hd/styles/cuba/fact-collapse.png
 		Start: 0
 		Length: 16
-		Scale: 0.4167
-		Offset: 6,-4
+		Scale: 0.5000
+		Offset: 8,-9
 
 powr.cuba:
 	Inherits: powr
@@ -839,8 +839,8 @@ fact.egypt:
 			INTERIOR: ra|bits/hd/styles/egypt/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 10,0
+		Scale: 0.5000
+		Offset: 12,-4
 	make:
 		Filename: ra|bits/hd/styles/egypt/fact-make.png
 		TilesetFilenames:
@@ -851,8 +851,8 @@ fact.egypt:
 		Start: 0
 		Length: 22
 		Tick: 45
-		Scale: 0.4167
-		Offset: 10,0
+		Scale: 0.5000
+		Offset: 12,-4
 	build:
 		Filename: ra|bits/hd/styles/egypt/fact.png
 		TilesetFilenames:
@@ -862,8 +862,8 @@ fact.egypt:
 			INTERIOR: ra|bits/hd/styles/egypt/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 10,0
+		Scale: 0.5000
+		Offset: 12,-4
 	damaged-idle:
 		Filename: ra|bits/hd/styles/egypt/fact-damaged.png
 		TilesetFilenames:
@@ -873,8 +873,8 @@ fact.egypt:
 			INTERIOR: ra|bits/hd/styles/egypt/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 10,0
+		Scale: 0.5000
+		Offset: 12,-4
 	damaged-build:
 		Filename: ra|bits/hd/styles/egypt/fact-damaged.png
 		TilesetFilenames:
@@ -884,8 +884,8 @@ fact.egypt:
 			INTERIOR: ra|bits/hd/styles/egypt/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 10,0
+		Scale: 0.5000
+		Offset: 12,-4
 	collapse:
 		Filename: ra|bits/hd/styles/egypt/fact-collapse.png
 		TilesetFilenames:
@@ -895,8 +895,8 @@ fact.egypt:
 			INTERIOR: ra|bits/hd/styles/egypt/fact-collapse.png
 		Start: 0
 		Length: 16
-		Scale: 0.4167
-		Offset: 10,0
+		Scale: 0.5000
+		Offset: 12,-4
 
 powr.egypt:
 	Inherits: powr
@@ -1156,8 +1156,8 @@ fact.england:
 			INTERIOR: ra|bits/hd/styles/england/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 9,0
+		Scale: 0.5000
+		Offset: 10,-4
 	make:
 		Filename: ra|bits/hd/styles/england/fact-make.png
 		TilesetFilenames:
@@ -1168,8 +1168,8 @@ fact.england:
 		Start: 0
 		Length: 22
 		Tick: 45
-		Scale: 0.4167
-		Offset: 9,0
+		Scale: 0.5000
+		Offset: 10,-4
 	build:
 		Filename: ra|bits/hd/styles/england/fact.png
 		TilesetFilenames:
@@ -1179,8 +1179,8 @@ fact.england:
 			INTERIOR: ra|bits/hd/styles/england/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 9,0
+		Scale: 0.5000
+		Offset: 10,-4
 	damaged-idle:
 		Filename: ra|bits/hd/styles/england/fact-damaged.png
 		TilesetFilenames:
@@ -1190,8 +1190,8 @@ fact.england:
 			INTERIOR: ra|bits/hd/styles/england/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 9,0
+		Scale: 0.5000
+		Offset: 10,-4
 	damaged-build:
 		Filename: ra|bits/hd/styles/england/fact-damaged.png
 		TilesetFilenames:
@@ -1201,8 +1201,8 @@ fact.england:
 			INTERIOR: ra|bits/hd/styles/england/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 9,0
+		Scale: 0.5000
+		Offset: 10,-4
 	collapse:
 		Filename: ra|bits/hd/styles/england/fact-collapse.png
 		TilesetFilenames:
@@ -1212,8 +1212,8 @@ fact.england:
 			INTERIOR: ra|bits/hd/styles/england/fact-collapse.png
 		Start: 0
 		Length: 16
-		Scale: 0.4167
-		Offset: 9,0
+		Scale: 0.5000
+		Offset: 10,-4
 
 powr.england:
 	Inherits: powr
@@ -1521,8 +1521,8 @@ fact.france:
 			INTERIOR: ra|bits/hd/styles/france/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 4,2
+		Scale: 0.5000
+		Offset: 4,-3
 	make:
 		Filename: ra|bits/hd/styles/france/fact-make.png
 		TilesetFilenames:
@@ -1533,8 +1533,8 @@ fact.france:
 		Start: 0
 		Length: 22
 		Tick: 45
-		Scale: 0.4167
-		Offset: 4,2
+		Scale: 0.5000
+		Offset: 4,-3
 	build:
 		Filename: ra|bits/hd/styles/france/fact.png
 		TilesetFilenames:
@@ -1544,8 +1544,8 @@ fact.france:
 			INTERIOR: ra|bits/hd/styles/france/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 4,2
+		Scale: 0.5000
+		Offset: 4,-3
 	damaged-idle:
 		Filename: ra|bits/hd/styles/france/fact-damaged.png
 		TilesetFilenames:
@@ -1555,8 +1555,8 @@ fact.france:
 			INTERIOR: ra|bits/hd/styles/france/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 4,2
+		Scale: 0.5000
+		Offset: 4,-3
 	damaged-build:
 		Filename: ra|bits/hd/styles/france/fact-damaged.png
 		TilesetFilenames:
@@ -1566,8 +1566,8 @@ fact.france:
 			INTERIOR: ra|bits/hd/styles/france/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 4,2
+		Scale: 0.5000
+		Offset: 4,-3
 	collapse:
 		Filename: ra|bits/hd/styles/france/fact-collapse.png
 		TilesetFilenames:
@@ -1577,8 +1577,8 @@ fact.france:
 			INTERIOR: ra|bits/hd/styles/france/fact-collapse.png
 		Start: 0
 		Length: 16
-		Scale: 0.4167
-		Offset: 4,2
+		Scale: 0.5000
+		Offset: 4,-3
 
 powr.france:
 	Inherits: powr
@@ -1886,8 +1886,8 @@ fact.germany:
 			INTERIOR: ra|bits/hd/styles/germany/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: -4,-4
+		Scale: 0.5000
+		Offset: -4,-9
 	make:
 		Filename: ra|bits/hd/styles/germany/fact-make.png
 		TilesetFilenames:
@@ -1898,8 +1898,8 @@ fact.germany:
 		Start: 0
 		Length: 22
 		Tick: 45
-		Scale: 0.4167
-		Offset: -4,-4
+		Scale: 0.5000
+		Offset: -4,-9
 	build:
 		Filename: ra|bits/hd/styles/germany/fact.png
 		TilesetFilenames:
@@ -1909,8 +1909,8 @@ fact.germany:
 			INTERIOR: ra|bits/hd/styles/germany/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: -4,-4
+		Scale: 0.5000
+		Offset: -4,-9
 	damaged-idle:
 		Filename: ra|bits/hd/styles/germany/fact-damaged.png
 		TilesetFilenames:
@@ -1920,8 +1920,8 @@ fact.germany:
 			INTERIOR: ra|bits/hd/styles/germany/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: -4,-4
+		Scale: 0.5000
+		Offset: -4,-9
 	damaged-build:
 		Filename: ra|bits/hd/styles/germany/fact-damaged.png
 		TilesetFilenames:
@@ -1931,8 +1931,8 @@ fact.germany:
 			INTERIOR: ra|bits/hd/styles/germany/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: -4,-4
+		Scale: 0.5000
+		Offset: -4,-9
 	collapse:
 		Filename: ra|bits/hd/styles/germany/fact-collapse.png
 		TilesetFilenames:
@@ -1942,8 +1942,8 @@ fact.germany:
 			INTERIOR: ra|bits/hd/styles/germany/fact-collapse.png
 		Start: 0
 		Length: 16
-		Scale: 0.4167
-		Offset: -4,-4
+		Scale: 0.5000
+		Offset: -4,-9
 
 powr.germany:
 	Inherits: powr
@@ -2299,8 +2299,8 @@ fact.india:
 			INTERIOR: ra|bits/hd/styles/india/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 2,0
+		Scale: 0.5000
+		Offset: 3,-4
 	make:
 		Filename: ra|bits/hd/styles/india/fact-make.png
 		TilesetFilenames:
@@ -2311,8 +2311,8 @@ fact.india:
 		Start: 0
 		Length: 22
 		Tick: 45
-		Scale: 0.4167
-		Offset: 2,0
+		Scale: 0.5000
+		Offset: 3,-4
 	build:
 		Filename: ra|bits/hd/styles/india/fact.png
 		TilesetFilenames:
@@ -2322,8 +2322,8 @@ fact.india:
 			INTERIOR: ra|bits/hd/styles/india/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 2,0
+		Scale: 0.5000
+		Offset: 3,-4
 	damaged-idle:
 		Filename: ra|bits/hd/styles/india/fact-damaged.png
 		TilesetFilenames:
@@ -2333,8 +2333,8 @@ fact.india:
 			INTERIOR: ra|bits/hd/styles/india/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 2,0
+		Scale: 0.5000
+		Offset: 3,-4
 	damaged-build:
 		Filename: ra|bits/hd/styles/india/fact-damaged.png
 		TilesetFilenames:
@@ -2344,8 +2344,8 @@ fact.india:
 			INTERIOR: ra|bits/hd/styles/india/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 2,0
+		Scale: 0.5000
+		Offset: 3,-4
 	collapse:
 		Filename: ra|bits/hd/styles/india/fact-collapse.png
 		TilesetFilenames:
@@ -2355,8 +2355,8 @@ fact.india:
 			INTERIOR: ra|bits/hd/styles/india/fact-collapse.png
 		Start: 0
 		Length: 16
-		Scale: 0.4167
-		Offset: 2,0
+		Scale: 0.5000
+		Offset: 3,-4
 
 powr.india:
 	Inherits: powr
@@ -2664,8 +2664,8 @@ fact.iran:
 			INTERIOR: ra|bits/hd/styles/iran/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 0,0
+		Scale: 0.5000
+		Offset: 0,-4
 	make:
 		Filename: ra|bits/hd/styles/iran/fact-make.png
 		TilesetFilenames:
@@ -2676,8 +2676,8 @@ fact.iran:
 		Start: 0
 		Length: 22
 		Tick: 45
-		Scale: 0.4167
-		Offset: 0,0
+		Scale: 0.5000
+		Offset: 0,-4
 	build:
 		Filename: ra|bits/hd/styles/iran/fact.png
 		TilesetFilenames:
@@ -2687,8 +2687,8 @@ fact.iran:
 			INTERIOR: ra|bits/hd/styles/iran/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 0,0
+		Scale: 0.5000
+		Offset: 0,-4
 	damaged-idle:
 		Filename: ra|bits/hd/styles/iran/fact-damaged.png
 		TilesetFilenames:
@@ -2698,8 +2698,8 @@ fact.iran:
 			INTERIOR: ra|bits/hd/styles/iran/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 0,0
+		Scale: 0.5000
+		Offset: 0,-4
 	damaged-build:
 		Filename: ra|bits/hd/styles/iran/fact-damaged.png
 		TilesetFilenames:
@@ -2709,8 +2709,8 @@ fact.iran:
 			INTERIOR: ra|bits/hd/styles/iran/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 0,0
+		Scale: 0.5000
+		Offset: 0,-4
 	collapse:
 		Filename: ra|bits/hd/styles/iran/fact-collapse.png
 		TilesetFilenames:
@@ -2720,8 +2720,8 @@ fact.iran:
 			INTERIOR: ra|bits/hd/styles/iran/fact-collapse.png
 		Start: 0
 		Length: 16
-		Scale: 0.4167
-		Offset: 0,0
+		Scale: 0.5000
+		Offset: 0,-4
 
 powr.iran:
 	Inherits: powr
@@ -2981,8 +2981,8 @@ fact.italy:
 			INTERIOR: ra|bits/hd/styles/italy/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: -2,-4
+		Scale: 0.5000
+		Offset: -3,-9
 	make:
 		Filename: ra|bits/hd/styles/italy/fact-make.png
 		TilesetFilenames:
@@ -2993,8 +2993,8 @@ fact.italy:
 		Start: 0
 		Length: 22
 		Tick: 45
-		Scale: 0.4167
-		Offset: -2,-4
+		Scale: 0.5000
+		Offset: -3,-9
 	build:
 		Filename: ra|bits/hd/styles/italy/fact.png
 		TilesetFilenames:
@@ -3004,8 +3004,8 @@ fact.italy:
 			INTERIOR: ra|bits/hd/styles/italy/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: -2,-4
+		Scale: 0.5000
+		Offset: -3,-9
 	damaged-idle:
 		Filename: ra|bits/hd/styles/italy/fact-damaged.png
 		TilesetFilenames:
@@ -3015,8 +3015,8 @@ fact.italy:
 			INTERIOR: ra|bits/hd/styles/italy/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: -2,-4
+		Scale: 0.5000
+		Offset: -3,-9
 	damaged-build:
 		Filename: ra|bits/hd/styles/italy/fact-damaged.png
 		TilesetFilenames:
@@ -3026,8 +3026,8 @@ fact.italy:
 			INTERIOR: ra|bits/hd/styles/italy/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: -2,-4
+		Scale: 0.5000
+		Offset: -3,-9
 	collapse:
 		Filename: ra|bits/hd/styles/italy/fact-collapse.png
 		TilesetFilenames:
@@ -3037,8 +3037,8 @@ fact.italy:
 			INTERIOR: ra|bits/hd/styles/italy/fact-collapse.png
 		Start: 0
 		Length: 16
-		Scale: 0.4167
-		Offset: -2,-4
+		Scale: 0.5000
+		Offset: -3,-9
 
 powr.italy:
 	Inherits: powr
@@ -3346,8 +3346,8 @@ fact.japan:
 			INTERIOR: ra|bits/hd/styles/japan/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 0,-1
+		Scale: 0.5000
+		Offset: 0,-6
 	make:
 		Filename: ra|bits/hd/styles/japan/fact-make.png
 		TilesetFilenames:
@@ -3358,8 +3358,8 @@ fact.japan:
 		Start: 0
 		Length: 22
 		Tick: 45
-		Scale: 0.4167
-		Offset: 0,-1
+		Scale: 0.5000
+		Offset: 0,-6
 	build:
 		Filename: ra|bits/hd/styles/japan/fact.png
 		TilesetFilenames:
@@ -3369,8 +3369,8 @@ fact.japan:
 			INTERIOR: ra|bits/hd/styles/japan/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 0,-1
+		Scale: 0.5000
+		Offset: 0,-6
 	damaged-idle:
 		Filename: ra|bits/hd/styles/japan/fact-damaged.png
 		TilesetFilenames:
@@ -3380,8 +3380,8 @@ fact.japan:
 			INTERIOR: ra|bits/hd/styles/japan/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 0,-1
+		Scale: 0.5000
+		Offset: 0,-6
 	damaged-build:
 		Filename: ra|bits/hd/styles/japan/fact-damaged.png
 		TilesetFilenames:
@@ -3391,8 +3391,8 @@ fact.japan:
 			INTERIOR: ra|bits/hd/styles/japan/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 0,-1
+		Scale: 0.5000
+		Offset: 0,-6
 	collapse:
 		Filename: ra|bits/hd/styles/japan/fact-collapse.png
 		TilesetFilenames:
@@ -3402,8 +3402,8 @@ fact.japan:
 			INTERIOR: ra|bits/hd/styles/japan/fact-collapse.png
 		Start: 0
 		Length: 16
-		Scale: 0.4167
-		Offset: 0,-1
+		Scale: 0.5000
+		Offset: 0,-6
 
 powr.japan:
 	Inherits: powr
@@ -3759,8 +3759,8 @@ fact.pakistan:
 			INTERIOR: ra|bits/hd/styles/pakistan/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: -6,-2
+		Scale: 0.5000
+		Offset: -8,-8
 	make:
 		Filename: ra|bits/hd/styles/pakistan/fact-make.png
 		TilesetFilenames:
@@ -3771,8 +3771,8 @@ fact.pakistan:
 		Start: 0
 		Length: 22
 		Tick: 45
-		Scale: 0.4167
-		Offset: -6,-2
+		Scale: 0.5000
+		Offset: -8,-8
 	build:
 		Filename: ra|bits/hd/styles/pakistan/fact.png
 		TilesetFilenames:
@@ -3782,8 +3782,8 @@ fact.pakistan:
 			INTERIOR: ra|bits/hd/styles/pakistan/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: -6,-2
+		Scale: 0.5000
+		Offset: -8,-8
 	damaged-idle:
 		Filename: ra|bits/hd/styles/pakistan/fact-damaged.png
 		TilesetFilenames:
@@ -3793,8 +3793,8 @@ fact.pakistan:
 			INTERIOR: ra|bits/hd/styles/pakistan/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: -6,-2
+		Scale: 0.5000
+		Offset: -8,-8
 	damaged-build:
 		Filename: ra|bits/hd/styles/pakistan/fact-damaged.png
 		TilesetFilenames:
@@ -3804,8 +3804,8 @@ fact.pakistan:
 			INTERIOR: ra|bits/hd/styles/pakistan/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: -6,-2
+		Scale: 0.5000
+		Offset: -8,-8
 	collapse:
 		Filename: ra|bits/hd/styles/pakistan/fact-collapse.png
 		TilesetFilenames:
@@ -3815,8 +3815,8 @@ fact.pakistan:
 			INTERIOR: ra|bits/hd/styles/pakistan/fact-collapse.png
 		Start: 0
 		Length: 16
-		Scale: 0.4167
-		Offset: -6,-2
+		Scale: 0.5000
+		Offset: -8,-8
 
 powr.pakistan:
 	Inherits: powr
@@ -4124,8 +4124,8 @@ fact.russia:
 			INTERIOR: ra|bits/hd/styles/russia/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 0,2
+		Scale: 0.5000
+		Offset: 0,-3
 	make:
 		Filename: ra|bits/hd/styles/russia/fact-make.png
 		TilesetFilenames:
@@ -4136,8 +4136,8 @@ fact.russia:
 		Start: 0
 		Length: 22
 		Tick: 45
-		Scale: 0.4167
-		Offset: 0,2
+		Scale: 0.5000
+		Offset: 0,-3
 	build:
 		Filename: ra|bits/hd/styles/russia/fact.png
 		TilesetFilenames:
@@ -4147,8 +4147,8 @@ fact.russia:
 			INTERIOR: ra|bits/hd/styles/russia/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 0,2
+		Scale: 0.5000
+		Offset: 0,-3
 	damaged-idle:
 		Filename: ra|bits/hd/styles/russia/fact-damaged.png
 		TilesetFilenames:
@@ -4158,8 +4158,8 @@ fact.russia:
 			INTERIOR: ra|bits/hd/styles/russia/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 0,2
+		Scale: 0.5000
+		Offset: 0,-3
 	damaged-build:
 		Filename: ra|bits/hd/styles/russia/fact-damaged.png
 		TilesetFilenames:
@@ -4169,8 +4169,8 @@ fact.russia:
 			INTERIOR: ra|bits/hd/styles/russia/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 0,2
+		Scale: 0.5000
+		Offset: 0,-3
 	collapse:
 		Filename: ra|bits/hd/styles/russia/fact-collapse.png
 		TilesetFilenames:
@@ -4180,8 +4180,8 @@ fact.russia:
 			INTERIOR: ra|bits/hd/styles/russia/fact-collapse.png
 		Start: 0
 		Length: 16
-		Scale: 0.4167
-		Offset: 0,2
+		Scale: 0.5000
+		Offset: 0,-3
 
 powr.russia:
 	Inherits: powr
@@ -4441,8 +4441,8 @@ fact.southkorea:
 			INTERIOR: ra|bits/hd/styles/southkorea/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: -1,0
+		Scale: 0.5000
+		Offset: -2,-4
 	make:
 		Filename: ra|bits/hd/styles/southkorea/fact-make.png
 		TilesetFilenames:
@@ -4453,8 +4453,8 @@ fact.southkorea:
 		Start: 0
 		Length: 22
 		Tick: 45
-		Scale: 0.4167
-		Offset: -1,0
+		Scale: 0.5000
+		Offset: -2,-4
 	build:
 		Filename: ra|bits/hd/styles/southkorea/fact.png
 		TilesetFilenames:
@@ -4464,8 +4464,8 @@ fact.southkorea:
 			INTERIOR: ra|bits/hd/styles/southkorea/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: -1,0
+		Scale: 0.5000
+		Offset: -2,-4
 	damaged-idle:
 		Filename: ra|bits/hd/styles/southkorea/fact-damaged.png
 		TilesetFilenames:
@@ -4475,8 +4475,8 @@ fact.southkorea:
 			INTERIOR: ra|bits/hd/styles/southkorea/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: -1,0
+		Scale: 0.5000
+		Offset: -2,-4
 	damaged-build:
 		Filename: ra|bits/hd/styles/southkorea/fact-damaged.png
 		TilesetFilenames:
@@ -4486,8 +4486,8 @@ fact.southkorea:
 			INTERIOR: ra|bits/hd/styles/southkorea/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: -1,0
+		Scale: 0.5000
+		Offset: -2,-4
 	collapse:
 		Filename: ra|bits/hd/styles/southkorea/fact-collapse.png
 		TilesetFilenames:
@@ -4497,8 +4497,8 @@ fact.southkorea:
 			INTERIOR: ra|bits/hd/styles/southkorea/fact-collapse.png
 		Start: 0
 		Length: 16
-		Scale: 0.4167
-		Offset: -1,0
+		Scale: 0.5000
+		Offset: -2,-4
 
 powr.southkorea:
 	Inherits: powr
@@ -4854,8 +4854,8 @@ fact.turkey:
 			INTERIOR: ra|bits/hd/styles/turkey/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: -2,-4
+		Scale: 0.5000
+		Offset: -3,-9
 	make:
 		Filename: ra|bits/hd/styles/turkey/fact-make.png
 		TilesetFilenames:
@@ -4866,8 +4866,8 @@ fact.turkey:
 		Start: 0
 		Length: 22
 		Tick: 45
-		Scale: 0.4167
-		Offset: -2,-4
+		Scale: 0.5000
+		Offset: -3,-9
 	build:
 		Filename: ra|bits/hd/styles/turkey/fact.png
 		TilesetFilenames:
@@ -4877,8 +4877,8 @@ fact.turkey:
 			INTERIOR: ra|bits/hd/styles/turkey/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: -2,-4
+		Scale: 0.5000
+		Offset: -3,-9
 	damaged-idle:
 		Filename: ra|bits/hd/styles/turkey/fact-damaged.png
 		TilesetFilenames:
@@ -4888,8 +4888,8 @@ fact.turkey:
 			INTERIOR: ra|bits/hd/styles/turkey/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: -2,-4
+		Scale: 0.5000
+		Offset: -3,-9
 	damaged-build:
 		Filename: ra|bits/hd/styles/turkey/fact-damaged.png
 		TilesetFilenames:
@@ -4899,8 +4899,8 @@ fact.turkey:
 			INTERIOR: ra|bits/hd/styles/turkey/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: -2,-4
+		Scale: 0.5000
+		Offset: -3,-9
 	collapse:
 		Filename: ra|bits/hd/styles/turkey/fact-collapse.png
 		TilesetFilenames:
@@ -4910,8 +4910,8 @@ fact.turkey:
 			INTERIOR: ra|bits/hd/styles/turkey/fact-collapse.png
 		Start: 0
 		Length: 16
-		Scale: 0.4167
-		Offset: -2,-4
+		Scale: 0.5000
+		Offset: -3,-9
 
 powr.turkey:
 	Inherits: powr
@@ -5219,8 +5219,8 @@ fact.ukraine:
 			INTERIOR: ra|bits/hd/styles/ukraine/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 8,2
+		Scale: 0.5000
+		Offset: 9,-3
 	make:
 		Filename: ra|bits/hd/styles/ukraine/fact-make.png
 		TilesetFilenames:
@@ -5231,8 +5231,8 @@ fact.ukraine:
 		Start: 0
 		Length: 22
 		Tick: 45
-		Scale: 0.4167
-		Offset: 8,2
+		Scale: 0.5000
+		Offset: 9,-3
 	build:
 		Filename: ra|bits/hd/styles/ukraine/fact.png
 		TilesetFilenames:
@@ -5242,8 +5242,8 @@ fact.ukraine:
 			INTERIOR: ra|bits/hd/styles/ukraine/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 8,2
+		Scale: 0.5000
+		Offset: 9,-3
 	damaged-idle:
 		Filename: ra|bits/hd/styles/ukraine/fact-damaged.png
 		TilesetFilenames:
@@ -5253,8 +5253,8 @@ fact.ukraine:
 			INTERIOR: ra|bits/hd/styles/ukraine/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 8,2
+		Scale: 0.5000
+		Offset: 9,-3
 	damaged-build:
 		Filename: ra|bits/hd/styles/ukraine/fact-damaged.png
 		TilesetFilenames:
@@ -5264,8 +5264,8 @@ fact.ukraine:
 			INTERIOR: ra|bits/hd/styles/ukraine/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 8,2
+		Scale: 0.5000
+		Offset: 9,-3
 	collapse:
 		Filename: ra|bits/hd/styles/ukraine/fact-collapse.png
 		TilesetFilenames:
@@ -5275,8 +5275,8 @@ fact.ukraine:
 			INTERIOR: ra|bits/hd/styles/ukraine/fact-collapse.png
 		Start: 0
 		Length: 16
-		Scale: 0.4167
-		Offset: 8,2
+		Scale: 0.5000
+		Offset: 9,-3
 
 powr.ukraine:
 	Inherits: powr
@@ -5536,8 +5536,8 @@ fact.usa:
 			INTERIOR: ra|bits/hd/styles/usa/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 1,-5
+		Scale: 0.5000
+		Offset: 2,-10
 	make:
 		Filename: ra|bits/hd/styles/usa/fact-make.png
 		TilesetFilenames:
@@ -5548,8 +5548,8 @@ fact.usa:
 		Start: 0
 		Length: 22
 		Tick: 45
-		Scale: 0.4167
-		Offset: 1,-5
+		Scale: 0.5000
+		Offset: 2,-10
 	build:
 		Filename: ra|bits/hd/styles/usa/fact.png
 		TilesetFilenames:
@@ -5559,8 +5559,8 @@ fact.usa:
 			INTERIOR: ra|bits/hd/styles/usa/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 1,-5
+		Scale: 0.5000
+		Offset: 2,-10
 	damaged-idle:
 		Filename: ra|bits/hd/styles/usa/fact-damaged.png
 		TilesetFilenames:
@@ -5570,8 +5570,8 @@ fact.usa:
 			INTERIOR: ra|bits/hd/styles/usa/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 1,-5
+		Scale: 0.5000
+		Offset: 2,-10
 	damaged-build:
 		Filename: ra|bits/hd/styles/usa/fact-damaged.png
 		TilesetFilenames:
@@ -5581,8 +5581,8 @@ fact.usa:
 			INTERIOR: ra|bits/hd/styles/usa/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 1,-5
+		Scale: 0.5000
+		Offset: 2,-10
 	collapse:
 		Filename: ra|bits/hd/styles/usa/fact-collapse.png
 		TilesetFilenames:
@@ -5592,8 +5592,8 @@ fact.usa:
 			INTERIOR: ra|bits/hd/styles/usa/fact-collapse.png
 		Start: 0
 		Length: 16
-		Scale: 0.4167
-		Offset: 1,-5
+		Scale: 0.5000
+		Offset: 2,-10
 
 powr.usa:
 	Inherits: powr

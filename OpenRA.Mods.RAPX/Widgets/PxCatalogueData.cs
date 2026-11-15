@@ -451,12 +451,15 @@ namespace OpenRA.Mods.RAPX.Widgets
 				Add(aircraft.VTOL ? "VTOL: hovers and lands anywhere" : "Fast jet: strikes, then returns to rearm");
 			if (mobile?.Locomotor != null && mobile.Locomotor.Contains("amph", StringComparison.OrdinalIgnoreCase))
 				Add("Amphibious");
+			if (mobile?.Locomotor == "crocodile")
+				Add("Swims, faster in water than on land");
 
 			foreach (var t in e.Actor.TraitInfos<TraitInfo>())
 			{
 				switch (t)
 				{
 					case DetectCloakedInfo: Add("Detects stealth units"); break;
+					case CloakInfo when mobile?.Locomotor == "crocodile": Add("Lurks unseen in water when still"); break;
 					case CloakInfo: Add(mobile?.Locomotor == "naval" ? "Submerges out of sight" : "Stealth: invisible when idle"); break;
 					case CargoInfo c when c.MaxWeight > 0: Add($"Transports {c.MaxWeight} soldiers"); break;
 					case CapturesInfo: Add("Captures enemy buildings"); break;
@@ -478,6 +481,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 					case PxFlareDispenserInfo fd: Add($"Flares: {fd.Salvos} salvos fool {fd.DecoyChance}% of guided missiles"); break;
 					case JamsMissilesInfo: Add("Jams guided missiles"); break;
 					case PxShootAndScootInfo: Add("Shoot and scoot"); break;
+					case PxTrampleInfo: Add("Tramples infantry underfoot: they cannot dodge"); break;
 					case PxCarrierDeckInfo: Add("Flight deck: launches and rearms jets"); break;
 					case PxPrismRelayInfo: Add("Relays and amplifies prism beams"); break;
 					case CashTricklerInfo: Add("Generates steady income"); break;

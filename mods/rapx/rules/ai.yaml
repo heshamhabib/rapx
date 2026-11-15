@@ -291,6 +291,7 @@ Player:
 			shok: 40
 			snip: 40
 			taut: 40
+			croc: 10
 			dog: 10
 			medi: 4
 			mech: 3
@@ -306,6 +307,7 @@ Player:
 			3tnk: 45
 			apc: 45
 			btr: 45
+			elph: 45
 			hmmv: 45
 			jeep: 45
 			kvst: 45
@@ -445,6 +447,7 @@ Player:
 			truk: 2
 			mtrk: 3
 		UnitLimits:
+			croc: 4
 			dog: 4
 			medi: 3
 			mech: 2
@@ -640,6 +643,7 @@ Player:
 			shok: 30
 			snip: 30
 			taut: 30
+			croc: 8
 			dog: 8
 			medi: 4
 			mech: 3
@@ -655,6 +659,7 @@ Player:
 			3tnk: 40
 			apc: 40
 			btr: 40
+			elph: 40
 			hmmv: 40
 			jeep: 40
 			kvst: 40
@@ -794,6 +799,7 @@ Player:
 			truk: 2
 			mtrk: 3
 		UnitLimits:
+			croc: 4
 			dog: 4
 			medi: 3
 			mech: 2
@@ -989,6 +995,7 @@ Player:
 			shok: 30
 			snip: 30
 			taut: 30
+			croc: 8
 			dog: 8
 			medi: 4
 			mech: 3
@@ -1004,6 +1011,7 @@ Player:
 			3tnk: 40
 			apc: 40
 			btr: 40
+			elph: 40
 			hmmv: 40
 			jeep: 40
 			kvst: 40
@@ -1144,6 +1152,7 @@ Player:
 			truk: 2
 			mtrk: 3
 		UnitLimits:
+			croc: 4
 			dog: 4
 			medi: 3
 			mech: 2
@@ -1349,6 +1358,7 @@ Player:
 			3tnk: 5
 			apc: 5
 			btr: 5
+			elph: 5
 			hmmv: 5
 			jeep: 5
 			kvst: 5

@@ -683,3 +683,13 @@ MODELS.update({
                                        (-0.5, 0.5, -1.0, -0.92, -0.2, 0.13)]},
                "team": {"box": (0.0, 1.0, 0.8, 1.0, 0.62, 1.0)}},
 })
+
+# Elephanta (India only, 2026-11-15): "A_powerful_Elephanta_Gun" by Devaster, CC-BY-4.0. One AI-made mesh (a mech
+# elephant walker with a twin cannon on its back, no separate parts), so the whole walker turns to fire.
+MODELS["elph"] = {"name": "Elephanta", "src": "inbox9/elephanta/scene.gltf", "kind": "vehicle", "frame": 256,
+                  "yaw": 180, "length": 8.6, "team": {"box": (0.1, 0.9, 0.0, 0.55, 0.74, 0.86)}}  # the back plates
+
+# Nile Crocodile (Egypt only, 2026-11-15): "crocodile high quality" by Beerus, CC-BY-4.0. A static mesh (no rig):
+# render_croc.py bends it into the walk, swim, bite, idle and death frames. Team colour on the back scutes.
+MODELS["croc"] = {"name": "Nile Crocodile", "src": "inbox9/crocodile/scene.gltf", "kind": "vehicle", "frame": 128,
+                  "yaw": 180, "length": 5.6, "team": {"box": (0.43, 0.57, 0.5, 0.72, 0.88, 1.0)}}

@@ -1,0 +1,125 @@
+# Nile Crocodile (rules/infantry.yaml CROC): rendered by artsrc/units/meshes/render_croc.py, packed by
+# artsrc/units/meshes/make_croc.sh. Frames run counter-clockwise from north, facing-major (Stride = steps).
+
+croc:
+	stand:
+		Filename: ra|bits/hd/soldiers/croc/idle.png
+		Start: 0
+		Length: 1
+		Stride: 8
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	idle1:
+		Filename: ra|bits/hd/soldiers/croc/idle.png
+		Start: 0
+		Length: 8
+		Stride: 8
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+		Tick: 280
+	walk:
+		Filename: ra|bits/hd/soldiers/croc/walk.png
+		Start: 0
+		Length: 8
+		Stride: 8
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+		Tick: 50
+	run:
+		Filename: ra|bits/hd/soldiers/croc/walk.png
+		Start: 0
+		Length: 8
+		Stride: 8
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+		Tick: 40
+	swim:
+		Filename: ra|bits/hd/soldiers/croc/swim.png
+		Start: 0
+		Length: 8
+		Stride: 8
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+		Tick: 110
+	eat:
+		Filename: ra|bits/hd/soldiers/croc/bite.png
+		Start: 0
+		Length: 6
+		Stride: 6
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+		Tick: 90
+	shoot:
+		Filename: ra|bits/hd/soldiers/croc/bite.png
+		Start: 0
+		Length: 6
+		Stride: 6
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+		Tick: 90
+	die1:
+		Filename: ra|bits/hd/soldiers/croc/die.png
+		Start: 0
+		Length: 10
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+		Tick: 90
+	die2:
+		Filename: ra|bits/hd/soldiers/croc/die.png
+		Start: 0
+		Length: 10
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+		Tick: 90
+	die3:
+		Filename: ra|bits/hd/soldiers/croc/die.png
+		Start: 0
+		Length: 10
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+		Tick: 90
+	die4:
+		Filename: ra|bits/hd/soldiers/croc/die.png
+		Start: 0
+		Length: 10
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+		Tick: 90
+	die5:
+		Filename: ra|bits/hd/soldiers/croc/die.png
+		Start: 0
+		Length: 10
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+		Tick: 90
+	die6:
+		Filename: ra|bits/hd/soldiers/croc/die.png
+		Start: 0
+		Length: 10
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+		Tick: 90
+	die-crushed:
+		Filename: ra|bits/hd/soldiers/croc/die.png
+		Start: 9
+		Length: 1
+		Facings: 1
+		UseClassicFacings: False
+		Scale: 0.2333
+		Tick: 1600
+		ZOffset: -511
+	icon:
+		Filename: ra|bits/hd/crocicon.png

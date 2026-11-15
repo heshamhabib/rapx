@@ -23,6 +23,21 @@
 			Ore: 89
 			Gems: 89
 			Beach: 89
+	# Nile Crocodile: walks like infantry and swims, faster in water (CROC SpeedMultiplier@SWIM)
+	Locomotor@CROCODILE:
+		Name: crocodile
+		Crushes: mine, crate
+		SharesCell: true
+		TerrainSpeeds:
+			Clear: 100
+			Rough: 89
+			Road: 111
+			Bridge: 111
+			Ore: 89
+			Gems: 89
+			Beach: 100
+			Water: 100
+			River: 100
 	Locomotor@WHEELED:
 		Name: wheeled
 		Crushes: mine, crate

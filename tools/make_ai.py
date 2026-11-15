@@ -119,7 +119,7 @@ ROLE_OVERRIDES = {
 	'4tnk': 'heavy', 'xr85': 'heavy', 'ctnk': 'heavy', 'ptnk': 'heavy', 'ttnk': 'heavy', 'spdr': 'heavy',
 	'strd': 'heavy', 'sfng': 'heavy', 'enfw': 'heavy',
 	# One-off or limited specials
-	'e7': 'hero', 'dtrk': 'hero', 'stnk': 'hero', 'dog': 'dog', 'medi': 'medic', 'mech': 'mechanic',
+	'e7': 'hero', 'dtrk': 'hero', 'stnk': 'hero', 'dog': 'dog', 'croc': 'dog', 'medi': 'medic', 'mech': 'mechanic',
 	'scar': 'spycar', 'scr2': 'spycar',
 	'lsat': 'satellite',
 }

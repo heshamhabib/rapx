@@ -12,8 +12,8 @@ fact:
 			INTERIOR: ra|bits/hd/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 11,-7
+		Scale: 0.5000
+		Offset: 14,-14
 	make:
 		Filename: ra|bits/hd/fact-make.png
 		TilesetFilenames:
@@ -24,8 +24,8 @@ fact:
 		Start: 0
 		Length: 22
 		Tick: 45
-		Scale: 0.4167
-		Offset: 11,-7
+		Scale: 0.5000
+		Offset: 14,-14
 	build:
 		Filename: ra|bits/hd/fact.png
 		TilesetFilenames:
@@ -35,8 +35,8 @@ fact:
 			INTERIOR: ra|bits/hd/fact.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 11,-7
+		Scale: 0.5000
+		Offset: 14,-14
 	damaged-idle:
 		Filename: ra|bits/hd/fact-damaged.png
 		TilesetFilenames:
@@ -46,8 +46,8 @@ fact:
 			INTERIOR: ra|bits/hd/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 11,-7
+		Scale: 0.5000
+		Offset: 14,-14
 	damaged-build:
 		Filename: ra|bits/hd/fact-damaged.png
 		TilesetFilenames:
@@ -57,8 +57,8 @@ fact:
 			INTERIOR: ra|bits/hd/fact-damaged.png
 		Start: 0
 		Length: 1
-		Scale: 0.4167
-		Offset: 11,-7
+		Scale: 0.5000
+		Offset: 14,-14
 	collapse:
 		Filename: ra|bits/hd/fact-collapse.png
 		TilesetFilenames:
@@ -68,8 +68,8 @@ fact:
 			INTERIOR: ra|bits/hd/fact-collapse.png
 		Start: 0
 		Length: 16
-		Scale: 0.4167
-		Offset: 11,-7
+		Scale: 0.5000
+		Offset: 14,-14
 
 powr:
 	idle:

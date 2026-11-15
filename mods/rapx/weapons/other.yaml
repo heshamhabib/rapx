@@ -148,6 +148,19 @@ DogJaw:
 		ValidTargets: Infantry
 		DamageTypes: DefaultDeath
 
+# Nile Crocodile (rules/infantry.yaml CROC): one bite kills a soldier or a dog
+CrocJaws:
+	ValidTargets: Infantry
+	ReloadDelay: 50
+	Range: 1c768
+	Report: ra|audio/croc/croc-snap1.ogg, ra|audio/croc/croc-snap2.ogg
+	TargetActorCenter: true
+	Projectile: InstantHit
+	Warhead@1Dam: TargetDamage
+		Damage: 100000
+		ValidTargets: Infantry
+		DamageTypes: DefaultDeath
+
 Heal:
 	ReloadDelay: 80
 	Range: 4c0

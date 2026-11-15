@@ -197,8 +197,8 @@ def airfield_fx(bid):
 
 
 def read_offsets(path=SEQUENCES):
-    """Image name -> Offset of its main sprite (the turret layer for turreted defences)."""
-    found, current, seq = {}, None, None
+    """Image name -> (x, y, scale): Offset and Scale of its main sprite (the turret layer for turreted defences)."""
+    found, scales, current, seq = {}, {}, None, None
     if not os.path.exists(path):
         return found
     with open(path) as f:
@@ -210,7 +210,11 @@ def read_offsets(path=SEQUENCES):
                 seq = line.strip()[:-1]
             elif current and line.strip().startswith("Offset:"):
                 found[current].setdefault(seq, tuple(int(v) for v in line.split(":")[1].split(",")))
-    return {bid: seqs.get("turret", seqs.get("idle")) for bid, seqs in found.items() if seqs.get("idle")}
+            elif current and line.strip().startswith("Scale:"):
+                scales.setdefault(current, {}).setdefault(seq, float(line.split(":")[1]))
+    return {bid: seqs.get("turret", seqs.get("idle")) + (scales.get(bid, {}).get(
+                "turret" if "turret" in seqs else "idle", 1 / DENSITY),)
+            for bid, seqs in found.items() if seqs.get("idle")}
 
 
 def actor_blocks():
@@ -357,8 +361,9 @@ def save_preview(name, path, fx):
 
 
 def screen(px, py, w, h, offset):
-    """HD sprite pixel -> screen pixels relative to the actor centre."""
-    return (round((px - w / 2 + offset[0]) / DENSITY, 1), round((py - h / 2 + offset[1]) / DENSITY, 1))
+    """HD sprite pixel -> screen pixels relative to the actor centre (the engine scales Offset with the sprite)."""
+    s = offset[2] if len(offset) > 2 else 1 / DENSITY
+    return (round((px - w / 2 + offset[0]) * s, 1), round((py - h / 2 + offset[1]) * s, 1))
 
 
 def fmt(v):
@@ -375,7 +380,8 @@ def fx_lines(fx_list, w, h, offset, condition, start=0):
         fx = dict(fx)
         fx["Offset"] = screen(*fx["Offset"], w, h, offset)
         if "Radius" in fx:
-            fx["Radius"] = tuple(round(r / DENSITY, 1) for r in fx["Radius"])
+            s = offset[2] if len(offset) > 2 else 1 / DENSITY
+            fx["Radius"] = tuple(round(r * s, 1) for r in fx["Radius"])
         lines.append(f"\tWithPxBuildingFx@{i}:")
         lines.append(f"\t\tRequiresCondition: {condition}")
         lines += [f"\t\t{k}: {fmt(v)}" for k, v in fx.items()]
@@ -404,7 +410,9 @@ def main():
 
         block = "\n".join(blocks[actor])
         powered = re.search(r"Inherits.*Disable", block) is not None
-        condition = "!build-incomplete && !disabled" if powered else "!build-incomplete"
+        # Low power (any building) or disabled (power down / outage) switches all
+        # lights and animations off; the art itself stays lit
+        condition = "!build-incomplete && !lowpower && !disabled" if powered else "!build-incomplete && !lowpower"
         im = Image.open(os.path.join(HD, f"{bid}.png"))
         w, h = im.size
         cells = max(1, round(w / (24 * DENSITY)))
@@ -415,6 +423,9 @@ def main():
         if "WithDeathAnimation" in block:
             # Classic low-res death sprites don't fit the HD art; the collapse replaces them
             lines.append("\t-WithDeathAnimation:")
+        lines.append("\tGrantConditionOnPowerState@LOWPOWER:")
+        lines.append("\t\tCondition: lowpower")
+        lines.append("\t\tValidPowerStates: Low, Critical")
         lines.append("\tWithPxCollapse:")
         if re.search(r"TerrainTypes:\s*Water", block):
             lines.append("\t\tOnWater: true")

@@ -115,6 +115,18 @@ DogVoice:
 		Burned: dogw6
 		Zapped: dogw6
 
+CrocVoice:
+	# Procedural (artsrc/audio/make_croc_sounds.py)
+	DefaultVariant: .ogg
+	DefaultPrefix: ra|audio/croc/
+	Voices:
+		Select: croc-hiss1,croc-hiss2
+		Move: croc-growl1,croc-growl2
+		Attack: croc-bellow1,croc-bellow2
+		Die: croc-die1,croc-die2
+		Burned: croc-die1
+		Zapped: croc-die2
+
 SpyVoice:
 	DefaultVariant: .ogg
 	DefaultPrefix: ra|audio/voices/

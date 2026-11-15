@@ -292,6 +292,16 @@ actor-dog =
       Strong vs Infantry
       Weak vs Vehicles and Aircraft
 
+actor-croc =
+    .name = Nile Crocodile
+    .generic-name = Crocodile
+    .description =
+    Lunges at soldiers and dogs and kills
+    them with one bite. Swims fast and, lying
+    still in water, cannot be seen. Egypt only.
+      Strong vs Infantry and Dogs
+      Weak vs Vehicles and Buildings
+
 actor-e1 =
     .name = Rifle Infantry
     .description =
@@ -1092,6 +1102,15 @@ actor-kvst =
     Heavy walker: a KV tank body with a 152 mm gun
     on two legs. Steps over walls and infantry.
       Strong vs Vehicles and Buildings
+      Weak vs Aircraft
+
+actor-elph =
+    .name = Elephanta
+    .description =
+    Mech war elephant with a twin heavy cannon.
+    Tramples any infantry it walks over.
+    Requires Tech Center. India only.
+      Strong vs Tanks, Buildings and Infantry
       Weak vs Aircraft
 
 actor-mtrk =
