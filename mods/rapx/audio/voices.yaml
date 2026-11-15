@@ -115,8 +115,18 @@ DogVoice:
 		Burned: dogw6
 		Zapped: dogw6
 
+ElephantaVoice:
+	# Real elephant calls (artsrc/audio/make_elephant_sounds.py, sources in artsrc/audio/elephant/SOURCE.md)
+	DefaultVariant: .ogg
+	DefaultPrefix: ra|audio/elephant/
+	Voices:
+		Select: eleph-call1,eleph-call2,eleph-call3
+		Move: eleph-rumble1,eleph-rumble2
+		Attack: eleph-trumpet1,eleph-trumpet2,eleph-trumpet3
+		Action: eleph-rumble1,eleph-rumble2
+
 CrocVoice:
-	# Procedural (artsrc/audio/make_croc_sounds.py)
+	# Real alligator calls + procedural bite (artsrc/audio/make_croc_sounds.py)
 	DefaultVariant: .ogg
 	DefaultPrefix: ra|audio/croc/
 	Voices:

@@ -1216,6 +1216,7 @@ ELPH:
 		TurnSpeed: 12
 		Speed: 45
 		Locomotor: heavytracked
+		Voice: Move
 	RevealsShroud:
 		MinRange: 4c0
 		Range: 8c0
@@ -1228,10 +1229,21 @@ ELPH:
 		LocalOffset: 150,-90,620, 150,90,620
 	AttackFrontal:
 		FacingTolerance: 16
+		Voice: Attack
+	AttackMove:
+		Voice: Attack
 	PxTrample:
 		Radius: 0c768
 	# Steps of the walk cycle (sequence move) match its speed, so the feet do not slide
 	WithMoveAnimation:
+	Voiced:
+		VoiceSet: ElephantaVoice
+	# Heavy mechanical footfalls while it walks (one gait cycle per 0.8 s, like the walk animation)
+	GrantConditionOnMovement@WALK:
+		Condition: walking
+	AmbientSound@STEPS:
+		SoundFiles: ra|audio/elephant/eleph-steps.ogg
+		RequiresCondition: walking
 	RenderSprites:
 		Image: elph
 	Selectable:

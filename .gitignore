@@ -111,3 +111,4 @@ artsrc/units/soldiers/sketchfab/
 /*.deps.json
 /*.runtimeconfig.json
 *.lnk
+artsrc/audio/elephant/source/*.wav
