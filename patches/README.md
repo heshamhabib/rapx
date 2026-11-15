@@ -30,6 +30,7 @@ engine-viewport-clamp.patch
 engine-optional-extras-buttons.patch
 engine-nuke-descent.patch
 engine-intel-uhd-debug-callback.patch
+engine-radar-resize.patch
 ```
 
 ## Upgrading the engine

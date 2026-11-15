@@ -266,6 +266,14 @@ ChromeMetrics:
 	common|metrics.yaml
 	ra|metrics.yaml
 
+# The RAPX chrome is authored against a 1280x720 canvas (the lobby frame and the full-height sidebar are
+# the tightest panels). Widgets are laid out in effective window pixels - the window divided by the UI
+# scale - so a UI scale that pushes the window below this would crop the lobby and leave the production
+# palette a single row. The engine resets the scale to 1 below this size and greys out the scales that
+# would cross it.
+WorldViewportSizes:
+	MinEffectiveResolution: 1280, 720
+
 Fonts:
 	Tiny:
 		Font: ra|fonts/Rajdhani-Medium.ttf

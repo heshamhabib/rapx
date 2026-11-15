@@ -170,7 +170,9 @@ namespace OpenRA.Mods.Common.Widgets
 			}
 		}
 
-		void MapBoundsChanged()
+		// RAPX: public so chrome logic that resizes the radar after Initialize can rebuild the cached
+		// preview scale and map rectangle (patches/engine-radar-resize.patch).
+		public void MapBoundsChanged()
 		{
 			var map = world.Map;
 

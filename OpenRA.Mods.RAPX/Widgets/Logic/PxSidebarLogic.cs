@@ -221,8 +221,39 @@ namespace OpenRA.Mods.RAPX.Widgets.Logic
 			}
 
 			const int BottomMargin = 12;
+			var rowHeight = palette.IconSize.Y + palette.IconMargin.Y;
+
+			// The sidebar stack is authored for a tall window: the header, radar, cash/time, power and the
+			// production header eat a fixed 554px before the first cameo row. On a short window - a 720p
+			// screen, or a UI scale that divides the window down - that leaves room for a single row of
+			// buildings. Give the radar back to the palette until MinimumIconRows fit, then pull the wells
+			// below the radar up by the same amount.
+			const int MinimumIconRows = 3;
+			const int MinimumRadarHeight = 120;
+			var radarWell = widget.GetOrNull("RADAR_WELL");
+			if (radarWell != null)
+			{
+				var wanted = palette.RenderOrigin.Y + MinimumIconRows * rowHeight - palette.IconMargin.Y + BottomMargin;
+				var shrink = Math.Min(wanted - Game.Renderer.Resolution.Height, radarWell.Bounds.Height - MinimumRadarHeight);
+				if (shrink > 0)
+				{
+					ShrinkRadar(radarWell, shrink);
+
+					var top = radarWell.Bounds.Y;
+					foreach (var w in widget.Children)
+					{
+						if (w == radarWell || w.Bounds.Y <= top)
+							continue;
+
+						w.Bounds.Y -= shrink;
+						if (w.Id == "SIDEBAR_PRODUCTION")
+							w.Bounds.Height += shrink;
+					}
+				}
+			}
+
 			var available = Game.Renderer.Resolution.Height - palette.RenderOrigin.Y - BottomMargin + palette.IconMargin.Y;
-			palette.MaxIconRowOffset = Math.Max(1, available / (palette.IconSize.Y + palette.IconMargin.Y));
+			palette.MaxIconRowOffset = Math.Max(1, available / rowHeight);
 
 			// Keep the camera inside the map: the view stops where the map edge meets the sidebar / bottom panel
 			// (engine patch patches/engine-viewport-clamp.patch)
@@ -233,6 +264,36 @@ namespace OpenRA.Mods.RAPX.Widgets.Logic
 
 			// The start position is set before the clamp exists: pull the camera inside the map once
 			worldRenderer.Viewport.Center(worldRenderer.Viewport.CenterPosition);
+		}
+
+		/// <summary>
+		/// Trims `shrink` pixels off the radar well: the map view and every layer stacked on it lose the
+		/// height, and the centred "no signal" text moves up with the middle of the smaller view.
+		/// </summary>
+		static void ShrinkRadar(Widget radarWell, int shrink)
+		{
+			radarWell.Bounds.Height -= shrink;
+
+			var radar = radarWell.GetOrNull("RADAR");
+			if (radar == null)
+				return;
+
+			radar.Bounds.Height -= shrink;
+			foreach (var layer in radar.Children)
+			{
+				layer.Bounds.Height -= shrink;
+
+				// The minimap caches its preview scale and map rectangle from the bounds it was initialized
+				// with (patches/engine-radar-resize.patch)
+				if (layer is RadarWidget minimap)
+					minimap.MapBoundsChanged();
+
+				if (layer.Id != "RADAR_OFFLINE")
+					continue;
+
+				foreach (var label in layer.Children)
+					label.Bounds.Y -= shrink / 2;
+			}
 		}
 
 		protected override void Dispose(bool disposing)

@@ -9,8 +9,11 @@ Background@SERVER_LOBBY:
 			Feedback: TRANSIENT_LINE_TEMPLATE
 	X: (WINDOW_WIDTH - WIDTH) / 2
 	Y: (WINDOW_HEIGHT - HEIGHT) / 2
-	Width: 1320
-	Height: 840
+	Width: 1280
+	# min(840, WINDOW_HEIGHT): the frame is centred, so anything taller than the window is cropped off
+	# the top and bottom instead of being scrolled. The right-hand column below is anchored to the frame,
+	# so the map preview takes the loss on a short screen.
+	Height: 840 + (WINDOW_HEIGHT - 840) * (WINDOW_HEIGHT < 840)
 	Background: px-lobby-frame
 	Children:
 		Background@TITLE_BADGE:
@@ -256,31 +259,36 @@ Background@SERVER_LOBBY:
 			Y: 158
 			Width: 940
 			Height: PARENT_HEIGHT - 158 - 24
+		# Right column, stacked from the bottom: disconnect, start, summary, change map, map preview.
+		# The preview takes whatever height is left so the column always ends inside the frame.
 		Container@MAP_PREVIEW_ROOT:
 			X: PARENT_WIDTH - 24 - WIDTH
-			Y: 100
-			Width: 308
-			Height: 392
+			# Centred in the space above the change map button, and min(352, that space) tall: 352 keeps the
+			# preview well square (268 + the 84px of title / type / author below it) and the shorter value
+			# takes over once the frame has been clipped to a short window.
+			Y: 100 + (PARENT_HEIGHT - 448 - HEIGHT) / 2
+			Width: 268
+			Height: 352 + (PARENT_HEIGHT - 800) * (PARENT_HEIGHT < 800)
 		Button@CHANGEMAP_BUTTON:
 			X: PARENT_WIDTH - 24 - WIDTH
-			Y: 500
-			Width: 308
+			Y: PARENT_HEIGHT - 340
+			Width: 268
 			Height: 52
 			Background: px-key
 			Font: PXButton
 			Align: Left
-			LeftMargin: 128
+			LeftMargin: 108
 			Text: button-server-lobby-changemap
 			Children:
 				Image@ICON:
-					X: 96
+					X: 76
 					Y: 16
 					ImageCollection: px-lobby-icons
 					ImageName: map
 		Background@SUMMARY:
 			X: PARENT_WIDTH - 24 - WIDTH
-			Y: 562
-			Width: 308
+			Y: PARENT_HEIGHT - 278
+			Width: 268
 			Height: 130
 			Background: px-well
 			Children:
@@ -300,13 +308,13 @@ Background@SERVER_LOBBY:
 				Label@SUM_CASH_LABEL:
 					X: 40
 					Y: 28
-					Width: 140
+					Width: 100
 					Height: 20
 					Font: PXSmall
 					TextColor: B9BAC2
 					Text: label-px-lobby-sum-cash
 				Label@SUM_CASH_VALUE:
-					X: 160
+					X: 120
 					Y: 28
 					Width: 134
 					Height: 20
@@ -320,13 +328,13 @@ Background@SERVER_LOBBY:
 				Label@SUM_UNITS_LABEL:
 					X: 40
 					Y: 48
-					Width: 140
+					Width: 100
 					Height: 20
 					Font: PXSmall
 					TextColor: B9BAC2
 					Text: label-px-lobby-sum-units
 				Label@SUM_UNITS_VALUE:
-					X: 130
+					X: 90
 					Y: 48
 					Width: 164
 					Height: 20
@@ -340,13 +348,13 @@ Background@SERVER_LOBBY:
 				Label@SUM_SPEED_LABEL:
 					X: 40
 					Y: 68
-					Width: 140
+					Width: 100
 					Height: 20
 					Font: PXSmall
 					TextColor: B9BAC2
 					Text: label-px-lobby-sum-speed
 				Label@SUM_SPEED_VALUE:
-					X: 160
+					X: 120
 					Y: 68
 					Width: 134
 					Height: 20
@@ -360,13 +368,13 @@ Background@SERVER_LOBBY:
 				Label@SUM_TIME_LABEL:
 					X: 40
 					Y: 88
-					Width: 140
+					Width: 100
 					Height: 20
 					Font: PXSmall
 					TextColor: B9BAC2
 					Text: label-px-lobby-sum-time
 				Label@SUM_TIME_VALUE:
-					X: 160
+					X: 120
 					Y: 88
 					Width: 134
 					Height: 20
@@ -380,13 +388,13 @@ Background@SERVER_LOBBY:
 				Label@SUM_TREATY_LABEL:
 					X: 40
 					Y: 108
-					Width: 140
+					Width: 100
 					Height: 20
 					Font: PXSmall
 					TextColor: B9BAC2
 					Text: label-px-lobby-sum-treaty
 				Label@SUM_TREATY_VALUE:
-					X: 160
+					X: 120
 					Y: 108
 					Width: 134
 					Height: 20
@@ -421,32 +429,32 @@ Background@SERVER_LOBBY:
 		Button@START_GAME_BUTTON:
 			X: PARENT_WIDTH - 24 - WIDTH
 			Y: PARENT_HEIGHT - 24 - 52 - 10 - HEIGHT
-			Width: 308
+			Width: 268
 			Height: 52
 			Background: px-primary
 			Font: PXButton
 			Align: Left
-			LeftMargin: 128
+			LeftMargin: 108
 			Text: button-server-lobby-start-game
 			Children:
 				Image@ICON:
-					X: 96
+					X: 76
 					Y: 15
 					ImageCollection: px-lobby-icons
 					ImageName: play
 		Button@DISCONNECT_BUTTON:
 			X: PARENT_WIDTH - 24 - WIDTH
 			Y: PARENT_HEIGHT - 24 - HEIGHT
-			Width: 308
+			Width: 268
 			Height: 52
 			Background: px-key
 			Font: PXButton
 			Align: Left
-			LeftMargin: 128
+			LeftMargin: 108
 			Text: button-server-lobby-disconnect
 			Children:
 				Image@ICON:
-					X: 96
+					X: 76
 					Y: 17
 					ImageCollection: px-lobby-icons
 					ImageName: back
