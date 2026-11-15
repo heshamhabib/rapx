@@ -1,0 +1,733 @@
+diff --git a/engine/OpenRA.Game/Graphics/SpriteCache.cs b/engine/OpenRA.Game/Graphics/SpriteCache.cs
+index d053dcc..524709b 100644
+--- a/engine/OpenRA.Game/Graphics/SpriteCache.cs
++++ b/engine/OpenRA.Game/Graphics/SpriteCache.cs
+@@ -38,6 +38,12 @@ readonly Dictionary<
+ 		readonly Dictionary<string, List<int>> reservationsByFilename = new();
+ 		readonly Dictionary<string, SpriteCropMode> cropByFilename = new();
+ 
++		// RAPX: every reservation's downscale request per file (null = that reservation needs the file at full size)
++		readonly Dictionary<string, List<SpriteDownscaleRequest>> downscaleByFilename = new();
++		readonly HashSet<SpriteDownscaleRequest> downscaleRequests = new();
++		long downscaleTexelsBefore, downscaleTexelsAfter;
++		int downscaledFiles;
++
+ 		readonly Dictionary<int, Sprite[]> resolvedSprites = new();
+ 
+ 		readonly Dictionary<int, (string Filename, MiniYamlNode.SourceLocation Location)> missingFiles = new();
+@@ -75,12 +81,25 @@ internal static Dictionary<SheetType, SheetBuilder> CreateSheetBuilders(
+ 		}
+ 
+ 		public int ReserveSprites(string filename, IEnumerable<int> frames, MiniYamlNode.SourceLocation location,
+-			AdjustFrame adjustFrame = null, bool premultiplied = false, SpriteCropMode crop = SpriteCropMode.None)
++			AdjustFrame adjustFrame = null, bool premultiplied = false, SpriteCropMode crop = SpriteCropMode.None,
++			SpriteDownscaleRequest downscale = null)
+ 		{
+ 			// A file shared by several sequences is cropped once, with the most careful mode any of them asks for.
+ 			if (crop != SpriteCropMode.None && adjustFrame == null)
+ 				cropByFilename[filename] = (SpriteCropMode)Math.Max((int)crop, (int)cropByFilename.GetValueOrDefault(filename));
+ 
++			// RAPX: a file is shrunk once, by the smallest factor any of its sequences can live with (see ResolveDownscaleFactors)
++			if (adjustFrame != null)
++				downscale = null;
++
++			downscaleByFilename.GetOrAdd(filename, _ => new List<SpriteDownscaleRequest>()).Add(downscale);
++			if (downscale != null)
++			{
++				downscaleRequests.Add(downscale);
++				if (!downscale.Filenames.Contains(filename))
++					downscale.Filenames.Add(filename);
++			}
++
+ 			var token = nextReservationToken++;
+ 			spriteReservations[token] = (frames?.ToArray(), location, adjustFrame, premultiplied);
+ 			reservationsByFilename.GetOrAdd(filename, _ => new List<int>()).Add(token);
+@@ -114,14 +133,59 @@ public ISpriteFrame[] LoadFramesUncached(string filename)
+ 		// are released batch by batch instead of all being held until the end.
+ 		const int DecodeBatchBytes = 256 * 1024 * 1024;
+ 
++		/// <summary>
++		/// RAPX: settles how much each file is shrunk. A file gets the smallest factor among the sequences that use it
++		/// (1 when any of them needs it unchanged), and a sequence that spans several files must use one factor for all
++		/// of them, so its factor drops to the smallest of its files. Repeats until nothing changes (factors only ever
++		/// fall, so this ends). Factors below a request's minimum are not worth a resample and become 1.
++		/// </summary>
++		Dictionary<string, float> ResolveDownscaleFactors()
++		{
++			var factors = new Dictionary<string, float>(downscaleByFilename.Count);
++			bool changed;
++			do
++			{
++				changed = false;
++				foreach (var (filename, requests) in downscaleByFilename)
++				{
++					var factor = float.MaxValue;
++					foreach (var r in requests)
++						factor = Math.Min(factor, r?.Applied ?? 1f);
++
++					factors[filename] = factor;
++				}
++
++				foreach (var r in downscaleRequests)
++				{
++					var factor = r.Applied;
++					foreach (var f in r.Filenames)
++						factor = Math.Min(factor, factors[f]);
++
++					if (factor < r.Minimum)
++						factor = 1f;
++
++					if (factor < r.Applied)
++					{
++						r.Applied = factor;
++						changed = true;
++					}
++				}
++			}
++			while (changed);
++
++			return factors;
++		}
++
+ 		public void LoadReservations(ModData modData)
+ 		{
++			var downscales = ResolveDownscaleFactors();
++
+ 			// RAPX: files whose sprites are all in the shared store (loaded by an earlier map) are resolved
+ 			// without decoding them again; everything else is decoded on worker threads below.
+-			var toDecode = new List<(string Filename, SpriteCropMode Crop, List<int> Tokens)>();
++			var toDecode = new List<(string Filename, SpriteCropMode Crop, float Downscale, List<int> Tokens)>();
+ 			foreach (var (filename, tokens) in reservationsByFilename)
+-				if (!TryResolveShared(filename, tokens))
+-					toDecode.Add((filename, CropMode(filename), tokens));
++				if (!TryResolveShared(filename, tokens, downscales[filename]))
++					toDecode.Add((filename, CropMode(filename), downscales[filename], tokens));
+ 
+ 			var spriteCache = new Dictionary<(
+ 				string Filename,
+@@ -149,11 +213,19 @@ public void LoadReservations(ModData modData)
+ 			Log.Write("perf", $"SpriteCache: decoded {toDecode.Count} files in {batches} batches: " +
+ 				$"decode {decodeTime.ElapsedMilliseconds} ms, pack {packTime.ElapsedMilliseconds} ms");
+ 
++			var ownSheets = SheetBuilders.Values.Sum(sb => sb.AllSheets.Count());
++			var sharedSheets = shared?.SheetBuilders.Values.Sum(sb => sb.AllSheets.Count()) ?? 0;
++			Log.Write("perf", $"SpriteCache: downscaled {downscaledFiles} of {toDecode.Count} decoded files: " +
++				$"{downscaleTexelsBefore / 1000000} -> {downscaleTexelsAfter / 1000000} megatexels; " +
++				$"sheets: {ownSheets} per map + {sharedSheets} shared");
++
+ 			spriteReservations.Clear();
+ 			spriteReservations.TrimExcess();
+ 			reservationsByFilename.Clear();
+ 			reservationsByFilename.TrimExcess();
+ 			cropByFilename.Clear();
++			downscaleByFilename.Clear();
++			downscaleRequests.Clear();
+ 
+ 			foreach (var sb in SheetBuilders.Values)
+ 				sb.Current.ReleaseBuffer();
+@@ -161,7 +233,7 @@ public void LoadReservations(ModData modData)
+ 			shared?.ReleaseBuffers();
+ 		}
+ 
+-		void PackBatch(ModData modData, List<(string Filename, SpriteCropMode Crop, List<int> Tokens)> files, int first,
++		void PackBatch(ModData modData, List<(string Filename, SpriteCropMode Crop, float Downscale, List<int> Tokens)> files, int first,
+ 			ISpriteFrame[][] decoded, Dictionary<(string, int, bool, AdjustFrame), Sprite> spriteCache)
+ 		{
+ 			var pendingResolve = new List<(
+@@ -172,12 +244,13 @@ void PackBatch(ModData modData, List<(string Filename, SpriteCropMode Crop, List
+ 				AdjustFrame AdjustFrame,
+ 				bool Shared,
+ 				SpriteCropMode Crop,
++				float Downscale,
+ 				ISpriteFrame Frame,
+ 				Sprite[] SpritesForToken)>();
+ 
+ 			for (var n = 0; n < decoded.Length; n++)
+ 			{
+-				var (filename, crop, tokens) = files[first + n];
++				var (filename, crop, downscale, tokens) = files[first + n];
+ 				var loadedFrames = decoded[n];
+ 				var shareFile = CanShare(filename);
+ 				foreach (var token in tokens)
+@@ -202,7 +275,7 @@ void PackBatch(ModData modData, List<(string Filename, SpriteCropMode Crop, List
+ 								var frame = loadedFrames[i];
+ 								if (rs.AdjustFrame != null)
+ 									frame = rs.AdjustFrame(frame, j++, total);
+-								pendingResolve.Add((filename, i, loadedFrames.Length, rs.Premultiplied, rs.AdjustFrame, share, crop, frame, resolved));
++								pendingResolve.Add((filename, i, loadedFrames.Length, rs.Premultiplied, rs.AdjustFrame, share, crop, downscale, frame, resolved));
+ 							}
+ 						}
+ 						else
+@@ -219,7 +292,7 @@ void PackBatch(ModData modData, List<(string Filename, SpriteCropMode Crop, List
+ 			pendingResolve.Sort((a, b) => a.Frame.Size.Height.CompareTo(b.Frame.Size.Height));
+ 			for (var p = 0; p < pendingResolve.Count; p++)
+ 			{
+-				var (filename, frameIndex, frameCount, premultiplied, adjustFrame, share, crop, frame, spritesForToken) = pendingResolve[p];
++				var (filename, frameIndex, frameCount, premultiplied, adjustFrame, share, crop, downscale, frame, spritesForToken) = pendingResolve[p];
+ 
+ 				// Premultiplied and non-premultiplied sprites must be cached separately
+ 				// to cover the case where the same image is requested in both versions.
+@@ -231,7 +304,7 @@ void PackBatch(ModData modData, List<(string Filename, SpriteCropMode Crop, List
+ 						if (!share)
+ 							return AddFrame(SheetBuilders[sheetType], frame, premultiplied);
+ 
+-						var sharedFrames = shared.GetOrAddFile(filename, premultiplied, crop, frameCount);
++						var sharedFrames = shared.GetOrAddFile(filename, premultiplied, crop, downscale, frameCount);
+ 						return sharedFrames[frameIndex] ??= AddFrame(shared.SheetBuilders[sheetType], frame, premultiplied);
+ 					});
+ 
+@@ -262,7 +335,7 @@ bool CanShare(string filename)
+ 			return shared != null && (canShare == null || canShare(filename));
+ 		}
+ 
+-		bool TryResolveShared(string filename, List<int> tokens)
++		bool TryResolveShared(string filename, List<int> tokens, float downscale)
+ 		{
+ 			if (!CanShare(filename))
+ 				return false;
+@@ -273,7 +346,7 @@ bool TryResolveShared(string filename, List<int> tokens)
+ 				if (!spriteReservations.TryGetValue(token, out var rs))
+ 					continue;
+ 
+-				if (rs.AdjustFrame != null || !shared.TryGetFile(filename, rs.Premultiplied, CropMode(filename), out var sharedFrames))
++				if (rs.AdjustFrame != null || !shared.TryGetFile(filename, rs.Premultiplied, CropMode(filename), downscale, out var sharedFrames))
+ 					return false;
+ 
+ 				if (rs.Frames != null && rs.Frames.Any(i => i >= sharedFrames.Length))
+@@ -305,7 +378,7 @@ bool TryResolveShared(string filename, List<int> tokens)
+ 		/// it is missing or no loader understood it) and the index of the first file not read.
+ 		/// </summary>
+ 		(ISpriteFrame[][] Frames, int Next) DecodeFiles(ModData modData,
+-			List<(string Filename, SpriteCropMode Crop, List<int> Tokens)> files, int first, long budgetBytes)
++			List<(string Filename, SpriteCropMode Crop, float Downscale, List<int> Tokens)> files, int first, long budgetBytes)
+ 		{
+ 			var results = new List<ISpriteFrame[]>();
+ 			var workerCount = Math.Max(1, Math.Min(Environment.ProcessorCount - 1, 8));
+@@ -320,9 +393,26 @@ bool TryResolveShared(string filename, List<int> tokens)
+ 
+ 					try
+ 					{
+-						var (filename, crop, _) = files[first + index];
++						var (filename, crop, downscale, _) = files[first + index];
+ 						using var stream = new MemoryStream(data, false);
+ 						var frames = ParseFrames(stream, filename, loaders);
++
++						// Shrink before cropping, so the crop sees the pixels that will be drawn
++						if (frames != null && downscale > 1f)
++						{
++							long before = 0, after = 0;
++							for (var f = 0; f < frames.Length; f++)
++							{
++								before += (long)frames[f].Size.Width * frames[f].Size.Height;
++								frames[f] = DownscaledFrame.Downscale(frames[f], downscale);
++								after += (long)frames[f].Size.Width * frames[f].Size.Height;
++							}
++
++							Interlocked.Add(ref downscaleTexelsBefore, before);
++							Interlocked.Add(ref downscaleTexelsAfter, after);
++							Interlocked.Increment(ref downscaledFiles);
++						}
++
+ 						if (frames != null && crop != SpriteCropMode.None)
+ 							for (var f = 0; f < frames.Length; f++)
+ 								frames[f] = CroppedFrame.Crop(frames[f], crop);
+@@ -396,6 +486,281 @@ public void Dispose()
+ 		}
+ 	}
+ 
++	/// <summary>
++	/// RAPX: asks the sprite cache to shrink a sequence's files at load time. Artwork is often far larger than it is
++	/// ever drawn, so the cache resamples it down to what the viewport can show at its maximum zoom. One request is
++	/// shared by all the files of a sequence, so they end up with the same factor and the sequence can scale by it.
++	/// </summary>
++	public sealed class SpriteDownscaleRequest
++	{
++		/// <summary>Factor the sequence would like its files shrunk by (greater than 1).</summary>
++		public readonly float Requested;
++
++		/// <summary>Factors below this are not worth a resample: the file is kept as is (factor 1).</summary>
++		public readonly float Minimum;
++
++		/// <summary>Factor the files were actually shrunk by, known after the cache has loaded them. 1 = unchanged.</summary>
++		public float Applied { get; internal set; }
++
++		internal readonly List<string> Filenames = new();
++
++		public SpriteDownscaleRequest(float requested, float minimum)
++		{
++			Requested = Applied = Math.Max(1f, requested);
++			Minimum = Math.Max(1f, minimum);
++		}
++	}
++
++	/// <summary>
++	/// RAPX: a true colour frame resampled to a smaller size with a box or Lanczos-3 filter (widened to the shrink
++	/// factor). Colours are weighted by alpha, so transparent texels do not darken edges. Sizes and offsets shrink
++	/// with the pixels.
++	/// </summary>
++	public enum SpriteDownscaleFilter
++	{
++		/// <summary>Area average: every source texel goes into exactly one output texel. Cheapest, slightly softer.</summary>
++		Box,
++
++		/// <summary>Lanczos-3 windowed sinc: sharper edges, about three times the resampling time.</summary>
++		Lanczos
++	}
++
++	public sealed class DownscaledFrame : ISpriteFrame
++	{
++		/// <summary>Filter used for every downscale. Set once by the sequence loader from the mod's metadata.</summary>
++		public static SpriteDownscaleFilter Filter = SpriteDownscaleFilter.Box;
++
++		public SpriteFrameType Type { get; private init; }
++		public Size Size { get; private init; }
++		public Size FrameSize { get; private init; }
++		public float2 Offset { get; private init; }
++		public byte[] Data { get; private init; }
++		public bool DisableExportPadding => false;
++
++		public static ISpriteFrame Downscale(ISpriteFrame frame, float factor)
++		{
++			if (factor <= 1f)
++				return frame;
++
++			var stride = frame.Type switch
++			{
++				SpriteFrameType.Bgra32 or SpriteFrameType.Rgba32 => 4,
++				SpriteFrameType.Bgr24 or SpriteFrameType.Rgb24 => 3,
++				_ => 0
++			};
++
++			var sw = frame.Size.Width;
++			var sh = frame.Size.Height;
++			if (stride == 0 || sw == 0 || sh == 0 || frame.Data.Length < stride * sw * sh)
++				return frame;
++
++			var dw = Math.Max(1, (int)Math.Round(sw / factor));
++			var dh = Math.Max(1, (int)Math.Round(sh / factor));
++			if (dw >= sw && dh >= sh)
++				return frame;
++
++			var fx = sw / (float)dw;
++			var fy = sh / (float)dh;
++			return new DownscaledFrame
++			{
++				Type = frame.Type,
++				Size = new Size(dw, dh),
++				FrameSize = new Size(
++					Math.Max(1, (int)Math.Round(frame.FrameSize.Width / fx)),
++					Math.Max(1, (int)Math.Round(frame.FrameSize.Height / fy))),
++				Offset = new float2(frame.Offset.X / fx, frame.Offset.Y / fy),
++				Data = Resample(frame.Data, stride, sw, sh, dw, dh)
++			};
++		}
++
++		const int LanczosLobes = 3;
++
++		static double Lanczos(double x)
++		{
++			if (x == 0)
++				return 1;
++
++			if (x <= -LanczosLobes || x >= LanczosLobes)
++				return 0;
++
++			var px = Math.PI * x;
++			return LanczosLobes * Math.Sin(px) * Math.Sin(px / LanczosLobes) / (px * px);
++		}
++
++		// For each output texel along one axis: the first source texel it covers and the share of each covered texel
++		static (int[] Starts, float[][] Weights) BoxWeights(int src, int dst)
++		{
++			var starts = new int[dst];
++			var weights = new float[dst][];
++			var f = src / (double)dst;
++			for (var i = 0; i < dst; i++)
++			{
++				var lo = i * f;
++				var hi = Math.Min(src, (i + 1) * f);
++				var first = (int)lo;
++				var last = Math.Min(src - 1, (int)Math.Ceiling(hi) - 1);
++				starts[i] = first;
++				var w = new float[last - first + 1];
++				for (var s = first; s <= last; s++)
++					w[s - first] = (float)((Math.Min(hi, s + 1) - Math.Max(lo, s)) / f);
++
++				weights[i] = w;
++			}
++
++			return (starts, weights);
++		}
++
++		static (int[] Starts, float[][] Weights) Weights(int src, int dst)
++		{
++			return Filter == SpriteDownscaleFilter.Lanczos ? LanczosWeights(src, dst) : BoxWeights(src, dst);
++		}
++
++		// For each output texel along one axis: the first source texel its filter touches and the (normalised) weight
++		// of each touched texel. The filter is stretched by the shrink factor so it covers the whole source footprint.
++		static (int[] Starts, float[][] Weights) LanczosWeights(int src, int dst)
++		{
++			var starts = new int[dst];
++			var weights = new float[dst][];
++			var f = src / (double)dst;
++			var radius = LanczosLobes * f;
++			for (var i = 0; i < dst; i++)
++			{
++				var centre = (i + 0.5) * f - 0.5;
++				var first = Math.Max(0, (int)Math.Ceiling(centre - radius));
++				var last = Math.Min(src - 1, (int)Math.Floor(centre + radius));
++				var w = new float[last - first + 1];
++				var sum = 0.0;
++				for (var s = first; s <= last; s++)
++				{
++					var v = Lanczos((s - centre) / f);
++					w[s - first] = (float)v;
++					sum += v;
++				}
++
++				if (sum != 0)
++					for (var k = 0; k < w.Length; k++)
++						w[k] = (float)(w[k] / sum);
++
++				starts[i] = first;
++				weights[i] = w;
++			}
++
++			return (starts, weights);
++		}
++
++		// Fixed-point weights: 255 * 255 * (sum of |weights| < 1.3) * 4096 stays well inside an int
++		const int WeightShift = 12;
++		const int WeightOne = 1 << WeightShift;
++
++		static int[][] ToFixed(float[][] weights)
++		{
++			var fixedWeights = new int[weights.Length][];
++			for (var i = 0; i < weights.Length; i++)
++			{
++				var w = weights[i];
++				var f = new int[w.Length];
++				for (var k = 0; k < w.Length; k++)
++					f[k] = (int)Math.Round(w[k] * WeightOne);
++
++				fixedWeights[i] = f;
++			}
++
++			return fixedWeights;
++		}
++
++		static byte[] Resample(byte[] source, int stride, int sw, int sh, int dw, int dh)
++		{
++			var hasAlpha = stride == 4;
++			var (xStarts, xWeightsF) = Weights(sw, dw);
++			var (yStarts, yWeightsF) = Weights(sh, dh);
++			var xWeights = ToFixed(xWeightsF);
++			var yWeights = ToFixed(yWeightsF);
++
++			// Pass 1: rows, into alpha-weighted (premultiplied) texels, 8 fractional bits
++			var src = source.AsSpan();
++			var rows = new int[sh * dw * 4];
++			var rowSpan = rows.AsSpan();
++			for (var y = 0; y < sh; y++)
++			{
++				var srcRow = src.Slice(y * sw * stride, sw * stride);
++				var dstRow = rowSpan.Slice(y * dw * 4, dw * 4);
++				for (var x = 0; x < dw; x++)
++				{
++					int c0 = 0, c1 = 0, c2 = 0, a = 0;
++					var w = xWeights[x];
++					var s = xStarts[x] * stride;
++					if (hasAlpha)
++					{
++						for (var k = 0; k < w.Length; k++, s += stride)
++						{
++							// alpha * weight has 12 fractional bits; shift to 8 so colours fit in 32 bits
++							var alpha = (srcRow[s + 3] * w[k]) >> 4;
++							c0 += srcRow[s] * alpha;
++							c1 += srcRow[s + 1] * alpha;
++							c2 += srcRow[s + 2] * alpha;
++							a += alpha;
++						}
++					}
++					else
++					{
++						for (var k = 0; k < w.Length; k++, s += stride)
++						{
++							var alpha = (255 * w[k]) >> 4;
++							c0 += srcRow[s] * alpha;
++							c1 += srcRow[s + 1] * alpha;
++							c2 += srcRow[s + 2] * alpha;
++							a += alpha;
++						}
++					}
++
++					var d = x * 4;
++					dstRow[d] = c0;
++					dstRow[d + 1] = c1;
++					dstRow[d + 2] = c2;
++					dstRow[d + 3] = a;
++				}
++			}
++
++			// Pass 2: columns (weights shifted back out as we go), then back to straight alpha bytes
++			var dst = new byte[dw * dh * stride];
++			var rowStride = dw * 4;
++			for (var y = 0; y < dh; y++)
++			{
++				var w = yWeights[y];
++				var first = yStarts[y] * rowStride;
++				for (var x = 0; x < dw; x++)
++				{
++					long c0 = 0, c1 = 0, c2 = 0, a = 0;
++					var s = first + x * 4;
++					for (var k = 0; k < w.Length; k++, s += rowStride)
++					{
++						c0 += (long)rowSpan[s] * w[k];
++						c1 += (long)rowSpan[s + 1] * w[k];
++						c2 += (long)rowSpan[s + 2] * w[k];
++						a += (long)rowSpan[s + 3] * w[k];
++					}
++
++					var d = (y * dw + x) * stride;
++					if (a > 0)
++					{
++						dst[d] = (byte)Math.Clamp((c0 + a / 2) / a, 0, 255);
++						dst[d + 1] = (byte)Math.Clamp((c1 + a / 2) / a, 0, 255);
++						dst[d + 2] = (byte)Math.Clamp((c2 + a / 2) / a, 0, 255);
++					}
++
++					if (hasAlpha)
++					{
++						// a carries 8 + 12 fractional bits
++						var alpha = (a + (1 << 19)) >> 20;
++						dst[d + 3] = (byte)Math.Clamp(alpha, 0, 255);
++					}
++				}
++			}
++
++			return dst;
++		}
++	}
++
+ 	/// <summary>
+ 	/// RAPX: a true colour frame with its fully transparent border removed. Cropping keeps the visible
+ 	/// pixels where they were (the offset moves with the crop) and remembers the full frame for bounds.
+@@ -515,21 +880,21 @@ public static ISpriteFrame Crop(ISpriteFrame frame, SpriteCropMode mode)
+ 	public sealed class SharedSpriteStore : IDisposable
+ 	{
+ 		public readonly Dictionary<SheetType, SheetBuilder> SheetBuilders;
+-		readonly Dictionary<(string Filename, bool Premultiplied, SpriteCropMode Crop), Sprite[]> files = new();
++		readonly Dictionary<(string Filename, bool Premultiplied, SpriteCropMode Crop, float Downscale), Sprite[]> files = new();
+ 
+ 		public SharedSpriteStore(int bgraSheetSize, int indexedSheetSize)
+ 		{
+ 			SheetBuilders = SpriteCache.CreateSheetBuilders(bgraSheetSize, indexedSheetSize);
+ 		}
+ 
+-		public bool TryGetFile(string filename, bool premultiplied, SpriteCropMode crop, out Sprite[] sprites)
++		public bool TryGetFile(string filename, bool premultiplied, SpriteCropMode crop, float downscale, out Sprite[] sprites)
+ 		{
+-			return files.TryGetValue((filename, premultiplied, crop), out sprites);
++			return files.TryGetValue((filename, premultiplied, crop, downscale), out sprites);
+ 		}
+ 
+-		public Sprite[] GetOrAddFile(string filename, bool premultiplied, SpriteCropMode crop, int frameCount)
++		public Sprite[] GetOrAddFile(string filename, bool premultiplied, SpriteCropMode crop, float downscale, int frameCount)
+ 		{
+-			return files.GetOrAdd((filename, premultiplied, crop), _ => new Sprite[frameCount]);
++			return files.GetOrAdd((filename, premultiplied, crop, downscale), _ => new Sprite[frameCount]);
+ 		}
+ 
+ 		public void ReleaseBuffers()
+diff --git a/engine/OpenRA.Game/Graphics/Viewport.cs b/engine/OpenRA.Game/Graphics/Viewport.cs
+index 6728c09..dd8c8fc 100644
+--- a/engine/OpenRA.Game/Graphics/Viewport.cs
++++ b/engine/OpenRA.Game/Graphics/Viewport.cs
+@@ -243,23 +243,35 @@ static float CalculateMinimumZoom(float minHeight, float maxHeight)
+ 			}
+ 		}
+ 
+-		void UpdateViewportZooms(bool resetCurrentZoom = true)
++		/// <summary>
++		/// RAPX: the zoom range a viewport gets for the current window and graphics settings, without needing a world.
++		/// The sprite cache uses the maximum to size artwork at load time (see SpriteDownscaleRequest).
++		/// </summary>
++		public static (float MinZoom, float MaxZoom) ZoomRange(WorldViewportSizes viewportSizes, GraphicSettings graphicSettings)
+ 		{
+-			lastViewportDistance = graphicSettings.ViewportDistance;
+-
++			float minZoom;
+ 			var vd = graphicSettings.ViewportDistance;
+ 			if (viewportSizes.AllowNativeZoom && vd == WorldViewport.Native)
+-				MinZoom = viewportSizes.DefaultScale;
++				minZoom = viewportSizes.DefaultScale;
+ 			else
+ 			{
+ 				var range = viewportSizes.GetSizeRange(vd);
+-				MinZoom = CalculateMinimumZoom(range.X, range.Y) * viewportSizes.DefaultScale;
++				minZoom = CalculateMinimumZoom(range.X, range.Y) * viewportSizes.DefaultScale;
+ 			}
+ 
+-			MaxZoom = Math.Min(
+-				MinZoom * viewportSizes.MaxZoomScale,
++			var maxZoom = Math.Min(
++				minZoom * viewportSizes.MaxZoomScale,
+ 				Game.Renderer.NativeResolution.Height * viewportSizes.DefaultScale / viewportSizes.MaxZoomWindowHeight);
+ 
++			return (minZoom, maxZoom);
++		}
++
++		void UpdateViewportZooms(bool resetCurrentZoom = true)
++		{
++			lastViewportDistance = graphicSettings.ViewportDistance;
++
++			(MinZoom, MaxZoom) = ZoomRange(viewportSizes, graphicSettings);
++
+ 			if (unlockMinZoom)
+ 			{
+ 				// Spectators and the map editor support zooming out by an extra factor of two.
+diff --git a/engine/OpenRA.Mods.Common/Graphics/DefaultSpriteSequence.cs b/engine/OpenRA.Mods.Common/Graphics/DefaultSpriteSequence.cs
+index a829c3a..59653c5 100644
+--- a/engine/OpenRA.Mods.Common/Graphics/DefaultSpriteSequence.cs
++++ b/engine/OpenRA.Mods.Common/Graphics/DefaultSpriteSequence.cs
+@@ -43,11 +43,92 @@ public DefaultSpriteSequenceLoader(ModData modData)
+ 
+ 			if (metadata.TryGetValue("CropTransparentExclude", out yaml))
+ 				cropExcludes = FieldLoader.GetValue<string[]>("CropTransparentExclude", yaml.Value).Select(GlobToRegex).ToArray();
++
++			// RAPX: true colour files shrunk at load time to the largest size they can be drawn at (same glob syntax).
++			if (metadata.TryGetValue("Downscale", out yaml))
++				downscaleIncludes = FieldLoader.GetValue<string[]>("Downscale", yaml.Value).Select(GlobToRegex).ToArray();
++
++			if (metadata.TryGetValue("DownscaleExclude", out yaml))
++				downscaleExcludes = FieldLoader.GetValue<string[]>("DownscaleExclude", yaml.Value).Select(GlobToRegex).ToArray();
++
++			if (metadata.TryGetValue("DownscaleMaxMagnification", out yaml))
++				downscaleMaxMagnification = FieldLoader.GetValue<float>("DownscaleMaxMagnification", yaml.Value);
++
++			if (metadata.TryGetValue("DownscaleMinFactor", out yaml))
++				downscaleMinFactor = FieldLoader.GetValue<float>("DownscaleMinFactor", yaml.Value);
++
++			if (metadata.TryGetValue("DownscaleOversample", out yaml))
++				downscaleOversample = Math.Max(1f, FieldLoader.GetValue<float>("DownscaleOversample", yaml.Value));
++
++			if (metadata.TryGetValue("DownscaleFilter", out yaml))
++				DownscaledFrame.Filter = FieldLoader.GetValue<SpriteDownscaleFilter>("DownscaleFilter", yaml.Value);
++
++			this.modData = modData;
+ 		}
+ 
+ 		readonly Regex[] cropIncludes = Array.Empty<Regex>();
+ 		readonly Regex[] cropExcludes = Array.Empty<Regex>();
+ 
++		readonly ModData modData;
++		readonly Regex[] downscaleIncludes = Array.Empty<Regex>();
++		readonly Regex[] downscaleExcludes = Array.Empty<Regex>();
++
++		// Screen pixels per world pixel the art must stay sharp up to; 0 = the viewport's maximum zoom for this window
++		readonly float downscaleMaxMagnification;
++		readonly float downscaleMinFactor = 1.1f;
++
++		// Source texels kept per screen pixel at the maximum magnification (1 = exactly one, larger = sharper, more memory)
++		readonly float downscaleOversample = 1f;
++
++		public bool CanDownscale(string filename)
++		{
++			return downscaleIncludes.Any(r => r.IsMatch(filename)) && !downscaleExcludes.Any(r => r.IsMatch(filename));
++		}
++
++		/// <summary>
++		/// RAPX: the most screen pixels one world pixel can cover, so art is never shrunk below one texel per screen
++		/// pixel at any zoom the player can reach. 0 outside the game (utility commands), where nothing is shrunk.
++		/// </summary>
++		public float MaxMagnification()
++		{
++			if (downscaleMaxMagnification > 0)
++				return downscaleMaxMagnification;
++
++			if (Game.Renderer == null || Game.Settings == null)
++				return 0;
++
++			return Viewport.ZoomRange(modData.Manifest.Get<WorldViewportSizes>(), Game.Settings.Graphics).MaxZoom;
++		}
++
++		/// <summary>
++		/// RAPX: a downscale request for a sequence drawn at <paramref name="scale"/> whose files all match the
++		/// Downscale globs, or null when its art is already no larger than it can be shown.
++		/// </summary>
++		public SpriteDownscaleRequest DownscaleRequest(IEnumerable<string> filenames, float scale)
++		{
++			if (downscaleIncludes.Length == 0 || scale <= 0)
++				return null;
++
++			var any = false;
++			foreach (var f in filenames)
++			{
++				if (!CanDownscale(f))
++					return null;
++
++				any = true;
++			}
++
++			if (!any)
++				return null;
++
++			var magnification = MaxMagnification();
++			if (magnification <= 0)
++				return null;
++
++			var factor = 1f / (scale * magnification * downscaleOversample);
++			return factor >= downscaleMinFactor ? new SpriteDownscaleRequest(factor, downscaleMinFactor) : null;
++		}
++
+ 		static Regex GlobToRegex(string glob)
+ 		{
+ 			var pattern = Regex.Escape(glob).Replace(@"\*\*", ".*").Replace(@"\*", "[^/]*");
+@@ -256,6 +337,9 @@ public ReservationInfo(string filename, List<int> loadFrames, int[] frames, Mini
+ 		protected int shadowZOffset;
+ 		protected bool ignoreWorldTint;
+ 		protected float scale;
++
++		// RAPX: how much the cache may shrink this sequence's files (null = not at all); Applied is known after loading
++		protected SpriteDownscaleRequest downscale;
+ 		protected float[] alpha;
+ 		protected bool alphaFade;
+ 		protected Rectangle? bounds;
+@@ -501,11 +585,17 @@ public virtual void ReserveSprites(ModData modData, string tileset, SpriteCache
+ 			}
+ 			else
+ 			{
+-				foreach (var f in ParseFilenames(modData, tileset, frames, data, defaults))
++				var files = ParseFilenames(modData, tileset, frames, data, defaults).ToList();
++
++				// RAPX: a depth sprite must keep the size of the sprites it is paired with, so such sequences stay full size
++				if (depthSpriteReservation == null)
++					downscale = (Loader as DefaultSpriteSequenceLoader)?.DownscaleRequest(files.Select(f => f.Filename), scale);
++
++				foreach (var f in files)
+ 				{
+ 					spritesToLoad.Add(new SpriteReservation
+ 					{
+-						Token = cache.ReserveSprites(f.Filename, f.LoadFrames, f.Location, crop: CropMode(f.Filename)),
++						Token = cache.ReserveSprites(f.Filename, f.LoadFrames, f.Location, crop: CropMode(f.Filename), downscale: downscale),
+ 						Offset = offset,
+ 						FlipX = flipX,
+ 						FlipY = flipY,
+@@ -558,6 +648,16 @@ public virtual void ResolveSprites(SpriteCache cache)
+ 			if (bounds != null)
+ 				return;
+ 
++			// RAPX: the files were shrunk by this factor, so draw them that much larger and move the sequence's own
++			// pixel offsets (which are in sprite pixels) into the smaller pixels. The result is drawn exactly as before.
++			var shrunk = downscale?.Applied ?? 1f;
++			if (shrunk > 1f)
++			{
++				scale *= shrunk;
++				foreach (var r in spritesToLoad)
++					r.Offset /= shrunk;
++			}
++
+ 			Sprite depthSprite = null;
+ 			if (depthSpriteReservation != null)
+ 				depthSprite = cache.ResolveSprites(depthSpriteReservation.Value).First(s => s != null);

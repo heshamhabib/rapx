@@ -243,22 +243,34 @@ namespace OpenRA.Graphics
 			}
 		}
 
+		/// <summary>
+		/// RAPX: the zoom range a viewport gets for the current window and graphics settings, without needing a world.
+		/// The sprite cache uses the maximum to size artwork at load time (see SpriteDownscaleRequest).
+		/// </summary>
+		public static (float MinZoom, float MaxZoom) ZoomRange(WorldViewportSizes viewportSizes, GraphicSettings graphicSettings)
+		{
+			float minZoom;
+			var vd = graphicSettings.ViewportDistance;
+			if (viewportSizes.AllowNativeZoom && vd == WorldViewport.Native)
+				minZoom = viewportSizes.DefaultScale;
+			else
+			{
+				var range = viewportSizes.GetSizeRange(vd);
+				minZoom = CalculateMinimumZoom(range.X, range.Y) * viewportSizes.DefaultScale;
+			}
+
+			var maxZoom = Math.Min(
+				minZoom * viewportSizes.MaxZoomScale,
+				Game.Renderer.NativeResolution.Height * viewportSizes.DefaultScale / viewportSizes.MaxZoomWindowHeight);
+
+			return (minZoom, maxZoom);
+		}
+
 		void UpdateViewportZooms(bool resetCurrentZoom = true)
 		{
 			lastViewportDistance = graphicSettings.ViewportDistance;
 
-			var vd = graphicSettings.ViewportDistance;
-			if (viewportSizes.AllowNativeZoom && vd == WorldViewport.Native)
-				MinZoom = viewportSizes.DefaultScale;
-			else
-			{
-				var range = viewportSizes.GetSizeRange(vd);
-				MinZoom = CalculateMinimumZoom(range.X, range.Y) * viewportSizes.DefaultScale;
-			}
-
-			MaxZoom = Math.Min(
-				MinZoom * viewportSizes.MaxZoomScale,
-				Game.Renderer.NativeResolution.Height * viewportSizes.DefaultScale / viewportSizes.MaxZoomWindowHeight);
+			(MinZoom, MaxZoom) = ZoomRange(viewportSizes, graphicSettings);
 
 			if (unlockMinZoom)
 			{

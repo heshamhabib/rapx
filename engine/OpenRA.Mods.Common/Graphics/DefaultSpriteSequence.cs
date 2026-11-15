@@ -43,10 +43,91 @@ namespace OpenRA.Mods.Common.Graphics
 
 			if (metadata.TryGetValue("CropTransparentExclude", out yaml))
 				cropExcludes = FieldLoader.GetValue<string[]>("CropTransparentExclude", yaml.Value).Select(GlobToRegex).ToArray();
+
+			// RAPX: true colour files shrunk at load time to the largest size they can be drawn at (same glob syntax).
+			if (metadata.TryGetValue("Downscale", out yaml))
+				downscaleIncludes = FieldLoader.GetValue<string[]>("Downscale", yaml.Value).Select(GlobToRegex).ToArray();
+
+			if (metadata.TryGetValue("DownscaleExclude", out yaml))
+				downscaleExcludes = FieldLoader.GetValue<string[]>("DownscaleExclude", yaml.Value).Select(GlobToRegex).ToArray();
+
+			if (metadata.TryGetValue("DownscaleMaxMagnification", out yaml))
+				downscaleMaxMagnification = FieldLoader.GetValue<float>("DownscaleMaxMagnification", yaml.Value);
+
+			if (metadata.TryGetValue("DownscaleMinFactor", out yaml))
+				downscaleMinFactor = FieldLoader.GetValue<float>("DownscaleMinFactor", yaml.Value);
+
+			if (metadata.TryGetValue("DownscaleOversample", out yaml))
+				downscaleOversample = Math.Max(1f, FieldLoader.GetValue<float>("DownscaleOversample", yaml.Value));
+
+			if (metadata.TryGetValue("DownscaleFilter", out yaml))
+				DownscaledFrame.Filter = FieldLoader.GetValue<SpriteDownscaleFilter>("DownscaleFilter", yaml.Value);
+
+			this.modData = modData;
 		}
 
 		readonly Regex[] cropIncludes = Array.Empty<Regex>();
 		readonly Regex[] cropExcludes = Array.Empty<Regex>();
+
+		readonly ModData modData;
+		readonly Regex[] downscaleIncludes = Array.Empty<Regex>();
+		readonly Regex[] downscaleExcludes = Array.Empty<Regex>();
+
+		// Screen pixels per world pixel the art must stay sharp up to; 0 = the viewport's maximum zoom for this window
+		readonly float downscaleMaxMagnification;
+		readonly float downscaleMinFactor = 1.1f;
+
+		// Source texels kept per screen pixel at the maximum magnification (1 = exactly one, larger = sharper, more memory)
+		readonly float downscaleOversample = 1f;
+
+		public bool CanDownscale(string filename)
+		{
+			return downscaleIncludes.Any(r => r.IsMatch(filename)) && !downscaleExcludes.Any(r => r.IsMatch(filename));
+		}
+
+		/// <summary>
+		/// RAPX: the most screen pixels one world pixel can cover, so art is never shrunk below one texel per screen
+		/// pixel at any zoom the player can reach. 0 outside the game (utility commands), where nothing is shrunk.
+		/// </summary>
+		public float MaxMagnification()
+		{
+			if (downscaleMaxMagnification > 0)
+				return downscaleMaxMagnification;
+
+			if (Game.Renderer == null || Game.Settings == null)
+				return 0;
+
+			return Viewport.ZoomRange(modData.Manifest.Get<WorldViewportSizes>(), Game.Settings.Graphics).MaxZoom;
+		}
+
+		/// <summary>
+		/// RAPX: a downscale request for a sequence drawn at <paramref name="scale"/> whose files all match the
+		/// Downscale globs, or null when its art is already no larger than it can be shown.
+		/// </summary>
+		public SpriteDownscaleRequest DownscaleRequest(IEnumerable<string> filenames, float scale)
+		{
+			if (downscaleIncludes.Length == 0 || scale <= 0)
+				return null;
+
+			var any = false;
+			foreach (var f in filenames)
+			{
+				if (!CanDownscale(f))
+					return null;
+
+				any = true;
+			}
+
+			if (!any)
+				return null;
+
+			var magnification = MaxMagnification();
+			if (magnification <= 0)
+				return null;
+
+			var factor = 1f / (scale * magnification * downscaleOversample);
+			return factor >= downscaleMinFactor ? new SpriteDownscaleRequest(factor, downscaleMinFactor) : null;
+		}
 
 		static Regex GlobToRegex(string glob)
 		{
@@ -256,6 +337,9 @@ namespace OpenRA.Mods.Common.Graphics
 		protected int shadowZOffset;
 		protected bool ignoreWorldTint;
 		protected float scale;
+
+		// RAPX: how much the cache may shrink this sequence's files (null = not at all); Applied is known after loading
+		protected SpriteDownscaleRequest downscale;
 		protected float[] alpha;
 		protected bool alphaFade;
 		protected Rectangle? bounds;
@@ -501,11 +585,17 @@ namespace OpenRA.Mods.Common.Graphics
 			}
 			else
 			{
-				foreach (var f in ParseFilenames(modData, tileset, frames, data, defaults))
+				var files = ParseFilenames(modData, tileset, frames, data, defaults).ToList();
+
+				// RAPX: a depth sprite must keep the size of the sprites it is paired with, so such sequences stay full size
+				if (depthSpriteReservation == null)
+					downscale = (Loader as DefaultSpriteSequenceLoader)?.DownscaleRequest(files.Select(f => f.Filename), scale);
+
+				foreach (var f in files)
 				{
 					spritesToLoad.Add(new SpriteReservation
 					{
-						Token = cache.ReserveSprites(f.Filename, f.LoadFrames, f.Location, crop: CropMode(f.Filename)),
+						Token = cache.ReserveSprites(f.Filename, f.LoadFrames, f.Location, crop: CropMode(f.Filename), downscale: downscale),
 						Offset = offset,
 						FlipX = flipX,
 						FlipY = flipY,
@@ -557,6 +647,16 @@ namespace OpenRA.Mods.Common.Graphics
 		{
 			if (bounds != null)
 				return;
+
+			// RAPX: the files were shrunk by this factor, so draw them that much larger and move the sequence's own
+			// pixel offsets (which are in sprite pixels) into the smaller pixels. The result is drawn exactly as before.
+			var shrunk = downscale?.Applied ?? 1f;
+			if (shrunk > 1f)
+			{
+				scale *= shrunk;
+				foreach (var r in spritesToLoad)
+					r.Offset /= shrunk;
+			}
 
 			Sprite depthSprite = null;
 			if (depthSpriteReservation != null)

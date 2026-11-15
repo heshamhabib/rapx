@@ -395,6 +395,27 @@ SpriteSequenceFormat: ClassicTilesetSpecificSpriteSequence
 	# widgets and some RAPX renderers, so new folders stay uncropped until checked and added here.
 	CropTransparent: ra|bits/hd/units/**, ra|bits/hd/jets/**, ra|bits/hd/soldiers/**, ra|bits/hd/infantry/**, ra|bits/hd/styles/**, ra|bits/hd/props/**, ra|bits/hd/*.png
 	CropTransparentExclude: ra|bits/hd/*icon.png, ra|bits/hd/*cameo.png, ra|bits/hd/rolebadges.png, ra|bits/hd/blank.png
+	# RAPX: shrink HD world art at load time to the largest size it can ever be drawn at (its sequence Scale times the
+	# viewport's maximum zoom-in for this window), with an area filter. Sequence scales are raised to match, so units
+	# are drawn exactly as large as before and are never shown with fewer source texels per screen pixel than today;
+	# this saves most of the video memory and sheet packing time the oversized art costs. Same glob syntax and the same
+	# "normal world sprites only" rule as CropTransparent: anything a widget or renderer sizes from the raw sprite stays
+	# full size. A sequence that shares a file with a full-size sequence (icons, Combine:) is kept full size too.
+	Downscale: ra|bits/hd/units/**, ra|bits/hd/jets/**, ra|bits/hd/soldiers/**, ra|bits/hd/infantry/**, ra|bits/hd/styles/**, ra|bits/hd/props/**, ra|bits/hd/*.png
+	DownscaleExclude: ra|bits/hd/*icon.png, ra|bits/hd/*cameo.png, ra|bits/hd/rolebadges.png, ra|bits/hd/blank.png
+	# Screen pixels per world pixel the art stays sharp up to. 0 = the viewport's real maximum zoom (MinZoom x 2, which
+	# grows with display height: 3 at 1080p, 4 at 1440p, 6 at 4K with the Medium viewport). A fixed value such as 2
+	# saves far more memory on large displays at the price of softer art when zoomed in beyond it.
+	DownscaleMaxMagnification: 0
+	# Source texels kept per screen pixel at that magnification. Measured on a 1080p display (max zoom 2) against the
+	# unshrunk art: 1 keeps exactly one texel per pixel (371 -> 112 sheets of 2048x2048, but visibly softer at the top of
+	# the zoom range because the art is then drawn 1:1 through the linear filter), 1.5 is indistinguishable except under
+	# magnification (371 -> 192 sheets), 2 is identical but saves almost nothing (371 -> 341 sheets).
+	DownscaleOversample: 1.5
+	# Box (area average, cheap) or Lanczos (sharper edges, about three times the resampling time on first load)
+	DownscaleFilter: Box
+	# Shrinks smaller than this are not worth a resample
+	DownscaleMinFactor: 1.1
 
 AssetBrowser:
 	SpriteExtensions: .shp, .tmp, .tem, .des, .sno, .int
