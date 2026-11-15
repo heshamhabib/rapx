@@ -1,6 +1,7 @@
 Speech:
 	# Our own announcers (IDEA-31, artsrc/audio/generate_voices_kokoro.py): Union = eva/union, Vanguard = eva/vanguard,
-	# Japan/South Korea/China = eva/eastasia (generate_eastasia.py), England = eva/england (generate_england.py)
+	# Japan/South Korea/China = eva/eastasia (generate_eastasia.py), England = eva/england (generate_england.py),
+	# India/Pakistan = eva/southasia (generate_southasia.py)
 	DefaultVariant: .ogg
 	DefaultPrefix: ra|audio/eva/union/
 	Prefixes:
@@ -11,10 +12,10 @@ Speech:
 		russia: ra|audio/eva/vanguard/
 		ukraine: ra|audio/eva/vanguard/
 		cuba: ra|audio/eva/vanguard/
-		india: ra|audio/eva/vanguard/
+		india: ra|audio/eva/southasia/
 		china: ra|audio/eva/eastasia/
 		turkey: ra|audio/eva/vanguard/
-		pakistan: ra|audio/eva/vanguard/
+		pakistan: ra|audio/eva/southasia/
 		iran: ra|audio/eva/vanguard/
 	Notifications:
 		AbombAvailable: aavail1

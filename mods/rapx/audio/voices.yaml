@@ -1,6 +1,7 @@
 # Unit voices: our own (IDEA-31, artsrc/audio/generate_voices_kokoro.py), DogVoice from CC0 recordings.
 # Japan, South Korea and China share the East Asian accent voices (artsrc/audio/generate_eastasia.py).
 # England has British voices (artsrc/audio/generate_england.py).
+# India and Pakistan share the Indian accent voices (artsrc/audio/generate_southasia.py).
 GenericVoice:
 	DefaultVariant: .ogg
 	DefaultPrefix: ra|audio/voices/
@@ -18,10 +19,10 @@ GenericVoice:
 		russia: ra|audio/voices/vanguard-inf1/,ra|audio/voices/vanguard-inf2/
 		ukraine: ra|audio/voices/vanguard-inf1/,ra|audio/voices/vanguard-inf2/
 		cuba: ra|audio/voices/vanguard-inf1/,ra|audio/voices/vanguard-inf2/
-		india: ra|audio/voices/vanguard-inf1/,ra|audio/voices/vanguard-inf2/
+		india: ra|audio/voices/southasia-inf1/,ra|audio/voices/southasia-inf2/
 		china: ra|audio/voices/eastasia-inf1/,ra|audio/voices/eastasia-inf2/
 		turkey: ra|audio/voices/vanguard-inf1/,ra|audio/voices/vanguard-inf2/
-		pakistan: ra|audio/voices/vanguard-inf1/,ra|audio/voices/vanguard-inf2/
+		pakistan: ra|audio/voices/southasia-inf1/,ra|audio/voices/southasia-inf2/
 		iran: ra|audio/voices/vanguard-inf1/,ra|audio/voices/vanguard-inf2/
 	DisablePrefixes: Die, Burned, Zapped
 	Voices:
@@ -48,10 +49,10 @@ VehicleVoice:
 		russia: ra|audio/voices/vanguard-veh1/,ra|audio/voices/vanguard-veh2/
 		ukraine: ra|audio/voices/vanguard-veh1/,ra|audio/voices/vanguard-veh2/
 		cuba: ra|audio/voices/vanguard-veh1/,ra|audio/voices/vanguard-veh2/
-		india: ra|audio/voices/vanguard-veh1/,ra|audio/voices/vanguard-veh2/
+		india: ra|audio/voices/southasia-veh1/,ra|audio/voices/southasia-veh2/
 		china: ra|audio/voices/eastasia-veh1/,ra|audio/voices/eastasia-veh2/
 		turkey: ra|audio/voices/vanguard-veh1/,ra|audio/voices/vanguard-veh2/
-		pakistan: ra|audio/voices/vanguard-veh1/,ra|audio/voices/vanguard-veh2/
+		pakistan: ra|audio/voices/southasia-veh1/,ra|audio/voices/southasia-veh2/
 		iran: ra|audio/voices/vanguard-veh1/,ra|audio/voices/vanguard-veh2/
 	Voices:
 		Select: vehic1,yessir1,report1,await1
