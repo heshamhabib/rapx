@@ -200,8 +200,8 @@ SDRN:
 	Mobile:
 		Speed: 100
 	Selectable:
-		Bounds: 682, 512, 0, -128
-		DecorationBounds: 682, 512, 0, -170
+		Bounds: 1300, 1100, 0, -320
+		DecorationBounds: 1300, 1150, 0, -420
 	# Runs at its target and detonates, like the Demolition Truck
 	AttackFrontal:
 		FacingTolerance: 512

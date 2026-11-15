@@ -74,7 +74,7 @@ UNITS = ["e1", "e2", "e3", "e4", "e6", "e7", "medi", "mech", "shok", "spy", "dog
 ROBOTS = {"enfw", "cybt", "bdrd", "rgun", "strd", "irgd", "taut", "sdrn"}
 # Height relative to a soldier (frame size and ground line grow with it)
 SIZE = {"dog": 0.6, "enfw": 2.0, "strd": 1.8, "bdrd": 1.2, "rgun": 1.15, "irgd": 1.2, "taut": 1.2,
-        "cybt": 1.1, "sdrn": 0.5}
+        "cybt": 1.1, "sdrn": 1.5}  # sdrn: 0.5 until 2026-11-15, user wanted it big
 # Size in game (Balanced RTS: a soldier about half a tank's height): sprite Scale = 1/3 (3x density) x this
 GAME_SCALE = {"enfw": 0.7, "strd": 0.7}
 DEFAULT_GAME_SCALE = 0.6

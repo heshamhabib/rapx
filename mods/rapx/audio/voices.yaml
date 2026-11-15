@@ -1,4 +1,5 @@
 # Unit voices: our own (IDEA-31, artsrc/audio/generate_voices_kokoro.py), DogVoice from CC0 recordings.
+# Japan, South Korea and China share the East Asian accent voices (artsrc/audio/generate_eastasia.py).
 GenericVoice:
 	DefaultVariant: .ogg
 	DefaultPrefix: ra|audio/voices/
@@ -8,8 +9,8 @@ GenericVoice:
 		england: ra|audio/voices/union-inf1/,ra|audio/voices/union-inf2/
 		france: ra|audio/voices/union-inf1/,ra|audio/voices/union-inf2/
 		germany: ra|audio/voices/union-inf1/,ra|audio/voices/union-inf2/
-		japan: ra|audio/voices/union-inf1/,ra|audio/voices/union-inf2/
-		southkorea: ra|audio/voices/union-inf1/,ra|audio/voices/union-inf2/
+		japan: ra|audio/voices/eastasia-inf1/,ra|audio/voices/eastasia-inf2/
+		southkorea: ra|audio/voices/eastasia-inf1/,ra|audio/voices/eastasia-inf2/
 		italy: ra|audio/voices/union-inf1/,ra|audio/voices/union-inf2/
 		egypt: ra|audio/voices/union-inf1/,ra|audio/voices/union-inf2/
 		soviet: ra|audio/voices/vanguard-inf1/,ra|audio/voices/vanguard-inf2/
@@ -17,7 +18,7 @@ GenericVoice:
 		ukraine: ra|audio/voices/vanguard-inf1/,ra|audio/voices/vanguard-inf2/
 		cuba: ra|audio/voices/vanguard-inf1/,ra|audio/voices/vanguard-inf2/
 		india: ra|audio/voices/vanguard-inf1/,ra|audio/voices/vanguard-inf2/
-		china: ra|audio/voices/vanguard-inf1/,ra|audio/voices/vanguard-inf2/
+		china: ra|audio/voices/eastasia-inf1/,ra|audio/voices/eastasia-inf2/
 		turkey: ra|audio/voices/vanguard-inf1/,ra|audio/voices/vanguard-inf2/
 		pakistan: ra|audio/voices/vanguard-inf1/,ra|audio/voices/vanguard-inf2/
 		iran: ra|audio/voices/vanguard-inf1/,ra|audio/voices/vanguard-inf2/
@@ -38,8 +39,8 @@ VehicleVoice:
 		england: ra|audio/voices/union-veh1/,ra|audio/voices/union-veh2/
 		france: ra|audio/voices/union-veh1/,ra|audio/voices/union-veh2/
 		germany: ra|audio/voices/union-veh1/,ra|audio/voices/union-veh2/
-		japan: ra|audio/voices/union-veh1/,ra|audio/voices/union-veh2/
-		southkorea: ra|audio/voices/union-veh1/,ra|audio/voices/union-veh2/
+		japan: ra|audio/voices/eastasia-veh1/,ra|audio/voices/eastasia-veh2/
+		southkorea: ra|audio/voices/eastasia-veh1/,ra|audio/voices/eastasia-veh2/
 		italy: ra|audio/voices/union-veh1/,ra|audio/voices/union-veh2/
 		egypt: ra|audio/voices/union-veh1/,ra|audio/voices/union-veh2/
 		soviet: ra|audio/voices/vanguard-veh1/,ra|audio/voices/vanguard-veh2/
@@ -47,7 +48,7 @@ VehicleVoice:
 		ukraine: ra|audio/voices/vanguard-veh1/,ra|audio/voices/vanguard-veh2/
 		cuba: ra|audio/voices/vanguard-veh1/,ra|audio/voices/vanguard-veh2/
 		india: ra|audio/voices/vanguard-veh1/,ra|audio/voices/vanguard-veh2/
-		china: ra|audio/voices/vanguard-veh1/,ra|audio/voices/vanguard-veh2/
+		china: ra|audio/voices/eastasia-veh1/,ra|audio/voices/eastasia-veh2/
 		turkey: ra|audio/voices/vanguard-veh1/,ra|audio/voices/vanguard-veh2/
 		pakistan: ra|audio/voices/vanguard-veh1/,ra|audio/voices/vanguard-veh2/
 		iran: ra|audio/voices/vanguard-veh1/,ra|audio/voices/vanguard-veh2/
