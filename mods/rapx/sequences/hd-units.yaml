@@ -203,25 +203,26 @@ dtrk:
 
 # Construction Vehicle: Sketchfab Oshkosh M1070 (Union) and Ural KS3574 crane truck (Vanguard, image mcv.vanguard
 # via RenderSprites FactionImages), 2x pixels
+# The MCV is drawn 1.2x the other vehicles (2026-11-15), like the construction yard among buildings
 mcv:
 	idle:
 		Filename: ra|bits/hd/units/mcv.png
 		UseClassicFacings: False
-		Scale: 0.2333
+		Scale: 0.28
 
 mcv.vanguard:
 	Inherits: mcv
 	idle:
 		Filename: ra|bits/hd/units/mcv-vanguard.png
 		UseClassicFacings: False
-		Scale: 0.2333
+		Scale: 0.28
 
 # MCV wreck: charred copy of the HD MCV (artsrc/fx/make_wreck_fx.py)
 mcvhusk:
 	idle:
 		Filename: ra|bits/hd/units/mcv-wreck.png
 		UseClassicFacings: False
-		Scale: 0.2333
+		Scale: 0.28
 
 ctnk:
 	idle:
@@ -815,6 +816,23 @@ kvst:
 		Scale: 0.2333
 	icon:
 		Filename: ra|bits/hd/kvsticon.png
+
+elph:
+	idle:
+		Filename: ra|bits/hd/units/elph.png
+		Facings: 32
+		UseClassicFacings: False
+		Scale: 0.2333
+	# Walk cycle (artsrc/units/meshes/render_walk.py elph): 8 steps per facing, packed at half resolution
+	move:
+		Filename: ra|bits/hd/units/elph-walk.png
+		Facings: 32
+		Length: 8
+		Tick: 100
+		UseClassicFacings: False
+		Scale: 0.4667
+	icon:
+		Filename: ra|bits/hd/elphicon.png
 
 mtrk:
 	idle:

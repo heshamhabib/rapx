@@ -491,7 +491,7 @@ MCV:
 	Tooltip:
 		Name: actor-mcv.name
 	Selectable:
-		DecorationBounds: 2509, 2509
+		DecorationBounds: 3011, 3011
 	Health:
 		HP: 60000
 	Armor:
@@ -1187,6 +1187,67 @@ KVST:
 		Image: kvst
 	Selectable:
 		DecorationBounds: 2048, 2600, 0, -400
+
+# Elephanta (India only, art: artsrc/units/meshes/make_sketchfab.py elph): a mech war elephant with a twin heavy
+# cannon on its back. Its feet trample (PxTrample) every enemy soldier it walks over: they cannot dodge as they do
+# from tanks.
+ELPH:
+	Inherits: ^TrackedVehicle
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 325
+		Prerequisites: fix, stek, ~structures.india, ~techlevel.high
+		Description: actor-elph.description
+	PxNationalUnit:
+		Factions: india
+	Valued:
+		Cost: 2200
+	Tooltip:
+		Name: actor-elph.name
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 85000
+	Armor:
+		Type: Heavy
+	Mobile:
+		TurnSpeed: 12
+		Speed: 45
+		Locomotor: heavytracked
+		Voice: Move
+	RevealsShroud:
+		MinRange: 4c0
+		Range: 8c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Armament:
+		Weapon: ElephantaGun
+		# The twin barrels on its back, fired one after the other
+		LocalOffset: 150,-90,620, 150,90,620
+	AttackFrontal:
+		FacingTolerance: 16
+		Voice: Attack
+	AttackMove:
+		Voice: Attack
+	PxTrample:
+		Radius: 0c768
+	# Steps of the walk cycle (sequence move) match its speed, so the feet do not slide
+	WithMoveAnimation:
+	Voiced:
+		VoiceSet: ElephantaVoice
+	# Heavy mechanical footfalls while it walks (one gait cycle per 0.8 s, like the walk animation)
+	GrantConditionOnMovement@WALK:
+		Condition: walking
+	AmbientSound@STEPS:
+		SoundFiles: ra|audio/elephant/eleph-steps.ogg
+		RequiresCondition: walking
+	RenderSprites:
+		Image: elph
+	Selectable:
+		DecorationBounds: 2560, 3072, 0, -600
 
 # Monster Truck (USA): huge wheels, no gun: it flattens infantry, fences and sandbags at speed; carries 4 infantry
 MTRK:

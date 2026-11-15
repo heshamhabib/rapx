@@ -1110,6 +1110,8 @@ FACT:
 	Inherits: ^Building
 	Selectable:
 		Bounds: 3072, 3072
+		# The HD yard is drawn 1.5x (build_all.py BUILDING_SCALES): keep the health bar above the art
+		DecorationBounds: 3686, 3686, 0, -307
 	Building:
 		Footprint: xxX xxx XxX ===
 		Dimensions: 3,4
@@ -1134,6 +1136,9 @@ FACT:
 	ProvidesPrerequisite@india:
 		Factions: india
 		Prerequisite: structures.india
+	ProvidesPrerequisite@egypt:
+		Factions: egypt
+		Prerequisite: structures.egypt
 	ProvidesPrerequisite@tiger:
 		Factions: france, germany
 		Prerequisite: structures.tiger

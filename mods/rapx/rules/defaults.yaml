@@ -1205,9 +1205,6 @@
 		Categories: System
 
 ^DisableOnLowPower:
-	WithColoredOverlay@IDISABLE:
-		RequiresCondition: disabled
-		Color: 000000B4
 	GrantConditionOnPowerState@LOWPOWER:
 		Condition: lowpower
 		ValidPowerStates: Low, Critical
@@ -1243,9 +1240,6 @@
 			powerdown: -10, 0
 
 ^DisabledByPowerOutage:
-	WithColoredOverlay@IDISABLE:
-		RequiresCondition: disabled
-		Color: 000000B4
 	GrantCondition@IDISABLE:
 		RequiresCondition: power-outage
 		Condition: disabled

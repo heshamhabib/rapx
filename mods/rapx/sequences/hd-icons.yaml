@@ -727,6 +727,20 @@ dd:
 		Offset: 0,0
 		Scale: 1
 
+croc:
+	px-icon:
+		Filename: ra|bits/hd/icons/crocicon.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/crocicon.png
+			SNOW: ra|bits/hd/icons/crocicon.png
+			DESERT: ra|bits/hd/icons/crocicon.png
+			INTERIOR: ra|bits/hd/icons/crocicon.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
 dog:
 	px-icon:
 		Filename: ra|bits/hd/icons/dogicon.png
@@ -3725,6 +3739,20 @@ kvst:
 			SNOW: ra|bits/hd/icons/kvsticon.png
 			DESERT: ra|bits/hd/icons/kvsticon.png
 			INTERIOR: ra|bits/hd/icons/kvsticon.png
+		Start: 0
+		Length: 1
+		Facings: 1
+		Offset: 0,0
+		Scale: 0.5
+
+elph:
+	px-icon:
+		Filename: ra|bits/hd/icons/elphicon.png
+		TilesetFilenames:
+			TEMPERAT: ra|bits/hd/icons/elphicon.png
+			SNOW: ra|bits/hd/icons/elphicon.png
+			DESERT: ra|bits/hd/icons/elphicon.png
+			INTERIOR: ra|bits/hd/icons/elphicon.png
 		Start: 0
 		Length: 1
 		Facings: 1

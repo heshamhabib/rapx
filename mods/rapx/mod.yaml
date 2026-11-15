@@ -111,6 +111,7 @@ Sequences:
 	ra|sequences/hd-missiles.yaml
 	ra|sequences/air-defence.yaml
 	ra|sequences/mobile-sam.yaml
+	ra|sequences/croc.yaml
 
 TileSets:
 	ra|tilesets/snow.yaml

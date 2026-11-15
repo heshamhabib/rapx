@@ -47,6 +47,8 @@ DENSITY = 3.0
 # HD infantry (user's call, 2026-10-27): the art grows about a point near the bottom of the footprint,
 # so buildings mostly get taller; footprints, pads and gameplay are unchanged.
 BUILDING_SCALE = 1.25
+# Buildings drawn bigger than the rest (user's call, 2026-11-15: the construction yard is the heart of the base)
+BUILDING_SCALES = {"fact": 1.5}
 TILESETS = ["TEMPERAT", "SNOW", "DESERT", "INTERIOR"]
 MAKE_FRAMES = 22
 MAKE_TICK = 45
@@ -353,7 +355,7 @@ def split_float_top(bid, offset, scale, prefix, damaged_file):
 
 def sequences_for(bid, names, offset, prefix, damaged_file, has_damaged=True):
     """Sequence blocks for one building image; files are relative to bits/hd (prefix = subfolder)."""
-    scale = 1.0 if bid in NOT_GROWN else BUILDING_SCALE
+    scale = 1.0 if bid in NOT_GROWN else BUILDING_SCALES.get(bid, BUILDING_SCALE)
     offset = grown(offset, BUILDINGS[bid][1], scale)
     if bid in BASE_AT:
         offset = base_anchored(bid, offset, scale, prefix)

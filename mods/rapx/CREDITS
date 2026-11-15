@@ -379,6 +379,20 @@ every model: recoloured for team colours, rendered as game sprites from
     by Aruto, licensed under Creative Commons Attribution
     (http://creativecommons.org/licenses/by/4.0/).
 
+* Elephanta (ELPH):
+    "A_powerful_Elephanta_Gun"
+    (https://sketchfab.com/3d-models/a-powerful-elephanta-gun-b0ba08cb08f34573b4577f78db087723)
+    by Devaster, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: walk cycle added (legs bent at the hips), team colours added.
+
+* Nile Crocodile (CROC):
+    "crocodile high quality"
+    (https://sketchfab.com/3d-models/crocodile-high-quality-a242e4634a234d3fb909c54b2c39d7b8)
+    by Beerus, licensed under Creative Commons Attribution
+    (http://creativecommons.org/licenses/by/4.0/).
+    Changes: walk, swim, bite, idle and death animations added (mesh bent per frame), team colours added.
+
 * Monster Truck (MTRK):
     "hummer h1 monster truck"
     (https://sketchfab.com/3d-models/hummer-h1-monster-truck-7e4f8f59f69647c2a51466e49723a053)
