@@ -13,7 +13,8 @@ ROOT=$(cd "$(dirname "$0")/.." && pwd)
 SUPPORT_DIR="${HOME}/Library/Application Support/OpenRA"
 SKIRMISH="${SUPPORT_DIR}/skirmish.rapx.yaml"
 SETTINGS="${SUPPORT_DIR}/settings.yaml"
-AGENDA=f3313186a1cab4f936e8ae0aa45954d99e10fafe
+# The UID changes whenever the map is edited: compute it, a stale one silently loads another map
+AGENDA=$(python3 "${ROOT}/tools/map_uid.py" "${ROOT}/mods/rapx/maps/agenda.oramap")
 
 mkdir -p "${SUPPORT_DIR}"
 [ -f "${SKIRMISH}" ] && cp "${SKIRMISH}" "${SKIRMISH}.before-blast"

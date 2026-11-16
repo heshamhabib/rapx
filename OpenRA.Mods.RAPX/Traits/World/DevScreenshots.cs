@@ -140,6 +140,15 @@ namespace OpenRA.Mods.RAPX.Traits
 					if (relative)
 						cell += new CVec(local.HomeLocation.X, local.HomeLocation.Y);
 
+					// Offsets written for one map land off the edge of another (e.g. a test script's map UID went stale
+					// and the lobby fell back to the last map): an actor outside the map has no footprint and crashes
+					// FrozenUnderFog, so skip it
+					if (!w.Map.Contains(cell))
+					{
+						Log.Write("debug", $"DevScreenshots: skipped {parts[0].Trim()} at {cell}: outside the map ({w.Map.Title})");
+						continue;
+					}
+
 					var inits = new TypeDictionary
 					{
 						new LocationInit(cell),
