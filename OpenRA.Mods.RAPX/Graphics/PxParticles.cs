@@ -12,6 +12,7 @@
 using System;
 using System.Collections.Generic;
 using OpenRA.Graphics;
+using OpenRA.Primitives;
 using OpenRA.Support;
 
 namespace OpenRA.Mods.RAPX.Graphics
@@ -87,6 +88,90 @@ namespace OpenRA.Mods.RAPX.Graphics
 		public bool Dusty;
 	}
 
+	/// <summary>One particle, fully prepared for drawing (sprite, final size, alpha and tint).</summary>
+	public struct PxQuad
+	{
+		public Sprite Sprite;
+		public WPos Pos;
+		public float Scale, Alpha, Rotation;
+		public float3 Tint;
+	}
+
+	/// <summary>Draws a whole emitter's particles as one renderable instead of one SpriteRenderable per particle.
+	/// All of an emitter's airborne particles share one sort key (origin.Y + zBias; flat ground sprites origin.Y + FlatZ),
+	/// so batching them keeps the exact draw order while the world renderer only allocates and sorts two entries per
+	/// emitter — a salvo of rockets trailing ten thousand puffs no longer swamps it. Quads outside the viewport are
+	/// skipped at draw time.</summary>
+	public sealed class PxParticlesRenderable : IRenderable, IFinalizedRenderable
+	{
+		readonly List<PxQuad> quads;
+		readonly WVec offset;
+
+		public PxParticlesRenderable(List<PxQuad> quads, WPos pos, int zOffset, WVec offset)
+		{
+			this.quads = quads;
+			Pos = pos;
+			ZOffset = zOffset;
+			this.offset = offset;
+		}
+
+		public WPos Pos { get; }
+		public int ZOffset { get; }
+		public bool IsDecoration => false;
+
+		public IRenderable WithZOffset(int newOffset) { return new PxParticlesRenderable(quads, Pos, newOffset, offset); }
+		public IRenderable OffsetBy(in WVec vec) { return new PxParticlesRenderable(quads, Pos + vec, ZOffset, offset + vec); }
+		public IRenderable AsDecoration() { return this; }
+		public IFinalizedRenderable PrepareRender(WorldRenderer wr) { return this; }
+
+		public void Render(WorldRenderer wr)
+		{
+			// Alpha-blended quads first, then the additive ones: the sprite renderer flushes its batch on every
+			// blend-mode switch, and a trail interleaves smoke (alpha) with glow and flame (additive) in spawn order,
+			// which flushed the batch on nearly every particle — thousands of draw calls in a big salvo, which is what
+			// actually dropped the frame rate. Two passes mean at most one switch per emitter, and consecutive emitters
+			// that end and start in the same mode chain into one batch. Additive blending commutes, so order within the
+			// second pass does not matter, and the glows now draw over their own smoke, which reads better anyway.
+			DrawPass(wr, false);
+			DrawPass(wr, true);
+		}
+
+		void DrawPass(WorldRenderer wr, bool additive)
+		{
+			var wsr = Game.Renderer.WorldSpriteRenderer;
+			var lighting = wr.TerrainLighting;
+			var tl = wr.Viewport.TopLeft;
+			var br = wr.Viewport.BottomRight;
+			foreach (var q in quads)
+			{
+				if (q.Sprite.BlendMode == BlendMode.Additive != additive)
+					continue;
+
+				var pos = q.Pos + offset;
+
+				// Same placement as SpriteRenderable.ScreenPosition
+				var s = 0.5f * q.Scale * q.Sprite.Size;
+				var p = wr.Screen3DPxPosition(pos) - new float3((int)s.X, (int)s.Y, s.Z);
+
+				// Off the screen: skip the draw (centre +- half size, with room for rotation and the sprite offset)
+				var cx = p.X + s.X;
+				var cy = p.Y + s.Y;
+				var h = 1.6f * Math.Max(Math.Abs(s.X), Math.Abs(s.Y)) + 64;
+				if (cx + h < tl.X || cx - h > br.X || cy + h < tl.Y || cy - h > br.Y)
+					continue;
+
+				var t = q.Alpha * q.Tint;
+				if (lighting != null)
+					t *= lighting.TintAt(pos);
+
+				wsr.DrawSprite(q.Sprite, null, p, q.Scale, t, q.Alpha, q.Rotation);
+			}
+		}
+
+		public void RenderDebugGeometry(WorldRenderer wr) { }
+		public Rectangle ScreenBounds(WorldRenderer wr) { return Rectangle.Empty; }
+	}
+
 	/// <summary>
 	/// Tiny particle simulation for building effects (smoke, sparks, flames, debris).
 	/// Purely cosmetic: advanced with real frame time, never touches the synced simulation.
@@ -133,13 +218,36 @@ namespace OpenRA.Mods.RAPX.Graphics
 		/// <summary>Wind in screen pixels per tick, applied to particles with a Wind factor.</summary>
 		public float2 Wind = float2.Zero;
 
+		/// <summary>Live particles across all emitters as of the last world tick: the effects governor's load measure.</summary>
+		public static int LiveTotal { get; private set; }
+
+		/// <summary>Scene-wide particle budget: above it the governor thins new particles out (and grows the survivors),
+		/// so a dozen rocket salvos saturate in density instead of dragging the frame rate down. 6000 holds the worst
+		/// benchmark frame (tools/test-missile-perf.sh, a 354-rocket double salvo on Berlin) under control while the
+		/// smoke still reads as a solid wall.</summary>
+		public const int GlobalBudget = 6000;
+
+		/// <summary>RAPX_PARTICLE_LEGACY=1: the old path — one SpriteRenderable per particle and no governor — kept
+		/// for A/B frame-rate comparisons (tools/test-missile-perf.sh).</summary>
+		static readonly bool Legacy = !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("RAPX_PARTICLE_LEGACY"));
+
+		static int statTick = -1;
+		static int statAccum;
+		static int bornTick = -1;
+		static int bornThisTick;
+		int censusTick = -1;
+
 		readonly Dictionary<PxParticleKind, ISpriteSequence> sequences = new();
 		readonly SequenceSet sequenceSet;
+		readonly World world;
 		readonly List<PxParticle> spawned = new();
+		readonly List<PxQuad> airQuads = new();
+		readonly List<PxQuad> flatQuads = new();
 		readonly MersenneTwister random = new(Game.CosmeticRandom.Next());
 
 		public PxParticles(World world)
 		{
+			this.world = world;
 			sequenceSet = world.Map.Sequences;
 		}
 
@@ -166,8 +274,33 @@ namespace OpenRA.Mods.RAPX.Graphics
 		public void Add(PxParticle p)
 		{
 			// Keep busy emitters bounded
-			if (Items.Count < Max)
-				Items.Add(p);
+			if (Items.Count >= Max)
+				return;
+
+			// Effects governor: when the whole scene is over budget (every launcher of a salvo trailing smoke at once),
+			// admit fewer new particles and grow the survivors to match, so the smoke keeps its mass and the particle
+			// count — and with it the frame time — levels off. Births this tick count too, or a burst of forty
+			// explosions in one tick (a whole salvo landing) would sail past the budget before the census sees it.
+			// One-shot cinematic sprites (the flash, ring and ground light of a blast) are too few to matter and
+			// always get in.
+			if (bornTick != world.WorldTick)
+			{
+				bornTick = world.WorldTick;
+				bornThisTick = 0;
+			}
+
+			if (!Legacy && LiveTotal + bornThisTick > GlobalBudget &&
+				p.Kind is not (PxParticleKind.Flash or PxParticleKind.Shock or PxParticleKind.Light or PxParticleKind.Ring))
+			{
+				var load = (float)(LiveTotal + bornThisTick) / GlobalBudget;
+				if (random.NextFloat() * load >= 1f)
+					return;
+
+				p.Size *= MathF.Min(1.5f, MathF.Sqrt(load));
+			}
+
+			Items.Add(p);
+			bornThisTick++;
 		}
 
 		float Rand(float min, float max) { return min + random.NextFloat() * (max - min); }
@@ -175,6 +308,22 @@ namespace OpenRA.Mods.RAPX.Graphics
 		/// <summary>Advance by dt game ticks (fractional).</summary>
 		public void Update(float dt)
 		{
+			// Census for the effects governor: every live emitter contributes its count once per world tick (render-frame
+			// updaters like the wreck fires call Update more often), so last tick's sum is the scene's live particle
+			// count. Dead emitters simply stop being counted.
+			if (world.WorldTick != statTick)
+			{
+				LiveTotal = statAccum;
+				statAccum = 0;
+				statTick = world.WorldTick;
+			}
+
+			if (censusTick != world.WorldTick)
+			{
+				censusTick = world.WorldTick;
+				statAccum += Items.Count;
+			}
+
 			for (var i = Items.Count - 1; i >= 0; i--)
 			{
 				var p = Items[i];
@@ -307,9 +456,12 @@ namespace OpenRA.Mods.RAPX.Graphics
 		/// <summary>Renders all particles around origin. Every particle sorts at origin.Y + zBias, so emitter effects
 		/// stay on top of their building regardless of how high above it they are; flat ground sprites (dust, shock
 		/// rings, light, shadows) sort just above the terrain instead. Particles over a cell for which hidden returns
-		/// true (e.g. fog) are skipped.</summary>
+		/// true (e.g. fog) are skipped. The whole emitter draws as (at most) two batched renderables, one per layer,
+		/// so the world renderer never sees the individual particles.</summary>
 		public IEnumerable<IRenderable> Render(WPos origin, int zBias, Func<WPos, bool> hidden = null)
 		{
+			airQuads.Clear();
+			flatQuads.Clear();
 			foreach (var p in Items)
 			{
 				if (p.Age < 0)
@@ -412,10 +564,30 @@ namespace OpenRA.Mods.RAPX.Graphics
 						angle = MathF.Atan2(sy, sx) * 512f / MathF.PI;
 				}
 
-				var z = flat ? FlatZ - offset.Y : zBias - offset.Y;
-				yield return new SpriteRenderable(seq.GetSprite(frame), origin + offset, WVec.Zero, z, null,
-					seq.Scale * size, alpha, tint, TintModifiers.None, false, new WAngle((int)angle));
+				if (Legacy)
+				{
+					var z = flat ? FlatZ - offset.Y : zBias - offset.Y;
+					yield return new SpriteRenderable(seq.GetSprite(frame), origin + offset, WVec.Zero, z, null,
+						seq.Scale * size, alpha, tint, TintModifiers.None, false, new WAngle((int)angle));
+					continue;
+				}
+
+				(flat ? flatQuads : airQuads).Add(new PxQuad
+				{
+					Sprite = seq.GetSprite(frame),
+					Pos = origin + offset,
+					Scale = seq.Scale * size,
+					Alpha = alpha,
+					Tint = tint,
+					Rotation = new WAngle((int)angle).RendererRadians(),
+				});
 			}
+
+			if (flatQuads.Count > 0)
+				yield return new PxParticlesRenderable(flatQuads, origin, FlatZ, WVec.Zero);
+
+			if (airQuads.Count > 0)
+				yield return new PxParticlesRenderable(airQuads, origin, zBias, WVec.Zero);
 		}
 	}
 }

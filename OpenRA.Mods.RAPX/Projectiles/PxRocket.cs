@@ -11,6 +11,7 @@
 
 using System;
 using System.Collections.Generic;
+using OpenRA.Effects;
 using OpenRA.GameRules;
 using OpenRA.Graphics;
 using OpenRA.Mods.RAPX.Graphics;
@@ -176,6 +177,62 @@ namespace OpenRA.Mods.RAPX.Projectiles
 		public IProjectile Create(ProjectileArgs args) { return new PxRocket(this, args); }
 	}
 
+	/// <summary>One shared particle system for every rocket's trail, launch blast and interception burst, drawn high in
+	/// the sky above the battlefield as a single emitter: a salvo of forty rockets costs the renderer one or two batches
+	/// instead of a few per rocket, and an exploded rocket's smoke lives on here, so the projectile itself can go at
+	/// once. Lives as an effect while anything is in the air or smoking, then removes itself.</summary>
+	public sealed class PxTrailLayer : IEffect
+	{
+		static PxTrailLayer current;
+
+		public static PxTrailLayer Get(World world)
+		{
+			if (current == null || current.world != world || current.removed)
+			{
+				var layer = new PxTrailLayer(world);
+				current = layer;
+				world.AddFrameEndTask(w => w.Add(layer));
+			}
+
+			return current;
+		}
+
+		public readonly PxParticles Particles;
+
+		/// <summary>Rockets compute their puff offsets from this: past the map's bottom edge, so the whole layer
+		/// sorts over every ground sprite — trail smoke is sky stuff.</summary>
+		public readonly WPos Anchor;
+
+		readonly World world;
+		bool removed;
+		int idle;
+
+		PxTrailLayer(World world)
+		{
+			this.world = world;
+			Particles = new PxParticles(world) { Max = PxParticles.GlobalBudget };
+			var b = world.Map.Bounds;
+			Anchor = new WPos((b.Left + b.Right) * 512, b.Bottom * 1024 + 2048, 0);
+		}
+
+		public void Tick(World world)
+		{
+			Particles.Update(1);
+			if (Particles.Items.Count > 0)
+				idle = 0;
+			else if (++idle > 25)
+			{
+				removed = true;
+				world.AddFrameEndTask(w => w.Remove(this));
+			}
+		}
+
+		public IEnumerable<IRenderable> Render(WorldRenderer wr)
+		{
+			return Particles.Render(Anchor, 2048);
+		}
+	}
+
 	public class PxRocket : IProjectile, ISync
 	{
 		const float PixelPerWorld = 24f / 1024f;
@@ -183,16 +240,15 @@ namespace OpenRA.Mods.RAPX.Projectiles
 		readonly PxRocketInfo info;
 		readonly ProjectileArgs args;
 
-		// Where the particles are anchored (the launch point; origin moves when flares lure the rocket away)
-		readonly WPos launch;
+		// The launch point (origin moves when flares lure the rocket away)
 		WPos origin;
 		int flightTicks;
 		readonly MersenneTwister rng = new(Game.CosmeticRandom.Next());
 		PxParticles particles;
+		WPos anchor;
 		int ticks;
 		bool launched;
 		bool exploded;
-		int lingering;
 
 		[Sync]
 		WPos target;
@@ -218,7 +274,7 @@ namespace OpenRA.Mods.RAPX.Projectiles
 		{
 			this.info = info;
 			this.args = args;
-			origin = launch = args.Source;
+			origin = args.Source;
 			pos = lastPos = args.Source;
 			target = args.PassiveTarget;
 			if (info.Inaccuracy.Length > 0)
@@ -348,7 +404,6 @@ namespace OpenRA.Mods.RAPX.Projectiles
 				return;
 
 			exploded = true;
-			lingering = info.TrailLife * 2;
 			if (particles == null)
 				return;
 
@@ -366,7 +421,7 @@ namespace OpenRA.Mods.RAPX.Projectiles
 
 		float3 Local(WPos p)
 		{
-			return new float3((p.X - launch.X) * PixelPerWorld, (p.Y - launch.Y) * PixelPerWorld, p.Z * PixelPerWorld);
+			return new float3((p.X - anchor.X) * PixelPerWorld, (p.Y - anchor.Y) * PixelPerWorld, p.Z * PixelPerWorld);
 		}
 
 		void Puff(PxParticleKind kind, float3 at, float spread, float size, float life, float alpha, float3 tint, float rise)
@@ -394,16 +449,16 @@ namespace OpenRA.Mods.RAPX.Projectiles
 
 		public void Tick(World world)
 		{
-			particles ??= new PxParticles(world);
-			particles.Update(1);
-
 			if (exploded)
 			{
-				if (--lingering <= 0 || particles.Items.Count == 0)
-					world.AddFrameEndTask(w => w.Remove(this));
-
+				// The shared layer keeps the lingering smoke alive; the projectile itself is done
+				world.AddFrameEndTask(w => w.Remove(this));
 				return;
 			}
+
+			var layer = PxTrailLayer.Get(world);
+			particles = layer.Particles;
+			anchor = layer.Anchor;
 
 			var grey = new float3(info.SmokeColor.R / 255f, info.SmokeColor.G / 255f, info.SmokeColor.B / 255f);
 			if (!launched)
@@ -411,7 +466,7 @@ namespace OpenRA.Mods.RAPX.Projectiles
 				launched = true;
 
 				// Launch blast: a burst of smoke and a hot glow at the pod; a cold launch throws out a white gas cloud instead
-				var at = Local(launch);
+				var at = Local(origin);
 				var gas = new float3(0.95f, 0.95f, 0.97f);
 				for (var i = 0; i < info.LaunchPuffs; i++)
 					Puff(PxParticleKind.Smoke, at, 10 * info.TrailSize, 0.55f * info.TrailSize, info.TrailLife * 0.8f, 0.8f,
@@ -507,16 +562,12 @@ namespace OpenRA.Mods.RAPX.Projectiles
 			{
 				args.Weapon.Impact(Target.FromPos(target), new WarheadArgs(args) { ImpactPosition = target });
 				exploded = true;
-				lingering = info.TrailLife * 2;
 			}
 		}
 
 		public IEnumerable<IRenderable> Render(WorldRenderer wr)
 		{
-			if (particles != null)
-				foreach (var r in particles.Render(new WPos(launch.X, launch.Y, 0), info.ZOffset))
-					yield return r;
-
+			// The trail renders through the shared PxTrailLayer
 			if (!exploded && !wr.World.FogObscures(pos))
 			{
 				var sprite = info.Image != null;

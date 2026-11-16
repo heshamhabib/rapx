@@ -1,0 +1,20 @@
+diff --git a/OpenRA.Mods.Common/Widgets/MapPreviewWidget.cs b/OpenRA.Mods.Common/Widgets/MapPreviewWidget.cs
+index 298eea0..15d1d0d 100644
+--- a/OpenRA.Mods.Common/Widgets/MapPreviewWidget.cs
++++ b/OpenRA.Mods.Common/Widgets/MapPreviewWidget.cs
+@@ -151,8 +151,13 @@ public int2 ConvertToPreview(CPos cell, MapGridType gridType)
+ 			var preview = Preview();
+ 			var point = cell.ToMPos(gridType);
+ 			var cellWidth = gridType == MapGridType.RectangularIsometric ? 2 : 1;
+-			var dx = (int)(previewScale * cellWidth * (point.U - preview.Bounds.Left));
+-			var dy = (int)(previewScale * (point.V - preview.Bounds.Top));
++
++			// Scale by cells rather than minimap pixels: a custom map.png may be
++			// larger than one pixel per cell (e.g. a high-res backdrop render).
++			var scaleX = (float)mapRect.Width / (cellWidth * preview.Bounds.Width);
++			var scaleY = (float)mapRect.Height / preview.Bounds.Height;
++			var dx = (int)(scaleX * cellWidth * (point.U - preview.Bounds.Left));
++			var dy = (int)(scaleY * (point.V - preview.Bounds.Top));
+ 
+ 			// Odd rows are shifted right by 1px
+ 			if ((point.V & 1) == 1)

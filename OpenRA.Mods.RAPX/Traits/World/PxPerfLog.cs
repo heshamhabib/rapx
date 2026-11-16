@@ -67,6 +67,7 @@ namespace OpenRA.Mods.RAPX.Traits
 				.Where(p => p.Enabled).Select(p => p.GetType().Name));
 			Log.Write("perf", $"PxPerfLog tick {self.World.WorldTick}: fps={fps.ToString("0.0", CultureInfo.InvariantCulture)} " +
 				$"tickms={(ms / (double)info.Interval).ToString("0.0", CultureInfo.InvariantCulture)} actors={self.World.Actors.Count()} " +
+				$"particles={Graphics.PxParticles.LiveTotal} effects={self.World.Effects.Count()} " +
 				$"step={self.World.Timestep} catchup={Game.LogicCatchUpTicks} retries={Game.LogicOrderRetries} " + string.Join(" ", parts) +
 				$" wtime={weatherTime.ToString("0.0", CultureInfo.InvariantCulture)} downscale={Game.Renderer.WorldDownscaleFactor.ToString("0.###", CultureInfo.InvariantCulture)} passes={passes}");
 		}
