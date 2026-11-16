@@ -2,10 +2,16 @@
  "unit": "jet.vulcan",
  "stations": [
   {
+   "weapon": "JetWP",
+   "shots": 4,
+   "internal": true,
+   "stores": []
+  },
+  {
    "weapon": "JetBomb",
-   "shots": 10,
-   "stores": [],
-   "internal": true
+   "shots": 6,
+   "internal": true,
+   "stores": []
   }
  ],
  "wdist_per_unit": 341.67466666666667,

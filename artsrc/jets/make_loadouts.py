@@ -40,9 +40,9 @@ EAST_JETS = {"mig", "jet.mig21", "jet.mig23", "jet.mig25", "jet.su25", "jet.su27
              "jet.j20", "jet.tu160", "hind", "mi35", "ka52"}
 SIDE_MISSILES = {
     "west": {"JetAAM.Short": "aim9", "JetAAM.Medium": "aim120", "JetAAM.Long": "aim54", "JetAGM": "agm65",
-             "JetGBU": "gbu", "JetBomb": "mk82", "JetRockets": "hydra"},
+             "JetGBU": "gbu", "JetBomb": "mk82", "JetCluster": "mk82", "JetWP": "mk82", "JetRockets": "hydra"},
     "east": {"JetAAM.Short": "r73", "JetAAM.Medium": "r27t", "JetAAM.Long": "r77", "JetAGM": "kh29",
-             "JetGBU": "gbu", "JetBomb": "mk82", "JetRockets": "s8"},
+             "JetGBU": "gbu", "JetBomb": "mk82", "JetCluster": "mk82", "JetWP": "mk82", "JetRockets": "s8"},
 }
 
 

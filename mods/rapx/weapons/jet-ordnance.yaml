@@ -143,6 +143,86 @@ JetGBU.Pair:
 	Burst: 2
 	BurstDelays: 10
 
+# Cluster bombs (CBU-87, RBK-500, BL755): the dispenser falls like a bomb, opens high over the target with a pop and a
+# puff (PxRocket BurstHeight), and its FireCluster warhead throws burning bomblets down from there: they rain with
+# glowing streaks and glittering sparks and land as a carpet of small blasts. Strong against infantry and light
+# vehicles over an area, weak against tanks and buildings.
+JetCluster:
+	Inherits: JetBomb
+	ReloadDelay: 14
+	Range: 3c0
+	Projectile: PxRocket
+		Image: pxmissile
+		Sequence: mk82
+		Speed: 150
+		Arc: 0.04
+		LaunchEase: 0.5
+		Unpowered: true
+		LaunchPuffs: 0
+		TrailLife: 30
+		BurstHeight: 900
+	-Warhead@1Dam:
+	-Warhead@2Smu:
+	-Warhead@3Eff:
+	-Warhead@4EffWater:
+	Warhead@Cluster: FireCluster
+		Weapon: JetCluster.Bomblet
+		RandomClusterCount: 26
+		Dimensions: 5,5
+		Footprint: _xxx_ xxxxx xxxxx xxxxx _xxx_
+JetCluster.Pair:
+	Inherits: JetCluster
+	Burst: 2
+	BurstDelays: 4
+
+JetCluster.Bomblet:
+	Range: 3c0
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	Report: ra|audio/weapons/sam/gurz-burst1.ogg
+	Projectile: PxRocket
+		Interceptable: false
+		TrackTarget: false
+		DrawBody: false
+		Speed: 75
+		Arc: 0.03
+		LaunchEase: 0.4
+		Inaccuracy: 0c448
+		Length: 60
+		Width: 26
+		FlameColor: FFC873
+		FlameSize: 0.9
+		FirePlume: 0
+		TrailDensity: 0
+		LaunchPuffs: 0
+		Sparkle: 2
+		StreakLife: 14
+		StreakColor: FFBE78
+		StreakWidth: 8
+	Warhead@1Dam: SpreadDamage
+		Spread: 320
+		Damage: 700
+		Falloff: 100, 50, 20, 5
+		ValidTargets: GroundActor, WaterActor
+		Versus:
+			None: 100
+			Wood: 30
+			Light: 75
+			Heavy: 20
+			Concrete: 15
+		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Scorch
+		Chance: 30
+		ValidTargets: Ground
+	Warhead@3Eff: PxExplosion
+		Style: Bomblet
+		Size: 0.9
+		ImpactSounds: ra|audio/sfx/kaboom12.ogg, ra|audio/sfx/kaboom15.ogg
+		ValidTargets: Ground, GroundActor, WaterActor, Trees
+	Warhead@4EffWater: CreateEffect
+		Explosions: small_splash
+		ValidTargets: Water, Underwater
+
 # Rocket pods (Hydra 70, S-8): a salvo per pod, wide spread, infantry and light vehicles
 JetRockets:
 	Inherits: ^AntiGroundMissile
@@ -243,3 +323,106 @@ JetGun.GSh30:
 		Damage: 2000
 		Versus:
 			Heavy: 40
+
+# White phosphorus bombs: the bomb opens high over the target in a white puff and throws a wide fan of burning pieces
+# that arch out and fall slowly, each white-hot with a long trail of thick white smoke and glittering sparks (the
+# "jellyfish" of a real air burst). Where they land the ground keeps burning with white smoke (PxBurn: JetWP.Burn
+# every second for ~12 s), hurting infantry and light vehicles standing in it.
+JetWP:
+	Inherits: JetCluster
+	ReloadDelay: 20
+	Report: ra|audio/sfx/chute1.ogg
+	Projectile: PxRocket
+		BurstHeight: 1500
+	Warhead@Cluster: FireCluster
+		Weapon: JetWP.Piece
+		RandomClusterCount: 30
+		Dimensions: 7,7
+		Footprint: __xxx__ _xxxxx_ xxxxxxx xxxxxxx xxxxxxx _xxxxx_ __xxx__
+	Warhead@Burst: PxExplosion
+		Style: HitToKill
+		Size: 1.0
+		Smoke: 1.5
+		Scorch: false
+		Shake: false
+		Wave: false
+		Throw: false
+		ImpactSounds: ra|audio/weapons/sam/gurz-burst2.ogg
+JetWP.Pair:
+	Inherits: JetWP
+	Burst: 2
+	BurstDelays: 6
+
+JetWP.Piece:
+	Range: 4c0
+	ValidTargets: Ground, Water, GroundActor, WaterActor, Trees
+	Projectile: PxRocket
+		Interceptable: false
+		TrackTarget: false
+		DrawBody: false
+		Speed: 55
+		Arc: 0.12
+		LaunchEase: 0.2
+		Inaccuracy: 0c768
+		Length: 60
+		Width: 30
+		FlameColor: FFF0D2
+		FlameSize: 1.0
+		FirePlume: 0
+		SmokeColor: F5F5F2
+		TrailDensity: 2
+		TrailLife: 140
+		TrailSize: 0.55
+		LaunchPuffs: 0
+		Sparkle: 1
+		StreakLife: 20
+		StreakColor: FFD9A0
+		StreakWidth: 9
+	Warhead@1Dam: SpreadDamage
+		Spread: 256
+		Damage: 400
+		ValidTargets: GroundActor, WaterActor, Trees
+		Versus:
+			None: 100
+			Wood: 60
+			Tree: 80
+			Light: 50
+			Heavy: 10
+			Concrete: 10
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath, Incendiary
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Scorch
+		Chance: 40
+		ValidTargets: Ground
+	Warhead@3Eff: PxFire
+		Size: 0.5
+		Duration: 60
+		Smoke: 2
+		SmokeColor: F0F0EC
+		ValidTargets: Ground, GroundActor, Trees
+	Warhead@Burn: PxBurn
+		Weapon: JetWP.Burn
+		Duration: 300
+		Interval: 25
+		ValidTargets: Ground, GroundActor, Trees
+
+JetWP.Burn:
+	ValidTargets: Ground, GroundActor, WaterActor, Trees
+	Warhead@1Dam: SpreadDamage
+		Spread: 320
+		Damage: 150
+		ValidTargets: GroundActor, WaterActor, Trees
+		Versus:
+			None: 100
+			Wood: 60
+			Tree: 80
+			Light: 40
+			Heavy: 10
+			Concrete: 10
+		DamageTypes: FireDeath, Incendiary
+	Warhead@3Eff: PxFire
+		Size: 0.35
+		Duration: 30
+		Smoke: 1.5
+		SmokeColor: EEEEEA
+		Scorch: false

@@ -2,10 +2,16 @@
  "unit": "jet.b52",
  "stations": [
   {
+   "weapon": "JetCluster",
+   "shots": 8,
+   "internal": true,
+   "stores": []
+  },
+  {
    "weapon": "JetBomb",
-   "shots": 14,
-   "stores": [],
-   "internal": true
+   "shots": 6,
+   "internal": true,
+   "stores": []
   }
  ],
  "wdist_per_unit": 341.67466666666667,

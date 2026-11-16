@@ -187,6 +187,20 @@ namespace OpenRA.Mods.RAPX.Projectiles
 		[Desc("Interception burst size (when air defence shoots this down), as a multiple of the default.")]
 		public readonly float InterceptBurst = 1f;
 
+		[Desc("No motor: a free-falling bomb or dispenser (no flame, no fire plume, no launch flash, only a wisp of air).")]
+		public readonly bool Unpowered = false;
+
+		[Desc("Draw the rocket body (false: only the flame and glow show, e.g. a burning bomblet).")]
+		public readonly bool DrawBody = true;
+
+		[Desc("Cluster dispenser: the warheads go off this high above the aim point (the dispenser opens there, so a",
+			"FireCluster warhead throws its bomblets down from the air). The opening shows as a pop, a puff and the two",
+			"shell halves tumbling away. 0 = impacts on the target.")]
+		public readonly WDist BurstHeight = WDist.Zero;
+
+		[Desc("Glittering sparks shed per tick that hang and fall slowly behind it (burning submunitions).")]
+		public readonly int Sparkle = 0;
+
 		public IProjectile Create(ProjectileArgs args) { return new PxRocket(this, args); }
 	}
 
@@ -412,6 +426,9 @@ namespace OpenRA.Mods.RAPX.Projectiles
 
 		readonly WVec miss;
 
+		// Dispensers aim (and burst) BurstHeight above the target
+		readonly WVec burst;
+
 		// This rocket's own random plume: how strong and how warm, and how its trail sways
 		readonly float fire;
 		readonly float warmth;
@@ -428,7 +445,8 @@ namespace OpenRA.Mods.RAPX.Projectiles
 			this.args = args;
 			origin = args.Source;
 			pos = lastPos = args.Source;
-			target = args.PassiveTarget;
+			burst = new WVec(0, 0, info.BurstHeight.Length);
+			target = args.PassiveTarget + burst;
 			if (info.Inaccuracy.Length > 0)
 			{
 				var maxInaccuracyOffset = OpenRA.Mods.Common.Util.GetProjectileInaccuracy(info.Inaccuracy.Length, info.InaccuracyType, args);
@@ -520,7 +538,7 @@ namespace OpenRA.Mods.RAPX.Projectiles
 		}
 
 		/// <summary>The motor is burning (not yet lit after a cold launch, or coasting between two pulses).</summary>
-		bool MotorLit => Decoyed || (ticks >= info.ColdLaunch && !Coasting);
+		bool MotorLit => !info.Unpowered && (Decoyed || (ticks >= info.ColdLaunch && !Coasting));
 
 		bool Coasting => info.CoastTicks > 0 && ticks >= info.CoastStart && ticks < info.CoastStart + info.CoastTicks;
 
@@ -547,6 +565,38 @@ namespace OpenRA.Mods.RAPX.Projectiles
 			target = at;
 			ticks = 0;
 			flightTicks = Math.Max(3, (target - origin).Length / Math.Max(1, info.Speed.Length));
+		}
+
+		/// <summary>A cluster dispenser opens: a sharp pop, a puff of grey-white smoke and the two shell halves
+		/// tumbling away (the bomblets themselves are the FireCluster warhead's projectiles).</summary>
+		void Open(float3 at)
+		{
+			Puff(PxParticleKind.Glow, at, 1, 0.7f, 4, 1f, new float3(1f, 0.92f, 0.75f), 0);
+			for (var i = 0; i < 8; i++)
+				Puff(PxParticleKind.Smoke, at, 5, 0.4f, info.TrailLife * 1.4f, 0.65f, new float3(0.82f, 0.81f, 0.79f), 0.02f);
+
+			for (var i = 0; i < 2; i++)
+			{
+				var side = i == 0 ? -1 : 1;
+				particles.Add(new PxParticle
+				{
+					Kind = PxParticleKind.Chunk,
+					X = at.X,
+					Y = at.Y,
+					Z = at.Z,
+					VX = side * (0.6f + 0.4f * rng.NextFloat()),
+					VY = (rng.NextFloat() - 0.5f) * 0.4f,
+					VZ = 0.3f * rng.NextFloat(),
+					Gravity = 0.05f,
+					Drag = 0.01f,
+					Life = 40,
+					Size = 0.35f,
+					Alpha = 1f,
+					Tint = new float3(0.45f, 0.45f, 0.42f),
+					Spin = side * 6,
+					Angle = rng.Next(1024),
+				});
+			}
 		}
 
 		/// <summary>Shot down by point defence: bursts in the air without hitting anything.</summary>
@@ -662,7 +712,7 @@ namespace OpenRA.Mods.RAPX.Projectiles
 				if (info.ColdLaunch > 0)
 					for (var i = 0; i < info.LaunchPuffs / 2; i++)
 						Puff(PxParticleKind.Billow, at, 6 * info.TrailSize, 0.4f * info.TrailSize, info.TrailLife, 0.7f, gas, 0.02f);
-				else
+				else if (!info.Unpowered)
 					Puff(PxParticleKind.Glow, at, 2, 0.7f * info.FlameSize, 6, 1f, FlameTint, 0);
 				if (info.WaterLaunch)
 				{
@@ -676,7 +726,7 @@ namespace OpenRA.Mods.RAPX.Projectiles
 			}
 
 			if (info.TrackTarget && !Decoyed && args.GuidedTarget.IsValidFor(args.SourceActor))
-				target = args.GuidedTarget.CenterPosition + miss;
+				target = args.GuidedTarget.CenterPosition + miss + burst;
 
 			ticks++;
 			lastPos = pos;
@@ -745,6 +795,29 @@ namespace OpenRA.Mods.RAPX.Projectiles
 				Puff(PxParticleKind.Flame, back, 1, 0.22f * info.FlameSize, 5, 0.9f, FlameTint, 0);
 			}
 
+			for (var i = 0; i < info.Sparkle; i++)
+			{
+				// Burning submunition: glittering sparks left behind, hanging a moment before they fall and die out
+				var f = rng.NextFloat();
+				particles.Add(new PxParticle
+				{
+					Kind = PxParticleKind.Spark,
+					X = back.X + (here.X - back.X) * f + (rng.NextFloat() - 0.5f) * 1.5f,
+					Y = back.Y + (here.Y - back.Y) * f + (rng.NextFloat() - 0.5f) * 1.0f,
+					Z = back.Z + (here.Z - back.Z) * f,
+					VX = (rng.NextFloat() - 0.5f) * 0.15f,
+					VY = (rng.NextFloat() - 0.5f) * 0.1f,
+					VZ = (rng.NextFloat() - 0.2f) * 0.1f,
+					Gravity = 0.01f,
+					Drag = 0.08f,
+					Life = 8 + 14 * rng.NextFloat(),
+					Size = 0.08f + 0.1f * rng.NextFloat(),
+					Alpha = 0.6f + 0.4f * rng.NextFloat(),
+					Tint = new float3(1f, 0.85f + 0.15f * rng.NextFloat(), 0.6f + 0.3f * rng.NextFloat()),
+					Angle = rng.Next(1024),
+				});
+			}
+
 			if (info.DivertTicks > 0 && !Decoyed && flightTicks - ticks <= info.DivertTicks)
 			{
 				// Attitude control motors: tiny jets squirting sideways from a ring behind the nose
@@ -762,6 +835,9 @@ namespace OpenRA.Mods.RAPX.Projectiles
 			{
 				args.Weapon.Impact(Target.FromPos(target), new WarheadArgs(args) { ImpactPosition = target });
 				exploded = true;
+				if (info.BurstHeight.Length > 0)
+					Open(Local(target));
+
 				if (streak != null)
 					streak.Done = true;
 			}
@@ -773,7 +849,7 @@ namespace OpenRA.Mods.RAPX.Projectiles
 			if (!exploded && !wr.World.FogObscures(pos))
 			{
 				var sprite = info.Image != null;
-				yield return new PxRocketRenderable(info, pos, lastPos, !sprite, MotorLit);
+				yield return new PxRocketRenderable(info, pos, lastPos, !sprite && info.DrawBody, MotorLit);
 				if (sprite)
 				{
 					var d = pos - lastPos;

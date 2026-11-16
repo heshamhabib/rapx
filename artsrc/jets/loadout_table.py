@@ -6,7 +6,7 @@ Per unit:
   real_length  metres, sizes the procedural weapons against the model
   gun          gun weapon (weapons/jet-ordnance.yaml JetGun.<gun>) or None
   stations     outer first (fired first); every station is a left/right pair unless "centre": True
-     weapon    family (JetAAM.Short, JetAAM.Medium, JetAAM.Long, JetAGM, JetBomb, JetGBU, JetRockets)
+     weapon    family (JetAAM.Short, JetAAM.Medium, JetAAM.Long, JetAGM, JetBomb, JetCluster, JetWP, JetGBU, JetRockets)
      model     (x, y, z, rx, ry, rz): the right-hand station on the model, unit coordinates (survey:
                artsrc/jets/loadouts/<unit>.png/.json); every model store centred within the tolerances joins it
                (a triple rack is one station), mirrored for the left
@@ -119,7 +119,8 @@ LOADOUTS = {
     "jet.su25": {"real_length": 15.53, "gun": "GSh30", "strike": True, "stations": [
         {"weapon": "JetRockets", "add": "pod", "at": (2.3, "lead"), "shots": 4},
         {"weapon": "JetAGM", "add": "kh29", "at": (1.6, "lead")},
-        {"weapon": "JetBomb", "add": "mk82", "at": (1.0, "lead")},
+        # RBK-500 cluster bomb (shown with the Mk 82 shape)
+        {"weapon": "JetCluster", "add": "mk82", "at": (1.0, "lead")},
     ]},
     "jet.l39": {"real_length": 12.13, "gun": "GSh30", "strike": True, "stations": [
         {"weapon": "JetRockets", "add": "pod", "at": (1.3, "lead"), "shots": 4},
@@ -147,13 +148,18 @@ LOADOUTS = {
     "jet.ho229": {"real_length": 7.5, "gun": None, "stations": [
         {"weapon": "JetGBU", "internal": True, "shots": 8},
     ]},
+    # B-52: a stream of CBU-87 cluster dispensers first, then a Mk 82 carpet
     "jet.b52": {"real_length": 48.5, "gun": None, "stations": [
-        {"weapon": "JetBomb", "internal": True, "shots": 14},
+        {"weapon": "JetCluster", "internal": True, "shots": 8},
+        {"weapon": "JetBomb", "internal": True, "shots": 6},
     ]},
+    # Vulcan and Tu-160: white phosphorus bombs first, then their usual bombs
     "jet.vulcan": {"real_length": 29.6, "gun": None, "stations": [
-        {"weapon": "JetBomb", "internal": True, "shots": 10},
+        {"weapon": "JetWP", "internal": True, "shots": 4},
+        {"weapon": "JetBomb", "internal": True, "shots": 6},
     ]},
     "jet.tu160": {"real_length": 54.1, "gun": None, "stations": [
+        {"weapon": "JetWP", "internal": True, "shots": 4},
         {"weapon": "JetGBU", "internal": True, "shots": 6},
     ]},
     "jet.grom": {"real_length": 10.0, "gun": None, "stations": [

@@ -256,17 +256,27 @@ JET.B52:
 	AmmoPool@B52S0:
 		Name: b52-s0
 		Armaments: b52-s0
-		Ammo: 14
+		Ammo: 8
 		AmmoCondition: b52-s0
 	Armament@B52S0:
 		Name: b52-s0
-		Weapon: JetBomb
+		Weapon: JetCluster
 		LocalOffset: 0,0,-120
 		PauseOnCondition: !b52-s0
+	AmmoPool@B52S1:
+		Name: b52-s1
+		Armaments: b52-s1
+		Ammo: 6
+		AmmoCondition: b52-s1
+	Armament@B52S1:
+		Name: b52-s1
+		Weapon: JetBomb
+		LocalOffset: 0,0,-120
+		PauseOnCondition: !b52-s1
 	AttackAircraft:
-		Armaments: b52-s0
+		Armaments: b52-s0, b52-s1
 	Rearmable:
-		AmmoPools: b52-s0
+		AmmoPools: b52-s0, b52-s1
 	AutoTarget:
 		InitialStance: HoldFire
 		InitialStanceAI: HoldFire
@@ -1519,7 +1529,7 @@ JET.SU25:
 		AmmoCondition: su25-s2
 	Armament@SU25S2:
 		Name: su25-s2
-		Weapon: JetBomb.Pair
+		Weapon: JetCluster.Pair
 		LocalOffset: 183,342,211, 183,-342,211
 		PauseOnCondition: !su25-s2
 	WithIdleOverlay@SU25STORE2R:
@@ -1830,17 +1840,27 @@ JET.TU160:
 	AmmoPool@TU160S0:
 		Name: tu160-s0
 		Armaments: tu160-s0
-		Ammo: 6
+		Ammo: 4
 		AmmoCondition: tu160-s0
 	Armament@TU160S0:
 		Name: tu160-s0
-		Weapon: JetGBU
+		Weapon: JetWP
 		LocalOffset: 0,0,-120
 		PauseOnCondition: !tu160-s0
+	AmmoPool@TU160S1:
+		Name: tu160-s1
+		Armaments: tu160-s1
+		Ammo: 6
+		AmmoCondition: tu160-s1
+	Armament@TU160S1:
+		Name: tu160-s1
+		Weapon: JetGBU
+		LocalOffset: 0,0,-120
+		PauseOnCondition: !tu160-s1
 	AttackAircraft:
-		Armaments: tu160-s0
+		Armaments: tu160-s0, tu160-s1
 	Rearmable:
-		AmmoPools: tu160-s0
+		AmmoPools: tu160-s0, tu160-s1
 	AutoTarget:
 		InitialStance: HoldFire
 		InitialStanceAI: HoldFire
@@ -1952,17 +1972,27 @@ JET.VULCAN:
 	AmmoPool@VULCANS0:
 		Name: vulcan-s0
 		Armaments: vulcan-s0
-		Ammo: 10
+		Ammo: 4
 		AmmoCondition: vulcan-s0
 	Armament@VULCANS0:
 		Name: vulcan-s0
-		Weapon: JetBomb
+		Weapon: JetWP
 		LocalOffset: 0,0,-120
 		PauseOnCondition: !vulcan-s0
+	AmmoPool@VULCANS1:
+		Name: vulcan-s1
+		Armaments: vulcan-s1
+		Ammo: 6
+		AmmoCondition: vulcan-s1
+	Armament@VULCANS1:
+		Name: vulcan-s1
+		Weapon: JetBomb
+		LocalOffset: 0,0,-120
+		PauseOnCondition: !vulcan-s1
 	AttackAircraft:
-		Armaments: vulcan-s0
+		Armaments: vulcan-s0, vulcan-s1
 	Rearmable:
-		AmmoPools: vulcan-s0
+		AmmoPools: vulcan-s0, vulcan-s1
 	AutoTarget:
 		InitialStance: HoldFire
 		InitialStanceAI: HoldFire

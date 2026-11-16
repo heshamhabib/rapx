@@ -2,10 +2,16 @@
  "unit": "jet.tu160",
  "stations": [
   {
+   "weapon": "JetWP",
+   "shots": 4,
+   "internal": true,
+   "stores": []
+  },
+  {
    "weapon": "JetGBU",
    "shots": 6,
-   "stores": [],
-   "internal": true
+   "internal": true,
+   "stores": []
   }
  ],
  "wdist_per_unit": 341.67466666666667,

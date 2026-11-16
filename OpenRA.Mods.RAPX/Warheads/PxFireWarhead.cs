@@ -12,6 +12,7 @@
 using System;
 using System.Collections.Generic;
 using OpenRA.GameRules;
+using OpenRA.Primitives;
 using OpenRA.Graphics;
 using OpenRA.Effects;
 using OpenRA.Mods.Common.Warheads;
@@ -34,6 +35,9 @@ namespace OpenRA.Mods.RAPX.Warheads
 
 		[Desc("Amount of smoke, as a multiple of the default.")]
 		public readonly float Smoke = 1f;
+
+		[Desc("Colour of the smoke (white phosphorus burns with thick white smoke).")]
+		public readonly Color SmokeColor = Color.FromArgb(255, 71, 69, 66);
 
 		[Desc("Leave a short-lived scorch mark on the ground.")]
 		public readonly bool Scorch = true;
@@ -182,7 +186,7 @@ namespace OpenRA.Mods.RAPX.Warheads
 								Rand(8, 12), 0.9f, 0.05f, Rand(0.4f, 0.8f), 0.1f, new float3(1f, 0.95f, 0.85f));
 						if (random.NextFloat() < 0.35f * info.Smoke)
 							Add(PxParticleKind.Billow, 3 * k, Rand(4, 8) * k, Rand(0.4f, 0.6f) * k, 2.2f, Rand(50, 80), 0.6f,
-								0.12f, Rand(0.3f, 0.55f), 0.03f, new float3(0.28f, 0.27f, 0.26f));
+								0.12f, Rand(0.3f, 0.55f), 0.03f, new float3(info.SmokeColor.R / 255f, info.SmokeColor.G / 255f, info.SmokeColor.B / 255f));
 					}
 				}
 
