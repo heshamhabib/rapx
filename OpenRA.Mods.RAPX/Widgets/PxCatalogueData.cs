@@ -283,7 +283,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 				if (arm.WeaponInfo == null || e.Weapons.Any(w => w.Name == Pretty(arm.Weapon)))
 					continue;
 
-				e.Weapons.Add(CreateWeapon(arm.Weapon, arm.WeaponInfo));
+				e.Weapons.Add(CreateWeapon(arm.Weapon, arm.WeaponInfo, rules));
 			}
 
 			// The Fatman bomber's bomb (PxStrategicBomber) is no armament: it falls once per Fatman Strike, so it shows the
@@ -359,20 +359,62 @@ namespace OpenRA.Mods.RAPX.Widgets
 			return "Cannon shell";
 		}
 
-		static Weapon CreateWeapon(string key, WeaponInfo w)
+		/// <summary>Damage warheads a shot delivers, with how many times each goes off: its own, the bomblets a
+		/// FireCluster warhead throws (cluster bombs, cluster rockets) and the pulses of burning ground (PxBurn).</summary>
+		static void CollectDamage(WeaponInfo w, Ruleset rules, int times, List<(DamageWarhead Warhead, int Times)> into, ref string kind, int depth = 0)
 		{
-			var damage = w.Warheads.OfType<DamageWarhead>().ToList();
-			var perShot = damage.Sum(d => d.Damage);
+			foreach (var d in w.Warheads.OfType<DamageWarhead>())
+				into.Add((d, times));
+
+			if (rules == null || depth > 2)
+				return;
+
+			foreach (var c in w.Warheads.OfType<FireClusterWarhead>())
+			{
+				if (!rules.Weapons.TryGetValue(c.Weapon.ToLowerInvariant(), out var sub))
+					continue;
+
+				var cells = c.Footprint.Count(ch => ch == 'x' || ch == 'X');
+				var count = c.RandomClusterCount > 0 ? c.RandomClusterCount + c.Footprint.Count(ch => ch == 'X') : cells;
+				kind ??= "Cluster munition";
+				CollectDamage(sub, rules, times * Math.Max(1, count), into, ref kind, depth + 1);
+			}
+
+			foreach (var b in w.Warheads.OfType<PxBurnWarhead>())
+			{
+				if (!rules.Weapons.TryGetValue(b.Weapon.ToLowerInvariant(), out var burn))
+					continue;
+
+				kind = "Incendiary";
+				CollectDamage(burn, rules, times * Math.Max(1, b.Duration / Math.Max(1, b.Interval)), into, ref kind, depth + 1);
+			}
+		}
+
+		public static Weapon CreateWeapon(string key, WeaponInfo w, Ruleset rules = null)
+		{
+			var hits = new List<(DamageWarhead Warhead, int Times)>();
+			string special = null;
+			CollectDamage(w, rules, 1, hits, ref special);
+			var damage = hits.Select(h => h.Warhead).ToList();
+			var perShot = hits.Sum(h => h.Warhead.Damage * h.Times);
 			var burstDelay = w.BurstDelays.Length == 1 ? w.BurstDelays[0] * (w.Burst - 1) : w.BurstDelays.Take(w.Burst - 1).Sum();
 			var cycle = Math.Max(1, w.ReloadDelay + burstDelay);
-			var label = Text($"catalogue-weapon-{key.Replace('.', '-').ToLowerInvariant()}") ?? Pretty(key);
+			var id = key.Replace('.', '-').ToLowerInvariant();
+			var label = Text($"catalogue-weapon-{id}");
+
+			// A jet's .Pair / .Ripple variant is the same weapon as its family
+			foreach (var suffix in new[] { "-pair", "-ripple" })
+				if (label == null && id.EndsWith(suffix, StringComparison.Ordinal))
+					label = Text($"catalogue-weapon-{id[..^suffix.Length]}");
+
+			label ??= Pretty(key);
 
 			bool Hits(params string[] types) => types.Any(t => w.ValidTargets.Contains(t)) && !types.All(t => w.InvalidTargets.Contains(t));
 
 			var weapon = new Weapon
 			{
 				Name = label,
-				Kind = ProjectileKind(w),
+				Kind = special ?? ProjectileKind(w),
 				Damage = perShot,
 				Burst = w.Burst,
 				Range = w.Range.Length / 1024f,
