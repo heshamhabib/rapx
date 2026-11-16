@@ -1,0 +1,161 @@
+diff --git a/OpenRA.Game/Graphics/Viewport.cs b/OpenRA.Game/Graphics/Viewport.cs
+index dd8c8fc..7227ac7 100644
+--- a/OpenRA.Game/Graphics/Viewport.cs
++++ b/OpenRA.Game/Graphics/Viewport.cs
+@@ -207,10 +207,24 @@ public Viewport(WorldRenderer wr, Map map)
+ 			UpdateViewportZooms();
+ 		}
+ 
++		/// <summary>RAPX: camera shake offset (viewport px), polled every render frame. The offset is applied and taken
++		/// back the next frame, so shaking never moves the camera for good.</summary>
++		public Func<int2> Shake;
++		int2 shakeApplied;
++
+ 		public void Tick()
+ 		{
+ 			if (lastViewportDistance != graphicSettings.ViewportDistance)
+ 				UpdateViewportZooms();
++
++			var shake = Shake?.Invoke() ?? int2.Zero;
++			if (shake != shakeApplied)
++			{
++				CenterLocation += shake - shakeApplied;
++				shakeApplied = shake;
++				cellsDirty = true;
++				allCellsDirty = true;
++			}
+ 		}
+ 
+ 		static float CalculateMinimumZoom(float minHeight, float maxHeight)
+diff --git a/OpenRA.Game/Traits/World/ScreenShaker.cs b/OpenRA.Game/Traits/World/ScreenShaker.cs
+index 9b17b36..f04332c 100644
+--- a/OpenRA.Game/Traits/World/ScreenShaker.cs
++++ b/OpenRA.Game/Traits/World/ScreenShaker.cs
+@@ -10,44 +10,51 @@
+ #endregion
+ 
+ using System;
+-using System.Collections.Generic;
+-using System.Linq;
+ using OpenRA.Graphics;
+ 
+ namespace OpenRA.Traits
+ {
+ 	[TraitLocation(SystemActors.World)]
++	[Desc("RAPX: smooth camera shake. Every shake request adds 'trauma' (0-1) with diminishing returns, so a salvo of",
++		"forty blasts cannot stack into forty times the shake; trauma fades away over real time and the camera offset is",
++		"trauma squared times smooth noise, so small knocks are barely felt and only big ones really shake. The offset is",
++		"updated every render frame and never drifts the camera.")]
+ 	public class ScreenShakerInfo : TraitInfo
+ 	{
+-		public readonly float2 MinMultiplier = new(-3, -3);
+-		public readonly float2 MaxMultiplier = new(3, 3);
++		[Desc("Largest camera offset, in screen pixels, at full trauma.")]
++		public readonly float MaxOffset = 4f;
++
++		[Desc("How quickly trauma fades, per second (1 = a full-strength shake dies out in a second).")]
++		public readonly float Decay = 1f;
++
++		[Desc("Shake energy (intensity x multiplier x duration factor, at the camera) that adds half the remaining trauma.")]
++		public readonly float HalfEnergy = 3f;
++
++		[Desc("Distance in cells from the camera at which a shake counts for half; it fades with the square beyond that.")]
++		public readonly float FalloffCells = 8f;
++
++		[Desc("Shake frequency in hertz.")]
++		public readonly float Frequency = 8f;
+ 
+ 		public override object Create(ActorInitializer init) { return new ScreenShaker(this); }
+ 	}
+ 
+-	public class ScreenShaker : ITick, IWorldLoaded
++	public class ScreenShaker : IWorldLoaded
+ 	{
+ 		readonly ScreenShakerInfo info;
+ 		WorldRenderer worldRenderer;
+-		readonly List<ShakeEffect> shakeEffects = new();
+-		int ticks = 0;
++		float trauma;
++		long lastTime = -1;
+ 
+ 		public ScreenShaker(ScreenShakerInfo info)
+ 		{
+ 			this.info = info;
+ 		}
+ 
+-		void IWorldLoaded.WorldLoaded(World w, WorldRenderer wr) { worldRenderer = wr; }
+-
+-		void ITick.Tick(Actor self)
++		void IWorldLoaded.WorldLoaded(World w, WorldRenderer wr)
+ 		{
+-			if (shakeEffects.Count > 0)
+-			{
+-				worldRenderer.Viewport.Scroll(GetScrollOffset(), true);
+-				shakeEffects.RemoveAll(t => t.ExpiryTime == ticks);
+-			}
+-
+-			ticks++;
++			worldRenderer = wr;
++			wr.Viewport.Shake = Offset;
+ 		}
+ 
+ 		public void AddEffect(int time, WPos position, int intensity)
+@@ -57,37 +64,33 @@ public void AddEffect(int time, WPos position, int intensity)
+ 
+ 		public void AddEffect(int time, WPos position, int intensity, float2 multiplier)
+ 		{
+-			shakeEffects.Add(new ShakeEffect { ExpiryTime = ticks + time, Position = position, Intensity = intensity, Multiplier = multiplier });
+-		}
++			if (worldRenderer == null || intensity <= 0)
++				return;
+ 
+-		float2 GetScrollOffset()
+-		{
+-			return GetMultiplier() * GetIntensity() * new float2(
+-				(float)Math.Sin(ticks * 2 * Math.PI / 4),
+-				(float)Math.Cos(ticks * 2 * Math.PI / 5));
+-		}
++			// Blasts near the camera count fully; far off-screen ones barely
++			var d = (position - worldRenderer.Viewport.CenterPosition).HorizontalLength / 1024f / info.FalloffCells;
++			var energy = intensity * (Math.Abs(multiplier.X) + Math.Abs(multiplier.Y)) / 2 * (time / 10f) / (1 + d * d);
++			var add = energy / (energy + info.HalfEnergy);
+ 
+-		float2 GetMultiplier()
+-		{
+-			return shakeEffects.Aggregate(float2.Zero, (sum, next) => sum + next.Multiplier)
+-				.Constrain(info.MinMultiplier, info.MaxMultiplier);
++			// Diminishing returns: each request fills a share of what is left, so trauma never exceeds 1
++			trauma += (1 - trauma) * add;
+ 		}
+ 
+-		float GetIntensity()
++		int2 Offset()
+ 		{
+-			var cp = worldRenderer.Viewport.CenterPosition;
+-			var intensity = 100 * 1024 * 1024 * shakeEffects.Sum(
+-				e => (float)e.Intensity / (e.Position - cp).LengthSquared);
++			var now = Game.RunTime;
++			var dt = lastTime < 0 ? 0 : Math.Min(now - lastTime, 100) / 1000f;
++			lastTime = now;
++			trauma = Math.Max(0, trauma - info.Decay * dt);
++			if (trauma <= 0)
++				return int2.Zero;
+ 
+-			return Math.Min(intensity, 10);
++			// Two incommensurate sines per axis: smooth, non-repeating wobble instead of a per-tick jolt
++			var t = now / 1000f * info.Frequency * 2 * MathF.PI;
++			var x = 0.6f * MathF.Sin(t) + 0.4f * MathF.Sin(t * 1.73f + 1.1f);
++			var y = 0.6f * MathF.Sin(t * 1.17f + 2.3f) + 0.4f * MathF.Sin(t * 2.09f + 0.4f);
++			var amplitude = info.MaxOffset * trauma * trauma;
++			return new int2((int)MathF.Round(x * amplitude), (int)MathF.Round(y * amplitude));
+ 		}
+ 	}
+-
+-	struct ShakeEffect
+-	{
+-		public int ExpiryTime;
+-		public WPos Position;
+-		public int Intensity;
+-		public float2 Multiplier;
+-	}
+ }

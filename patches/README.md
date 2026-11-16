@@ -34,6 +34,8 @@ engine-radar-resize.patch
 engine-launcher-extra-args.patch
 engine-sprite-downscale.patch
 engine-effects-settings.patch
+engine-map-preview-scale.patch
+engine-smooth-screen-shake.patch
 ```
 
 ## Upgrading the engine

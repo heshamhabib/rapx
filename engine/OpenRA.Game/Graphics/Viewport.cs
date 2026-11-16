@@ -207,10 +207,24 @@ namespace OpenRA.Graphics
 			UpdateViewportZooms();
 		}
 
+		/// <summary>RAPX: camera shake offset (viewport px), polled every render frame. The offset is applied and taken
+		/// back the next frame, so shaking never moves the camera for good.</summary>
+		public Func<int2> Shake;
+		int2 shakeApplied;
+
 		public void Tick()
 		{
 			if (lastViewportDistance != graphicSettings.ViewportDistance)
 				UpdateViewportZooms();
+
+			var shake = Shake?.Invoke() ?? int2.Zero;
+			if (shake != shakeApplied)
+			{
+				CenterLocation += shake - shakeApplied;
+				shakeApplied = shake;
+				cellsDirty = true;
+				allCellsDirty = true;
+			}
 		}
 
 		static float CalculateMinimumZoom(float minHeight, float maxHeight)
