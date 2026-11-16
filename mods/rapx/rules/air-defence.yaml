@@ -3,7 +3,8 @@
 # reach only half their range without a working Radar Dome. Weapons: weapons/air-defence.yaml.
 #
 #   Tier 1 SHORAD      AA Gun (Allies) / SAM Site (Soviets)   ~7-8 cells   drones, cruise, some rockets; aircraft
-#   Tier 2 Medium SAM  MSAM: NASAMS / Buk look                11 cells     + more cruise; aircraft
+#   Tier 2 Medium SAM  MSAM: NASAMS / Buk look                11 cells     rocket shield (Iron Dome role, IDEA-44)
+#                                                                          + more cruise; aircraft
 #   Tier 3 Long SAM    LSAM: Patriot / S-400 look             15 cells     + tactical ballistic; aircraft
 #   Tier 4 BMD         BMD: THAAD / HQ-9 (S-500 stand-in)     23 cells     ballistic and hypersonic only
 
@@ -18,7 +19,7 @@ AGUN:
 		LocalOffset: 0,0,450
 		RequiresCondition: !disabled && !build-incomplete
 		Chances:
-			Rocket: 40
+			Rocket: 55
 			Drone: 75
 			Cruise: 55
 
@@ -27,12 +28,12 @@ SAM:
 		Range: 8c0
 		Rails: 2
 		ReloadDelay: 90
-		Speed: 380
+		Speed: 560
 		Weapon: InterceptSAM
 		LocalOffset: 0,0,320
 		RequiresCondition: !disabled && !build-incomplete
 		Chances:
-			Rocket: 30
+			Rocket: 50
 			Drone: 65
 			Cruise: 60
 
@@ -81,15 +82,16 @@ MSAM:
 		LocalOffset: 0,0,400
 	PxInterceptor:
 		Range: 11c0
-		Rails: 4
-		ReloadDelay: 150
-		Speed: 380
+		Rails: 10
+		ReloadDelay: 200
+		Speed: 560
+		LaunchInterval: 3
 		Weapon: InterceptSAM
 		LocalOffset: -200,0,400
 		RequiresCondition: !disabled && !build-incomplete
 		Chances:
-			Rocket: 30
-			Drone: 60
+			Rocket: 85
+			Drone: 75
 			Cruise: 70
 	Power:
 		Amount: -60
@@ -128,14 +130,15 @@ LSAM:
 		LocalOffset: 0,0,450
 	PxInterceptor:
 		Range: 15c0
-		Rails: 4
+		Rails: 6
 		ReloadDelay: 220
 		Speed: 460
+		LaunchInterval: 4
 		Weapon: InterceptLong
 		LocalOffset: -250,0,450
 		RequiresCondition: !disabled && !build-incomplete
 		Chances:
-			Rocket: 20
+			Rocket: 40
 			Drone: 40
 			Cruise: 65
 			Ballistic: 50
@@ -264,7 +267,7 @@ FLAK:
 		LocalOffset: 300,0,420
 		RequiresCondition: !disabled && !build-incomplete
 		Chances:
-			Rocket: 25
+			Rocket: 40
 			Drone: 55
 			Cruise: 45
 	PxRenderRangeDome:

@@ -174,6 +174,19 @@ namespace OpenRA.Mods.RAPX.Projectiles
 		[Desc("Length of the drawn nose cone, as a fraction of the body.")]
 		public readonly float NoseLength = 0.22f;
 
+		[Desc("Long-exposure streak: the path flown stays drawn as a thin glowing line for this many ticks, fading from",
+			"the oldest end (the interceptor trails of a night-time Iron Dome photo). 0 = none.")]
+		public readonly int StreakLife = 0;
+
+		[Desc("Colour of the streak's glow; its core is drawn white-hot.")]
+		public readonly Color StreakColor = Color.FromArgb(255, 255, 196, 110);
+
+		[Desc("Width of the streak's core.")]
+		public readonly WDist StreakWidth = new(14);
+
+		[Desc("Interception burst size (when air defence shoots this down), as a multiple of the default.")]
+		public readonly float InterceptBurst = 1f;
+
 		public IProjectile Create(ProjectileArgs args) { return new PxRocket(this, args); }
 	}
 
@@ -233,6 +246,144 @@ namespace OpenRA.Mods.RAPX.Projectiles
 		}
 	}
 
+	/// <summary>Long-exposure streaks (PxRocketInfo.StreakLife) of every rocket, drawn as one effect sorted over the
+	/// battlefield like PxTrailLayer: a streak outlives its rocket and fades from its oldest point.</summary>
+	public sealed class PxStreakLayer : IEffect
+	{
+		public sealed class Streak
+		{
+			public readonly List<WPos> Points = new();
+			public readonly List<int> Born = new();
+			public PxRocketInfo Info;
+			public bool Done;
+		}
+
+		static PxStreakLayer current;
+
+		public static PxStreakLayer Get(World world)
+		{
+			if (current == null || current.world != world || current.removed)
+			{
+				var layer = new PxStreakLayer(world);
+				current = layer;
+				world.AddFrameEndTask(w => w.Add(layer));
+			}
+
+			return current;
+		}
+
+		readonly World world;
+		readonly List<Streak> streaks = new();
+		readonly WPos anchor;
+		bool removed;
+		int idle;
+
+		public int Now { get; private set; }
+
+		PxStreakLayer(World world)
+		{
+			this.world = world;
+			var b = world.Map.Bounds;
+			anchor = new WPos((b.Left + b.Right) * 512, b.Bottom * 1024 + 2048, 0);
+		}
+
+		public Streak Start(PxRocketInfo info)
+		{
+			var s = new Streak { Info = info };
+			streaks.Add(s);
+			return s;
+		}
+
+		public void Tick(World world)
+		{
+			Now++;
+			foreach (var s in streaks)
+			{
+				// Drop the points that have faded out (oldest first)
+				var n = 0;
+				while (n < s.Born.Count && Now - s.Born[n] >= s.Info.StreakLife)
+					n++;
+
+				if (n > 0)
+				{
+					s.Points.RemoveRange(0, n);
+					s.Born.RemoveRange(0, n);
+				}
+			}
+
+			streaks.RemoveAll(s => s.Done && s.Points.Count < 2);
+			if (streaks.Count > 0)
+				idle = 0;
+			else if (++idle > 25)
+			{
+				removed = true;
+				world.AddFrameEndTask(w => w.Remove(this));
+			}
+		}
+
+		public IEnumerable<IRenderable> Render(WorldRenderer wr)
+		{
+			if (streaks.Count > 0)
+				yield return new PxStreakRenderable(this, anchor);
+		}
+
+		/// <summary>Draws every streak: a wide faint glow, a narrower bright glow and a white-hot core, each segment
+		/// fading with its age and thinning towards the old end.</summary>
+		public void Draw(WorldRenderer wr)
+		{
+			var cr = Game.Renderer.WorldRgbaColorRenderer;
+			foreach (var s in streaks)
+			{
+				if (s.Points.Count < 2)
+					continue;
+
+				var info = s.Info;
+				var core = Math.Max(1f, wr.ScreenVector(new WVec(info.StreakWidth, WDist.Zero, WDist.Zero))[0]);
+				var glow = info.StreakColor;
+				var prev = wr.Screen3DPosition(s.Points[0]);
+				for (var i = 1; i < s.Points.Count; i++)
+				{
+					var here = wr.Screen3DPosition(s.Points[i]);
+					var fresh = 1f - (float)(Now - s.Born[i]) / info.StreakLife;
+					if (fresh > 0)
+					{
+						// Ease out: stays bright most of its life, then dies away quickly
+						var a = fresh * fresh * (3 - 2 * fresh);
+						var w = core * (0.45f + 0.55f * fresh);
+						cr.DrawLine(prev, here, w * 5f, Color.FromArgb((int)(40 * a), glow.R, glow.G, glow.B));
+						cr.DrawLine(prev, here, w * 2.2f, Color.FromArgb((int)(120 * a), glow.R, glow.G, glow.B));
+						cr.DrawLine(prev, here, w, Color.FromArgb((int)(245 * a), 255, 250, 230));
+					}
+
+					prev = here;
+				}
+			}
+		}
+	}
+
+	public class PxStreakRenderable : IRenderable, IFinalizedRenderable
+	{
+		readonly PxStreakLayer layer;
+
+		public PxStreakRenderable(PxStreakLayer layer, WPos pos)
+		{
+			this.layer = layer;
+			Pos = pos;
+		}
+
+		public WPos Pos { get; }
+		public int ZOffset => 2048;
+		public bool IsDecoration => true;
+
+		public IRenderable WithZOffset(int newOffset) { return this; }
+		public IRenderable OffsetBy(in WVec vec) { return this; }
+		public IRenderable AsDecoration() { return this; }
+		public IFinalizedRenderable PrepareRender(WorldRenderer wr) { return this; }
+		public void Render(WorldRenderer wr) { layer.Draw(wr); }
+		public void RenderDebugGeometry(WorldRenderer wr) { }
+		public Rectangle ScreenBounds(WorldRenderer wr) { return Rectangle.Empty; }
+	}
+
 	public class PxRocket : IProjectile, ISync
 	{
 		const float PixelPerWorld = 24f / 1024f;
@@ -249,6 +400,7 @@ namespace OpenRA.Mods.RAPX.Projectiles
 		int ticks;
 		bool launched;
 		bool exploded;
+		PxStreakLayer.Streak streak;
 
 		[Sync]
 		WPos target;
@@ -404,16 +556,51 @@ namespace OpenRA.Mods.RAPX.Projectiles
 				return;
 
 			exploded = true;
+			if (streak != null)
+				streak.Done = true;
+
 			if (particles == null)
 				return;
 
+			// Air burst: a white-hot flash, an orange fireball, burning fragments and sparks raining down out of a
+			// puff of grey smoke that hangs in the air. Nothing reaches the ground.
+			var k = info.InterceptBurst;
 			var at = Local(pos);
-			Puff(PxParticleKind.Glow, at, 2, 1.1f, 8, 1f, new float3(1f, 0.85f, 0.5f), 0);
-			for (var i = 0; i < 6; i++)
-				Puff(PxParticleKind.Flame, at, 6, 0.4f, 9, 0.95f, new float3(1f, 0.7f, 0.35f), 0.05f);
+			Puff(PxParticleKind.Glow, at, 2, 1.6f * k, 7, 1f, new float3(1f, 0.95f, 0.8f), 0);
+			Puff(PxParticleKind.Glow, at, 3, 1.1f * k, 12, 0.8f, new float3(1f, 0.7f, 0.35f), 0);
+			for (var i = 0; i < 8; i++)
+				Puff(PxParticleKind.Fireball, at, 6 * k, 0.45f * k, 12, 0.95f, new float3(1f, 0.72f, 0.38f), 0.04f);
 
-			for (var i = 0; i < 10; i++)
-				Puff(PxParticleKind.Smoke, at, 9, 0.5f, info.TrailLife, 0.75f, new float3(0.55f, 0.55f, 0.55f), 0.1f);
+			for (var i = 0; i < 6; i++)
+				Puff(PxParticleKind.Flame, at, 6 * k, 0.4f * k, 9, 0.95f, new float3(1f, 0.7f, 0.35f), 0.05f);
+
+			for (var i = 0; i < 12; i++)
+				Puff(PxParticleKind.Smoke, at, 10 * k, 0.55f * k, info.TrailLife * 1.5f, 0.7f, new float3(0.5f, 0.49f, 0.48f), 0.03f);
+
+			// Fragments: fast sparks thrown out, then falling and burning out on the way down
+			for (var i = 0; i < (int)(18 * k); i++)
+			{
+				var a = rng.NextFloat() * 6.283f;
+				var v = (0.8f + 1.6f * rng.NextFloat()) * k;
+				particles.Add(new PxParticle
+				{
+					Kind = PxParticleKind.Spark,
+					X = at.X,
+					Y = at.Y,
+					Z = at.Z,
+					VX = (float)Math.Cos(a) * v,
+					VY = (float)Math.Sin(a) * v * 0.6f,
+					VZ = (rng.NextFloat() - 0.3f) * v,
+					Gravity = 0.06f,
+					Drag = 0.03f,
+					Life = 14 + 16 * rng.NextFloat(),
+					Size = 0.18f + 0.12f * rng.NextFloat(),
+					Grow = 0,
+					Alpha = 1f,
+					Tint = new float3(1f, 0.8f + 0.2f * rng.NextFloat(), 0.5f),
+					Angle = rng.Next(1024),
+				});
+			}
 		}
 
 		/// <summary>The exhaust colour, lightened towards white-hot, as a particle tint.</summary>
@@ -494,6 +681,19 @@ namespace OpenRA.Mods.RAPX.Projectiles
 			ticks++;
 			lastPos = pos;
 			pos = PositionAtTick(ticks);
+			if (info.StreakLife > 0)
+			{
+				var streaks = PxStreakLayer.Get(world);
+				if (streak == null)
+				{
+					streak = streaks.Start(info);
+					streak.Points.Add(origin);
+					streak.Born.Add(streaks.Now);
+				}
+
+				streak.Points.Add(pos);
+				streak.Born.Add(streaks.Now);
+			}
 
 			// Trail, like a rocket motor's plume: a white-hot nozzle, a rolling orange fire plume right behind it, then
 			// fire-lit billowing smoke that twists (sways sideways) and lingers
@@ -562,6 +762,8 @@ namespace OpenRA.Mods.RAPX.Projectiles
 			{
 				args.Weapon.Impact(Target.FromPos(target), new WarheadArgs(args) { ImpactPosition = target });
 				exploded = true;
+				if (streak != null)
+					streak.Done = true;
 			}
 		}
 

@@ -85,13 +85,14 @@ MEADS:
 	AttackFollow:
 	PxInterceptor:
 		Range: 14c0
-		Rails: 2
+		Rails: 4
 		ReloadDelay: 160
 		Speed: 560
+		LaunchInterval: 4
 		Weapon: InterceptMeads
 		LocalOffset: -526,0,690
 		Chances:
-			Rocket: 20
+			Rocket: 70
 			Drone: 50
 			Cruise: 75
 			Ballistic: 55

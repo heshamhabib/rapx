@@ -2,10 +2,11 @@
 actor-msam =
     .name = Medium SAM
     .description =
-    Medium-range air defence: shoots down aircraft,
-    cruise missiles, drones and some rockets.
-    Needs a Radar Dome for full range.
-      Strong vs Aircraft, Cruise missiles and Drones
+    Medium-range air defence and rocket shield: ten
+    fast interceptors ripple out to burst rocket salvos
+    in the sky. Also shoots aircraft, cruise missiles
+    and drones. Needs a Radar Dome for full range.
+      Strong vs Rockets, Aircraft, Cruise missiles and Drones
       Weak vs Ground units; cannot stop ballistic missiles
 
 actor-lsam =

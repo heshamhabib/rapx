@@ -13,7 +13,8 @@ actor-meads =
     .description =
     Long-range mobile air defence: hit-to-kill missiles
     launched straight up, fired in any direction without
-    turning. Also shoots down cruise and ballistic missiles.
+    turning. Also shoots down rockets, cruise and
+    ballistic missiles.
       Strong vs Aircraft and Missiles
       Cannot attack ground targets
 

@@ -2,6 +2,9 @@
 # trait when they meet the threat; a burst in the air, no damage) and the anti-aircraft weapons of tiers 2-3.
 # Each interceptor's projectile Speed must match its PxInterceptor Speed, so it arrives when the roll happens.
 # ThreatType Interceptor: air defence never shoots at interceptors.
+# Look (IDEA-44, Iron Dome photo): every interceptor leaves its launcher almost straight up and bends over onto the
+# threat (Profile Vertical), leaves a glowing long-exposure streak that hangs in the sky for ~3 s (StreakLife), and
+# bursts in an orange fireball next to it (no damage, no screen shake). The rocket it hits bursts too.
 
 # Tier 1 (AA Gun): a flak burst
 InterceptFlak:
@@ -22,7 +25,9 @@ InterceptFlak:
 	Projectile: PxRocket
 		ThreatType: Interceptor
 		TrackTarget: false
-		Arc: 0.06
+		Profile: Vertical
+		Climb: 0.5
+		MinClimb: 1536
 		Length: 160
 		Width: 40
 		BodyColor: E6E6E1
@@ -32,17 +37,22 @@ InterceptFlak:
 		TrailDensity: 2
 		TrailLife: 40
 		LaunchPuffs: 8
+		StreakLife: 75
+		StreakColor: FFB860
+		StreakWidth: 12
 	Warhead@1Eff: PxExplosion
-		Style: Precision
-		Size: 0.45
-		Smoke: 0.4
+		Style: Fireball
+		Size: 0.5
+		Smoke: 0.5
 		Scorch: false
+		Shake: false
+		Wave: false
 
 # Tier 1 (SAM Site) and tier 2 (Medium SAM)
 InterceptSAM:
 	Inherits: ^Interceptor
 	Projectile: PxRocket
-		Speed: 380
+		Speed: 560
 
 # Tier 3 (Long-range SAM): Patriot / S-400 class, bigger and faster
 InterceptLong:
@@ -61,7 +71,7 @@ InterceptBMD:
 	Report: ra|audio/sfx/missile1.ogg
 	Projectile: PxRocket
 		Speed: 620
-		Arc: 0.2
+		Climb: 0.7
 		Length: 260
 		Width: 56
 		TrailSize: 1.4

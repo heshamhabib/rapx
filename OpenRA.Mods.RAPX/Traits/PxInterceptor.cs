@@ -48,6 +48,9 @@ namespace OpenRA.Mods.RAPX.Traits
 		[Desc("Where the interceptors leave from (forward, right, up) relative to the actor's centre.")]
 		public readonly WVec LocalOffset = new(0, 0, 256);
 
+		[Desc("Ticks between two launches from this actor: a salvo ripples out one interceptor at a time.")]
+		public readonly int LaunchInterval = 0;
+
 		[Desc("At most this many interceptors (from all defences) chase one threat at a time.")]
 		public readonly int MaxPerThreat = 1;
 
@@ -82,6 +85,7 @@ namespace OpenRA.Mods.RAPX.Traits
 		readonly Actor self;
 		readonly Rail[] rails;
 		BodyOrientation body;
+		int sinceLaunch;
 
 		public PxInterceptor(Actor self, PxInterceptorInfo info)
 			: base(info)
@@ -119,6 +123,7 @@ namespace OpenRA.Mods.RAPX.Traits
 				return;
 
 			var disabled = IsTraitDisabled;
+			sinceLaunch++;
 			List<PxRocket> threats = null;
 			var range = WDist.Zero;
 			foreach (var rail in rails)
@@ -146,7 +151,7 @@ namespace OpenRA.Mods.RAPX.Traits
 					continue;
 				}
 
-				if (disabled)
+				if (disabled || sinceLaunch <= Info.LaunchInterval)
 					continue;
 
 				if (threats == null)
@@ -178,6 +183,7 @@ namespace OpenRA.Mods.RAPX.Traits
 					rail.Flight = flight;
 					threat.Engagements++;
 					Launch(from, meet);
+					sinceLaunch = 0;
 					break;
 				}
 			}
