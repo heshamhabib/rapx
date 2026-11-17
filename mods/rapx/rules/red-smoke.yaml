@@ -1,0 +1,62 @@
+# Red Smoke "Danger Close" (IDEA-46): any combat soldier can throw a red smoke canister that marks a target for all
+# of the player's long-range support. One shared charge (the support power lives on every thrower; the soldier
+# nearest the target throws). The canister (SMOKE.RED, OpenRA.Mods.RAPX/Traits/PxSmokeMarker.cs) pours smoke for
+# 20 s; after a 4 s warning, idle artillery, rocket launchers, ships and defences that reach it, plus up to 4 idle
+# attack aircraft, fire on the drifting cloud. Art: artsrc/fx/make_smoke_fx.py.
+
+^RedSmoke:
+	Armament@REDSMOKE:
+		Name: smoke
+		Weapon: RedSmokeGrenade
+		LocalOffset: 160,0,420
+	PxSmokeMarkerPower@REDSMOKE:
+		OrderName: RedSmoke
+		Icon: redsmoke
+		ChargeInterval: 1500
+		Name: actor-redsmoke.power-name
+		Description: actor-redsmoke.power-description
+		Cursor: ability
+		SelectTargetTextNotification: notification-select-target
+		EndChargeTextNotification: notification-red-smoke-ready
+		SupportPowerPaletteOrder: 5
+
+E1:
+	Inherits@REDSMOKE: ^RedSmoke
+
+E2:
+	Inherits@REDSMOKE: ^RedSmoke
+	WithInfantryBody:
+		AttackSequences:
+			smoke: throw
+
+E3:
+	Inherits@REDSMOKE: ^RedSmoke
+
+E4:
+	Inherits@REDSMOKE: ^RedSmoke
+
+E7:
+	Inherits@REDSMOKE: ^RedSmoke
+
+SNIP:
+	Inherits@REDSMOKE: ^RedSmoke
+
+SHOK:
+	Inherits@REDSMOKE: ^RedSmoke
+
+SMOKE.RED:
+	Immobile:
+		OccupiesSpace: false
+	BodyOrientation:
+		QuantizedFacings: 1
+	RevealsShroud:
+		Range: 2c0
+		Type: CenterPosition
+	Interactable:
+		Bounds: 1024, 1024
+	Tooltip:
+		Name: actor-smoke-red.name
+	AlwaysVisible:
+	PxSmokeMarker:
+	MapEditorData:
+		Categories: System

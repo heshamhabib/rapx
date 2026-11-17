@@ -30,6 +30,10 @@ namespace OpenRA.Mods.RAPX.Warheads
 		[Desc("Terrain target types the actor may be placed on.")]
 		public readonly BitSet<TargetableType> TerrainTypes = new("Ground");
 
+		[Desc("Place the actor at the exact point of impact (CenterPositionInit) instead of the cell centre, and also in",
+			"cells that hold other actors. For actors that do not occupy their cell, e.g. a smoke marker.")]
+		public readonly bool Exact = false;
+
 		public override void DoImpact(in Target target, WarheadArgs args)
 		{
 			if (target.Type == TargetType.Invalid || args.SourceActor == null)
@@ -41,18 +45,25 @@ namespace OpenRA.Mods.RAPX.Warheads
 			if (!world.Map.Contains(cell) || !TerrainTypes.Overlaps(world.Map.GetTerrainInfo(cell).TargetTypes))
 				return;
 
+			var pos = target.CenterPosition;
+			pos -= new WVec(0, 0, world.Map.DistanceAboveTerrain(pos).Length);
 			world.AddFrameEndTask(w =>
 			{
 				// Checked when placing: two bomblets may land in the same cell in one tick
-				if (w.ActorMap.GetActorsAt(cell).Any())
+				if (!Exact && w.ActorMap.GetActorsAt(cell).Any())
 					return;
 
-				w.CreateActor(Actor, new TypeDictionary
+				var init = new TypeDictionary
 				{
 					new LocationInit(cell),
 					new OwnerInit(owner),
 					new FactionInit(owner.Faction.InternalName),
-				});
+				};
+
+				if (Exact)
+					init.Add(new CenterPositionInit(pos));
+
+				w.CreateActor(Actor, init);
 			});
 		}
 	}

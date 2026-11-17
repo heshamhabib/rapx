@@ -49,6 +49,10 @@ namespace OpenRA.Mods.RAPX.Graphics
 
 		/// <summary>Soft drop shadow, flat.</summary>
 		Shadow,
+
+		/// <summary>Billowing coloured smoke from a smoke grenade, white and lit, tinted by the emitter (12 variants,
+		/// artsrc/fx/make_smoke_fx.py).</summary>
+		Dye,
 	}
 
 	/// <summary>One cosmetic particle. Positions are in screen pixels relative to the emitter's origin:
@@ -208,6 +212,7 @@ namespace OpenRA.Mods.RAPX.Graphics
 			{ PxParticleKind.Debris, "xdebris" },
 			{ PxParticleKind.Ember, "xember" },
 			{ PxParticleKind.Shadow, "shadow" },
+			{ PxParticleKind.Dye, "csmoke" },
 		};
 
 		public readonly List<PxParticle> Items = new();
@@ -505,6 +510,10 @@ namespace OpenRA.Mods.RAPX.Graphics
 						break;
 					case PxParticleKind.Smoke2:
 						alpha = Math.Min(t * 4, 1) * MathF.Pow(1 - t, 1.25f);
+						break;
+					case PxParticleKind.Dye:
+						// Dense coloured smoke: pours out opaque, keeps its body, thins out only late in life
+						alpha = Math.Min(t * 5, 1) * (1 - MathF.Pow(t, 1.6f));
 						break;
 					case PxParticleKind.Foam:
 						// Foam on water (artsrc/fx/make_water_fx.py): appears at once, then slowly breaks up

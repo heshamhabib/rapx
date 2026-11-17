@@ -122,6 +122,22 @@ Player:
 					Attractiveness: -10
 					TargetMetric: Value
 					CheckRadius: 7c0
+			# Red Smoke (IDEA-46): mark enemy groups and bases for the artillery and attack aircraft
+			redsmoke:
+				OrderName: RedSmoke
+				MinimumAttractiveness: 3
+				Consideration@1:
+					Against: Enemy
+					Types: Structure, GroundActor
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 4c0
+				Consideration@2:
+					Against: Ally
+					Types: GroundActor
+					Attractiveness: -3
+					TargetMetric: None
+					CheckRadius: 3c0
 			# Iron Curtain: on a group of own tanks that is fighting enemies
 			ironcurtain:
 				OrderName: GrantExternalConditionPowerInfoOrder

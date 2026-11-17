@@ -221,6 +221,9 @@ namespace OpenRA.Mods.RAPX.Traits
 		int transitionStart = -100000, nextChange, scheduledAt, announced = -1;
 		float windAngleFrom, windAngleTo, windAngle;
 
+		// Synced copy of the wind direction the visual wind turns towards (gameplay: drifting smoke markers)
+		int windDegrees = 20;
+
 		WorldRenderer worldRenderer;
 		long lastFrameTime = -1;
 		double clock;
@@ -349,7 +352,21 @@ namespace OpenRA.Mods.RAPX.Traits
 		float NextAngle()
 		{
 			// Mostly from the west, like real prevailing winds, with some spread
-			return (world.SharedRandom.Next(-70, 70) + (world.SharedRandom.Next(100) < 25 ? 180 : 0)) * MathF.PI / 180f;
+			windDegrees = world.SharedRandom.Next(-70, 70) + (world.SharedRandom.Next(100) < 25 ? 180 : 0);
+			return windDegrees * MathF.PI / 180f;
+		}
+
+		/// <summary>Wind for gameplay, identical on every client (integer maths, synced state only): the ground direction
+		/// the weather blows towards, 1024 long with north-south squashed like the visual wind, and its strength in
+		/// per-mille of a gale. Red smoke markers (PxSmokeMarker) drift with it, and the fire they call in follows.</summary>
+		public (WVec Direction, int Strength) SyncedWind()
+		{
+			var angle = WAngle.FromDegrees(windDegrees);
+			var direction = new WVec(angle.Cos(), angle.Sin() * 6 / 10, 0);
+			if (!Enabled)
+				return (direction, 150);
+
+			return (direction, (int)(Profiles[Current][6] * 1000));
 		}
 
 		void ScheduleNext()
@@ -383,6 +400,7 @@ namespace OpenRA.Mods.RAPX.Traits
 					frame.SnowCover = p[1] > 0 ? 1 : 0;
 					frame.SandCover = p[2] > 0 ? 1 : 0;
 					windAngle = windAngleFrom = windAngleTo = 0.35f;
+					windDegrees = 20;
 				}
 
 				return;

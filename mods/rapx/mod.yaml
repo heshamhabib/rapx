@@ -63,6 +63,7 @@ Rules:
 	ra|rules/air-defence.yaml
 	ra|rules/mobile-sam.yaml
 	ra|rules/angel-flares.yaml
+	ra|rules/red-smoke.yaml
 
 Sequences:
 	ra|sequences/ships.yaml
@@ -113,6 +114,7 @@ Sequences:
 	ra|sequences/air-defence.yaml
 	ra|sequences/mobile-sam.yaml
 	ra|sequences/croc.yaml
+	ra|sequences/hd-smoke-fx.yaml
 
 TileSets:
 	ra|tilesets/snow.yaml
@@ -211,6 +213,7 @@ FluentMessages:
 	ra|fluent/catalogue.ftl
 	ra|fluent/fatman.ftl
 	ra|fluent/airborne.ftl
+	ra|fluent/red-smoke.ftl
 
 AllowUnusedFluentMessagesInExternalPackages: false
 
@@ -231,6 +234,7 @@ Weapons:
 	ra|weapons/mobile-sam.yaml
 	ra|weapons/fatman.yaml
 	ra|weapons/airborne.yaml
+	ra|weapons/red-smoke.yaml
 
 Voices:
 	ra|audio/voices.yaml

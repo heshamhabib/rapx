@@ -1,0 +1,27 @@
+# Red Smoke "Danger Close" (IDEA-46): the thrown canister. Tumbles through the air trailing red puffs and lands as
+# a SMOKE.RED marker at the exact point of impact (rules/red-smoke.yaml). No damage: thrown only by the Red Smoke
+# support power (PxThrowSmoke), never by auto-targeting (the "smoke" armament is not one of AttackBase's).
+
+RedSmokeGrenade:
+	ReloadDelay: 50
+	Range: 6c0
+	Report: ra|audio/sfx/smokepin.ogg
+	Projectile: Bullet
+		Speed: 110
+		Blockable: false
+		LaunchAngle: 90
+		Inaccuracy: 128
+		Image: pxsmoke
+		Sequences: spin
+		Palette: effect
+		Shadow: true
+		TrailImage: pxsmoke
+		TrailSequences: trail
+		TrailPalette: effect
+		TrailInterval: 1
+	Warhead@1Spawn: PxSpawnActor
+		Actor: smoke.red
+		Exact: true
+	Warhead@2EffWater: CreateEffect
+		Explosions: small_splash
+		ValidTargets: Water
