@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using OpenRA.GameRules;
+using OpenRA.Mods.Common.Projectiles;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Warheads;
 using OpenRA.Mods.RAPX.Traits;
@@ -58,6 +59,9 @@ namespace OpenRA.Mods.RAPX.Widgets
 		{
 			public string Name;
 			public string Kind;
+
+			/// <summary>One line on what a support weapon does (catalogue-weapon-note-&lt;id&gt;), or null.</summary>
+			public string Note;
 			public int Damage;
 			public int Burst;
 			public float Range;
@@ -356,6 +360,11 @@ namespace OpenRA.Mods.RAPX.Widgets
 				return "Beam";
 			if (name.Contains("Nuke"))
 				return "Nuclear warhead";
+
+			// Lobbed rounds: long-range artillery, or a grenade thrown by hand
+			if (w.Projectile is BulletInfo bullet && bullet.LaunchAngle.Any(a => a.Angle > 0))
+				return w.Range.Length >= 7168 ? "Artillery shell" : "Grenade";
+
 			return "Cannon shell";
 		}
 
@@ -414,7 +423,8 @@ namespace OpenRA.Mods.RAPX.Widgets
 			var weapon = new Weapon
 			{
 				Name = label,
-				Kind = special ?? ProjectileKind(w),
+				Kind = special ?? (perShot <= 0 && w.Warheads.Any(h => h is PxSpawnActorWarhead) ? "Target marker" : ProjectileKind(w)),
+				Note = Text($"catalogue-weapon-note-{id}"),
 				Damage = perShot,
 				Burst = w.Burst,
 				Range = w.Range.Length / 1024f,

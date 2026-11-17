@@ -476,6 +476,8 @@ catalogue-yb35 =
 catalogue-weapon-cyborgpistol = Heavy auto-pistol
 catalogue-weapon-droidblaster = Blaster rifle
 catalogue-weapon-railgunshot = Railgun
+catalogue-weapon-redsmokegrenade = Red smoke grenade
+catalogue-weapon-note-redsmokegrenade = Marks a target: artillery and aircraft fire on the smoke
 catalogue-weapon-ironguardmg = Belt-fed heavy machine gun
 catalogue-weapon-automatonzap = Tesla arc
 ## Walkers, drone and dog (own 3D route)

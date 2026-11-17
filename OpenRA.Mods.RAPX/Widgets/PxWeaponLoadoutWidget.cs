@@ -26,12 +26,15 @@ namespace OpenRA.Mods.RAPX.Widgets
 	public class PxWeaponLoadoutWidget : Widget
 	{
 		const int Header = 22;
-		const int CardHeight = 40;
-		const int CardGap = 4;
+		const int CardHeight = 56;
+		const int CardGap = 5;
+		const int TileSize = 44;
+		const int StatIcon = 11;
+		const int ClassIcon = 14;
+		const int ClassCell = 38;
 
-		// Effect chips, in PxCatalogueData.Classes order
-		static readonly string[] ChipLabels = { "INF", "LIGHT", "HEAVY", "BLDG", "AIR", "SEA" };
 		static readonly Color Red = Color.FromArgb(232, 52, 40);
+		static readonly Color Strong = Color.FromArgb(120, 214, 96);
 
 		sealed class Row
 		{
@@ -43,8 +46,10 @@ namespace OpenRA.Mods.RAPX.Widgets
 		readonly List<Row> rows = new();
 		ActorInfo shown;
 
-		public string NameFont = "TinyBold";
+		public string NameFont = "Bold";
 		public string StatFont = "Tiny";
+		public string ValueFont = "PXDigitsSmall";
+		public string TagFont = "PXSidebarSmall";
 
 		/// <summary>Height the block needs for the actor shown (0 when it carries no weapon).</summary>
 		public int ContentHeight => rows.Count == 0 ? 0 : Header + rows.Count * (CardHeight + CardGap);
@@ -103,31 +108,50 @@ namespace OpenRA.Mods.RAPX.Widgets
 
 			var nameFont = Game.Renderer.Fonts[NameFont];
 			var statFont = Game.Renderer.Fonts[StatFont];
-			ContentWidth = rows.Select(r => Math.Max(
-				nameFont.Measure(r.Weapon.Name).X + 80,
-				Math.Max(statFont.Measure(Stats(r)).X + 16, ChipsWidth(statFont) + 16))).DefaultIfEmpty(0).Max();
+			var valueFont = Game.Renderer.Fonts[ValueFont];
+			var tagFont = Game.Renderer.Fonts[TagFont];
+			const int Lead = 8 + TileSize + 9 + 8;
+			ContentWidth = rows.Select(r =>
+			{
+				var head = nameFont.Measure(r.Weapon.Name).X + 16 + tagFont.Measure(r.Weapon.Kind.ToUpperInvariant()).X +
+					(Rounds(r) is string b ? tagFont.Measure(b).X + 18 : 0);
+				var note = r.Note ?? r.Weapon.Note ?? (r.Weapon.Support ? "Support: no direct damage" : null);
+				var third = note != null ? statFont.Measure(note).X : PxTooltipIcons.ClassIcons.Length * ClassCell;
+				return Lead + Math.Max(head, Math.Max(StatsWidth(r, valueFont, statFont), third));
+			}).DefaultIfEmpty(0).Max();
 			ContentWidth = Math.Max(ContentWidth, 300);
 		}
 
 		static string Num(float f) => f.ToString(f >= 10 ? "0" : "0.#", CultureInfo.InvariantCulture);
 
-		static string Stats(Row r)
+		static string Rounds(Row r)
 		{
-			var w = r.Weapon;
-			if (r.Note != null)
-				return $"RANGE {Num(w.Range)}  ·  {r.Note}";
+			if (r.Rounds <= 0)
+				return null;
 
-			var parts = new List<string> { w.Kind.ToUpperInvariant(), $"RANGE {Num(w.Range)}" };
-			if (w.Damage > 0)
-				parts.Add(w.Burst > 1 ? $"DMG {w.Damage}×{w.Burst}" : $"DMG {w.Damage}");
-			if (w.Reload > 0)
-				parts.Add($"RELOAD {Num(w.Reload)}s");
-			if (w.Air && !w.Ground)
-				parts.Add("AIR ONLY");
-			return string.Join("  ·  ", parts);
+			return r.Note != null && r.Weapon.Kind == "Air defence" ? $"{r.Rounds} RAILS" : r.Note != null ? $"{r.Rounds} MOUNTS" : $"×{r.Rounds}";
 		}
 
-		static int ChipsWidth(SpriteFont font) => ChipLabels.Sum(l => font.Measure(l).X + 12) + 4 * ChipLabels.Length;
+		/// <summary>Stat cells on the card's second line: glyph, value, unit.</summary>
+		static IEnumerable<(string Icon, string Value, string Unit)> StatCells(Row r)
+		{
+			var w = r.Weapon;
+			yield return ("range", Num(w.Range), w.MinRange > 0 ? $"cells (min {Num(w.MinRange)})" : "cells");
+			if (w.Damage > 0)
+				yield return ("damage", w.Burst > 1 ? $"{w.Damage}×{w.Burst}" : w.Damage.ToString(CultureInfo.InvariantCulture), "dmg");
+			if (w.Reload > 0)
+				yield return ("reload", Num(w.Reload), "s");
+			if (w.Dps > 0)
+				yield return ("dps", Num(w.Dps), "/s");
+		}
+
+		static int StatsWidth(Row r, SpriteFont value, SpriteFont unit) =>
+			StatCells(r).Sum(c => StatIcon + 3 + value.Measure(c.Value).X + 3 + unit.Measure(c.Unit).X + 12);
+
+		/// <summary>0-4 meter segments for a damage percentage against one class.</summary>
+		static int Segments(int v) => v <= 0 ? 0 : v < 40 ? 1 : v < 75 ? 2 : v < 100 ? 3 : 4;
+
+		static Color StrengthColor(int segments) => segments >= 3 ? Strong : segments == 2 ? PxWarChrome.Amber : PxWarChrome.Stencil;
 
 		public override void Draw()
 		{
@@ -138,6 +162,8 @@ namespace OpenRA.Mods.RAPX.Widgets
 			var cr = Game.Renderer.RgbaColorRenderer;
 			var nameFont = Game.Renderer.Fonts[NameFont];
 			var statFont = Game.Renderer.Fonts[StatFont];
+			var valueFont = Game.Renderer.Fonts[ValueFont];
+			var tagFont = Game.Renderer.Fonts[TagFont];
 
 			// Header: spaced stencil title, weapon count and a red rule that fades out
 			var y = rb.Y;
@@ -158,47 +184,84 @@ namespace OpenRA.Mods.RAPX.Widgets
 				var accent = w.Support ? PxWarChrome.Friendly : r.Note != null ? Color.FromArgb(120, 170, 255) : w.Air && !w.Ground ? Color.FromArgb(185, 140, 255) : Red;
 
 				// Card: dark cut-corner plate with a gradient, an accent spine and a faint top highlight
-				PxWarChrome.FillPlate(card, 6, Color.FromArgb(225, 34, 30, 28), Color.FromArgb(235, 14, 12, 12));
+				PxWarChrome.FillPlate(card, 6, Color.FromArgb(230, 36, 32, 30), Color.FromArgb(240, 14, 12, 12));
 				cr.FillRect(new float3(card.X, card.Y + 6, 0), new float3(card.X + 3, card.Y + 6, 0), new float3(card.X + 3, card.Bottom, 0), new float3(card.X, card.Bottom, 0), accent);
-				cr.FillRect(new float3(card.X + 3, card.Y + 6, 0), new float3(card.X + 14, card.Y + 6, 0), new float3(card.X + 14, card.Bottom, 0), new float3(card.X + 3, card.Bottom, 0),
-					Color.FromArgb((int)(40 + 30 * pulse), accent), Color.FromArgb(0, accent), Color.FromArgb(0, accent), Color.FromArgb((int)(40 + 30 * pulse), accent));
 				cr.DrawLine(new float3(card.X + 6, card.Y, 0), new float3(card.Right, card.Y, 0), 1, Color.FromArgb(40, 255, 255, 255));
 
-				// Line 1: name, rounds badge
-				var x = card.X + 10;
+				// Weapon tile: recessed square lit from below in the accent colour, with the weapon's glyph
+				var tile = new Rectangle(card.X + 8, card.Y + 6, TileSize, TileSize);
+				PxWarChrome.FillPlate(tile, 4, Color.FromArgb(255, 22, 20, 19), Color.FromArgb(255, 8, 7, 7));
+				cr.FillRect(new float3(tile.X, tile.Y + tile.Height / 2, 0), new float3(tile.Right, tile.Y + tile.Height / 2, 0),
+					new float3(tile.Right, tile.Bottom, 0), new float3(tile.X, tile.Bottom, 0),
+					Color.FromArgb(0, accent), Color.FromArgb(0, accent), Color.FromArgb((int)(70 + 40 * pulse), accent), Color.FromArgb((int)(70 + 40 * pulse), accent));
+				PxWarChrome.DrawBorder(tile, Color.FromArgb(110, accent), 1);
+				PxTooltipIcons.Draw(PxTooltipIcons.ForKind(w.Kind, w.Support), new float2(tile.X + 4, tile.Y + 4), TileSize - 8,
+					PxWarChrome.Lerp(Color.White, accent, 0.25f));
+
+				// Line 1: name, then the kind as a tag on the right (and the rounds badge before it)
+				var x = tile.Right + 9;
 				nameFont.DrawTextWithShadow(w.Name, new float2(x, card.Y + 3), Color.White, Color.Black, 1);
-				if (r.Rounds > 0)
+				var kind = w.Kind.ToUpperInvariant();
+				var kindW = tagFont.Measure(kind).X;
+				var right = card.Right - 8;
+				tagFont.DrawTextWithShadow(kind, new float2(right - kindW, card.Y + 6), PxWarChrome.Lerp(accent, Color.White, 0.3f), Color.Black, 1);
+				right -= kindW + 8;
+				var rounds = Rounds(r);
+				if (rounds != null)
 				{
-					var badge = r.Note != null && w.Kind == "Air defence" ? $"{r.Rounds} RAILS" : r.Note != null ? $"{r.Rounds} MOUNTS" : $"×{r.Rounds}";
-					var bw = statFont.Measure(badge).X + 10;
-					var b = new Rectangle(card.Right - bw - 6, card.Y + 4, bw, 14);
+					var bw = tagFont.Measure(rounds).X + 10;
+					var b = new Rectangle(right - bw, card.Y + 5, bw, 14);
 					PxWarChrome.FillPlate(b, 3, PxWarChrome.Amber, PxWarChrome.Darken(PxWarChrome.Amber, 0.35f));
-					statFont.DrawText(badge, new float2(b.X + 5, b.Y), Color.FromArgb(30, 22, 8));
+					tagFont.DrawText(rounds, new float2(b.X + 5, b.Y + 1), Color.FromArgb(30, 22, 8));
 				}
 
-				// Line 2: stats; line 3 (right): effect chips lit by how hard it hits each class
-				statFont.DrawTextWithShadow(Stats(r), new float2(x, card.Y + 15), PxWarChrome.Stencil, Color.Black, 1);
-				if (r.Note == null && !w.Support)
+				// Line 2: stat cells — glyph, bright value, dim unit
+				var sy = card.Y + 22;
+				if (r.Note != null)
+				{
+					PxTooltipIcons.Draw("range", new float2(x, sy + 1), StatIcon, PxWarChrome.Stencil);
+					valueFont.DrawTextWithShadow(Num(w.Range), new float2(x + StatIcon + 3, sy), Color.White, Color.Black, 1);
+				}
+				else
 				{
 					var cx = x;
-					for (var i = 0; i < ChipLabels.Length; i++)
+					foreach (var (icon, value, unit) in StatCells(r))
+					{
+						PxTooltipIcons.Draw(icon, new float2(cx, sy + 1), StatIcon, PxWarChrome.Stencil);
+						cx += StatIcon + 3;
+						valueFont.DrawTextWithShadow(value, new float2(cx, sy), Color.White, Color.Black, 1);
+						cx += valueFont.Measure(value).X + 3;
+						statFont.DrawTextWithShadow(unit, new float2(cx, sy + 1), Color.FromArgb(150, PxWarChrome.Stencil), Color.Black, 1);
+						cx += statFont.Measure(unit).X + 12;
+					}
+				}
+
+				// Line 3: what it is good against — class glyph and a 4-segment meter each; or the support note
+				var ey = card.Y + 39;
+				if (r.Note != null || w.Support)
+				{
+					var note = r.Note ?? w.Note ?? "Support: no direct damage";
+					statFont.DrawTextWithShadow(note, new float2(x, ey), PxWarChrome.Lerp(accent, Color.White, 0.35f), Color.Black, 1);
+				}
+				else
+				{
+					var cx = x;
+					for (var i = 0; i < PxTooltipIcons.ClassIcons.Length; i++)
 					{
 						var v = w.Versus != null && i < w.Versus.Length ? w.Versus[i] : 0;
-						var label = ChipLabels[i];
-						var cw = statFont.Measure(label).X + 8;
-						var chip = new Rectangle(cx, card.Y + 27, cw, 11);
-						if (v <= 0)
-							PxWarChrome.DrawBorder(chip, Color.FromArgb(50, 255, 255, 255), 1);
-						else
+						var segs = Segments(v);
+						var color = segs > 0 ? StrengthColor(segs) : Color.FromArgb(255, 90, 86, 80);
+						PxTooltipIcons.Draw(PxTooltipIcons.ClassIcons[i], new float2(cx, ey - 1), ClassIcon, color, segs > 0 ? 1f : 0.55f);
+						var mx = cx + ClassIcon + 2;
+						for (var k = 0; k < 4; k++)
 						{
-							var strength = Math.Min(1f, v / 100f);
-							var fill = v >= 75 ? accent : v >= 40 ? PxWarChrome.Amber : PxWarChrome.Darken(PxWarChrome.Stencil, 0.4f);
-							cr.FillRect(new float3(chip.X, chip.Y, 0), new float3(chip.Right, chip.Y, 0), new float3(chip.Right, chip.Bottom, 0), new float3(chip.X, chip.Bottom, 0),
-								Color.FromArgb((int)(90 + 140 * strength), fill));
+							var seg = new Rectangle(mx + k * 4, ey + 9 - k * 2, 3, 3 + k * 2);
+							var on = k < segs;
+							cr.FillRect(new float3(seg.X, seg.Y, 0), new float3(seg.Right, seg.Y, 0), new float3(seg.Right, seg.Bottom, 0), new float3(seg.X, seg.Bottom, 0),
+								on ? color : Color.FromArgb(55, 255, 255, 255));
 						}
 
-						statFont.DrawText(label, new float2(chip.X + 4, chip.Y - 2), v > 0 ? Color.White : Color.FromArgb(90, 255, 255, 255));
-						cx += cw + 4;
+						cx += ClassCell;
 					}
 				}
 

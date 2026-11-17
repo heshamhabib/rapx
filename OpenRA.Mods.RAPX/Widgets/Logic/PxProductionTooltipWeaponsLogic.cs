@@ -15,8 +15,9 @@ using OpenRA.Widgets;
 
 namespace OpenRA.Mods.RAPX.Widgets.Logic
 {
-	/// <summary>Runs after ProductionTooltipLogic (list it second in the template's Logic): adds the ARMAMENT block
-	/// (PxWeaponLoadout@WEAPONS) under the description and grows the tooltip to fit it.</summary>
+	/// <summary>Runs after ProductionTooltipLogic (list it second in the template's Logic): swaps the plain DESC label
+	/// for PxTooltipDesc@PXDESC (body text plus strong/weak tag rows with icons), adds the ARMAMENT block
+	/// (PxWeaponLoadout@WEAPONS) under it, and grows the tooltip to fit both.</summary>
 	public class PxProductionTooltipWeaponsLogic : ChromeLogic
 	{
 		[ObjectCreator.UseCtor]
@@ -24,6 +25,8 @@ namespace OpenRA.Mods.RAPX.Widgets.Logic
 		{
 			var weapons = widget.Get<PxWeaponLoadoutWidget>("WEAPONS");
 			var desc = widget.Get<LabelWidget>("DESC");
+			var pxDesc = widget.Get<PxTooltipDescWidget>("PXDESC");
+			var backdrop = widget.Get("PXBACKDROP");
 			var margin = desc.Bounds.X;
 			var inner = tooltipContainer.BeforeRender;
 			var lastHeight = -1;
@@ -31,43 +34,66 @@ namespace OpenRA.Mods.RAPX.Widgets.Logic
 			ActorInfo lastActor = null;
 			var right = new[] { "COST", "COST_ICON", "TIME", "TIME_ICON", "POWER", "POWER_ICON" };
 
+			desc.IsVisible = () => false;
+			pxDesc.IsVisible = () => true;
+
 			tooltipContainer.BeforeRender = () =>
 			{
 				inner?.Invoke();
 				var actor = getTooltipIcon()?.Actor;
 				weapons.SetActor(actor, world.Map.Rules);
+				pxDesc.SetText(desc.GetText?.Invoke());
 
-				// ProductionTooltipLogic resizes the tooltip whenever its text changes: add the block under it then
+				// ProductionTooltipLogic lays the tooltip out again whenever its content changes: redo ours after it
 				if (actor == lastActor && widget.Bounds.Height == lastHeight && widget.Bounds.Width == lastWidth)
 					return;
 
 				lastActor = actor;
 
-				weapons.Visible = weapons.ContentHeight > 0;
-				if (!weapons.Visible)
-				{
-					lastHeight = widget.Bounds.Height;
-					lastWidth = widget.Bounds.Width;
-					return;
-				}
+				// The description: where DESC was, as wide as its tag rows need; the price column moves right to make room
+				var grow = Math.Max(0, pxDesc.ContentWidth - desc.Bounds.Width);
+				pxDesc.Bounds.X = desc.Bounds.X;
+				pxDesc.Bounds.Y = desc.Bounds.Y + 2;
+				pxDesc.Bounds.Width = Math.Max(desc.Bounds.Width, pxDesc.ContentWidth);
+				pxDesc.Bounds.Height = pxDesc.ContentHeight;
 
-				var top = Math.Max(desc.Bounds.Bottom, widget.Bounds.Height - margin) + 2;
-				var width = Math.Max(widget.Bounds.Width, weapons.ContentWidth + 2 * margin);
-
-				// Keep price, build time and power on the right edge of the wider tooltip
+				var rightBottom = 0;
 				foreach (var id in right)
 				{
 					var w = widget.GetOrNull(id);
-					if (w != null)
-						w.Bounds.X += width - widget.Bounds.Width;
+					if (w == null)
+						continue;
+
+					w.Bounds.X += grow;
+					if (w.IsVisible())
+						rightBottom = Math.Max(rightBottom, w.Bounds.Bottom);
+				}
+
+				var width = widget.Bounds.Width + grow;
+				var bottom = Math.Max(pxDesc.Bounds.Bottom, rightBottom);
+
+				weapons.Visible = weapons.ContentHeight > 0;
+				if (weapons.Visible)
+				{
+					var extra = Math.Max(0, weapons.ContentWidth + 2 * margin - width);
+					foreach (var id in right)
+					{
+						var w = widget.GetOrNull(id);
+						if (w != null)
+							w.Bounds.X += extra;
+					}
+
+					width += extra;
+					weapons.Bounds.X = margin;
+					weapons.Bounds.Y = bottom + 6;
+					weapons.Bounds.Width = width - 2 * margin;
+					weapons.Bounds.Height = weapons.ContentHeight;
+					bottom = weapons.Bounds.Bottom;
 				}
 
 				widget.Bounds.Width = width;
-				weapons.Bounds.X = margin;
-				weapons.Bounds.Y = top;
-				weapons.Bounds.Width = widget.Bounds.Width - 2 * margin;
-				weapons.Bounds.Height = weapons.ContentHeight;
-				widget.Bounds.Height = weapons.Bounds.Bottom + margin;
+				widget.Bounds.Height = bottom + margin;
+				backdrop.Bounds = new WidgetBounds(3, 3, widget.Bounds.Width - 6, widget.Bounds.Height - 6);
 				lastHeight = widget.Bounds.Height;
 				lastWidth = widget.Bounds.Width;
 			};

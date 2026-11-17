@@ -257,6 +257,9 @@ Background@PRODUCTION_TOOLTIP:
 	Width: 200
 	Height: 65
 	Children:
+		# RAPX: near-opaque backing so the sidebar behind does not show through the text (sized by PxProductionTooltipWeaponsLogic)
+		ColorBlock@PXBACKDROP:
+			Color: 0E0C0BEB
 		Label@NAME:
 			X: 7
 			Y: 3
@@ -312,6 +315,9 @@ Background@PRODUCTION_TOOLTIP:
 			Font: Bold
 		# RAPX: weapons the unit carries (OpenRA.Mods.RAPX/Widgets/PxWeaponLoadoutWidget.cs), placed and sized by
 		# PxProductionTooltipWeaponsLogic
+		# RAPX: the description drawn with strong/weak tag rows (PxTooltipDescWidget) in place of DESC
+		PxTooltipDesc@PXDESC:
+			Visible: false
 		PxWeaponLoadout@WEAPONS:
 			Visible: false
 
