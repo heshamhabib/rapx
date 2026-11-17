@@ -20,6 +20,14 @@ Fatman:
 			Wood: 25
 			Concrete: 25
 		DamageTypes: Prone50Percent, TriggerProne, FireDeath, Incendiary
+	# Blast wave against buildings: the unit warheads barely scratch a base (a Construction Yard has 150000 HP), so a
+	# direct hit takes a yard to about half health (damaged and burning) and wrecks lighter buildings close by.
+	Warhead@1Dam_structures: SpreadDamage
+		Spread: 1c0
+		Damage: 75000
+		Falloff: 1000, 700, 400, 150, 0
+		ValidTargets: Structure
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath, Incendiary
 	Warhead@2Res_impact: DestroyResource
 		Size: 1
 	Warhead@3Smu_impact: LeaveSmudge
