@@ -121,6 +121,8 @@ actor-jet-v22 =
     .name = Kestrel Tiltrotor
     .description =
     Transport aircraft.
+    Lays a smoke screen and fast-ropes its
+    troops down from a hover (F here, G to pick a spot).
       Carries infantry
       Unarmed
       Generation tier 4

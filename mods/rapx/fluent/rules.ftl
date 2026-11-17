@@ -176,6 +176,8 @@ actor-tran =
     .name = Chinook
     .description =
     Fast infantry transport helicopter.
+    Lays a smoke screen and fast-ropes its
+    troops down from a hover (F here, G to pick a spot).
       Unarmed
 
 actor-heli =
@@ -1078,6 +1080,8 @@ actor-mi35 =
     .description =
     Armoured gunship with a chain gun and rockets
     that also carries 5 infantry.
+    Lays a smoke screen and fast-ropes its
+    troops down from a hover (F here, G to pick a spot).
       Strong vs Infantry and Vehicles
       Weak vs Anti-Air
 
@@ -1086,6 +1090,8 @@ actor-mi26 =
     .description =
     The world's heaviest transport helicopter:
     carries 12 infantry anywhere on the map.
+    Lays a smoke screen and fast-ropes its
+    troops down from a hover (F here, G to pick a spot).
       Unarmed
 
 actor-ka52 =
@@ -1144,6 +1150,8 @@ actor-mi17 =
     .description =
     Troop helicopter: carries 8 infantry
     and defends itself with a door gun.
+    Lays a smoke screen and fast-ropes its
+    troops down from a hover (F here, G to pick a spot).
       Unarmed against vehicles
       Weak vs Anti-Air
 
@@ -1152,6 +1160,8 @@ actor-aw101 =
     .description =
     Fast heavy transport helicopter.
     Carries 10 infantry. India only.
+    Lays a smoke screen and fast-ropes its
+    troops down from a hover (F here, G to pick a spot).
       Unarmed
       Weak vs Anti-Air
 

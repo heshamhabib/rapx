@@ -27,7 +27,8 @@ namespace OpenRA.Mods.RAPX.Traits
 	[Desc("Developer tool: when the RAPX_SHOTS environment variable is set (\"x,y[,zoom];x,y[,zoom];...\" in cells),",
 		"reveals the map, takes a screenshot at each location and then quits.",
 		"When RAPX_MENU_SCRIPT is set (\"ms:action;ms:action;...\" with actions shot, stopvideo, quit, look [zoom],",
-		"focus <ACTOR> [zoom], reveal, select <ACTOR,...>,",
+		"focus <ACTOR> [zoom], reveal, select <ACTOR,...>, board <TRANSPORT> (selected units get in),",
+		"order <ORDER> <ACTOR> +dx,+dy,",
 		"build <ACTOR>, kill <ACTOR>, boom <WEAPON> +dx,+dy [height], chip <N> (select sidebar category chip N, 0 = All), spawn <RAPX_SPAWN entries>, click <BUTTON_ID>, press <BUTTON_ID>,",
 		"scheme <ra2|ra2-right|openra>, key <KEY [Mods]> or clickcell <left|right> +dx,+dy [double]),",
 		"runs those actions against the menus at the given times after the first shellmap load.",
@@ -263,6 +264,25 @@ namespace OpenRA.Mods.RAPX.Traits
 				var types = action[7..].Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
 				var actors = currentWorld.Actors.Where(a => a.Owner == currentWorld.LocalPlayer && a.IsInWorld && types.Contains(a.Info.Name));
 				Sync.RunUnsynced(currentWorld, () => currentWorld.Selection.Combine(currentWorld, actors, false, false));
+			}
+			else if (action.StartsWith("board ", StringComparison.Ordinal))
+			{
+				// "board <TRANSPORT>": every selected unit gets into the local player's first actor of that type
+				var transport = currentWorld.Actors.FirstOrDefault(a => a.Owner == currentWorld.LocalPlayer && a.IsInWorld && a.Info.Name == action[6..].Trim());
+				if (transport != null)
+					foreach (var a in currentWorld.Selection.Actors.Where(a => a != transport && a.Info.HasTraitInfo<PassengerInfo>()))
+						currentWorld.IssueOrder(new Order("EnterTransport", a, Target.FromActor(transport), false));
+			}
+			else if (action.StartsWith("order ", StringComparison.Ordinal) && currentWorld.LocalPlayer != null)
+			{
+				// "order <ORDER> <ACTOR> +dx,+dy": give the local player's first actor of that type an order on the cell at
+				// that offset from the player's start (no mouse involved, e.g. "order Move tran +10,+1")
+				var args = action[6..].Split(' ', StringSplitOptions.RemoveEmptyEntries);
+				var subject = currentWorld.Actors.FirstOrDefault(a => a.Owner == currentWorld.LocalPlayer && a.IsInWorld && a.Info.Name == args[1]);
+				var offset = FieldLoader.GetValue<int2>("offset", args[2].Replace("+", ""));
+				var cell = currentWorld.LocalPlayer.HomeLocation + new CVec(offset.X, offset.Y);
+				if (subject != null)
+					currentWorld.IssueOrder(new Order(args[0], subject, Target.FromCell(currentWorld, cell), false));
 			}
 			else if (action.StartsWith("focus ", StringComparison.Ordinal))
 			{

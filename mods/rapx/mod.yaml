@@ -64,6 +64,7 @@ Rules:
 	ra|rules/mobile-sam.yaml
 	ra|rules/angel-flares.yaml
 	ra|rules/red-smoke.yaml
+	ra|rules/air-assault.yaml
 
 Sequences:
 	ra|sequences/ships.yaml
@@ -214,6 +215,7 @@ FluentMessages:
 	ra|fluent/fatman.ftl
 	ra|fluent/airborne.ftl
 	ra|fluent/red-smoke.ftl
+	ra|fluent/air-assault.ftl
 
 AllowUnusedFluentMessagesInExternalPackages: false
 

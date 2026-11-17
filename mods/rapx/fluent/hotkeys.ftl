@@ -8,3 +8,4 @@ hotkey-description-productiontypenaval = Naval Tab
 hotkey-description-powerdown = Power-down mode
 
 hotkey-description-pxwaypointmode = Waypoint mode
+hotkey-description-pxfastrope = Fast-rope (transport helicopters)

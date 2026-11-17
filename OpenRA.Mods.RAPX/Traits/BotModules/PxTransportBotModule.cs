@@ -20,7 +20,8 @@ namespace OpenRA.Mods.RAPX.Traits
 {
 	[TraitLocation(SystemActors.Player)]
 	[Desc("Bot module: air assault with transport helicopters. An empty transport at home loads idle infantry from the",
-		"base, flies them to the enemy building with the least anti-air around it, lands them next to it and flies home.")]
+		"base, flies them to the enemy building with the least anti-air around it, lands them next to it (or fast-ropes them",
+		"down, PxAirAssault) and flies home.")]
 	public class PxTransportBotModuleInfo : ConditionalTraitInfo
 	{
 		[Desc("Actor types of the transports (they need Cargo).")]
@@ -52,6 +53,9 @@ namespace OpenRA.Mods.RAPX.Traits
 
 		[Desc("The transport lands up to this far from the target building.")]
 		public readonly int LandingScatter = 4;
+
+		[Desc("Chance (percent) that a transport able to fast-rope (PxAirAssault) ropes its troops down instead of landing.")]
+		public readonly int FastRopeChance = 70;
 
 		[Desc("A transport further than this from every own building counts as away from home.")]
 		public readonly WDist HomeRadius = WDist.FromCells(15);
@@ -151,6 +155,13 @@ namespace OpenRA.Mods.RAPX.Traits
 				var cell = PxBotUtils.ScatterCell(world, best, Info.LandingScatter);
 				AIUtils.BotDebug($"{player.ResolvedPlayerName} flies {transport.Info.Name} with {cargo.PassengerCount} aboard to {best.Info.Name} at {cell}.");
 				loadingSince.Remove(transport);
+				var assault = transport.TraitOrDefault<PxAirAssault>();
+				if (assault != null && assault.CanRope && world.LocalRandom.Next(100) < Info.FastRopeChance)
+				{
+					bot.QueueOrder(new Order(assault.Info.OrderName, transport, Target.FromCell(world, cell), false));
+					continue;
+				}
+
 				bot.QueueOrder(new Order("Move", transport, Target.FromCell(world, cell), false));
 				bot.QueueOrder(new Order("Unload", transport, true));
 			}

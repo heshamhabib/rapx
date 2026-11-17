@@ -1,0 +1,109 @@
+# Helicopter air assault (IDEA-47): transport helicopters fire smoke before their troops go down, and can put them
+# down two ways: land and unload (F, the usual Unload order) or hover and fast-rope (G, then click the landing
+# zone). Since 2026-11-17 the ordinary Unload (F) of a flying transport also hovers and ropes instead of landing. Code: OpenRA.Mods.RAPX/Traits/PxAirAssault.cs (+ Activities/PxFastRope.cs),
+# PxSmokeScreen.cs (the smoke rounds), Traits/Render/WithPxRotorWash.cs (dust under any low helicopter),
+# Orders/PxFastRopeOrderGenerator.cs + Widgets/Logic/PxFastRopeHotkeyLogic.cs (G).
+# Art: artsrc/fx/make_smoke_fx.py (can-/spin-white|yellow). Sounds: artsrc/audio/make_air_assault_sounds.py.
+#
+# Smoke is cover, not decoration: anyone standing in a thick cloud (friend or foe) cannot be seen or targeted by
+# enemies further than 1.5 cells away (Cloak@SMOKE, detected only by DetectCloaked with type Smoke).
+
+# ------------------------------------------------------------------------------------------------- smoke rounds
+SMOKE.SCREEN:
+	Immobile:
+		OccupiesSpace: false
+	BodyOrientation:
+		QuantizedFacings: 1
+	AlwaysVisible:
+	PxSmokeScreen:
+	ProximityExternalCondition@CONCEAL:
+		Condition: insmoke
+		Range: 2c0
+		ValidRelationships: Ally, Neutral, Enemy
+		RequiresCondition: smoking
+	MapEditorData:
+		Categories: System
+
+# Yellow landing zone marker (the look of the reference photo): smaller cloud, tells everyone where troops come down
+SMOKE.LZ:
+	Inherits: SMOKE.SCREEN
+	PxSmokeScreen:
+		Color: F8CC1E
+		FadeColor: F6DE86
+		VentColor: FFB84A
+		CanSequence: can-yellow
+		SpinSequence: spin-yellow
+		Radius: 1c512
+		PuffRate: 1
+		MaxParticles: 220
+	ProximityExternalCondition@CONCEAL:
+		Range: 1c512
+
+# ------------------------------------------------------------------------------------------ concealment in smoke
+^Infantry:
+	ExternalCondition@INSMOKE:
+		Condition: insmoke
+	Cloak@SMOKE:
+		RequiresCondition: insmoke
+		CloakStyle: None
+		InitialDelay: 0
+		CloakDelay: 0
+		UncloakOn: None
+		DetectionTypes: Smoke
+	DetectCloaked:
+		DetectionTypes: Cloak, Smoke
+
+^Vehicle:
+	ExternalCondition@INSMOKE:
+		Condition: insmoke
+	Cloak@SMOKE:
+		RequiresCondition: insmoke
+		CloakStyle: None
+		InitialDelay: 0
+		CloakDelay: 0
+		UncloakOn: None
+		DetectionTypes: Smoke
+	DetectCloaked@SMOKE:
+		DetectionTypes: Smoke
+		Range: 1c512
+
+^Defense:
+	DetectCloaked@SMOKE:
+		DetectionTypes: Smoke
+		Range: 1c512
+
+# ------------------------------------------------------------------------------------------------- helicopters
+^Helicopter:
+	WithPxRotorWash:
+
+# Chinook (and everything that inherits it: Mi-26, Mi-17, AW101, V-22): ropes from both side doors
+TRAN:
+	PxAirAssault:
+		RopeOffsets: 120,-300,-80, 120,300,-80
+
+MI26:
+	PxAirAssault:
+		RopeOffsets: 100,-380,-90, 100,380,-90
+
+MI17:
+	PxAirAssault:
+		RopeOffsets: 60,-260,-70, 60,260,-70
+
+AW101:
+	PxAirAssault:
+		RopeOffsets: 80,-280,-80, 80,280,-80
+
+JET.V22:
+	PxAirAssault:
+		RopeOffsets: -200,-220,-80, -200,220,-80
+
+# Mi-35 Hind: a gunship with a small troop cabin, one rope per side
+MI35:
+	PxAirAssault:
+		RopeOffsets: 0,-220,-60, 0,220,-60
+		ScreenRounds: 3
+
+# An-225 Mriya is a cargo plane in helicopter clothing: no ropes, no rotor wash
+JET.AN225:
+	-PxAirAssault:
+	-WithPxRotorWash:

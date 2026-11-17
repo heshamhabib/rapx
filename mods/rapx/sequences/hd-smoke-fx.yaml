@@ -30,6 +30,22 @@ pxsmoke:
 		Filename: ra|bits/hd/fx/smoke/reticle.png
 		Length: 1
 		BlendMode: Additive
+	can-white:
+		Filename: ra|bits/hd/fx/smoke/can-white.png
+		Length: 8
+		Tick: 60
+	spin-white:
+		Filename: ra|bits/hd/fx/smoke/spin-white.png
+		Length: 16
+		Tick: 40
+	can-yellow:
+		Filename: ra|bits/hd/fx/smoke/can-yellow.png
+		Length: 8
+		Tick: 60
+	spin-yellow:
+		Filename: ra|bits/hd/fx/smoke/spin-yellow.png
+		Length: 16
+		Tick: 40
 
 icon:
 	redsmoke:

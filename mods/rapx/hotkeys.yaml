@@ -37,3 +37,8 @@ PxWaypointMode: Z Shift
 	Description: hotkey-description-pxwaypointmode
 	Types: Unit
 	Contexts: player
+
+PxFastRope: G
+	Description: hotkey-description-pxfastrope
+	Types: Unit
+	Contexts: player
