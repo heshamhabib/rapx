@@ -434,7 +434,7 @@ SPY:
 		Queue: Infantry
 		BuildAtProductionType: Soldier
 		BuildPaletteOrder: 90
-		Prerequisites: ~!infantry.england, dome, ~tent, ~techlevel.medium
+		Prerequisites: ~disabled  # generic Spy removed from the game (2026-11-17); only SPY.England is buildable
 		Description: actor-spy.description
 	Valued:
 		Cost: 500

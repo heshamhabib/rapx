@@ -159,7 +159,7 @@ Player:
 		RequiresCondition: (enable-rush-ai || enable-normal-ai || enable-turtle-ai || enable-naval-ai) && !treaty
 	PxSpyBotModule:
 		RequiresCondition: (enable-rush-ai || enable-normal-ai || enable-turtle-ai || enable-naval-ai) && !treaty
-		SpyTypes: spy, spy.england
+		SpyTypes: spy.england
 	# RAPX: jets that can use a carrier deck are rebased on the bot's carriers
 	PxCarrierBotModule:
 		RequiresCondition: (enable-rush-ai || enable-normal-ai || enable-turtle-ai || enable-naval-ai) && !treaty
@@ -268,7 +268,7 @@ Player:
 		RequiresCondition: enable-rush-ai && !treaty
 		SquadSize: 20
 		NavalUnitsTypes: bb, ca, cg, dd, hcru, lha, msub, pt, ss, cv1, cv2, cv3, cv4, cvcn, cveg, cvfr, cvgb, cvin, cvir, cvit, cvjp, cvru, cvsu, cvtr
-		ExcludeFromSquadsTypes: harv, mcv, e6, spy, spy.england, b17t, b29t, b314, b52t, c130, c141, c17, e8c, il76, y20, tu95, yb35, mnly, aw101, jet.an225, jet.v22, mi17, mi26, tran, qtnk, truk, mtrk, jet.gapgen
+		ExcludeFromSquadsTypes: harv, mcv, e6, spy.england, b17t, b29t, b314, b52t, c130, c141, c17, e8c, il76, y20, tu95, yb35, mnly, aw101, jet.an225, jet.v22, mi17, mi26, tran, qtnk, truk, mtrk, jet.gapgen
 		ConstructionYardTypes: fact
 		NavalProductionTypes: spen, syrd
 		AirUnitsTypes: jet.a10, jet.b2, jet.b52, jet.f104, jet.f117, jet.f14, jet.f16, jet.f2, jet.f22, jet.f4, jet.grom, jet.harrier, jet.he177, jet.ho229, jet.j20, jet.l39, jet.la11, jet.m2000, jet.mig21, jet.mig23, jet.mig25, jet.mig3, jet.qaher, jet.rafale, jet.saeqeh, jet.seavixen, jet.sr71, jet.su25, jet.su27, jet.su30, jet.su35, jet.su47, jet.swarm, jet.tu160, jet.typhoon, jet.vulcan, jet.x47, jet.yak141, jet.yf23, jet.zeppelin, mig, yak, heli, hind, ka52, mh60, mi35, tiger, lsat
@@ -296,7 +296,6 @@ Player:
 			medi: 4
 			mech: 3
 			e6: 5
-			spy: 3
 			spy.england: 3
 			dtrk: 5
 			e7: 5
@@ -452,7 +451,6 @@ Player:
 			medi: 3
 			mech: 2
 			e6: 3
-			spy: 2
 			spy.england: 2
 			dtrk: 2
 			e7: 2
@@ -620,7 +618,7 @@ Player:
 		RequiresCondition: enable-normal-ai && !treaty
 		SquadSize: 40
 		NavalUnitsTypes: bb, ca, cg, dd, hcru, lha, msub, pt, ss, cv1, cv2, cv3, cv4, cvcn, cveg, cvfr, cvgb, cvin, cvir, cvit, cvjp, cvru, cvsu, cvtr
-		ExcludeFromSquadsTypes: harv, mcv, e6, spy, spy.england, b17t, b29t, b314, b52t, c130, c141, c17, e8c, il76, y20, tu95, yb35, mnly, aw101, jet.an225, jet.v22, mi17, mi26, tran, qtnk, truk, mtrk, jet.gapgen
+		ExcludeFromSquadsTypes: harv, mcv, e6, spy.england, b17t, b29t, b314, b52t, c130, c141, c17, e8c, il76, y20, tu95, yb35, mnly, aw101, jet.an225, jet.v22, mi17, mi26, tran, qtnk, truk, mtrk, jet.gapgen
 		ConstructionYardTypes: fact
 		NavalProductionTypes: spen, syrd
 		AirUnitsTypes: jet.a10, jet.b2, jet.b52, jet.f104, jet.f117, jet.f14, jet.f16, jet.f2, jet.f22, jet.f4, jet.grom, jet.harrier, jet.he177, jet.ho229, jet.j20, jet.l39, jet.la11, jet.m2000, jet.mig21, jet.mig23, jet.mig25, jet.mig3, jet.qaher, jet.rafale, jet.saeqeh, jet.seavixen, jet.sr71, jet.su25, jet.su27, jet.su30, jet.su35, jet.su47, jet.swarm, jet.tu160, jet.typhoon, jet.vulcan, jet.x47, jet.yak141, jet.yf23, jet.zeppelin, mig, yak, heli, hind, ka52, mh60, mi35, tiger, lsat
@@ -648,7 +646,6 @@ Player:
 			medi: 4
 			mech: 3
 			e6: 5
-			spy: 4
 			spy.england: 4
 			dtrk: 5
 			e7: 5
@@ -804,7 +801,6 @@ Player:
 			medi: 3
 			mech: 2
 			e6: 3
-			spy: 2
 			spy.england: 2
 			dtrk: 2
 			e7: 2
@@ -972,7 +968,7 @@ Player:
 		RequiresCondition: enable-turtle-ai && !treaty
 		SquadSize: 10
 		NavalUnitsTypes: bb, ca, cg, dd, hcru, lha, msub, pt, ss, cv1, cv2, cv3, cv4, cvcn, cveg, cvfr, cvgb, cvin, cvir, cvit, cvjp, cvru, cvsu, cvtr
-		ExcludeFromSquadsTypes: harv, mcv, e6, spy, spy.england, b17t, b29t, b314, b52t, c130, c141, c17, e8c, il76, y20, tu95, yb35, mnly, aw101, jet.an225, jet.v22, mi17, mi26, tran, qtnk, truk, mtrk, jet.gapgen
+		ExcludeFromSquadsTypes: harv, mcv, e6, spy.england, b17t, b29t, b314, b52t, c130, c141, c17, e8c, il76, y20, tu95, yb35, mnly, aw101, jet.an225, jet.v22, mi17, mi26, tran, qtnk, truk, mtrk, jet.gapgen
 		ConstructionYardTypes: fact
 		NavalProductionTypes: spen, syrd
 		AirUnitsTypes: jet.a10, jet.b2, jet.b52, jet.f104, jet.f117, jet.f14, jet.f16, jet.f2, jet.f22, jet.f4, jet.grom, jet.harrier, jet.he177, jet.ho229, jet.j20, jet.l39, jet.la11, jet.m2000, jet.mig21, jet.mig23, jet.mig25, jet.mig3, jet.qaher, jet.rafale, jet.saeqeh, jet.seavixen, jet.sr71, jet.su25, jet.su27, jet.su30, jet.su35, jet.su47, jet.swarm, jet.tu160, jet.typhoon, jet.vulcan, jet.x47, jet.yak141, jet.yf23, jet.zeppelin, mig, yak, heli, hind, ka52, mh60, mi35, tiger, lsat
@@ -1000,7 +996,6 @@ Player:
 			medi: 4
 			mech: 3
 			e6: 3
-			spy: 3
 			spy.england: 3
 			dtrk: 4
 			e7: 4
@@ -1157,7 +1152,6 @@ Player:
 			medi: 3
 			mech: 2
 			e6: 3
-			spy: 2
 			spy.england: 2
 			dtrk: 2
 			e7: 2
@@ -1326,7 +1320,7 @@ Player:
 		RequiresCondition: enable-naval-ai && !treaty
 		SquadSize: 1
 		NavalUnitsTypes: bb, ca, cg, dd, hcru, lha, msub, pt, ss, cv1, cv2, cv3, cv4, cvcn, cveg, cvfr, cvgb, cvin, cvir, cvit, cvjp, cvru, cvsu, cvtr
-		ExcludeFromSquadsTypes: harv, mcv, e6, spy, spy.england, b17t, b29t, b314, b52t, c130, c141, c17, e8c, il76, y20, tu95, yb35, mnly, aw101, jet.an225, jet.v22, mi17, mi26, tran, qtnk, truk, mtrk, jet.gapgen
+		ExcludeFromSquadsTypes: harv, mcv, e6, spy.england, b17t, b29t, b314, b52t, c130, c141, c17, e8c, il76, y20, tu95, yb35, mnly, aw101, jet.an225, jet.v22, mi17, mi26, tran, qtnk, truk, mtrk, jet.gapgen
 		ConstructionYardTypes: fact
 		NavalProductionTypes: spen, syrd
 		AirUnitsTypes: jet.a10, jet.b2, jet.b52, jet.f104, jet.f117, jet.f14, jet.f16, jet.f2, jet.f22, jet.f4, jet.grom, jet.harrier, jet.he177, jet.ho229, jet.j20, jet.l39, jet.la11, jet.m2000, jet.mig21, jet.mig23, jet.mig25, jet.mig3, jet.qaher, jet.rafale, jet.saeqeh, jet.seavixen, jet.sr71, jet.su25, jet.su27, jet.su30, jet.su35, jet.su47, jet.swarm, jet.tu160, jet.typhoon, jet.vulcan, jet.x47, jet.yak141, jet.yf23, jet.zeppelin, mig, yak, heli, hind, ka52, mh60, mi35, tiger, lsat
@@ -1350,7 +1344,6 @@ Player:
 			snip: 10
 			taut: 10
 			e6: 3
-			spy: 2
 			spy.england: 2
 			harv: 10
 			1tnk: 5
@@ -1486,7 +1479,6 @@ Player:
 			truk: 2
 		UnitLimits:
 			e6: 3
-			spy: 2
 			spy.england: 2
 			harv: 8
 			arty: 6
