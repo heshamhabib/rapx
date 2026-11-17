@@ -141,9 +141,19 @@ namespace OpenRA.Mods.RAPX.Graphics
 					cr.FillRect(corners[0], corners[1], corners[2], corners[3], fc);
 					cr.FillRect(corners[3], corners[4], corners[5], corners[0], fc);
 
+					// Edge by edge, not DrawPolygon: a hex clamped to the footprint box has corners on one line that double
+					// back on themselves, and the polygon's mitred join at that 180° turn shoots a line across the screen.
 					var lineAlpha = (120 + 100 * edge + 35 * band) * cell.Alpha;
-					cr.DrawPolygon(corners, 2.2f * px, WithAlpha(dark, lineAlpha * 0.5f));
-					cr.DrawPolygon(corners, 0.9f * px, WithAlpha(hot, lineAlpha));
+					for (var i = 0; i < 6; i++)
+					{
+						var a = corners[i];
+						var b = corners[(i + 1) % 6];
+						if (MathF.Abs(a.X - b.X) + MathF.Abs(a.Y - b.Y) < 0.01f)
+							continue;
+
+						cr.DrawLine(a, b, 2.2f * px, WithAlpha(dark, lineAlpha * 0.5f));
+						cr.DrawLine(a, b, 0.9f * px, WithAlpha(hot, lineAlpha));
+					}
 				}
 			}
 
