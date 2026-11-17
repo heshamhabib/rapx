@@ -12,7 +12,6 @@
 using System;
 using System.Linq;
 using OpenRA.Activities;
-using OpenRA.Effects;
 using OpenRA.GameRules;
 using OpenRA.Mods.Common.Activities;
 using OpenRA.Mods.Common.Effects;
@@ -103,9 +102,6 @@ namespace OpenRA.Mods.RAPX.Traits
 		[Desc("How far the bomber keeps flying straight after the drop before it turns home.")]
 		public readonly WDist Overfly = WDist.FromCells(8);
 
-		[Desc("Ticks the bomb needs to reach the ground (the target beacon stays until then).")]
-		public readonly int FallTicks = 60;
-
 		public WeaponInfo WeaponInfo { get; private set; }
 
 		public override object Create(ActorInitializer init) { return new PxStrategicBomber(this); }
@@ -190,7 +186,9 @@ namespace OpenRA.Mods.RAPX.Traits
 
 			bomber.Drop(self, target);
 			dropped = true;
-			RemoveBeacon(self, bomber.Info.FallTicks);
+
+			// The bomb is away: the target marker and its progress clock go at once
+			RemoveBeacon(self);
 
 			// Fly on straight so the bomber clears the blast before it turns home
 			var map = self.World.Map;
@@ -202,22 +200,19 @@ namespace OpenRA.Mods.RAPX.Traits
 		protected override void OnLastRun(Actor self)
 		{
 			if (!dropped)
-				RemoveBeacon(self, 0);
+				RemoveBeacon(self);
 		}
 
 		protected override void OnActorDispose(Actor self)
 		{
 			if (!dropped)
-				RemoveBeacon(self, 0);
+				RemoveBeacon(self);
 		}
 
-		void RemoveBeacon(Actor self, int delay)
+		void RemoveBeacon(Actor self)
 		{
-			if (beacon == null)
-				return;
-
-			var world = self.World;
-			world.AddFrameEndTask(w => w.Add(new DelayedAction(delay, () => world.AddFrameEndTask(w2 => w2.Remove(beacon)))));
+			if (beacon != null)
+				self.World.AddFrameEndTask(w => w.Remove(beacon));
 		}
 	}
 }

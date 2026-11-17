@@ -141,7 +141,6 @@ YB35:
 	# Drops the Fatman only when the field's support power sends it; no normal attack
 	PxStrategicBomber:
 		Weapon: Fatman
-		FallTicks: 58
 	ProvidesPrerequisite@bomber:
 		Prerequisite: fatman.bomber
 	RenderSprites:
