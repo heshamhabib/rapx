@@ -19,14 +19,17 @@ using OpenRA.Widgets;
 namespace OpenRA.Mods.RAPX.Widgets
 {
 	/// <summary>
-	/// Shows system, mission and status lines ("Construction complete.", weather forecasts, ...) as a stack of
-	/// HUD-styled toasts that slide in, count repeats and drain a timer bar. Player chat stays in the chat overlay;
-	/// the stock text displays skip these pools through TextNotificationsDisplay.IgnoredPools.
+	/// Shows system, mission and status lines ("Construction complete.", weather forecasts, ...) as a compact,
+	/// right-aligned ticker of one-line chips. Kept quiet on purpose:
+	/// - status lines (Transients/Feedback) share a single lane, so a new one cross-fades over the previous one;
+	/// - a repeat of any visible line bumps its counter and moves it to the bottom instead of stacking a copy;
+	/// - only a few messages are visible, older ones dim and shrink away, overflow retires the oldest fast.
+	/// Player chat stays in the chat overlay; the stock text displays skip these pools through TextNotificationsDisplay.IgnoredPools.
 	/// </summary>
 	public class PxToastsWidget : Widget, INotificationHandler<TextNotification>
 	{
 		public readonly string HeaderFont = "PXSidebarSmall";
-		public readonly string BodyFont = "PXBody";
+		public readonly string BodyFont = "PXSmall";
 		public readonly string CountFont = "PXDigitsSmall";
 
 		public readonly Color SystemColor = Color.FromArgb(255, 176, 32);
@@ -36,27 +39,33 @@ namespace OpenRA.Mods.RAPX.Widgets
 		public readonly Color BodyColor = Color.FromArgb(222, 223, 228);
 
 		[Desc("How long status and feedback lines stay on screen.")]
-		public readonly int StatusDurationMs = 4500;
+		public readonly int StatusDurationMs = 3200;
 
 		[Desc("How long system and mission lines stay on screen.")]
-		public readonly int MessageDurationMs = 8000;
+		public readonly int MessageDurationMs = 6500;
 
-		public readonly int MaxToasts = 5;
-		public readonly int Spacing = 8;
+		[Desc("Most system/mission chips visible at once (the status lane is extra).")]
+		public readonly int MaxMessages = 2;
 
-		const int EnterMs = 260;
-		const int ExitMs = 380;
+		[Desc("Body lines per chip; longer text is cut with an ellipsis.")]
+		public readonly int MaxLines = 2;
+
+		public readonly int Spacing = 3;
+
+		const int EnterMs = 200;
+		const int ExitMs = 260;
 		const int BumpMs = 320;
-		const int IconColumn = 50;
-		const int PadRight = 14;
-		const int PadTop = 9;
-		const int HeaderGap = 4;
-		const int PadBottom = 12;
+		const int PadLeft = 9;
+		const int PadRight = 9;
+		const int PadY = 4;
+		const int HeaderGap = 7;
 
 		sealed class Toast
 		{
 			public TextNotification Notification;
+			public bool IsStatus;
 			public string Header;
+			public int HeaderWidth;
 			public string[] Lines;
 			public Color Accent;
 			public Color Body;
@@ -66,12 +75,15 @@ namespace OpenRA.Mods.RAPX.Widgets
 			public long Started;
 			public long Bumped = -1;
 			public long Leaving = -1;
+			public int Width;
 			public int Height;
+			public int Depth;
 			public float Y = float.NaN;
 		}
 
 		readonly List<Toast> toasts = new();
 		SpriteFont headerFont, bodyFont, countFont;
+		int lineHeight, headerHeight;
 		long lastDraw = -1;
 
 		public PxToastsWidget()
@@ -85,6 +97,8 @@ namespace OpenRA.Mods.RAPX.Widgets
 			headerFont = Game.Renderer.Fonts[HeaderFont];
 			bodyFont = Game.Renderer.Fonts[BodyFont];
 			countFont = Game.Renderer.Fonts[CountFont];
+			lineHeight = bodyFont.Measure("Ag").Y;
+			headerHeight = headerFont.Measure("A").Y;
 			Ui.Subscribe(this);
 		}
 
@@ -113,14 +127,21 @@ namespace OpenRA.Mods.RAPX.Widgets
 
 			var now = Game.RunTime;
 
-			// Repeats of the newest toast bump its counter instead of stacking a copy
-			var newest = toasts.Count > 0 ? toasts[^1] : null;
-			if (newest != null && newest.Leaving < 0 && notification.CanIncrementOnDuplicate() && newest.Notification == notification)
+			// A repeat of any visible line bumps its counter and drops it to the newest slot instead of stacking a copy
+			if (notification.CanIncrementOnDuplicate())
 			{
-				newest.Count++;
-				newest.Started = now;
-				newest.Bumped = now;
-				return;
+				var same = toasts.FindLastIndex(t => t.Leaving < 0 && t.Notification == notification);
+				if (same >= 0)
+				{
+					var t = toasts[same];
+					toasts.RemoveAt(same);
+					toasts.Add(t);
+					t.Count++;
+					t.Started = now;
+					t.Bumped = now;
+					t.Width = ChipWidth(t);
+					return;
+				}
 			}
 
 			var isStatus = notification.Pool is TextNotificationPool.Transients or TextNotificationPool.Feedback;
@@ -132,29 +153,64 @@ namespace OpenRA.Mods.RAPX.Widgets
 				_ => SystemColor,
 			};
 
-			var textWidth = Bounds.Width - IconColumn - PadRight;
-			var lines = WidgetUtils.WrapText(notification.Text, textWidth, bodyFont).Split('\n');
-			var lineHeight = bodyFont.Measure("Ag").Y;
-			var headerHeight = headerFont.Measure("A").Y;
+			// Status lines carry no source label (they are all EVA chatter); messages show theirs inline in the accent colour
+			var header = isStatus ? "" : (notification.Prefix ?? "").ToUpperInvariant();
+			var headerWidth = header.Length > 0 ? PxWarChrome.SpacedWidth(headerFont, header, 1) + HeaderGap : 0;
+			var textWidth = Bounds.Width - PadLeft - PadRight - headerWidth - 34;
+			var lines = WrapLimited(notification.Text, textWidth);
 
-			toasts.Add(new Toast
+			var toast = new Toast
 			{
 				Notification = notification,
-				Header = (notification.Prefix ?? "").ToUpperInvariant(),
+				IsStatus = isStatus,
+				Header = header,
+				HeaderWidth = headerWidth,
 				Lines = lines,
 				Accent = accent,
 				Body = notification.TextColor ?? BodyColor,
 				Duration = isStatus ? StatusDurationMs : MessageDurationMs,
 				Born = now,
 				Started = now,
-				Height = Math.Max(48, PadTop + headerHeight + HeaderGap + lines.Length * lineHeight + PadBottom),
-			});
+				Height = PadY * 2 + lines.Length * lineHeight,
+			};
+			toast.Width = ChipWidth(toast);
 
-			// Push the oldest ones out when the stack is full
+			// One status lane: the new status line replaces the previous one in place
+			if (isStatus)
+				foreach (var t in toasts)
+					if (t.IsStatus && t.Leaving < 0)
+						t.Leaving = now;
+
+			toasts.Add(toast);
+
+			// Retire the oldest messages when there are too many
 			var alive = 0;
 			for (var i = toasts.Count - 1; i >= 0; i--)
-				if (toasts[i].Leaving < 0 && ++alive > MaxToasts)
+				if (!toasts[i].IsStatus && toasts[i].Leaving < 0 && ++alive > MaxMessages)
 					toasts[i].Leaving = now;
+		}
+
+		string[] WrapLimited(string text, int width)
+		{
+			var lines = WidgetUtils.WrapText(text, width, bodyFont).Split('\n');
+			if (lines.Length <= MaxLines)
+				return lines;
+
+			var cut = lines[..MaxLines];
+			cut[^1] = WidgetUtils.TruncateText(cut[^1] + " " + lines[MaxLines], width, bodyFont);
+			if (!cut[^1].EndsWith("...", StringComparison.Ordinal))
+				cut[^1] = WidgetUtils.TruncateText(cut[^1] + "...", width, bodyFont);
+			return cut;
+		}
+
+		int ChipWidth(Toast t)
+		{
+			var text = 0;
+			foreach (var line in t.Lines)
+				text = Math.Max(text, bodyFont.Measure(line).X);
+
+			var count = t.Count > 1 ? countFont.Measure("x" + t.Count).X + 14 : 0;
+			return Math.Min(Bounds.Width, PadLeft + t.HeaderWidth + text + count + PadRight);
 		}
 
 		public override void Tick()
@@ -177,101 +233,89 @@ namespace OpenRA.Mods.RAPX.Widgets
 
 			var rb = RenderBounds;
 
-			// Newest toast sits at the bottom; older ones glide up to make room
+			// Newest chip sits at the bottom; older ones glide up. Leaving chips keep their spot and fade out,
+			// so a replaced status line cross-fades under its successor instead of pushing the stack around.
 			var target = (float)rb.Bottom;
+			var depth = 0;
 			for (var i = toasts.Count - 1; i >= 0; i--)
 			{
 				var t = toasts[i];
+				if (t.Leaving >= 0)
+				{
+					if (float.IsNaN(t.Y))
+						t.Y = target - t.Height;
+					continue;
+				}
+
 				target -= t.Height;
 				if (float.IsNaN(t.Y))
 					t.Y = target;
 				else
 					t.Y += (target - t.Y) * Math.Min(1f, dt / 90f);
 
-				if (t.Leaving < 0)
-					target -= Spacing;
+				target -= Spacing;
+				t.Depth = depth++;
 			}
 
 			foreach (var t in toasts)
 				DrawToast(t, rb, now);
+
 		}
 
 		void DrawToast(Toast t, Rectangle rb, long now)
 		{
 			var enter = EaseOut(Math.Min(1f, (now - t.Born) / (float)EnterMs));
 			var exit = t.Leaving < 0 ? 0f : Math.Min(1f, (now - t.Leaving) / (float)ExitMs);
-			var alpha = enter * (1 - exit);
+
+			// Older chips step back: dimmer the further they are from the newest
+			var dim = t.Depth == 0 ? 1f : t.Depth == 1 ? 0.72f : 0.5f;
+			var alpha = enter * (1 - exit) * dim;
 			if (alpha <= 0.01f)
 				return;
 
-			var slide = (int)((1 - enter) * 48 + EaseIn(exit) * 32);
-			var r = new Rectangle(rb.X + slide, (int)t.Y, rb.Width, t.Height);
+			var slide = (int)((1 - enter) * 28 + EaseIn(exit) * 18);
+			var r = new Rectangle(rb.Right - t.Width + slide, (int)t.Y, t.Width, t.Height);
 			if (r.Bottom < rb.Y)
 				return;
 
 			var bump = t.Bumped < 0 ? 0f : 1 - Math.Min(1f, (now - t.Bumped) / (float)BumpMs);
-			var flash = Math.Max(1 - Math.Min(1f, (now - t.Born) / 420f), bump);
+			var flash = Math.Max(1 - Math.Min(1f, (now - t.Born) / 360f), bump);
 			var cr = Game.Renderer.RgbaColorRenderer;
 
-			// Drop shadow, then the dark panel with a faint accent wash from the left edge
-			Fill(new Rectangle(r.X + 3, r.Y + 4, r.Width, r.Height), Color.FromArgb(90, 0, 0, 0), alpha);
-			Fill(r, Color.FromArgb(240, 12, 13, 16), alpha);
-			var wash = Math.Min(r.Width, 170);
+			// Translucent dark chip with a short accent wash from the left edge
+			Fill(r, Color.FromArgb(200, 10, 11, 14), alpha);
+			var wash = Math.Min(r.Width, 90);
+			var washA = (int)(34 + 50 * flash);
 			cr.FillRect(new float3(r.X, r.Y, 0), new float3(r.X + wash, r.Y, 0), new float3(r.X + wash, r.Bottom, 0), new float3(r.X, r.Bottom, 0),
-				Fade(t.Accent, (int)(46 + 60 * flash), alpha), Fade(t.Accent, 0, alpha), Fade(t.Accent, 0, alpha), Fade(t.Accent, (int)(46 + 60 * flash), alpha));
-			Fill(new Rectangle(r.X, r.Y, r.Width, 1), Color.FromArgb(18, 255, 255, 255), alpha);
-			PxWarChrome.DrawBorder(r, Fade(Color.FromArgb(44, 45, 52), 255, alpha), 1);
+				Fade(t.Accent, washA, alpha), Fade(t.Accent, 0, alpha), Fade(t.Accent, 0, alpha), Fade(t.Accent, washA, alpha));
 
-			// Accent stripe on the left edge, lit white for a moment when the toast arrives or repeats
-			var stripe = PxWarChrome.Lerp(t.Accent, Color.White, 0.6f * flash);
-			Fill(new Rectangle(r.X, r.Y, 3, r.Height), stripe, alpha);
+			// Accent stripe on the left edge, lit white for a moment when the chip arrives or repeats
+			Fill(new Rectangle(r.X, r.Y, 2, r.Height), PxWarChrome.Lerp(t.Accent, Color.White, 0.6f * flash), alpha);
 
-			DrawIcon(t, new int2(r.X + 26, r.Y + PadTop + 12), alpha, flash);
+			var x = r.X + PadLeft;
+			var y = r.Y + PadY;
+			if (t.Header.Length > 0)
+				PxWarChrome.DrawSpaced(headerFont, t.Header, x, y + (lineHeight - headerHeight) / 2 + 1, 1, Fade(t.Accent, 255, alpha));
 
-			// Header: letter-spaced source label with a repeat counter on the right
-			var x = r.X + IconColumn;
-			var y = r.Y + PadTop;
-			PxWarChrome.DrawSpaced(headerFont, t.Header, x, y, 2, Fade(t.Accent, 255, alpha));
-			if (t.Count > 1)
-			{
-				var count = "x" + t.Count;
-				var size = countFont.Measure(count);
-				var badge = new Rectangle(r.Right - PadRight - size.X - 10, y - 2, size.X + 10, size.Y + 4);
-				Fill(badge, PxWarChrome.Lerp(Color.FromArgb(220, 30, 32, 38), t.Accent, 0.35f + 0.5f * bump), alpha);
-				countFont.DrawTextWithShadow(count, new float2(badge.X + 5, badge.Y + 2), Fade(Color.White, 255, alpha), Fade(Color.Black, 160, alpha), 1);
-			}
-
-			y += headerFont.Measure("A").Y + HeaderGap;
-			var lineHeight = bodyFont.Measure("Ag").Y;
+			x += t.HeaderWidth;
 			foreach (var line in t.Lines)
 			{
 				bodyFont.DrawTextWithShadow(line, new float2(x, y), Fade(t.Body, 255, alpha), Fade(Color.Black, 170, alpha), 1);
 				y += lineHeight;
 			}
 
-			// Timer bar draining along the bottom edge
+			if (t.Count > 1)
+			{
+				var count = "x" + t.Count;
+				var size = countFont.Measure(count);
+				var badge = new Rectangle(r.Right - PadRight - size.X - 8, r.Y + (r.Height - size.Y - 4) / 2, size.X + 8, size.Y + 4);
+				Fill(badge, PxWarChrome.Lerp(Color.FromArgb(220, 30, 32, 38), t.Accent, 0.35f + 0.5f * bump), alpha);
+				countFont.DrawTextWithShadow(count, new float2(badge.X + 4, badge.Y + 2), Fade(Color.White, 255, alpha), Fade(Color.Black, 160, alpha), 1);
+			}
+
+			// Hairline timer draining along the bottom edge
 			var left = t.Leaving >= 0 ? 0f : 1 - Math.Min(1f, (now - t.Started) / (float)t.Duration);
-			var bar = new Rectangle(r.X + 3, r.Bottom - 3, r.Width - 4, 2);
-			Fill(bar, Fade(t.Accent, 30, alpha), alpha);
-			Fill(new Rectangle(bar.X, bar.Y, (int)(bar.Width * left), bar.Height), Fade(t.Accent, 190, alpha), 1);
-		}
-
-		/// <summary>Accent diamond with a dark core and a pulsing pip, framed like the HUD wells.</summary>
-		static void DrawIcon(Toast t, int2 c, float alpha, float flash)
-		{
-			var cr = Game.Renderer.RgbaColorRenderer;
-			var ring = Fade(t.Accent, (int)(70 + 110 * flash), alpha);
-			Diamond(cr, c, 15, ring);
-			Diamond(cr, c, 12, Fade(Color.FromArgb(14, 15, 18), 255, alpha));
-			Diamond(cr, c, 10, Fade(t.Accent, 255, alpha));
-			Diamond(cr, c, 7, Fade(Color.FromArgb(14, 15, 18), 255, alpha));
-			var pip = 2 + (int)(2 * PxWarChrome.Pulse(1400));
-			Diamond(cr, c, pip, Fade(PxWarChrome.Lerp(t.Accent, Color.White, 0.4f), 255, alpha));
-		}
-
-		static void Diamond(RgbaColorRenderer cr, int2 c, int r, Color color)
-		{
-			cr.FillRect(new float3(c.X, c.Y - r, 0), new float3(c.X + r, c.Y, 0), new float3(c.X, c.Y + r, 0), new float3(c.X - r, c.Y, 0), color);
+			Fill(new Rectangle(r.X + 2, r.Bottom - 1, (int)((r.Width - 2) * left), 1), Fade(t.Accent, 150, alpha), 1);
 		}
 
 		static void Fill(Rectangle r, Color c, float alpha)
