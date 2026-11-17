@@ -177,6 +177,8 @@ namespace OpenRA.Mods.RAPX.Traits
 
 		void ITick.Tick(Actor self)
 		{
+			TickFollow();
+
 			if (shots == null)
 				return;
 
@@ -204,6 +206,49 @@ namespace OpenRA.Mods.RAPX.Traits
 				Game.TakeScreenshot();
 			else if (i > shots.Length + 1)
 				Game.Exit();
+		}
+
+		// "follow" camera state: the actor being tracked, and the enemy actor whose position the camera settles on
+		// once the followed actor gets within LockRange of it (e.g. a bomber reaching its target)
+		static Actor followActor;
+		static WPos? lockPos;
+		static int lockTicks = -1;
+		static readonly WDist LockRange = WDist.FromCells(3);
+		const int LockEaseTicks = 25;
+
+		static void TickFollow()
+		{
+			if (followActor == null || currentWorldRenderer == null)
+				return;
+
+			var viewport = currentWorldRenderer.Viewport;
+			if (lockTicks < 0)
+			{
+				if (followActor.IsDead || !followActor.IsInWorld)
+				{
+					followActor = null;
+					return;
+				}
+
+				var pos = followActor.CenterPosition;
+				viewport.Center(pos - new WVec(0, 0, pos.Z));
+				if (lockPos.HasValue && (lockPos.Value - pos).HorizontalLength < LockRange.Length)
+					lockTicks = 0;
+
+				return;
+			}
+
+			// Ease from wherever the camera is onto the locked position, then hold it there
+			var t = Math.Min(1f, (float)++lockTicks / LockEaseTicks);
+			var from = viewport.CenterPosition;
+			var k = t * t * (3 - 2 * t);
+			viewport.Center(from + (lockPos.Value - from) * (int)(k * 1024) / 1024);
+		}
+
+		static Actor FirstEnemyActor(string type)
+		{
+			return currentWorld.Actors.FirstOrDefault(a => a.IsInWorld && !a.IsDead && a.Info.Name == type
+				&& a.Owner.Playable && currentWorld.LocalPlayer != null && a.Owner.RelationshipWith(currentWorld.LocalPlayer) == PlayerRelationship.Enemy);
 		}
 
 		static void RunMenuAction(string action)
@@ -235,6 +280,34 @@ namespace OpenRA.Mods.RAPX.Traits
 				}
 				else
 					Log.Write("debug", $"DevScreenshots: nothing to focus for {args[0]}");
+			}
+			else if (action.StartsWith("follow ", StringComparison.Ordinal))
+			{
+				// "follow <ACTOR> [<ENEMY_ACTOR>]": keep the camera on the local player's first actor of that type; with an enemy
+				// actor type, settle the camera on that enemy once the followed actor gets close to it (a bomb run's target)
+				var args = action[7..].Split(' ', StringSplitOptions.RemoveEmptyEntries);
+				followActor = currentWorld.Actors.FirstOrDefault(a => a.Owner == currentWorld.LocalPlayer && a.IsInWorld && a.Info.Name == args[0]);
+				lockPos = args.Length > 1 ? FirstEnemyActor(args[1])?.CenterPosition : null;
+				lockTicks = -1;
+				Log.Write("debug", $"DevScreenshots: follow {followActor?.Info.Name ?? "nothing"} lock {lockPos}");
+			}
+			else if (action.StartsWith("strike ", StringComparison.Ordinal))
+			{
+				// "strike <ORDER_NAME> <ENEMY_ACTOR>": fire the local player's support power at the first enemy actor of that type
+				var args = action[7..].Split(' ', StringSplitOptions.RemoveEmptyEntries);
+				var target = FirstEnemyActor(args[1]);
+				if (target != null)
+					currentWorld.IssueOrder(new Order(args[0], currentWorld.LocalPlayer.PlayerActor, Target.FromPos(target.CenterPosition), false)
+						{ SuppressVisualFeedback = true });
+
+				Log.Write("debug", $"DevScreenshots: strike {args[0]} at {target?.Info.Name ?? "nothing"} {target?.Location}");
+			}
+			else if (action.StartsWith("hide ", StringComparison.Ordinal))
+			{
+				// "hide <WIDGET_ID>": hide a widget, e.g. PLAYER_WIDGETS for clean video footage
+				var widget = Ui.Root.GetOrNull(action[5..].Trim());
+				if (widget != null)
+					widget.Visible = false;
 			}
 			else if (action == "reveal")
 			{
