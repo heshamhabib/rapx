@@ -251,6 +251,10 @@ void main()
 		float allowed = clamp((cells.y + cells.z + cells.w) * 4.0, 0.0, 1.0);
 		rock += water * (1.0 - allowed);
 		water *= allowed;
+
+		// Open sea (water cells all around, no beach) is all water: the classic water's bright wave crests would
+		// otherwise be classified as ground and drawn as patches of grass and rock out at sea
+		water = max(water, smoothstep(0.85, 1.0, cells.z + cells.w) * (1.0 - cells.y));
 	}
 
 	// Local light and dark of the classic art relative to its neighbourhood (keeps wet sand edges, ruts, waves)
