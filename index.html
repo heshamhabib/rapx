@@ -236,7 +236,21 @@
             <li>
               <h3>Install the .NET 6 SDK</h3>
               <p>Download it from <a href="https://dotnet.microsoft.com/download/dotnet/6.0">dotnet.microsoft.com</a>
-                and run the installer for your system.</p>
+                and run the installer for your system. Pick the <b>SDK</b> column, not “Runtime” or “Desktop Runtime”:
+                those can run .NET programs but cannot build the game. On Windows you can also install it from PowerShell:</p>
+              <div class="term">
+                <button class="copy" type="button">Copy</button>
+<pre><code>winget install Microsoft.DotNet.SDK.6</code></pre>
+              </div>
+              <p class="step-note">Then <b>close your terminal and open a new one</b> so it finds the new <code>dotnet</code>
+                command, and check the install:</p>
+              <div class="term">
+                <button class="copy" type="button">Copy</button>
+<pre><code>dotnet --list-sdks</code></pre>
+              </div>
+              <p class="step-note">You need a <code>6.0.x</code> line. Newer SDKs alone (7, 8, 9) are not enough; install
+                6.0 alongside them. If <code>make</code> says “The 'dotnet' tool is required to compile OpenRA”, the SDK is
+                missing or the terminal was opened before installing it.</p>
             </li>
             <li>
               <h3>Linux only: install the libraries</h3>
@@ -284,9 +298,18 @@ make
                 <button class="copy" type="button">Copy</button>
 <pre><code>git clone https://github.com/heshamhabib/rapx.git
 cd rapx
-make.cmd
-launch-game.cmd</code></pre>
+.\make.cmd</code></pre>
               </div>
+              <p class="step-note" data-tab="win" hidden>Downloaded the ZIP instead? Extract it, then build from the
+                extracted folder, for example:</p>
+              <div class="term" data-tab="win" hidden>
+                <button class="copy" type="button">Copy</button>
+<pre><code>cd C:\Users\YourName\Downloads\rapx-main
+.\make.cmd</code></pre>
+              </div>
+              <p class="step-note" data-tab="win" hidden>This builds <b>RAPX.exe</b> in that folder: double click it to
+                play, or pin it to the taskbar. <code>launch-game.cmd</code> still works if you want a console window.
+                On a laptop with two graphics cards, run <code>.\make.cmd gpu</code> once so the game uses the faster one.</p>
             </li>
             <li>
               <h3>Command</h3>

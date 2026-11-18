@@ -471,7 +471,7 @@
   document.querySelectorAll(".os-tabs button").forEach(b => b.addEventListener("click", () => {
     const step = b.closest("li");
     step.querySelectorAll(".os-tabs button").forEach(x => x.setAttribute("aria-selected", x === b));
-    step.querySelectorAll(".term").forEach(t => t.hidden = t.dataset.tab !== b.dataset.tab);
+    step.querySelectorAll("[data-tab]:not(button)").forEach(t => t.hidden = t.dataset.tab !== b.dataset.tab);
   }));
   if (/Win/.test(navigator.platform)) $('.os-tabs [data-tab="win"]').click();
   document.querySelectorAll(".copy").forEach(b => b.addEventListener("click", async () => {
