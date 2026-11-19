@@ -757,7 +757,10 @@ a.lic:hover { color: #fff; border-color: var(--lc); }
 .gx-item:hover figcaption { transform: none; }
 .gx-item figcaption b { display: block; margin: 4px 0 3px; font: 700 clamp(17px, 1.6vw, 22px)/1.15 var(--display); letter-spacing: .04em; text-transform: uppercase; color: var(--ink); }
 .gx-no { font: 400 11px/1 var(--mono); letter-spacing: .2em; color: var(--accent); }
-.gx-poster figcaption { padding: 12px 14px 14px; }
+.gx-poster figcaption { padding: 12px 14px 14px; opacity: 0; transition: opacity .3s, transform .4s; }
+.gx-poster::after { box-shadow: none; }
+/* A poster carries its own title: its caption only shows on hover, so the two never overlap */
+.gx-poster:hover figcaption, .gx-poster:focus-within figcaption { opacity: 1; background: linear-gradient(transparent, rgba(0,0,0,.9) 35%); }
 .gx-poster figcaption b { font-size: 16px; }
 
 .gx-progress { height: 2px; background: var(--line); overflow: hidden; }

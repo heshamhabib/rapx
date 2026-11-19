@@ -1,5 +1,93 @@
 window.RAPX_GALLERY = [
  {
+  "src": "img/gallery/poster-salvo.jpg",
+  "sm": "img/gallery/poster-salvo-sm.jpg",
+  "w": 1080,
+  "h": 1350,
+  "title": "Stop the salvo",
+  "cap": "SAM sites, rocket shields, interceptors",
+  "tags": [
+   "posters"
+  ]
+ },
+ {
+  "src": "img/gallery/poster-ocean.jpg",
+  "sm": "img/gallery/poster-ocean-sm.jpg",
+  "w": 1080,
+  "h": 1350,
+  "title": "Own the ocean",
+  "cap": "Carrier jets, flares, anti-ship missiles",
+  "tags": [
+   "posters"
+  ]
+ },
+ {
+  "src": "img/gallery/poster-city.jpg",
+  "sm": "img/gallery/poster-city-sm.jpg",
+  "w": 1080,
+  "h": 1350,
+  "title": "Hold the city",
+  "cap": "Airborne assaults, night battles",
+  "tags": [
+   "posters"
+  ]
+ },
+ {
+  "src": "img/gallery/poster-sky.jpg",
+  "sm": "img/gallery/poster-sky-sm.jpg",
+  "w": 1080,
+  "h": 1350,
+  "title": "Win the sky",
+  "cap": "Jet vs jet, missiles, decoys",
+  "tags": [
+   "posters"
+  ]
+ },
+ {
+  "src": "img/gallery/poster-war.jpg",
+  "sm": "img/gallery/poster-war-sm.jpg",
+  "w": 1080,
+  "h": 1350,
+  "title": "14 nations. One war.",
+  "cap": "Free real-time strategy",
+  "tags": [
+   "posters"
+  ]
+ },
+ {
+  "src": "img/gallery/poster-nightjar.jpg",
+  "sm": "img/gallery/poster-nightjar-sm.jpg",
+  "w": 1080,
+  "h": 1350,
+  "title": "AF-117 Nightjar",
+  "cap": "USA exclusive stealth strike jet",
+  "tags": [
+   "posters"
+  ]
+ },
+ {
+  "src": "img/gallery/poster-zeppelin.jpg",
+  "sm": "img/gallery/poster-zeppelin-sm.jpg",
+  "w": 1080,
+  "h": 1350,
+  "title": "Zeppelin",
+  "cap": "Russia's bombing airship",
+  "tags": [
+   "posters"
+  ]
+ },
+ {
+  "src": "img/gallery/poster-nachtfluegel.jpg",
+  "sm": "img/gallery/poster-nachtfluegel-sm.jpg",
+  "w": 1080,
+  "h": 1350,
+  "title": "HG-229 Nachtflügel",
+  "cap": "Germany exclusive stealth bomber",
+  "tags": [
+   "posters"
+  ]
+ },
+ {
   "src": "img/gallery/ka52-missile.jpg",
   "sm": "img/gallery/ka52-missile-sm.jpg",
   "w": 2400,
@@ -190,94 +278,6 @@ window.RAPX_GALLERY = [
   "tags": [
    "air",
    "night"
-  ]
- },
- {
-  "src": "img/gallery/poster-salvo.jpg",
-  "sm": "img/gallery/poster-salvo-sm.jpg",
-  "w": 1080,
-  "h": 1350,
-  "title": "Stop the salvo",
-  "cap": "SAM sites, rocket shields, interceptors",
-  "tags": [
-   "posters"
-  ]
- },
- {
-  "src": "img/gallery/poster-ocean.jpg",
-  "sm": "img/gallery/poster-ocean-sm.jpg",
-  "w": 1080,
-  "h": 1350,
-  "title": "Own the ocean",
-  "cap": "Carrier jets, flares, anti-ship missiles",
-  "tags": [
-   "posters"
-  ]
- },
- {
-  "src": "img/gallery/poster-city.jpg",
-  "sm": "img/gallery/poster-city-sm.jpg",
-  "w": 1080,
-  "h": 1350,
-  "title": "Hold the city",
-  "cap": "Airborne assaults, night battles",
-  "tags": [
-   "posters"
-  ]
- },
- {
-  "src": "img/gallery/poster-sky.jpg",
-  "sm": "img/gallery/poster-sky-sm.jpg",
-  "w": 1080,
-  "h": 1350,
-  "title": "Win the sky",
-  "cap": "Jet vs jet, missiles, decoys",
-  "tags": [
-   "posters"
-  ]
- },
- {
-  "src": "img/gallery/poster-war.jpg",
-  "sm": "img/gallery/poster-war-sm.jpg",
-  "w": 1080,
-  "h": 1350,
-  "title": "14 nations. One war.",
-  "cap": "Free real-time strategy",
-  "tags": [
-   "posters"
-  ]
- },
- {
-  "src": "img/gallery/poster-nightjar.jpg",
-  "sm": "img/gallery/poster-nightjar-sm.jpg",
-  "w": 1080,
-  "h": 1350,
-  "title": "AF-117 Nightjar",
-  "cap": "USA exclusive stealth strike jet",
-  "tags": [
-   "posters"
-  ]
- },
- {
-  "src": "img/gallery/poster-zeppelin.jpg",
-  "sm": "img/gallery/poster-zeppelin-sm.jpg",
-  "w": 1080,
-  "h": 1350,
-  "title": "Zeppelin",
-  "cap": "Russia's bombing airship",
-  "tags": [
-   "posters"
-  ]
- },
- {
-  "src": "img/gallery/poster-nachtfluegel.jpg",
-  "sm": "img/gallery/poster-nachtfluegel-sm.jpg",
-  "w": 1080,
-  "h": 1350,
-  "title": "HG-229 Nachtflügel",
-  "cap": "Germany exclusive stealth bomber",
-  "tags": [
-   "posters"
   ]
  }
 ];

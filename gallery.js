@@ -8,8 +8,8 @@
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
   const pad2 = n => String(n).padStart(2, "0");
 
-  const FILTERS = [["all", "All"], ["gunships", "Gunships"], ["air", "Air war"], ["artillery", "Artillery"],
-    ["naval", "Naval"], ["night", "Night & snow"], ["posters", "Posters"]];
+  const FILTERS = [["all", "All"], ["posters", "Posters"], ["gunships", "Gunships"], ["air", "Air war"], ["artillery", "Artillery"],
+    ["naval", "Naval"], ["night", "Night & snow"]];
   let filter = "all";
   let shown = G;
 
