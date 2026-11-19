@@ -512,7 +512,7 @@ JET.RAFALE.Husk:
 JET.SAEQEH:
 	WithPxJetTrail:
 		RequiresCondition: airborne
-		Wingtips: -301,768,0, -301,-768,0
+		Wingtips: -317,768,0, -317,-768,0
 		Engines: -895,0,0
 	WithPxAerobatics:
 		RequiresCondition: airborne
@@ -669,6 +669,19 @@ JET.SU47.Husk:
 	Tooltip:
 		Name: actor-jet-su47.name
 
+JET.SWARM:
+	SpawnActorOnDeath:
+		Actor: JET.SWARM.Husk
+
+JET.SWARM.Husk:
+	Inherits: MIG.Husk
+	RenderSprites:
+		Image: jet.swarm
+	WithPxCrashFx:
+		Size: 0.80
+	Tooltip:
+		Name: actor-jet-swarm.name
+
 JET.TU160:
 	WithPxJetTrail:
 		RequiresCondition: airborne
@@ -799,6 +812,25 @@ JET.YF23.Husk:
 		Size: 1.08
 	Tooltip:
 		Name: actor-jet-yf23.name
+
+JET.ZEPPELIN:
+	SpawnActorOnDeath:
+		Actor: JET.ZEPPELIN.Husk
+
+JET.ZEPPELIN.Husk:
+	Inherits: MIG.Husk
+	RenderSprites:
+		Image: jet.zeppelin
+	WithPxCrashFx:
+		Size: 2.40
+	Aircraft:
+		Speed: 40
+		TurnSpeed: 4
+	FallsToEarth:
+		Velocity: 34
+		MaximumSpinSpeed: 0
+	Tooltip:
+		Name: actor-jet-zeppelin.name
 
 MIG:
 	WithPxJetTrail:

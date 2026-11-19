@@ -23,9 +23,17 @@ WORLD_PER_SPRITE_PX = 1024 / 24 / 3
 
 # Aircraft with no jet engine: propeller planes get vapour only, airships nothing
 PROPS = {"yak", "jet.mig3", "jet.la11", "yb35", "tu95", "jet.he177"}
-SKIP = {"jet.zeppelin", "jet.swarm", "tran", "heli", "hind", "mh60", "jet.v22", "mi35", "ka52", "mi17", "aw101", "tiger"}
-# Aircraft built on a helicopter in the rules but needing their own wreck: (wreck to inherit, effect size)
-OWN_WRECK = {"jet.an225": ("MIG.Husk", 2.4), "jet.v22": ("TRAN.Husk", 1.2)}
+SKIP = {"jet.zeppelin", "jet.swarm", "tran", "heli", "hind", "mh60", "jet.v22", "mi35", "ka52", "mi17", "mi26", "aw101", "tiger"}
+# Aircraft that get no trail (SKIP) or are built on a helicopter, but still need their own wreck (falling with their
+# own picture, not the MiG's): (wreck to inherit, effect size[, extra rule lines for the wreck])
+OWN_WRECK = {
+    "jet.an225": ("MIG.Husk", 2.4),
+    "jet.v22": ("TRAN.Husk", 1.2),
+    "jet.swarm": ("MIG.Husk", 0.8),
+    # An airship sinks slowly and drifts, it does not dive and spin like a jet
+    "jet.zeppelin": ("MIG.Husk", 2.4, ["\tAircraft:", "\t\tSpeed: 40", "\t\tTurnSpeed: 4",
+                                       "\tFallsToEarth:", "\t\tVelocity: 34", "\t\tMaximumSpinSpeed: 0"]),
+}
 JETLESS_EXHAUST = {"jet.an225"}
 
 
@@ -79,11 +87,11 @@ def ancestors(actor):
         yield actor
 
 
-def wreck(actor, image, base, size):
+def wreck(actor, image, base, size, extra=()):
     """The aircraft's own falling wreck: its own picture and name, crash effects sized to it."""
     out = [f"{actor}:", "\tSpawnActorOnDeath:", f"\t\tActor: {actor}.Husk", "",
            f"{actor}.Husk:", f"\tInherits: {base}", "\tRenderSprites:", f"\t\tImage: {image}",
-           "\tWithPxCrashFx:", f"\t\tSize: {size:.2f}"]
+           "\tWithPxCrashFx:", f"\t\tSize: {size:.2f}"] + list(extra)
     if actor in NAMES:
         out += ["\tTooltip:", f"\t\tName: {NAMES[actor]}"]
     return out + [""]
