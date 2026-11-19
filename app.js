@@ -322,7 +322,10 @@
     "Sketchfab Standard": ["lic-std", "https://sketchfab.com/licenses"],
     "Licence pending": ["lic-pending", null],
   };
-  const CR = { group: "all", artist: null, q: "" };
+  const CR = { group: "all", artist: null, q: "", page: 0 };
+  // Cards per page: four full rows of the grid at desktop width, fewer on small screens
+  const perPage = () => innerWidth >= 1100 ? 12 : innerWidth >= 700 ? 8 : 6;
+  const pad2 = n => String(n).padStart(2, "0");
   const allCredits = C.flatMap((g, gi) => g.items.map(it => ({ ...it, gi })));
   const artistCount = {};
   allCredits.forEach(it => it.artists.forEach(a => artistCount[a] = (artistCount[a] || 0) + 1));
@@ -368,21 +371,63 @@
     </article>`;
   }
 
+  // Page numbers to show: always the first, last and the pages around the current one, gaps as ellipses
+  function pageList(cur, n) {
+    const keep = new Set([0, n - 1, cur - 1, cur, cur + 1]);
+    if (cur <= 2) [1, 2, 3].forEach(p => keep.add(p));
+    if (cur >= n - 3) [n - 2, n - 3, n - 4].forEach(p => keep.add(p));
+    const out = [];
+    [...keep].filter(p => p >= 0 && p < n).sort((a, b) => a - b).forEach((p, i, arr) => {
+      if (i && p - arr[i - 1] > 1) out.push(null);
+      out.push(p);
+    });
+    return out;
+  }
+
+  function renderPager(pages, from, to, total) {
+    const prev = `<button class="pg-arrow" type="button" data-page="${CR.page - 1}" aria-label="Previous page" ${CR.page ? "" : "disabled"}>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg></button>`;
+    const next = `<button class="pg-arrow" type="button" data-page="${CR.page + 1}" aria-label="Next page" ${CR.page < pages - 1 ? "" : "disabled"}>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg></button>`;
+    const range = `<span class="pg-range"><b>${from}–${to}</b> of ${total}</span>`;
+    $("#credit-meta").innerHTML = total ? `${range}<span class="pg-mini">${prev}<span class="pg-count">${pad2(CR.page + 1)}<i>/</i>${pad2(pages)}</span>${next}</span>` : "";
+    const pager = $("#credit-pager");
+    pager.hidden = pages < 2;
+    if (pages < 2) return;
+    const nums = pageList(CR.page, pages).map(p => p === null ? `<span class="pg-gap">···</span>`
+      : `<button class="pg-num" type="button" data-page="${p}" aria-label="Page ${p + 1}" ${p === CR.page ? 'aria-current="page"' : ""}>${pad2(p + 1)}</button>`).join("");
+    const segs = Array.from({ length: pages }, (_, p) =>
+      `<button class="pg-seg${p < CR.page ? " done" : ""}${p === CR.page ? " on" : ""}" type="button" data-page="${p}" aria-label="Page ${p + 1}"></button>`).join("");
+    pager.innerHTML = `<div class="pg-track">${segs}</div>
+      <div class="pg-row">${prev}<div class="pg-nums">${nums}</div>${next}</div>
+      <p class="pg-status">Page <b>${pad2(CR.page + 1)}</b> of ${pad2(pages)} <i>//</i> ${range}</p>`;
+  }
+
   function renderCredits() {
     const q = CR.q.trim().toLowerCase();
     const match = it => (CR.group === "all" || String(it.gi) === CR.group)
       && (!CR.artist || it.artists.includes(CR.artist))
       && (!q || [it.subject, it.text, it.changes, it.licence, ...it.artists, ...it.models.map(m => m.title)].join(" ").toLowerCase().includes(q));
+    const found = allCredits.filter(match);
+    const size = perPage();
+    const pages = Math.max(1, Math.ceil(found.length / size));
+    CR.page = Math.min(Math.max(0, CR.page), pages - 1);
+    const slice = found.slice(CR.page * size, CR.page * size + size);
+    // Group headers only for the groups on this page, so every page reads on its own
+    let n = 0;
     const html = C.map((g, gi) => {
-      const items = allCredits.filter(it => it.gi === gi && match(it));
+      const items = slice.filter(it => it.gi === gi);
       if (!items.length) return "";
-      return `<section class="credit-group fade-in">
-        <header class="credit-group-head"><h3>${esc(g.title)}</h3><span>${items.length} ${items.length === 1 ? "credit" : "credits"}</span>
-          ${g.intro && !CR.artist && !q ? `<p>${esc(g.intro)}</p>` : ""}</header>
-        <div class="credit-grid">${items.map(creditCard).join("")}</div>
+      const all = found.filter(it => it.gi === gi).length;
+      const cont = found.findIndex(it => it.gi === gi) < CR.page * size;
+      return `<section class="credit-group">
+        <header class="credit-group-head"><h3>${esc(g.title)}${cont ? `<em>continued</em>` : ""}</h3><span>${all} ${all === 1 ? "credit" : "credits"}</span>
+          ${g.intro && !CR.artist && !q && !cont ? `<p>${esc(g.intro)}</p>` : ""}</header>
+        <div class="credit-grid">${items.map(it => creditCard(it).replace("<article ", `<article style="--i:${n++}" `)).join("")}</div>
       </section>`;
     }).join("");
     $("#credit-list").innerHTML = html || `<p class="cat-empty">No credits match.</p>`;
+    renderPager(pages, found.length ? CR.page * size + 1 : 0, CR.page * size + slice.length, found.length);
     const active = $("#credit-active");
     active.hidden = !CR.artist;
     if (CR.artist) active.innerHTML = `Showing work by <b>${esc(CR.artist)}</b><button type="button" data-clear-artist>Show everyone</button>`;
@@ -416,10 +461,36 @@
     }
     renderCreditFilters();
     renderCredits();
+    function goPage(p) {
+      const before = CR.page;
+      CR.page = p;
+      renderCredits();
+      if (CR.page === before) return;
+      const top = $(".credit-browser").getBoundingClientRect().top;
+      if (top < 0 || top > innerHeight * 0.4) $(".credit-browser").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    $(".credit-browser").addEventListener("keydown", ev => {
+      if (ev.target.matches("input")) return;
+      if (ev.key === "ArrowRight") goPage(CR.page + 1);
+      else if (ev.key === "ArrowLeft") goPage(CR.page - 1);
+    });
+    let lastSize = perPage();
+    addEventListener("resize", () => {
+      if (perPage() === lastSize) return;
+      CR.page = Math.floor(CR.page * lastSize / perPage());
+      lastSize = perPage();
+      renderCredits();
+    });
     $("#credits").addEventListener("click", ev => {
+      const pg = ev.target.closest("[data-page]");
+      if (pg) {
+        goPage(+pg.dataset.page);
+        return;
+      }
       const g = ev.target.closest("[data-group]");
       if (g) {
         CR.group = g.dataset.group;
+        CR.page = 0;
         renderCreditFilters();
         renderCredits();
         return;
@@ -428,6 +499,7 @@
       if (a) {
         CR.artist = CR.artist === a.dataset.artist ? null : a.dataset.artist;
         CR.group = "all";
+        CR.page = 0;
         renderCreditFilters();
         renderCredits();
         if (!a.classList.contains("roll-name")) $("#credit-active").scrollIntoView({ block: "center" });
@@ -435,11 +507,13 @@
       }
       if (ev.target.closest("[data-clear-artist]")) {
         CR.artist = null;
+        CR.page = 0;
         renderCredits();
       }
     });
     $("#credit-search").addEventListener("input", ev => {
       CR.q = ev.target.value;
+      CR.page = 0;
       renderCredits();
     });
   }

@@ -399,7 +399,7 @@ cd rapx
           <button class="roll-more" type="button" id="roll-more" hidden>Show all artists</button>
         </div>
 
-        <div class="credit-browser">
+        <div class="credit-browser" tabindex="-1">
           <div class="credit-toolbar">
             <div class="credit-filters" id="credit-filters" role="tablist" aria-label="Credit categories"></div>
             <label class="cat-search">
@@ -408,7 +408,9 @@ cd rapx
             </label>
           </div>
           <p class="credit-active" id="credit-active" hidden></p>
-          <div id="credit-list"></div>
+          <div class="credit-meta" id="credit-meta"></div>
+          <div id="credit-list" aria-live="polite"></div>
+          <nav class="pager" id="credit-pager" aria-label="Credit pages" hidden></nav>
         </div>
       </div>
     </section>

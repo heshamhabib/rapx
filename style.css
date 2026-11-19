@@ -641,6 +641,56 @@ a.lic:hover { color: #fff; border-color: var(--lc); }
 .credit-changes { margin: 2px 0 0; padding-top: 8px; border-top: 1px dashed var(--line); font-size: 13px; line-height: 1.45; color: var(--faint); }
 .credit-changes b { font: 400 10px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--dim); margin-right: 6px; }
 .credit-note { border-left-color: var(--gold); background: rgba(255,209,102,.04); }
+.credit-browser { scroll-margin-top: 84px; outline: none; }
+.credit-group-head h3 em { font: 400 11px/1 var(--mono); font-style: normal; letter-spacing: .16em; color: var(--faint); padding: 4px 7px; border: 1px solid var(--line); }
+.credit-grid .credit { animation: credit-in .45s cubic-bezier(.2, .7, .2, 1) both; animation-delay: calc(var(--i, 0) * 35ms); }
+@keyframes credit-in { from { opacity: 0; transform: translateY(10px); } }
+@media (prefers-reduced-motion: reduce) { .credit-grid .credit { animation: none; } }
+
+/* pagination: a range readout above the list, a segmented track and numbered pages below it */
+.credit-meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 40px; margin: 0 0 16px; }
+.pg-range { font: 400 12px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--faint); }
+.pg-range b { color: var(--ink); font-weight: 400; }
+.pg-mini { display: inline-flex; align-items: center; gap: 8px; }
+.pg-count { font: 700 18px/1 var(--display); letter-spacing: .08em; color: var(--ink); min-width: 64px; text-align: center; }
+.pg-count i { font-style: normal; color: var(--accent); margin: 0 4px; }
+.pg-arrow {
+  display: grid; place-items: center; width: 40px; height: 40px; padding: 0; cursor: pointer;
+  background: var(--panel); border: 1px solid var(--line-2); color: var(--ink);
+  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+  transition: background .15s, border-color .15s, color .15s;
+}
+.pg-arrow svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: square; }
+.pg-arrow:hover:not(:disabled) { background: var(--accent); border-color: var(--accent); color: #fff; }
+.pg-arrow:disabled { opacity: .3; cursor: default; }
+.pager { position: relative; margin-top: clamp(22px, 3vw, 34px); padding: 18px clamp(14px, 3vw, 26px) 16px; background: var(--panel); border: 1px solid var(--line); }
+.pager::before { content: ""; position: absolute; top: -1px; left: -1px; width: 60px; height: 2px; background: var(--accent); }
+.pg-track { display: flex; gap: 3px; margin-bottom: 16px; }
+.pg-seg { flex: 1; height: 4px; padding: 0; cursor: pointer; border: 0; background: var(--line); transition: background .2s, transform .2s; }
+.pg-seg:hover { background: var(--line-2); transform: scaleY(1.8); }
+.pg-seg.done { background: rgba(255,92,70,.45); }
+.pg-seg.on { background: var(--accent); box-shadow: 0 0 12px rgba(255,92,70,.7); }
+.pg-row { display: flex; align-items: center; justify-content: center; gap: 10px; }
+.pg-nums { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; justify-content: center; }
+.pg-num {
+  min-width: 44px; height: 40px; padding: 0 8px; cursor: pointer; background: transparent; border: 1px solid transparent;
+  font: 700 16px/1 var(--display); letter-spacing: .08em; color: var(--dim); transition: color .15s, border-color .15s, background .15s;
+}
+.pg-num:hover { color: var(--ink); border-color: var(--line-2); background: var(--panel-2); }
+.pg-num[aria-current="page"] {
+  color: #fff; border-color: var(--accent); background: linear-gradient(180deg, rgba(255,92,70,.3), rgba(226,38,38,.12));
+  box-shadow: 0 0 18px rgba(255,92,70,.3), inset 0 -2px 0 var(--accent);
+}
+.pg-gap { padding: 0 4px; font: 400 13px/1 var(--mono); color: var(--faint); letter-spacing: .1em; }
+.pg-status { margin: 12px 0 0; text-align: center; font: 400 11px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--faint); }
+.pg-status b { color: var(--accent); font-weight: 400; }
+.pg-status i { font-style: normal; margin: 0 8px; color: var(--line-2); }
+.pg-status .pg-range { font-size: 11px; }
+@media (max-width: 560px) {
+  .pg-num { min-width: 36px; font-size: 14px; }
+  .pg-row { gap: 6px; }
+  .credit-meta .pg-range { font-size: 11px; letter-spacing: .08em; }
+}
 .credit:has(.lic-pending), .credit:has(.lic-std) { --lic-w: 150px; }
 @media (max-width: 640px) {
   .credit-toolbar .cat-search { flex: 1 1 100%; }
