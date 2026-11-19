@@ -27,6 +27,7 @@
       <a href="#nations">Nations</a>
       <a href="#arsenal">Arsenal</a>
       <a href="#theatres">Theatres</a>
+      <a href="#gallery">Gallery</a>
       <a href="#credits">Credits</a>
       <a href="#deploy" class="nav-cta">Play free</a>
     </nav>
@@ -208,11 +209,46 @@
       </div>
     </section>
 
+    <!-- GALLERY -->
+    <section class="section gx-section" id="gallery">
+      <div class="wrap wrap-wide">
+        <header class="section-head reveal">
+          <p class="kicker">05 <i>//</i> Combat gallery</p>
+          <h2>Straight from the battlefield</h2>
+          <p class="lead">Stills captured in-game at full resolution: gunships at work up close, rocket salvos, dogfights and
+            night raids. Drag or scroll the strip, click any photo to open it full screen.</p>
+        </header>
+        <div class="gx-bar reveal">
+          <div class="gx-filters" id="gx-filters" role="tablist" aria-label="Gallery filters"></div>
+          <div class="gx-nav">
+            <span class="gx-count" id="gx-count"></span>
+            <button class="pg-arrow" type="button" id="gx-prev" aria-label="Previous photos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg></button>
+            <button class="pg-arrow" type="button" id="gx-next" aria-label="Next photos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="gx-track" id="gx-track" tabindex="0" aria-label="Photo strip"></div>
+      <div class="wrap wrap-wide"><div class="gx-progress" aria-hidden="true"><span id="gx-progress"></span></div></div>
+    </section>
+
+    <dialog class="gx-viewer" id="gx-viewer" aria-label="Photo viewer">
+      <div class="gxv-top">
+        <span class="gxv-count" id="gxv-count"></span>
+        <button class="gxv-close" type="button" aria-label="Close">×</button>
+      </div>
+      <div class="gxv-stage">
+        <button class="gxv-arrow gxv-prev" type="button" aria-label="Previous photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg></button>
+        <figure class="gxv-figure"><img id="gxv-img" alt=""><figcaption id="gxv-cap"></figcaption></figure>
+        <button class="gxv-arrow gxv-next" type="button" aria-label="Next photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg></button>
+      </div>
+      <div class="gxv-thumbs" id="gxv-thumbs"></div>
+    </dialog>
+
     <!-- DEPLOY -->
     <section class="section" id="deploy">
       <div class="wrap">
         <header class="section-head reveal">
-          <p class="kicker">05 <i>//</i> Deployment orders</p>
+          <p class="kicker">06 <i>//</i> Deployment orders</p>
           <h2>Get in the fight</h2>
           <p class="lead">Skirmish against AI from Easy to Brutal, or play multiplayer with friends. Everything the game
             needs is in the repository: no original Red Alert files, no internet connection required.</p>
@@ -359,7 +395,7 @@ cd rapx
     <section class="section section-dark" id="credits">
       <div class="wrap wrap-wide">
         <header class="section-head reveal">
-          <p class="kicker">06 <i>//</i> Roll of honour</p>
+          <p class="kicker">07 <i>//</i> Roll of honour</p>
           <h2>Credits</h2>
           <p class="lead">Project X stands on the work of many artists. Every 3D model, sound and icon made by someone
             else is listed here with its author, its licence and what we changed.</p>
@@ -434,6 +470,8 @@ cd rapx
 
   <script src="data/catalogue.js"></script>
   <script src="data/credits.js"></script>
+  <script src="data/gallery.js"></script>
   <script src="app.js"></script>
+  <script src="gallery.js"></script>
 </body>
 </html>
