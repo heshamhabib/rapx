@@ -180,6 +180,9 @@ make
 
 **Windows**
 
+> 📺 **New to this?** [Watch the step-by-step Windows install video](https://heshamhabib.github.io/rapx/#install-video):
+> it shows every click, from downloading the game to building it and playing.
+
 ```bat
 git clone https://github.com/heshamhabib/rapx.git
 cd rapx
