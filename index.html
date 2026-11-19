@@ -231,6 +231,20 @@
           </div>
         </div>
 
+        <div class="install-video hud reveal" id="install-video">
+          <div class="iv-text">
+            <p class="kicker">Video walkthrough · Windows</p>
+            <h3>Watch the install, step by step</h3>
+            <p>Never used a terminal? This 4-minute video shows every click on Windows: download the game from this
+              page, install .NET 6, unzip it, build it with one command and start playing.</p>
+            <a class="btn btn-ghost" href="video/install-windows.mp4" target="_blank" rel="noopener"><span>Open full screen</span></a>
+          </div>
+          <video class="iv-player" controls preload="none" playsinline poster="img/install-video-poster.jpg">
+            <source src="video/install-windows.mp4" type="video/mp4">
+            <a href="video/install-windows.mp4">Download the install video</a>
+          </video>
+        </div>
+
         <div class="deploy">
           <ol class="steps reveal">
             <li>
@@ -300,6 +314,8 @@ make
 cd rapx
 .\make.cmd</code></pre>
               </div>
+              <p class="step-note" data-tab="win" hidden>First time? <a href="#install-video">Watch the Windows install video</a>
+                above: it shows every step.</p>
               <p class="step-note" data-tab="win" hidden>Downloaded the ZIP instead? Extract it, then build from the
                 extracted folder, for example:</p>
               <div class="term" data-tab="win" hidden>
