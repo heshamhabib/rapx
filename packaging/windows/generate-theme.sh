@@ -10,6 +10,8 @@
 set -e
 
 MAGICK="${1}"
+# ImageMagick 7 runs identify as a `magick` subcommand; ImageMagick 6 (Ubuntu CI) ships it standalone.
+if [ "${MAGICK}" = "convert" ]; then IDENTIFY="identify"; else IDENTIFY="${MAGICK} identify"; fi
 ART="${2}"
 LOGO_CROP="${3}"
 BACKDROP_CROP="${4}"
@@ -52,7 +54,7 @@ ${MAGICK} "${ART}" \
 
 # Logo lockup, full panel width, flush to the top edge.
 ${MAGICK} "${ART}" -crop "${LOGO_CROP}" +repage -resize "${SIDEBAR_W}x" "${WORK}/lockup.png"
-LOCKUP_H=$(${MAGICK} identify -format "%h" "${WORK}/lockup.png")
+LOCKUP_H=$(${IDENTIFY} -format "%h" "${WORK}/lockup.png")
 FADE_H=$(awk "BEGIN { printf \"%d\", ${LOCKUP_H} * 0.3 }")
 SOLID_H=$((LOCKUP_H - FADE_H))
 
@@ -94,7 +96,7 @@ ${MAGICK} "${WORK}/backdrop.png" \
 # strip with no visible seam next to the page title text.
 LOGO_H=$((HEADER_H - 30))
 ${MAGICK} "${ART}" -crop "${LOGO_CROP}" +repage -resize "x${LOGO_H}" "${WORK}/header-logo.png"
-LOGO_W=$(${MAGICK} identify -format "%w" "${WORK}/header-logo.png")
+LOGO_W=$(${IDENTIFY} -format "%w" "${WORK}/header-logo.png")
 
 # The lockup carries its own slice of key art, which would otherwise land on the flat
 # strip as a hard-edged rectangle. Feather all four edges so it reads as a backlit logo
