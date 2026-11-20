@@ -14,12 +14,13 @@ for ID in scar scr2; do
     ID=$ID SKETCHFAB=$SKETCHFAB python3 - <<'PY'
 import os
 uid = os.environ["ID"]
-# jeep size class: x0.76 of the normal vehicle scale (0.4667 for AI models, 0.2333 for the 2x Sketchfab renders)
-scale = "0.1773" if os.environ.get("SKETCHFAB") else "0.3547"
+# x1.03 of the normal vehicle scale (0.4667 for AI models, 0.2333 for the 2x Sketchfab renders): the jeep class
+# (x0.76) left the cars only ~1.4x the Spy's height; this makes them ~1.9x, just under a light tank's length
+scale = "0.2394" if os.environ.get("SKETCHFAB") else "0.4788"
 p = "mods/rapx/sequences/hd-units.yaml"
 s = open(p).read()
 if f"\n{uid}:\n" not in s:
-    s = s.rstrip("\n") + (f"\n\n# Spy Car (rules/spycar.yaml {uid.upper()}): artsrc/units/meshes/make_spycar.sh, jeep size class\n{uid}:\n"
+    s = s.rstrip("\n") + (f"\n\n# Spy Car (rules/spycar.yaml {uid.upper()}): artsrc/units/meshes/make_spycar.sh, x1.35 of jeep class (car ~1.9x the Spy's height)\n{uid}:\n"
                           f"\tidle:\n\t\tFilename: ra|bits/hd/units/{uid}.png\n\t\tFacings: 32\n\t\tUseClassicFacings: False\n"
                           f"\t\tScale: {scale}\n")
     open(p, "w").write(s)

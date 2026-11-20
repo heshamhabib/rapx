@@ -438,21 +438,21 @@ mh60:
 		Tick: 36
 		Scale: 0.3333
 
-# Spy Car (rules/spycar.yaml SCAR): artsrc/units/meshes/make_spycar.sh, jeep size class
+# Spy Car (rules/spycar.yaml SCAR): artsrc/units/meshes/make_spycar.sh, x1.35 of jeep class (car ~1.9x the Spy's height)
 scar:
 	idle:
 		Filename: ra|bits/hd/units/scar.png
 		Facings: 32
 		UseClassicFacings: False
-		Scale: 0.1773
+		Scale: 0.2394
 
-# Spy Car (rules/spycar.yaml SCR2): artsrc/units/meshes/make_spycar.sh, jeep size class
+# Spy Car (rules/spycar.yaml SCR2): artsrc/units/meshes/make_spycar.sh, x1.35 of jeep class (car ~1.9x the Spy's height)
 scr2:
 	idle:
 		Filename: ra|bits/hd/units/scr2.png
 		Facings: 32
 		UseClassicFacings: False
-		Scale: 0.1773
+		Scale: 0.2394
 
 # MAD Tank: Sketchfab KV-2 (one body, its box turret does not turn), 2x pixels
 qtnk:
