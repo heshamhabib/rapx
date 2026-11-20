@@ -183,9 +183,10 @@ function build_platform()
 		echo "Mod version ${MOD_VERSION} will remain unchanged.";
 	fi
 
-	TAG_TYPE="${TAG%%-*}"
-	TAG_VERSION="${TAG#*-}"
-	BACKWARDS_TAG="${TAG_VERSION}-${TAG_TYPE}"
+	# rcedit only accepts a numeric product version: v0.1.0-pilot -> 0.1.0.
+	# The full tag is written as the ProductVersion string below.
+	PRODUCT_VERSION="${TAG#v}"
+	PRODUCT_VERSION="${PRODUCT_VERSION%%-*}"
 
 	# Create multi-resolution icon
 	${MAGICK} "${ARTWORK_DIR}/icon_16x16.png" "${ARTWORK_DIR}/icon_24x24.png" "${ARTWORK_DIR}/icon_32x32.png" "${ARTWORK_DIR}/icon_48x48.png" "${ARTWORK_DIR}/icon_256x256.png" "${BUILTDIR}/${MOD_ID}.ico"
@@ -206,8 +207,8 @@ function build_platform()
 	install_windows_launcher "${TEMPLATE_ROOT}/${ENGINE_DIRECTORY}" "${BUILTDIR}" "win-${PLATFORM}" "${MOD_ID}" "${PACKAGING_WINDOWS_LAUNCHER_NAME}" "${PACKAGING_DISPLAY_NAME}" "${PACKAGING_FAQ_URL}" "${TAG}"
 
 	# Use rcedit to patch the generated EXE with missing assembly/PortableExecutable information because .NET 6 ignores that when building on Linux.
-	# Using a backwards version tag because rcedit is unable to set versions starting with a letter.
-	${RCEDIT} "${BUILTDIR}/${PACKAGING_WINDOWS_LAUNCHER_NAME}.exe" --set-product-version "${BACKWARDS_TAG}"
+	${RCEDIT} "${BUILTDIR}/${PACKAGING_WINDOWS_LAUNCHER_NAME}.exe" --set-product-version "${PRODUCT_VERSION}"
+	${RCEDIT} "${BUILTDIR}/${PACKAGING_WINDOWS_LAUNCHER_NAME}.exe" --set-version-string "ProductVersion" "${TAG}"
 	${RCEDIT} "${BUILTDIR}/${PACKAGING_WINDOWS_LAUNCHER_NAME}.exe" --set-version-string "ProductName" "OpenRA"
 	${RCEDIT} "${BUILTDIR}/${PACKAGING_WINDOWS_LAUNCHER_NAME}.exe" --set-version-string "CompanyName" "The OpenRA team"
 	${RCEDIT} "${BUILTDIR}/${PACKAGING_WINDOWS_LAUNCHER_NAME}.exe" --set-version-string "FileDescription" "${PACKAGING_WINDOWS_LAUNCHER_NAME} mod for OpenRA"
