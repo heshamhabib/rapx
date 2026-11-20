@@ -354,7 +354,7 @@ MODELS = {
     "jet.mig23": {"name": "Mik-23 Flintlock (MiG-23)", "src": "inbox2/jet.mig23__mig_23_mld/scene.gltf", "kind": "air", "out": "mik-23-flintlock", "frame": 160, "yaw": 180, "length": 7.2, "team": {"box": JET_BOX}},
     "jet.mig25": {"name": "Mik-25 Foxbane (MiG-25)", "src": "inbox2/jet.mig25__mig25/scene.gltf", "kind": "air", "out": "mik-25-foxbane", "frame": 160, "yaw": -135, "length": 7.9, "team": {"box": JET_BOX}, "snap": 'length'},
     "jet.su25": {"name": "Sk-25 Rook (Su-25)", "src": "inbox2/jet.su25__pbr__sukhoi_su_25/scene.gltf", "kind": "air", "out": "sk-25-rook", "frame": 160, "yaw": 0, "length": 6.9, "team": {"box": JET_BOX}},
-    "jet.su27": {"name": "Sk-27 Flankard (Su-27)", "src": "inbox2/jet.su27__sukhoi_su_27p_flanker_b/scene.gltf", "kind": "air", "out": "sk-27-flankard", "frame": 160, "yaw": 0, "length": 8.5, "team": {"box": JET_BOX}},
+    "jet.su27": {"name": "Sk-27 Flankard (Su-27)", "src": "inbox2/jet.su27__sukhoi_su_27p_flanker_b/scene.gltf", "kind": "air", "out": "sk-27-flankard", "frame": 160, "yaw": 180, "length": 8.5, "team": {"box": JET_BOX}},
     "jet.su47": {"name": "Sk-47 Berkov (Su-47)", "src": "inbox2/jet.su47__su_47_berkut/scene.gltf", "kind": "air", "out": "sk-47-berkov", "frame": 160, "yaw": 180, "length": 8.6, "team": {"box": JET_BOX}},
     # Fatman bomber (USA only, rules/fatman.yaml): "Northrop YB-35 (low poly)" by Götz von Berlichingen, CC-BY-4.0
     "jet.yb35": {"name": "YB-35 Fatman bomber", "src": "inbox4/yb35/scene.gltf", "kind": "air", "out": "yb-35-flying-wing",

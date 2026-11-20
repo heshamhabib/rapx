@@ -1583,7 +1583,7 @@ JET.SU27:
 	Armament@SU27S0:
 		Name: su27-s0
 		Weapon: JetAAM.Short.r73
-		LocalOffset: 769,1044,274, 769,-1044,274
+		LocalOffset: -178,1046,273, -178,-1046,273
 		PauseOnCondition: !su27-s0
 	WithIdleOverlay@SU27STORE0R:
 		Sequence: store-0R
@@ -1599,7 +1599,7 @@ JET.SU27:
 	Armament@SU27S1:
 		Name: su27-s1
 		Weapon: JetAAM.Medium.r77
-		LocalOffset: 1157,649,203, 1164,-649,202
+		LocalOffset: -93,649,266, -100,-649,265
 		PauseOnCondition: !su27-s1
 	WithIdleOverlay@SU27STORE1R:
 		Sequence: store-1R
@@ -1615,7 +1615,7 @@ JET.SU27:
 	Armament@SU27S2:
 		Name: su27-s2
 		Weapon: JetAAM.Medium.r77
-		LocalOffset: 1212,444,204, 1212,-444,203
+		LocalOffset: 98,444,266, 91,-444,266
 		PauseOnCondition: !su27-s2 || su27-s1
 	WithIdleOverlay@SU27STORE2R:
 		Sequence: store-2R
@@ -1631,7 +1631,7 @@ JET.SU27:
 	Armament@SU27GUN:
 		Name: su27-gun
 		Weapon: JetGun.GSh30
-		LocalOffset: 1485,0,204
+		LocalOffset: 371,0,266
 		PauseOnCondition: !su27-gun
 	AttackAircraft:
 		Armaments: su27-s0, su27-s1, su27-s2, su27-gun

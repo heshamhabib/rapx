@@ -71,7 +71,7 @@ LOADOUTS = {
     ]},
     # Su-27: wingtip R-73s plus R-27s added under the wings
     "jet.su27": {"real_length": 21.9, "gun": "GSh30", "stations": [
-        {"weapon": "JetAAM.Short", "model": (2.99, 1.21, 1.11, 0.15, 0.6, 0.2)},
+        {"weapon": "JetAAM.Short", "model": (2.99, -1.21, 1.11, 0.15, 0.6, 0.2)},  # model turned (yaw 180)
         {"weapon": "JetAAM.Medium", "add": "r77", "at": (1.9, "lead")},
         {"weapon": "JetAAM.Medium", "add": "r77", "at": (1.3, "lead")},
     ]},
