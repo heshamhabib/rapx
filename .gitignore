@@ -87,8 +87,10 @@ __pycache__/
 /docs/DESIGN-IDEAS.md
 /launch-game-test.sh
 
-# GitHub Actions workflows stay local (pushing them needs the token workflow scope)
-/.github/workflows/
+# GitHub Actions: only the tag-triggered release packaging is published; CI stays local
+# so ordinary pushes don't trigger builds
+/.github/workflows/*
+!/.github/workflows/packaging.yml
 
 # Downloaded Sketchfab robot bodies (raw glTF; prepared copies go to artsrc/units/soldiers/upload)
 artsrc/units/soldiers/sketchfab/
