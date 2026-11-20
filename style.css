@@ -881,3 +881,28 @@ html.gx-locked { overflow: hidden; }
 .fb-copy h2::after { content: none; }
 @media (max-width: 560px) { .fb-kicker { font-size: 10px; letter-spacing: .14em; } .fb-kicker i, .fb-k2 { display: none; } }
 .fb-copy h2 em { white-space: nowrap; }
+
+/* ---------- SYSTEM REQUIREMENTS ---------- */
+.reqs { margin-bottom: clamp(32px, 5vw, 52px); }
+.reqs-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 14px; margin-bottom: 16px; }
+.reqs-head .kicker { font-size: 11px; }
+.reqs-head h3 { margin: 0; font: 700 clamp(22px, 2.6vw, 30px)/1.1 var(--display); text-transform: uppercase; letter-spacing: .03em; }
+.reqs-os { display: flex; gap: 14px; color: var(--dim); }
+.reqs-os svg { width: 24px; height: 24px; }
+.reqs-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.req-card { position: relative; padding: clamp(18px, 2.6vw, 26px); background: var(--panel); border: 1px solid var(--line); border-top: 2px solid var(--line-2); }
+.req-rec { border-top-color: var(--accent); background: linear-gradient(180deg, rgba(255,92,70,.08), var(--panel) 40%); }
+.req-rec::after { content: "Best experience"; position: absolute; top: 18px; right: 18px; padding: 5px 9px; font: 400 10px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: #fff; background: var(--accent); }
+.req-card header .kicker { margin-bottom: 6px; font-size: 10px; color: var(--faint); }
+.req-rec header .kicker { color: var(--accent); }
+.req-card h3 { margin: 0 0 14px; font: 700 24px/1 var(--display); text-transform: uppercase; letter-spacing: .06em; }
+.req-card ul { margin: 0; padding: 0; list-style: none; }
+.req-card li { display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-top: 1px dashed var(--line); }
+.req-card li span { font: 400 11px/1.6 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--faint); }
+.req-card li b { font-weight: 400; font-size: 15px; color: var(--ink); }
+.reqs-note { margin: 14px 0 0; font-size: 14px; color: var(--dim); }
+@media (max-width: 760px) {
+  .reqs-grid { grid-template-columns: minmax(0, 1fr); }
+  .req-card li { grid-template-columns: 88px minmax(0, 1fr); }
+}
+@media (max-width: 760px) { .req-rec::after { position: static; display: inline-block; margin-bottom: 10px; } }
