@@ -1,0 +1,46 @@
+{
+ "_note": "Per-model fixes for prep_buildings.py: scale to metres, rot = degrees about Z so the front faces south (-Y), skip = parts to drop",
+ "capitol": {
+  "scale": 5.2
+ },
+ "chicago": {
+  "scale": 0.25
+ },
+ "chrysler": {
+  "scale": 0.005
+ },
+ "classicalny": {
+  "scale": 0.15
+ },
+ "depot": {
+  "scale": 0.007
+ },
+ "downtown": {
+  "scale": 0.5
+ },
+ "louisiana": {
+  "scale": 0.5
+ },
+ "montgomery": {
+  "scale": 0.0044
+ },
+ "residential": {
+  "scale": 10.0
+ },
+ "theater": {
+  "scale": 1.0,
+  "skip": [
+   "theater-0"
+  ]
+ },
+ "jefferson": {
+  "scale": 0.00875
+ },
+ "whitehouse": {
+  "scale": 6.0,
+  "skip": [
+   "whitehouse-0",
+   "whitehouse-2"
+  ]
+ }
+}
