@@ -124,7 +124,8 @@ def main():
 
     yard = sym((np.hypot(xs - YARD[0], ys - YARD[1]) < YARD[2]) & ~wall)
     landmark = sym(rect(*LANDMARK))
-    spire = r < SPIRE_R
+    # The 4x4 capture point (cells 62-65) needs an open cell next to it: a passage on its south side
+    spire = (r < SPIRE_R) & ~rect(C - 2, C + 2, C + 2, C + SPIRE_R + 1)
     island = r <= RING[0]
 
     # Resources
@@ -267,7 +268,7 @@ def write_map(grid, res, spawns, surface):
     actors = []
     for x, y in spawns:
         actors.append(f"\tActor{len(actors)}: mpspawn\n\t\tOwner: Neutral\n\t\tLocation: {x + 1},{y + 1}\n")
-    # The Warden's Spire: a 4x4 capturable footprint at the centre (the painted spire covers the rest)
+    # The Warden's Spire: a 4x4 capture point at the centre
     actors.append(f"\tSpire: irspire\n\t\tOwner: Neutral\n\t\tLocation: {int(C) - 2 + 1},{int(C) - 2 + 1}\n")
 
     names = [f"Multi{k}" for k in range(8)]

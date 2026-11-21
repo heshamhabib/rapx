@@ -30,6 +30,8 @@ import bmesh
 import bpy
 from mathutils import Matrix, Vector
 
+bpy.context.preferences.filepaths.save_version = 0      # no .blend1 backup copies (they filled the disk)
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 BUILD = os.path.join(HERE, "build")
 ARTSRC = os.path.normpath(os.path.join(HERE, "..", ".."))

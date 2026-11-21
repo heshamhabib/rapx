@@ -24,6 +24,8 @@ import bmesh
 import bpy
 from mathutils import Matrix, Vector
 
+bpy.context.preferences.filepaths.save_version = 0      # no .blend1 backup copies (they filled the disk)
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.normpath(os.path.join(HERE, "..", "..", ".."))
 BUILD = os.path.join(HERE, "build")
@@ -133,6 +135,25 @@ def split_buildings(bm):
     return out
 
 
+def lit_material(mat):
+    """glTF 'unlit' materials (photo scans) import without a Principled BSDF and render black or flat here: rebuild
+    them as a normal lit surface with the same texture."""
+    nt = mat.node_tree
+    if not nt or any(n.type == "BSDF_PRINCIPLED" for n in nt.nodes):
+        return
+    tex = next((n for n in nt.nodes if n.type == "TEX_IMAGE"), None)
+    out = next((n for n in nt.nodes if n.type == "OUTPUT_MATERIAL"), None) or nt.nodes.new("ShaderNodeOutputMaterial")
+    bsdf = nt.nodes.new("ShaderNodeBsdfPrincipled")
+    bsdf.inputs["Roughness"].default_value = 0.85
+    if tex:
+        nt.links.new(tex.outputs["Color"], bsdf.inputs["Base Color"])
+    else:
+        rgb = next((n for n in nt.nodes if n.type == "RGB"), None)
+        if rgb:
+            nt.links.new(rgb.outputs[0], bsdf.inputs["Base Color"])
+    nt.links.new(bsdf.outputs[0], out.inputs["Surface"])
+
+
 def stone_material():
     """Dark gothic stone for untextured models (the cathedral)."""
     mat = bpy.data.materials.get("Gothic stone")
@@ -204,6 +225,7 @@ def main():
                     poly.material_index = 0
             for m in mats:
                 if m:
+                    lit_material(m)
                     # Game models often hide back faces; the oblique camera sees round them, so draw both sides
                     m.use_backface_culling = False
                     if hasattr(m, "use_backface_culling_shadow"):
