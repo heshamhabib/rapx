@@ -904,6 +904,51 @@ actor-irspire =
     .captured-desc = Provides a large income.
     .capturable-desc = Capture to receive a large income.
 
+actor-mccapitol =
+    .name = US Capitol
+    .captured-desc = Provides a large income.
+    .capturable-desc = Capture to receive a large income.
+
+actor-mctower =
+    .name = Willis Tower
+    .captured-desc = Provides a large income.
+    .capturable-desc = Capture to receive a large income.
+
+actor-mcpentagon =
+    .name = The Pentagon
+    .captured-desc = Provides a large income.
+    .capturable-desc = Capture to receive a large income.
+
+actor-mcrushmore =
+    .name = Mount Rushmore
+    .captured-desc = Provides a large income.
+    .capturable-desc = Capture to receive a large income.
+
+actor-dclincoln =
+    .name = Lincoln Memorial
+    .captured-desc = Provides a large income.
+    .capturable-desc = Capture to receive a large income.
+
+actor-dcwhitehouse =
+    .name = The White House
+    .captured-desc = Provides a large income.
+    .capturable-desc = Capture to receive a large income.
+
+actor-dccapitol =
+    .name = US Capitol
+    .captured-desc = Provides a large income.
+    .capturable-desc = Capture to receive a large income.
+
+actor-dcjefferson =
+    .name = Jefferson Memorial
+    .captured-desc = Provides a large income.
+    .capturable-desc = Capture to receive a large income.
+
+actor-dcmonument =
+    .name = Washington Monument
+    .captured-desc = Provides a very large income.
+    .capturable-desc = Capture to receive a very large income.
+
 ## misc.yaml
 actor-powerproxy-parabombs =
     .name = Parabombs (Single Use)

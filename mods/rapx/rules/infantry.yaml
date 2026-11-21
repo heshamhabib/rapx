@@ -421,6 +421,15 @@ E6:
 		PlayerExperience: 10
 		CaptureDelay: 375
 		ConsumedByCapture: False
+	Captures@LANDMARK:
+		RequiresCondition: !global-reusable-engineers
+		CaptureTypes: landmark
+		PlayerExperience: 10
+	Captures@LANDMARKREUSABLE:
+		RequiresCondition: global-reusable-engineers
+		CaptureTypes: landmark
+		PlayerExperience: 10
+		ConsumedByCapture: False
 		EnterCursor: ability
 		EnterBlockedCursor: move-blocked
 	Voiced:

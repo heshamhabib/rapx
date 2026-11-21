@@ -436,15 +436,21 @@ OILB:
 	GrantConditionOnCombatantOwner:
 		Condition: enabled
 
-# Ironward's Warden's Spire: the painted backdrop draws the tower, this invisible actor makes it capturable.
-# It cannot be destroyed and pays its owner 2.5x an oil derrick.
-IRSPIRE:
+# Capturable landmarks of the painted maps: the backdrop draws the building, this invisible actor makes it
+# capturable. It cannot be destroyed and pays its owner 2.5x an oil derrick.
+^PxCashLandmark:
 	Inherits: ^TechBuilding
 	-WithSpriteBody:
 	-QuantizeFacingsFromSequence:
-	-RenderSprites:
+	-PxPlaceBuildingPreview:
+	RenderSprites:
+		Image: pxlandmarkflag
 	BodyOrientation:
 		QuantizedFacings: 1
+		UseClassicPerspectiveFudge: false
+	GivesBuildableArea:
+		AreaTypes: building
+		RequiresCondition: enabled
 	-FireWarheadsOnDeath:
 	-ShakeOnDeath:
 	-SoundOnDamageTransition:
@@ -469,7 +475,7 @@ IRSPIRE:
 		Range: 6c0
 	CaptureManager:
 	Capturable:
-		Types: building
+		Types: landmark
 	CapturableProgressBar:
 	CapturableProgressBlink:
 	CashTrickler:
@@ -480,6 +486,16 @@ IRSPIRE:
 		Amount: 500
 	GrantConditionOnCombatantOwner:
 		Condition: enabled
+	GpsDot:
+		String: Oil
+	AppearsOnRadar:
+	AppearsOnMapPreview:
+	MapEditorData:
+		Categories: Tech building
+
+# Ironward's Warden's Spire
+IRSPIRE:
+	Inherits: ^PxCashLandmark
 	Tooltip:
 		Name: actor-irspire.name
 	TooltipDescription@ally:
@@ -488,12 +504,111 @@ IRSPIRE:
 	TooltipDescription@other:
 		Description: actor-irspire.capturable-desc
 		ValidRelationships: Neutral, Enemy
-	GpsDot:
-		String: Oil
-	AppearsOnRadar:
-	AppearsOnMapPreview:
-	MapEditorData:
-		Categories: Tech building
+
+# Monument City landmarks
+MCCAPITOL:
+	Inherits: ^PxCashLandmark
+	Tooltip:
+		Name: actor-mccapitol.name
+	TooltipDescription@ally:
+		Description: actor-mccapitol.captured-desc
+		ValidRelationships: Ally
+	TooltipDescription@other:
+		Description: actor-mccapitol.capturable-desc
+		ValidRelationships: Neutral, Enemy
+
+MCTOWER:
+	Inherits: ^PxCashLandmark
+	Tooltip:
+		Name: actor-mctower.name
+	TooltipDescription@ally:
+		Description: actor-mctower.captured-desc
+		ValidRelationships: Ally
+	TooltipDescription@other:
+		Description: actor-mctower.capturable-desc
+		ValidRelationships: Neutral, Enemy
+
+MCPENTAGON:
+	Inherits: ^PxCashLandmark
+	Tooltip:
+		Name: actor-mcpentagon.name
+	TooltipDescription@ally:
+		Description: actor-mcpentagon.captured-desc
+		ValidRelationships: Ally
+	TooltipDescription@other:
+		Description: actor-mcpentagon.capturable-desc
+		ValidRelationships: Neutral, Enemy
+
+MCRUSHMORE:
+	Inherits: ^PxCashLandmark
+	Tooltip:
+		Name: actor-mcrushmore.name
+	TooltipDescription@ally:
+		Description: actor-mcrushmore.captured-desc
+		ValidRelationships: Ally
+	TooltipDescription@other:
+		Description: actor-mcrushmore.capturable-desc
+		ValidRelationships: Neutral, Enemy
+
+# Washington D.C. landmarks; the Washington Monument pays twice as much
+DCLINCOLN:
+	Inherits: ^PxCashLandmark
+	Tooltip:
+		Name: actor-dclincoln.name
+	TooltipDescription@ally:
+		Description: actor-dclincoln.captured-desc
+		ValidRelationships: Ally
+	TooltipDescription@other:
+		Description: actor-dclincoln.capturable-desc
+		ValidRelationships: Neutral, Enemy
+
+DCWHITEHOUSE:
+	Inherits: ^PxCashLandmark
+	Tooltip:
+		Name: actor-dcwhitehouse.name
+	TooltipDescription@ally:
+		Description: actor-dcwhitehouse.captured-desc
+		ValidRelationships: Ally
+	TooltipDescription@other:
+		Description: actor-dcwhitehouse.capturable-desc
+		ValidRelationships: Neutral, Enemy
+
+DCCAPITOL:
+	Inherits: ^PxCashLandmark
+	Tooltip:
+		Name: actor-dccapitol.name
+	TooltipDescription@ally:
+		Description: actor-dccapitol.captured-desc
+		ValidRelationships: Ally
+	TooltipDescription@other:
+		Description: actor-dccapitol.capturable-desc
+		ValidRelationships: Neutral, Enemy
+
+DCJEFFERSON:
+	Inherits: ^PxCashLandmark
+	Tooltip:
+		Name: actor-dcjefferson.name
+	TooltipDescription@ally:
+		Description: actor-dcjefferson.captured-desc
+		ValidRelationships: Ally
+	TooltipDescription@other:
+		Description: actor-dcjefferson.capturable-desc
+		ValidRelationships: Neutral, Enemy
+
+DCMONUMENT:
+	Inherits: ^PxCashLandmark
+	CashTrickler:
+		Amount: 500
+	GivesCashOnCapture:
+		Amount: 1000
+	Tooltip:
+		Name: actor-dcmonument.name
+	TooltipDescription@ally:
+		Description: actor-dcmonument.captured-desc
+		ValidRelationships: Ally
+	TooltipDescription@other:
+		Description: actor-dcmonument.capturable-desc
+		ValidRelationships: Neutral, Enemy
 
 BR1:
 	Inherits: ^Bridge
