@@ -35,13 +35,13 @@ namespace OpenRA.Mods.RAPX.Traits
 		[Desc("Glow opacity per kind.")]
 		public readonly Dictionary<string, float> Alpha = new()
 		{
-			{ "lamp", 0.22f }, { "neon", 0.38f }, { "fire", 0.42f }, { "blink", 0.9f }, { "steady", 0.25f }, { "search", 0.28f }
+			{ "lamp", 0.34f }, { "neon", 0.38f }, { "fire", 0.42f }, { "blink", 0.9f }, { "steady", 0.25f }, { "search", 0.28f }
 		};
 
 		[Desc("Glow size per kind (multiplied by the light's own size).")]
 		public readonly Dictionary<string, float> Size = new()
 		{
-			{ "lamp", 1.1f }, { "neon", 1.2f }, { "fire", 1.0f }, { "blink", 0.5f }, { "steady", 1.2f }, { "search", 1.6f }
+			{ "lamp", 1.35f }, { "neon", 1.2f }, { "fire", 1.0f }, { "blink", 0.5f }, { "steady", 1.2f }, { "search", 1.6f }
 		};
 
 		[Desc("Share of street lamps (percent) that are faulty and stutter.")]
@@ -179,7 +179,8 @@ namespace OpenRA.Mods.RAPX.Traits
 
 				default:
 				{
-					// Street lamps: a faint hum; a few faulty ones drop out now and then
+					// Street lamps: a slow warm breathing of the glow (each lamp on its own rhythm), with the halo
+					// swelling a little as it brightens; a few faulty ones stutter now and then
 					if (Hash((int)l.Seed, 1, 2) % 100 < (uint)info.FaultyLamps)
 					{
 						var dropout = Noise(t * 3f + phase, l.Seed) < 0.3f;
@@ -187,7 +188,9 @@ namespace OpenRA.Mods.RAPX.Traits
 						return (dropout ? (buzz < 0.5f ? 0.1f : 0.6f) : 1f, 1f);
 					}
 
-					return (0.95f + 0.05f * MathF.Sin(t * 2f + phase), 1f);
+					var breathe = 0.5f + 0.5f * MathF.Sin(t * (1.1f + 0.6f * Unit(l.Seed >> 4)) + phase);
+					var shimmer = 0.04f * MathF.Sin(t * 13f + phase * 3f);
+					return (0.68f + 0.32f * breathe + shimmer, 0.9f + 0.18f * breathe);
 				}
 			}
 		}
@@ -269,7 +272,7 @@ namespace OpenRA.Mods.RAPX.Traits
 					alpha * a, tint, TintModifiers.None, false, WAngle.Zero);
 
 				// A small hot core makes neon, beacons and fires read as light sources
-				if (l.Kind is "neon" or "blink" or "fire")
+				if (l.Kind is "neon" or "blink" or "fire" or "lamp")
 					yield return new SpriteRenderable(glow.GetSprite(0), pos, WVec.Zero, 0, null, glow.Scale * size * sf * 0.3f,
 						MathF.Min(1f, alpha * a * 1.6f), tint, TintModifiers.None, false, WAngle.Zero);
 			}

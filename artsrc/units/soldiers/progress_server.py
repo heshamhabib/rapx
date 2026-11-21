@@ -2,7 +2,7 @@
 """
 Live progress page for the 3D soldier renders (build_soldier.sh), the ChatGPT image queue and (second tab)
 the Sketchfab model renders (artsrc/units/meshes/make_sketchfab.py); the "Ironward map" tab follows the ChatGPT
-repaint of the Ironward backdrop (artsrc/maps/ironward/repaint.py).
+repaints of the painted maps (Ironward, Monument City: artsrc/maps/<map>/repaint.py).
 
   python3 artsrc/units/soldiers/progress_server.py [port]      # then open http://localhost:8765
 
@@ -459,94 +459,138 @@ def system():
     return out
 
 
-# ---- Ironward repaint (artsrc/maps/ironward/repaint.py)
-IW_BUILD = os.path.join(ROOT, "artsrc", "maps", "ironward", "build")
-IW_TILES = os.path.join(IW_BUILD, "tiles")
-IW_PAINT = os.path.join(ROOT, "assets", "maps", "ironward", "paint")
-IW_THUMBS = os.path.join(IW_BUILD, "thumbs")
-IW_LOG = os.path.join(ROOT, "assets", "generate_images.log")
-_iw_scores = {}
+# ---- Painted-map repaints (artsrc/maps/<map>/repaint.py): one tab per map
+IMG_LOG = os.path.join(ROOT, "assets", "generate_images.log")
 
 
-def iw_thumb(kind, name):
-    """Small JPEG of a render tile or a repainted piece, cached by modification time."""
-    src = os.path.join(IW_TILES if kind == "render" else IW_PAINT, name)
+def _map(key, folder, title, cells, steps, cells_y=None):
+    build = os.path.join(ROOT, "artsrc", "maps", folder, "build")
+    return {"key": key, "folder": folder, "title": title, "cells": cells, "cells_y": cells_y or cells, "build": build,
+            "tiles": os.path.join(build, "tiles"), "thumbs": os.path.join(build, "thumbs"),
+            "assets": os.path.join(ROOT, "assets", "maps", folder),
+            "paint": os.path.join(ROOT, "assets", "maps", folder, "paint"), "steps": steps}
+
+
+MAPS = {
+    "ironward": _map("ironward", "ironward", "Ironward: ChatGPT repaint (style A)", 128, lambda m, done, total: [
+        ("Animated lights in the game (PxBackdropLights)", True),
+        ("Sketchfab buildings in the Blender render", True),
+        (f"Repaint all {total} pieces with ChatGPT", done == total),
+        ("Drift check and review of every piece", done == total),
+        ("Blend the pieces into one backdrop", os.path.exists(os.path.join(m["build"], "backdrop-painted.png"))),
+        ("Water mask matched to the painted canals, cut into the map", done == total),
+    ]),
+    "monument": _map("monument", "monument", "Monument City: ChatGPT repaint", 96, lambda m, done, total: [
+        ("Playable map: layout, 4 capturable landmarks, route check", True),
+        ("Blender render with 13 Sketchfab models and the Pentagon, in the game", True),
+        ("4 style frames painted by ChatGPT", all(os.path.exists(os.path.join(m["assets"], f"style-{k}.png")) for k in "abcd")),
+        ("You pick a style" + (" (picked: " + open(os.path.join(m["assets"], "chosen-style.txt")).read().strip().upper() + ")"
+                               if os.path.exists(os.path.join(m["assets"], "chosen-style.txt")) else ""),
+         os.path.exists(os.path.join(m["assets"], "chosen-style.txt"))),
+        (f"Repaint all {total} pieces with ChatGPT", total > 0 and done == total),
+        ("Drift check, review, blend", os.path.exists(os.path.join(m["build"], "backdrop-painted.png"))),
+        ("Water mask matched to the painted harbour, cut into the map", False),
+        ("Wind in the grass (PxBackdropGrass) mask from the painted lawns", False),
+    ]),
+    "dc": _map("dc", "dc", "Washington D.C.: build and ChatGPT repaint (golden sunset)", 128, lambda m, done, total: [
+        ("Plan approved: 4 players, golden sunset, the Monument pays most", True),
+        ("Landmark models downloaded from Sketchfab (White House, Monument, Jefferson, Bridge, Capitol)",
+         os.path.isdir(os.path.join(ROOT, "assets", "inbox", "dc-landmarks"))),
+        ("Playable map: layout, 5 capturable landmarks, route and build-area checks",
+         os.path.exists(os.path.join(ROOT, "mods", "rapx", "maps", "washington-dc", "map.bin"))),
+        ("Landmark and city building library (prep_buildings.py)", os.path.exists(os.path.join(m["build"], "buildings.json"))),
+        ("Blender render at golden sunset", os.path.exists(os.path.join(m["build"], "backdrop.png"))),
+        ("Render cut into the map (playable)", os.path.exists(os.path.join(ROOT, "mods", "rapx", "maps", "washington-dc", "backdrop-0-0.png"))),
+        (f"Repaint all {total} pieces with ChatGPT", total > 0 and done == total),
+        ("Drift check, review, blend", os.path.exists(os.path.join(m["build"], "backdrop-painted.png"))),
+        ("Water and grass masks, flags, cut into the map",
+         os.path.exists(os.path.join(ROOT, "mods", "rapx", "maps", "washington-dc", "grass-mask.png"))),
+    ], cells_y=96),
+}
+_scores = {}
+
+
+def map_thumb(m, kind, name):
+    """Small JPEG of a render tile, a repainted piece or a style frame, cached by modification time."""
+    src = os.path.join({"render": m["tiles"], "paint": m["paint"], "style": m["assets"]}[kind], name)
     if not os.path.exists(src):
         return None
-    os.makedirs(IW_THUMBS, exist_ok=True)
-    out = os.path.join(IW_THUMBS, f"{kind}-{name[:-4]}.jpg")
+    os.makedirs(m["thumbs"], exist_ok=True)
+    out = os.path.join(m["thumbs"], f"{kind}-{name[:-4]}.jpg")
     if not os.path.exists(out) or os.path.getmtime(out) < os.path.getmtime(src):
         from PIL import Image
-        Image.open(src).convert("RGB").resize((384, 256), Image.LANCZOS).save(out, quality=82)
+        Image.open(src).convert("RGB").resize((384, 256) if kind != "style" else (576, 384), Image.LANCZOS).save(out, quality=82)
     return out
 
 
-def iw_score(name):
-    """Drift score of a repainted piece (repaint.py's layout correlation), cached by modification time."""
-    path = os.path.join(IW_PAINT, name)
-    key = (name, os.path.getmtime(path))
-    if key not in _iw_scores:
+def map_score(m, name):
+    """Drift score of a repainted piece (the map's repaint.py layout correlation), cached by modification time."""
+    path = os.path.join(m["paint"], name)
+    key = (m["key"], name, os.path.getmtime(path))
+    if key not in _scores:
         try:
             import importlib.util
-            spec = importlib.util.spec_from_file_location("iw_repaint", os.path.join(ROOT, "artsrc", "maps", "ironward", "repaint.py"))
+            spec = importlib.util.spec_from_file_location(m["key"] + "_repaint", os.path.join(ROOT, "artsrc", "maps", m["folder"], "repaint.py"))
             mod = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(mod)
-            _iw_scores[key] = round(mod.score(name), 2)
+            _scores[key] = round(mod.score(name), 2)
         except Exception:
-            _iw_scores[key] = None
-    return _iw_scores[key]
+            _scores[key] = None
+    return _scores[key]
 
 
-def ironward_status():
-    if not os.path.isdir(IW_TILES):
-        return None
-    names = sorted(f for f in os.listdir(IW_TILES) if f.endswith(".png"))
+def repaint_status(mkey):
+    m = MAPS[mkey]
+    if not os.path.isdir(m["tiles"]):
+        if mkey != "dc":
+            return None
+        os.makedirs(m["tiles"], exist_ok=True)
+    folder = m["folder"]
+    names = sorted(f for f in os.listdir(m["tiles"]) if f.endswith(".png"))
     pieces = []
     for n in names:
         x, y = (int(v) for v in n[5:-4].split("-"))
-        painted = os.path.exists(os.path.join(IW_PAINT, n))
-        pieces.append({"name": n, "x": x, "y": y, "done": painted, "score": iw_score(n) if painted else None,
-                       "mtime": os.path.getmtime(os.path.join(IW_PAINT, n)) if painted else 0})
-    # Generator log: the piece being painted now and the time per piece
+        painted = os.path.exists(os.path.join(m["paint"], n))
+        pieces.append({"name": n, "x": x, "y": y, "done": painted, "score": map_score(m, n) if painted else None,
+                       "mtime": os.path.getmtime(os.path.join(m["paint"], n)) if painted else 0})
+    # Generator log: the image being painted now (a piece or a style frame) and the time per image
     current, started, durations, finished, limit = None, None, [], False, None
-    if os.path.exists(IW_LOG):
-        with open(IW_LOG, errors="replace") as f:
+    if os.path.exists(IMG_LOG):
+        with open(IMG_LOG, errors="replace") as f:
             lines = f.readlines()[-400:]
         for line in lines:
-            if "ironward/paint/" not in line and "finished:" not in line and "limit" not in line.lower():
+            if f"{folder}/" not in line and "finished:" not in line and "limit" not in line.lower():
                 continue
-            m = re.search(r"\] ironward/paint/(tile-\d+-\d+) .*attempt", line)
-            if m:
-                current = m.group(1) + ".png"
+            mm = re.search(rf"\] {folder}/((?:paint/)?(?:tile-\d+-\d+|style-\w)) .*attempt", line)
+            if mm:
+                current = mm.group(1).replace("paint/", "") + ".png"
                 started = time.mktime(time.strptime(line[:19], "%Y-%m-%d %H:%M:%S"))
                 finished = False
-            m = re.search(r"ironward/paint/tile-\d+-\d+\.png \((\d+)s\)", line)
-            if m:
-                durations.append(int(m.group(1)))
+            mm = re.search(rf"{folder}/(?:paint/)?(?:tile-\d+-\d+|style-\w)\.png \((\d+)s\)", line)
+            if mm:
+                durations.append(int(mm.group(1)))
             if "finished:" in line and current:
                 finished = True
             if re.search(r"usage limit|rate limit", line, re.I):
                 limit = line[11:19]
-    running = any("ironward-repaint-prompts" in j.get("cmd", "") for j in active_jobs_raw())
+    cmds = [j.get("cmd", "") for j in active_jobs_raw()]
+    running = any(f"{folder}-repaint-prompts" in c or f"{folder}-prompts" in c for c in cmds)
     done = sum(p["done"] for p in pieces)
     avg = sum(durations[-12:]) / len(durations[-12:]) if durations else 80
-    remaining = len(pieces) - done
+    styles = [{"name": f"style-{k}.png", "done": os.path.exists(os.path.join(m["assets"], f"style-{k}.png"))}
+              for k in "abcd"] if mkey == "monument" else []
+    painting_styles = running and any(f"{folder}-prompts" in c and "repaint" not in c for c in cmds)
+    remaining = (sum(not s["done"] for s in styles) if painting_styles else len(pieces) - done)
     eta = remaining * avg - (time.time() - started if running and started else 0) if remaining else 0
     newest = max((p for p in pieces if p["done"]), key=lambda p: p["mtime"], default=None)
     drift = [p["name"] for p in pieces if p["score"] is not None and p["score"] < 0.5]
-    steps = [
-        ("Animated lights in the game (PxBackdropLights, 387 lights)", True),
-        ("Style A painted textures in the Blender render", True),
-        ("Repaint test pieces checked", True),
-        (f"Repaint all {len(pieces)} pieces with ChatGPT", done == len(pieces)),
-        ("Drift check and review of every piece", False),
-        ("Blend the pieces into one backdrop", os.path.exists(os.path.join(IW_BUILD, "backdrop-painted.png"))),
-        ("Match the moving-water mask to the painted canals, cut into the map", False),
-    ]
-    return {"pieces": pieces, "done": done, "total": len(pieces), "running": running and not finished,
-            "current": current if running and not finished else None, "avg": avg, "eta": max(0, eta),
-            "newest": newest["name"] if newest else None, "drift": drift, "limit": limit,
-            "steps": [{"name": s, "done": d} for s, d in steps]}
+    if not names:
+        pieces = []
+    return {"key": mkey, "title": m["title"], "cells": m["cells"], "cells_y": m["cells_y"], "pieces": pieces, "done": done, "total": len(pieces),
+            "running": running and not finished, "current": current if running and not finished else None,
+            "phase": "styles" if painting_styles else "pieces", "styles": styles,
+            "avg": avg, "eta": max(0, eta), "newest": newest["name"] if newest else None, "drift": drift, "limit": limit,
+            "steps": [{"name": s, "done": d} for s, d in m["steps"](m, done, len(pieces))]}
 
 
 def active_jobs_raw():
@@ -598,7 +642,8 @@ def status():
     soldiers = sorted(d for d in os.listdir(RENDER) if os.path.isdir(os.path.join(RENDER, d))) if os.path.isdir(RENDER) else []
     jobs = active_jobs()
     return {"time": time.strftime("%H:%M:%S"), "system": system(), "jobs": jobs, "overview": overview(jobs),
-            "sketchfab": sketchfab_status(jobs), "loadouts": loadout_status(), "ironward": ironward_status(),
+            "sketchfab": sketchfab_status(jobs), "loadouts": loadout_status(), "ironward": repaint_status("ironward"),
+            "monument": repaint_status("monument"), "dc": repaint_status("dc"),
             "soldiers": [soldier_status(s) for s in soldiers], "images": image_queue(), "push": push_status()}
 
 
@@ -709,7 +754,7 @@ nav.tabs button .badge { margin-left:6px; font-size:12px; color:var(--muted); fo
 @media (max-width:520px) { #sys { left:16px; right:16px; width:auto; } main { padding-bottom:200px; } }
 </style></head><body>
 <header><h1>Render Progress</h1><span class="sub" id="clock">connecting…</span></header>
-<nav class="tabs" id="tabs"><button data-tab="soldiers">Soldiers &amp; robots</button><button data-tab="models">New 3D models<span class="badge" id="badge-models"></span></button><button data-tab="loadouts">Jet loadouts<span class="badge" id="badge-loadouts"></span></button><button data-tab="ironward">Ironward map<span class="badge" id="badge-ironward"></span></button></nav>
+<nav class="tabs" id="tabs"><button data-tab="soldiers">Soldiers &amp; robots</button><button data-tab="models">New 3D models<span class="badge" id="badge-models"></span></button><button data-tab="loadouts">Jet loadouts<span class="badge" id="badge-loadouts"></span></button><button data-tab="ironward">Ironward map<span class="badge" id="badge-ironward"></span></button><button data-tab="monument">Monument City<span class="badge" id="badge-monument"></span></button><button data-tab="dc">Washington D.C.<span class="badge" id="badge-dc"></span></button></nav>
 <main id="main"><div class="card empty">Waiting for data…</div></main>
 <aside id="sys"><h3>Laptop <span class="state" id="sys-state">…</span></h3><div class="temp" id="sys-temp">– °C</div>
 <div class="row"><span>CPU hottest / avg</span><b id="sys-cpu">–</b></div>
@@ -831,33 +876,38 @@ function loadouts(L) {
     '<div class="group">Jets</div><div class="models">' + cards + '</div></section>';
 }
 function ironward(W) {
-  if (!W) return '<section class="card">No Ironward repaint pieces yet.</section>';
+  if (!W) return '<section class="card">No repaint pieces yet.</section>';
+  const N = W.cells, NY = W.cells_y || W.cells, base = '/iimg/' + W.key + '/';
   const pct = W.total ? 100 * W.done / W.total : 0, all = W.done === W.total;
   const tiles = W.pieces.map(p => {
     const kind = p.done ? "paint" : "render";
     const cur = p.name === W.current;
     return '<div class="iw-t' + (p.done ? " ok" : "") + (cur ? " cur" : "") + (p.score != null && p.score < 0.5 ? " bad" : "") +
-      '" style="left:' + (p.x / 128 * 100) + '%;top:' + (p.y / 128 * 100) + '%;z-index:' + (p.done ? 2 : 1) + (cur ? ';z-index:3' : '') +
-      '" title="' + esc(p.name) + (p.score != null ? " · drift score " + p.score : "") + '"><img loading="lazy" src="/iimg/' + kind + '/' + encodeURI(p.name) +
+      '" style="left:' + (p.x / N * 100) + '%;top:' + (p.y / NY * 100) + '%;width:' + (2400 / N) + '%;height:' + (1600 / NY) + '%;z-index:' + (p.done ? 2 : 1) + (cur ? ';z-index:3' : '') +
+      '" title="' + esc(p.name) + (p.score != null ? " · drift score " + p.score : "") + '"><img loading="lazy" src="' + base + kind + '/' + encodeURI(p.name) +
       '?' + (p.mtime || 0) + '" alt=""></div>';
   }).join("");
   const nw = W.newest;
-  const cmp = nw ? '<div class="iw-cmp"><figure><img src="/iimg/render/' + encodeURI(nw) + '" alt=""><figcaption>Blender render</figcaption></figure>' +
-    '<figure><img src="/iimg/paint/' + encodeURI(nw) + '?' + Date.now().toString().slice(0, -4) + '" alt=""><figcaption>ChatGPT repaint · ' + esc(nw) + '</figcaption></figure></div>' : '';
+  const styles = (W.styles || []).length ? '<div class="group">Style frames (the same crop painted 4 ways; you pick one)</div><div class="iw-cmp" style="grid-template-columns:repeat(4,1fr)">' +
+    W.styles.map(s => '<figure>' + (s.done ? '<img src="' + base + 'style/' + s.name + '?' + Date.now().toString().slice(0, -4) + '" alt="">' :
+      '<div style="aspect-ratio:3/2;border:1px dashed var(--line);border-radius:6px;display:grid;place-items:center;color:var(--muted);font-size:12px">' +
+      (W.current === s.name ? 'painting now…' : 'waiting') + '</div>') + '<figcaption>' + esc(s.name.replace(".png", "").replace("style-", "Style ").toUpperCase()) + '</figcaption></figure>').join("") + '</div>' : '';
+  const cmp = nw ? '<div class="iw-cmp"><figure><img src="' + base + 'render/' + encodeURI(nw) + '" alt=""><figcaption>Blender render</figcaption></figure>' +
+    '<figure><img src="' + base + 'paint/' + encodeURI(nw) + '?' + Date.now().toString().slice(0, -4) + '" alt=""><figcaption>ChatGPT repaint · ' + esc(nw) + '</figcaption></figure></div>' : '';
   const steps = W.steps.map(s => '<li style="margin:4px 0">' + (s.done ? '<span style="color:#8fdca7">&#10003;</span> ' : '<span style="color:#9097a3">&#9675;</span> ') +
     '<span style="' + (s.done ? '' : 'color:var(--text)') + '">' + esc(s.name) + '</span></li>').join("");
   const scores = W.pieces.filter(p => p.score != null).map(p => p.score);
   const avgScore = scores.length ? (scores.reduce((a, b) => a + b, 0) / scores.length).toFixed(2) : "–";
   const timer = W.eta > 0 && W.running ? '<span>time left <b class="countdown" data-end="' + (Date.now() + W.eta * 1000) + '">' + clock(W.eta) +
     '</b></span><span>finishes about <b>' + new Date(Date.now() + W.eta * 1000).toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"}) + '</b></span>' : '';
-  return '<section class="card"><div class="title"><h2>Ironward: ChatGPT repaint (style A)</h2><span class="pill' + (W.running ? " live" : all ? " done" : "") + '">' +
-    (W.running ? "painting " + esc(W.current || "") : all ? "all pieces painted" : "stopped") + '</span></div>' +
+  return '<section class="card"><div class="title"><h2>' + esc(W.title) + '</h2><span class="pill' + (W.running ? " live" : all ? " done" : "") + '">' +
+    (W.running ? "painting " + esc(W.current || "") : all ? "all pieces painted" : W.done ? "stopped" : "waiting") + '</span></div>' + styles +
     '<div class="big">' + pct.toFixed(0) + '%</div><div class="stats"><span><b>' + W.done + '</b> of ' + W.total + ' pieces</span>' +
     '<span><b>' + Math.round(W.avg) + ' s</b> per piece</span>' + timer + '<span>average drift score <b>' + avgScore + '</b> (0.5+ = faithful)</span>' +
     (W.drift.length ? '<span style="color:#ff8f86"><b>' + W.drift.length + '</b> drifted, will be redone</span>' : '') +
     (W.limit ? '<span style="color:#f2c46b">ChatGPT limit hit at <b>' + esc(W.limit) + '</b></span>' : '') + '</div>' +
     '<div class="bar' + (all ? " ok" : "") + '"><i style="width:' + pct.toFixed(1) + '%"></i></div>' +
-    '<div class="group">The map filling in (dim = still the Blender render, red outline = painting now)</div><div class="iw-map">' + tiles + '</div>' +
+    '<div class="group">The map filling in (dim = still the Blender render, red outline = painting now)</div><div class="iw-map" style="aspect-ratio:' + N + '/' + NY + '">' + tiles + '</div>' +
     (cmp ? '<div class="group">Latest piece</div>' + cmp : '') +
     '<div class="group">Tasks</div><ul style="list-style:none;padding-left:4px;margin:6px 0 0">' + steps + '</ul></section>';
 }
@@ -896,9 +946,11 @@ function draw(d) {
   document.getElementById("badge-models").textContent = m && m.total ? m.done + "/" + m.total : "";
   const L = d.loadouts;
   document.getElementById("badge-loadouts").textContent = L && L.total ? L.done + "/" + L.total : "";
-  const W = d.ironward;
+  const W = d.ironward, MC = d.monument, DC = d.dc;
+  document.getElementById("badge-dc").textContent = DC && DC.total ? DC.done + "/" + DC.total : "";
   document.getElementById("badge-ironward").textContent = W && W.total ? W.done + "/" + W.total : "";
-  document.getElementById("main").innerHTML = pushPanel(d.push) + jobsPanel(d.jobs) + (tab === "ironward" ? ironward(W) : tab === "loadouts" ? loadouts(L) : tab === "models" ? models(m) :
+  document.getElementById("badge-monument").textContent = MC && MC.total ? MC.done + "/" + MC.total : "";
+  document.getElementById("main").innerHTML = pushPanel(d.push) + jobsPanel(d.jobs) + (tab === "ironward" ? ironward(W) : tab === "monument" ? ironward(MC) : tab === "dc" ? ironward(DC) : tab === "loadouts" ? loadouts(L) : tab === "models" ? models(m) :
     overview(d.overview) + (d.soldiers.length ? d.soldiers.map(soldier).join("") : '<div class="card empty">No renders yet.</div>') + images(d.images));
 }
 function level(v, warm, hot) { return v == null ? "ok" : v >= hot ? "hot" : v >= warm ? "warm" : "ok"; }
@@ -952,10 +1004,11 @@ class Handler(BaseHTTPRequestHandler):
             self.send(200, json.dumps(status()).encode(), "application/json")
         elif path.startswith("/iimg/"):
             parts = unquote(path[6:]).split("/")
-            if len(parts) != 2 or parts[0] not in ("render", "paint") or not re.fullmatch(r"tile-\d+-\d+\.png", parts[1]):
+            if (len(parts) != 3 or parts[0] not in MAPS or parts[1] not in ("render", "paint", "style")
+                    or not re.fullmatch(r"(tile-\d+-\d+|style-[a-d])\.png", parts[2])):
                 self.send(404, b"not found", "text/plain")
                 return
-            thumb = iw_thumb(parts[0], parts[1])
+            thumb = map_thumb(MAPS[parts[0]], parts[1], parts[2])
             if not thumb:
                 self.send(404, b"not found", "text/plain")
                 return

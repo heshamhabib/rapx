@@ -14,6 +14,9 @@ imports) into assets/inbox/new_3d_models_2/, plus a credits list for mods/rapx/C
   python3 tools/download_sketchfab.py --airdef     air-defence tiers 2-4 (IDEA-26 B2) into assets/inbox/airdef/
   python3 tools/download_sketchfab.py --missiles   real missile models (fired sprites and jet stores) into assets/inbox/missiles/
   python3 tools/download_sketchfab.py --ironward   city buildings for the Ironward painted map into assets/inbox/ironward-buildings/
+  python3 tools/download_sketchfab.py --vegetation grass, flowers and shrubs scattered on painted-map lawns into assets/inbox/vegetation/
+  python3 tools/download_sketchfab.py --dc         Washington D.C. landmarks into assets/inbox/dc-landmarks/
+  python3 tools/download_sketchfab.py --monument   American landmarks for the Monument City painted map into assets/inbox/monument-landmarks/
 
 Sketchfab only hands out downloads to a logged-in account: put your API token (sketchfab.com -> Settings ->
 Password & API -> API Token) in ~/.sketchfab_token or the SKETCHFAB_TOKEN environment variable.
@@ -212,6 +215,49 @@ IRONWARD = [
 ]
 
 
+# American landmarks for the Monument City painted map (artsrc/maps/monument). The Pentagon, the Virginia State Capitol
+# and the Philtower are built in Blender (no downloadable model).
+MONUMENT = [
+    ("capitol", "US Capitol", "c105090aa66448128a0b8541ba7014c2"),            # Dimiter
+    ("liberty", "Statue of Liberty", "84094e8d5e724b5c882cf576ca12e44e"),     # Gravity Jack
+    ("rushmore", "Mount Rushmore", "107c6fb1d2834bb4bf8f86cb907dc9fc"),       # jerryfisher (studio model; the drone scan d19d9343... read badly from above)
+    ("willis", "Willis (Sears) Tower", "67d445f8cab84e75af0a6f031fc55e45"),   # NanoRay
+    ("flatiron", "Flatiron Building", "89a30c60bcb2472b88f49717e2f7cdf3"),    # alban
+    ("louisiana", "Louisiana State House", "92de767acc3548049d06b395b510dee6"),  # novusod, 26828 faces
+    ("chrysler", "Chrysler Building", "82832cf291434b37b1887931da27ae00"),  # Polskaball, 3042 faces
+    ("montgomery", "Montgomery Ward Tower Building", "8c753bdec75e41aeb1af609148735305"),  # hamma085, 10410 faces
+    ("downtown", "Downtown Buildings Set - Low Poly model", "7378e7fb9c914c39880d9913a6f4e1d6"),  # Daniel Zhabotinsky, 45584 faces
+    ("chicago", "Chicago buildings", "950b3d8a998c41ecb06e6ba85da3e1f6"),  # 99.Miles, 2273 faces
+    ("classicalny", "Low Poly classical New York City homes", "449d873dcca0409bb73b6b801ff36bed"),  # 99.Miles, 8146 faces
+    ("residential", "Low Poly Residential Buildings", "302766f5645a41ed8c6b9c35c2020687"),  # Arsen Ismailov, 11252 faces
+    ("depot", "Milwaukee Road Depot", "9156c959180c4429a7f4bd16c8578ca3"),  # hamma085, 8344 faces
+    ("theater", "Orpheo's Palace", "16cb7f8347084251976f4af893e65722"),  # Michael Bastianelli, 65752 faces
+]
+
+
+# Grass clumps, wildflowers and shrubs scattered over the lawns of the painted maps (artsrc/maps/monument/build_backdrop.py)
+VEGETATION = [
+    ("grass", "Realistic Grass Pack For Games Free!", "9b958d613e9a44dbba580748e7a1789c"),  # Nicholas-3D
+    ("grasslp", "Grass Pack LP", "3352f9d646ec4f25b8aeb28e4232814a"),  # Nicothin
+    ("daisy", "Daisy models pack (realistic, optimized)", "0748471f99f2416a8b66b522c293720f"),  # LOLIPOP
+    ("flowers", "flowers_pack_1", "a23d370f7e724cc6b831263d5d51bceb"),  # Daniel.Marquez2
+    ("drygrass", "Dry grass", "d1484537470441b999d37077aeb9b47a"),  # Pixel-bit
+    ("shrubm", "Low Poly Shrub - Medium Texture", "04e29bcb52194fc9abb7e5bc0bdcb619"),  # Natural_Disbuster
+    ("shrubs", "Low Poly Shrub - Small Texture", "6e16ec47d7c246a69efffb9e857165ed"),  # Natural_Disbuster
+    ("bush", "Small bush", "f6ed4c70fc024ac88e8e6a19991695af"),  # yanix
+]
+
+
+# Washington D.C. painted map (artsrc/maps/dc): landmarks with a downloadable model. The Capitol comes from MONUMENT;
+# the Lincoln Memorial is built in Blender.
+DC = [
+    ("whitehouse", "The white house", "6ec9585305204f0d8af4b0ff237b9397"),  # Pieter Ferreira
+    ("monument", "Washington Monument", "db721e12a4524d59a7410e23a00170a0"),  # bwierzbo
+    ("jefferson", "Jefferson Memorial", "1297914d2ccf46af8869be161546d911"),  # asandker
+    ("bridge", "Arlington Memorial Bridge - Colin.F", "0385d925b1a34b708b4218d966573248"),  # jspencer
+]
+
+
 def token():
     t = os.environ.get("SKETCHFAB_TOKEN")
     path = os.path.expanduser("~/.sketchfab_token")
@@ -268,6 +314,12 @@ def main():
         models, OUT = LAUNCHERS, os.path.join(ROOT, "assets", "inbox", "launchers")
     if "--ironward" in sys.argv:
         models, OUT = IRONWARD, os.path.join(ROOT, "assets", "inbox", "ironward-buildings")
+    if "--vegetation" in sys.argv:
+        models, OUT = VEGETATION, os.path.join(ROOT, "assets", "inbox", "vegetation")
+    if "--dc" in sys.argv:
+        models, OUT = DC, os.path.join(ROOT, "assets", "inbox", "dc-landmarks")
+    if "--monument" in sys.argv:
+        models, OUT = MONUMENT, os.path.join(ROOT, "assets", "inbox", "monument-landmarks")
     if "--cruisers" in sys.argv:
         models, OUT = CRUISERS, os.path.join(ROOT, "assets", "inbox", "cruisers")
     if args:

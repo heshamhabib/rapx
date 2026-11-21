@@ -107,6 +107,7 @@
 	TerrainRenderer:
 	PxMapBackdrop:
 	PxBackdropWater:
+	PxBackdropGrass:
 	PxBackdropLights:
 	PxHDTiles:
 	ChronoVortexRenderer:

@@ -74,6 +74,7 @@ __pycache__/
 /artsrc/**/*.7z
 /artsrc/**/*.zip
 /artsrc/maps/*/build/
+/artsrc/landmark-flag/build/
 /artsrc/audio/firearms/
 /artsrc/textures/*/
 /artsrc/maps/*/osm/
