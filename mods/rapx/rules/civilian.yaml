@@ -610,6 +610,66 @@ DCMONUMENT:
 		Description: actor-dcmonument.capturable-desc
 		ValidRelationships: Neutral, Enemy
 
+# Egypt (Cairo and Giza) landmarks; the Great Pyramid pays twice as much
+EGPYRAMID:
+	Inherits: ^PxCashLandmark
+	CashTrickler:
+		Amount: 500
+	GivesCashOnCapture:
+		Amount: 1000
+	Tooltip:
+		Name: actor-egpyramid.name
+	TooltipDescription@ally:
+		Description: actor-egpyramid.captured-desc
+		ValidRelationships: Ally
+	TooltipDescription@other:
+		Description: actor-egpyramid.capturable-desc
+		ValidRelationships: Neutral, Enemy
+
+EGSPHINX:
+	Inherits: ^PxCashLandmark
+	Tooltip:
+		Name: actor-egsphinx.name
+	TooltipDescription@ally:
+		Description: actor-egsphinx.captured-desc
+		ValidRelationships: Ally
+	TooltipDescription@other:
+		Description: actor-egsphinx.capturable-desc
+		ValidRelationships: Neutral, Enemy
+
+EGCAIROTOWER:
+	Inherits: ^PxCashLandmark
+	Tooltip:
+		Name: actor-egcairotower.name
+	TooltipDescription@ally:
+		Description: actor-egcairotower.captured-desc
+		ValidRelationships: Ally
+	TooltipDescription@other:
+		Description: actor-egcairotower.capturable-desc
+		ValidRelationships: Neutral, Enemy
+
+EGMUSEUM:
+	Inherits: ^PxCashLandmark
+	Tooltip:
+		Name: actor-egmuseum.name
+	TooltipDescription@ally:
+		Description: actor-egmuseum.captured-desc
+		ValidRelationships: Ally
+	TooltipDescription@other:
+		Description: actor-egmuseum.capturable-desc
+		ValidRelationships: Neutral, Enemy
+
+EGKARNAK:
+	Inherits: ^PxCashLandmark
+	Tooltip:
+		Name: actor-egkarnak.name
+	TooltipDescription@ally:
+		Description: actor-egkarnak.captured-desc
+		ValidRelationships: Ally
+	TooltipDescription@other:
+		Description: actor-egkarnak.capturable-desc
+		ValidRelationships: Neutral, Enemy
+
 BR1:
 	Inherits: ^Bridge
 	Bridge:

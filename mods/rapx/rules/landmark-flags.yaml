@@ -1065,3 +1065,498 @@ DCJEFFERSON:
 		Palette: terrain
 		Offset: -2662,1024,0
 		RequiresCondition: enabled && flag-iran
+
+EGPYRAMID:
+	Inherits@flags: ^PxLandmarkFactions
+	WithIdleOverlay@team:
+		Sequence: team
+		Palette: player
+		IsPlayerPalette: true
+		Offset: -2662,1024,0
+		RequiresCondition: enabled
+	WithIdleOverlay@allies:
+		Sequence: cloth-allies
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-allies
+	WithIdleOverlay@usa:
+		Sequence: cloth-usa
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-usa
+	WithIdleOverlay@england:
+		Sequence: cloth-england
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-england
+	WithIdleOverlay@france:
+		Sequence: cloth-france
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-france
+	WithIdleOverlay@germany:
+		Sequence: cloth-germany
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-germany
+	WithIdleOverlay@japan:
+		Sequence: cloth-japan
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-japan
+	WithIdleOverlay@southkorea:
+		Sequence: cloth-southkorea
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-southkorea
+	WithIdleOverlay@italy:
+		Sequence: cloth-italy
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-italy
+	WithIdleOverlay@egypt:
+		Sequence: cloth-egypt
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-egypt
+	WithIdleOverlay@soviet:
+		Sequence: cloth-soviet
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-soviet
+	WithIdleOverlay@russia:
+		Sequence: cloth-russia
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-russia
+	WithIdleOverlay@ukraine:
+		Sequence: cloth-ukraine
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-ukraine
+	WithIdleOverlay@cuba:
+		Sequence: cloth-cuba
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-cuba
+	WithIdleOverlay@india:
+		Sequence: cloth-india
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-india
+	WithIdleOverlay@china:
+		Sequence: cloth-china
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-china
+	WithIdleOverlay@turkey:
+		Sequence: cloth-turkey
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-turkey
+	WithIdleOverlay@pakistan:
+		Sequence: cloth-pakistan
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-pakistan
+	WithIdleOverlay@iran:
+		Sequence: cloth-iran
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-iran
+
+EGSPHINX:
+	Inherits@flags: ^PxLandmarkFactions
+	WithIdleOverlay@team:
+		Sequence: team
+		Palette: player
+		IsPlayerPalette: true
+		Offset: -1024,2662,0
+		RequiresCondition: enabled
+	WithIdleOverlay@allies:
+		Sequence: cloth-allies
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-allies
+	WithIdleOverlay@usa:
+		Sequence: cloth-usa
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-usa
+	WithIdleOverlay@england:
+		Sequence: cloth-england
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-england
+	WithIdleOverlay@france:
+		Sequence: cloth-france
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-france
+	WithIdleOverlay@germany:
+		Sequence: cloth-germany
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-germany
+	WithIdleOverlay@japan:
+		Sequence: cloth-japan
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-japan
+	WithIdleOverlay@southkorea:
+		Sequence: cloth-southkorea
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-southkorea
+	WithIdleOverlay@italy:
+		Sequence: cloth-italy
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-italy
+	WithIdleOverlay@egypt:
+		Sequence: cloth-egypt
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-egypt
+	WithIdleOverlay@soviet:
+		Sequence: cloth-soviet
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-soviet
+	WithIdleOverlay@russia:
+		Sequence: cloth-russia
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-russia
+	WithIdleOverlay@ukraine:
+		Sequence: cloth-ukraine
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-ukraine
+	WithIdleOverlay@cuba:
+		Sequence: cloth-cuba
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-cuba
+	WithIdleOverlay@india:
+		Sequence: cloth-india
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-india
+	WithIdleOverlay@china:
+		Sequence: cloth-china
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-china
+	WithIdleOverlay@turkey:
+		Sequence: cloth-turkey
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-turkey
+	WithIdleOverlay@pakistan:
+		Sequence: cloth-pakistan
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-pakistan
+	WithIdleOverlay@iran:
+		Sequence: cloth-iran
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-iran
+
+EGCAIROTOWER:
+	Inherits@flags: ^PxLandmarkFactions
+	WithIdleOverlay@team:
+		Sequence: team
+		Palette: player
+		IsPlayerPalette: true
+		Offset: -1024,2662,0
+		RequiresCondition: enabled
+	WithIdleOverlay@allies:
+		Sequence: cloth-allies
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-allies
+	WithIdleOverlay@usa:
+		Sequence: cloth-usa
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-usa
+	WithIdleOverlay@england:
+		Sequence: cloth-england
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-england
+	WithIdleOverlay@france:
+		Sequence: cloth-france
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-france
+	WithIdleOverlay@germany:
+		Sequence: cloth-germany
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-germany
+	WithIdleOverlay@japan:
+		Sequence: cloth-japan
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-japan
+	WithIdleOverlay@southkorea:
+		Sequence: cloth-southkorea
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-southkorea
+	WithIdleOverlay@italy:
+		Sequence: cloth-italy
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-italy
+	WithIdleOverlay@egypt:
+		Sequence: cloth-egypt
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-egypt
+	WithIdleOverlay@soviet:
+		Sequence: cloth-soviet
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-soviet
+	WithIdleOverlay@russia:
+		Sequence: cloth-russia
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-russia
+	WithIdleOverlay@ukraine:
+		Sequence: cloth-ukraine
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-ukraine
+	WithIdleOverlay@cuba:
+		Sequence: cloth-cuba
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-cuba
+	WithIdleOverlay@india:
+		Sequence: cloth-india
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-india
+	WithIdleOverlay@china:
+		Sequence: cloth-china
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-china
+	WithIdleOverlay@turkey:
+		Sequence: cloth-turkey
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-turkey
+	WithIdleOverlay@pakistan:
+		Sequence: cloth-pakistan
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-pakistan
+	WithIdleOverlay@iran:
+		Sequence: cloth-iran
+		Palette: terrain
+		Offset: -1024,2662,0
+		RequiresCondition: enabled && flag-iran
+
+EGMUSEUM:
+	Inherits@flags: ^PxLandmarkFactions
+	WithIdleOverlay@team:
+		Sequence: team
+		Palette: player
+		IsPlayerPalette: true
+		Offset: -2662,1024,0
+		RequiresCondition: enabled
+	WithIdleOverlay@allies:
+		Sequence: cloth-allies
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-allies
+	WithIdleOverlay@usa:
+		Sequence: cloth-usa
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-usa
+	WithIdleOverlay@england:
+		Sequence: cloth-england
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-england
+	WithIdleOverlay@france:
+		Sequence: cloth-france
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-france
+	WithIdleOverlay@germany:
+		Sequence: cloth-germany
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-germany
+	WithIdleOverlay@japan:
+		Sequence: cloth-japan
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-japan
+	WithIdleOverlay@southkorea:
+		Sequence: cloth-southkorea
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-southkorea
+	WithIdleOverlay@italy:
+		Sequence: cloth-italy
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-italy
+	WithIdleOverlay@egypt:
+		Sequence: cloth-egypt
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-egypt
+	WithIdleOverlay@soviet:
+		Sequence: cloth-soviet
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-soviet
+	WithIdleOverlay@russia:
+		Sequence: cloth-russia
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-russia
+	WithIdleOverlay@ukraine:
+		Sequence: cloth-ukraine
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-ukraine
+	WithIdleOverlay@cuba:
+		Sequence: cloth-cuba
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-cuba
+	WithIdleOverlay@india:
+		Sequence: cloth-india
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-india
+	WithIdleOverlay@china:
+		Sequence: cloth-china
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-china
+	WithIdleOverlay@turkey:
+		Sequence: cloth-turkey
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-turkey
+	WithIdleOverlay@pakistan:
+		Sequence: cloth-pakistan
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-pakistan
+	WithIdleOverlay@iran:
+		Sequence: cloth-iran
+		Palette: terrain
+		Offset: -2662,1024,0
+		RequiresCondition: enabled && flag-iran
+
+EGKARNAK:
+	Inherits@flags: ^PxLandmarkFactions
+	WithIdleOverlay@team:
+		Sequence: team
+		Palette: player
+		IsPlayerPalette: true
+		Offset: -1024,-2662,0
+		RequiresCondition: enabled
+	WithIdleOverlay@allies:
+		Sequence: cloth-allies
+		Palette: terrain
+		Offset: -1024,-2662,0
+		RequiresCondition: enabled && flag-allies
+	WithIdleOverlay@usa:
+		Sequence: cloth-usa
+		Palette: terrain
+		Offset: -1024,-2662,0
+		RequiresCondition: enabled && flag-usa
+	WithIdleOverlay@england:
+		Sequence: cloth-england
+		Palette: terrain
+		Offset: -1024,-2662,0
+		RequiresCondition: enabled && flag-england
+	WithIdleOverlay@france:
+		Sequence: cloth-france
+		Palette: terrain
+		Offset: -1024,-2662,0
+		RequiresCondition: enabled && flag-france
+	WithIdleOverlay@germany:
+		Sequence: cloth-germany
+		Palette: terrain
+		Offset: -1024,-2662,0
+		RequiresCondition: enabled && flag-germany
+	WithIdleOverlay@japan:
+		Sequence: cloth-japan
+		Palette: terrain
+		Offset: -1024,-2662,0
+		RequiresCondition: enabled && flag-japan
+	WithIdleOverlay@southkorea:
+		Sequence: cloth-southkorea
+		Palette: terrain
+		Offset: -1024,-2662,0
+		RequiresCondition: enabled && flag-southkorea
+	WithIdleOverlay@italy:
+		Sequence: cloth-italy
+		Palette: terrain
+		Offset: -1024,-2662,0
+		RequiresCondition: enabled && flag-italy
+	WithIdleOverlay@egypt:
+		Sequence: cloth-egypt
+		Palette: terrain
+		Offset: -1024,-2662,0
+		RequiresCondition: enabled && flag-egypt
+	WithIdleOverlay@soviet:
+		Sequence: cloth-soviet
+		Palette: terrain
+		Offset: -1024,-2662,0
+		RequiresCondition: enabled && flag-soviet
+	WithIdleOverlay@russia:
+		Sequence: cloth-russia
+		Palette: terrain
+		Offset: -1024,-2662,0
+		RequiresCondition: enabled && flag-russia
+	WithIdleOverlay@ukraine:
+		Sequence: cloth-ukraine
+		Palette: terrain
+		Offset: -1024,-2662,0
+		RequiresCondition: enabled && flag-ukraine
+	WithIdleOverlay@cuba:
+		Sequence: cloth-cuba
+		Palette: terrain
+		Offset: -1024,-2662,0
+		RequiresCondition: enabled && flag-cuba
+	WithIdleOverlay@india:
+		Sequence: cloth-india
+		Palette: terrain
+		Offset: -1024,-2662,0
+		RequiresCondition: enabled && flag-india
+	WithIdleOverlay@china:
+		Sequence: cloth-china
+		Palette: terrain
+		Offset: -1024,-2662,0
+		RequiresCondition: enabled && flag-china
+	WithIdleOverlay@turkey:
+		Sequence: cloth-turkey
+		Palette: terrain
+		Offset: -1024,-2662,0
+		RequiresCondition: enabled && flag-turkey
+	WithIdleOverlay@pakistan:
+		Sequence: cloth-pakistan
+		Palette: terrain
+		Offset: -1024,-2662,0
+		RequiresCondition: enabled && flag-pakistan
+	WithIdleOverlay@iran:
+		Sequence: cloth-iran
+		Palette: terrain
+		Offset: -1024,-2662,0
+		RequiresCondition: enabled && flag-iran

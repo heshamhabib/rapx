@@ -257,10 +257,17 @@ def assemble(minimum):
     inner = ndimage.distance_transform_edt(feather > 0.5) / PPC            # cells from the lot edge, inside
     band = (inner > 0.5) & (inner < 3.0)
     render = np.asarray(base).astype(np.float32)
-    gain = out[band].mean(0) / np.maximum(render[band].mean(0), 1)
+    # Colour-match each build area on its own (a sand base and a lawn base need different corrections), gently
+    labels, n = ndimage.label(feather > 0.5)
+    gain = np.ones(render.shape, np.float32)
+    for k in range(1, n + 1):
+        sel = labels == k
+        b = band & sel
+        g = np.clip(out[b].mean(0) / np.maximum(render[b].mean(0), 1), 0.8, 1.2)
+        gain[sel] = g
+        print(f"build area {k}: colour gain {np.round(g, 3)}")
     w_lot = np.clip((inner - 0.25) / 1.5, 0, 1)[..., None]
     out = out * (1 - w_lot) + (render * gain) * w_lot
-    print(f"build areas from the render, colour gain {np.round(gain, 3)}")
     out = out.clip(0, 255).astype(np.uint8)
     Image.fromarray(out).save(os.path.join(BUILD, "backdrop-painted.png"))
     print("->", os.path.join(BUILD, "backdrop-painted.png"))

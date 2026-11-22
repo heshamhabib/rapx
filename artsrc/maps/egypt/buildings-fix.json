@@ -1,0 +1,37 @@
+{
+ "_note": "Per-model fixes for prep_buildings.py: scale to metres, rot = degrees about Z so the front faces south (-Y), skip = parts to drop",
+ "downtown": {
+  "scale": 0.5,
+  "skip": [
+   "downtown-11",
+   "downtown-15",
+   "downtown-17",
+   "downtown-18",
+   "downtown-21"
+  ]
+ },
+ "residential": {
+  "scale": 10.0
+ },
+ "felucca": {
+  "scale": 0.0085
+ },
+ "palmpack": {
+  "scale": 40.0
+ },
+ "palms": {
+  "scale": 2.6
+ },
+ "ruins": {
+  "scale": 3.0
+ },
+ "ruins2": {
+  "scale": 3.0
+ },
+ "sphinx": {
+  "scale": 7.0
+ },
+ "temples": {
+  "scale": 0.012
+ }
+}

@@ -506,6 +506,17 @@ MAPS = {
         ("Water and grass masks, flags, cut into the map",
          os.path.exists(os.path.join(ROOT, "mods", "rapx", "maps", "washington-dc", "grass-mask.png"))),
     ], cells_y=96),
+    "egypt": _map("egypt", "egypt", "Egypt (Cairo and Giza): build and ChatGPT repaint (golden sunset)", 128, lambda m, done, total: [
+        ("Layout: pyramids, Sphinx, Cairo Tower, museum, Karnak temple; all checks pass", True),
+        ("Sketchfab models: Sphinx, temples, ruins, palms, felucca", True),
+        ("Blender render at golden sunset, cut into the map (playable)",
+         os.path.exists(os.path.join(ROOT, "mods", "rapx", "maps", "egypt-cairo-giza", "backdrop-0-0.png"))),
+        ("5 capturable landmarks with flags (the Great Pyramid pays double)", True),
+        (f"Repaint all {total} pieces with ChatGPT", total > 0 and done == total),
+        ("Drift check, review, blend", os.path.exists(os.path.join(m["build"], "backdrop-painted.png"))),
+        ("Water, grass and lamp masks, cut into the map",
+         os.path.exists(os.path.join(ROOT, "mods", "rapx", "maps", "egypt-cairo-giza", "grass-mask.png"))),
+    ], cells_y=96),
 }
 _scores = {}
 
@@ -643,7 +654,7 @@ def status():
     jobs = active_jobs()
     return {"time": time.strftime("%H:%M:%S"), "system": system(), "jobs": jobs, "overview": overview(jobs),
             "sketchfab": sketchfab_status(jobs), "loadouts": loadout_status(), "ironward": repaint_status("ironward"),
-            "monument": repaint_status("monument"), "dc": repaint_status("dc"),
+            "monument": repaint_status("monument"), "dc": repaint_status("dc"), "egypt": repaint_status("egypt"),
             "soldiers": [soldier_status(s) for s in soldiers], "images": image_queue(), "push": push_status()}
 
 
@@ -754,7 +765,7 @@ nav.tabs button .badge { margin-left:6px; font-size:12px; color:var(--muted); fo
 @media (max-width:520px) { #sys { left:16px; right:16px; width:auto; } main { padding-bottom:200px; } }
 </style></head><body>
 <header><h1>Render Progress</h1><span class="sub" id="clock">connecting…</span></header>
-<nav class="tabs" id="tabs"><button data-tab="soldiers">Soldiers &amp; robots</button><button data-tab="models">New 3D models<span class="badge" id="badge-models"></span></button><button data-tab="loadouts">Jet loadouts<span class="badge" id="badge-loadouts"></span></button><button data-tab="ironward">Ironward map<span class="badge" id="badge-ironward"></span></button><button data-tab="monument">Monument City<span class="badge" id="badge-monument"></span></button><button data-tab="dc">Washington D.C.<span class="badge" id="badge-dc"></span></button></nav>
+<nav class="tabs" id="tabs"><button data-tab="soldiers">Soldiers &amp; robots</button><button data-tab="models">New 3D models<span class="badge" id="badge-models"></span></button><button data-tab="loadouts">Jet loadouts<span class="badge" id="badge-loadouts"></span></button><button data-tab="ironward">Ironward map<span class="badge" id="badge-ironward"></span></button><button data-tab="monument">Monument City<span class="badge" id="badge-monument"></span></button><button data-tab="dc">Washington D.C.<span class="badge" id="badge-dc"></span></button><button data-tab="egypt">Egypt<span class="badge" id="badge-egypt"></span></button></nav>
 <main id="main"><div class="card empty">Waiting for data…</div></main>
 <aside id="sys"><h3>Laptop <span class="state" id="sys-state">…</span></h3><div class="temp" id="sys-temp">– °C</div>
 <div class="row"><span>CPU hottest / avg</span><b id="sys-cpu">–</b></div>
@@ -946,11 +957,12 @@ function draw(d) {
   document.getElementById("badge-models").textContent = m && m.total ? m.done + "/" + m.total : "";
   const L = d.loadouts;
   document.getElementById("badge-loadouts").textContent = L && L.total ? L.done + "/" + L.total : "";
-  const W = d.ironward, MC = d.monument, DC = d.dc;
+  const W = d.ironward, MC = d.monument, DC = d.dc, EG = d.egypt;
+  document.getElementById("badge-egypt").textContent = EG && EG.total ? EG.done + "/" + EG.total : "";
   document.getElementById("badge-dc").textContent = DC && DC.total ? DC.done + "/" + DC.total : "";
   document.getElementById("badge-ironward").textContent = W && W.total ? W.done + "/" + W.total : "";
   document.getElementById("badge-monument").textContent = MC && MC.total ? MC.done + "/" + MC.total : "";
-  document.getElementById("main").innerHTML = pushPanel(d.push) + jobsPanel(d.jobs) + (tab === "ironward" ? ironward(W) : tab === "monument" ? ironward(MC) : tab === "dc" ? ironward(DC) : tab === "loadouts" ? loadouts(L) : tab === "models" ? models(m) :
+  document.getElementById("main").innerHTML = pushPanel(d.push) + jobsPanel(d.jobs) + (tab === "ironward" ? ironward(W) : tab === "monument" ? ironward(MC) : tab === "dc" ? ironward(DC) : tab === "egypt" ? ironward(EG) : tab === "loadouts" ? loadouts(L) : tab === "models" ? models(m) :
     overview(d.overview) + (d.soldiers.length ? d.soldiers.map(soldier).join("") : '<div class="card empty">No renders yet.</div>') + images(d.images));
 }
 function level(v, warm, hot) { return v == null ? "ok" : v >= hot ? "hot" : v >= warm ? "warm" : "ok"; }

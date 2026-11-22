@@ -949,6 +949,31 @@ actor-dcmonument =
     .captured-desc = Provides a very large income.
     .capturable-desc = Capture to receive a very large income.
 
+actor-egpyramid =
+    .name = Great Pyramid of Giza
+    .captured-desc = Provides a very large income.
+    .capturable-desc = Capture to receive a very large income.
+
+actor-egsphinx =
+    .name = Great Sphinx
+    .captured-desc = Provides a large income.
+    .capturable-desc = Capture to receive a large income.
+
+actor-egcairotower =
+    .name = Cairo Tower
+    .captured-desc = Provides a large income.
+    .capturable-desc = Capture to receive a large income.
+
+actor-egmuseum =
+    .name = Grand Egyptian Museum
+    .captured-desc = Provides a large income.
+    .capturable-desc = Capture to receive a large income.
+
+actor-egkarnak =
+    .name = Temple of Karnak
+    .captured-desc = Provides a large income.
+    .capturable-desc = Capture to receive a large income.
+
 ## misc.yaml
 actor-powerproxy-parabombs =
     .name = Parabombs (Single Use)

@@ -16,6 +16,7 @@ imports) into assets/inbox/new_3d_models_2/, plus a credits list for mods/rapx/C
   python3 tools/download_sketchfab.py --ironward   city buildings for the Ironward painted map into assets/inbox/ironward-buildings/
   python3 tools/download_sketchfab.py --vegetation grass, flowers and shrubs scattered on painted-map lawns into assets/inbox/vegetation/
   python3 tools/download_sketchfab.py --dc         Washington D.C. landmarks into assets/inbox/dc-landmarks/
+  python3 tools/download_sketchfab.py --egypt      Giza / Cairo landmarks, temples and palms into assets/inbox/egypt-landmarks/
   python3 tools/download_sketchfab.py --monument   American landmarks for the Monument City painted map into assets/inbox/monument-landmarks/
 
 Sketchfab only hands out downloads to a logged-in account: put your API token (sketchfab.com -> Settings ->
@@ -258,6 +259,21 @@ DC = [
 ]
 
 
+# Egypt: Cairo and Giza painted map (artsrc/maps/egypt). The Cairo Tower and the Grand Egyptian Museum are built in
+# Blender (no downloadable model).
+EGYPT = [
+    ("khufu", "The Great Pyramid of Giza", "4a251113722f4d969b6cf2ca5f35c502"),  # ianicolo, CC Attribution
+    ("menkaure", "Pyramid of Menkaure, Giza pyramid comple", "b03835b1723c4395a50d0a8c54861c6b"),  # PolarNick239, CC Attribution
+    ("sphinx", "Sandstone Sphinx Statue", "0047be934a22442fa9ed9cc0a119acd2"),  # artfletch, CC Attribution
+    ("temples", "Egyptian Temples", "ab516f7795684d6683188680dcb100ee"),  # yanix, CC Attribution
+    ("ruins", "Egyptian Ruins", "19337b2afcc94f689203b2c9bf6c9f85"),  # local.yany, CC Attribution
+    ("ruins2", "Egyptian Ruins", "9a780c7a62fb438fa6fdbdfcfc38a484"),  # local.yany, CC Attribution
+    ("palms", "Palm Trees", "55690379305145488e20afb05fc687e6"),  # YadroGames, CC Attribution
+    ("palmpack", "Low Poly Palms Pack", "bf1cadd21a704739bc19d535ae741728"),  # Rusoski, CC Attribution
+    ("felucca", "Egyptian Ship", "aefb6d69d12c41eda806350f419cb81f"),  # Kelisei Ventura, CC Attribution
+]
+
+
 def token():
     t = os.environ.get("SKETCHFAB_TOKEN")
     path = os.path.expanduser("~/.sketchfab_token")
@@ -316,6 +332,8 @@ def main():
         models, OUT = IRONWARD, os.path.join(ROOT, "assets", "inbox", "ironward-buildings")
     if "--vegetation" in sys.argv:
         models, OUT = VEGETATION, os.path.join(ROOT, "assets", "inbox", "vegetation")
+    if "--egypt" in sys.argv:
+        models, OUT = EGYPT, os.path.join(ROOT, "assets", "inbox", "egypt-landmarks")
     if "--dc" in sys.argv:
         models, OUT = DC, os.path.join(ROOT, "assets", "inbox", "dc-landmarks")
     if "--monument" in sys.argv:

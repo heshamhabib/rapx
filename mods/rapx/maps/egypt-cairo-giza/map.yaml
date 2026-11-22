@@ -1,0 +1,83 @@
+MapFormat: 12
+
+RequiresMod: ra
+
+Title: Egypt: Cairo and Giza
+
+Author: RedAlert Project X
+
+Tileset: TEMPERAT
+
+MapSize: 130,98
+
+Bounds: 1,1,128,96
+
+Visibility: Lobby
+
+Categories: World Cities
+
+Players:
+	PlayerReference@Neutral:
+		Name: Neutral
+		OwnsWorld: True
+		NonCombatant: True
+		Faction: allies
+	PlayerReference@Creeps:
+		Name: Creeps
+		NonCombatant: True
+		Faction: allies
+		Enemies: Multi0, Multi1, Multi2, Multi3
+	PlayerReference@Multi0:
+		Name: Multi0
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi1:
+		Name: Multi1
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi2:
+		Name: Multi2
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi3:
+		Name: Multi3
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+
+Actors:
+	Actor0: mpspawn
+		Owner: Neutral
+		Location: 15,13
+	Actor1: mpspawn
+		Owner: Neutral
+		Location: 13,85
+	Actor2: mpspawn
+		Owner: Neutral
+		Location: 115,13
+	Actor3: mpspawn
+		Owner: Neutral
+		Location: 115,85
+	Khufu: egpyramid
+		Owner: Neutral
+		Location: 29,65
+	Sphinx: egsphinx
+		Owner: Neutral
+		Location: 47,53
+	Cairotower: egcairotower
+		Owner: Neutral
+		Location: 62,33
+	Gem: egmuseum
+		Owner: Neutral
+		Location: 31,35
+	Karnak: egkarnak
+		Owner: Neutral
+		Location: 89,67
+
+Rules:
+	World:
+		PxWeatherManager:
+			Fixed: Clear
