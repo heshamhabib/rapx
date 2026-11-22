@@ -111,6 +111,14 @@ def load_cloth():
     s = CLOTH_W / w
     me.transform(Matrix.Translation((0, 0, CLOTH_TOP)) @ Matrix.Scale(s, 4)
                  @ Matrix.Translation((-min(xs), -(max(ys) + min(ys)) / 2, -max(zs))))
+    # Fresh UVs from the shape (the model's own UV islands are upside down and cropped for other flags): u along the
+    # cloth from the pole, v up; front and back show the same picture
+    zs = [v.co.z for v in me.vertices]
+    z0, z1 = min(zs), max(zs)
+    uvl = me.uv_layers.active or me.uv_layers.new(name="UVMap")
+    for loop in me.loops:
+        co = me.vertices[loop.vertex_index].co
+        uvl.data[loop.index].uv = (min(1.0, max(0.0, co.x / CLOTH_W)), (co.z - z0) / max(1e-6, z1 - z0))
     ob = bpy.data.objects.new("Cloth", me)
     bpy.context.collection.objects.link(ob)
     rest = [v.co.copy() for v in me.vertices]
@@ -236,7 +244,7 @@ def main():
             key = f"Cloth-{n}"
             m = bpy.data.materials.get(key)
             if not m:
-                m = mat(key, (1, 1, 1), 0.8, image=cloth_texture(cloth_mesh, os.path.join(CLOTHS, n + ".png")))
+                m = mat(key, (1, 1, 1), 0.8, image=bpy.data.images.load(os.path.join(CLOTHS, n + ".png")))
             if cloth_mesh.materials:
                 cloth_mesh.materials[0] = m
             else:
