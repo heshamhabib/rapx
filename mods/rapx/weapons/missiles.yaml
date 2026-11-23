@@ -346,6 +346,7 @@ SCUD:
 			Concrete: 100
 		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath, Incendiary
 	Warhead@3Eff: PxExplosion
+		Video: bomb-a
 		Size: 2.2
 		ImpactSounds: ra|audio/sfx/firebl3.ogg
 	Warhead@4EffWater: CreateEffect

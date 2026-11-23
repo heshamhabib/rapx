@@ -19,7 +19,7 @@ using OpenRA.Traits;
 
 namespace OpenRA.Mods.RAPX.Traits.Render
 {
-	[Desc("One style for every destroyed vehicle: an HD fire (looping flame animation) on the hull, a flickering glow on",
+	[Desc("One style for every destroyed vehicle: an HD fire (filmed or drawn flame loop) on the hull, a flickering glow on",
 		"the ground, embers and a thick smoke plume drifting with the weather wind (steam in the rain). The fire follows",
 		"the wreck's health: full blaze when it is fresh, fewer and smaller flames as it burns down, smouldering smoke at",
 		"the end. Sprites: `pxfx` wfire / wsmoke (artsrc/fx/make_wreck_fx.py). Purely cosmetic.")]
@@ -30,6 +30,13 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 
 		[Desc("Size multiplier for the flames and smoke (bigger wrecks burn bigger).")]
 		public readonly float Size = 1f;
+
+		[Desc("Filmed fire loop (sequence of image pxvideofx, artsrc/fx/make_video_fx.py) drawn instead of the `wfire`",
+			"animation. Empty or missing = `wfire`.")]
+		public readonly string Video = "fire-wreck-a";
+
+		[Desc("Size of the filmed fire, as a multiple of Size.")]
+		public readonly float VideoScale = 0.7f;
 
 		public override object Create(ActorInitializer init) { return new WithPxWreckFx(init.Self, this); }
 	}
@@ -46,6 +53,7 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 		readonly float[] smokeTimers;
 		readonly int[] phases;
 		readonly ISpriteSequence fire, glow;
+		readonly bool video;
 		PxWeatherManager weather;
 		bool weatherResolved, burst;
 		long lastTime = -1;
@@ -55,7 +63,9 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 			this.info = info;
 			health = self.Trait<IHealth>();
 			particles = new PxParticles(self.World);
-			fire = particles.Sequence(FireSequence);
+			var sequences = self.World.Map.Sequences;
+			video = !string.IsNullOrEmpty(info.Video) && sequences.HasSequence("pxvideofx", info.Video);
+			fire = video ? sequences.GetSequence("pxvideofx", info.Video) : particles.Sequence(FireSequence);
 			glow = particles.Sequence("glow");
 			smokeTimers = new float[info.Spots.Length];
 			phases = new int[info.Spots.Length];
@@ -250,11 +260,14 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 					WVec.Zero, -48, null, glow.Scale * glowSize, 0.42f * k * flicker, new float3(1, 0.5f, 0.16f),
 					TintModifiers.None, false, WAngle.Zero);
 
-				// The flame: a looping HD animation, its base pinned to the hull
-				var frame = (int)(now / 42 + phases[i]) % fire.Length;
+				// The flame: a looping HD animation, its base pinned to the hull (a filmed loop has its origin at the foot
+				// of the flames already)
+				var frame = (int)(now / (video ? fire.Tick : 42) + phases[i]) % fire.Length;
 				var sprite = fire.GetSprite(frame);
-				var scale = fire.Scale * info.Size * (0.3f + 0.4f * k) * (i == 0 ? 1f : 0.75f) * (0.96f + 0.04f * flicker);
-				var lift = sprite.Size.Y * scale * 0.4f;
+				var scale = video
+					? fire.Scale * info.Size * info.VideoScale * (0.45f + 0.55f * k) * (i == 0 ? 1f : 0.7f)
+					: fire.Scale * info.Size * (0.3f + 0.4f * k) * (i == 0 ? 1f : 0.75f) * (0.96f + 0.04f * flicker);
+				var lift = video ? 0 : sprite.Size.Y * scale * 0.4f;
 				var offset = PxParticles.ToWorld(spot.X, spot.Y - lift);
 				yield return new SpriteRenderable(sprite, origin + offset, WVec.Zero, ZBias - offset.Y, null, scale,
 					1f, new float3(1, 1, 1), TintModifiers.None, false, WAngle.Zero);

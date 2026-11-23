@@ -16,6 +16,7 @@ InterceptFlak:
 		ContrailStartWidth: 0c24
 		ContrailStartColor: FFE6A0
 	Warhead@1Eff: PxExplosion
+		AirVideo: flak-a
 		Size: 0.3
 		Smoke: 0.3
 		Scorch: false

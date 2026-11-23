@@ -108,6 +108,24 @@ namespace OpenRA.Mods.RAPX.Warheads
 		[Desc("Sounds to play on impact.")]
 		public readonly string[] ImpactSounds = Array.Empty<string>();
 
+		[Desc("Filmed explosions (sequences of image pxvideofx, made by artsrc/fx/make_video_fx.py). Ground blasts play",
+			"one at random as their fireball and smoke (air bursts: AirVideo); the particle fireball, smoke and debris are",
+			"cut back to go with it.")]
+		public readonly string[] Video = Array.Empty<string>();
+
+		[Desc("Filmed explosions for bursts in the air (flak), like Video.")]
+		public readonly string[] AirVideo = Array.Empty<string>();
+
+		[Desc("Size of the filmed explosion, as a multiple of Size.")]
+		public readonly float VideoScale = 1f;
+
+		[Desc("Playback speed of the filmed explosion (below 1 = slower, heavier).")]
+		public readonly float VideoSpeed = 1f;
+
+		[Desc("Ticks the filmed explosion's last frame of smoke lingers afterwards, thinning out, spreading and drifting",
+			"with the wind.")]
+		public readonly int VideoLinger = 90;
+
 		public override void DoImpact(in Target target, WarheadArgs args)
 		{
 			if (target.Type == TargetType.Invalid)
@@ -189,6 +207,13 @@ namespace OpenRA.Mods.RAPX.Warheads
 				Pops = pops;
 				Wave = wave;
 			}
+
+			/// <summary>What is left to the particles when a filmed explosion supplies the fireball and smoke.</summary>
+			public Recipe UnderVideo()
+			{
+				return new Recipe(Flash * 0.6f, Light, Shock, Dust * 0.7f, 0, FireSize, Rise, Smoke * 0.25f, Column * 0.8f,
+					Soot, Debris * 0.35f, Burning * 0.3f, Sparks * 0.7f, Embers * 0.6f, 0, Wave);
+			}
 		}
 
 		static readonly Dictionary<PxExplosionStyle, Recipe> Recipes = new()
@@ -220,6 +245,8 @@ namespace OpenRA.Mods.RAPX.Warheads
 		readonly float3 fire;
 		readonly float3 smoke;
 		readonly Recipe recipe;
+		readonly ISpriteSequence video;
+		readonly float videoScale;
 
 		// A fire left burning at the impact (LingerChance): how long, and when the next flames are due
 		float burn;
@@ -246,6 +273,15 @@ namespace OpenRA.Mods.RAPX.Warheads
 
 			waves = world.WorldActor.TraitOrDefault<PxBlastWaves>();
 			recipe = Recipes[info.Style];
+
+			var clip = (air ? info.AirVideo : info.Video).RandomOrDefault(random);
+			var sequences = world.Map.Sequences;
+			if (clip != null && sequences.HasSequence("pxvideofx", clip))
+			{
+				video = sequences.GetSequence("pxvideofx", clip);
+				videoScale = video.Scale * info.Size * info.VideoScale * Rand(0.9f, 1.1f);
+				recipe = recipe.UnderVideo();
+			}
 
 			// Dust takes the colour of the ground; smoke goes from the warhead's colour towards soot
 			dust = world.Map.Tileset switch
@@ -511,7 +547,7 @@ namespace OpenRA.Mods.RAPX.Warheads
 					Pop(k, Rand(8, 45), Rand(0, MathF.PI * 2), Rand(0.5f, 2f) * k);
 			}
 
-			if (!air && k >= 0.9f && r.Column > 0 && random.NextFloat() < info.LingerChance)
+			if (!air && video == null && k >= 0.9f && r.Column > 0 && random.NextFloat() < info.LingerChance)
 				burn = burnLeft = Rand(90, 220) * Math.Min(k, 2f);
 		}
 
@@ -609,7 +645,7 @@ namespace OpenRA.Mods.RAPX.Warheads
 
 		public void Tick(World world)
 		{
-			if ((time > 40 && burnLeft <= 0 && particles.Items.Count == 0) || time > 1200)
+			if ((time > 40 && burnLeft <= 0 && particles.Items.Count == 0 && !VideoPlaying()) || time > 1200)
 				world.AddFrameEndTask(w => w.Remove(this));
 		}
 
@@ -641,8 +677,27 @@ namespace OpenRA.Mods.RAPX.Warheads
 						scorch.Scale * 0.45f * info.Size, alpha, new float3(1, 1, 1), TintModifiers.None, false);
 			}
 
+			if (VideoPlaying())
+			{
+				// Play the clip, then let its last frame of smoke linger: thinning out, spreading, drifting with the wind
+				var frame = VideoFrame();
+				var linger = Math.Max(0, time - VideoEnd) / Math.Max(1, info.VideoLinger);
+				var fade = 1 - linger * linger * (3 - 2 * linger);
+				var drift = PxParticles.ToWorld(particles.Wind.X * (time - VideoEnd) * 0.6f, particles.Wind.Y * (time - VideoEnd) * 0.6f);
+				yield return new SpriteRenderable(video.GetSprite(frame), (air ? pos : ground) + (linger > 0 ? drift : WVec.Zero),
+					WVec.Zero, video.ZOffset, null, videoScale * (1 + 0.2f * linger), fade, new float3(1, 1, 1), TintModifiers.None, false);
+			}
+
 			foreach (var r in particles.Render(ground, 1024))
 				yield return r;
 		}
+
+		/// <summary>Ticks until the filmed explosion's last frame. Time runs in 40 ms game ticks, so the clip keeps pace
+		/// with the game speed.</summary>
+		float VideoEnd => video.Length * video.Tick / (40f * info.VideoSpeed);
+
+		bool VideoPlaying() { return video != null && time < VideoEnd + info.VideoLinger; }
+
+		int VideoFrame() { return Math.Min((int)(time * 40 * info.VideoSpeed / video.Tick), video.Length - 1); }
 	}
 }

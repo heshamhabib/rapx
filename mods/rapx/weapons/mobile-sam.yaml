@@ -39,6 +39,7 @@ GurzMissile:
 		Spread: 384
 		Damage: 2600
 	Warhead@3Eff: PxExplosion
+		AirVideo: flak-a
 		Style: Fragmentation
 		Size: 0.7
 		ImpactSounds: ra|audio/weapons/sam/gurz-burst1.ogg, ra|audio/weapons/sam/gurz-burst2.ogg, ra|audio/weapons/sam/gurz-burst3.ogg
@@ -62,6 +63,7 @@ Gurz35mm:
 		Damage: 1100
 	-Warhead@2Eff:
 	Warhead@3Eff: PxExplosion
+		AirVideo: flak-a
 		Style: Fragmentation
 		Size: 0.35
 		Smoke: 0.6

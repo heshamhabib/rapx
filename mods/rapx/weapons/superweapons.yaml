@@ -23,6 +23,7 @@ ParaBomb:
 		SmudgeType: Crater
 		ValidTargets: Ground, Infantry
 	Warhead@3Eff: PxExplosion
+		Video: bomb-a
 		Size: 1.5
 		ImpactSounds: ra|audio/sfx/kaboom15.ogg
 		ValidTargets: Ground, GroundActor, WaterActor, Trees

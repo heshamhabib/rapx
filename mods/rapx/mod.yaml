@@ -102,6 +102,8 @@ Sequences:
 	ra|sequences/hd-blast-fx.yaml
 	ra|sequences/hd-nuke-fx.yaml
 	ra|sequences/hd-blast-particles.yaml
+	ra|sequences/hd-video-fx.yaml
+	ra|sequences/hd-ruin-fx.yaml
 	ra|sequences/fatman.yaml
 	ra|sequences/airborne.yaml
 	ra|sequences/hd-beacon.yaml

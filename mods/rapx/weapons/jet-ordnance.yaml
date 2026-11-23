@@ -111,6 +111,7 @@ JetBomb:
 			Heavy: 70
 			Concrete: 70
 	Warhead@3Eff: PxExplosion
+		Video: bomb-a
 		Size: 1.5
 		ImpactSounds: ra|audio/sfx/kaboom15.ogg
 JetBomb.Pair:

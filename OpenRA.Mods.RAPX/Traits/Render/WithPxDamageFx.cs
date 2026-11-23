@@ -31,6 +31,16 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 		[Desc("Size multiplier for smoke and flames.")]
 		public readonly float Size = 1f;
 
+		[Desc("Filmed fire loop (sequence of image pxvideofx, artsrc/fx/make_video_fx.py) burning on each fire spot when",
+			"heavily damaged, instead of flame particles. Empty or missing = particles.")]
+		public readonly string Video = "fire-small-b";
+
+		[Desc("Filmed fire loop for the first spot at critical health.")]
+		public readonly string CriticalVideo = "fire-big-b";
+
+		[Desc("Size of the filmed fires, as a multiple of Size.")]
+		public readonly float VideoScale = 0.65f;
+
 		public override object Create(ActorInitializer init) { return new WithPxDamageFx(init.Self, this); }
 	}
 
@@ -42,6 +52,11 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 		readonly PxParticles particles;
 		readonly MersenneTwister random = new(Game.CosmeticRandom.Next());
 		readonly float[] timers;
+		readonly ISpriteSequence video, criticalVideo;
+
+		// Filmed fires: how far each spot's fire has flared up (0-1) and where in its loop it starts
+		readonly float[] heat;
+		readonly int[] phases;
 		long lastTime = -1;
 
 		public WithPxDamageFx(Actor self, WithPxDamageFxInfo info)
@@ -50,6 +65,16 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 			health = self.Trait<IHealth>();
 			particles = new PxParticles(self.World);
 			timers = new float[info.Points.Length];
+			heat = new float[info.Points.Length];
+			phases = new int[info.Points.Length];
+
+			var sequences = self.World.Map.Sequences;
+			ISpriteSequence Find(string name) =>
+				!string.IsNullOrEmpty(name) && sequences.HasSequence("pxvideofx", name) ? sequences.GetSequence("pxvideofx", name) : null;
+			video = Find(info.Video);
+			criticalVideo = Find(info.CriticalVideo) ?? video;
+			for (var i = 0; i < phases.Length; i++)
+				phases[i] = random.Next(1024);
 		}
 
 		float Rand(float min, float max) { return min + random.NextFloat() * (max - min); }
@@ -75,6 +100,11 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 				DamageState.Critical => Info.Points.Length,
 				_ => 0,
 			};
+
+			// Filmed fires flare up over about a second and die down when the building is repaired
+			var burning = state >= DamageState.Heavy ? spots : 0;
+			for (var i = 0; i < heat.Length; i++)
+				heat[i] = Math.Clamp(heat[i] + (i < burning ? dt : -dt) / 25f, 0, 1);
 
 			for (var i = 0; i < spots; i++)
 			{
@@ -105,7 +135,7 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 					Spin = Rand(-3, 3),
 				});
 
-				if (heavy)
+				if (heavy && video == null)
 				{
 					particles.Add(new PxParticle
 					{
@@ -121,7 +151,10 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 						Tint = new float3(1, 1, 1),
 						Frame = random.Next(particles.FrameCount(PxParticleKind.Flame)),
 					});
+				}
 
+				if (heavy)
+				{
 					particles.Add(new PxParticle
 					{
 						Kind = PxParticleKind.Glow,
@@ -139,7 +172,27 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 
 		IEnumerable<IRenderable> IRender.Render(Actor self, WorldRenderer wr)
 		{
-			return particles.Render(self.CenterPosition, ZBias);
+			var origin = self.CenterPosition;
+			if (video != null)
+			{
+				var now = Game.RunTime;
+				var critical = health.DamageState == DamageState.Critical;
+				for (var i = 0; i < heat.Length; i++)
+				{
+					if (heat[i] <= 0)
+						continue;
+
+					var seq = i == 0 && critical ? criticalVideo : video;
+					var sprite = seq.GetSprite((int)(now / seq.Tick + phases[i]) % seq.Length);
+					var scale = seq.Scale * Info.Size * Info.VideoScale * (0.6f + 0.4f * heat[i]) * (i == 0 ? 1f : 0.8f);
+					var offset = PxParticles.ToWorld(Info.Points[i].X, Info.Points[i].Y);
+					yield return new SpriteRenderable(sprite, origin + offset, WVec.Zero, ZBias - offset.Y, null, scale,
+						heat[i], new float3(1, 1, 1), TintModifiers.None, false, WAngle.Zero);
+				}
+			}
+
+			foreach (var r in particles.Render(origin, ZBias))
+				yield return r;
 		}
 
 		IEnumerable<Rectangle> IRender.ScreenBounds(Actor self, WorldRenderer wr)

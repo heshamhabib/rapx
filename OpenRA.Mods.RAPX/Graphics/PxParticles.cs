@@ -53,6 +53,9 @@ namespace OpenRA.Mods.RAPX.Graphics
 		/// <summary>Billowing coloured smoke from a smoke grenade, white and lit, tinted by the emitter (12 variants,
 		/// artsrc/fx/make_smoke_fx.py).</summary>
 		Dye,
+
+		/// <summary>Building rubble: concrete, bricks, rebar, charred beams (8 variants, artsrc/fx/make_ruin_fx.py).</summary>
+		Rubble,
 	}
 
 	/// <summary>One cosmetic particle. Positions are in screen pixels relative to the emitter's origin:
@@ -213,6 +216,7 @@ namespace OpenRA.Mods.RAPX.Graphics
 			{ PxParticleKind.Ember, "xember" },
 			{ PxParticleKind.Shadow, "shadow" },
 			{ PxParticleKind.Dye, "csmoke" },
+			{ PxParticleKind.Rubble, "rubble" },
 		};
 
 		public readonly List<PxParticle> Items = new();
@@ -521,6 +525,7 @@ namespace OpenRA.Mods.RAPX.Graphics
 						break;
 					case PxParticleKind.Chunk:
 					case PxParticleKind.Debris:
+					case PxParticleKind.Rubble:
 						alpha = t < 0.85f ? 1 : (1 - t) / 0.15f;
 						break;
 					case PxParticleKind.Ring:

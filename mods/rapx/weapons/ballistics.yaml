@@ -22,6 +22,7 @@
 		ValidTargets: Ground, Infantry
 	# HD explosion (OpenRA.Mods.RAPX/Warheads/PxExplosionWarhead.cs)
 	Warhead@3Eff: PxExplosion
+		Video: cannon-a, cannon-b, dirt-a
 		Size: 0.7
 		Smoke: 0.7
 		ImpactSounds: ra|audio/sfx/kaboom12.ogg
@@ -52,6 +53,7 @@
 	Warhead@3Eff: PxExplosion
 		Size: 0.45
 		Smoke: 0.4
+		-Video:
 		-ImpactSounds:
 	Warhead@4EffWater: CreateEffect
 		-ImpactSounds:
@@ -170,6 +172,7 @@ TurretGun:
 		ValidTargets: Ground, Infantry
 	# HD explosion (OpenRA.Mods.RAPX/Warheads/PxExplosionWarhead.cs)
 	Warhead@3Eff: PxExplosion
+		Video: artillery-a, artillery-b, artillery-c, dirt-a
 		Size: 1.2
 		Smoke: 1.2
 		ImpactSounds: ra|audio/sfx/kaboom15.ogg
@@ -317,6 +320,7 @@ XR85Cannon:
 			Heavy: 100
 			Concrete: 90
 	Warhead@3Eff: PxExplosion
+		Video: artillery-c, bomb-a
 		Size: 2.2
 		Smoke: 2.0
 		ImpactSounds: ra|audio/sfx/kaboom25.ogg
@@ -333,6 +337,7 @@ XR85Cannon:
 		Spread: 384
 		Damage: 4500
 	Warhead@3Eff: PxExplosion
+		Video: artillery-c, bomb-a
 		Size: 2.4
 		Smoke: 1.6
 
@@ -363,5 +368,6 @@ ElephantaGun:
 			Heavy: 110
 			Concrete: 70
 	Warhead@3Eff: PxExplosion
+		Video: artillery-a, artillery-c
 		Size: 2.0
 		Smoke: 1.4

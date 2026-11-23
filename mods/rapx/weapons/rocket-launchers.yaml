@@ -600,6 +600,7 @@ ZOLF_SRBM:
 		Spread: 512
 		Damage: 9000
 	Warhead@3Eff: PxExplosion
+		Video: bomb-a
 		Size: 2.8
 
 # Thunderhead MLRS (rules/rocket-launchers.yaml MLRS): the whole rack in one heavy stream, every rocket on the launcher

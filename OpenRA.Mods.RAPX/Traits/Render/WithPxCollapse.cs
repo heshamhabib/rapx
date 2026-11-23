@@ -39,6 +39,15 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 		[Desc("The building stands in water: white spray instead of dust, debris sinks, no scorch mark.")]
 		public readonly bool OnWater = false;
 
+		[Desc("Filmed clips (sequences of image pxvideofx, artsrc/fx/make_video_fx.py): the fire loop burning on the ruins,",
+			"the smoke column rising from them and the dust rolling out as the building goes down. Empty or missing =",
+			"particles only. Not used on water.")]
+		public readonly string FireVideo = "fire-small-b";
+
+		public readonly string SmokeVideo = "smoke-column-a";
+
+		public readonly string DustVideo = "dust-a";
+
 		public override object Create(ActorInitializer init) { return new WithPxCollapse(init.Self, this); }
 	}
 
@@ -89,12 +98,18 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 		readonly WithPxCollapseInfo info;
 		readonly ISpriteSequence building;
 		readonly ISpriteSequence scorch;
+		readonly ISpriteSequence ruin;
+		readonly int ruinFrame;
+		readonly PxParticleKind chunk;
 		readonly PxParticles particles;
 		readonly PxParticles debris;
 		readonly MersenneTwister random = new(Game.CosmeticRandom.Next());
 		readonly float2[] fires;
+		readonly int[] phases;
+		readonly ISpriteSequence fireVideo, smokeVideo, dustVideo;
 
 		float time;
+		float burn = 1;
 		long lastTime = -1;
 		float dustTimer;
 		float smokeTimer;
@@ -112,9 +127,31 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 			debris = new PxParticles(world);
 			scorch = particles.Sequence("scorch");
 
+			// HD ruins (artsrc/fx/make_ruin_fx.py) replace the plain scorch mark, rubble the plain chunks
+			if (!info.OnWater)
+				ruin = particles.Sequence("ruin");
+			if (ruin != null)
+				ruinFrame = random.Next(ruin.Length);
+
+			chunk = particles.Sequence("rubble") != null ? PxParticleKind.Rubble : PxParticleKind.Chunk;
+
 			fires = new float2[Math.Clamp((int)(radius.X * radius.Y / 300), 1, 4)];
 			for (var i = 0; i < fires.Length; i++)
 				fires[i] = new float2(Rand(-0.6f, 0.6f) * radius.X, Rand(-0.6f, 0.4f) * radius.Y);
+
+			phases = new int[fires.Length];
+			for (var i = 0; i < phases.Length; i++)
+				phases[i] = random.Next(1024);
+
+			if (!info.OnWater)
+			{
+				var sequences = world.Map.Sequences;
+				ISpriteSequence Find(string name) =>
+					!string.IsNullOrEmpty(name) && sequences.HasSequence("pxvideofx", name) ? sequences.GetSequence("pxvideofx", name) : null;
+				fireVideo = Find(info.FireVideo);
+				smokeVideo = Find(info.SmokeVideo);
+				dustVideo = Find(info.DustVideo);
+			}
 		}
 
 		float Rand(float min, float max) { return min + random.NextFloat() * (max - min); }
@@ -160,7 +197,7 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 				var s = Rand(0.3f, 1.1f);
 				debris.Add(new PxParticle
 				{
-					Kind = PxParticleKind.Chunk,
+					Kind = chunk,
 					X = Rand(-0.5f, 0.5f) * radius.X,
 					Y = Rand(-0.5f, 0.5f) * radius.Y,
 					Z = Rand(4, radius.Y + 10),
@@ -173,7 +210,7 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 					Size = Rand(0.6f, 1.4f),
 					Alpha = 1,
 					Tint = new float3(1, 1, 1),
-					Frame = random.Next(debris.FrameCount(PxParticleKind.Chunk)),
+					Frame = random.Next(debris.FrameCount(chunk)),
 					Angle = random.Next(1024),
 					Spin = Rand(-40, 40),
 				});
@@ -238,13 +275,14 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 			}
 
 			// Smouldering fires: dense at first, dying down over the linger time
-			var burn = 1 - Math.Clamp((time - info.Duration) / (info.Linger * 0.6f), 0, 1);
+			burn = 1 - Math.Clamp((time - info.Duration) / (info.Linger * 0.6f), 0, 1);
 			if (burn > 0)
 			{
 				smokeTimer -= dt;
 				while (smokeTimer <= 0)
 				{
-					smokeTimer += 3.5f / Math.Max(burn, 0.15f) / fires.Length;
+					// A filmed smoke column carries most of the smoke: fewer puffs around it
+					smokeTimer += 3.5f / Math.Max(burn, 0.15f) / fires.Length * (smokeVideo != null ? 2.5f : 1);
 					var f = fires[random.Next(fires.Length)];
 					var grey = Rand(0.1f, 0.2f);
 					particles.Add(new PxParticle
@@ -266,7 +304,7 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 						Spin = Rand(-3, 3),
 					});
 
-					if (random.NextFloat() < burn)
+					if (fireVideo == null && random.NextFloat() < burn)
 					{
 						particles.Add(new PxParticle
 						{
@@ -306,7 +344,17 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 			// Scorch mark: appears under the collapsing building and fades at the end
 			var fadeOut = 1 - Math.Clamp((time - info.Duration - info.Linger) / 150f, 0, 1);
 			var scorchAlpha = Math.Clamp(time / 10f, 0, 1) * fadeOut;
-			if (scorchAlpha > 0 && !info.OnWater)
+			if (ruin != null)
+			{
+				// The ruin shows through as the building sinks, sized to the footprint
+				var sprite = ruin.GetSprite(ruinFrame);
+				var alpha = Math.Clamp(time / (info.Duration * 0.8f), 0, 1) * fadeOut;
+				var scale = (radius.X * 2.7f + 24) / sprite.Size.X;
+				if (alpha > 0)
+					yield return new SpriteRenderable(sprite, pos, WVec.Zero, ScorchZ, null, scale, alpha,
+						new float3(1, 1, 1), TintModifiers.None, false);
+			}
+			else if (scorchAlpha > 0 && !info.OnWater)
 				yield return new SpriteRenderable(scorch.GetSprite(0), pos, WVec.Zero, ScorchZ, null,
 					scorch.Scale * (radius.X * 2.6f + 20) / 80f, scorchAlpha, new float3(1, 1, 1), TintModifiers.None, false);
 
@@ -323,11 +371,61 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 					new float3(1, 1, 1), TintModifiers.None, false);
 			}
 
+			foreach (var r in RenderVideos())
+				yield return r;
+
 			foreach (var r in debris.Render(pos, -1024))
 				yield return r;
 
 			foreach (var r in particles.Render(pos, 512))
 				yield return r;
+		}
+
+		/// <summary>The filmed dust, fires and smoke column. Time runs in 40 ms game ticks.</summary>
+		IEnumerable<IRenderable> RenderVideos()
+		{
+			var white = new float3(1, 1, 1);
+
+			// Dust rolling out once, sized to the footprint, its last frame thinning out
+			if (dustVideo != null)
+			{
+				var end = dustVideo.Length * dustVideo.Tick / 40f;
+				if (time < end + 60)
+				{
+					var sprite = dustVideo.GetSprite(Math.Min((int)(time * 40 / dustVideo.Tick), dustVideo.Length - 1));
+					var linger = Math.Clamp((time - end) / 60, 0, 1);
+					var scale = (radius.X * 2.4f + 40) / sprite.Size.X * (1 + 0.15f * linger);
+					yield return new SpriteRenderable(sprite, pos, WVec.Zero, 512, null, scale, 1 - linger * linger * (3 - 2 * linger),
+						white, TintModifiers.None, false);
+				}
+			}
+
+			// Fires on the ruins, dying down
+			if (fireVideo != null && burn > 0)
+			{
+				var now = Game.RunTime;
+				for (var i = 0; i < fires.Length; i++)
+				{
+					var sprite = fireVideo.GetSprite((int)(now / fireVideo.Tick + phases[i]) % fireVideo.Length);
+					var offset = PxParticles.ToWorld(fires[i].X, fires[i].Y);
+					yield return new SpriteRenderable(sprite, pos + offset, WVec.Zero, 512 - offset.Y, null,
+						fireVideo.Scale * 0.6f * (0.4f + 0.6f * burn), Math.Min(1, burn * 3), white, TintModifiers.None, false);
+				}
+			}
+
+			// One smoke column over the ruins, outlasting the fires
+			if (smokeVideo != null)
+			{
+				var strength = Math.Clamp(time / 40, 0, 1) * (1 - Math.Clamp((time - info.Duration) / (info.Linger * 0.9f), 0, 1));
+				if (strength > 0)
+				{
+					var sprite = smokeVideo.GetSprite((int)(Game.RunTime / smokeVideo.Tick) % smokeVideo.Length);
+					var offset = PxParticles.ToWorld(fires[0].X, fires[0].Y);
+					var scale = (radius.X * 4.5f + 40) / sprite.Size.Y * (0.7f + 0.3f * strength);
+					yield return new SpriteRenderable(sprite, pos + offset, WVec.Zero, 520 - offset.Y, null, scale, strength * 0.9f,
+						white, TintModifiers.None, false);
+				}
+			}
 		}
 	}
 }
