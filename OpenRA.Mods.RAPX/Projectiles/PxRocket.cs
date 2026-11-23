@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using OpenRA.Effects;
 using OpenRA.GameRules;
 using OpenRA.Graphics;
+using OpenRA.Mods.RAPX.Effects;
 using OpenRA.Mods.RAPX.Graphics;
 using OpenRA.Primitives;
 using OpenRA.Support;
@@ -112,6 +113,13 @@ namespace OpenRA.Mods.RAPX.Projectiles
 
 		[Desc("Smoke puffs in the launch blast.")]
 		public readonly int LaunchPuffs = 10;
+
+		[Desc("Filmed launch blast on the ground under the launcher (sequence of image pxvideofx,",
+			"artsrc/fx/make_video_fx.py). Only for single heavy missiles: a salvo would stack one per rocket.")]
+		public readonly string LaunchVideo = null;
+
+		[Desc("Size of the filmed launch blast.")]
+		public readonly float LaunchVideoScale = 1f;
 
 		[Desc("Launched from under water (missile submarine): the launch blast is a burst of foam, spray and steam.")]
 		public readonly bool WaterLaunch = false;
@@ -704,6 +712,13 @@ namespace OpenRA.Mods.RAPX.Projectiles
 
 				// Launch blast: a burst of smoke and a hot glow at the pod; a cold launch throws out a white gas cloud instead
 				var at = Local(origin);
+				var clip = info.WaterLaunch ? null : PxVideoEffect.Find(world, info.LaunchVideo);
+				if (clip != null)
+				{
+					var foot = origin - new WVec(0, 0, world.Map.DistanceAboveTerrain(origin).Length);
+					world.AddFrameEndTask(w => w.Add(new PxVideoEffect(w, foot, clip, clip.Scale * info.LaunchVideoScale, 60, 0)));
+				}
+
 				var gas = new float3(0.95f, 0.95f, 0.97f);
 				for (var i = 0; i < info.LaunchPuffs; i++)
 					Puff(PxParticleKind.Smoke, at, 10 * info.TrailSize, 0.55f * info.TrailSize, info.TrailLife * 0.8f, 0.8f,

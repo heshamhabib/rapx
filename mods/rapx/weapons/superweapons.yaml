@@ -49,11 +49,24 @@ Atomic:
 		SmudgeType: NukeScorch
 		ValidTargets: Ground, Infantry
 		Size: 1
+	# Filmed mushroom cloud on land (artsrc/fx/make_video_fx.py nuke-a: 8 s filmed, then 5 s of break-up made from its
+	# last frame, so it clears by itself and needs only a short linger); the drawn one stays for water
 	Warhead@4Eff_impact: CreateEffect
 		Explosions: nuke
 		ImpactSounds: ra|audio/sfx/kaboom1.ogg
 		ImpactActors: false
-		ValidTargets: Ground, Water, Air
+		ValidTargets: Water
+	Warhead@4EffVideo_impact: PxExplosion
+		Size: 3
+		Smoke: 0.15
+		Video: nuke-a
+		VideoScale: 0.8
+		VideoLinger: 20
+		VideoSlowFrom: 80
+		VideoSlowTick: 167
+		VideoZOffset: 8192
+		ImpactSounds: ra|audio/sfx/kaboom1.ogg
+		ValidTargets: Ground, GroundActor, Trees
 	Warhead@5Dam_areanuke1: SpreadDamage
 		Spread: 2c0
 		Damage: 6000

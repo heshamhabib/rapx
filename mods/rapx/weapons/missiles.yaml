@@ -321,6 +321,8 @@ SCUD:
 		ThreatType: Ballistic
 		Image: pxmissile
 		Sequence: v2
+		LaunchVideo: launch-blast-a
+		LaunchVideoScale: 0.6
 		ClimbSequence: v2-climb
 		DiveSequence: v2-dive
 		LaunchEase: 0.6

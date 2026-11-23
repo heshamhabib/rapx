@@ -40,7 +40,10 @@ CrateNapalm:
 		DamageTypes: Prone50Percent, TriggerProne, FireDeath, Incendiary
 	Warhead@2Eff: PxFire
 		Size: 1.6
-		Duration: 80
+		Duration: 220
+		Video: napalm-a
+		BurnVideo: fire-big-b
+		VideoScale: 0.55
 		ImpactSounds: ra|audio/sfx/firebl3.ogg
 		ValidTargets: Ground, Water, Air, GroundActor, AirborneActor, WaterActor, Trees
 	-Warhead@3EffWater:

@@ -77,7 +77,10 @@ Napalm:
 			Concrete: 50
 	Warhead@3Eff: PxFire
 		Size: 1.4
-		Duration: 70
+		Duration: 220
+		Video: napalm-a
+		BurnVideo: fire-big-b
+		VideoScale: 0.55
 
 
 ^TeslaWeapon:

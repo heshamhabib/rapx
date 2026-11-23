@@ -88,7 +88,7 @@ pxvideofx:
 		Length: 56
 		Tick: 54
 		Offset: 0,0
-		Scale: 0.2427
+		Scale: 0.2359
 		ZOffset: 512
 	fire-small-b:
 		Filename: ra|bits/hd/fx/video/fire-small-b.png
@@ -104,7 +104,7 @@ pxvideofx:
 		Length: 56
 		Tick: 54
 		Offset: 0,0
-		Scale: 0.2688
+		Scale: 0.2604
 		ZOffset: 512
 	smoke-column-a:
 		Filename: ra|bits/hd/fx/video/smoke-column-a.png
@@ -121,4 +121,44 @@ pxvideofx:
 		Tick: 71
 		Offset: 0,0
 		Scale: 0.2805
+		ZOffset: 512
+	nuke-a:
+		Filename: ra|bits/hd/fx/video/nuke-a.png
+		Start: 0
+		Length: 110
+		Tick: 100
+		Offset: 0,0
+		Scale: 0.2404
+		ZOffset: 512
+	napalm-a:
+		Filename: ra|bits/hd/fx/video/napalm-a.png
+		Start: 0
+		Length: 56
+		Tick: 71
+		Offset: 0,0
+		Scale: 0.3217
+		ZOffset: 512
+	launch-blast-a:
+		Filename: ra|bits/hd/fx/video/launch-blast-a.png
+		Start: 0
+		Length: 56
+		Tick: 71
+		Offset: 0,0
+		Scale: 0.3131
+		ZOffset: 512
+	crash-a:
+		Filename: ra|bits/hd/fx/video/crash-a.png
+		Start: 0
+		Length: 56
+		Tick: 84
+		Offset: 0,0
+		Scale: 0.2611
+		ZOffset: 512
+	crash-a-m:
+		Filename: ra|bits/hd/fx/video/crash-a-m.png
+		Start: 0
+		Length: 56
+		Tick: 84
+		Offset: 0,0
+		Scale: 0.2611
 		ZOffset: 512

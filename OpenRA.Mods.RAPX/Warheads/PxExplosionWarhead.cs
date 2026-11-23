@@ -126,6 +126,17 @@ namespace OpenRA.Mods.RAPX.Warheads
 			"with the wind.")]
 		public readonly int VideoLinger = 90;
 
+		[Desc("Frame of the filmed explosion from which a slower continuation starts (a clip joined with a 'then' clip",
+			"by artsrc/fx/make_video_fx.py, which prints both values). 0 = none.")]
+		public readonly int VideoSlowFrom = 0;
+
+		[Desc("Milliseconds per frame of that continuation.")]
+		public readonly int VideoSlowTick = 200;
+
+		[Desc("Draw order bias of the filmed explosion; empty = the clip's own ZOffset. Raise it for towering clouds",
+			"(a mushroom cloud) that must stay in front of smaller blasts nearer the camera.")]
+		public readonly int? VideoZOffset = null;
+
 		public override void DoImpact(in Target target, WarheadArgs args)
 		{
 			if (target.Type == TargetType.Invalid)
@@ -679,13 +690,22 @@ namespace OpenRA.Mods.RAPX.Warheads
 
 			if (VideoPlaying())
 			{
-				// Play the clip, then let its last frame of smoke linger: thinning out, spreading, drifting with the wind
-				var frame = VideoFrame();
+				// Play the clip, then let its last frame of smoke linger: thinning out, spreading, drifting with the wind.
+				// Each frame dissolves into the next, so clips stay smooth at their low frame rates.
+				var f = VideoFrame();
+				var frame = (int)f;
 				var linger = Math.Max(0, time - VideoEnd) / Math.Max(1, info.VideoLinger);
 				var fade = 1 - linger * linger * (3 - 2 * linger);
 				var drift = PxParticles.ToWorld(particles.Wind.X * (time - VideoEnd) * 0.6f, particles.Wind.Y * (time - VideoEnd) * 0.6f);
-				yield return new SpriteRenderable(video.GetSprite(frame), (air ? pos : ground) + (linger > 0 ? drift : WVec.Zero),
-					WVec.Zero, video.ZOffset, null, videoScale * (1 + 0.2f * linger), fade, new float3(1, 1, 1), TintModifiers.None, false);
+				var at = (air ? pos : ground) + (linger > 0 ? drift : WVec.Zero);
+				var scale = videoScale * (1 + 0.2f * linger);
+				var white = new float3(1, 1, 1);
+				var z = info.VideoZOffset ?? video.ZOffset;
+				yield return new SpriteRenderable(video.GetSprite(frame), at, WVec.Zero, z, null, scale, fade, white,
+					TintModifiers.None, false);
+				if (frame + 1 < video.Length && f - frame > 0.05f)
+					yield return new SpriteRenderable(video.GetSprite(frame + 1), at, WVec.Zero, z + 1, null, scale,
+						fade * (f - frame), white, TintModifiers.None, false);
 			}
 
 			foreach (var r in particles.Render(ground, 1024))
@@ -694,10 +714,24 @@ namespace OpenRA.Mods.RAPX.Warheads
 
 		/// <summary>Ticks until the filmed explosion's last frame. Time runs in 40 ms game ticks, so the clip keeps pace
 		/// with the game speed.</summary>
-		float VideoEnd => video.Length * video.Tick / (40f * info.VideoSpeed);
+		/// <summary>Milliseconds from the start of the clip to frame f (a joined continuation runs at VideoSlowTick).</summary>
+		float FrameMs(float f)
+		{
+			var from = info.VideoSlowFrom;
+			return from <= 0 || f <= from ? f * video.Tick : from * video.Tick + (f - from) * info.VideoSlowTick;
+		}
+
+		float VideoEnd => FrameMs(video.Length - 1) / (40f * info.VideoSpeed);
 
 		bool VideoPlaying() { return video != null && time < VideoEnd + info.VideoLinger; }
 
-		int VideoFrame() { return Math.Min((int)(time * 40 * info.VideoSpeed / video.Tick), video.Length - 1); }
+		/// <summary>The clip's frame now, with the fraction towards the next one.</summary>
+		float VideoFrame()
+		{
+			var ms = time * 40 * info.VideoSpeed;
+			var from = info.VideoSlowFrom;
+			var f = from <= 0 || ms <= from * video.Tick ? ms / video.Tick : from + (ms - from * video.Tick) / info.VideoSlowTick;
+			return Math.Min(f, video.Length - 1);
+		}
 	}
 }

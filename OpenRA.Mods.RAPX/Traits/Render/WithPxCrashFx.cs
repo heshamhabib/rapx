@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using OpenRA.Effects;
 using OpenRA.Graphics;
+using OpenRA.Mods.RAPX.Effects;
 using OpenRA.Mods.RAPX.Graphics;
 using OpenRA.Support;
 using OpenRA.Traits;
@@ -30,6 +31,13 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 		[Desc("How long the crash site keeps burning and smoking, in ticks.")]
 		public readonly int BurnTicks = 260;
 
+		[Desc("Filmed impact (sequence of image pxvideofx, artsrc/fx/make_video_fx.py): a fiery skid from left to right,",
+			"with a mirrored copy <Video>-m for wrecks coming down heading left. Empty or missing = particles only.")]
+		public readonly string Video = "crash-a";
+
+		[Desc("Size of the filmed impact. It grows with the square root of Size, so a bomber's skid stays on screen.")]
+		public readonly float VideoScale = 0.7f;
+
 		public override object Create(ActorInitializer init) { return new WithPxCrashFx(this); }
 	}
 
@@ -38,6 +46,7 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 		readonly WithPxCrashFxInfo info;
 		PxCrashEffect effect;
 		WPos last;
+		int heading;
 
 		public WithPxCrashFx(WithPxCrashFxInfo info)
 		{
@@ -59,13 +68,24 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 
 			var pos = self.CenterPosition;
 			effect.Falling(last, pos);
+			if (pos.X != last.X)
+				heading = Math.Sign(pos.X - last.X);
 			last = pos;
 		}
 
 		void INotifyRemovedFromWorld.RemovedFromWorld(Actor self)
 		{
 			// FallsToEarth removes the husk when it hits the ground: the crash site takes over
-			effect?.Impact(new WPos(last.X, last.Y, 0));
+			if (effect == null)
+				return;
+
+			var ground = new WPos(last.X, last.Y, 0);
+			var world = self.World;
+			var clip = PxVideoEffect.Find(world, heading < 0 ? info.Video + "-m" : info.Video) ?? PxVideoEffect.Find(world, info.Video);
+			effect.Impact(ground, clip != null);
+			if (clip != null)
+				world.AddFrameEndTask(w => w.Add(new PxVideoEffect(w, ground, clip, clip.Scale * MathF.Sqrt(info.Size) * info.VideoScale, 90, 512)));
+
 			effect = null;
 		}
 	}
@@ -172,8 +192,9 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 				Add(PxParticleKind.Chunk, b, 1, Out(1f, 0.8f), 0.1f, 0.01f, 80, 0.4f, 0, 1f, Metal, 18);
 		}
 
-		/// <summary>The impact: burning debris thrown out, ground fires, and the crash site starts to burn.</summary>
-		public void Impact(WPos at)
+		/// <summary>The impact: burning debris thrown out, ground fires, and the crash site starts to burn. With a filmed
+		/// impact (video) the burst of flames and smoke is left to the film.</summary>
+		public void Impact(WPos at, bool video = false)
 		{
 			site = Local(at);
 			sort = at;
@@ -182,9 +203,9 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 			Add(PxParticleKind.Ring, site, 0, default, 0, 0, 16, 1.2f, 1.8f, 0.6f, new float3(0.9f, 0.85f, 0.75f), 0);
 			for (var i = 0; i < 22; i++)
 				Add(PxParticleKind.Chunk, site, 4, Out(2.2f, 2.4f), 0.12f, 0.01f, R(120, 220), 0.5f, 0, 1f, i % 4 == 0 ? Fire : Metal, 20);
-			for (var i = 0; i < 14; i++)
+			for (var i = 0; i < (video ? 0 : 14); i++)
 				Add(PxParticleKind.Flame, site, 14 * size, new float3(0, 0, R(0.05f, 0.2f)), 0, 0.1f, R(40, 90), 0.5f, 0.6f, 1f, Fire);
-			for (var i = 0; i < 12; i++)
+			for (var i = 0; i < (video ? 4 : 12); i++)
 				Add(PxParticleKind.Plume, site, 10 * size, Out(0.4f, 0.5f), 0, 0.04f, 110, 0.55f, 2.5f, 0.8f, BlackSmoke);
 			for (var i = 0; i < 24; i++)
 				Add(PxParticleKind.Spark, site, 3, Out(3f, 2.4f), 0.1f, 0.02f, 26, 0.35f, 0, 1f, HotFire, 0);
