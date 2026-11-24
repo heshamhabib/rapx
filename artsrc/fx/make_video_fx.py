@@ -52,7 +52,11 @@ LOOP_BLEND = 0.25
 #   bg        "black" for clips filmed on black (electric arcs): alpha from brightness
 #   start     seconds cut from the start, or "flash": cut everything before the first bright flash (a missile or
 #             shell flying in that the game draws itself)
+#   (start "blast": cut at the blast itself, for air hits that show the missile and the jet it hits flying in)
+#   lead      source frames kept before the flash with start "flash" (default 1; 0 or less when the shell is still in view)
 #   anchor    "flash" (default; first bright flash), "first", "base" (foot), "centre"
+#   erase     [(x0, y0, x1, y1, half width)] in source pixels: grey smoke along these lines is removed (the trail of a
+#             missile flying in that hangs on after the flash)
 #   strict    harder despill for clips without bright yellow/orange (dust, earth, water)
 #   frames    frames kept; size: largest output side; scale: in-game size multiplier
 #   mirror    also define <name>-m, the same sheet flipped left to right (FlipX: no extra texture memory)
@@ -65,14 +69,16 @@ CLIPS = {
     "cannon-1": {}, "cannon-2": {},
     "dirt-1": {"strict": True}, "dirt-2": {"strict": True},
     "artillery-1": {}, "artillery-2": {},
-    "heavy-missile-1": {}, "heavy-missile-2": {},
+    # both film their own missile diving in (from a fixed side, ~1.3 s before the blast): the game draws its own
+    "heavy-missile-1": {"start": "flash", "lead": 0},
+    "heavy-missile-2": {"start": "flash", "lead": -3, "erase": [(700, 400, 1060, -40, 26)]},
     "bomb-1": {}, "bomb-2": {},
     "thermobaric": {},
     "cluster-1": {"anchor": "centre"},
     "gun-strafe-1": {"anchor": "first", "mirror": True},
     # Air explosions
-    "airburst-1": {"start": "flash"}, "airburst-2": {"start": "flash"},
-    "intercept-1": {"start": "flash"},
+    "airburst-1": {"start": "blast", "lead": -1}, "airburst-2": {"start": "blast", "lead": -3},
+    "intercept-1": {"start": "blast", "lead": -1},
     "flak-1": {},
     "white-phosphorus-1": {},
     # Deaths
@@ -360,13 +366,38 @@ def centre(frames):
     return float(xs.mean()), float(ys.mean())
 
 
-def flash_start(src, bg):
-    """First source frame with a bright flash (the blast itself), one frame before it."""
+def flash_start(src, bg, lead=1):
+    """First source frame with a bright flash (the blast itself), lead frames before it."""
     for i, f in enumerate(src):
         lum = f.mean(axis=2)
         if (lum > 0.88).sum() > f.shape[0] * f.shape[1] * 0.0015:
-            return max(0, i - 1)
+            return max(0, i - lead)
     return 0
+
+
+def blast_start(src, lead=1):
+    """Where the blast itself starts: the bright area passes 1% of the frame and stays there for 5 frames (a
+    missile's motor glint or a glint on the jet it hits is smaller, or gone again at once). lead frames before it."""
+    share = [(f.mean(axis=2) > 0.88).mean() for f in src]
+    for i in range(len(share) - 5):
+        if all(v > 0.01 for v in share[i:i + 5]):
+            return max(0, i - lead)
+    return 0
+
+
+def erase_band(shape, lines):
+    """0-1 weight of the pixels near any of the erase lines (soft edge), or None."""
+    if not lines:
+        return None
+    h, w = shape
+    ys, xs = np.mgrid[0:h, 0:w].astype(np.float32)
+    band = np.zeros((h, w), np.float32)
+    for x0, y0, x1, y1, half in lines:
+        dx, dy = x1 - x0, y1 - y0
+        t = np.clip(((xs - x0) * dx + (ys - y0) * dy) / float(dx * dx + dy * dy), 0, 1)
+        d = np.hypot(xs - (x0 + t * dx), ys - (y0 + t * dy))
+        band = np.maximum(band, np.clip((half * 1.5 - d) / (half * 0.5), 0, 1))
+    return band
 
 
 def loop_blend(frames):
@@ -399,7 +430,12 @@ def prepare(name, opts, sides=None):
         parts.append(len(more) - 1)
     bg = background(src, black)
     start = opts.get("start", 0)
-    cut0 = flash_start(src, bg) if start == "flash" else int(round(start * fps))
+    if start == "flash":
+        cut0 = flash_start(src, bg, opts.get("lead", 1))
+    elif start == "blast":
+        cut0 = blast_start(src, opts.get("lead", 1))
+    else:
+        cut0 = int(round(start * fps))
     src = src[cut0:]
     parts[0] -= cut0
     if sides is None:
@@ -425,10 +461,14 @@ def prepare(name, opts, sides=None):
     short = min(src.shape[1:3])
     ramp = edge_ramp(*src.shape[1:3], EDGE * short / 360, sides)
     ext = Extender(src.shape[1:3], sides, seed=sum(map(ord, name))) if sides else None
+    band = erase_band(src.shape[1:3], opts.get("erase", []))
     out = []
     for i, j in enumerate(picks):
         f = key_black(src[j]) if black else key(src[j], bg, opts.get("strict", False))
         f[..., 3] *= ramp
+        if band is not None:
+            grey = np.clip(1 - (f[..., :3].max(axis=2) - f[..., :3].min(axis=2)) / 0.15, 0, 1)
+            f[..., 3] *= 1 - band * grey * (f[..., :3].max(axis=2) < 0.8)
         if ext:
             f = ext(f, i)
         out.append(f)
