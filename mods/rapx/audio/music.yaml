@@ -154,3 +154,19 @@ gambit: Midnight War Room
 	Filename: ra|audio/gambit
 	Extension: mp3
 	VolumeModifier: 0.9
+burningsand: Tides of Burning Sand
+	Filename: ra|audio/burningsand
+	Extension: mp3
+	VolumeModifier: 0.9
+lastbastion: Last Bastion Standing
+	Filename: ra|audio/lastbastion
+	Extension: mp3
+	VolumeModifier: 0.9
+tideturn: Turning of the Tide
+	Filename: ra|audio/tideturn
+	Extension: mp3
+	VolumeModifier: 0.9
+highground: Hold the High Ground
+	Filename: ra|audio/highground
+	Extension: mp3
+	VolumeModifier: 0.9
