@@ -40,14 +40,20 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 		[Desc("The building stands in water: white spray instead of dust, debris sinks, no scorch mark.")]
 		public readonly bool OnWater = false;
 
-		[Desc("Filmed clips (sequences of image pxvideofx, artsrc/fx/make_video_fx.py): the fire loop burning on the ruins,",
-			"the smoke column rising from them and the dust rolling out as the building goes down. Empty or missing =",
-			"particles only. Not used on water.")]
-		public readonly string FireVideo = "fire-small-b";
+		[Desc("Filmed clips (sequences of image pxvideofx, artsrc/fx/make_video_fx.py): fires on the ruins that catch, burn",
+			"and burn out (start, loops, end), a smoke column that rises and dies away (loops, end), and the dust rolling",
+			"out as the building goes down (one picked at random). Empty or missing = particles only. Not used on water.")]
+		public readonly string[] FireVideo = { "fire-small-loop-1", "fire-small-loop-2" };
 
-		public readonly string SmokeVideo = "smoke-column-a";
+		public readonly string FireVideoStart = "fire-small-start";
 
-		public readonly string DustVideo = "dust-a";
+		public readonly string FireVideoEnd = "fire-small-end";
+
+		public readonly string[] SmokeVideo = { "smoke-column-loop-2" };
+
+		public readonly string SmokeVideoEnd = "smoke-column-end";
+
+		public readonly string[] DustVideo = { "collapse-dust-1" };
 
 		public override object Create(ActorInitializer init) { return new WithPxCollapse(init.Self, this); }
 	}
@@ -106,8 +112,10 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 		readonly PxParticles debris;
 		readonly MersenneTwister random = new(Game.CosmeticRandom.Next());
 		readonly float2[] fires;
-		readonly int[] phases;
-		readonly ISpriteSequence fireVideo, smokeVideo, dustVideo;
+		readonly PxClipCycle[] fireClips;
+		readonly PxClipCycle smokeClip;
+		readonly ISpriteSequence dustVideo;
+		readonly float[] fireOut;
 
 		float time;
 		float burn = 1;
@@ -140,15 +148,33 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 			for (var i = 0; i < fires.Length; i++)
 				fires[i] = new float2(Rand(-0.6f, 0.6f) * radius.X, Rand(-0.6f, 0.4f) * radius.Y);
 
-			phases = new int[fires.Length];
-			for (var i = 0; i < phases.Length; i++)
-				phases[i] = random.Next(1024);
-
+			fireClips = new PxClipCycle[fires.Length];
+			fireOut = new float[fires.Length];
 			if (!info.OnWater)
 			{
-				fireVideo = PxVideoEffect.Find(world, info.FireVideo);
-				smokeVideo = PxVideoEffect.Find(world, info.SmokeVideo);
-				dustVideo = PxVideoEffect.Find(world, info.DustVideo);
+				for (var i = 0; i < fires.Length; i++)
+				{
+					fireClips[i] = PxClipCycle.Create(world, info.FireVideoStart, info.FireVideo, info.FireVideoEnd, random);
+					fireOut[i] = Rand(0.1f, 0.35f);
+				}
+
+				smokeClip = PxClipCycle.Create(world, null, info.SmokeVideo, info.SmokeVideoEnd, random);
+				dustVideo = PxVideoEffect.Pick(world, info.DustVideo, random);
+			}
+		}
+
+		bool FilmedFire => fireClips.Length > 0 && fireClips[0] != null;
+
+		bool ClipsActive
+		{
+			get
+			{
+				if (smokeClip != null && smokeClip.Active)
+					return true;
+				foreach (var c in fireClips)
+					if (c != null && c.Active)
+						return true;
+				return false;
 			}
 		}
 
@@ -158,7 +184,7 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 
 		public void Tick(World world)
 		{
-			if (time > Total)
+			if (time > Total && !ClipsActive)
 				world.AddFrameEndTask(w => w.Remove(this));
 		}
 
@@ -259,6 +285,30 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 			particles.Update(dt);
 			debris.Update(dt);
 
+			// Filmed fires catch on the ruins as the building goes down and burn out one by one as the fire dies; the
+			// smoke column rises under the dust and dies away after the fires
+			var burnNow = 1 - Math.Clamp((time - info.Duration) / (info.Linger * 0.6f), 0, 1);
+			for (var i = 0; i < fireClips.Length; i++)
+			{
+				var c = fireClips[i];
+				if (c == null)
+					continue;
+				if (time >= info.Duration * (0.4f + 0.2f * i) && !c.Burning && !c.Active && burnNow > fireOut[i])
+					c.Ignite();
+				if (c.Burning && burnNow <= fireOut[i])
+					c.Extinguish();
+				c.Update(dt);
+			}
+
+			if (smokeClip != null)
+			{
+				if (time >= 15 && !smokeClip.Burning && !smokeClip.Active && time < info.Duration + info.Linger * 0.75f)
+					smokeClip.Ignite(false);
+				if (smokeClip.Burning && time >= info.Duration + info.Linger * 0.75f)
+					smokeClip.Extinguish();
+				smokeClip.Update(dt);
+			}
+
 			// Dust keeps pouring out while the building sinks
 			if (time < info.Duration)
 			{
@@ -280,7 +330,7 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 				while (smokeTimer <= 0)
 				{
 					// A filmed smoke column carries most of the smoke: fewer puffs around it
-					smokeTimer += 3.5f / Math.Max(burn, 0.15f) / fires.Length * (smokeVideo != null ? 2.5f : 1);
+					smokeTimer += 3.5f / Math.Max(burn, 0.15f) / fires.Length * (smokeClip != null ? 2.5f : 1);
 					var f = fires[random.Next(fires.Length)];
 					var grey = Rand(0.1f, 0.2f);
 					particles.Add(new PxParticle
@@ -302,7 +352,7 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 						Spin = Rand(-3, 3),
 					});
 
-					if (fireVideo == null && random.NextFloat() < burn)
+					if (!FilmedFire && random.NextFloat() < burn)
 					{
 						particles.Add(new PxParticle
 						{
@@ -384,45 +434,31 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 		{
 			var white = new float3(1, 1, 1);
 
-			// Dust rolling out once, sized to the footprint, its last frame thinning out
-			if (dustVideo != null)
+			// Dust rolling out once as the building goes down, sized to the footprint, played to its end
+			if (dustVideo != null && time <= PxVideoEffect.Duration(dustVideo) + 1)
 			{
-				var end = dustVideo.Length * dustVideo.Tick / 40f;
-				if (time < end + 60)
-				{
-					var sprite = dustVideo.GetSprite(Math.Min((int)(time * 40 / dustVideo.Tick), dustVideo.Length - 1));
-					var linger = Math.Clamp((time - end) / 60, 0, 1);
-					var scale = (radius.X * 2.4f + 40) / sprite.Size.X * (1 + 0.15f * linger);
-					yield return new SpriteRenderable(sprite, pos, WVec.Zero, 512, null, scale, 1 - linger * linger * (3 - 2 * linger),
-						white, TintModifiers.None, false);
-				}
+				var scale = (radius.X * 2.4f + 40) / dustVideo.GetSprite(0).Size.X;
+				foreach (var r in PxVideoEffect.Draw(dustVideo, time * 40 / dustVideo.Tick, pos, 512, scale, 1f, white))
+					yield return r;
 			}
 
-			// Fires on the ruins, dying down
-			if (fireVideo != null && burn > 0)
+			// Fires on the ruins
+			var fireScale = (radius.X * 0.9f + 18) / 60f;
+			for (var i = 0; i < fireClips.Length; i++)
 			{
-				var now = Game.RunTime;
-				for (var i = 0; i < fires.Length; i++)
-				{
-					var sprite = fireVideo.GetSprite((int)(now / fireVideo.Tick + phases[i]) % fireVideo.Length);
-					var offset = PxParticles.ToWorld(fires[i].X, fires[i].Y);
-					yield return new SpriteRenderable(sprite, pos + offset, WVec.Zero, 512 - offset.Y, null,
-						fireVideo.Scale * 0.6f * (0.4f + 0.6f * burn), Math.Min(1, burn * 3), white, TintModifiers.None, false);
-				}
+				if (fireClips[i] == null)
+					continue;
+				var offset = PxParticles.ToWorld(fires[i].X, fires[i].Y);
+				foreach (var r in fireClips[i].Render(pos + offset, 512 - offset.Y, fireScale * 0.6f, 1f, white))
+					yield return r;
 			}
 
 			// One smoke column over the ruins, outlasting the fires
-			if (smokeVideo != null)
+			if (smokeClip != null)
 			{
-				var strength = Math.Clamp(time / 40, 0, 1) * (1 - Math.Clamp((time - info.Duration) / (info.Linger * 0.9f), 0, 1));
-				if (strength > 0)
-				{
-					var sprite = smokeVideo.GetSprite((int)(Game.RunTime / smokeVideo.Tick) % smokeVideo.Length);
-					var offset = PxParticles.ToWorld(fires[0].X, fires[0].Y);
-					var scale = (radius.X * 4.5f + 40) / sprite.Size.Y * (0.7f + 0.3f * strength);
-					yield return new SpriteRenderable(sprite, pos + offset, WVec.Zero, 520 - offset.Y, null, scale, strength * 0.9f,
-						white, TintModifiers.None, false);
-				}
+				var offset = PxParticles.ToWorld(fires[0].X, fires[0].Y);
+				foreach (var r in smokeClip.Render(pos + offset, 520 - offset.Y, (radius.X * 0.9f + 18) / 50f, 0.9f, white))
+					yield return r;
 			}
 		}
 	}

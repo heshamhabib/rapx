@@ -32,12 +32,22 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 		[Desc("Size multiplier for smoke and flames.")]
 		public readonly float Size = 1f;
 
-		[Desc("Filmed fire loop (sequence of image pxvideofx, artsrc/fx/make_video_fx.py) burning on each fire spot when",
-			"heavily damaged, instead of flame particles. Empty or missing = particles.")]
-		public readonly string Video = "fire-small-b";
+		[Desc("Filmed fire loops (sequences of image pxvideofx, artsrc/fx/make_video_fx.py, one picked per spot) burning on",
+			"each fire spot when heavily damaged, instead of flame particles. Empty or missing = particles.")]
+		public readonly string[] Video = { "fire-small-loop-1", "fire-small-loop-2" };
 
-		[Desc("Filmed fire loop for the first spot at critical health.")]
-		public readonly string CriticalVideo = "fire-big-b";
+		[Desc("The fire catching (its last frame matches the loops' first).")]
+		public readonly string VideoStart = "fire-small-start";
+
+		[Desc("The fire burning out when the building is repaired (its first frame matches the loops' first).")]
+		public readonly string VideoEnd = "fire-small-end";
+
+		[Desc("Filmed fire for the first spot at critical health: loops, start and end.")]
+		public readonly string[] CriticalVideo = { "fire-big-loop-1" };
+
+		public readonly string CriticalVideoStart = "fire-big-start";
+
+		public readonly string CriticalVideoEnd = "fire-big-end";
 
 		[Desc("Size of the filmed fires, as a multiple of Size.")]
 		public readonly float VideoScale = 0.65f;
@@ -53,11 +63,14 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 		readonly PxParticles particles;
 		readonly MersenneTwister random = new(Game.CosmeticRandom.Next());
 		readonly float[] timers;
-		readonly ISpriteSequence video, criticalVideo;
+		readonly World world;
+		readonly bool video;
 
-		// Filmed fires: how far each spot's fire has flared up (0-1) and where in its loop it starts
-		readonly float[] heat;
-		readonly int[] phases;
+		// Filmed fires: what each spot burns with (0 none, 1 small, 2 big) and its fire; fires going out keep playing
+		// their end until they are done
+		readonly int[] kinds;
+		readonly PxClipCycle[] fires;
+		readonly List<(int Spot, PxClipCycle Fire)> dying = new();
 		long lastTime = -1;
 
 		public WithPxDamageFx(Actor self, WithPxDamageFxInfo info)
@@ -66,13 +79,17 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 			health = self.Trait<IHealth>();
 			particles = new PxParticles(self.World);
 			timers = new float[info.Points.Length];
-			heat = new float[info.Points.Length];
-			phases = new int[info.Points.Length];
+			world = self.World;
+			kinds = new int[info.Points.Length];
+			fires = new PxClipCycle[info.Points.Length];
+			video = PxVideoEffect.Pick(world, info.Video, random) != null;
+		}
 
-			video = PxVideoEffect.Find(self.World, info.Video);
-			criticalVideo = PxVideoEffect.Find(self.World, info.CriticalVideo) ?? video;
-			for (var i = 0; i < phases.Length; i++)
-				phases[i] = random.Next(1024);
+		PxClipCycle Fire(int kind)
+		{
+			return kind == 2
+				? PxClipCycle.Create(world, Info.CriticalVideoStart, Info.CriticalVideo, Info.CriticalVideoEnd, random)
+				: PxClipCycle.Create(world, Info.VideoStart, Info.Video, Info.VideoEnd, random);
 		}
 
 		float Rand(float min, float max) { return min + random.NextFloat() * (max - min); }
@@ -99,10 +116,34 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 				_ => 0,
 			};
 
-			// Filmed fires flare up over about a second and die down when the building is repaired
-			var burning = state >= DamageState.Heavy ? spots : 0;
-			for (var i = 0; i < heat.Length; i++)
-				heat[i] = Math.Clamp(heat[i] + (i < burning ? dt : -dt) / 25f, 0, 1);
+			// Filmed fires catch when the building is heavily damaged (the first spot grows into a big fire at critical
+			// health) and burn out on camera when it is repaired
+			if (video)
+			{
+				var burning = state >= DamageState.Heavy ? spots : 0;
+				for (var i = 0; i < kinds.Length; i++)
+				{
+					var want = i >= burning ? 0 : i == 0 && state == DamageState.Critical ? 2 : 1;
+					if (want == kinds[i])
+						continue;
+
+					if (fires[i] != null)
+					{
+						fires[i].Extinguish();
+						dying.Add((i, fires[i]));
+					}
+
+					kinds[i] = want;
+					fires[i] = want > 0 ? Fire(want) : null;
+					fires[i]?.Ignite();
+				}
+
+				foreach (var f in fires)
+					f?.Update(dt);
+				foreach (var d in dying)
+					d.Fire.Update(dt);
+				dying.RemoveAll(d => d.Fire.Done);
+			}
 
 			for (var i = 0; i < spots; i++)
 			{
@@ -133,7 +174,7 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 					Spin = Rand(-3, 3),
 				});
 
-				if (heavy && video == null)
+				if (heavy && !video)
 				{
 					particles.Add(new PxParticle
 					{
@@ -171,23 +212,21 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 		IEnumerable<IRenderable> IRender.Render(Actor self, WorldRenderer wr)
 		{
 			var origin = self.CenterPosition;
-			if (video != null)
+			var white = new float3(1, 1, 1);
+			IEnumerable<IRenderable> Draw(int i, PxClipCycle fire)
 			{
-				var now = Game.RunTime;
-				var critical = health.DamageState == DamageState.Critical;
-				for (var i = 0; i < heat.Length; i++)
-				{
-					if (heat[i] <= 0)
-						continue;
-
-					var seq = i == 0 && critical ? criticalVideo : video;
-					var sprite = seq.GetSprite((int)(now / seq.Tick + phases[i]) % seq.Length);
-					var scale = seq.Scale * Info.Size * Info.VideoScale * (0.6f + 0.4f * heat[i]) * (i == 0 ? 1f : 0.8f);
-					var offset = PxParticles.ToWorld(Info.Points[i].X, Info.Points[i].Y);
-					yield return new SpriteRenderable(sprite, origin + offset, WVec.Zero, ZBias - offset.Y, null, scale,
-						heat[i], new float3(1, 1, 1), TintModifiers.None, false, WAngle.Zero);
-				}
+				var offset = PxParticles.ToWorld(Info.Points[i].X, Info.Points[i].Y);
+				return fire.Render(origin + offset, ZBias - offset.Y, Info.Size * Info.VideoScale * (i == 0 ? 1f : 0.8f), 1f, white);
 			}
+
+			for (var i = 0; i < fires.Length; i++)
+				if (fires[i] != null)
+					foreach (var r in Draw(i, fires[i]))
+						yield return r;
+
+			foreach (var d in dying)
+				foreach (var r in Draw(d.Spot, d.Fire))
+					yield return r;
 
 			foreach (var r in particles.Render(origin, ZBias))
 				yield return r;

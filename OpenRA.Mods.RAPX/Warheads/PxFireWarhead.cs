@@ -46,12 +46,15 @@ namespace OpenRA.Mods.RAPX.Warheads
 		[Desc("Sounds to play on impact.")]
 		public readonly string[] ImpactSounds = Array.Empty<string>();
 
-		[Desc("Filmed impact (sequence of image pxvideofx, artsrc/fx/make_video_fx.py), played once in place of the",
-			"particle fireballs and flames.")]
-		public readonly string Video = null;
+		[Desc("Filmed impacts (sequences of image pxvideofx, artsrc/fx/make_video_fx.py), one picked at random and played",
+			"once in place of the particle fireballs and flames.")]
+		public readonly string[] Video = Array.Empty<string>();
 
-		[Desc("Filmed fire loop that takes over from Video and burns for the rest of Duration.")]
-		public readonly string BurnVideo = null;
+		[Desc("Filmed fire loops (one picked at random) that take over from Video and burn for the rest of Duration.")]
+		public readonly string[] BurnVideo = Array.Empty<string>();
+
+		[Desc("Filmed clip of the fire burning out, played when Duration is over (its first frame matches the loop's).")]
+		public readonly string BurnVideoEnd = null;
 
 		[Desc("Size of the filmed fire, as a multiple of Size.")]
 		public readonly float VideoScale = 1f;
@@ -79,13 +82,16 @@ namespace OpenRA.Mods.RAPX.Warheads
 	{
 		const int ScorchZ = -2048;
 
+		/// <summary>Ticks over which the impact clip dissolves into the fire loop.</summary>
+		const float Handover = 10;
+
 		readonly World world;
 		readonly WPos ground;
 		readonly PxFireWarhead info;
 		readonly PxParticles particles;
 		readonly ISpriteSequence scorch;
-		readonly ISpriteSequence clip, burnClip;
-		readonly int phase;
+		readonly ISpriteSequence clip;
+		readonly PxClipCycle burn;
 		readonly MersenneTwister random = new(Game.CosmeticRandom.Next());
 		float time;
 		float emit;
@@ -99,13 +105,12 @@ namespace OpenRA.Mods.RAPX.Warheads
 			ground = pos - new WVec(0, 0, world.Map.DistanceAboveTerrain(pos).Length);
 			particles = new PxParticles(world) { Max = 220 };
 			scorch = particles.Sequence("scorch");
-			clip = PxVideoEffect.Find(world, info.Video);
-			burnClip = PxVideoEffect.Find(world, info.BurnVideo);
-			phase = random.Next(1024);
+			clip = PxVideoEffect.Pick(world, info.Video, random);
+			burn = PxClipCycle.Create(world, null, info.BurnVideo, info.BurnVideoEnd, random);
 		}
 
 		/// <summary>Ticks until the filmed impact's last frame (40 ms game ticks).</summary>
-		float ClipEnd => clip == null ? 0 : clip.Length * clip.Tick / 40f;
+		float ClipEnd => clip == null ? 0 : PxVideoEffect.Duration(clip);
 
 		float Rand(float min, float max) { return min + random.NextFloat() * (max - min); }
 
@@ -169,11 +174,11 @@ namespace OpenRA.Mods.RAPX.Warheads
 				});
 		}
 
-		float Total => Math.Max(info.Duration + 90, ClipEnd + 30);
+		float Total => Math.Max(info.Duration + 90, ClipEnd + 2);
 
 		public void Tick(World world)
 		{
-			if (time > Total)
+			if (time > Total && (burn == null || !burn.Active))
 				world.AddFrameEndTask(w => w.Remove(this));
 		}
 
@@ -198,10 +203,10 @@ namespace OpenRA.Mods.RAPX.Warheads
 					while (emit >= 1)
 					{
 						emit -= 1;
-						if (clip == null && burnClip == null)
+						if (clip == null && burn == null)
 							Add(PxParticleKind.Flame, 3.5f * k, 0, Rand(0.35f, 0.6f) * k * (0.5f + 0.5f * left), 0.2f, Rand(10, 16),
 							0.95f, 0.05f, Rand(0.35f, 0.7f), 0.1f, new float3(1f, 0.85f, 0.6f));
-						if (clip == null && burnClip == null && random.NextFloat() < 0.5f * left + 0.15f)
+						if (clip == null && burn == null && random.NextFloat() < 0.5f * left + 0.15f)
 							Add(PxParticleKind.Fireball, 2.5f * k, Rand(0, 2), Rand(0.25f, 0.4f) * k * (0.5f + 0.5f * left), 0.6f,
 								Rand(8, 12), 0.9f, 0.05f, Rand(0.4f, 0.8f), 0.1f, new float3(1f, 0.95f, 0.85f));
 						if (random.NextFloat() < 0.35f * info.Smoke)
@@ -211,6 +216,15 @@ namespace OpenRA.Mods.RAPX.Warheads
 				}
 
 				particles.Update(dt);
+				if (burn != null)
+				{
+					// The fire takes over as the impact clip ends, burns for Duration, then burns out on camera
+					if (time >= ClipEnd - Handover && time < info.Duration && !burn.Burning && !burn.Active)
+						burn.Ignite(false);
+					if (time >= Math.Max(info.Duration, ClipEnd) && burn.Burning)
+						burn.Extinguish();
+					burn.Update(dt);
+				}
 			}
 
 			if (world.FogObscures(ground))
@@ -226,22 +240,16 @@ namespace OpenRA.Mods.RAPX.Warheads
 
 			var white = new float3(1, 1, 1);
 			var k2 = info.Size * info.VideoScale;
-			var end = ClipEnd;
-			if (clip != null && time < end + 25)
-			{
-				var frame = Math.Min((int)(time * 40 / clip.Tick), clip.Length - 1);
-				var fade = 1 - Math.Clamp((time - end) / 25, 0, 1);
-				yield return new SpriteRenderable(clip.GetSprite(frame), ground, WVec.Zero, 512, null, clip.Scale * k2, fade,
-					white, TintModifiers.None, false);
-			}
+			if (burn != null)
+				foreach (var r in burn.Render(ground, 510, k2 * 0.8f, 1f, white))
+					yield return r;
 
-			// The fire loop takes over as the impact clip ends and dies down with Duration
-			if (burnClip != null && time > end - 25 && time < info.Duration + 40)
+			// The impact clip plays to its end; with a fire to hand over to, its last moments dissolve into the fire
+			if (clip != null && time <= ClipEnd + 1)
 			{
-				var alpha = Math.Clamp((time - end + 25) / 25, 0, 1) * (1 - Math.Clamp((time - info.Duration) / 40, 0, 1));
-				var frame = (int)(Game.RunTime / burnClip.Tick + phase) % burnClip.Length;
-				yield return new SpriteRenderable(burnClip.GetSprite(frame), ground, WVec.Zero, 512, null,
-					burnClip.Scale * k2 * 0.8f, alpha, white, TintModifiers.None, false);
+				var alpha = burn != null ? 1 - Math.Clamp((time - (ClipEnd - Handover)) / Handover, 0, 1) : 1;
+				foreach (var r in PxVideoEffect.Draw(clip, time * 40 / clip.Tick, ground, 512, clip.Scale * k2, alpha, white))
+					yield return r;
 			}
 
 			foreach (var r in particles.Render(ground, 1024))

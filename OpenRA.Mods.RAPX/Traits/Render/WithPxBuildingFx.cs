@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Traits;
+using OpenRA.Mods.RAPX.Effects;
 using OpenRA.Mods.RAPX.Graphics;
 using OpenRA.Primitives;
 using OpenRA.Support;
@@ -79,6 +80,26 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 		[Desc("Production queues that count for OnlyWhileProducing (empty = any).")]
 		public readonly HashSet<string> Queues = new();
 
+		[Desc("Filmed loops (sequences of image pxvideofx, artsrc/fx/make_video_fx.py, one picked per building) drawn instead",
+			"of the particles, their foot at Offset. Unset = by Type: Smoke chimney smoke, Steam cooling-tower steam, Flame",
+			"the gas flare, Arcs crackling electricity; set it empty to keep the particles.")]
+		public readonly string[] Video = null;
+
+		[Desc("Size of the filmed loop, as a multiple of Size.")]
+		public readonly float VideoScale = 1f;
+
+		public string[] VideoFor()
+		{
+			return Video ?? Type switch
+			{
+				PxBuildingFxType.Smoke => new[] { "chimney-loop-1" },
+				PxBuildingFxType.Steam => new[] { "steam-loop-1" },
+				PxBuildingFxType.Flame => new[] { "gas-flare-loop-1" },
+				PxBuildingFxType.Arcs => new[] { "tesla-crackle-loop-1" },
+				_ => Array.Empty<string>(),
+			};
+		}
+
 		public override object Create(ActorInitializer init) { return new WithPxBuildingFx(init.Self, this); }
 	}
 
@@ -94,6 +115,7 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 		readonly ISpriteSequence glow;
 		readonly ISpriteSequence flare;
 
+		readonly PxClipCycle loop;
 		ProductionQueue[] queues;
 		long lastTime = -1;
 		float clock;
@@ -108,6 +130,8 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 			glow = particles.Sequence("glow");
 			flare = particles.Sequence("flare");
 			phase = info.Phase >= 0 ? info.Phase : random.Next(info.Period);
+			loop = PxClipCycle.Create(self.World, null, info.VideoFor(), null, random);
+			loop?.Ignite(false);
 		}
 
 		protected override void Created(Actor self)
@@ -166,7 +190,8 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 			strength = Math.Clamp(strength + (active ? dt : -dt) / 12f, 0, 1);
 
 			particles.Update(dt);
-			if (!active)
+			loop?.Update(dt);
+			if (!active || loop != null)
 				return;
 
 			emit += dt;
@@ -388,6 +413,15 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 
 			if (strength <= 0)
 				yield break;
+
+			// Filmed loop: it stops with the building (power cut, not producing) by thinning out with it
+			if (loop != null)
+			{
+				var at = origin + PxParticles.ToWorld(Info.Offset.X, Info.Offset.Y);
+				foreach (var r in loop.Render(at, ZBias + 8, Info.Size * Info.VideoScale * 0.5f, strength, new float3(1, 1, 1)))
+					yield return r;
+				yield break;
+			}
 
 			var c = new float3(Info.Color.R, Info.Color.G, Info.Color.B) / 255f;
 			var t = (clock + phase) / Info.Period;

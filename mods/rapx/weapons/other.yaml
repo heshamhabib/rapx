@@ -19,6 +19,8 @@
 		InvalidTargets: Structure, Wall
 	# HD fire (OpenRA.Mods.RAPX/Warheads/PxFireWarhead.cs): a burst of rolling fireballs, then the ground burns
 	Warhead@3Eff: PxFire
+		Video: flame-burst-1
+		VideoScale: 0.6
 		Size: 1
 		Duration: 50
 		ImpactSounds: ra|audio/sfx/firebl3.ogg
@@ -78,9 +80,10 @@ Napalm:
 	Warhead@3Eff: PxFire
 		Size: 1.4
 		Duration: 220
-		Video: napalm-a
-		BurnVideo: fire-big-b
-		VideoScale: 0.55
+		Video: napalm-1
+		BurnVideo: fire-big-loop-1
+		BurnVideoEnd: fire-big-end
+		VideoScale: 0.9
 
 
 ^TeslaWeapon:
@@ -97,6 +100,11 @@ Napalm:
 		Versus:
 			None: 1000
 		DamageTypes: Prone50Percent, TriggerProne, ElectricityDeath
+	# Filmed electric strike (artsrc/fx/make_video_fx.py)
+	Warhead@5Vid: PxVideo
+		Video: tesla-hit-1
+		Scale: 0.6
+		ValidTargets: Ground, Water, GroundActor, WaterActor
 
 TeslaZap:
 	Inherits: ^TeslaWeapon

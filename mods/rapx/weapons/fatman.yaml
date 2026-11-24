@@ -52,11 +52,11 @@ Fatman:
 	Warhead@4EffVideo_impact: PxExplosion
 		Size: 2.4
 		Smoke: 0.15
-		Video: nuke-a
+		Video: nuke-1-1
 		VideoScale: 0.65
-		VideoLinger: 20
-		VideoSlowFrom: 80
-		VideoSlowTick: 167
+		VideoLinger: 0
+		VideoSlowFrom: 64
+		VideoSlowTick: 332
 		VideoZOffset: 8192
 		ClassicExplosion: fatman-nuke
 		ImpactSounds: ra|audio/sfx/kaboom1.ogg

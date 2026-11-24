@@ -14,7 +14,7 @@
 	MinRange: 3c0
 	Report: ra|audio/sfx/missile6.ogg
 	Projectile: PxRocket
-		LaunchVideo: launch-blast-a
+		LaunchVideo: launch-blast-1, launch-blast-2
 		LaunchVideoScale: 0.65
 		ThreatType: Rocket
 		Image: pxmissile
@@ -38,7 +38,7 @@
 			Concrete: 80
 		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath, Incendiary
 	Warhead@3Eff: PxExplosion
-		Video: artillery-a, artillery-b, dirt-a
+		Video: artillery-1, artillery-2, dirt-2
 		VideoScale: 0.75
 		Size: 1.2
 		ImpactSounds: ra|audio/sfx/kaboom25.ogg
@@ -160,7 +160,7 @@ RL_KASIRGA:
 		Spread: 426
 		Damage: 5000
 	Warhead@3Eff: PxExplosion
-		Video: artillery-c, bomb-a
+		Video: heavy-missile-1, heavy-missile-2
 		VideoScale: 0.8
 		Style: Heavy
 		Size: 2.0
@@ -192,7 +192,7 @@ RL_FATAH:
 		Spread: 341
 		Damage: 4000
 	Warhead@3Eff: PxExplosion
-		Video: artillery-c, bomb-a
+		Video: heavy-missile-1, heavy-missile-2
 		VideoScale: 0.8
 		Style: Heavy
 		Size: 1.8
@@ -295,7 +295,7 @@ RL_TOZ:
 			Concrete: 90
 		DamageTypes: Prone50Percent, TriggerProne, FireDeath, Incendiary
 	Warhead@3Eff: PxExplosion
-		Video: bomb-a
+		Video: thermobaric
 		VideoScale: 0.8
 		Style: Thermobaric
 		Size: 1.6
@@ -329,7 +329,7 @@ RL_VILKRA:
 		Spread: 341
 		Damage: 3800
 	Warhead@3Eff: PxExplosion
-		Video: artillery-c, bomb-a
+		Video: heavy-missile-1, heavy-missile-2
 		VideoScale: 0.8
 		Style: Heavy
 		Size: 1.7
@@ -427,7 +427,7 @@ RL_SAQR_BOMBLET:
 		ImpactSounds: ra|audio/sfx/kaboom12.ogg
 		ValidTargets: Ground, GroundActor, WaterActor, Trees
 	Warhead@4EffWater: CreateEffect
-		Explosions: small_splash
+		Explosions: vsplash-1, vsplash-2
 		ValidTargets: Water, Underwater
 		InvalidTargets: Bridge
 
@@ -458,7 +458,7 @@ RL_PHX:
 		Spread: 341
 		Damage: 2600
 	Warhead@3Eff: PxExplosion
-		Video: artillery-c, bomb-a
+		Video: heavy-missile-1, heavy-missile-2
 		VideoScale: 0.8
 		Style: Heavy
 		Size: 1.9
@@ -487,7 +487,7 @@ RL_FAJIR:
 		Spread: 341
 		Damage: 2400
 	Warhead@3Eff: PxExplosion
-		Video: artillery-c, bomb-a
+		Video: heavy-missile-1, heavy-missile-2
 		VideoScale: 0.8
 		Style: Heavy
 		Size: 1.6
@@ -556,7 +556,7 @@ RL_CHUNMU_MISSILE:
 			Heavy: 60
 			Concrete: 120
 	Warhead@3Eff: PxExplosion
-		Video: artillery-c, bomb-a
+		Video: heavy-missile-1, heavy-missile-2
 		VideoScale: 0.8
 		Style: Precision
 		Size: 2.2
@@ -624,7 +624,7 @@ ZOLF_SRBM:
 		Spread: 512
 		Damage: 9000
 	Warhead@3Eff: PxExplosion
-		Video: bomb-a
+		Video: heavy-missile-1, heavy-missile-2
 		Size: 2.8
 
 # Thunderhead MLRS (rules/rocket-launchers.yaml MLRS): the whole rack in one heavy stream, every rocket on the launcher

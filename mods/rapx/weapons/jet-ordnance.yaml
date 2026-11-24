@@ -111,7 +111,7 @@ JetBomb:
 			Heavy: 70
 			Concrete: 70
 	Warhead@3Eff: PxExplosion
-		Video: bomb-a
+		Video: bomb-1, bomb-2
 		Size: 1.5
 		ImpactSounds: ra|audio/sfx/kaboom15.ogg
 JetBomb.Pair:
@@ -141,9 +141,10 @@ JetNapalm:
 	Warhead@3Eff: PxFire
 		Size: 1.4
 		Duration: 220
-		Video: napalm-a
-		BurnVideo: fire-big-b
-		VideoScale: 0.55
+		Video: napalm-1
+		BurnVideo: fire-big-loop-1
+		BurnVideoEnd: fire-big-end
+		VideoScale: 0.9
 		ImpactSounds: ra|audio/sfx/firebl3.ogg
 		ValidTargets: Ground, GroundActor, Trees
 	Warhead@Burn: PxBurn
@@ -211,6 +212,13 @@ JetCluster:
 		RandomClusterCount: 26
 		Dimensions: 5,5
 		Footprint: _xxx_ xxxxx xxxxx xxxxx _xxx_
+	# The carpet of bomblet pops, filmed (artsrc/fx/make_video_fx.py), under the dispenser as the bomblets land
+	Warhead@CarpetVid: PxVideo
+		Video: cluster-1
+		Scale: 0.9
+		Delay: 14
+		ValidTargets: Ground, GroundActor, Trees
+
 JetCluster.Pair:
 	Inherits: JetCluster
 	Burst: 2
@@ -261,7 +269,7 @@ JetCluster.Bomblet:
 		ImpactSounds: ra|audio/sfx/kaboom12.ogg, ra|audio/sfx/kaboom15.ogg
 		ValidTargets: Ground, GroundActor, WaterActor, Trees
 	Warhead@4EffWater: CreateEffect
-		Explosions: small_splash
+		Explosions: vsplash-1, vsplash-2
 		ValidTargets: Water, Underwater
 
 # Rocket pods (Hydra 70, S-8): a salvo per pod, wide spread, infantry and light vehicles
@@ -354,6 +362,13 @@ JetGun.GAU8:
 	Warhead@3Eff: PxExplosion
 		Size: 0.35
 		ValidTargets: Ground, GroundActor, WaterActor, Trees
+	# One filmed strafing run per burst, along the gun run (artsrc/fx/make_video_fx.py)
+	Warhead@StrafeVid: PxVideo
+		Video: gun-strafe-1
+		Directional: true
+		Gap: 40
+		Scale: 0.8
+		ValidTargets: Ground, GroundActor, WaterActor, Trees
 
 # 23/30 mm Soviet and European guns: harder hitting, slower than the M61
 JetGun.GSh30:
@@ -381,6 +396,8 @@ JetWP:
 		Dimensions: 7,7
 		Footprint: __xxx__ _xxxxx_ xxxxxxx xxxxxxx xxxxxxx _xxxxx_ __xxx__
 	Warhead@Burst: PxExplosion
+		AirVideo: white-phosphorus-1
+		Video: white-phosphorus-1
 		Style: HitToKill
 		Size: 1.0
 		Smoke: 1.5
@@ -389,6 +406,8 @@ JetWP:
 		Wave: false
 		Throw: false
 		ImpactSounds: ra|audio/weapons/sam/gurz-burst2.ogg
+	-Warhead@CarpetVid:
+
 JetWP.Pair:
 	Inherits: JetWP
 	Burst: 2

@@ -131,7 +131,7 @@ namespace OpenRA.Mods.RAPX.Warheads
 
 		[Desc("Ticks the filmed explosion's last frame of smoke lingers afterwards, thinning out, spreading and drifting",
 			"with the wind.")]
-		public readonly int VideoLinger = 90;
+		public readonly int VideoLinger = 0;
 
 		[Desc("Frame of the filmed explosion from which a slower continuation starts (a clip joined with a 'then' clip",
 			"by artsrc/fx/make_video_fx.py, which prints both values). 0 = none.")]
@@ -301,7 +301,7 @@ namespace OpenRA.Mods.RAPX.Warheads
 			waves = world.WorldActor.TraitOrDefault<PxBlastWaves>();
 			recipe = Recipes[info.Style];
 
-			video = PxVideoEffect.Find(world, (air ? info.AirVideo : info.Video).RandomOrDefault(random));
+			video = PxVideoEffect.Pick(world, air ? info.AirVideo : info.Video, random);
 			if (video != null)
 			{
 				videoScale = video.Scale * info.Size * info.VideoScale * Rand(0.9f, 1.1f);
@@ -715,11 +715,8 @@ namespace OpenRA.Mods.RAPX.Warheads
 				var scale = videoScale * (1 + 0.2f * linger);
 				var white = new float3(1, 1, 1);
 				var z = info.VideoZOffset ?? video.ZOffset;
-				yield return new SpriteRenderable(video.GetSprite(frame), at, WVec.Zero, z, null, scale, fade, white,
-					TintModifiers.None, false);
-				if (frame + 1 < video.Length && f - frame > 0.05f)
-					yield return new SpriteRenderable(video.GetSprite(frame + 1), at, WVec.Zero, z + 1, null, scale,
-						fade * (f - frame), white, TintModifiers.None, false);
+				foreach (var r in PxVideoEffect.Draw(video, f, at, z, scale, fade, white))
+					yield return r;
 			}
 
 			foreach (var r in particles.Render(ground, 1024))

@@ -23,5 +23,5 @@ RedSmokeGrenade:
 		Actor: smoke.red
 		Exact: true
 	Warhead@2EffWater: CreateEffect
-		Explosions: small_splash
+		Explosions: vsplash-1, vsplash-2
 		ValidTargets: Water

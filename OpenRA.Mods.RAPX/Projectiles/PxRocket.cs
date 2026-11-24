@@ -117,7 +117,7 @@ namespace OpenRA.Mods.RAPX.Projectiles
 		[Desc("Filmed launch blast on the ground under the launcher (sequence of image pxvideofx,",
 			"artsrc/fx/make_video_fx.py). Plays once per salvo: rockets the same launcher fires within LaunchVideoGap",
 			"ticks of it share one. Not for cold or water launches.")]
-		public readonly string LaunchVideo = null;
+		public readonly string[] LaunchVideo = Array.Empty<string>();
 
 		[Desc("Ticks after a filmed launch blast in which the same launcher's next rockets play none (one per salvo).")]
 		public readonly int LaunchVideoGap = 90;
@@ -719,7 +719,7 @@ namespace OpenRA.Mods.RAPX.Projectiles
 
 				// Launch blast: a burst of smoke and a hot glow at the pod; a cold launch throws out a white gas cloud instead
 				var at = Local(origin);
-				var clip = info.WaterLaunch || info.ColdLaunch > 0 ? null : PxVideoEffect.Find(world, info.LaunchVideo);
+				var clip = info.WaterLaunch || info.ColdLaunch > 0 ? null : PxVideoEffect.Pick(world, info.LaunchVideo, rng);
 				var launcher = args.SourceActor;
 				if (clip != null && LastLaunchBlast.TryGetValue(launcher, out var last) && world.WorldTick - last < info.LaunchVideoGap)
 					clip = null;
@@ -729,7 +729,7 @@ namespace OpenRA.Mods.RAPX.Projectiles
 						LastLaunchBlast.Clear();
 					LastLaunchBlast[launcher] = world.WorldTick;
 					var foot = origin - new WVec(0, 0, world.Map.DistanceAboveTerrain(origin).Length);
-					world.AddFrameEndTask(w => w.Add(new PxVideoEffect(w, foot, clip, clip.Scale * info.LaunchVideoScale, 60, 0)));
+					world.AddFrameEndTask(w => w.Add(new PxVideoEffect(w, foot, clip, clip.Scale * info.LaunchVideoScale, 0)));
 				}
 
 				var gas = new float3(0.95f, 0.95f, 0.97f);

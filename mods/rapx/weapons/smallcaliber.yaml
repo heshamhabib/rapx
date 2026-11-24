@@ -44,7 +44,7 @@ FLAK-23-AG:
 		Explosions: flak_explosion_ground
 		ValidTargets: Ground, GroundActor, Air, AirborneActor, WaterActor, Trees
 	Warhead@3EffWater: CreateEffect
-		Explosions: small_splash
+		Explosions: vsplash-1, vsplash-2
 		ValidTargets: Water, Underwater
 		InvalidTargets: Bridge
 

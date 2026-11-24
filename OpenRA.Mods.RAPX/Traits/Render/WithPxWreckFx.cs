@@ -32,9 +32,12 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 		[Desc("Size multiplier for the flames and smoke (bigger wrecks burn bigger).")]
 		public readonly float Size = 1f;
 
-		[Desc("Filmed fire loop (sequence of image pxvideofx, artsrc/fx/make_video_fx.py) drawn instead of the `wfire`",
-			"animation. Empty or missing = `wfire`.")]
-		public readonly string Video = "fire-wreck-a";
+		[Desc("Filmed fire loops (sequences of image pxvideofx, artsrc/fx/make_video_fx.py, one picked per spot) drawn",
+			"instead of the `wfire` animation. Empty or missing = `wfire`.")]
+		public readonly string[] Video = { "fire-wreck-loop-2" };
+
+		[Desc("The filmed fire burning out when a spot's fire dies (its first frame matches the loop's).")]
+		public readonly string VideoEnd = "fire-wreck-end";
 
 		[Desc("Size of the filmed fire, as a multiple of Size.")]
 		public readonly float VideoScale = 0.7f;
@@ -55,6 +58,7 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 		readonly int[] phases;
 		readonly ISpriteSequence fire, glow;
 		readonly bool video;
+		readonly PxClipCycle[] fires;
 		PxWeatherManager weather;
 		bool weatherResolved, burst;
 		long lastTime = -1;
@@ -64,9 +68,18 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 			this.info = info;
 			health = self.Trait<IHealth>();
 			particles = new PxParticles(self.World);
-			var clip = PxVideoEffect.Find(self.World, info.Video);
-			video = clip != null;
-			fire = clip ?? particles.Sequence(FireSequence);
+			video = PxVideoEffect.Pick(self.World, info.Video, random) != null;
+			fire = particles.Sequence(FireSequence);
+			fires = new PxClipCycle[info.Spots.Length];
+			if (video)
+			{
+				for (var i = 0; i < fires.Length; i++)
+				{
+					fires[i] = PxClipCycle.Create(self.World, null, info.Video, info.VideoEnd, random);
+					fires[i]?.Ignite(false);
+				}
+			}
+
 			glow = particles.Sequence("glow");
 			smokeTimers = new float[info.Spots.Length];
 			phases = new int[info.Spots.Length];
@@ -124,6 +137,17 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 			}
 
 			var s = Strength;
+
+			// Filmed fires burn out on camera as their spot's share of the fire runs out
+			for (var i = 0; i < fires.Length; i++)
+			{
+				if (fires[i] == null)
+					continue;
+				if (SpotStrength(i, s) <= 0 && fires[i].Burning)
+					fires[i].Extinguish();
+				fires[i].Update(dt);
+			}
+
 			for (var i = 0; i < info.Spots.Length; i++)
 			{
 				var spot = info.Spots[i];
@@ -246,6 +270,17 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 			var now = Game.RunTime;
 			var s = Strength;
 
+			for (var i = 0; i < fires.Length; i++)
+			{
+				if (fires[i] == null)
+					continue;
+				var offset = PxParticles.ToWorld(info.Spots[i].X, info.Spots[i].Y);
+				var k = Math.Max(SpotStrength(i, s), 0.3f);
+				foreach (var r in fires[i].Render(origin + offset, ZBias - offset.Y,
+					info.Size * info.VideoScale * (0.45f + 0.55f * k) * (i == 0 ? 1f : 0.7f), 1f, new float3(1, 1, 1)))
+					yield return r;
+			}
+
 			for (var i = 0; i < info.Spots.Length; i++)
 			{
 				var k = SpotStrength(i, s);
@@ -261,14 +296,14 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 					WVec.Zero, -48, null, glow.Scale * glowSize, 0.42f * k * flicker, new float3(1, 0.5f, 0.16f),
 					TintModifiers.None, false, WAngle.Zero);
 
-				// The flame: a looping HD animation, its base pinned to the hull (a filmed loop has its origin at the foot
-				// of the flames already)
-				var frame = (int)(now / (video ? fire.Tick : 42) + phases[i]) % fire.Length;
+				// The flame: the drawn looping animation, its base pinned to the hull (filmed fires are drawn above)
+				if (video)
+					continue;
+
+				var frame = (int)(now / 42 + phases[i]) % fire.Length;
 				var sprite = fire.GetSprite(frame);
-				var scale = video
-					? fire.Scale * info.Size * info.VideoScale * (0.45f + 0.55f * k) * (i == 0 ? 1f : 0.7f)
-					: fire.Scale * info.Size * (0.3f + 0.4f * k) * (i == 0 ? 1f : 0.75f) * (0.96f + 0.04f * flicker);
-				var lift = video ? 0 : sprite.Size.Y * scale * 0.4f;
+				var scale = fire.Scale * info.Size * (0.3f + 0.4f * k) * (i == 0 ? 1f : 0.75f) * (0.96f + 0.04f * flicker);
+				var lift = sprite.Size.Y * scale * 0.4f;
 				var offset = PxParticles.ToWorld(spot.X, spot.Y - lift);
 				yield return new SpriteRenderable(sprite, origin + offset, WVec.Zero, ZBias - offset.Y, null, scale,
 					1f, new float3(1, 1, 1), TintModifiers.None, false, WAngle.Zero);

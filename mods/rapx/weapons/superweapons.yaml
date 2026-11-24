@@ -23,12 +23,12 @@ ParaBomb:
 		SmudgeType: Crater
 		ValidTargets: Ground, Infantry
 	Warhead@3Eff: PxExplosion
-		Video: bomb-a
+		Video: bomb-1, bomb-2
 		Size: 1.5
 		ImpactSounds: ra|audio/sfx/kaboom15.ogg
 		ValidTargets: Ground, GroundActor, WaterActor, Trees
 	Warhead@4EffWater: CreateEffect
-		Explosions: small_splash
+		Explosions: vsplash-1, vsplash-2
 		ImpactSounds: ra|audio/sfx/splash9.ogg
 		ValidTargets: Water, Underwater
 
@@ -59,11 +59,11 @@ Atomic:
 	Warhead@4EffVideo_impact: PxExplosion
 		Size: 3
 		Smoke: 0.15
-		Video: nuke-a
+		Video: nuke-1-1
 		VideoScale: 0.8
-		VideoLinger: 20
-		VideoSlowFrom: 80
-		VideoSlowTick: 167
+		VideoLinger: 0
+		VideoSlowFrom: 64
+		VideoSlowTick: 332
 		VideoZOffset: 8192
 		ClassicExplosion: nuke
 		ImpactSounds: ra|audio/sfx/kaboom1.ogg

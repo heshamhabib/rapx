@@ -31,9 +31,12 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 		[Desc("How long the crash site keeps burning and smoking, in ticks.")]
 		public readonly int BurnTicks = 260;
 
-		[Desc("Filmed impact (sequence of image pxvideofx, artsrc/fx/make_video_fx.py): a fiery skid from left to right,",
-			"with a mirrored copy <Video>-m for wrecks coming down heading left. Empty or missing = particles only.")]
-		public readonly string Video = "crash-a";
+		[Desc("Filmed impacts (sequences of image pxvideofx, artsrc/fx/make_video_fx.py), one picked at random: a fiery",
+			"skid from left to right, with a mirrored twin <name>-m for wrecks coming down heading left. Empty = particles only.")]
+		public readonly string[] Video = { "crash-1", "crash-2" };
+
+		[Desc("Filmed explosion where the aircraft is hit in the air, one picked at random.")]
+		public readonly string[] AirVideo = { "jet-explode-1" };
 
 		[Desc("Size of the filmed impact. It grows with the square root of Size, so a bomber's skid stays on screen.")]
 		public readonly float VideoScale = 0.7f;
@@ -44,6 +47,7 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 	public class WithPxCrashFx : ITick, INotifyAddedToWorld, INotifyRemovedFromWorld
 	{
 		readonly WithPxCrashFxInfo info;
+		readonly MersenneTwister random = new(Game.CosmeticRandom.Next());
 		PxCrashEffect effect;
 		WPos last;
 		int heading;
@@ -58,6 +62,10 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 			last = self.CenterPosition;
 			effect = new PxCrashEffect(self.World, self.CenterPosition, info.Size, info.BurnTicks);
 			effect.Burst(self.CenterPosition);
+			var burst = PxVideoEffect.Pick(self.World, info.AirVideo, random);
+			var at = self.CenterPosition;
+			if (burst != null)
+				self.World.AddFrameEndTask(w => w.Add(new PxVideoEffect(w, at, burst, burst.Scale * MathF.Sqrt(info.Size) * 0.8f, 2048)));
 			self.World.AddFrameEndTask(w => w.Add(effect));
 		}
 
@@ -81,10 +89,12 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 
 			var ground = new WPos(last.X, last.Y, 0);
 			var world = self.World;
-			var clip = PxVideoEffect.Find(world, heading < 0 ? info.Video + "-m" : info.Video) ?? PxVideoEffect.Find(world, info.Video);
+			var clip = PxVideoEffect.Pick(world, info.Video, random);
+			if (heading < 0)
+				clip = PxVideoEffect.Mirrored(world, clip);
 			effect.Impact(ground, clip != null);
 			if (clip != null)
-				world.AddFrameEndTask(w => w.Add(new PxVideoEffect(w, ground, clip, clip.Scale * MathF.Sqrt(info.Size) * info.VideoScale, 90, 512)));
+				world.AddFrameEndTask(w => w.Add(new PxVideoEffect(w, ground, clip, clip.Scale * MathF.Sqrt(info.Size) * info.VideoScale, 512)));
 
 			effect = null;
 		}

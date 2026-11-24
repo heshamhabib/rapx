@@ -15,12 +15,12 @@
 		SmudgeType: Crater
 		ValidTargets: Ground, Vehicle, Infantry
 	Warhead@2Eff: PxExplosion
-		Video: vehicle-a
+		Video: vehicle-1, vehicle-2
 		Size: 1.2
 		ImpactSounds: ra|audio/sfx/kaboom22.ogg
 		ValidTargets: Ground, Air, GroundActor, AirborneActor, WaterActor, Trees
 	Warhead@3EffWater: CreateEffect
-		Explosions: large_splash
+		Explosions: vbigsplash-1
 		ImpactSounds: ra|audio/sfx/splash9.ogg
 		ValidTargets: Water, Underwater
 		InvalidTargets: Bridge
@@ -41,9 +41,10 @@ CrateNapalm:
 	Warhead@2Eff: PxFire
 		Size: 1.6
 		Duration: 220
-		Video: napalm-a
-		BurnVideo: fire-big-b
-		VideoScale: 0.55
+		Video: napalm-1
+		BurnVideo: fire-big-loop-1
+		BurnVideoEnd: fire-big-end
+		VideoScale: 0.9
 		ImpactSounds: ra|audio/sfx/firebl3.ogg
 		ValidTargets: Ground, Water, Air, GroundActor, AirborneActor, WaterActor, Trees
 	-Warhead@3EffWater:
@@ -70,10 +71,13 @@ UnitExplodePlane:
 	Warhead@2Eff: PxExplosion
 		Size: 2.3
 		Smoke: 1.8
+	# The crash is filmed by the wreck itself (WithPxCrashFx)
+	-Warhead@2Eff:
 
 UnitExplodeHeli:
 	Inherits: UnitExplode
 	Warhead@2Eff: PxExplosion
+		Video: heli-crash-1
 		Size: 1.3
 
 VisualExplode:
@@ -87,6 +91,7 @@ UnitExplodeShip:
 	Inherits: ^Explosion
 	-Warhead@Smu:
 	Warhead@2Eff: PxExplosion
+		Video: ship-1
 		Size: 1.8
 		ImpactSounds: ra|audio/sfx/kaboom25.ogg
 		ValidTargets: Ground, Water
@@ -98,7 +103,7 @@ UnitExplodeSubmarine:
 	Inherits: ^Explosion
 	-Warhead@Smu:
 	Warhead@2Eff: CreateEffect
-		Explosions: large_splash
+		Explosions: vbigsplash-1
 		ImpactSounds: ra|audio/sfx/splash9.ogg
 		ValidTargets: Water
 		ImpactActors: false
@@ -117,7 +122,7 @@ ArtilleryExplode:
 	Warhead@1Dam: SpreadDamage
 		Damage: 15000
 	Warhead@2Eff: PxExplosion
-		Video: artillery-a, artillery-c
+		Video: artillery-1, artillery-2
 		Size: 1.3
 		ImpactSounds: ra|audio/sfx/kaboom22.ogg
 
@@ -128,7 +133,7 @@ V2Explode:
 BuildingExplode:
 	ValidTargets: Ground, Water, GroundActor, WaterActor
 	Warhead@2Eff: PxExplosion
-		Video: building-a
+		Video: building-1, building-2
 		Size: 1.6
 	Warhead@Smu: LeaveSmudge
 		SmudgeType: Crater
@@ -165,7 +170,7 @@ BarrelExplode:
 			Wood: 20
 			Concrete: 10
 	Warhead@2Eff: PxExplosion
-		Video: vehicle-a
+		Video: barrel-1
 		Size: 1.4
 		ImpactSounds: ra|audio/sfx/kaboom25.ogg
 	Warhead@Smu: LeaveSmudge
@@ -203,7 +208,7 @@ ATMine:
 		InvalidTargets: Mine
 		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
 	Warhead@2Eff: PxExplosion
-		Video: dirt-a
+		Video: dirt-1, dirt-2
 		Size: 1.1
 		ImpactSounds: ra|audio/sfx/mineblo1.ogg
 	Warhead@Smu: LeaveSmudge
@@ -237,7 +242,7 @@ OreExplosion:
 		AddsResourceType: Ore
 		Size: 1,1
 	Warhead@2Eff: PxExplosion
-		Video: dirt-a
+		Video: dirt-1, dirt-2
 		Size: 1.0
 		ImpactSounds: ra|audio/sfx/kaboom25.ogg
 

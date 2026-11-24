@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common;
+using OpenRA.Mods.RAPX.Effects;
 using OpenRA.Mods.RAPX.Graphics;
 using OpenRA.Primitives;
 using OpenRA.Support;
@@ -67,6 +68,12 @@ namespace OpenRA.Mods.RAPX.Traits
 
 		[Desc("Highest point of the round's arc above the straight line, plus a third of the distance flown.")]
 		public readonly WDist ArcHeight = new(512);
+
+		[Desc("Filmed smoke burst when the canister ignites (sequences of image pxvideofx, one picked at random), tinted",
+			"with Color. Empty = particles only.")]
+		public readonly string[] Video = { "smoke-grenade-1" };
+
+		public readonly float VideoScale = 0.6f;
 
 		[Desc("How long the canister pours out smoke, in ticks after it lands.")]
 		public readonly int SmokeTicks = 550;
@@ -311,7 +318,7 @@ namespace OpenRA.Mods.RAPX.Traits
 			if (!burst)
 			{
 				burst = true;
-				Burst();
+				Burst(self);
 			}
 
 			var output = Output;
@@ -387,7 +394,7 @@ namespace OpenRA.Mods.RAPX.Traits
 					p.Gravity = -0.0012f;
 					p.Drag = 0.012f;
 					p.Wind = 0.7f;
-					
+
 					// Smoke along the ground sits in its own shadow: a touch darker and cooler than the lit top
 					Shade(ref p, Rand(0.9f, 0.97f));
 					fog.Add(p);
@@ -430,8 +437,16 @@ namespace OpenRA.Mods.RAPX.Traits
 		}
 
 		/// <summary>Ignition: a pop of hot gas, a ring of smoke rolling out and a few clods of dirt.</summary>
-		void Burst()
+		void Burst(Actor self)
 		{
+			var clip = PxVideoEffect.Pick(self.World, info.Video, random);
+			if (clip != null)
+			{
+				var at = self.CenterPosition - new WVec(0, 0, self.World.Map.DistanceAboveTerrain(self.CenterPosition).Length);
+				var tint = new float3(info.Color.R, info.Color.G, info.Color.B) / 255f;
+				self.World.AddFrameEndTask(w => w.Add(new PxVideoEffect(w, at, clip, clip.Scale * info.VideoScale, 600, tint)));
+			}
+
 			air.Add(new PxParticle { Kind = PxParticleKind.Glow, Z = 2, Life = 10, Size = 1.2f, Alpha = 0.8f, Tint = vent });
 
 			for (var i = 0; i < 14; i++)
