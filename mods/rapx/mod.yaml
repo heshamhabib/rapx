@@ -241,6 +241,7 @@ Weapons:
 	ra|weapons/fatman.yaml
 	ra|weapons/airborne.yaml
 	ra|weapons/red-smoke.yaml
+	ra|weapons/spider.yaml
 
 Voices:
 	ra|audio/voices.yaml

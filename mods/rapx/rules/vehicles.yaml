@@ -214,8 +214,8 @@ XR85:
 	RenderSprites:
 		Image: xr85
 
-# Spider Tank (Vanguard, 2026-11-02): "Spider Tank" model (artsrc/units/meshes/sketchfab_models.py spdr). A six-legged
-# assault tank: the Heavy Tank's gun plus twin anti-aircraft guns on its turret, so it can defend itself from the air.
+# Spider Tank (Vanguard, 2026-11-02): "Spider Tank" model (artsrc/units/meshes/sketchfab_models.py spdr). An eight-legged
+# missile tank: top-attack missiles, anti-aircraft missiles and rocket interceptors (weapons/spider.yaml).
 SPDR:
 	Inherits: 3TNK
 	Buildable:
@@ -229,16 +229,46 @@ SPDR:
 		GenericName: actor-3tnk.generic-name
 	Health:
 		HP: 55000
+	# Pivots on the spot almost at once, like a spider
 	Mobile:
 		Speed: 70
+		TurnSpeed: 36
+	# Eight-legged walk cycle (sequence move, render_walk.py spdr), timed to its speed so the feet do not slide
+	WithMoveAnimation:
+	GrantConditionOnMovement@WALK:
+		Condition: walking
+	AmbientSound@STEPS:
+		SoundFiles: ra|audio/spider/spider-steps.ogg
+		RequiresCondition: walking
 	Turreted:
 		Offset: -95,-1,0
+	# Missiles, not the Heavy Tank's gun (weapons/spider.yaml): heavy top-attack pairs from the turret shoulders
 	Armament:
-		LocalOffset: 1015,0,324
+		Weapon: SpiderStrike
+		LocalOffset: 250,-260,560, 250,260,560
+		-Recoil:
+		-RecoilRecovery:
+		-MuzzleSequence:
+	-WithMuzzleOverlay:
+	# Iron Dome-style anti-aircraft missiles from the twin AA mounts
 	Armament@AA:
 		Name: secondary
-		Weapon: FLAK-23-AA
-		LocalOffset: 200,0,700
+		Weapon: SpiderAAM
+		LocalOffset: 200,-110,760, 200,110,760
+	# Missile defence: interceptors shoot down rockets and missiles fired at it or its escorts
+	PxInterceptor:
+		Range: 7c0
+		Rails: 4
+		ReloadDelay: 120
+		Speed: 560
+		LaunchInterval: 4
+		Weapon: InterceptSAM
+		LocalOffset: 0,0,760
+		Chances:
+			Rocket: 70
+			Drone: 75
+			ATGM: 60
+			Cruise: 55
 	AutoTargetPriority@DEFAULT:
 		ValidTargets: Infantry, Vehicle, Ship, Underwater, Defense, Mine, AirborneActor
 	AutoTargetPriority@ATTACKANYTHING:

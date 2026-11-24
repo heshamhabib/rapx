@@ -171,7 +171,11 @@ def active_jobs():
         if m and "Blender" in cmd:
             job = {"kind": "Blender", "unit": m.group(1), "step": "imported", "gpu": "light",
                    "label": "Importing a Sketchfab model (turret / rotors, team colour)", "progress": None}
-        m = re.search(r"units/meshes/([\w.-]+)\.blend -P \S+/(render_\w+)\.py", cmd)
+        m = re.search(r"render_walk\.py -- ([\w.-]+)", cmd)
+        if m and "Blender" in cmd:
+            job = {"kind": "Blender", "unit": m.group(1) + "-walk", "step": "rendered", "gpu": "throttled",
+                   "label": "Rendering a walk cycle (render_walk.py, 32 directions)", "progress": None}
+        m = None if job else re.search(r"units/meshes/([\w.-]+)\.blend -P \S+/(render_\w+)\.py", cmd)
         if m and "Blender" in cmd:
             job = {"kind": "Blender", "unit": m.group(1), "step": "rendered", "gpu": "throttled",
                    "label": f"Rendering a Sketchfab model, HD light ({m.group(2)})", "progress": None}
@@ -298,6 +302,18 @@ def pngs(folder, since):
     return out
 
 
+def walk_cycles():
+    """[{id, steps}] from render_walk.py's WALKS (read with ast: the script itself needs Blender)."""
+    import ast
+    try:
+        tree = ast.parse(open(os.path.join(MESHES, "render_walk.py")).read())
+        node = next(n.value for n in tree.body if isinstance(n, ast.Assign) and n.targets[0].id == "WALKS")
+        return [{"id": k.value, "steps": next(ast.literal_eval(vv) for kk, vv in zip(v.keys, v.values) if kk.value == "steps")}
+                for k, v in zip(node.keys, node.values)]
+    except Exception:
+        return []
+
+
 def sketchfab_status(jobs):
     """Per unit: imported / frames rendered / packed, from files newer than the current model settings."""
     try:
@@ -330,6 +346,21 @@ def sketchfab_status(jobs):
                       "model": lic.get("title", os.path.dirname(cfg["src"])), "author": lic.get("author", ""),
                       "licence": lic.get("license type", ""),
                       "latest": os.path.relpath(latest, MESH_RENDER) if latest else None})
+    for walk in walk_cycles():  # render_walk.py sheets: render/<sprite>-walk, packed as <sprite>-walk.png
+        sprite = walk["id"] + "-walk"
+        folder = os.path.join(MESH_RENDER, sprite)
+        frames = pngs(folder, 0)
+        total = 32 * walk["steps"]
+        sheet = os.path.join(ROOT, "mods", "rapx", "bits", "hd", "units", sprite + ".png")
+        packed = len(frames) >= total and os.path.exists(sheet) and os.path.getmtime(sheet) >= max(frames)[0]
+        state = "done" if packed else "active" if sprite in running else "progress" if frames else "waiting"
+        times += [t for t, _ in frames]
+        model = models.get(walk["id"], {})
+        units.append({"id": sprite, "unit": (model.get("name") or UNIT_NAMES.get(walk["id"], walk["id"])) + " - walk",
+                      "group": "Walk cycles", "sprite": sprite, "kind": f"walk, {walk['steps']} steps",
+                      "done": min(len(frames), total), "total": total, "imported": True, "packed": packed,
+                      "state": state, "model": "render_walk.py " + walk["id"], "author": "", "licence": "",
+                      "latest": os.path.relpath(max(frames)[1], MESH_RENDER) if frames else None})
     times.sort()
     recent = [t for t in times if t > time.time() - 1800][-40:]
     rate = (len(recent) - 1) / (recent[-1] - recent[0]) if len(recent) > 5 and recent[-1] > recent[0] else 0

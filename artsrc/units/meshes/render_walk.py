@@ -9,6 +9,13 @@ Length STEPS. PX_WALK_FACINGS=8,4 renders only those facings (previews). Coordin
 
 Elephanta (elph): a real elephant's lateral-sequence walk (left hind, left fore, right hind, right fore, a quarter
 cycle apart), so three feet are always down.
+
+Spider Tank (spdr): its legs are separate parts, so each leg turns as one rigid piece about its hip swivel (no
+bending): a spider's alternating tetrapod gait, L1 R2 L3 R4 against R1 L2 R3 L4, half a cycle apart. A leg in swing
+tilts up and sweeps forward, a leg in stance sweeps back on the ground. Only the hull is drawn (the turret sheet is
+unchanged and sits on top), so the body does not bob. Pack at half resolution like the elephant (Scale 0.4667):
+  python3 -c "import glob,PIL.Image as I;[I.open(f).resize((256,256),I.LANCZOS).save(f) for f in glob.glob('<out dir>/frame-*.png')]"
+  python3 artsrc/units/pack_sprites.py <out dir> mods/rapx/bits/hd/units/spdr-walk.png 16
 """
 
 import math
@@ -37,6 +44,19 @@ WALKS = {
         # trunk: verts with |x| < half_width, y > y0, z < z_top sway sideways, more towards the tip
         "trunk": {"half_width": 0.75, "y0": 2.3, "z_top": 5.6, "sway": 0.22},
     },
+    # One cycle = 8 steps x 40 ms; with +-16 deg at ~3.3 units from the hip a stance sweeps ~1.8 units (~380 WDist),
+    # close to Speed 70 x 8 ticks, so the feet barely slide.
+    "spdr": {
+        "steps": 8,
+        "root": "Hull",
+        "hide": ["Turret"],
+        # leg -> phase; objects named Leg_<leg>_... (the Leg_mount_* parts stay on the body)
+        "rigid_legs": {"left_front": 0.0, "right_side_front": 0.0, "left_side_rear": 0.0, "right_rear": 0.0,
+                       "right_front": 0.5, "left_side_front": 0.5, "right_side_rear": 0.5, "left_rear": 0.5},
+        "swing": 0.45,
+        "angle": 16.0,        # degrees of sweep each side of the rest pose, about the hip's vertical axis
+        "lift": 9.0,          # degrees the leg tilts up at mid-swing (foot ~0.5 units off the ground)
+    },
 }
 
 
@@ -53,6 +73,44 @@ def leg_pose(cfg, t):
         return -a + 2 * a * (0.5 - 0.5 * math.cos(math.pi * u)), cfg["lift"] * math.sin(math.pi * u)
     u = (t - s) / (1 - s)  # stance: front to back on the ground, pushing the body forward
     return a - 2 * a * u, 0.0
+
+
+def rigid_legs(meshes, rest, cfg):
+    """{object name: (pivot, outward unit vector, phase)} for the parts of each rigid leg."""
+    legs = {}
+    for leg, phase in cfg["rigid_legs"].items():
+        parts = [o.name for o in meshes if o.name.startswith(f"Leg_{leg}_")]
+        swivel = np.concatenate([rest[n][0] for n in parts if "_swivel" in n])
+        foot = np.concatenate([rest[n][0] for n in parts if "_footpad" in n])
+        pivot = (swivel.min(0) + swivel.max(0)) / 2
+        out = foot.mean(0) - pivot
+        out[2] = 0
+        for n in parts:
+            legs[n] = (pivot, out / np.linalg.norm(out), phase)
+    return legs
+
+
+def rotate(v, axis, angle):
+    """Rodrigues rotation of rows v about the unit axis."""
+    c, s = math.cos(angle), math.sin(angle)
+    return v * c + np.cross(axis, v) * s + np.outer(v @ axis, axis) * (1 - c)
+
+
+def pose_rigid(world, leg, cfg, p):
+    pivot, out, phase = leg
+    t = (p + phase) % 1.0
+    a, s = math.radians(cfg["angle"]), cfg["swing"]
+    if t < s:  # swing: up, back to front
+        u = t / s
+        yaw = -a + 2 * a * (0.5 - 0.5 * math.cos(math.pi * u))
+        tilt = math.radians(cfg["lift"]) * math.sin(math.pi * u)
+    else:  # stance: on the ground, front to back
+        yaw, tilt = a - 2 * a * (t - s) / (1 - s), 0.0
+    v = world - pivot
+    v = rotate(v, np.cross(out, [0.0, 0.0, 1.0]), tilt)  # foot up
+    # forward is +Y: a left leg (out -X) moves its foot forward turning clockwise, a right leg anticlockwise
+    v = rotate(v, np.array([0.0, 0.0, 1.0]), -yaw if out[0] < 0 else yaw)
+    return v + pivot
 
 
 def deform(rest, cfg, p):
@@ -88,7 +146,10 @@ def main():
     only = [int(f) for f in os.environ.get("PX_WALK_FACINGS", "").split(",") if f]  # previews: these facings only
 
     render_sprites.setup(frame, samples)
-    root = bpy.data.objects["Body"]
+    root = bpy.data.objects[cfg.get("root", "Body")]
+    for name in cfg.get("hide", []):
+        for o in [bpy.data.objects[name], *bpy.data.objects[name].children_recursive]:
+            o.hide_render = True
     render_sprites.face(root, 0, facings)
     bpy.context.view_layer.update()
     meshes = [o for o in root.children_recursive if o.type == "MESH"]
@@ -98,12 +159,15 @@ def main():
         o.data.vertices.foreach_get("co", co)
         m = np.array(o.matrix_world)
         rest[o.name] = (co.reshape(-1, 3) @ m[:3, :3].T + m[:3, 3], np.linalg.inv(m))
+    legs = rigid_legs(meshes, rest, cfg) if "rigid_legs" in cfg else None
+    if legs is not None:
+        meshes = [o for o in meshes if o.name in legs]
 
     for step in range(steps):
         render_sprites.face(root, 0, facings)
         for o in meshes:
             world, inv = rest[o.name]
-            posed = deform(world, cfg, step / steps)
+            posed = pose_rigid(world, legs[o.name], cfg, step / steps) if legs else deform(world, cfg, step / steps)
             o.data.vertices.foreach_set("co", (posed @ inv[:3, :3].T + inv[:3, 3]).ravel())
             o.data.update()
         for f in only or range(facings):

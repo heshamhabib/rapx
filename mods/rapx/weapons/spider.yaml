@@ -1,0 +1,86 @@
+# Spider Tank (rules/vehicles.yaml SPDR): missiles instead of the Heavy Tank's gun.
+# Filmed explosions from the video FX pipeline (artsrc/fx/make_video_fx.py): heavy-missile blasts on the ground,
+# airburst / intercept fireballs in the sky, a launch-blast cloud once per salvo. PxRocket draws no ground shadow.
+
+# Main weapon: a pair of heavy top-attack missiles from the turret shoulders. They loft high over the first third of
+# the way and dive onto the target's roof (thin armour), so they hit hard against tanks.
+SpiderStrike:
+	Inherits: ^AntiGroundMissile
+	ReloadDelay: 80
+	Range: 7c0
+	MinRange: 1c512
+	Burst: 2
+	BurstDelays: 6
+	Report: ra|audio/sfx/missile7.ogg
+	Projectile: PxRocket
+		ThreatType: ATGM
+		Profile: Loft
+		Climb: 0.45
+		Speed: 300
+		Length: 230
+		Width: 50
+		BodyColor: 3C4246
+		NoseColor: D2D2C8
+		BandColor: B4281E
+		FlameColor: FFC864
+		TrailSize: 1.2
+		FlameSize: 1.2
+		TrailDensity: 2
+		TrailLife: 40
+		LaunchPuffs: 6
+		LaunchVideo: launch-blast-1, launch-blast-2
+		LaunchVideoScale: 0.45
+		Fins: 1.2
+	Warhead@1Dam: SpreadDamage
+		Spread: 192
+		Damage: 6500
+		Versus:
+			None: 35
+			Wood: 80
+			Light: 90
+			Heavy: 120
+			Concrete: 75
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+	Warhead@3Eff: PxExplosion
+		Video: heavy-missile-1, heavy-missile-2
+		AirVideo: airburst-1, airburst-2
+		Size: 1.3
+		ImpactSounds: ra|audio/sfx/kaboom15.ogg
+
+# Air defence: Iron Dome-style interceptor pair from the twin AA mounts. Each leaves almost straight up, bends over onto
+# the aircraft, hangs a glowing streak in the sky and bursts in a filmed fireball.
+SpiderAAM:
+	Inherits: ^AntiAirMissile
+	ReloadDelay: 70
+	Range: 12c0
+	MinRange: 2c0
+	Burst: 2
+	BurstDelays: 10
+	Report: ra|audio/sfx/missile6.ogg
+	Projectile: PxRocket
+		Speed: 420
+		Profile: Vertical
+		Climb: 0.5
+		MinClimb: 1536
+		TrackTarget: true
+		Length: 170
+		Width: 40
+		BodyColor: E6E6E1
+		NoseColor: B4281E
+		FlameColor: FFD278
+		SmokeColor: F0F0F0
+		TrailDensity: 2
+		TrailLife: 40
+		LaunchPuffs: 3
+		StreakLife: 75
+		StreakColor: FFB860
+		StreakWidth: 12
+	Warhead@1Dam: SpreadDamage
+		Spread: 256
+		Damage: 5200
+	Warhead@3Eff: PxExplosion
+		AirVideo: intercept-1, airburst-1, airburst-2
+		Style: Fireball
+		Size: 0.9
+		Smoke: 0.3
+		Scorch: false

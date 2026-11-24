@@ -530,6 +530,14 @@ spdr:
 		Filename: ra|bits/hd/units/spdr.png
 		UseClassicFacings: False
 		Scale: 0.2333
+	# Walk cycle (artsrc/units/meshes/render_walk.py spdr): 8 steps per facing, packed at half resolution
+	move:
+		Filename: ra|bits/hd/units/spdr-walk.png
+		Facings: 32
+		Length: 8
+		Tick: 40
+		UseClassicFacings: False
+		Scale: 0.4667
 	turret:
 		Filename: ra|bits/hd/units/spdr.png
 		Start: 32

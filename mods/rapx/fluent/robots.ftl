@@ -136,8 +136,9 @@ actor-xr85-husk-name = Husk (XR-85 Tank Droid)
 actor-spdr =
     .name = Spider Tank
     .description =
-    Vanguard six-legged assault tank: a heavy
-    gun plus twin anti-aircraft guns.
+    Vanguard eight-legged missile tank: heavy
+    top-attack missiles, anti-aircraft missiles
+    and interceptors that shoot down rockets.
       Strong vs Vehicles, Aircraft
       Weak vs Infantry
 actor-spdr-husk-name = Husk (Spider Tank)

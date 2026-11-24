@@ -226,7 +226,7 @@ MODELS = {
         "team": {"box": (0.0, 1.0, 0.0, 1.0, 0.88, 1.0)},  # turret roof
     },
     # Spider Tank (SPDR, Vanguard): "Spider Tank" by Adoni, CC-BY-4.0. Six-legged; the turret with the long gun and
-    # the twin anti-aircraft guns turns. Legs stay in their standing pose.
+    # the twin anti-aircraft guns turns. Legs stand still here; the walk cycle is render_walk.py spdr.
     "spdr": {
         "name": "Spider Tank", "src": "inbox2/spider_tank/scene.gltf", "kind": "tank", "frame": 256,
         "yaw": 180, "length": 10.0,
