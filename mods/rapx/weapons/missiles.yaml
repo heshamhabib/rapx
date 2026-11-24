@@ -24,6 +24,7 @@
 		SmudgeType: Crater
 		ValidTargets: Ground, Infantry
 	Warhead@3Eff: PxExplosion
+		Video: cannon-a, cannon-b, dirt-a
 		Size: 1.0
 		ImpactSounds: ra|audio/sfx/kaboom25.ogg
 		ValidTargets: Ground, Air, GroundActor, AirborneActor, WaterActor, Trees
@@ -282,6 +283,7 @@ TorpTube:
 			Concrete: 100
 		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
 	Warhead@3Eff: PxExplosion
+		Video: artillery-a, artillery-c
 		Size: 1.3
 		ImpactSounds: ra|audio/sfx/kaboom15.ogg
 	Warhead@4EffWater: CreateEffect

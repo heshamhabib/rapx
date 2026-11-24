@@ -165,6 +165,7 @@ BarrelExplode:
 			Wood: 20
 			Concrete: 10
 	Warhead@2Eff: PxExplosion
+		Video: vehicle-a
 		Size: 1.4
 		ImpactSounds: ra|audio/sfx/kaboom25.ogg
 	Warhead@Smu: LeaveSmudge
@@ -236,6 +237,7 @@ OreExplosion:
 		AddsResourceType: Ore
 		Size: 1,1
 	Warhead@2Eff: PxExplosion
+		Video: dirt-a
 		Size: 1.0
 		ImpactSounds: ra|audio/sfx/kaboom25.ogg
 

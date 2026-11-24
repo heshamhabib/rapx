@@ -2,7 +2,7 @@
 
 Each prompt below is complete. Copy the whole paragraph into Flow as is.
 Save each clip with the file name shown above its prompt, in /Users/heshamhabib/Movies/explosion.
-Status (Nov 23): **next: Fix cropping (redo batch 4) below.** every clip made once; redo batch done except fire-big (try fire-big-3 below). smoke-light: skipped. Batch 3: nuke, napalm-1, launch-blast, crash done; still to make: nuke-end (Frames mode, continues nuke-1), napalm-burn, chimney-smoke, steam, gas-flare, smoke-grenade, tesla-hit, tesla-crackle, mine.
+Status (Nov 24): **next: Air hits (batch 5) below**, then Fix cropping (redo batch 4). every clip made once; redo batch done except fire-big (try fire-big-3 below). smoke-light: skipped. Batch 3: nuke, napalm-1, launch-blast, crash done; still to make: nuke-end (Frames mode, continues nuke-1), napalm-burn, chimney-smoke, steam, gas-flare, smoke-grenade, tesla-hit, tesla-crackle, mine.
 
 Make 2 versions of each explosion (add -1, -2 to the name), so hits don't all look identical.
 
@@ -45,6 +45,24 @@ Visual effects stock element on a flat pure chroma-green background, no ground, 
 Why: fire-big-2 still came out as a campfire with big logs. Flow reads "large fire" as a campfire, so this one describes burning fuel instead.
 
 Visual effects stock element on a flat pure chroma-green background, no ground, no environment, no shadows. High-angle camera looking down from above at a steep angle, like a real-time strategy game camera. Locked-off static camera, no camera movement, no zoom, no cuts. Camera pulled back: the fire stays in the middle of the frame with empty green space on all four sides; flames and smoke never leave the frame. A large patch of spilled fuel burning fiercely on a flat surface, like a burning building after a bombing: tall roaring orange flames rising straight out of the empty green, glowing embers, thick black smoke pouring upward and fading out before the top of the frame. Not a campfire, no logs, no wood, no sticks, nothing under the flames. Seamless looping, constant intensity the whole time, no ignition and no dying out. Photorealistic, high detail, 16:9 landscape, highest resolution.
+
+---
+
+## Air hits (batch 5)
+
+Missiles hitting aircraft and Iron Dome intercepts. These burst in the sky, so nothing touches the ground: no dust, no crater, no ground shockwave.
+
+#### airburst-1.mp4 — **720p**, 4 sec
+
+Why: a missile hitting a jet or helicopter.
+
+Visual effects stock element on a flat pure chroma-green background, no ground, no environment, no shadows on the background. High-angle camera looking down from above at a steep angle, like a real-time strategy game camera. Locked-off static camera, no camera movement, no zoom, no cuts. EXTREME WIDE SHOT from very far away, so the effect is small in the frame: even at its biggest moment it covers at most the middle half of the frame width and the middle half of the frame height. A wide band of empty green always stays on all four sides; nothing is ever cut off by the frame edge. A missile hitting an aircraft in mid-air: a bright white-orange flash, an orange fireball bursting outward, burning debris fragments flying out in every direction trailing thin black smoke, then a dark smoke puff that hangs and drifts apart. Nothing below it: no ground, no dust. Starts from nothing and fully clears by the end. Photorealistic, high detail, 16:9 landscape, highest resolution.
+
+#### airburst-2.mp4 — **360p**, 3 sec
+
+Why: an interceptor (Iron Dome style) destroying a rocket in the sky.
+
+Visual effects stock element on a flat pure chroma-green background, no ground, no environment, no shadows on the background. High-angle camera looking down from above at a steep angle, like a real-time strategy game camera. Locked-off static camera, no camera movement, no zoom, no cuts. EXTREME WIDE SHOT from very far away, so the effect is small in the frame: even at its biggest moment it covers at most the middle half of the frame width and the middle half of the frame height. A wide band of empty green always stays on all four sides; nothing is ever cut off by the frame edge. A small interceptor missile destroying a rocket in mid-air: a sharp white flash, a small round orange fireball, a shower of glowing sparks and a few streaking fragments, a grey smoke puff that quickly thins out. Nothing below it: no ground, no dust. Starts from nothing and fully clears by the end. Photorealistic, high detail, 16:9 landscape, highest resolution.
 
 ---
 
