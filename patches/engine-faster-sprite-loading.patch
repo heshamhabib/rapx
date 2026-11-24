@@ -1,0 +1,535 @@
+diff --git a/engine/OpenRA.Game/FileFormats/Png.cs b/engine/OpenRA.Game/FileFormats/Png.cs
+index f4b603f..07f04f0 100644
+--- a/engine/OpenRA.Game/FileFormats/Png.cs
++++ b/engine/OpenRA.Game/FileFormats/Png.cs
+@@ -14,6 +14,10 @@
+ using System.IO;
+ using System.Linq;
+ using System.Net;
++#if NET6_0_OR_GREATER
++using System.Runtime.Intrinsics;
++using AdvSimd = System.Runtime.Intrinsics.Arm.AdvSimd;
++#endif
+ using System.Text;
+ using ICSharpCode.SharpZipLib.Checksum;
+ using ICSharpCode.SharpZipLib.Zip.Compression;
+@@ -134,7 +138,12 @@ public Png(Stream s)
+ 						{
+ 							using (var ns = new MemoryStream(data.ToArray()))
+ 							{
++								// RAPX: the runtime's native zlib inflates several times faster than SharpZipLib's managed one
++#if NET6_0_OR_GREATER
++								using (var ds = new System.IO.Compression.ZLibStream(ns, System.IO.Compression.CompressionMode.Decompress))
++#else
+ 								using (var ds = new InflaterInputStream(ns))
++#endif
+ 								{
+ 									var pxStride = PixelStride;
+ 									var rowStride = Width * pxStride;
+@@ -166,6 +175,14 @@ public Png(Stream s)
+ 											}
+ 										}
+ 
++										// RAPX: 8-bit rows (all true colour art) take the vectorised path; packed low bit depths keep the original code
++										if (bitDepth == 8)
++										{
++											UnfilterRow(filter, line, prevLine, pxStride);
++											prevLine = line;
++											continue;
++										}
++
+ 										switch (filter)
+ 										{
+ 											case PngFilter.None:
+@@ -285,6 +302,130 @@ public static bool Verify(Stream s)
+ 			return isPng;
+ 		}
+ 
++		/// <summary>
++		/// RAPX: undoes one row's filter in place, with NEON for the four-byte (RGBA) pixels nearly all HD art uses.
++		/// Gives exactly the same bytes as the per-byte loops in the constructor, about three times faster.
++		/// </summary>
++		static unsafe void UnfilterRow(PngFilter filter, Span<byte> lineSpan, Span<byte> prevSpan, int bpp)
++		{
++			var n = lineSpan.Length;
++			fixed (byte* line = lineSpan)
++			fixed (byte* prev = prevSpan)
++			{
++				// Four-byte pixels, read and written as one uint each
++				var line32 = (uint*)line;
++				var prev32 = (uint*)prev;
++				switch (filter)
++				{
++					case PngFilter.None:
++						break;
++
++					case PngFilter.Sub when bpp == 4:
++					{
++						var count = n / 4;
++						for (var i = 1; i < count; i++)
++							line32[i] = AddBytes(line32[i], line32[i - 1]);
++						break;
++					}
++
++					case PngFilter.Sub:
++						for (var i = bpp; i < n; i++)
++							line[i] += line[i - bpp];
++						break;
++
++					case PngFilter.Up:
++					{
++						var count = n / 4;
++						for (var i = 0; i < count; i++)
++							line32[i] = AddBytes(line32[i], prev32[i]);
++						for (var i = count * 4; i < n; i++)
++							line[i] += prev[i];
++						break;
++					}
++
++#if NET6_0_OR_GREATER
++					case PngFilter.Average when bpp == 4 && AdvSimd.IsSupported:
++					{
++						var a = Vector128<ushort>.Zero;
++						for (var i = 0; i < n; i += 4)
++						{
++							var b = Widen(prev + i);
++							var x = AdvSimd.ExtractNarrowingLower(AdvSimd.Add(Widen(line + i), AdvSimd.ShiftRightLogical(AdvSimd.Add(a, b), 1)));
++							line32[i / 4] = x.AsUInt32().ToScalar();
++							a = AdvSimd.ZeroExtendWideningLower(x);
++						}
++
++						break;
++					}
++#endif
++
++					case PngFilter.Average:
++						for (var i = 0; i < bpp; i++)
++							line[i] += (byte)(prev[i] >> 1);
++						for (var i = bpp; i < n; i++)
++							line[i] += (byte)((line[i - bpp] + prev[i]) >> 1);
++						break;
++
++#if NET6_0_OR_GREATER
++					case PngFilter.Paeth when bpp == 4 && AdvSimd.IsSupported:
++					{
++						// a = left (already decoded), b = up, c = up-left: one pixel per step, its four channels in 16-bit lanes
++						var a = Vector128<short>.Zero;
++						var c = a;
++						for (var i = 0; i < n; i += 4)
++						{
++							var b = Widen(prev + i).AsInt16();
++							var pa0 = AdvSimd.Subtract(b, c);
++							var pb0 = AdvSimd.Subtract(a, c);
++							var pc = AdvSimd.Abs(AdvSimd.Add(pa0, pb0));
++							var pa = AdvSimd.Abs(pa0);
++							var pb = AdvSimd.Abs(pb0);
++							var useA = AdvSimd.And(AdvSimd.CompareLessThanOrEqual(pa, pb), AdvSimd.CompareLessThanOrEqual(pa, pc)).AsInt16();
++							var useB = AdvSimd.CompareLessThanOrEqual(pb, pc).AsInt16();
++							var predicted = AdvSimd.BitwiseSelect(useA, a, AdvSimd.BitwiseSelect(useB, b, c));
++							var x = AdvSimd.ExtractNarrowingLower(AdvSimd.Add(Widen(line + i).AsInt16(), predicted).AsUInt16());
++							line32[i / 4] = x.AsUInt32().ToScalar();
++							a = AdvSimd.ZeroExtendWideningLower(x).AsInt16();
++							c = b;
++						}
++
++						break;
++					}
++#endif
++
++					case PngFilter.Paeth:
++						for (var i = 0; i < bpp; i++)
++							line[i] += prev[i];
++						for (var i = bpp; i < n; i++)
++						{
++							int a = line[i - bpp], b = prev[i], c = prev[i - bpp];
++							var pa = b - c;
++							var pb = a - c;
++							var pc = Math.Abs(pa + pb);
++							pa = Math.Abs(pa);
++							pb = Math.Abs(pb);
++							line[i] += (byte)(pa <= pb && pa <= pc ? a : pb <= pc ? b : c);
++						}
++
++						break;
++
++					default:
++						throw new InvalidOperationException("Unsupported Filter");
++				}
++			}
++
++#if NET6_0_OR_GREATER
++			static Vector128<ushort> Widen(byte* p) => AdvSimd.ZeroExtendWideningLower(Vector64.CreateScalar(((uint*)p)[0]).AsByte());
++#endif
++
++			// Adds four bytes to four bytes, each wrapping on its own (no carry into the next byte)
++			static uint AddBytes(uint x, uint y)
++			{
++				const uint High = 0x80808080u;
++				return ((x & ~High) + (y & ~High)) ^ ((x ^ y) & High);
++			}
++		}
++
+ 		[Flags]
+ 		enum PngColorType : byte { Indexed = 1, Color = 2, Alpha = 4 }
+ 		enum PngFilter : byte { None, Sub, Up, Average, Paeth }
+diff --git a/engine/OpenRA.Game/Graphics/Sheet.cs b/engine/OpenRA.Game/Graphics/Sheet.cs
+index c67c5f6..00bc546 100644
+--- a/engine/OpenRA.Game/Graphics/Sheet.cs
++++ b/engine/OpenRA.Game/Graphics/Sheet.cs
+@@ -26,6 +26,9 @@ public sealed class Sheet : IDisposable
+ 		public readonly Size Size;
+ 		public readonly SheetType Type;
+ 
++		/// <summary>RAPX: time spent sending sheet pixels to the GPU, for load-time profiling.</summary>
++		public static readonly System.Diagnostics.Stopwatch UploadTime = new();
++
+ 		public byte[] GetData()
+ 		{
+ 			CreateBuffer();
+@@ -74,7 +77,9 @@ public ITexture GetTexture()
+ 
+ 			if (data != null && dirty)
+ 			{
++				UploadTime.Start();
+ 				texture.SetData(data, Size.Width, Size.Height);
++				UploadTime.Stop();
+ 				dirty = false;
+ 				if (releaseBufferOnCommit)
+ 					data = null;
+diff --git a/engine/OpenRA.Game/Graphics/SpriteCache.cs b/engine/OpenRA.Game/Graphics/SpriteCache.cs
+index 524709b..cd8e173 100644
+--- a/engine/OpenRA.Game/Graphics/SpriteCache.cs
++++ b/engine/OpenRA.Game/Graphics/SpriteCache.cs
+@@ -44,8 +44,18 @@ readonly Dictionary<
+ 		long downscaleTexelsBefore, downscaleTexelsAfter;
+ 		int downscaledFiles;
+ 
++		// RAPX: load profiling - texels packed per art folder and time spent copying frames into sheets
++		readonly Dictionary<string, long> texelsByFolder = new();
++		readonly System.Diagnostics.Stopwatch copyTime = new();
++		readonly System.Diagnostics.Stopwatch readTime = new();
++		long workerTicks, totalBytesRead, parseTicks, downscaleTicks, cropTicks, premultiplyTicks, decodedTexels;
++
+ 		readonly Dictionary<int, Sprite[]> resolvedSprites = new();
+ 
++		// RAPX: files whose frames the decode workers convert to premultiplied BGRA (every use wants them
++		// premultiplied while packing and none adjusts the frames), so packing them is a plain copy
++		readonly HashSet<string> premultiplyInWorker = new();
++
+ 		readonly Dictionary<int, (string Filename, MiniYamlNode.SourceLocation Location)> missingFiles = new();
+ 
+ 		int nextReservationToken = 1;
+@@ -185,7 +195,11 @@ public void LoadReservations(ModData modData)
+ 			var toDecode = new List<(string Filename, SpriteCropMode Crop, float Downscale, List<int> Tokens)>();
+ 			foreach (var (filename, tokens) in reservationsByFilename)
+ 				if (!TryResolveShared(filename, tokens, downscales[filename]))
++				{
+ 					toDecode.Add((filename, CropMode(filename), downscales[filename], tokens));
++					if (tokens.All(t => !spriteReservations.TryGetValue(t, out var rs) || (!rs.Premultiplied && rs.AdjustFrame == null)))
++						premultiplyInWorker.Add(filename);
++				}
+ 
+ 			var spriteCache = new Dictionary<(
+ 				string Filename,
+@@ -194,6 +208,7 @@ public void LoadReservations(ModData modData)
+ 				AdjustFrame AdjustFrame),
+ 				Sprite>();
+ 
++			var uploadBefore = Sheet.UploadTime.ElapsedMilliseconds;
+ 			var decodeTime = new System.Diagnostics.Stopwatch();
+ 			var packTime = new System.Diagnostics.Stopwatch();
+ 			var batches = 0;
+@@ -218,6 +233,14 @@ public void LoadReservations(ModData modData)
+ 			Log.Write("perf", $"SpriteCache: downscaled {downscaledFiles} of {toDecode.Count} decoded files: " +
+ 				$"{downscaleTexelsBefore / 1000000} -> {downscaleTexelsAfter / 1000000} megatexels; " +
+ 				$"sheets: {ownSheets} per map + {sharedSheets} shared");
++			Log.Write("perf", $"SpriteCache: pack = copy {copyTime.ElapsedMilliseconds} ms + GPU upload " +
++				$"{Sheet.UploadTime.ElapsedMilliseconds - uploadBefore} ms + other; decode = main thread reading {totalBytesRead / 1000000} MB " +
++				$"{readTime.ElapsedMilliseconds} ms, workers busy {workerTicks * 1000 / System.Diagnostics.Stopwatch.Frequency} ms in total " +
++				$"(parse {parseTicks * 1000 / System.Diagnostics.Stopwatch.Frequency}, downscale {downscaleTicks * 1000 / System.Diagnostics.Stopwatch.Frequency}, " +
++				$"crop {cropTicks * 1000 / System.Diagnostics.Stopwatch.Frequency}, premultiply {premultiplyTicks * 1000 / System.Diagnostics.Stopwatch.Frequency}; " +
++				$"{decodedTexels / 1000000} megatexels decoded, " +
++				$"GCs gen0/1/2 {GC.CollectionCount(0)}/{GC.CollectionCount(1)}/{GC.CollectionCount(2)}); packed megatexels by folder: " +
++				string.Join(", ", texelsByFolder.OrderByDescending(kv => kv.Value).Take(12).Select(kv => $"{kv.Key} {kv.Value / 1000000}")));
+ 
+ 			spriteReservations.Clear();
+ 			spriteReservations.TrimExcess();
+@@ -226,6 +249,7 @@ public void LoadReservations(ModData modData)
+ 			cropByFilename.Clear();
+ 			downscaleByFilename.Clear();
+ 			downscaleRequests.Clear();
++			premultiplyInWorker.Clear();
+ 
+ 			foreach (var sb in SheetBuilders.Values)
+ 				sb.Current.ReleaseBuffer();
+@@ -300,6 +324,8 @@ void PackBatch(ModData modData, List<(string Filename, SpriteCropMode Crop, floa
+ 					(filename, frameIndex, premultiplied, adjustFrame),
+ 					_ =>
+ 					{
++						var folder = string.Join('/', filename.Split('/').Take(3));
++						texelsByFolder[folder] = texelsByFolder.GetValueOrDefault(folder) + (long)frame.Size.Width * frame.Size.Height;
+ 						var sheetType = SheetBuilder.FrameTypeToSheetType(frame.Type);
+ 						if (!share)
+ 							return AddFrame(SheetBuilders[sheetType], frame, premultiplied);
+@@ -316,9 +342,11 @@ void PackBatch(ModData modData, List<(string Filename, SpriteCropMode Crop, floa
+ 			Array.Clear(decoded);
+ 		}
+ 
+-		static Sprite AddFrame(SheetBuilder builder, ISpriteFrame frame, bool premultiplied)
++		Sprite AddFrame(SheetBuilder builder, ISpriteFrame frame, bool premultiplied)
+ 		{
+-			var sprite = builder.Add(frame, premultiplied);
++			copyTime.Start();
++			var sprite = builder.Add(frame, premultiplied || frame is PremultipliedFrame || frame is CroppedFrame { Premultiplied: true });
++			copyTime.Stop();
+ 			if (frame is CroppedFrame c)
+ 				return new PaddedSprite(sprite, new float3(c.PaddedOffset, 0), new float2(c.PaddedSize.Width, c.PaddedSize.Height), c.CropOrigin);
+ 
+@@ -391,32 +419,10 @@ bool TryResolveShared(string filename, List<int> tokens, float downscale)
+ 					if (Volatile.Read(ref workerError) != null)
+ 						continue;
+ 
++					var started = System.Diagnostics.Stopwatch.GetTimestamp();
+ 					try
+ 					{
+-						var (filename, crop, downscale, _) = files[first + index];
+-						using var stream = new MemoryStream(data, false);
+-						var frames = ParseFrames(stream, filename, loaders);
+-
+-						// Shrink before cropping, so the crop sees the pixels that will be drawn
+-						if (frames != null && downscale > 1f)
+-						{
+-							long before = 0, after = 0;
+-							for (var f = 0; f < frames.Length; f++)
+-							{
+-								before += (long)frames[f].Size.Width * frames[f].Size.Height;
+-								frames[f] = DownscaledFrame.Downscale(frames[f], downscale);
+-								after += (long)frames[f].Size.Width * frames[f].Size.Height;
+-							}
+-
+-							Interlocked.Add(ref downscaleTexelsBefore, before);
+-							Interlocked.Add(ref downscaleTexelsAfter, after);
+-							Interlocked.Increment(ref downscaledFiles);
+-						}
+-
+-						if (frames != null && crop != SpriteCropMode.None)
+-							for (var f = 0; f < frames.Length; f++)
+-								frames[f] = CroppedFrame.Crop(frames[f], crop);
+-
++						var frames = Decode(files[first + index], data, started);
+ 						lock (results)
+ 							results[index] = frames;
+ 					}
+@@ -424,6 +430,8 @@ bool TryResolveShared(string filename, List<int> tokens, float downscale)
+ 					{
+ 						Interlocked.CompareExchange(ref workerError, e, null);
+ 					}
++
++					Interlocked.Add(ref workerTicks, System.Diagnostics.Stopwatch.GetTimestamp() - started);
+ 				}
+ 			})).ToArray();
+ 
+@@ -437,14 +445,20 @@ bool TryResolveShared(string filename, List<int> tokens, float downscale)
+ 					lock (results)
+ 						results.Add(null);
+ 
++					readTime.Start();
+ 					if (!fileSystem.TryOpen(files[first + index].Filename, out var stream))
++					{
++						readTime.Stop();
+ 						continue;
++					}
+ 
+ 					byte[] data;
+ 					using (stream)
+ 						data = stream.ReadAllBytes();
+ 
++					readTime.Stop();
+ 					bytesRead += data.Length;
++					totalBytesRead += data.Length;
+ 					while (!queue.TryAdd((index, data), 20))
+ 						modData.LoadScreen?.Display();
+ 
+@@ -464,6 +478,52 @@ bool TryResolveShared(string filename, List<int> tokens, float downscale)
+ 			return (results.ToArray(), next);
+ 		}
+ 
++		ISpriteFrame[] Decode((string Filename, SpriteCropMode Crop, float Downscale, List<int> Tokens) file, byte[] data, long started)
++		{
++			var (filename, crop, downscale, _) = file;
++			using var stream = new MemoryStream(data, false);
++			var frames = ParseFrames(stream, filename, loaders);
++			if (frames == null)
++				return null;
++
++			var t1 = System.Diagnostics.Stopwatch.GetTimestamp();
++			Interlocked.Add(ref parseTicks, t1 - started);
++			Interlocked.Add(ref decodedTexels, frames.Sum(fr => (long)fr.Size.Width * fr.Size.Height));
++
++			// Shrink before cropping, so the crop sees the pixels that will be drawn
++			if (downscale > 1f)
++			{
++				long before = 0, after = 0;
++				for (var f = 0; f < frames.Length; f++)
++				{
++					before += (long)frames[f].Size.Width * frames[f].Size.Height;
++					frames[f] = DownscaledFrame.Downscale(frames[f], downscale);
++					after += (long)frames[f].Size.Width * frames[f].Size.Height;
++				}
++
++				Interlocked.Add(ref downscaleTexelsBefore, before);
++				Interlocked.Add(ref downscaleTexelsAfter, after);
++				Interlocked.Increment(ref downscaledFiles);
++			}
++
++			var t2 = System.Diagnostics.Stopwatch.GetTimestamp();
++			Interlocked.Add(ref downscaleTicks, t2 - t1);
++
++			if (crop != SpriteCropMode.None)
++				for (var f = 0; f < frames.Length; f++)
++					frames[f] = CroppedFrame.Crop(frames[f], crop);
++
++			var t3 = System.Diagnostics.Stopwatch.GetTimestamp();
++			Interlocked.Add(ref cropTicks, t3 - t2);
++
++			if (premultiplyInWorker.Contains(filename))
++				for (var f = 0; f < frames.Length; f++)
++					frames[f] = PremultipliedFrame.Convert(frames[f]);
++
++			Interlocked.Add(ref premultiplyTicks, System.Diagnostics.Stopwatch.GetTimestamp() - t3);
++			return frames;
++		}
++
+ 		public Sprite[] ResolveSprites(int token)
+ 		{
+ 			if (!resolvedSprites.Remove(token, out var resolved))
+@@ -781,6 +841,25 @@ sealed class CroppedFrame : ISpriteFrame
+ 		public Size PaddedSize { get; private init; }
+ 		public int2 CropOrigin { get; private init; }
+ 
++		/// <summary>Data already holds premultiplied BGRA texels (see <see cref="PremultipliedFrame"/>).</summary>
++		public bool Premultiplied { get; private init; }
++
++		public CroppedFrame WithPremultipliedData(byte[] data)
++		{
++			return new CroppedFrame
++			{
++				Type = SpriteFrameType.Bgra32,
++				Size = Size,
++				FrameSize = FrameSize,
++				Offset = Offset,
++				Data = data,
++				PaddedOffset = PaddedOffset,
++				PaddedSize = PaddedSize,
++				CropOrigin = CropOrigin,
++				Premultiplied = true
++			};
++		}
++
+ 		public static ISpriteFrame Crop(ISpriteFrame frame, SpriteCropMode mode)
+ 		{
+ 			if (frame.Type != SpriteFrameType.Bgra32 && frame.Type != SpriteFrameType.Rgba32)
+@@ -871,6 +950,42 @@ public static ISpriteFrame Crop(ISpriteFrame frame, SpriteCropMode mode)
+ 		}
+ 	}
+ 
++	/// <summary>
++	/// RAPX: a true colour frame whose texels were converted to premultiplied BGRA on a decode worker, so the
++	/// sheet builder copies it as is instead of converting every texel on the main thread.
++	/// </summary>
++	sealed class PremultipliedFrame : ISpriteFrame
++	{
++		public SpriteFrameType Type => SpriteFrameType.Bgra32;
++		public Size Size { get; private init; }
++		public Size FrameSize { get; private init; }
++		public float2 Offset { get; private init; }
++		public byte[] Data { get; private init; }
++		public bool DisableExportPadding { get; private init; }
++
++		public static ISpriteFrame Convert(ISpriteFrame frame)
++		{
++			if (frame is PremultipliedFrame || frame is CroppedFrame { Premultiplied: true } || frame.Size.Width == 0 || frame.Size.Height == 0)
++				return frame;
++
++			var data = Util.ToPremultipliedBgra(frame.Data, frame.Type, frame.Size.Width, frame.Size.Height);
++			if (data == null)
++				return frame;
++
++			if (frame is CroppedFrame c)
++				return c.WithPremultipliedData(data);
++
++			return new PremultipliedFrame
++			{
++				Size = frame.Size,
++				FrameSize = frame.FrameSize,
++				Offset = frame.Offset,
++				Data = data,
++				DisableExportPadding = frame.DisableExportPadding
++			};
++		}
++	}
++
+ 	/// <summary>
+ 	/// RAPX: sprites kept for the lifetime of the mod so that later maps (the skirmish after the menu
+ 	/// shellmap, or the menu after a match) reuse them instead of decoding every file again.
+diff --git a/engine/OpenRA.Game/Graphics/Util.cs b/engine/OpenRA.Game/Graphics/Util.cs
+index f8d6be3..d5d1b98 100644
+--- a/engine/OpenRA.Game/Graphics/Util.cs
++++ b/engine/OpenRA.Game/Graphics/Util.cs
+@@ -209,6 +209,56 @@ static void CopyIntoRgba(
+ 			}
+ 		}
+ 
++		/// <summary>
++		/// RAPX: converts a true colour frame to the premultiplied BGRA texels a sheet stores (what
++		/// <see cref="FastCopyIntoChannel"/> does while packing), so that it can be done on a worker thread and
++		/// packing becomes a plain copy. Returns null for frame types this does not handle.
++		/// </summary>
++		public static byte[] ToPremultipliedBgra(byte[] src, SpriteFrameType srcType, int width, int height)
++		{
++			int stride, ri, bi;
++			switch (srcType)
++			{
++				case SpriteFrameType.Bgra32: stride = 4; ri = 2; bi = 0; break;
++				case SpriteFrameType.Rgba32: stride = 4; ri = 0; bi = 2; break;
++				case SpriteFrameType.Bgr24: stride = 3; ri = 2; bi = 0; break;
++				case SpriteFrameType.Rgb24: stride = 3; ri = 0; bi = 2; break;
++				default: return null;
++			}
++
++			var count = width * height;
++			if (src.Length < count * stride)
++				return null;
++
++			var dest = new byte[count * 4];
++			var hasAlpha = stride == 4;
++			for (int i = 0, si = 0, di = 0; i < count; i++, si += stride, di += 4)
++			{
++				var r = src[si + ri];
++				var g = src[si + 1];
++				var b = src[si + bi];
++				var a = hasAlpha ? src[si + 3] : byte.MaxValue;
++				if (a == 0)
++					continue;
++
++				// Same rounding as PremultiplyAlpha
++				if (a != byte.MaxValue)
++				{
++					var f = a / 255f;
++					r = (byte)(r * f + 0.5f);
++					g = (byte)(g * f + 0.5f);
++					b = (byte)(b * f + 0.5f);
++				}
++
++				dest[di] = b;
++				dest[di + 1] = g;
++				dest[di + 2] = r;
++				dest[di + 3] = a;
++			}
++
++			return dest;
++		}
++
+ 		public static void FastCopyIntoSprite(Sprite dest, Png src)
+ 		{
+ 			var destData = dest.Sheet.GetData();

@@ -36,6 +36,7 @@ engine-sprite-downscale.patch
 engine-effects-settings.patch
 engine-map-preview-scale.patch
 engine-smooth-screen-shake.patch
+engine-faster-sprite-loading.patch
 ```
 
 ## Upgrading the engine

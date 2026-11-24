@@ -14,6 +14,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+#if NET6_0_OR_GREATER
+using System.Runtime.Intrinsics;
+using AdvSimd = System.Runtime.Intrinsics.Arm.AdvSimd;
+#endif
 using System.Text;
 using ICSharpCode.SharpZipLib.Checksum;
 using ICSharpCode.SharpZipLib.Zip.Compression;
@@ -134,7 +138,12 @@ namespace OpenRA.FileFormats
 						{
 							using (var ns = new MemoryStream(data.ToArray()))
 							{
+								// RAPX: the runtime's native zlib inflates several times faster than SharpZipLib's managed one
+#if NET6_0_OR_GREATER
+								using (var ds = new System.IO.Compression.ZLibStream(ns, System.IO.Compression.CompressionMode.Decompress))
+#else
 								using (var ds = new InflaterInputStream(ns))
+#endif
 								{
 									var pxStride = PixelStride;
 									var rowStride = Width * pxStride;
@@ -164,6 +173,14 @@ namespace OpenRA.FileFormats
 														line[dest] = (byte)(packed >> (8 - (j + 1) * bitDepth) & mask);
 												}
 											}
+										}
+
+										// RAPX: 8-bit rows (all true colour art) take the vectorised path; packed low bit depths keep the original code
+										if (bitDepth == 8)
+										{
+											UnfilterRow(filter, line, prevLine, pxStride);
+											prevLine = line;
+											continue;
 										}
 
 										switch (filter)
@@ -283,6 +300,130 @@ namespace OpenRA.FileFormats
 			var isPng = Signature.Aggregate(true, (current, t) => current && s.ReadUInt8() == t);
 			s.Position = pos;
 			return isPng;
+		}
+
+		/// <summary>
+		/// RAPX: undoes one row's filter in place, with NEON for the four-byte (RGBA) pixels nearly all HD art uses.
+		/// Gives exactly the same bytes as the per-byte loops in the constructor, about three times faster.
+		/// </summary>
+		static unsafe void UnfilterRow(PngFilter filter, Span<byte> lineSpan, Span<byte> prevSpan, int bpp)
+		{
+			var n = lineSpan.Length;
+			fixed (byte* line = lineSpan)
+			fixed (byte* prev = prevSpan)
+			{
+				// Four-byte pixels, read and written as one uint each
+				var line32 = (uint*)line;
+				var prev32 = (uint*)prev;
+				switch (filter)
+				{
+					case PngFilter.None:
+						break;
+
+					case PngFilter.Sub when bpp == 4:
+					{
+						var count = n / 4;
+						for (var i = 1; i < count; i++)
+							line32[i] = AddBytes(line32[i], line32[i - 1]);
+						break;
+					}
+
+					case PngFilter.Sub:
+						for (var i = bpp; i < n; i++)
+							line[i] += line[i - bpp];
+						break;
+
+					case PngFilter.Up:
+					{
+						var count = n / 4;
+						for (var i = 0; i < count; i++)
+							line32[i] = AddBytes(line32[i], prev32[i]);
+						for (var i = count * 4; i < n; i++)
+							line[i] += prev[i];
+						break;
+					}
+
+#if NET6_0_OR_GREATER
+					case PngFilter.Average when bpp == 4 && AdvSimd.IsSupported:
+					{
+						var a = Vector128<ushort>.Zero;
+						for (var i = 0; i < n; i += 4)
+						{
+							var b = Widen(prev + i);
+							var x = AdvSimd.ExtractNarrowingLower(AdvSimd.Add(Widen(line + i), AdvSimd.ShiftRightLogical(AdvSimd.Add(a, b), 1)));
+							line32[i / 4] = x.AsUInt32().ToScalar();
+							a = AdvSimd.ZeroExtendWideningLower(x);
+						}
+
+						break;
+					}
+#endif
+
+					case PngFilter.Average:
+						for (var i = 0; i < bpp; i++)
+							line[i] += (byte)(prev[i] >> 1);
+						for (var i = bpp; i < n; i++)
+							line[i] += (byte)((line[i - bpp] + prev[i]) >> 1);
+						break;
+
+#if NET6_0_OR_GREATER
+					case PngFilter.Paeth when bpp == 4 && AdvSimd.IsSupported:
+					{
+						// a = left (already decoded), b = up, c = up-left: one pixel per step, its four channels in 16-bit lanes
+						var a = Vector128<short>.Zero;
+						var c = a;
+						for (var i = 0; i < n; i += 4)
+						{
+							var b = Widen(prev + i).AsInt16();
+							var pa0 = AdvSimd.Subtract(b, c);
+							var pb0 = AdvSimd.Subtract(a, c);
+							var pc = AdvSimd.Abs(AdvSimd.Add(pa0, pb0));
+							var pa = AdvSimd.Abs(pa0);
+							var pb = AdvSimd.Abs(pb0);
+							var useA = AdvSimd.And(AdvSimd.CompareLessThanOrEqual(pa, pb), AdvSimd.CompareLessThanOrEqual(pa, pc)).AsInt16();
+							var useB = AdvSimd.CompareLessThanOrEqual(pb, pc).AsInt16();
+							var predicted = AdvSimd.BitwiseSelect(useA, a, AdvSimd.BitwiseSelect(useB, b, c));
+							var x = AdvSimd.ExtractNarrowingLower(AdvSimd.Add(Widen(line + i).AsInt16(), predicted).AsUInt16());
+							line32[i / 4] = x.AsUInt32().ToScalar();
+							a = AdvSimd.ZeroExtendWideningLower(x).AsInt16();
+							c = b;
+						}
+
+						break;
+					}
+#endif
+
+					case PngFilter.Paeth:
+						for (var i = 0; i < bpp; i++)
+							line[i] += prev[i];
+						for (var i = bpp; i < n; i++)
+						{
+							int a = line[i - bpp], b = prev[i], c = prev[i - bpp];
+							var pa = b - c;
+							var pb = a - c;
+							var pc = Math.Abs(pa + pb);
+							pa = Math.Abs(pa);
+							pb = Math.Abs(pb);
+							line[i] += (byte)(pa <= pb && pa <= pc ? a : pb <= pc ? b : c);
+						}
+
+						break;
+
+					default:
+						throw new InvalidOperationException("Unsupported Filter");
+				}
+			}
+
+#if NET6_0_OR_GREATER
+			static Vector128<ushort> Widen(byte* p) => AdvSimd.ZeroExtendWideningLower(Vector64.CreateScalar(((uint*)p)[0]).AsByte());
+#endif
+
+			// Adds four bytes to four bytes, each wrapping on its own (no carry into the next byte)
+			static uint AddBytes(uint x, uint y)
+			{
+				const uint High = 0x80808080u;
+				return ((x & ~High) + (y & ~High)) ^ ((x ^ y) & High);
+			}
 		}
 
 		[Flags]

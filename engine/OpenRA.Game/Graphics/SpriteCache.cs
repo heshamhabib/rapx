@@ -44,7 +44,17 @@ namespace OpenRA.Graphics
 		long downscaleTexelsBefore, downscaleTexelsAfter;
 		int downscaledFiles;
 
+		// RAPX: load profiling - texels packed per art folder and time spent copying frames into sheets
+		readonly Dictionary<string, long> texelsByFolder = new();
+		readonly System.Diagnostics.Stopwatch copyTime = new();
+		readonly System.Diagnostics.Stopwatch readTime = new();
+		long workerTicks, totalBytesRead, parseTicks, downscaleTicks, cropTicks, premultiplyTicks, decodedTexels;
+
 		readonly Dictionary<int, Sprite[]> resolvedSprites = new();
+
+		// RAPX: files whose frames the decode workers convert to premultiplied BGRA (every use wants them
+		// premultiplied while packing and none adjusts the frames), so packing them is a plain copy
+		readonly HashSet<string> premultiplyInWorker = new();
 
 		readonly Dictionary<int, (string Filename, MiniYamlNode.SourceLocation Location)> missingFiles = new();
 
@@ -185,7 +195,11 @@ namespace OpenRA.Graphics
 			var toDecode = new List<(string Filename, SpriteCropMode Crop, float Downscale, List<int> Tokens)>();
 			foreach (var (filename, tokens) in reservationsByFilename)
 				if (!TryResolveShared(filename, tokens, downscales[filename]))
+				{
 					toDecode.Add((filename, CropMode(filename), downscales[filename], tokens));
+					if (tokens.All(t => !spriteReservations.TryGetValue(t, out var rs) || (!rs.Premultiplied && rs.AdjustFrame == null)))
+						premultiplyInWorker.Add(filename);
+				}
 
 			var spriteCache = new Dictionary<(
 				string Filename,
@@ -194,6 +208,7 @@ namespace OpenRA.Graphics
 				AdjustFrame AdjustFrame),
 				Sprite>();
 
+			var uploadBefore = Sheet.UploadTime.ElapsedMilliseconds;
 			var decodeTime = new System.Diagnostics.Stopwatch();
 			var packTime = new System.Diagnostics.Stopwatch();
 			var batches = 0;
@@ -218,6 +233,14 @@ namespace OpenRA.Graphics
 			Log.Write("perf", $"SpriteCache: downscaled {downscaledFiles} of {toDecode.Count} decoded files: " +
 				$"{downscaleTexelsBefore / 1000000} -> {downscaleTexelsAfter / 1000000} megatexels; " +
 				$"sheets: {ownSheets} per map + {sharedSheets} shared");
+			Log.Write("perf", $"SpriteCache: pack = copy {copyTime.ElapsedMilliseconds} ms + GPU upload " +
+				$"{Sheet.UploadTime.ElapsedMilliseconds - uploadBefore} ms + other; decode = main thread reading {totalBytesRead / 1000000} MB " +
+				$"{readTime.ElapsedMilliseconds} ms, workers busy {workerTicks * 1000 / System.Diagnostics.Stopwatch.Frequency} ms in total " +
+				$"(parse {parseTicks * 1000 / System.Diagnostics.Stopwatch.Frequency}, downscale {downscaleTicks * 1000 / System.Diagnostics.Stopwatch.Frequency}, " +
+				$"crop {cropTicks * 1000 / System.Diagnostics.Stopwatch.Frequency}, premultiply {premultiplyTicks * 1000 / System.Diagnostics.Stopwatch.Frequency}; " +
+				$"{decodedTexels / 1000000} megatexels decoded, " +
+				$"GCs gen0/1/2 {GC.CollectionCount(0)}/{GC.CollectionCount(1)}/{GC.CollectionCount(2)}); packed megatexels by folder: " +
+				string.Join(", ", texelsByFolder.OrderByDescending(kv => kv.Value).Take(12).Select(kv => $"{kv.Key} {kv.Value / 1000000}")));
 
 			spriteReservations.Clear();
 			spriteReservations.TrimExcess();
@@ -226,6 +249,7 @@ namespace OpenRA.Graphics
 			cropByFilename.Clear();
 			downscaleByFilename.Clear();
 			downscaleRequests.Clear();
+			premultiplyInWorker.Clear();
 
 			foreach (var sb in SheetBuilders.Values)
 				sb.Current.ReleaseBuffer();
@@ -300,6 +324,8 @@ namespace OpenRA.Graphics
 					(filename, frameIndex, premultiplied, adjustFrame),
 					_ =>
 					{
+						var folder = string.Join('/', filename.Split('/').Take(3));
+						texelsByFolder[folder] = texelsByFolder.GetValueOrDefault(folder) + (long)frame.Size.Width * frame.Size.Height;
 						var sheetType = SheetBuilder.FrameTypeToSheetType(frame.Type);
 						if (!share)
 							return AddFrame(SheetBuilders[sheetType], frame, premultiplied);
@@ -316,9 +342,11 @@ namespace OpenRA.Graphics
 			Array.Clear(decoded);
 		}
 
-		static Sprite AddFrame(SheetBuilder builder, ISpriteFrame frame, bool premultiplied)
+		Sprite AddFrame(SheetBuilder builder, ISpriteFrame frame, bool premultiplied)
 		{
-			var sprite = builder.Add(frame, premultiplied);
+			copyTime.Start();
+			var sprite = builder.Add(frame, premultiplied || frame is PremultipliedFrame || frame is CroppedFrame { Premultiplied: true });
+			copyTime.Stop();
 			if (frame is CroppedFrame c)
 				return new PaddedSprite(sprite, new float3(c.PaddedOffset, 0), new float2(c.PaddedSize.Width, c.PaddedSize.Height), c.CropOrigin);
 
@@ -391,32 +419,10 @@ namespace OpenRA.Graphics
 					if (Volatile.Read(ref workerError) != null)
 						continue;
 
+					var started = System.Diagnostics.Stopwatch.GetTimestamp();
 					try
 					{
-						var (filename, crop, downscale, _) = files[first + index];
-						using var stream = new MemoryStream(data, false);
-						var frames = ParseFrames(stream, filename, loaders);
-
-						// Shrink before cropping, so the crop sees the pixels that will be drawn
-						if (frames != null && downscale > 1f)
-						{
-							long before = 0, after = 0;
-							for (var f = 0; f < frames.Length; f++)
-							{
-								before += (long)frames[f].Size.Width * frames[f].Size.Height;
-								frames[f] = DownscaledFrame.Downscale(frames[f], downscale);
-								after += (long)frames[f].Size.Width * frames[f].Size.Height;
-							}
-
-							Interlocked.Add(ref downscaleTexelsBefore, before);
-							Interlocked.Add(ref downscaleTexelsAfter, after);
-							Interlocked.Increment(ref downscaledFiles);
-						}
-
-						if (frames != null && crop != SpriteCropMode.None)
-							for (var f = 0; f < frames.Length; f++)
-								frames[f] = CroppedFrame.Crop(frames[f], crop);
-
+						var frames = Decode(files[first + index], data, started);
 						lock (results)
 							results[index] = frames;
 					}
@@ -424,6 +430,8 @@ namespace OpenRA.Graphics
 					{
 						Interlocked.CompareExchange(ref workerError, e, null);
 					}
+
+					Interlocked.Add(ref workerTicks, System.Diagnostics.Stopwatch.GetTimestamp() - started);
 				}
 			})).ToArray();
 
@@ -437,14 +445,20 @@ namespace OpenRA.Graphics
 					lock (results)
 						results.Add(null);
 
+					readTime.Start();
 					if (!fileSystem.TryOpen(files[first + index].Filename, out var stream))
+					{
+						readTime.Stop();
 						continue;
+					}
 
 					byte[] data;
 					using (stream)
 						data = stream.ReadAllBytes();
 
+					readTime.Stop();
 					bytesRead += data.Length;
+					totalBytesRead += data.Length;
 					while (!queue.TryAdd((index, data), 20))
 						modData.LoadScreen?.Display();
 
@@ -462,6 +476,52 @@ namespace OpenRA.Graphics
 				ExceptionDispatchInfo.Capture(workerError).Throw();
 
 			return (results.ToArray(), next);
+		}
+
+		ISpriteFrame[] Decode((string Filename, SpriteCropMode Crop, float Downscale, List<int> Tokens) file, byte[] data, long started)
+		{
+			var (filename, crop, downscale, _) = file;
+			using var stream = new MemoryStream(data, false);
+			var frames = ParseFrames(stream, filename, loaders);
+			if (frames == null)
+				return null;
+
+			var t1 = System.Diagnostics.Stopwatch.GetTimestamp();
+			Interlocked.Add(ref parseTicks, t1 - started);
+			Interlocked.Add(ref decodedTexels, frames.Sum(fr => (long)fr.Size.Width * fr.Size.Height));
+
+			// Shrink before cropping, so the crop sees the pixels that will be drawn
+			if (downscale > 1f)
+			{
+				long before = 0, after = 0;
+				for (var f = 0; f < frames.Length; f++)
+				{
+					before += (long)frames[f].Size.Width * frames[f].Size.Height;
+					frames[f] = DownscaledFrame.Downscale(frames[f], downscale);
+					after += (long)frames[f].Size.Width * frames[f].Size.Height;
+				}
+
+				Interlocked.Add(ref downscaleTexelsBefore, before);
+				Interlocked.Add(ref downscaleTexelsAfter, after);
+				Interlocked.Increment(ref downscaledFiles);
+			}
+
+			var t2 = System.Diagnostics.Stopwatch.GetTimestamp();
+			Interlocked.Add(ref downscaleTicks, t2 - t1);
+
+			if (crop != SpriteCropMode.None)
+				for (var f = 0; f < frames.Length; f++)
+					frames[f] = CroppedFrame.Crop(frames[f], crop);
+
+			var t3 = System.Diagnostics.Stopwatch.GetTimestamp();
+			Interlocked.Add(ref cropTicks, t3 - t2);
+
+			if (premultiplyInWorker.Contains(filename))
+				for (var f = 0; f < frames.Length; f++)
+					frames[f] = PremultipliedFrame.Convert(frames[f]);
+
+			Interlocked.Add(ref premultiplyTicks, System.Diagnostics.Stopwatch.GetTimestamp() - t3);
+			return frames;
 		}
 
 		public Sprite[] ResolveSprites(int token)
@@ -781,6 +841,25 @@ namespace OpenRA.Graphics
 		public Size PaddedSize { get; private init; }
 		public int2 CropOrigin { get; private init; }
 
+		/// <summary>Data already holds premultiplied BGRA texels (see <see cref="PremultipliedFrame"/>).</summary>
+		public bool Premultiplied { get; private init; }
+
+		public CroppedFrame WithPremultipliedData(byte[] data)
+		{
+			return new CroppedFrame
+			{
+				Type = SpriteFrameType.Bgra32,
+				Size = Size,
+				FrameSize = FrameSize,
+				Offset = Offset,
+				Data = data,
+				PaddedOffset = PaddedOffset,
+				PaddedSize = PaddedSize,
+				CropOrigin = CropOrigin,
+				Premultiplied = true
+			};
+		}
+
 		public static ISpriteFrame Crop(ISpriteFrame frame, SpriteCropMode mode)
 		{
 			if (frame.Type != SpriteFrameType.Bgra32 && frame.Type != SpriteFrameType.Rgba32)
@@ -867,6 +946,42 @@ namespace OpenRA.Graphics
 				PaddedOffset = frame.Offset,
 				PaddedSize = frame.Size,
 				CropOrigin = new int2(x0, y0)
+			};
+		}
+	}
+
+	/// <summary>
+	/// RAPX: a true colour frame whose texels were converted to premultiplied BGRA on a decode worker, so the
+	/// sheet builder copies it as is instead of converting every texel on the main thread.
+	/// </summary>
+	sealed class PremultipliedFrame : ISpriteFrame
+	{
+		public SpriteFrameType Type => SpriteFrameType.Bgra32;
+		public Size Size { get; private init; }
+		public Size FrameSize { get; private init; }
+		public float2 Offset { get; private init; }
+		public byte[] Data { get; private init; }
+		public bool DisableExportPadding { get; private init; }
+
+		public static ISpriteFrame Convert(ISpriteFrame frame)
+		{
+			if (frame is PremultipliedFrame || frame is CroppedFrame { Premultiplied: true } || frame.Size.Width == 0 || frame.Size.Height == 0)
+				return frame;
+
+			var data = Util.ToPremultipliedBgra(frame.Data, frame.Type, frame.Size.Width, frame.Size.Height);
+			if (data == null)
+				return frame;
+
+			if (frame is CroppedFrame c)
+				return c.WithPremultipliedData(data);
+
+			return new PremultipliedFrame
+			{
+				Size = frame.Size,
+				FrameSize = frame.FrameSize,
+				Offset = frame.Offset,
+				Data = data,
+				DisableExportPadding = frame.DisableExportPadding
 			};
 		}
 	}

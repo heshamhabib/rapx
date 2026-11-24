@@ -209,6 +209,56 @@ namespace OpenRA.Graphics
 			}
 		}
 
+		/// <summary>
+		/// RAPX: converts a true colour frame to the premultiplied BGRA texels a sheet stores (what
+		/// <see cref="FastCopyIntoChannel"/> does while packing), so that it can be done on a worker thread and
+		/// packing becomes a plain copy. Returns null for frame types this does not handle.
+		/// </summary>
+		public static byte[] ToPremultipliedBgra(byte[] src, SpriteFrameType srcType, int width, int height)
+		{
+			int stride, ri, bi;
+			switch (srcType)
+			{
+				case SpriteFrameType.Bgra32: stride = 4; ri = 2; bi = 0; break;
+				case SpriteFrameType.Rgba32: stride = 4; ri = 0; bi = 2; break;
+				case SpriteFrameType.Bgr24: stride = 3; ri = 2; bi = 0; break;
+				case SpriteFrameType.Rgb24: stride = 3; ri = 0; bi = 2; break;
+				default: return null;
+			}
+
+			var count = width * height;
+			if (src.Length < count * stride)
+				return null;
+
+			var dest = new byte[count * 4];
+			var hasAlpha = stride == 4;
+			for (int i = 0, si = 0, di = 0; i < count; i++, si += stride, di += 4)
+			{
+				var r = src[si + ri];
+				var g = src[si + 1];
+				var b = src[si + bi];
+				var a = hasAlpha ? src[si + 3] : byte.MaxValue;
+				if (a == 0)
+					continue;
+
+				// Same rounding as PremultiplyAlpha
+				if (a != byte.MaxValue)
+				{
+					var f = a / 255f;
+					r = (byte)(r * f + 0.5f);
+					g = (byte)(g * f + 0.5f);
+					b = (byte)(b * f + 0.5f);
+				}
+
+				dest[di] = b;
+				dest[di + 1] = g;
+				dest[di + 2] = r;
+				dest[di + 3] = a;
+			}
+
+			return dest;
+		}
+
 		public static void FastCopyIntoSprite(Sprite dest, Png src)
 		{
 			var destData = dest.Sheet.GetData();

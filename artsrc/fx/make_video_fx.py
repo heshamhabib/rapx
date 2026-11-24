@@ -52,6 +52,7 @@ SCREEN_PER_PX = 0.224  # screen pixels per source pixel of a 360p clip at Size 1
 #   ring     fade a dust ring that runs off the bottom along an oval in its own perspective
 #   tail     seconds of break-up synthesised from the last frame, for clips that end before the smoke clears
 #            (tail_frames: how many; the warhead plays them via VideoSlowFrom/VideoSlowTick, printed here)
+#   open_end the clip ends with the effect still showing on purpose (napalm hands over to the fire loop)
 #   cropped_ok  silence the cropping warning (only for clips checked by eye: debris specks, not cut-off mass)
 #   then     (with then_frames: frames kept from it) a continuation clip (made in Flow's Frames mode from this clip's last frame) appended to it, so the
 #            effect plays out and clears by itself instead of the game fading out a frozen last frame
@@ -75,7 +76,7 @@ CLIPS = {
     "dust-a": {"squash": 1.0, "anchor": "centre", "shadow": 1.0, "strict": True},
     "nuke-a": {"squash": 1.0, "size": 560, "frames": 80, "strict": True, "edges": {"top": 0.5}, "ring": True,
                "tail": 5, "tail_frames": 30, "cropped_ok": True},
-    "napalm-a": {"squash": 1.0, "edges": {"top": 3.0}},
+    "napalm-a": {"squash": 1.0, "edges": {"top": 3.0}, "open_end": True},
     "launch-blast-a": {"squash": 1.0, "ring": True},
     "crash-a": {"squash": 1.0, "size": 540, "start": 7 / 24, "anchor": "first", "mirror": True,
                 "edges": {"right": 2.0}},
@@ -95,6 +96,7 @@ def read_clip(path):
     return np.frombuffer(raw, np.uint8).reshape(-1, h, w, 3).astype(np.float32) / 255, fps
 
 
+END_WARN = 0.01     # share of the last frame an effect may still cover when the clip ends
 CROP_WARN = 0.04     # a clip whose solid mass covers more than this share of a frame edge was filmed cropped
 
 
@@ -322,6 +324,12 @@ def process(name, opts):
             tail = np.clip((1 - i / (count - 1)) / FADE_TAIL, 0, 1)
             f[..., 3] *= tail * tail * (3 - 2 * tail)
         out.append(f)
+
+    # A clip must play out on camera (video-prompts-v2.md): warn when its last frame still shows the effect
+    left = float((out[-1][..., 3] > 0.1).mean())
+    if not loop and not split and left > END_WARN and not opts.get("open_end"):
+        print(f"  WARNING {name}: the effect is still on screen in the last frame ({left:.0%} of it) - it needs a "
+              "continuation (Frames mode) or a clip that clears by itself")
 
     if loop:
         out = loop_blend(out)

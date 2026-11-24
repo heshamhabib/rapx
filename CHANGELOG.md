@@ -14,6 +14,9 @@ versions cannot play multiplayer together.
 
 ## [Unreleased]
 
+- Faster game start: the boot load is about 45% shorter (PNG art decodes with vectorised filters and native zlib,
+  and pixel conversion moved off the main thread). The art looks exactly the same.
+
 ## [0.1.0-pilot] - 2026-11-08
 
 First pilot build for testers.

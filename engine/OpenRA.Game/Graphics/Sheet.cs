@@ -26,6 +26,9 @@ namespace OpenRA.Graphics
 		public readonly Size Size;
 		public readonly SheetType Type;
 
+		/// <summary>RAPX: time spent sending sheet pixels to the GPU, for load-time profiling.</summary>
+		public static readonly System.Diagnostics.Stopwatch UploadTime = new();
+
 		public byte[] GetData()
 		{
 			CreateBuffer();
@@ -74,7 +77,9 @@ namespace OpenRA.Graphics
 
 			if (data != null && dirty)
 			{
+				UploadTime.Start();
 				texture.SetData(data, Size.Width, Size.Height);
+				UploadTime.Stop();
 				dirty = false;
 				if (releaseBufferOnCommit)
 					data = null;
