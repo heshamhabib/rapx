@@ -119,6 +119,46 @@ JetBomb.Pair:
 	Burst: 2
 	BurstDelays: 4
 
+# Napalm (Mk 77 / ZAB): an unguided fire bomb that bursts into a ring of sticky burning fuel (the filmed napalm-a
+# clip) and keeps burning (fire-big-b loop) for ~9 s, burning infantry and light vehicles standing in it (PxBurn:
+# JetNapalm.Burn every second). Weak against tanks and concrete.
+JetNapalm:
+	Inherits: JetBomb
+	Report: ra|audio/sfx/chute1.ogg
+	Warhead@1Dam: SpreadDamage
+		Spread: 640
+		Damage: 6000
+		Versus:
+			None: 100
+			Wood: 100
+			Light: 70
+			Heavy: 25
+			Concrete: 30
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath, Incendiary
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Scorch
+		ValidTargets: Ground
+	Warhead@3Eff: PxFire
+		Size: 1.4
+		Duration: 220
+		Video: napalm-a
+		BurnVideo: fire-big-b
+		VideoScale: 0.55
+		ImpactSounds: ra|audio/sfx/firebl3.ogg
+		ValidTargets: Ground, GroundActor, Trees
+	Warhead@Burn: PxBurn
+		Weapon: JetNapalm.Burn
+		Duration: 225
+		Interval: 25
+		ValidTargets: Ground, GroundActor, Trees
+JetNapalm.Pair:
+	Inherits: JetNapalm
+	Burst: 2
+	BurstDelays: 4
+JetNapalm.Burn:
+	Inherits: JetWP.Burn
+	-Warhead@3Eff:
+
 # Guided bombs (GBU-12/31, KAB-500): precise, heavy, best against buildings
 JetGBU:
 	Inherits: JetBomb

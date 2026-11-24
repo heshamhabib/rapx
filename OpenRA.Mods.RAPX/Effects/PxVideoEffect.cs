@@ -22,6 +22,10 @@ namespace OpenRA.Mods.RAPX.Effects
 	{
 		public const string Image = "pxvideofx";
 
+		/// <summary>RAPX_CLASSIC_FX=1: play the game as it looked before the filmed effects and HD ruins (no clips, the
+		/// particle explosions and plain scorch marks instead), e.g. to record the "before" half of a comparison.</summary>
+		public static readonly bool Classic = Environment.GetEnvironmentVariable("RAPX_CLASSIC_FX") == "1";
+
 		readonly World world;
 		readonly WPos pos;
 		readonly ISpriteSequence clip;
@@ -45,7 +49,7 @@ namespace OpenRA.Mods.RAPX.Effects
 		public static ISpriteSequence Find(World world, string name)
 		{
 			var sequences = world.Map.Sequences;
-			return !string.IsNullOrEmpty(name) && sequences.HasSequence(Image, name) ? sequences.GetSequence(Image, name) : null;
+			return !Classic && !string.IsNullOrEmpty(name) && sequences.HasSequence(Image, name) ? sequences.GetSequence(Image, name) : null;
 		}
 
 		/// <summary>Ticks until the last frame (40 ms game ticks, so the clip keeps pace with the game speed).</summary>

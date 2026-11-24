@@ -16,7 +16,9 @@ using OpenRA.Effects;
 using OpenRA.GameRules;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common;
+using OpenRA.Mods.Common.Effects;
 using OpenRA.Mods.Common.Warheads;
+using OpenRA.Mods.RAPX.Effects;
 using OpenRA.Mods.RAPX.Graphics;
 using OpenRA.Mods.RAPX.Traits;
 using OpenRA.Primitives;
@@ -119,6 +121,11 @@ namespace OpenRA.Mods.RAPX.Warheads
 		[Desc("Size of the filmed explosion, as a multiple of Size.")]
 		public readonly float VideoScale = 1f;
 
+		[Desc("Drawn explosion (sequence of image `explosion`) played instead of the whole effect when the filmed one is",
+			"switched off (RAPX_CLASSIC_FX=1), so a 'before' recording shows what the weapon really looked like (a nuke's",
+			"drawn mushroom rather than particles).")]
+		public readonly string ClassicExplosion = null;
+
 		[Desc("Playback speed of the filmed explosion (below 1 = slower, heavier).")]
 		public readonly float VideoSpeed = 1f;
 
@@ -168,6 +175,15 @@ namespace OpenRA.Mods.RAPX.Warheads
 
 			if (Throw && !air)
 				world.WorldActor.TraitOrDefault<PxBlastRegistry>()?.Register(world, pos, Size);
+
+			if (ClassicExplosion != null && PxVideoEffect.Classic)
+			{
+				world.AddFrameEndTask(w => w.Add(new SpriteEffect(pos, w, "explosion", ClassicExplosion, "effect")));
+				var classicSound = ImpactSounds.RandomOrDefault(world.LocalRandom);
+				if (classicSound != null)
+					Game.Sound.Play(SoundType.World, classicSound, pos);
+				return;
+			}
 
 			if (Shake && Size >= 0.9f)
 			{
@@ -285,11 +301,9 @@ namespace OpenRA.Mods.RAPX.Warheads
 			waves = world.WorldActor.TraitOrDefault<PxBlastWaves>();
 			recipe = Recipes[info.Style];
 
-			var clip = (air ? info.AirVideo : info.Video).RandomOrDefault(random);
-			var sequences = world.Map.Sequences;
-			if (clip != null && sequences.HasSequence("pxvideofx", clip))
+			video = PxVideoEffect.Find(world, (air ? info.AirVideo : info.Video).RandomOrDefault(random));
+			if (video != null)
 			{
-				video = sequences.GetSequence("pxvideofx", clip);
 				videoScale = video.Scale * info.Size * info.VideoScale * Rand(0.9f, 1.1f);
 				recipe = recipe.UnderVideo();
 			}

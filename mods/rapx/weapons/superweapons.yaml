@@ -65,6 +65,7 @@ Atomic:
 		VideoSlowFrom: 80
 		VideoSlowTick: 167
 		VideoZOffset: 8192
+		ClassicExplosion: nuke
 		ImpactSounds: ra|audio/sfx/kaboom1.ogg
 		ValidTargets: Ground, GroundActor, Trees
 	Warhead@5Dam_areanuke1: SpreadDamage

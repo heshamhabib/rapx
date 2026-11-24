@@ -12,6 +12,7 @@
 using System;
 using System.Collections.Generic;
 using OpenRA.Graphics;
+using OpenRA.Mods.RAPX.Effects;
 using OpenRA.Mods.RAPX.Graphics;
 using OpenRA.Primitives;
 using OpenRA.Support;
@@ -63,9 +64,9 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 			this.info = info;
 			health = self.Trait<IHealth>();
 			particles = new PxParticles(self.World);
-			var sequences = self.World.Map.Sequences;
-			video = !string.IsNullOrEmpty(info.Video) && sequences.HasSequence("pxvideofx", info.Video);
-			fire = video ? sequences.GetSequence("pxvideofx", info.Video) : particles.Sequence(FireSequence);
+			var clip = PxVideoEffect.Find(self.World, info.Video);
+			video = clip != null;
+			fire = clip ?? particles.Sequence(FireSequence);
 			glow = particles.Sequence("glow");
 			smokeTimers = new float[info.Spots.Length];
 			phases = new int[info.Spots.Length];

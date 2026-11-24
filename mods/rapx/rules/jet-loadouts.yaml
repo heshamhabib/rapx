@@ -1351,7 +1351,7 @@ JET.SAEQEH:
 	Armament@SAEQEHS0:
 		Name: saeqeh-s0
 		Weapon: JetAAM.Short
-		LocalOffset: -128,639,145, -128,-639,145
+		LocalOffset: -128,639,134, -128,-639,134
 		PauseOnCondition: !saeqeh-s0
 	WithIdleOverlay@SAEQEHSTORE0R:
 		Sequence: store-0R
@@ -1367,7 +1367,7 @@ JET.SAEQEH:
 	Armament@SAEQEHGUN:
 		Name: saeqeh-gun
 		Weapon: JetGun.M61
-		LocalOffset: 146,0,145
+		LocalOffset: 146,0,134
 		PauseOnCondition: !saeqeh-gun
 	AttackAircraft:
 		Armaments: saeqeh-s0, saeqeh-gun

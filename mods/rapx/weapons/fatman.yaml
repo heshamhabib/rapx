@@ -42,11 +42,25 @@ Fatman:
 		SmudgeType: NukeScorch
 		ValidTargets: Ground, Infantry
 		Size: 1
+	# Filmed mushroom cloud on land (artsrc/fx/make_video_fx.py nuke-a, smaller than the nuclear missile's); the drawn
+	# one stays for water, and for RAPX_CLASSIC_FX=1 recordings (ClassicExplosion)
 	Warhead@4Eff_impact: CreateEffect
 		Explosions: fatman-nuke
 		ImpactSounds: ra|audio/sfx/kaboom1.ogg
 		ImpactActors: false
-		ValidTargets: Ground, Water, Air
+		ValidTargets: Water
+	Warhead@4EffVideo_impact: PxExplosion
+		Size: 2.4
+		Smoke: 0.15
+		Video: nuke-a
+		VideoScale: 0.65
+		VideoLinger: 20
+		VideoSlowFrom: 80
+		VideoSlowTick: 167
+		VideoZOffset: 8192
+		ClassicExplosion: fatman-nuke
+		ImpactSounds: ra|audio/sfx/kaboom1.ogg
+		ValidTargets: Ground, GroundActor, Trees
 	Warhead@5Dam_area1: SpreadDamage
 		Spread: 2c0
 		Damage: 5000
@@ -114,6 +128,10 @@ RDS37:
 		Damage: 14000
 	Warhead@4Eff_impact: CreateEffect
 		Explosions: rds37-nuke
+	Warhead@4EffVideo_impact: PxExplosion
+		Size: 2.7
+		VideoScale: 0.71
+		ClassicExplosion: rds37-nuke
 	Warhead@5Dam_area1: SpreadDamage
 		Damage: 5500
 	Warhead@9Dam_area2: SpreadDamage

@@ -16,6 +16,7 @@ using OpenRA.Effects;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Traits.Render;
+using OpenRA.Mods.RAPX.Effects;
 using OpenRA.Mods.RAPX.Graphics;
 using OpenRA.Support;
 using OpenRA.Traits;
@@ -128,12 +129,12 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 			scorch = particles.Sequence("scorch");
 
 			// HD ruins (artsrc/fx/make_ruin_fx.py) replace the plain scorch mark, rubble the plain chunks
-			if (!info.OnWater)
+			if (!info.OnWater && !PxVideoEffect.Classic)
 				ruin = particles.Sequence("ruin");
 			if (ruin != null)
 				ruinFrame = random.Next(ruin.Length);
 
-			chunk = particles.Sequence("rubble") != null ? PxParticleKind.Rubble : PxParticleKind.Chunk;
+			chunk = !PxVideoEffect.Classic && particles.Sequence("rubble") != null ? PxParticleKind.Rubble : PxParticleKind.Chunk;
 
 			fires = new float2[Math.Clamp((int)(radius.X * radius.Y / 300), 1, 4)];
 			for (var i = 0; i < fires.Length; i++)
@@ -145,12 +146,9 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 
 			if (!info.OnWater)
 			{
-				var sequences = world.Map.Sequences;
-				ISpriteSequence Find(string name) =>
-					!string.IsNullOrEmpty(name) && sequences.HasSequence("pxvideofx", name) ? sequences.GetSequence("pxvideofx", name) : null;
-				fireVideo = Find(info.FireVideo);
-				smokeVideo = Find(info.SmokeVideo);
-				dustVideo = Find(info.DustVideo);
+				fireVideo = PxVideoEffect.Find(world, info.FireVideo);
+				smokeVideo = PxVideoEffect.Find(world, info.SmokeVideo);
+				dustVideo = PxVideoEffect.Find(world, info.DustVideo);
 			}
 		}
 

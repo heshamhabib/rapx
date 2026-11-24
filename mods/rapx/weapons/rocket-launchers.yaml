@@ -14,6 +14,8 @@
 	MinRange: 3c0
 	Report: ra|audio/sfx/missile6.ogg
 	Projectile: PxRocket
+		LaunchVideo: launch-blast-a
+		LaunchVideoScale: 0.65
 		ThreatType: Rocket
 		Image: pxmissile
 		Speed: 200
@@ -138,6 +140,7 @@ RL_KASIRGA:
 	Burst: 4
 	BurstDelays: 15
 	Projectile: PxRocket
+		LaunchVideoScale: 0.85
 		ThreatType: Ballistic
 		Sequence: trg300
 		Speed: 190
@@ -168,6 +171,7 @@ RL_FATAH:
 	Burst: 4
 	BurstDelays: 15
 	Projectile: PxRocket
+		LaunchVideoScale: 0.85
 		ThreatType: Ballistic
 		Sequence: fatah
 		Speed: 220
@@ -300,6 +304,7 @@ RL_VILKRA:
 	Burst: 4
 	BurstDelays: 15
 	Projectile: PxRocket
+		LaunchVideoScale: 0.85
 		ThreatType: Ballistic
 		Sequence: vilkha
 		Speed: 220
@@ -426,6 +431,7 @@ RL_PHX:
 	Burst: 8
 	BurstDelays: 7
 	Projectile: PxRocket
+		LaunchVideoScale: 0.85
 		ThreatType: Ballistic
 		Sequence: phl16
 		Speed: 220
@@ -454,6 +460,7 @@ RL_FAJIR:
 	Burst: 4
 	BurstDelays: 12
 	Projectile: PxRocket
+		LaunchVideoScale: 0.85
 		ThreatType: Ballistic
 		Sequence: fajr5
 		Length: 618
@@ -521,6 +528,7 @@ RL_CHUNMU_MISSILE:
 	MinRange: 4c0
 	Report: ra|audio/sfx/missile1.ogg
 	Projectile: PxRocket
+		LaunchVideoScale: 0.85
 		ThreatType: Ballistic
 		Speed: 260
 		Inaccuracy: 0c64

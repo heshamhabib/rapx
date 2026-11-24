@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Traits;
+using OpenRA.Mods.RAPX.Effects;
 using OpenRA.Mods.RAPX.Graphics;
 using OpenRA.Primitives;
 using OpenRA.Support;
@@ -68,11 +69,8 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 			heat = new float[info.Points.Length];
 			phases = new int[info.Points.Length];
 
-			var sequences = self.World.Map.Sequences;
-			ISpriteSequence Find(string name) =>
-				!string.IsNullOrEmpty(name) && sequences.HasSequence("pxvideofx", name) ? sequences.GetSequence("pxvideofx", name) : null;
-			video = Find(info.Video);
-			criticalVideo = Find(info.CriticalVideo) ?? video;
+			video = PxVideoEffect.Find(self.World, info.Video);
+			criticalVideo = PxVideoEffect.Find(self.World, info.CriticalVideo) ?? video;
 			for (var i = 0; i < phases.Length; i++)
 				phases[i] = random.Next(1024);
 		}

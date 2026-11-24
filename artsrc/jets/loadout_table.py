@@ -6,7 +6,8 @@ Per unit:
   real_length  metres, sizes the procedural weapons against the model
   gun          gun weapon (weapons/jet-ordnance.yaml JetGun.<gun>) or None
   stations     outer first (fired first); every station is a left/right pair unless "centre": True
-     weapon    family (JetAAM.Short, JetAAM.Medium, JetAAM.Long, JetAGM, JetBomb, JetCluster, JetWP, JetGBU, JetRockets)
+     weapon    family (JetAAM.Short, JetAAM.Medium, JetAAM.Long, JetAGM, JetBomb, JetCluster, JetWP, JetNapalm, JetGBU,
+               JetRockets)
      model     (x, y, z, rx, ry, rz): the right-hand station on the model, unit coordinates (survey:
                artsrc/jets/loadouts/<unit>.png/.json); every model store centred within the tolerances joins it
                (a triple rack is one station), mirrored for the left
@@ -153,10 +154,10 @@ LOADOUTS = {
         {"weapon": "JetCluster", "internal": True, "shots": 8},
         {"weapon": "JetBomb", "internal": True, "shots": 6},
     ]},
-    # Vulcan and Tu-160: white phosphorus bombs first, then their usual bombs
+    # Vulcan, the fire bomber: white phosphorus bombs first, then napalm. Tu-160: white phosphorus, then guided bombs
     "jet.vulcan": {"real_length": 29.6, "gun": None, "stations": [
         {"weapon": "JetWP", "internal": True, "shots": 4},
-        {"weapon": "JetBomb", "internal": True, "shots": 6},
+        {"weapon": "JetNapalm", "internal": True, "shots": 6},
     ]},
     "jet.tu160": {"real_length": 54.1, "gun": None, "stations": [
         {"weapon": "JetWP", "internal": True, "shots": 4},
