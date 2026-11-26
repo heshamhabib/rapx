@@ -108,6 +108,22 @@ namespace OpenRA.Mods.RAPX.Widgets
 		readonly Dictionary<string, List<ActorInfo>> providers = new();
 
 		public PxCatalogueData(Ruleset rules, string seedActor)
+			: this(rules, seedActor, true) { }
+
+		/// <summary>Every nation that can field each buildable actor (the catalogue's prerequisite closure from the seed
+		/// actor): actor name -> nation ids. Actors no nation can build are absent.</summary>
+		public static Dictionary<string, HashSet<string>> NationAvailability(Ruleset rules, string seedActor)
+		{
+			var data = new PxCatalogueData(rules, seedActor, false);
+			var result = new Dictionary<string, HashSet<string>>();
+			foreach (var n in data.Nations)
+				foreach (var a in n.Available)
+					result.GetOrAdd(a).Add(n.Id);
+
+			return result;
+		}
+
+		PxCatalogueData(Ruleset rules, string seedActor, bool entries)
 		{
 			this.rules = rules;
 			var buildables = rules.Actors.Values
@@ -122,6 +138,9 @@ namespace OpenRA.Mods.RAPX.Widgets
 			LoadNations();
 			foreach (var n in Nations)
 				n.Available = Closure(n.Id, buildables, seedActor);
+
+			if (!entries)
+				return;
 
 			foreach (var a in buildables)
 			{
@@ -191,7 +210,9 @@ namespace OpenRA.Mods.RAPX.Widgets
 			bool Met(string p)
 			{
 				p = p.TrimStart('~');
-				return p.StartsWith('!') || tokens.Contains(p);
+
+				// disabled.lobby.*: picked in the lobby (titans), never built, so every nation can have it
+				return p.StartsWith('!') || p.StartsWith("disabled.lobby.", StringComparison.Ordinal) || tokens.Contains(p);
 			}
 
 			var changed = true;
@@ -284,7 +305,8 @@ namespace OpenRA.Mods.RAPX.Widgets
 
 			foreach (var arm in a.TraitInfos<ArmamentInfo>())
 			{
-				if (arm.WeaponInfo == null || e.Weapons.Any(w => w.Name == Pretty(arm.Weapon)))
+				// No warheads: a sound or cue only (GodzillaCharge), not a weapon
+				if (arm.WeaponInfo == null || arm.WeaponInfo.Warheads.Count == 0 || e.Weapons.Any(w => w.Name == Pretty(arm.Weapon)))
 					continue;
 
 				e.Weapons.Add(CreateWeapon(arm.Weapon, arm.WeaponInfo, rules));
@@ -471,6 +493,9 @@ namespace OpenRA.Mods.RAPX.Widgets
 					e.Features.Add($"Reloads its paratroopers on its pad in {seconds} s, paying their price");
 				}
 			}
+
+			if (e.Prerequisites.Contains("disabled.lobby.titan"))
+				e.Features.Add("Picked in the lobby (TITAN column): one per player, walks out at the start, cannot be rebuilt");
 
 			if (e.Actor.HasTraitInfo<PxAirliftBaseInfo>())
 			{

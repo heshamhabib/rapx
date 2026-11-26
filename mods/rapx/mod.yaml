@@ -66,6 +66,7 @@ Rules:
 	ra|rules/angel-flares.yaml
 	ra|rules/red-smoke.yaml
 	ra|rules/air-assault.yaml
+	ra|rules/titans.yaml
 
 Sequences:
 	ra|sequences/ships.yaml
@@ -119,6 +120,7 @@ Sequences:
 	ra|sequences/air-defence.yaml
 	ra|sequences/mobile-sam.yaml
 	ra|sequences/croc.yaml
+	ra|sequences/titans.yaml
 	ra|sequences/hd-smoke-fx.yaml
 
 TileSets:
@@ -138,6 +140,7 @@ Chrome:
 	ra|px-lobby.yaml
 	ra|px-weather.yaml
 	ra|px-flags-large.yaml
+	ra|px-titans.yaml
 
 Assemblies: OpenRA.Mods.Common.dll, OpenRA.Mods.Cnc.dll, OpenRA.Mods.RAPX.dll
 
@@ -242,6 +245,7 @@ Weapons:
 	ra|weapons/airborne.yaml
 	ra|weapons/red-smoke.yaml
 	ra|weapons/spider.yaml
+	ra|weapons/titans.yaml
 
 Voices:
 	ra|audio/voices.yaml
@@ -402,12 +406,22 @@ VideoFormats: Vqa, Wsa, Rpv
 TerrainFormat: DefaultTerrain
 
 SpriteSequenceFormat: ClassicTilesetSpecificSpriteSequence
-	# RAPX: trim the transparent border of HD unit, infantry, prop and building frames at load time (faster loads,
-	# less video memory; bounds and placement are unchanged). Globs: * stays in one folder, ** crosses folders.
-	# Only list art drawn as normal world sprites: UI art, icons, effects and scenery are sized from the sprite by
-	# widgets and some RAPX renderers, so new folders stay uncropped until checked and added here.
-	CropTransparent: ra|bits/hd/units/**, ra|bits/hd/jets/**, ra|bits/hd/soldiers/**, ra|bits/hd/infantry/**, ra|bits/hd/styles/**, ra|bits/hd/props/**, ra|bits/hd/*.png
+	# RAPX: trim the transparent border of HD unit, infantry, prop, building, effect and landmark flag frames at load
+	# time (faster loads, less video memory; bounds and placement are unchanged). Globs: * stays in one folder, ** crosses
+	# folders. Only list art drawn as world sprites: UI art, icons and scenery are sized from the sprite by widgets and
+	# some RAPX renderers, so new folders stay uncropped until checked and added here (code that sizes or places by a
+	# sprite's size must use Sprite.FrameSize, which is the uncropped frame's).
+	CropTransparent: ra|bits/hd/units/**, ra|bits/hd/jets/**, ra|bits/hd/soldiers/**, ra|bits/hd/infantry/**, ra|bits/hd/styles/**, ra|bits/hd/props/**, ra|bits/hd/*.png, ra|bits/hd/fx/**, ra|bits/hd/landmark-flag/**
 	CropTransparentExclude: ra|bits/hd/*icon.png, ra|bits/hd/*cameo.png, ra|bits/hd/rolebadges.png, ra|bits/hd/blank.png
+	# Cropped evenly around the frame centre: particles and other effects that code draws rotated about the sprite centre
+	# (the filmed clips in fx/video are never rotated, so they get the tighter crop)
+	CropTransparentCentred: ra|bits/hd/fx/*.png, ra|bits/hd/fx/beacon/**, ra|bits/hd/fx/blast/**, ra|bits/hd/fx/fire/**, ra|bits/hd/fx/parachute/**, ra|bits/hd/fx/smoke/**
+	# Fully transparent texels kept around every crop: the linear filter then blends edge pixels into transparency exactly
+	# as on the uncropped frame, so cropping changes nothing on screen at any zoom
+	CropTransparentMargin: 1
+	# True colour sheets of 4096x4096 instead of 2048x2048: the large HD frames (carriers, airfields, buildings) waste much
+	# less of a big sheet, ~10% less video memory in all, and sprites share fewer textures
+	BgraSheetSize: 4096
 	# RAPX: shrink HD world art at load time to the largest size it can ever be drawn at (its sequence Scale times the
 	# viewport's maximum zoom-in for this window), with an area filter. Sequence scales are raised to match, so units
 	# are drawn exactly as large as before and are never shown with fewer source texels per screen pixel than today;

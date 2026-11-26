@@ -165,6 +165,16 @@ namespace OpenRA.Mods.RAPX.Widgets
 			WidgetUtils.FillRectWithColor(r, border);
 			WidgetUtils.FillRectWithColor(r.InflateBy(-1, -1, -1, -1), fill);
 
+			// Narrow pill (the lobby's STATUS column): the icon alone, centred; its tooltip says what it means
+			if (r.Width < 80)
+			{
+				var only = ChromeProvider.TryGetImage("px-lobby-icons", ready ? "tick-ready" : "waiting");
+				if (only != null)
+					WidgetUtils.DrawSprite(only, new float2(r.X + (r.Width - only.Size.X) / 2, r.Y + (r.Height - only.Size.Y) / 2));
+
+				return;
+			}
+
 			var font = Game.Renderer.Fonts["PXSidebarSmall"];
 			var text = ready ? "READY" : "NOT READY";
 			var size = font.Measure(text);

@@ -11,6 +11,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using OpenRA.FileFormats;
 using OpenRA.Primitives;
 
@@ -39,6 +40,9 @@ namespace OpenRA.Graphics
 		readonly int margin;
 		int rowHeight = 0;
 		int2 p;
+
+		// RAPX: frames placed by AddDeferred and copied into the current sheet together, in parallel, by FlushCopies
+		readonly List<(Sprite Rect, byte[] Data, SpriteFrameType Type, bool Premultiplied)> pendingCopies = new();
 
 		public Sheet Current { get; private set; }
 		public TextureChannel CurrentChannel { get; private set; }
@@ -96,6 +100,44 @@ namespace OpenRA.Graphics
 			return rect;
 		}
 
+		/// <summary>
+		/// RAPX: like Add, but only places the frame; its pixels are copied by <see cref="FlushCopies"/>, which runs on its own
+		/// before the sheet fills up and is uploaded. The caller must call FlushCopies once it has added everything, and must
+		/// not change the frame's pixels until then.
+		/// </summary>
+		public Sprite AddDeferred(ISpriteFrame frame, bool premultiplied)
+		{
+			if (frame.Size.Width == 0 || frame.Size.Height == 0)
+				return new Sprite(Current, Rectangle.Empty, 0, frame.Offset, CurrentChannel, BlendMode.Alpha);
+
+			var rect = Allocate(frame.Size, 0, frame.Offset);
+			pendingCopies.Add((rect, frame.Data, frame.Type, premultiplied));
+			return rect;
+		}
+
+		/// <summary>RAPX: copies the frames queued by AddDeferred into the current sheet, true colour ones in parallel.</summary>
+		public void FlushCopies()
+		{
+			if (pendingCopies.Count == 0)
+				return;
+
+			// Every queued rectangle is on the current sheet (a full sheet is flushed before the next one starts).
+			// Its buffer is created here, not by the copy threads.
+			Current.CreateBuffer();
+			if (Type == SheetType.BGRA)
+				Parallel.For(0, pendingCopies.Count, i =>
+				{
+					var c = pendingCopies[i];
+					Util.FastCopyIntoChannel(c.Rect, c.Data, c.Type, c.Premultiplied);
+				});
+			else
+				foreach (var c in pendingCopies)
+					Util.FastCopyIntoChannel(c.Rect, c.Data, c.Type, c.Premultiplied);
+
+			Current.CommitBufferedData();
+			pendingCopies.Clear();
+		}
+
 		public Sprite Add(Png src, float scale = 1f)
 		{
 			var rect = Allocate(new Size(src.Width, src.Height), scale);
@@ -130,6 +172,9 @@ namespace OpenRA.Graphics
 				var next = NextChannel(CurrentChannel);
 				if (next == null)
 				{
+					// RAPX: frames still waiting to be copied belong to this sheet, which is uploaded now
+					FlushCopies();
+
 					var previous = Current;
 					Current = allocateSheet();
 

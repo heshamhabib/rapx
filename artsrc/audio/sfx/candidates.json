@@ -744,5 +744,206 @@
     "preview": "https://cdn.freesound.org/previews/483/483883_5487341-hq.mp3"
    }
   ]
+ },
+ "kong-gorilla": {
+  "query": "gorilla roar",
+  "candidates": [
+   {
+    "id": "397054",
+    "user": "J0ck0",
+    "title": "Gorillaschrei.wav",
+    "duration": 3.13,
+    "preview": "https://cdn.freesound.org/previews/397/397054_2884295-hq.mp3"
+   },
+   {
+    "id": "763202",
+    "user": "mosaichorse",
+    "title": "Monster Gorilla Imitation",
+    "duration": 10.0,
+    "preview": "https://cdn.freesound.org/previews/763/763202_5435812-hq.mp3"
+   },
+   {
+    "id": "745181",
+    "user": "SoaringAaronJohnson51397",
+    "title": "Beastly Roar 2",
+    "duration": 1.47,
+    "preview": "https://cdn.freesound.org/previews/745/745181_7026187-hq.mp3"
+   }
+  ]
+ },
+ "kong-gorilla2": {
+  "query": "gorilla",
+  "candidates": [
+   {
+    "id": "397054",
+    "user": "J0ck0",
+    "title": "Gorillaschrei.wav",
+    "duration": 3.13,
+    "preview": "https://cdn.freesound.org/previews/397/397054_2884295-hq.mp3"
+   },
+   {
+    "id": "59834",
+    "user": "stamperadam",
+    "title": "gorilla.wav",
+    "duration": 0.83,
+    "preview": "https://cdn.freesound.org/previews/59/59834_599669-hq.mp3"
+   },
+   {
+    "id": "205891",
+    "user": "kfledman",
+    "title": "gorilla audio.aif",
+    "duration": 4.05,
+    "preview": "https://cdn.freesound.org/previews/205/205891_384701-hq.mp3"
+   }
+  ]
+ },
+ "kong-lion": {
+  "query": "lion roar",
+  "candidates": [
+   {
+    "id": "467762",
+    "user": "SGAK",
+    "title": "lion.wav",
+    "duration": 1.38,
+    "preview": "https://cdn.freesound.org/previews/467/467762_371166-hq.mp3"
+   },
+   {
+    "id": "366671",
+    "user": "cylon8472",
+    "title": "Monster growl.mp3",
+    "duration": 8.18,
+    "preview": "https://cdn.freesound.org/previews/366/366671_3415022-hq.mp3"
+   },
+   {
+    "id": "469123",
+    "user": "Manim8",
+    "title": "Demon_Lion_Monster_Growl_Roar",
+    "duration": 8.28,
+    "preview": "https://cdn.freesound.org/previews/469/469123_4996003-hq.mp3"
+   }
+  ]
+ },
+ "kong-tiger": {
+  "query": "tiger roar",
+  "candidates": [
+   {
+    "id": "344903",
+    "user": "Aegersum",
+    "title": "Monster - deep growl.wav",
+    "duration": 2.25,
+    "preview": "https://cdn.freesound.org/previews/344/344903_4082837-hq.mp3"
+   },
+   {
+    "id": "410343",
+    "user": "waxsocks",
+    "title": "Roar.wav",
+    "duration": 5.9,
+    "preview": "https://cdn.freesound.org/previews/410/410343_1766049-hq.mp3"
+   },
+   {
+    "id": "571288",
+    "user": "Vaporpup",
+    "title": "tiger_roar.wav",
+    "duration": 1.25,
+    "preview": "https://cdn.freesound.org/previews/571/571288_11058236-hq.mp3"
+   }
+  ]
+ },
+ "kong-bear": {
+  "query": "bear growl",
+  "candidates": [
+   {
+    "id": "445983",
+    "user": "Breviceps",
+    "title": "Zombie gargles",
+    "duration": 0.87,
+    "preview": "https://cdn.freesound.org/previews/445/445983_9159316-hq.mp3"
+   },
+   {
+    "id": "342204",
+    "user": "Christopherderp",
+    "title": "Beast Snarling",
+    "duration": 3.22,
+    "preview": "https://cdn.freesound.org/previews/342/342204_3908740-hq.mp3"
+   },
+   {
+    "id": "410343",
+    "user": "waxsocks",
+    "title": "Roar.wav",
+    "duration": 5.9,
+    "preview": "https://cdn.freesound.org/previews/410/410343_1766049-hq.mp3"
+   }
+  ]
+ },
+ "kong-chest": {
+  "query": "chest beat",
+  "candidates": [
+   {
+    "id": "540985",
+    "user": "magnuswaker",
+    "title": "Heartbeat (Dumpf-Dumpf)",
+    "duration": 0.66,
+    "preview": "https://cdn.freesound.org/previews/540/540985_11537497-hq.mp3"
+   },
+   {
+    "id": "164644",
+    "user": "deleted_user_2104797",
+    "title": "Heartbeat_2.wav",
+    "duration": 5.15,
+    "preview": "https://cdn.freesound.org/previews/164/164644_2104797-hq.mp3"
+   }
+  ]
+ },
+ "kong-impact": {
+  "query": "huge impact boom",
+  "candidates": [
+   {
+    "id": "701309",
+    "user": "xkeril",
+    "title": "Hit reverb (natural)",
+    "duration": 4.63,
+    "preview": "https://cdn.freesound.org/previews/701/701309_13504080-hq.mp3"
+   },
+   {
+    "id": "701308",
+    "user": "xkeril",
+    "title": "Hit reverb (dark)",
+    "duration": 4.63,
+    "preview": "https://cdn.freesound.org/previews/701/701308_13504080-hq.mp3"
+   },
+   {
+    "id": "825964",
+    "user": "ROHHSADOTCOM",
+    "title": "UNDERGROUND PROFOUND CAVE BOOM",
+    "duration": 3.87,
+    "preview": "https://cdn.freesound.org/previews/825/825964_13332713-hq.mp3"
+   }
+  ]
+ },
+ "kong-whoosh": {
+  "query": "big whoosh",
+  "candidates": [
+   {
+    "id": "237980",
+    "user": "Paul368",
+    "title": "Very Big Whoosh",
+    "duration": 2.96,
+    "preview": "https://cdn.freesound.org/previews/237/237980_2971294-hq.mp3"
+   },
+   {
+    "id": "322250",
+    "user": "Paul368",
+    "title": "Big Punch with whoosh",
+    "duration": 1.2,
+    "preview": "https://cdn.freesound.org/previews/322/322250_2971294-hq.mp3"
+   },
+   {
+    "id": "322251",
+    "user": "Paul368",
+    "title": "Big Punch Short with male moan",
+    "duration": 0.47,
+    "preview": "https://cdn.freesound.org/previews/322/322251_2971294-hq.mp3"
+   }
+  ]
  }
 }

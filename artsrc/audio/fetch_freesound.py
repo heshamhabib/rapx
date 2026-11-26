@@ -58,6 +58,15 @@ SEARCHES = {
     "fixit1": ("ratchet wrench", 3),
     "tesla1": ("electric zap", 3),
     "tslachg2": ("electric charge up", 4),
+    # King Kong (artsrc/audio/make_titan_sounds.py): real animal roars and heavy impacts to build the giant ape
+    "kong-gorilla": ("gorilla roar", 10),
+    "kong-gorilla2": ("gorilla", 10),
+    "kong-lion": ("lion roar", 10),
+    "kong-tiger": ("tiger roar", 8),
+    "kong-bear": ("bear growl", 8),
+    "kong-chest": ("chest beat", 6),
+    "kong-impact": ("huge impact boom", 5),
+    "kong-whoosh": ("big whoosh", 3),
 }
 
 

@@ -1,0 +1,246 @@
+# Titans: each player picks one giant (or none) in the lobby's TITAN column (PxTitanSpawner). It walks out next to
+# their start when the game begins. Never buildable: once it is killed it is gone for the rest of the game.
+# Models: "Evolved Godzilla" by savounited and "King Kong 2005" by sharksly, both CC-BY-4.0 (mods/rapx/CREDITS).
+# Art: artsrc/units/meshes/render_titan.py; sounds: artsrc/audio/make_titan_sounds.py.
+
+World:
+	PxTitanSpawner:
+		Titans:
+			godzilla: godz
+			kong: kong
+		Names:
+			godzilla: Godzilla
+			kong: King Kong
+		# The lobby's TITAN box and "Choose your titan" cards (art: artsrc/px-ui/make_titan_art.py)
+		Subtitles:
+			godzilla: Atomic titan
+			kong: Ape titan
+			none: No titan
+			random: Surprise
+		Specials:
+			godzilla: Atomic breath hits aircraft too\nSwims the seas · 1,000,000 HP
+			kong: Hammer blows · hurls boulders\nLeaps to swat jets · 850,000 HP
+			none: No giant for this player
+			random: Picked when the game starts
+		Colors:
+			godzilla: FF3CC8
+			kong: FF9632
+			none: 6E6F78
+			random: FF8CAA
+	# Kong: any land, nothing stops him but cliffs and water
+	Locomotor@TITAN:
+		Name: titan
+		Crushes: wall, heavywall, infantry, mine, crate, titan
+		TerrainSpeeds:
+			Clear: 100
+			Rough: 100
+			Road: 110
+			Bridge: 110
+			Ore: 100
+			Gems: 100
+			Beach: 100
+			Tree: 60
+	# Godzilla: the same on land, and he swims through rivers and the sea, a little faster than he walks (crushing
+	# the ships in his way)
+	Locomotor@TITANSWIM:
+		Name: titanswim
+		Crushes: wall, heavywall, infantry, mine, crate, titan
+		TerrainSpeeds:
+			Clear: 100
+			Rough: 100
+			Road: 110
+			Bridge: 110
+			Ore: 100
+			Gems: 100
+			Beach: 100
+			Tree: 60
+			Water: 110
+			River: 110
+
+# Enemy vehicles and ships in a titan's path are stepped on
+^Vehicle:
+	Crushable@TITAN:
+		CrushClasses: titan
+		WarnProbability: 0
+
+^Ship:
+	Crushable@TITAN:
+		CrushClasses: titan
+		WarnProbability: 0
+
+^Titan:
+	Inherits: ^Vehicle
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	-Crushable@TITAN:
+	-Repairable:
+	-Targetable@REPAIR:
+	-GrantConditionOnDamageState@DAMAGED:
+	-Passenger:
+	-Chronoshiftable:
+	-Capturable:
+	-CaptureNotification:
+	-WithPxBlastShove:
+	-WithDamageOverlay:
+	# Never in the sidebar (~disabled: nothing provides it); this only lists it in Extras > Catalogue
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 9000
+		Prerequisites: ~disabled.lobby.titan
+	Valued:
+		Cost: 10000
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 1000000
+	Armor:
+		Type: Heavy
+	# Heals slowly once nothing has hit it for 6 s
+	ChangesHealth:
+		Step: 1000
+		Delay: 25
+		StartIfBelow: 100
+		DamageCooldown: 150
+	RevealsShroud:
+		MinRange: 4c0
+		Range: 13c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	HitShape:
+		Type: Circle
+			Radius: 1c256
+	# Picks the weapon by distance (breath/boulders far, blows up close): the stock attack wants one range that suits
+	# every weapon at once, which these separate bands never give, so it would never fire
+	PxAttackTitan:
+		FacingTolerance: 24
+		Voice: Attack
+	AttackMove:
+		Voice: Attack
+	WithMoveAnimation:
+	GrantConditionOnMovement@WALK:
+		Condition: walking
+	AmbientSound@STEPS:
+		SoundFiles: ra|audio/titans/titan-steps.ogg
+		RequiresCondition: walking
+	# The fall (one facing, like an infantry death), then the ground shakes
+	WithDeathAnimation:
+		DeathSequence: die
+		UseDeathTypeSuffix: false
+		DeathPaletteIsPlayerPalette: true
+	FireWarheadsOnDeath:
+		Weapon: TitanFall
+		EmptyWeapon: TitanFall
+	ActorLostNotification:
+		TextNotification: notification-titan-lost
+	Selectable:
+		Bounds: 3072, 3072, 0, -1024
+		DecorationBounds: 3584, 4096, 0, -1536
+	Voiced:
+		VoiceSet: GodzillaVoice
+
+GODZ:
+	Inherits: ^Titan
+	Tooltip:
+		Name: actor-godz.name
+	Buildable:
+		Description: actor-godz.description
+	Mobile:
+		Locomotor: titanswim
+		Speed: 50
+		TurnSpeed: 8
+		Voice: Move
+	# Atomic breath: the plates light up (shoot frames 0-3, 1.2 s) with the charge-up hum, then the beam
+	PxAttackPrepareSound:
+		Armament: primary
+		Sounds: ra|audio/titans/godz-breath.ogg
+	# The beam leaves his mouth: the snout in the 3D breath pose (render_titan.py MOUTH: 13.0 forward, 12.8 up, x
+	# 209.07 WDist per render unit), placed where each of the 16 sprite facings draws it
+	PxTitanArmament@PRIMARY:
+		Weapon: GodzillaBreath
+		Muzzle: 2718,0,2676
+		Facings: 32
+		FireDelay: 30
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: GodzillaStomp
+	WithAttackAnimation:
+		Sequence: shoot
+	RenderSprites:
+		Image: godz
+	# Swimming: in the sea or a river only his head and glowing plates show above the water (sequence swim)
+	GrantConditionOnTerrain@SWIM:
+		Condition: swimming
+		TerrainTypes: Water, River
+	WithFacingSpriteBody:
+		RequiresCondition: !swimming
+	WithFacingSpriteBody@SWIM:
+		Name: swim
+		Sequence: swim
+		RequiresCondition: swimming
+	AmbientSound@STEPS:
+		RequiresCondition: walking && !swimming
+	AmbientSound@WAKE:
+		SoundFiles: ra|audio/titans/godz-wake.ogg
+		RequiresCondition: walking && swimming
+	# Wading in sinks him to the shoulders, wading out raises him (one stride each), instead of a sudden swap
+	PxTransitionAnimation@DIVE:
+		Body: swim
+		Sequence: dive
+		RequiresCondition: swimming
+	PxTransitionAnimation@EMERGE:
+		Body: body
+		Sequence: emerge
+		MoveSequence: move
+		RequiresCondition: !swimming
+	# He steps around when he turns on the spot (32 sprite facings, so the turn itself is smooth)
+	WithMoveAnimation:
+		ValidMovementTypes: Horizontal, Turn
+	GrantConditionOnMovement@WALK:
+		ValidMovementTypes: Horizontal, Turn
+	Voiced:
+		VoiceSet: GodzillaVoice
+
+KONG:
+	Inherits: ^Titan
+	Tooltip:
+		Name: actor-kong.name
+	Buildable:
+		Description: actor-kong.description
+	Mobile:
+		Locomotor: titan
+		Speed: 75
+		TurnSpeed: 20
+		Voice: Move
+	# Turns fast enough to catch aircraft passing over him; AttackBase only fires the armaments it lists
+	PxAttackTitan:
+		FacingTolerance: 64
+		Armaments: primary, secondary, leap
+	Health:
+		HP: 850000
+	# Double-fist hammer blow up close, boulders further out, and a leap that swats jets and helicopters out of the sky
+	Armament@LEAP:
+		Name: leap
+		Weapon: KongLeap
+		LocalOffset: 0,0,4000
+		FireDelay: 7
+	Armament@PRIMARY:
+		Weapon: KongSmash
+		LocalOffset: 1200,0,0
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: KongBoulder
+		LocalOffset: 300,-600,2400
+		FireDelay: 8
+	WithAttackAnimation@SMASH:
+		Sequence: shoot
+	WithAttackAnimation@THROW:
+		Armament: secondary
+		Sequence: throw
+	# Crouch, spring up, swat at the top of the jump (frame 3 = FireDelay 7), land
+	WithAttackAnimation@LEAP:
+		Armament: leap
+		Sequence: jump
+	RenderSprites:
+		Image: kong
+	Voiced:
+		VoiceSet: KongVoice

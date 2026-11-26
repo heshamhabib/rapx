@@ -92,8 +92,28 @@ namespace OpenRA.Graphics
 
 		float3 ScreenPosition(WorldRenderer wr)
 		{
+			return DrawPosition(sprite, wr.Screen3DPxPosition(pos) + wr.ScreenPxOffset(Offset), scale);
+		}
+
+		/// <summary>
+		/// The location to pass to SpriteRenderer.DrawSprite so a sprite is centred on <paramref name="screenPos"/> (moved by
+		/// its own offset), snapped to whole pixels by truncating half its scaled size.
+		/// RAPX: a sprite trimmed to its visible pixels at load time (<see cref="PaddedSprite"/>) is placed from the full frame
+		/// it was cut from, so its pixels land exactly where the untrimmed frame's would at any scale and on mirrored axes.
+		/// A centred trim also keeps the quad's centre, the pivot of rotated draws, on the full frame's centre.
+		/// </summary>
+		public static float3 DrawPosition(Sprite sprite, in float3 screenPos, float scale)
+		{
 			var s = 0.5f * scale * sprite.Size;
-			return wr.Screen3DPxPosition(pos) + wr.ScreenPxOffset(Offset) - new float3((int)s.X, (int)s.Y, s.Z);
+			if (sprite is not PaddedSprite p)
+				return screenPos - new float3((int)s.X, (int)s.Y, s.Z);
+
+			// Where the full frame's drawing anchor would be, then CropOrigin texels into it (mirrored axes have a negative
+			// PaddedSize and are drawn from the opposite edge), less the trimmed sprite's own offset that DrawSprite adds back
+			var f = 0.5f * scale * p.PaddedSize;
+			var dx = p.PaddedOffset.X + (p.PaddedSize.X < 0 ? -p.CropOrigin.X : p.CropOrigin.X) - p.Offset.X;
+			var dy = p.PaddedOffset.Y + (p.PaddedSize.Y < 0 ? -p.CropOrigin.Y : p.CropOrigin.Y) - p.Offset.Y;
+			return screenPos - new float3((int)f.X, (int)f.Y, s.Z) + new float3(scale * dx, scale * dy, 0);
 		}
 
 		public IFinalizedRenderable PrepareRender(WorldRenderer wr) { return this; }

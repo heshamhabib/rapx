@@ -156,9 +156,9 @@ namespace OpenRA.Mods.RAPX.Graphics
 
 				var pos = q.Pos + offset;
 
-				// Same placement as SpriteRenderable.ScreenPosition
+				// Same placement as SpriteRenderable (trimmed sprites are placed from their full frame)
 				var s = 0.5f * q.Scale * q.Sprite.Size;
-				var p = wr.Screen3DPxPosition(pos) - new float3((int)s.X, (int)s.Y, s.Z);
+				var p = SpriteRenderable.DrawPosition(q.Sprite, wr.Screen3DPxPosition(pos), q.Scale);
 
 				// Off the screen: skip the draw (centre +- half size, with room for rotation and the sprite offset)
 				var cx = p.X + s.X;

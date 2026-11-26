@@ -41,6 +41,10 @@ namespace OpenRA
 			Log.Write("exception", $"Date: {DateTime.UtcNow:u}");
 			Log.Write("exception", $"Operating System: {Platform.CurrentPlatform} ({Platform.CurrentArchitecture}, {Environment.OSVersion})");
 			Log.Write("exception", $"Runtime Version: {Platform.RuntimeVersion}");
+
+			// RAPX: which graphics card the game ran on, if it got that far
+			if (GraphicsCard.Renderer != null)
+				Log.Write("exception", $"Graphics Card: {GraphicsCard.Renderer} ({GraphicsCard.Vendor})");
 			Log.Write("exception",
 				"Installed Language: " +
 				$"{CultureInfo.InstalledUICulture.TwoLetterISOLanguageName} (Installed) " +

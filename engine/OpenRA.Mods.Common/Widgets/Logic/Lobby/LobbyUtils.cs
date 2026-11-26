@@ -652,6 +652,101 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			HideChildWidget(parent, "HANDICAP_DROPDOWN");
 		}
 
+		// RAPX: per-player titan column (TITAN_DROPDOWN / TITAN); hidden when the mod offers no titans
+		static IReadOnlyList<(string Id, string Name)> TitanChoices(ModData modData)
+		{
+			return modData.DefaultRules.Actors[SystemActors.World].TraitInfos<ILobbyTitanChoicesInfo>()
+				.SelectMany(t => t.TitanChoices).ToList();
+		}
+
+		static string TitanLabel(IReadOnlyList<(string Id, string Name)> choices, string id)
+		{
+			if (string.IsNullOrEmpty(id))
+				return "-";
+
+			foreach (var c in choices)
+				if (c.Id == id)
+					return c.Name;
+
+			return id;
+		}
+
+		// The titan box: TITANPORTRAIT's image name is the titan id ("none" when unset) for the mod's decor widget to draw,
+		// TITANNAME shows its name. The picker is TITAN_DROPDOWN_TEMPLATE (cards with LABEL and PORTRAIT) when the mod has one.
+		static void SetupTitanBox(Widget box, IReadOnlyList<(string Id, string Name)> choices, Session.Client c)
+		{
+			Log.Write("debug", $"Titan: row box {box.GetHashCode()} bound to client {c.Index} ({c.Name}, slot {c.Slot}) titan '{c.Titan}'");
+			var portrait = box.GetOrNull<ImageWidget>("TITANPORTRAIT");
+			if (portrait != null)
+				portrait.GetImageName = () => string.IsNullOrEmpty(c.Titan) ? "none" : c.Titan;
+
+			var name = box.GetOrNull<LabelWidget>("TITANNAME");
+			if (name != null)
+				name.GetText = () => string.IsNullOrEmpty(c.Titan) ? "None" : TitanLabel(choices, c.Titan);
+		}
+
+		public static void SetupEditableTitanWidget(Widget parent, Session.Client c, OrderManager orderManager, ModData modData)
+		{
+			var dropdown = parent.GetOrNull<DropDownButtonWidget>("TITAN_DROPDOWN");
+			if (dropdown == null)
+				return;
+
+			var choices = TitanChoices(modData);
+			HideChildWidget(parent, "TITAN");
+			if (choices.Count == 0)
+			{
+				dropdown.IsVisible = () => false;
+				return;
+			}
+
+			dropdown.IsVisible = () => true;
+			dropdown.IsDisabled = () => orderManager.LocalClient.IsReady;
+			SetupTitanBox(dropdown, choices, c);
+			if (dropdown.GetOrNull<LabelWidget>("TITANNAME") != null)
+				dropdown.GetText = () => "";
+			else
+				dropdown.GetText = () => TitanLabel(choices, c.Titan);
+
+			dropdown.OnMouseDown = _ =>
+			{
+				// The titans first, then None (and Random, which the mod lists last)
+				var options = choices.Where(t => t.Id != "random").Select(t => t.Id).ToList();
+				options.Add("");
+				options.AddRange(choices.Where(t => t.Id == "random").Select(t => t.Id));
+				ScrollItemWidget SetupItem(string id, ScrollItemWidget itemTemplate)
+				{
+					var item = ScrollItemWidget.Setup(itemTemplate,
+						() => (c.Titan ?? "") == id,
+						() => orderManager.IssueOrder(Order.Command($"titan {c.Index} {id}".TrimEnd())));
+					var label = id == "" ? "None" : TitanLabel(choices, id);
+					item.Get<LabelWidget>("LABEL").GetText = () => label;
+					var portrait = item.GetOrNull<ImageWidget>("PORTRAIT");
+					if (portrait != null)
+						portrait.GetImageName = () => id == "" ? "none" : id;
+
+					return item;
+				}
+
+				var template = modData.WidgetLoader.HasWidget("TITAN_DROPDOWN_TEMPLATE") ? "TITAN_DROPDOWN_TEMPLATE" : "TEAM_DROPDOWN_TEMPLATE";
+				dropdown.ShowDropDown(template, 600, options, SetupItem);
+			};
+		}
+
+		public static void SetupTitanWidget(Widget parent, Session.Client c, ModData modData)
+		{
+			var choices = TitanChoices(modData);
+			HideChildWidget(parent, "TITAN_DROPDOWN");
+			var box = parent.GetOrNull("TITAN");
+			if (box == null)
+				return;
+
+			box.IsVisible = () => choices.Count > 0;
+			if (box is LabelWidget label)
+				label.GetText = () => TitanLabel(choices, c.Titan);
+			else
+				SetupTitanBox(box, choices, c);
+		}
+
 		public static void SetupEditableSpawnWidget(Widget parent, Session.Slot s, Session.Client c, OrderManager orderManager, MapPreview map)
 		{
 			var dropdown = parent.Get<DropDownButtonWidget>("SPAWN_DROPDOWN");

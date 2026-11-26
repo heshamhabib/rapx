@@ -11,9 +11,11 @@
 
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using OpenRA.FileFormats;
 using OpenRA.FileSystem;
 using OpenRA.Graphics;
+using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.RAPX.Graphics;
 using OpenRA.Primitives;
 using OpenRA.Traits;
@@ -131,6 +133,28 @@ namespace OpenRA.Mods.RAPX.Traits
 		PxShroudRenderer shroudRenderer;
 		bool shroudResolved;
 
+		// PERF: this pass's result depends only on the view, the terrain tiles, the colour rotation of the terrain palette
+		// and the shroud's hidden cells - plus the clock where the HD water is on screen. While none of those change, the
+		// last result is drawn again from a copy instead of re-shading every pixel (RAPX_NO_TERRAIN_CACHE=1 turns it off).
+		static readonly bool DisableCache = !string.IsNullOrEmpty(System.Environment.GetEnvironmentVariable("RAPX_NO_TERRAIN_CACHE"));
+
+		// RAPX_TERRAIN_CACHE_VERIFY=1 (developer check): every 60th frame drawn from the cache is also shaded afresh and
+		// both results are read back and compared; the perf log says how many pixels differ (0 = the cache is exact)
+		static readonly bool VerifyCache = !string.IsNullOrEmpty(System.Environment.GetEnvironmentVariable("RAPX_TERRAIN_CACHE_VERIFY"));
+		ITexture verify;
+		int cacheHits, cacheMisses;
+		readonly Dictionary<string, int> missReasons = new();
+		readonly World world;
+		readonly (float Step, int Range)[] rotations;
+		ITexture cache;
+		Size cacheSize;
+		bool cacheValid;
+		(int2 Scroll, float Downscale, Rectangle Scissor, Size Window, int Tiles, int Hidden, long Rotation) cacheKey, lastKey;
+		int tilesVersion;
+
+		// Prefix sums over cells where the HD water can show (beach, water and river cells), for rectangle queries
+		int[] wetSums;
+
 		/// <summary>Per-cell (rough, beach, water, river) texture, read as .bgra; null until the first draw. Used by PxWeatherGround.</summary>
 		public bool Active { get; }
 		public ITexture CellMap { get; private set; }
@@ -139,6 +163,13 @@ namespace OpenRA.Mods.RAPX.Traits
 		public TerrainDetailTextures(World world, TerrainDetailTexturesInfo info)
 		{
 			this.info = info;
+			this.world = world;
+
+			// Palette rotations that run on this tileset (the classic water colours): their phase is part of the cache key
+			var tileset = world.Map.Rules.TerrainInfo.Id;
+			rotations = world.Map.Rules.Actors[SystemActors.World].TraitInfos<RotationPaletteEffectInfo>()
+				.Where(r => (r.Tilesets.Count == 0 || r.Tilesets.Contains(tileset)) && !r.ExcludeTilesets.Contains(tileset))
+				.Select(r => (r.RotationStep, r.RotationRange)).ToArray();
 
 			// RAPX_NO_TERRAIN_DETAIL disables the effect for before/after comparisons
 			Active = info.Tilesets.Contains(world.Map.Tileset) &&
@@ -159,7 +190,11 @@ namespace OpenRA.Mods.RAPX.Traits
 				textures[i] = LoadTexture(fileSystem, paths[i], out meanLum[i], out meanColor[i]);
 
 			map = world.Map;
-			map.Tiles.CellEntryChanged += _ => cellMapDirty = true;
+			map.Tiles.CellEntryChanged += _ =>
+			{
+				cellMapDirty = true;
+				tilesVersion++;
+			};
 
 			// Reference colours as (r, g, b, class); class -1 marks an unused slot
 			var classes = new[] { info.GroundColors, info.DirtColors, info.RockColors, info.WaterColors };
@@ -261,6 +296,84 @@ namespace OpenRA.Mods.RAPX.Traits
 			CellMap ??= Game.Renderer.CreateTexture();
 			CellMap.ScaleFilter = TextureScaleFilter.Linear;
 			CellMap.SetData(data, w, h);
+
+			// Cells where the drifting HD water can show: there the result changes with time
+			var mw = map.MapSize.X;
+			var mh = map.MapSize.Y;
+			wetSums = new int[(mw + 1) * (mh + 1)];
+			for (var y = 0; y < mh; y++)
+			{
+				for (var x = 0; x < mw; x++)
+				{
+					var o = 4 * (y * w + x);
+					var wet = data[o + 1] != 0 || data[o + 2] != 0 || data[o + 3] != 0 ? 1 : 0;
+					wetSums[(y + 1) * (mw + 1) + x + 1] = wet + wetSums[y * (mw + 1) + x + 1] + wetSums[(y + 1) * (mw + 1) + x] - wetSums[y * (mw + 1) + x];
+				}
+			}
+		}
+
+		// Developer check: why the cache missed (logged every 600 misses)
+		void CountMiss((int2 Scroll, float Downscale, Rectangle Scissor, Size Window, int Tiles, int Hidden, long Rotation) key, bool cacheable)
+		{
+			var reason = !cacheable ? "water fills the view or disabled" : !cacheValid ? "settling" : key.Scroll != cacheKey.Scroll ? "scroll" :
+				key.Downscale != cacheKey.Downscale ? "zoom" : key.Scissor != cacheKey.Scissor ? "scissor" : key.Window != cacheKey.Window ? "window" :
+				key.Tiles != cacheKey.Tiles ? "tiles" : key.Hidden != cacheKey.Hidden ? "hidden cells" : "palette rotation";
+			missReasons[reason] = missReasons.GetValueOrDefault(reason) + 1;
+			if (++cacheMisses % 600 == 0)
+				Log.Write("perf", $"TerrainDetailTextures: cache hits {cacheHits}, misses {cacheMisses}: " +
+					string.Join(", ", missReasons.Select(kv => $"{kv.Key} {kv.Value}")));
+		}
+
+		/// <summary>Where the drifting HD water may be on screen, in the post-processing scissor's space (world pixels from
+		/// the view's top-left): the bounds of every beach, water and river cell within two cells of the view, plus two
+		/// cells for the pass's reach. Null when there is none.</summary>
+		Rectangle? WetRect(WorldRenderer wr)
+		{
+			if (info.Water == null || wetSums == null)
+				return null;
+
+			var mw = map.MapSize.X;
+			var mh = map.MapSize.Y;
+			var ts = wr.TileSize;
+			var tl = wr.Viewport.TopLeft;
+			var br = wr.Viewport.BottomRight;
+			var x0 = System.Math.Clamp(tl.X / ts.Width - 2, 0, mw);
+			var y0 = System.Math.Clamp(tl.Y / ts.Height - 2, 0, mh);
+			var x1 = System.Math.Clamp(br.X / ts.Width + 3, 0, mw);
+			var y1 = System.Math.Clamp(br.Y / ts.Height + 3, 0, mh);
+			var stride = mw + 1;
+			if (x1 <= x0 || y1 <= y0 ||
+				wetSums[y1 * stride + x1] - wetSums[y0 * stride + x1] - wetSums[y1 * stride + x0] + wetSums[y0 * stride + x0] == 0)
+				return null;
+
+			int minX = int.MaxValue, minY = int.MaxValue, maxX = -1, maxY = -1;
+			for (var y = y0; y < y1; y++)
+			{
+				for (var x = x0; x < x1; x++)
+				{
+					if (wetSums[(y + 1) * stride + x + 1] - wetSums[y * stride + x + 1] - wetSums[(y + 1) * stride + x] + wetSums[y * stride + x] == 0)
+						continue;
+
+					minX = System.Math.Min(minX, x);
+					minY = System.Math.Min(minY, y);
+					maxX = System.Math.Max(maxX, x);
+					maxY = System.Math.Max(maxY, y);
+				}
+			}
+
+			return Rectangle.FromLTRB((minX - 2) * ts.Width - tl.X, (minY - 2) * ts.Height - tl.Y,
+				(maxX + 3) * ts.Width - tl.X, (maxY + 3) * ts.Height - tl.Y);
+		}
+
+		/// <summary>Phase of every palette rotation on this tileset: RotationPaletteEffect advances by its step each world
+		/// tick (after WorldTick counts up) and shifts the colours by the whole part.</summary>
+		long RotationPhase()
+		{
+			long phase = 0;
+			foreach (var (step, range) in rotations)
+				phase = phase * 64 + (long)(world.WorldTick * step) % System.Math.Max(1, range);
+
+			return phase;
 		}
 
 		PostProcessPassType IRenderPostProcessPass.Type => PostProcessPassType.AfterTerrain;
@@ -277,10 +390,122 @@ namespace OpenRA.Mods.RAPX.Traits
 				shroudRenderer = wr.World.WorldActor.TraitOrDefault<PxShroudRenderer>();
 			}
 
+			// Binding the hidden cells refreshes the shroud's hidden map, whose version is part of the cache key
+			PxShroudRenderer.BindHiddenCells(shroudRenderer, shader, wr, CellMap);
+
 			var scroll = wr.Viewport.TopLeft;
+			var time = Game.RunTime / 1000f % 3600f;
+			var key = (scroll, Game.Renderer.WorldDownscaleFactor, wr.PostProcessScissor(), Game.Renderer.NativeResolution,
+				tilesVersion, shroudRenderer?.HiddenVersion ?? 0, RotationPhase());
+
+			// The drifting HD water changes every frame: around it the pass is shaded afresh on top of the cached result,
+			// unless the water fills most of the view anyway
+			var wet = WetRect(wr);
+			var scissor = key.Item3;
+			var worthIt = wet == null || (long)wet.Value.Width * wet.Value.Height < 0.6 * scissor.Width * scissor.Height;
+			var hit = !DisableCache && cacheValid && key == cacheKey && worthIt;
+			var check = hit && VerifyCache && ++cacheHits % 60 == 0;
+			if (hit && !check)
+			{
+				DrawCached(wr, scroll, time, wet, null);
+				return;
+			}
+
+			if (VerifyCache && !hit)
+				CountMiss(key, !DisableCache && worthIt);
+
 			var snapshot = Game.Renderer.WorldBufferSnapshot();
+			var size = snapshot.Size;
+			var all = new Rectangle(0, 0, size.Width, size.Height);
+			byte[] composed = null;
+			if (check)
+			{
+				// Developer check: the frame as the cache would draw it, then the fully fresh one, must be the same
+				DrawCached(wr, scroll, time, wet, snapshot);
+				verify ??= Game.Renderer.CreateTexture();
+				verify.SetDataFromReadBuffer(all);
+				composed = verify.GetData();
+			}
+
+			DrawFresh(wr, scroll, time, snapshot);
+
+			if (check)
+			{
+				verify.SetDataFromReadBuffer(all);
+				var fresh = verify.GetData();
+				var differ = 0;
+				int bx0 = int.MaxValue, by0 = int.MaxValue, bx1 = -1, by1 = -1, maxDelta = 0;
+				for (var i = 0; i < System.Math.Min(fresh.Length, composed.Length); i += 4)
+				{
+					var delta = System.Math.Max(System.Math.Abs(fresh[i] - composed[i]),
+						System.Math.Max(System.Math.Abs(fresh[i + 1] - composed[i + 1]), System.Math.Abs(fresh[i + 2] - composed[i + 2])));
+					if (delta == 0)
+						continue;
+
+					differ++;
+					maxDelta = System.Math.Max(maxDelta, delta);
+					var px = i / 4 % size.Width;
+					var py = i / 4 / size.Width;
+					bx0 = System.Math.Min(bx0, px);
+					by0 = System.Math.Min(by0, py);
+					bx1 = System.Math.Max(bx1, px);
+					by1 = System.Math.Max(by1, py);
+				}
+
+				var k = 1 / Game.Renderer.WorldDownscaleFactor;
+				Log.Write("perf", $"TerrainDetailTextures: cache check at {scroll}{(wet != null ? " with water" : "")}: " +
+					$"{differ} of {fresh.Length / 4} pixels differ" + (differ > 0 ? $" (max {maxDelta}) in buffer x {bx0}-{bx1} y {by0}-{by1}; " +
+					$"water rect x {wet?.Left * k}-{wet?.Right * k} y {wet?.Top * k}-{wet?.Bottom * k}, buffer {size}" : ""));
+				return;
+			}
+
+			// Keep a copy of the result once the view has held still for a frame (not while scrolling)
+			cacheValid = false;
+			if (!DisableCache && key == lastKey)
+			{
+				cache ??= Game.Renderer.CreateTexture();
+				if (cacheSize != size)
+				{
+					cache.SetDataFromReadBuffer(all);
+					cacheSize = size;
+				}
+				else
+					cache.UpdateFromReadBuffer(all);
+
+				cacheKey = key;
+				cacheValid = true;
+			}
+
+			lastKey = key;
+		}
+
+		/// <summary>The cached result, and the water around <paramref name="wet"/> shaded afresh on top. <paramref name="snapshot"/>
+		/// must hold the plain terrain of this frame (taken here when null).</summary>
+		void DrawCached(WorldRenderer wr, int2 scroll, float time, Rectangle? wet, ITexture snapshot)
+		{
+			// The water's neighbourhood reads the plain terrain, so the snapshot comes before the cached result is drawn
+			if (wet != null)
+				snapshot ??= Game.Renderer.WorldBufferSnapshot();
+
+			shader.SetTexture("WorldTexture", cache);
+			shader.SetTexture("CacheTexture", cache);
+			shader.SetVec("UseCache", 1f);
+			shader.PrepareRender();
+			Game.Renderer.DrawBatch(buffer, shader, 0, 6, PrimitiveType.TriangleList);
+
+			if (wet == null)
+				return;
+
+			Game.Renderer.EnableScissor(wet.Value);
+			DrawFresh(wr, scroll, time, snapshot);
+			Game.Renderer.DisableScissor();
+		}
+
+		void DrawFresh(WorldRenderer wr, int2 scroll, float time, ITexture snapshot)
+		{
 			shader.SetTexture("WorldTexture", snapshot);
-			PxShroudRenderer.BindHiddenCells(shroudRenderer, shader, wr, snapshot);
+			shader.SetTexture("CacheTexture", snapshot);
+			shader.SetVec("UseCache", 0f);
 			shader.SetTexture("GrassTexture", textures[0]);
 			shader.SetTexture("DirtTexture", textures[1]);
 			shader.SetTexture("RockTexture", textures[2]);
@@ -291,7 +516,7 @@ namespace OpenRA.Mods.RAPX.Traits
 			shader.SetTexture("CellMap", CellMap);
 			shader.SetVec("CellMapSize", CellMapSize.Width, CellMapSize.Height);
 			shader.SetVec("TileSize", wr.TileSize.Width);
-			shader.SetVec("Time", Game.RunTime / 1000f % 3600f);
+			shader.SetVec("Time", time);
 			shader.SetVec("WaterFlow", info.WaterFlow);
 			shader.SetVec("WaterDetail", info.Water != null ? info.WaterDetail : -1f);
 			shader.SetVec("WaterGlints", info.WaterGlints);
@@ -369,6 +594,8 @@ namespace OpenRA.Mods.RAPX.Traits
 				t?.Dispose();
 
 			CellMap?.Dispose();
+			cache?.Dispose();
+			verify?.Dispose();
 		}
 	}
 }

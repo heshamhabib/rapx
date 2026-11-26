@@ -1,0 +1,178 @@
+# Titan weapons (rules/titans.yaml). Sounds: artsrc/audio/make_titan_sounds.py.
+
+# Atomic breath: a wide pink energy beam (PxGlowLaser, like the Prism beam) that burns whatever it hits
+GodzillaBreath:
+	ReloadDelay: 125
+	Range: 13c0
+	MinRange: 2c512
+	ValidTargets: Ground, Water, GroundActor, WaterActor, AirborneActor
+	Projectile: PxGlowLaser
+		Width: 200
+		GlowScale: 6
+		CoreColor: FFF0FA
+		Color: FF3CC8
+		GlowColor: E6189C70
+		Duration: 30
+		MuzzleFlare: 1100
+		ImpactFlare: 1600
+		ZOffset: 2048
+	Warhead@1Dam: SpreadDamage
+		Spread: 1c0
+		Damage: 50000
+		Falloff: 100, 60, 30, 10
+		ValidTargets: GroundActor, WaterActor, AirborneActor
+		Versus:
+			None: 100
+			Wood: 100
+			Light: 100
+			Heavy: 100
+			Concrete: 80
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath, Incendiary
+	# The impact keeps erupting while the beam holds on it (1.2 s), like the films
+	Warhead@2Eff: PxExplosion
+		Video: thermobaric
+		Size: 2.2
+		ImpactSounds: ra|audio/sfx/kaboom25.ogg
+		ValidTargets: Ground, Water, Air, GroundActor, AirborneActor, WaterActor, Trees
+	Warhead@2Eff2: PxExplosion
+		Video: bomb-1, bomb-2
+		Size: 1.6
+		Delay: 8
+		ValidTargets: Ground, Water, Air, GroundActor, AirborneActor, WaterActor, Trees
+	Warhead@2Eff3: PxExplosion
+		Video: heavy-missile-1, heavy-missile-2
+		Size: 1.8
+		Delay: 16
+		ImpactSounds: ra|audio/sfx/kaboom22.ogg
+		ValidTargets: Ground, Water, Air, GroundActor, AirborneActor, WaterActor, Trees
+	Warhead@2Eff4: PxExplosion
+		Video: bomb-1, bomb-2
+		Size: 2.0
+		Delay: 26
+		ValidTargets: Ground, Water, Air, GroundActor, AirborneActor, WaterActor, Trees
+	Warhead@3Fire: PxFire
+		Size: 1.4
+		Duration: 200
+		BurnVideo: fire-big-loop-1
+		BurnVideoEnd: fire-big-end
+		VideoScale: 0.9
+		ValidTargets: Ground, GroundActor, Trees
+	Warhead@Smu: LeaveSmudge
+		SmudgeType: Scorch
+		ValidTargets: Ground, Vehicle, Infantry
+
+# Stomp and tail sweep for anything right at his feet
+GodzillaStomp:
+	ReloadDelay: 40
+	Range: 2c512
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	Report: ra|audio/titans/titan-smash.ogg
+	Projectile: InstantHit
+	Warhead@1Dam: SpreadDamage
+		Spread: 1c512
+		Damage: 30000
+		Falloff: 100, 50, 20
+		ValidTargets: GroundActor, WaterActor
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+	Warhead@2Eff: PxExplosion
+		Video: dirt-1, dirt-2
+		Size: 1.6
+		ValidTargets: Ground, GroundActor, Water, WaterActor
+
+# Kong's double-fist hammer blow on the ground
+KongSmash:
+	ReloadDelay: 50
+	Range: 2c512
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	Report: ra|audio/titans/titan-smash.ogg
+	Projectile: InstantHit
+	Warhead@1Dam: SpreadDamage
+		Spread: 1c512
+		Damage: 45000
+		Falloff: 100, 60, 25
+		ValidTargets: GroundActor, WaterActor
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+	Warhead@2Eff: PxExplosion
+		Video: dirt-1, dirt-2
+		Size: 1.8
+		ValidTargets: Ground, GroundActor, Water, WaterActor
+	Warhead@Smu: LeaveSmudge
+		SmudgeType: Crater
+		ValidTargets: Ground, Vehicle, Infantry
+
+# Anti-air leap: Kong jumps and swats a jet or helicopter flying over him (reach: anything above the 4.5 cells
+# around him). One blow brings down any aircraft; the sound is the swipe, then his landing thud.
+KongLeap:
+	ReloadDelay: 75
+	Range: 4c512
+	ValidTargets: AirborneActor
+	Report: ra|audio/titans/kong-leap.ogg
+	Projectile: InstantHit
+	Warhead@1Dam: SpreadDamage
+		Spread: 0c768
+		Damage: 150000
+		ValidTargets: AirborneActor
+		Versus:
+			None: 100
+			Wood: 100
+			Light: 100
+			Heavy: 100
+			Concrete: 100
+		DamageTypes: ExplosionDeath
+	Warhead@2Eff: PxExplosion
+		Video: airburst-1, airburst-2
+		Size: 1.4
+		ImpactSounds: ra|audio/sfx/kaboom25.ogg
+		ValidTargets: Air, AirborneActor
+
+# A boulder torn out of the ground and hurled in a high arc
+KongBoulder:
+	ReloadDelay: 90
+	Range: 9c0
+	MinRange: 2c512
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	Report: ra|audio/titans/kong-throw.ogg
+	Projectile: Bullet
+		Speed: 300
+		LaunchAngle: 70
+		Image: rock1
+		Shadow: true
+		Inaccuracy: 0c256
+	Warhead@1Dam: SpreadDamage
+		Spread: 1c0
+		Damage: 35000
+		Falloff: 100, 50, 20
+		ValidTargets: GroundActor, WaterActor
+		Versus:
+			Concrete: 100
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+	Warhead@2Eff: PxExplosion
+		Video: dirt-1, dirt-2
+		Size: 1.6
+		ImpactSounds: ra|audio/titans/titan-smash.ogg
+		ValidTargets: Ground, GroundActor
+	Warhead@3EffWater: CreateEffect
+		Explosions: vbigsplash-1
+		ImpactSounds: ra|audio/sfx/splash9.ogg
+		ValidTargets: Water, Underwater
+	Warhead@Smu: LeaveSmudge
+		SmudgeType: Crater
+		ValidTargets: Ground, Vehicle, Infantry
+
+# A titan falling: the ground shakes and everything close by is crushed under it
+TitanFall:
+	Warhead@1Dam: SpreadDamage
+		Spread: 1c512
+		Damage: 40000
+		Falloff: 100, 50, 0
+		ValidTargets: GroundActor, WaterActor
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+	Warhead@2Eff: PxExplosion
+		Video: collapse-dust-1
+		Size: 3.0
+		ImpactSounds: ra|audio/titans/titan-smash.ogg
+		ValidTargets: Ground, GroundActor, Water, WaterActor
+	Warhead@Shake: ShakeScreen
+		Duration: 20
+		Intensity: 4
+		Multiplier: 1,1

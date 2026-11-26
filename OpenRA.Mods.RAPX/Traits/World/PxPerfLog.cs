@@ -29,10 +29,20 @@ namespace OpenRA.Mods.RAPX.Traits
 
 	public sealed class PxPerfLog : ITick
 	{
+		const int AblateTicks = 250;
+
 		static readonly string[] Items = { "render", "render_prepare", "render_world", "render_widgets", "render_flip", "tick_time", "tick_actors", "batches" };
 
 		readonly PxPerfLogInfo info;
 		readonly bool enabled = !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("RAPX_PERFLOG"));
+
+		// RAPX_PERF_ABLATE="Terrain,TerrainDetailTextures,Shroud,..." (WorldRenderer.DevSkip names): from tick
+		// RAPX_PERF_ABLATE_START on, skip one step per AblateTicks window, alternating with windows that skip nothing,
+		// so each step's frame-time cost can be read off the log (samples are tagged ablate=<step>)
+		readonly string[] ablate = (Environment.GetEnvironmentVariable("RAPX_PERF_ABLATE") ?? "")
+			.Split(',', StringSplitOptions.RemoveEmptyEntries);
+		readonly int ablateStart = Exts.TryParseInt32Invariant(Environment.GetEnvironmentVariable("RAPX_PERF_ABLATE_START") ?? "", out var start) ? start : 2000;
+		string ablating = "none";
 		int ticks;
 		int lastFrame;
 		long lastTime;
@@ -44,7 +54,24 @@ namespace OpenRA.Mods.RAPX.Traits
 
 		void ITick.Tick(Actor self)
 		{
-			if (!enabled || self.World.Type == WorldType.Editor || ++ticks % info.Interval != 0)
+			if (!enabled || self.World.Type == WorldType.Editor)
+				return;
+
+			if (ablate.Length > 0 && self.World.Type == WorldType.Regular && self.World.WorldTick >= ablateStart)
+			{
+				var window = (self.World.WorldTick - ablateStart) / AblateTicks;
+				var step = window % 2 == 1 && window / 2 < ablate.Length ? ablate[window / 2] : "none";
+				if (step != ablating)
+				{
+					OpenRA.Graphics.WorldRenderer.DevSkip.Clear();
+					if (step != "none")
+						OpenRA.Graphics.WorldRenderer.DevSkip.Add(step);
+
+					ablating = step;
+				}
+			}
+
+			if (++ticks % info.Interval != 0)
 				return;
 
 			var frames = Game.RenderFrame - lastFrame;
@@ -69,6 +96,7 @@ namespace OpenRA.Mods.RAPX.Traits
 				$"tickms={(ms / (double)info.Interval).ToString("0.0", CultureInfo.InvariantCulture)} actors={self.World.Actors.Count()} " +
 				$"particles={Graphics.PxParticles.LiveTotal} effects={self.World.Effects.Count()} " +
 				$"step={self.World.Timestep} catchup={Game.LogicCatchUpTicks} retries={Game.LogicOrderRetries} " + string.Join(" ", parts) +
+				$" ablate={ablating}" +
 				$" wtime={weatherTime.ToString("0.0", CultureInfo.InvariantCulture)} downscale={Game.Renderer.WorldDownscaleFactor.ToString("0.###", CultureInfo.InvariantCulture)} passes={passes}");
 		}
 	}

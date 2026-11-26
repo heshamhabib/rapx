@@ -261,6 +261,9 @@ namespace OpenRA.Mods.RAPX.Widgets.Logic
 				widget.IsVisible() ? widget.Bounds.Width : 0,
 				bottomPanel != null && bottomPanel.IsVisible() ? bottomPanel.Bounds.Height : 0);
 
+			// Both panels are opaque: full-screen passes skip the world under them
+			WorldRenderer.VisibleViewArea = PxHudOcclusion.VisibleViewArea;
+
 			// The start position is set before the clamp exists: pull the camera inside the map once
 			worldRenderer.Viewport.Center(worldRenderer.Viewport.CenterPosition);
 		}
@@ -298,6 +301,7 @@ namespace OpenRA.Mods.RAPX.Widgets.Logic
 		protected override void Dispose(bool disposing)
 		{
 			Viewport.ViewInsets = null;
+			WorldRenderer.VisibleViewArea = null;
 			base.Dispose(disposing);
 		}
 	}

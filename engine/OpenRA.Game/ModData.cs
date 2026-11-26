@@ -148,6 +148,12 @@ namespace OpenRA
 
 		public Map PrepareMap(string uid)
 		{
+			return PrepareMap(uid, WorldType.Regular, null);
+		}
+
+		/// <summary>RAPX: the world's ISpriteLoadPolicyInfo, if any, may leave images to load on first use.</summary>
+		public Map PrepareMap(string uid, WorldType worldType, Network.Session lobbyInfo)
+		{
 			LoadScreen?.Display();
 
 			if (MapCache[uid].Status != MapStatus.Available)
@@ -159,7 +165,11 @@ namespace OpenRA
 
 			// Reinitialize all our assets
 			InitializeLoaders(map);
-			map.Sequences.LoadSprites();
+			Func<string, bool> defer = null;
+			foreach (var policy in map.Rules.Actors[SystemActors.World].TraitInfos<ISpriteLoadPolicyInfo>())
+				defer ??= policy.DeferredImages(this, map, worldType, lobbyInfo);
+
+			map.Sequences.LoadSprites(defer);
 
 			// Load music with map assets mounted
 			using (new Support.PerfTimer("Map.Music"))

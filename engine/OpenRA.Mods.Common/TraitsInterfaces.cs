@@ -23,6 +23,13 @@ using OpenRA.Traits;
 
 namespace OpenRA.Mods.Common.Traits
 {
+	// RAPX: the titans (giant units) a player can pick per slot in the lobby: id -> display name. Implemented by a
+	// World trait of the mod; the lobby shows the column only when one exists.
+	public interface ILobbyTitanChoicesInfo : ITraitInfoInterface
+	{
+		IReadOnlyList<(string Id, string Name)> TitanChoices { get; }
+	}
+
 	public enum VisibilityType { Footprint, CenterPosition, GroundPosition }
 
 	public enum AttackDelayType { Preparation, Attack }

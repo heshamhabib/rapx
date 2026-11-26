@@ -126,7 +126,8 @@ namespace OpenRA.Mods.RAPX.Warheads
 			"drawn mushroom rather than particles).")]
 		public readonly string ClassicExplosion = null;
 
-		[Desc("Playback speed of the filmed explosion (below 1 = slower, heavier).")]
+		[Desc("Playback speed of the filmed explosion, on top of its real-life pacing (PxVideoEffect.BlastSpeed): below 1 =",
+			"slower, heavier.")]
 		public readonly float VideoSpeed = 1f;
 
 		[Desc("Ticks the filmed explosion's last frame of smoke lingers afterwards, thinning out, spreading and drifting",
@@ -732,14 +733,30 @@ namespace OpenRA.Mods.RAPX.Warheads
 			return from <= 0 || f <= from ? f * video.Tick : from * video.Tick + (f - from) * info.VideoSlowTick;
 		}
 
-		float VideoEnd => FrameMs(video.Length - 1) / (40f * info.VideoSpeed);
+		// Filmed blasts play at real-life pace (PxVideoEffect.BlastSpeed: fast fireball, slower smoke). Joined clips (the
+		// nukes' mushroom, VideoSlowFrom) keep their own pacing: a fireball that size really does rise slowly.
+		bool RealPace => info.VideoSlowFrom <= 0;
+
+		float videoEnd = -1;
+
+		float VideoEnd
+		{
+			get
+			{
+				if (videoEnd < 0)
+					videoEnd = RealPace ? PxVideoEffect.BlastTicks(FrameMs(video.Length - 1), info.VideoSpeed)
+						: FrameMs(video.Length - 1) / (40f * info.VideoSpeed);
+
+				return videoEnd;
+			}
+		}
 
 		bool VideoPlaying() { return video != null && time < VideoEnd + info.VideoLinger; }
 
 		/// <summary>The clip's frame now, with the fraction towards the next one.</summary>
 		float VideoFrame()
 		{
-			var ms = time * 40 * info.VideoSpeed;
+			var ms = RealPace ? PxVideoEffect.BlastClipMs(time, info.VideoSpeed) : time * 40 * info.VideoSpeed;
 			var from = info.VideoSlowFrom;
 			var f = from <= 0 || ms <= from * video.Tick ? ms / video.Tick : from + (ms - from * video.Tick) / info.VideoSlowTick;
 			return Math.Min(f, video.Length - 1);

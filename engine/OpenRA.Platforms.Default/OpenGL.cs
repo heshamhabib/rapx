@@ -518,9 +518,11 @@ namespace OpenRA.Platforms.Default
 				throw new InvalidProgramException("Failed to initialize low-level OpenGL bindings. GPU information is not available.", e);
 			}
 
+			GraphicsCard.Renderer = glGetString(GL_RENDERER);
+			GraphicsCard.Vendor = glGetString(GL_VENDOR);
 			if (!DetectGLFeatures())
 			{
-				WriteGraphicsLog("Unsupported OpenGL version: " + glGetString(GL_VERSION));
+				WriteGraphicsLog($"Unsupported OpenGL version: {glGetString(GL_VERSION)} on {GraphicsCard.Renderer}");
 				throw new InvalidProgramException("OpenGL Version Error: See graphics.log for details.");
 			}
 
@@ -569,6 +571,7 @@ namespace OpenRA.Platforms.Default
 
 			Console.WriteLine("OpenGL renderer: " + glGetString(GL_RENDERER));
 			Console.WriteLine("OpenGL version: " + glGetString(GL_VERSION));
+			Log.Write("graphics", $"Graphics card: {GraphicsCard.Renderer} ({GraphicsCard.Vendor}); OpenGL {Version}, {Profile} profile");
 
 			try
 			{

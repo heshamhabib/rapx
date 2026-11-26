@@ -48,6 +48,10 @@ namespace OpenRA.Graphics
 			Right = (Math.Max(bounds.Left, bounds.Right) - Inset) / sheet.Size.Width;
 			Bottom = (Math.Max(bounds.Top, bounds.Bottom) - Inset) / sheet.Size.Height;
 		}
+
+		/// <summary>RAPX: size of the whole frame this sprite was loaded from: its own size, unless it was trimmed to its
+		/// visible pixels at load time (<see cref="PaddedSprite"/>). Use this, not Size, to scale or place by frame size.</summary>
+		public virtual float2 FrameSize => Size.XY;
 	}
 
 	/// <summary>How the sprite cache may trim fully transparent pixels from a file's frames when it loads them.</summary>
@@ -84,6 +88,8 @@ namespace OpenRA.Graphics
 			PaddedSize = paddedSize;
 			CropOrigin = cropOrigin;
 		}
+
+		public override float2 FrameSize => PaddedSize;
 	}
 
 	public class SpriteWithSecondaryData : Sprite

@@ -37,6 +37,9 @@ namespace OpenRA
 				}
 		}
 
+		// RAPX: lets lobby code use a mod's optional dropdown template when it exists
+		public bool HasWidget(string id) => widgets.ContainsKey(id);
+
 		public Widget LoadWidget(WidgetArgs args, Widget parent, string w)
 		{
 			if (!widgets.TryGetValue(w, out var ret))

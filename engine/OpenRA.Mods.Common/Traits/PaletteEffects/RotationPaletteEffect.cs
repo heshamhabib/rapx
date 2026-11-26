@@ -16,9 +16,10 @@ using OpenRA.Traits;
 
 namespace OpenRA.Mods.Common.Traits
 {
+	// RAPX: public, so passes that cache their result can follow the terrain palette rotation
 	[TraitLocation(SystemActors.World | SystemActors.EditorWorld)]
 	[Desc("Palette effect used for sprinkle \"animations\".")]
-	sealed class RotationPaletteEffectInfo : TraitInfo
+	public sealed class RotationPaletteEffectInfo : TraitInfo
 	{
 		[Desc("Defines to which palettes this effect should be applied to.",
 			"If none specified, it applies to all palettes not explicitly excluded.")]

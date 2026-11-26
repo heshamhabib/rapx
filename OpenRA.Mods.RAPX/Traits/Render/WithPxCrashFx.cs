@@ -65,7 +65,7 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 			var burst = PxVideoEffect.Pick(self.World, info.AirVideo, random);
 			var at = self.CenterPosition;
 			if (burst != null)
-				self.World.AddFrameEndTask(w => w.Add(new PxVideoEffect(w, at, burst, burst.Scale * MathF.Sqrt(info.Size) * 0.8f, 2048)));
+				self.World.AddFrameEndTask(w => w.Add(new PxVideoEffect(w, at, burst, burst.Scale * MathF.Sqrt(info.Size) * 0.8f, 2048, blast: true)));
 			self.World.AddFrameEndTask(w => w.Add(effect));
 		}
 
@@ -94,7 +94,7 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 				clip = PxVideoEffect.Mirrored(world, clip);
 			effect.Impact(ground, clip != null);
 			if (clip != null)
-				world.AddFrameEndTask(w => w.Add(new PxVideoEffect(w, ground, clip, clip.Scale * MathF.Sqrt(info.Size) * info.VideoScale, 512)));
+				world.AddFrameEndTask(w => w.Add(new PxVideoEffect(w, ground, clip, clip.Scale * MathF.Sqrt(info.Size) * info.VideoScale, 512, blast: true)));
 
 			effect = null;
 		}

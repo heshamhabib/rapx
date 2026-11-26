@@ -250,7 +250,7 @@ namespace OpenRA.Mods.RAPX.Traits
 					var blen = MathF.Sqrt(bx * bx + by * by);
 					var mid = ToWorld((l.X + ax) / 2, (l.Y + ay) / 2);
 					var angle = new WAngle((int)(MathF.Atan2(by, bx) * 512 / MathF.PI));
-					var beamScale = blen * 24f / flare.GetSprite(0).Size.X;
+					var beamScale = blen * 24f / flare.GetSprite(0).FrameSize.X;
 					yield return new SpriteRenderable(flare.GetSprite(0), mid, WVec.Zero, 0, null, flare.Scale * beamScale,
 						alpha * 0.35f, c, TintModifiers.None, false, angle);
 					continue;

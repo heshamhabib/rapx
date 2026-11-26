@@ -17,7 +17,8 @@ import numpy as np
 from PIL import Image
 from PIL.PngImagePlugin import PngInfo
 
-ALPHA_FLOOR = 6  # the shadow catcher's faint noise, as pack_sprites.py
+ALPHA_FLOOR = int(os.environ.get("PX_ALPHA_FLOOR", "6"))  # the shadow catcher's faint noise, as pack_sprites.py;
+# big canvases (titans) catch noise up to ~10, so artsrc/units/titans/make.sh uses 12
 out, dirs = sys.argv[1], sys.argv[2:]
 frames = []
 for d in dirs:
@@ -40,8 +41,8 @@ for p in frames:
     # Offset: the trimmed region's centre relative to the full frame's centre (pixels, y down)
     pieces.append((a[y0:y1, x0:x1], ((x0 + x1) / 2 - w / 2, (y0 + y1) / 2 - h / 2)))
 
-# Shelf packing, rows of up to 2048 px
-width = max(2048, max(p[0].shape[1] for p in pieces))
+# Shelf packing, rows of up to 2048 px (PX_SHEET_WIDTH: wider rows for big sheets, e.g. 4096 for 32-facing titans)
+width = max(int(os.environ.get("PX_SHEET_WIDTH", "2048")), max(p[0].shape[1] for p in pieces))
 x = y = row = 0
 spots = []
 for img, _ in pieces:

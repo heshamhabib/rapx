@@ -143,6 +143,7 @@ namespace OpenRA.Network
 			public ClientState State = ClientState.Invalid;
 			public int Team;
 			public int Handicap;
+			public string Titan; // RAPX: giant unit chosen in the lobby (null = none), spawned by the mod
 			public string Slot; // Slot ID, or null for observer
 			public string Bot; // Bot type, null for real clients
 			public int BotControllerClientIndex; // who added the bot to the slot

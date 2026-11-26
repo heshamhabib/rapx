@@ -17,6 +17,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
+using OpenRA.Support;
 using SDL2;
 
 namespace OpenRA.WindowsLauncher
@@ -34,6 +35,7 @@ namespace OpenRA.WindowsLauncher
 		static string displayName;
 		static string faqUrl;
 		static string extraArgs;
+		static DateTime gameStarted;
 
 		static int Main(string[] args)
 		{
@@ -105,6 +107,14 @@ namespace OpenRA.WindowsLauncher
 			if (!string.IsNullOrEmpty(extraArgs))
 				commandLine += " " + extraArgs;
 
+			// RAPX: laptops with integrated and dedicated graphics run programs on the power-saving card unless told
+			// otherwise. Unless the player (or Windows) already chose for this game, ask Windows for the high-performance
+			// card; the game process starts right after, so it applies straight away. Settings > Display changes it.
+			var executable = WindowsGpu.GameExecutable;
+			if (executable != null && WindowsGpu.GetPreference(executable) == null)
+				WindowsGpu.SetPreference(executable, WindowsGpu.Preference.HighPerformance);
+
+			gameStarted = DateTime.UtcNow;
 			var psi = new ProcessStartInfo(launcherPath, commandLine);
 
 			try
@@ -148,11 +158,13 @@ namespace OpenRA.WindowsLauncher
 				flags = SDL.SDL_MessageBoxButtonFlags.SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT
 			};
 
+			var graphics = GraphicsFailed();
 			var dialog = new SDL.SDL_MessageBoxData
 			{
 				flags = SDL.SDL_MessageBoxFlags.SDL_MESSAGEBOX_ERROR,
-				title = "Fatal Error",
-				message = displayName + " has encountered a fatal error and must close.\nRefer to the crash logs and FAQ for more information.",
+				title = graphics ? "Graphics Error" : "Fatal Error",
+				message = graphics ? GraphicsErrorMessage() :
+					displayName + " has encountered a fatal error and must close.\nRefer to the crash logs and FAQ for more information.",
 				buttons = new[] { quit, viewFaq, viewLogs },
 				numbuttons = 3
 			};
@@ -193,6 +205,56 @@ namespace OpenRA.WindowsLauncher
 					break;
 				}
 			}
+		}
+
+		// RAPX: errors the engine raises when it cannot get the graphics card to draw (see OpenRA.Platforms.Default)
+		static readonly string[] GraphicsErrors =
+		{
+			"No supported OpenGL profiles were found", "OpenGL Version Error", "Failed to initialize low-level OpenGL bindings",
+			"Failed to initialize OpenGL", "Failed to initialize an OpenGL debug message callback", "OpenGL Error:"
+		};
+
+		/// <summary>RAPX: whether the game that just closed failed on its graphics (its crash log says so).</summary>
+		static bool GraphicsFailed()
+		{
+			try
+			{
+				var logs = new DirectoryInfo(Path.Combine(Platform.SupportDir, "Logs"));
+				var crash = logs.GetFiles("exception-*.log")
+					.Where(f => f.LastWriteTimeUtc >= gameStarted.AddSeconds(-2))
+					.OrderByDescending(f => f.LastWriteTimeUtc)
+					.FirstOrDefault();
+
+				if (crash == null)
+					return false;
+
+				var text = File.ReadAllText(crash.FullName);
+				return GraphicsErrors.Any(text.Contains);
+			}
+			catch
+			{
+				return false;
+			}
+		}
+
+		/// <summary>RAPX: what went wrong with the graphics and what to try, naming the graphics cards Windows has running.</summary>
+		static string GraphicsErrorMessage()
+		{
+			var adapters = WindowsGpu.Adapters();
+			var found = adapters.Count > 0
+				? "Graphics cards found: " + string.Join(", ", adapters.Select(a => a.Name)) + "."
+				: "No graphics card was found.";
+
+			var noDriver = adapters.Any(a => a.NoDriver)
+				? "\nOne of them is Windows' basic display adapter: a graphics card is running without its driver."
+				: "";
+
+			return displayName + " could not start its graphics.\n\n" + found + noDriver + "\n\n" +
+				"What to try:\n" +
+				"- Install the latest driver for your graphics card from the NVIDIA, AMD or Intel website.\n" +
+				"- On a laptop with two graphics cards, the game asks Windows for the faster one. Check that \"High performance\" " +
+				"is chosen for the game in Windows Settings > System > Display > Graphics.\n\n" +
+				"The logs show the details.";
 		}
 
 		static void GameProcessExited(object sender, EventArgs e)

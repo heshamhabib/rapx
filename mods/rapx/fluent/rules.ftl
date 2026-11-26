@@ -1189,6 +1189,25 @@ actor-elph =
       Strong vs Tanks, Buildings and Infantry
       Weak vs Aircraft
 
+notification-titan-lost = Our titan has fallen.
+
+actor-godz =
+    .name = Godzilla
+    .description =
+    King of the monsters. Picked in the lobby: one per player, cannot be rebuilt.
+    Atomic breath burns everything in a long line of sight, even aircraft.
+    Stomps whatever comes close. Wades through rivers and the sea.
+      Strong vs everything
+
+actor-kong =
+    .name = King Kong
+    .description =
+    The giant ape. Picked in the lobby: one per player, cannot be rebuilt.
+    Hammer blows smash tanks; hurls boulders further out.
+    Leaps up to swat jets and helicopters flying over him.
+    Faster than Godzilla, but cannot cross water.
+      Strong vs everything up close
+
 actor-mtrk =
     .name = Monster Truck
     .description =

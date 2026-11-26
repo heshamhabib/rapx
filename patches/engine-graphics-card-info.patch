@@ -1,0 +1,392 @@
+diff --git a/OpenRA.Game/Graphics/PlatformInterfaces.cs b/OpenRA.Game/Graphics/PlatformInterfaces.cs
+index 9be3014..f90b9f7 100644
+--- a/OpenRA.Game/Graphics/PlatformInterfaces.cs
++++ b/OpenRA.Game/Graphics/PlatformInterfaces.cs
+@@ -23,6 +23,17 @@ public enum GLProfile
+ 		Embedded
+ 	}
+ 
++	/// <summary>
++	/// RAPX: the graphics card the game draws with, as its driver names it (GL_RENDERER; through ANGLE it reads
++	/// "ANGLE (vendor, card Direct3D11 ..., D3D11-driver version)") and the driver's vendor (GL_VENDOR).
++	/// Set once the OpenGL context exists, null before; shown in Settings > Display and written to the logs.
++	/// </summary>
++	public static class GraphicsCard
++	{
++		public static string Renderer { get; set; }
++		public static string Vendor { get; set; }
++	}
++
+ 	public interface IPlatform
+ 	{
+ 		IPlatformWindow CreateWindow(
+diff --git a/OpenRA.Game/Support/ExceptionHandler.cs b/OpenRA.Game/Support/ExceptionHandler.cs
+index 4c4f181..dfebd04 100644
+--- a/OpenRA.Game/Support/ExceptionHandler.cs
++++ b/OpenRA.Game/Support/ExceptionHandler.cs
+@@ -41,6 +41,10 @@ public static void HandleFatalError(Exception ex)
+ 			Log.Write("exception", $"Date: {DateTime.UtcNow:u}");
+ 			Log.Write("exception", $"Operating System: {Platform.CurrentPlatform} ({Platform.CurrentArchitecture}, {Environment.OSVersion})");
+ 			Log.Write("exception", $"Runtime Version: {Platform.RuntimeVersion}");
++
++			// RAPX: which graphics card the game ran on, if it got that far
++			if (GraphicsCard.Renderer != null)
++				Log.Write("exception", $"Graphics Card: {GraphicsCard.Renderer} ({GraphicsCard.Vendor})");
+ 			Log.Write("exception",
+ 				"Installed Language: " +
+ 				$"{CultureInfo.InstalledUICulture.TwoLetterISOLanguageName} (Installed) " +
+diff --git a/OpenRA.Platforms.Default/OpenGL.cs b/OpenRA.Platforms.Default/OpenGL.cs
+index 5810468..8084fc9 100644
+--- a/OpenRA.Platforms.Default/OpenGL.cs
++++ b/OpenRA.Platforms.Default/OpenGL.cs
+@@ -518,9 +518,11 @@ public static void Initialize()
+ 				throw new InvalidProgramException("Failed to initialize low-level OpenGL bindings. GPU information is not available.", e);
+ 			}
+ 
++			GraphicsCard.Renderer = glGetString(GL_RENDERER);
++			GraphicsCard.Vendor = glGetString(GL_VENDOR);
+ 			if (!DetectGLFeatures())
+ 			{
+-				WriteGraphicsLog("Unsupported OpenGL version: " + glGetString(GL_VERSION));
++				WriteGraphicsLog($"Unsupported OpenGL version: {glGetString(GL_VERSION)} on {GraphicsCard.Renderer}");
+ 				throw new InvalidProgramException("OpenGL Version Error: See graphics.log for details.");
+ 			}
+ 
+@@ -569,6 +571,7 @@ public static void Initialize()
+ 
+ 			Console.WriteLine("OpenGL renderer: " + glGetString(GL_RENDERER));
+ 			Console.WriteLine("OpenGL version: " + glGetString(GL_VERSION));
++			Log.Write("graphics", $"Graphics card: {GraphicsCard.Renderer} ({GraphicsCard.Vendor}); OpenGL {Version}, {Profile} profile");
+ 
+ 			try
+ 			{
+diff --git a/OpenRA.WindowsLauncher/Program.cs b/OpenRA.WindowsLauncher/Program.cs
+index fe0cca0..c5de5b8 100644
+--- a/OpenRA.WindowsLauncher/Program.cs
++++ b/OpenRA.WindowsLauncher/Program.cs
+@@ -17,6 +17,7 @@
+ using System.Runtime.InteropServices;
+ using System.Threading;
+ using System.Threading.Tasks;
++using OpenRA.Support;
+ using SDL2;
+ 
+ namespace OpenRA.WindowsLauncher
+@@ -34,6 +35,7 @@ sealed class WindowsLauncher
+ 		static string displayName;
+ 		static string faqUrl;
+ 		static string extraArgs;
++		static DateTime gameStarted;
+ 
+ 		static int Main(string[] args)
+ 		{
+@@ -105,6 +107,14 @@ static int RunInnerLauncher(string[] args)
+ 			if (!string.IsNullOrEmpty(extraArgs))
+ 				commandLine += " " + extraArgs;
+ 
++			// RAPX: laptops with integrated and dedicated graphics run programs on the power-saving card unless told
++			// otherwise. Unless the player (or Windows) already chose for this game, ask Windows for the high-performance
++			// card; the game process starts right after, so it applies straight away. Settings > Display changes it.
++			var executable = WindowsGpu.GameExecutable;
++			if (executable != null && WindowsGpu.GetPreference(executable) == null)
++				WindowsGpu.SetPreference(executable, WindowsGpu.Preference.HighPerformance);
++
++			gameStarted = DateTime.UtcNow;
+ 			var psi = new ProcessStartInfo(launcherPath, commandLine);
+ 
+ 			try
+@@ -148,11 +158,13 @@ static void ShowErrorDialog()
+ 				flags = SDL.SDL_MessageBoxButtonFlags.SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT
+ 			};
+ 
++			var graphics = GraphicsFailed();
+ 			var dialog = new SDL.SDL_MessageBoxData
+ 			{
+ 				flags = SDL.SDL_MessageBoxFlags.SDL_MESSAGEBOX_ERROR,
+-				title = "Fatal Error",
+-				message = displayName + " has encountered a fatal error and must close.\nRefer to the crash logs and FAQ for more information.",
++				title = graphics ? "Graphics Error" : "Fatal Error",
++				message = graphics ? GraphicsErrorMessage() :
++					displayName + " has encountered a fatal error and must close.\nRefer to the crash logs and FAQ for more information.",
+ 				buttons = new[] { quit, viewFaq, viewLogs },
+ 				numbuttons = 3
+ 			};
+@@ -195,6 +207,56 @@ static void ShowErrorDialog()
+ 			}
+ 		}
+ 
++		// RAPX: errors the engine raises when it cannot get the graphics card to draw (see OpenRA.Platforms.Default)
++		static readonly string[] GraphicsErrors =
++		{
++			"No supported OpenGL profiles were found", "OpenGL Version Error", "Failed to initialize low-level OpenGL bindings",
++			"Failed to initialize OpenGL", "Failed to initialize an OpenGL debug message callback", "OpenGL Error:"
++		};
++
++		/// <summary>RAPX: whether the game that just closed failed on its graphics (its crash log says so).</summary>
++		static bool GraphicsFailed()
++		{
++			try
++			{
++				var logs = new DirectoryInfo(Path.Combine(Platform.SupportDir, "Logs"));
++				var crash = logs.GetFiles("exception-*.log")
++					.Where(f => f.LastWriteTimeUtc >= gameStarted.AddSeconds(-2))
++					.OrderByDescending(f => f.LastWriteTimeUtc)
++					.FirstOrDefault();
++
++				if (crash == null)
++					return false;
++
++				var text = File.ReadAllText(crash.FullName);
++				return GraphicsErrors.Any(text.Contains);
++			}
++			catch
++			{
++				return false;
++			}
++		}
++
++		/// <summary>RAPX: what went wrong with the graphics and what to try, naming the graphics cards Windows has running.</summary>
++		static string GraphicsErrorMessage()
++		{
++			var adapters = WindowsGpu.Adapters();
++			var found = adapters.Count > 0
++				? "Graphics cards found: " + string.Join(", ", adapters.Select(a => a.Name)) + "."
++				: "No graphics card was found.";
++
++			var noDriver = adapters.Any(a => a.NoDriver)
++				? "\nOne of them is Windows' basic display adapter: a graphics card is running without its driver."
++				: "";
++
++			return displayName + " could not start its graphics.\n\n" + found + noDriver + "\n\n" +
++				"What to try:\n" +
++				"- Install the latest driver for your graphics card from the NVIDIA, AMD or Intel website.\n" +
++				"- On a laptop with two graphics cards, the game asks Windows for the faster one. Check that \"High performance\" " +
++				"is chosen for the game in Windows Settings > System > Display > Graphics.\n\n" +
++				"The logs show the details.";
++		}
++
+ 		static void GameProcessExited(object sender, EventArgs e)
+ 		{
+ 			if (gameProcess.ExitCode != (int)RunStatus.Success)
+diff --git a/OpenRA.Game/Support/WindowsGpu.cs b/OpenRA.Game/Support/WindowsGpu.cs
+new file mode 100644
+index 0000000..be26e62
+--- /dev/null
++++ b/OpenRA.Game/Support/WindowsGpu.cs
+@@ -0,0 +1,216 @@
++#region Copyright & License Information
++/*
++ * Copyright (c) The OpenRA Developers and Contributors
++ * This file is part of OpenRA, which is free software. It is made
++ * available to you under the terms of the GNU General Public License
++ * as published by the Free Software Foundation, either version 3 of
++ * the License, or (at your option) any later version. For more
++ * information, see COPYING.
++ */
++#endregion
++
++using System;
++using System.Collections.Generic;
++using System.IO;
++using System.Linq;
++using System.Runtime.InteropServices;
++using Microsoft.Win32;
++
++namespace OpenRA.Support
++{
++	/// <summary>
++	/// RAPX: the graphics cards of a Windows PC, and the choice between them that Windows keeps for each program
++	/// (Settings > System > Display > Graphics, stored under HKCU\Software\Microsoft\DirectX\UserGpuPreferences).
++	/// Laptops with integrated and dedicated graphics start programs on the power-saving card unless told otherwise.
++	/// Every member does nothing (or returns nothing) on other platforms.
++	/// </summary>
++	public static class WindowsGpu
++	{
++		public enum Preference { WindowsDecides = 0, PowerSaving = 1, HighPerformance = 2 }
++
++		public sealed class Adapter
++		{
++			public string Name;
++			public uint VendorId;
++			public ulong DedicatedMemory;
++
++			/// <summary>Microsoft's stand-in for a graphics card whose own driver is missing.</summary>
++			public bool NoDriver => VendorId == 0x1414;
++
++			/// <summary>Built into the processor, going by the memory it reports as its own: about 128 MB for Intel's
++			/// (its Arc cards have 4 GB or more), usually 512 MB for AMD's.</summary>
++			public bool Integrated => DedicatedMemory <= (VendorId == 0x8086 ? 2048UL : 512UL) * 1024 * 1024;
++		}
++
++		const string PreferencesKey = @"Software\Microsoft\DirectX\UserGpuPreferences";
++
++		/// <summary>The game's own executable, or null on other platforms and when the game runs inside the shared
++		/// dotnet host (during development), whose preference would apply to every .NET program.</summary>
++		public static string GameExecutable
++		{
++			get
++			{
++				var path = Environment.ProcessPath;
++				if (!OperatingSystem.IsWindows() || string.IsNullOrEmpty(path))
++					return null;
++
++				return Path.GetFileNameWithoutExtension(path).Equals("dotnet", StringComparison.OrdinalIgnoreCase) ? null : path;
++			}
++		}
++
++		/// <summary>The graphics card preference Windows keeps for this executable, or null when there is none.</summary>
++		public static Preference? GetPreference(string executable)
++		{
++			if (!OperatingSystem.IsWindows() || executable == null)
++				return null;
++
++			try
++			{
++				using var key = Registry.CurrentUser.OpenSubKey(PreferencesKey);
++				if (key?.GetValue(executable) is not string value)
++					return null;
++
++				foreach (var part in value.Split(';'))
++				{
++					var kv = part.Split('=');
++					if (kv.Length == 2 && kv[0].Trim() == "GpuPreference" && Exts.TryParseInt32Invariant(kv[1].Trim(), out var p) && p >= 0 && p <= 2)
++						return (Preference)p;
++				}
++			}
++			catch
++			{
++				// No preference can be read: treat it as none
++			}
++
++			return null;
++		}
++
++		/// <summary>Sets the graphics card preference for this executable (it applies to processes started afterwards),
++		/// keeping any other per-program settings Windows stored with it.</summary>
++		public static bool SetPreference(string executable, Preference preference)
++		{
++			if (!OperatingSystem.IsWindows() || executable == null)
++				return false;
++
++			try
++			{
++				using var key = Registry.CurrentUser.CreateSubKey(PreferencesKey);
++				var others = ((key.GetValue(executable) as string) ?? "").Split(';', StringSplitOptions.RemoveEmptyEntries)
++					.Where(p => !p.TrimStart().StartsWith("GpuPreference=", StringComparison.Ordinal));
++				key.SetValue(executable, string.Join(";", others.Prepend($"GpuPreference={(int)preference}")) + ";");
++				return true;
++			}
++			catch
++			{
++				return false;
++			}
++		}
++
++		/// <summary>The graphics cards Windows has running (DXGI adapters, without the software renderer), in Windows'
++		/// own order. Empty on other platforms or if they cannot be listed.</summary>
++		public static IReadOnlyList<Adapter> Adapters()
++		{
++			var result = new List<Adapter>();
++			if (!OperatingSystem.IsWindows())
++				return result;
++
++			try
++			{
++				var iid = typeof(IDXGIFactory1).GUID;
++				if (CreateDXGIFactory1(ref iid, out var factory) != 0 || factory == null)
++					return result;
++
++				try
++				{
++					for (uint i = 0; factory.EnumAdapters1(i, out var adapter) == 0; i++)
++					{
++						try
++						{
++							// DXGI_ADAPTER_FLAG_SOFTWARE: the Basic Render Driver every PC has
++							if (adapter.GetDesc1(out var desc) == 0 && (desc.Flags & 2) == 0 &&
++								!result.Any(a => a.Name == desc.Description && a.VendorId == desc.VendorId))
++								result.Add(new Adapter
++								{
++									Name = desc.Description.Trim(),
++									VendorId = desc.VendorId,
++									DedicatedMemory = (ulong)desc.DedicatedVideoMemory
++								});
++						}
++						finally
++						{
++							Marshal.ReleaseComObject(adapter);
++						}
++					}
++				}
++				finally
++				{
++					Marshal.ReleaseComObject(factory);
++				}
++			}
++			catch
++			{
++				// DXGI is missing or broken: no list, the game still runs
++			}
++
++			return result;
++		}
++
++		[DllImport("dxgi.dll", ExactSpelling = true)]
++		static extern int CreateDXGIFactory1(ref Guid riid, [MarshalAs(UnmanagedType.Interface)] out IDXGIFactory1 factory);
++
++		// Only the methods called are declared with their real signatures; the others hold their vtable slots
++		[ComImport]
++		[Guid("770aae78-f26f-4dba-a829-253c83d1b387")]
++		[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
++		interface IDXGIFactory1
++		{
++			void SetPrivateData();
++			void SetPrivateDataInterface();
++			void GetPrivateData();
++			void GetParent();
++			void EnumAdapters();
++			void MakeWindowAssociation();
++			void GetWindowAssociation();
++			void CreateSwapChain();
++			void CreateSoftwareAdapter();
++
++			[PreserveSig]
++			int EnumAdapters1(uint index, out IDXGIAdapter1 adapter);
++		}
++
++		[ComImport]
++		[Guid("29038f61-3839-4626-91fd-086879011a05")]
++		[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
++		interface IDXGIAdapter1
++		{
++			void SetPrivateData();
++			void SetPrivateDataInterface();
++			void GetPrivateData();
++			void GetParent();
++			void EnumOutputs();
++			void GetDesc();
++			void CheckInterfaceSupport();
++
++			[PreserveSig]
++			int GetDesc1(out AdapterDescription description);
++		}
++
++		// DXGI_ADAPTER_DESC1
++		[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
++		struct AdapterDescription
++		{
++			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
++			public string Description;
++			public uint VendorId;
++			public uint DeviceId;
++			public uint SubSysId;
++			public uint Revision;
++			public UIntPtr DedicatedVideoMemory;
++			public UIntPtr DedicatedSystemMemory;
++			public UIntPtr SharedSystemMemory;
++			public uint AdapterLuidLowPart;
++			public int AdapterLuidHighPart;
++			public uint Flags;
++		}
++	}
++}

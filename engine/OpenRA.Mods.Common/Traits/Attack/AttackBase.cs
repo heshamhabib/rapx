@@ -361,7 +361,8 @@ namespace OpenRA.Mods.Common.Traits
 		}
 
 		// Enumerates all armaments, that this actor possesses, that can be used against Target t
-		public IEnumerable<Armament> ChooseArmamentsForTarget(Target t, bool forceAttack)
+		// RAPX: virtual so actors with non-overlapping weapon ranges can pick by distance (PxAttackTitan)
+		public virtual IEnumerable<Armament> ChooseArmamentsForTarget(Target t, bool forceAttack)
 		{
 			// If force-fire is not used, and the target requires force-firing or the target is
 			// terrain or invalid, no armaments can be used

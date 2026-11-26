@@ -194,9 +194,10 @@ taskbar like any other game. (It hands over to a second copy of itself in `engin
 OpenRA requires the executable to sit so it can find the mod assemblies next to it.) `launch-game.cmd`
 still works if you prefer a console window or want to pass arguments.
 
-On a laptop with switchable graphics, run `make.cmd gpu` once: Windows otherwise gives OpenGL to the
-integrated GPU, which costs a lot of frames. It is a per-user setting you can undo in
-Settings > Display > Graphics.
+On a laptop with switchable graphics, the game asks Windows for the high-performance GPU the first time it
+starts: Windows otherwise runs it on the integrated GPU, which costs a lot of frames. The game's
+Settings > Display shows which graphics card it is drawing on, and its Graphics Card option changes the choice
+(the same per-user setting as Windows Settings > System > Display > Graphics). `make.cmd gpu` sets it by hand.
 
 That's it: the game opens with the cinematic intro, then straight to the main menu.
 

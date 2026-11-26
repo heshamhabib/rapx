@@ -259,6 +259,55 @@ namespace OpenRA.Graphics
 			return dest;
 		}
 
+		/// <summary>
+		/// RAPX: converts 32 bit BGRA or RGBA texels to premultiplied BGRA in place, with exactly the result of
+		/// <see cref="ToPremultipliedBgra"/>. For pixel arrays the caller owns: saves allocating and filling a copy.
+		/// </summary>
+		public static bool ToPremultipliedBgraInPlace(byte[] data, SpriteFrameType type, int width, int height)
+		{
+			int ri, bi;
+			switch (type)
+			{
+				case SpriteFrameType.Bgra32: ri = 2; bi = 0; break;
+				case SpriteFrameType.Rgba32: ri = 0; bi = 2; break;
+				default: return false;
+			}
+
+			var count = width * height;
+			if (data.Length < count * 4)
+				return false;
+
+			for (int i = 0, si = 0; i < count; i++, si += 4)
+			{
+				var a = data[si + 3];
+				if (a == 0)
+				{
+					// The copying version leaves fully transparent texels zeroed
+					data[si] = data[si + 1] = data[si + 2] = 0;
+					continue;
+				}
+
+				var r = data[si + ri];
+				var g = data[si + 1];
+				var b = data[si + bi];
+
+				// Same rounding as PremultiplyAlpha
+				if (a != byte.MaxValue)
+				{
+					var f = a / 255f;
+					r = (byte)(r * f + 0.5f);
+					g = (byte)(g * f + 0.5f);
+					b = (byte)(b * f + 0.5f);
+				}
+
+				data[si] = b;
+				data[si + 1] = g;
+				data[si + 2] = r;
+			}
+
+			return true;
+		}
+
 		public static void FastCopyIntoSprite(Sprite dest, Png src)
 		{
 			var destData = dest.Sheet.GetData();

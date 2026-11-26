@@ -194,7 +194,7 @@ namespace OpenRA
 			Type = type;
 			OrderManager = orderManager;
 			using (new PerfTimer("PrepareMap"))
-				Map = modData.PrepareMap(mapUID);
+				Map = modData.PrepareMap(mapUID, type, orderManager.LobbyInfo);
 
 			if (string.IsNullOrEmpty(modData.Manifest.DefaultOrderGenerator))
 				throw new InvalidDataException("mod.yaml must define a DefaultOrderGenerator");

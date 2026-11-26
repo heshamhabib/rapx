@@ -23,6 +23,10 @@ namespace OpenRA.Graphics
 		ITexture texture;
 		byte[] data;
 
+		// RAPX: whether the texture holds pixels (a sheet released before anything was packed has an empty texture,
+		// which must not be read back when packing resumes)
+		bool textureHasData;
+
 		public readonly Size Size;
 		public readonly SheetType Type;
 
@@ -48,6 +52,7 @@ namespace OpenRA.Graphics
 			Type = type;
 			this.texture = texture;
 			Size = texture.Size;
+			textureHasData = true;
 		}
 
 		public Sheet(SheetType type, Stream stream)
@@ -80,6 +85,7 @@ namespace OpenRA.Graphics
 				UploadTime.Start();
 				texture.SetData(data, Size.Width, Size.Height);
 				UploadTime.Stop();
+				textureHasData = true;
 				dirty = false;
 				if (releaseBufferOnCommit)
 					data = null;
@@ -121,7 +127,7 @@ namespace OpenRA.Graphics
 		{
 			if (data != null)
 				return;
-			if (texture == null)
+			if (texture == null || !textureHasData)
 				data = new byte[4 * Size.Width * Size.Height];
 			else
 				data = texture.GetData();
@@ -167,7 +173,14 @@ namespace OpenRA.Graphics
 			// Only transfer if the destination has no data that would be lost by overwriting.
 			if (buffer != null && destination.data == null && destination.texture == null)
 			{
-				Array.Clear(buffer, 0, buffer.Length);
+				// RAPX: large true colour sheets are cleared in slices on several threads
+				const int Slice = 4 * 1024 * 1024;
+				if (buffer.Length >= 4 * Slice)
+					System.Threading.Tasks.Parallel.For(0, (buffer.Length + Slice - 1) / Slice,
+						i => Array.Clear(buffer, i * Slice, Math.Min(Slice, buffer.Length - i * Slice)));
+				else
+					Array.Clear(buffer, 0, buffer.Length);
+
 				destination.data = buffer;
 				return true;
 			}

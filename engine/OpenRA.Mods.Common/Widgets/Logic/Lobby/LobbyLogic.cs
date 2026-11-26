@@ -728,6 +728,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 					LobbyUtils.SetupEditableFactionWidget(template, slot, client, orderManager, factions);
 					LobbyUtils.SetupEditableTeamWidget(template, slot, client, orderManager, map);
 					LobbyUtils.SetupEditableHandicapWidget(template, slot, client, orderManager);
+					LobbyUtils.SetupEditableTitanWidget(template, client, orderManager, modData);
 					LobbyUtils.SetupEditableSpawnWidget(template, slot, client, orderManager, map);
 					LobbyUtils.SetupEditableReadyWidget(template, client, orderManager, map, MapIsPlayable);
 				}
@@ -745,6 +746,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 					{
 						LobbyUtils.SetupEditableTeamWidget(template, slot, client, orderManager, map);
 						LobbyUtils.SetupEditableHandicapWidget(template, slot, client, orderManager);
+						LobbyUtils.SetupEditableTitanWidget(template, client, orderManager, modData);
 						LobbyUtils.SetupEditableSpawnWidget(template, slot, client, orderManager, map);
 						LobbyUtils.SetupPlayerActionWidget(template, client, orderManager, worldRenderer,
 							lobby, () => panel = PanelType.Kick, () => panel = PanelType.Players);
@@ -754,6 +756,7 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 						LobbyUtils.SetupNameWidget(template, client, orderManager, worldRenderer, map);
 						LobbyUtils.SetupTeamWidget(template, client);
 						LobbyUtils.SetupHandicapWidget(template, client);
+						LobbyUtils.SetupTitanWidget(template, client, modData);
 						LobbyUtils.SetupSpawnWidget(template, client);
 					}
 

@@ -223,7 +223,7 @@ namespace OpenRA.Mods.RAPX.Traits
 			var sprite = seq.GetSprite(frame);
 			var offset = new WVec((int)(x * scale * WorldPerPixel), 0, (int)(up * WorldPerPixel));
 			return new SpriteRenderable(sprite, pos + offset, WVec.Zero, ZOffset + z - offset.Z, null,
-				scale * size / sprite.Size.Y, alpha, tint, TintModifiers.IgnoreWorldTint, true);
+				scale * size / sprite.FrameSize.Y, alpha, tint, TintModifiers.IgnoreWorldTint, true);
 		}
 	}
 }

@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
 Live progress page for the 3D soldier renders (build_soldier.sh), the ChatGPT image queue and (second tab)
-the Sketchfab model renders (artsrc/units/meshes/make_sketchfab.py); the "Ironward map" tab follows the ChatGPT
+the Sketchfab model renders (artsrc/units/meshes/make_sketchfab.py); the "Titans" tab follows Godzilla and Kong
+(artsrc/units/titans/make.sh -> render_titan.py); the "Ironward map" tab follows the ChatGPT
 repaints of the painted maps (Ironward, Monument City: artsrc/maps/<map>/repaint.py).
 
   python3 artsrc/units/soldiers/progress_server.py [port]      # then open http://localhost:8765
@@ -490,6 +491,70 @@ def system():
     return out
 
 
+# ---- Titans (artsrc/units/titans/make.sh -> artsrc/units/meshes/render_titan.py): frames per animation
+TITAN_RENDER = os.path.join(ROOT, "artsrc", "units", "titans", "render")
+TITAN_SHEETS = os.path.join(ROOT, "mods", "rapx", "bits", "hd", "units", "titans")
+TITAN_SCRIPT = os.path.join(ROOT, "artsrc", "units", "meshes", "render_titan.py")
+TITAN_NAMES = {"godz": "Godzilla", "kong": "King Kong"}
+
+
+def titan_table():
+    """{id: (name, [(animation, steps, facings)])} read from render_titan.py's TITANS table on every request, so every
+    animation it renders shows (die: one facing; facings default to its FACINGS)."""
+    import ast
+    tree = ast.parse(open(TITAN_SCRIPT).read())
+    consts, titans = {}, {}
+    for node in tree.body:
+        if isinstance(node, ast.Assign) and len(node.targets) == 1 and isinstance(node.targets[0], ast.Name):
+            try:
+                consts[node.targets[0].id] = ast.literal_eval(node.value)
+            except ValueError:
+                pass
+    default = consts.get("FACINGS", 16)
+    for tid, cfg in consts.get("TITANS", {}).items():
+        facings = cfg.get("facings", default)
+        titans[tid] = (TITAN_NAMES.get(tid, tid), [(a, n, 1 if a == "die" else facings) for a, n in cfg["steps"].items()])
+    return titans
+
+
+def titan_status():
+    try:
+        import subprocess
+        ps = subprocess.run(["ps", "-axo", "command"], capture_output=True, text=True, timeout=5).stdout
+    except Exception:
+        ps = ""
+    running = {(m.group(1), m.group(3)) for m in re.finditer(r"render_titan\.py -- (\w+) (\S+)((?: \w+)*)", ps)}
+    out = []
+    now = time.time()
+    for tid, (name, anims) in titan_table().items():
+        active = [r for r in running if r[0] == tid]
+        rows, times, files = [], [], []
+        for anim, steps, facings in anims:
+            folder = os.path.join(TITAN_RENDER, tid, anim)
+            frames = sorted(f for f in os.listdir(folder) if f.endswith(".png")) if os.path.isdir(folder) else []
+            mt = [os.path.getmtime(os.path.join(folder, f)) for f in frames]
+            times += mt
+            files += [(t, f"{tid}/{anim}/{f}") for t, f in zip(mt, frames)]
+            total = steps * facings
+            sheet = os.path.join(TITAN_SHEETS, f"{tid}-{anim}.png")
+            packed = bool(mt) and len(frames) >= total and os.path.exists(sheet) and os.path.getmtime(sheet) >= max(mt) - 1
+            rows.append({"seq": anim, "frames": steps, "facings": facings, "done": min(len(frames), total), "total": total,
+                         "packed": packed})
+        done, total = sum(r["done"] for r in rows), sum(r["total"] for r in rows)
+        files.sort()
+        recent = [f for t, f in files[-40:]]
+        times.sort()
+        window = [t for t in times if t > now - 600]
+        rate = (len(window) - 1) / (window[-1] - window[0]) if len(window) > 2 and window[-1] > window[0] else 0
+        live = bool(active) and bool(times) and now - times[-1] < 120
+        current = next((r["seq"] for r in rows if r["done"] < r["total"]), None)
+        out.append({"id": tid, "name": name, "rows": rows, "done": done, "total": total, "active": live,
+                    "current": current, "rate": rate, "eta": (total - done) / rate if rate else None,
+                    "latest": files[-1][1] if files else None, "latest_age": now - times[-1] if times else None,
+                    "recent": recent[-12:][::-1]})
+    return out
+
+
 # ---- Painted-map repaints (artsrc/maps/<map>/repaint.py): one tab per map
 IMG_LOG = os.path.join(ROOT, "assets", "generate_images.log")
 
@@ -685,7 +750,7 @@ def status():
     jobs = active_jobs()
     return {"time": time.strftime("%H:%M:%S"), "system": system(), "jobs": jobs, "overview": overview(jobs),
             "sketchfab": sketchfab_status(jobs), "loadouts": loadout_status(), "ironward": repaint_status("ironward"),
-            "monument": repaint_status("monument"), "dc": repaint_status("dc"), "egypt": repaint_status("egypt"),
+            "monument": repaint_status("monument"), "titans": titan_status(), "dc": repaint_status("dc"), "egypt": repaint_status("egypt"),
             "soldiers": [soldier_status(s) for s in soldiers], "images": image_queue(), "push": push_status()}
 
 
@@ -796,7 +861,7 @@ nav.tabs button .badge { margin-left:6px; font-size:12px; color:var(--muted); fo
 @media (max-width:520px) { #sys { left:16px; right:16px; width:auto; } main { padding-bottom:200px; } }
 </style></head><body>
 <header><h1>Render Progress</h1><span class="sub" id="clock">connecting…</span></header>
-<nav class="tabs" id="tabs"><button data-tab="soldiers">Soldiers &amp; robots</button><button data-tab="models">New 3D models<span class="badge" id="badge-models"></span></button><button data-tab="loadouts">Jet loadouts<span class="badge" id="badge-loadouts"></span></button><button data-tab="ironward">Ironward map<span class="badge" id="badge-ironward"></span></button><button data-tab="monument">Monument City<span class="badge" id="badge-monument"></span></button><button data-tab="dc">Washington D.C.<span class="badge" id="badge-dc"></span></button><button data-tab="egypt">Egypt<span class="badge" id="badge-egypt"></span></button></nav>
+<nav class="tabs" id="tabs"><button data-tab="soldiers">Soldiers &amp; robots</button><button data-tab="models">New 3D models<span class="badge" id="badge-models"></span></button><button data-tab="loadouts">Jet loadouts<span class="badge" id="badge-loadouts"></span></button><button data-tab="titans">Titans<span class="badge" id="badge-titans"></span></button><button data-tab="ironward">Ironward map<span class="badge" id="badge-ironward"></span></button><button data-tab="monument">Monument City<span class="badge" id="badge-monument"></span></button><button data-tab="dc">Washington D.C.<span class="badge" id="badge-dc"></span></button><button data-tab="egypt">Egypt<span class="badge" id="badge-egypt"></span></button></nav>
 <main id="main"><div class="card empty">Waiting for data…</div></main>
 <aside id="sys"><h3>Laptop <span class="state" id="sys-state">…</span></h3><div class="temp" id="sys-temp">– °C</div>
 <div class="row"><span>CPU hottest / avg</span><b id="sys-cpu">–</b></div>
@@ -825,6 +890,29 @@ function soldier(s) {
     '</b> left</span><span>last frame <b>' + fmt(s.latest_age) + '</b> ago</span></div>' +
     '<div class="bar' + (finished ? " ok" : "") + '"><i style="width:' + pct.toFixed(1) + '%"></i></div><table>' + rows + '</table></div>' +
     '<div><div class="preview">' + (s.latest ? '<img src="/img/' + encodeURI(s.latest) + '" alt="latest frame">' : '') + '</div>' +
+    '<div class="cap">latest: ' + esc(s.latest || "–") + '</div></div></div><div class="strip">' + strip + '</div></section>';
+}
+function titan(s) {
+  const pct = s.total ? 100 * s.done / s.total : 0;
+  const finished = s.done >= s.total;
+  const packed = s.rows.every(r => r.packed);
+  const pill = finished && packed ? '<span class="pill done">in game files</span>' : finished ? '<span class="pill">rendered – packing next</span>' :
+    s.active ? '<span class="pill live">rendering ' + esc(s.current || "") + '</span>' : '<span class="pill">waiting</span>';
+  const rows = s.rows.map(r => {
+    const p = r.total ? 100 * r.done / r.total : 0;
+    const ok = r.done >= r.total;
+    return '<tr class="' + (r.seq === s.current && s.active ? "cur" : "") + '"><td class="s">' + esc(r.seq) +
+      ' <span class="tag">' + r.frames + '×' + r.facings + '</span></td><td class="b"><div class="bar' + (ok ? " ok" : "") +
+      '"><i style="width:' + p.toFixed(1) + '%"></i></div></td><td class="n">' + r.done + ' / ' + r.total + '</td><td class="tag">' +
+      (r.packed ? "in game files" : ok ? "to pack" : "") + '</td></tr>';
+  }).join("");
+  const strip = s.recent.map(p => '<img src="/timg/' + encodeURI(p) + '" alt="">').join("");
+  return '<section class="card"><div class="top"><div><div class="title"><h2>' + esc(s.name) + '</h2>' + pill + '</div>' +
+    '<div class="big">' + pct.toFixed(1) + '%</div><div class="stats"><span><b>' + s.done + '</b> of ' + s.total + ' frames</span>' +
+    '<span><b>' + (s.rate ? (s.rate * 60).toFixed(0) : "–") + '</b> frames/min</span><span>about <b>' + (finished ? "0 s" : fmt(s.eta)) +
+    '</b> left</span><span>last frame <b>' + fmt(s.latest_age) + '</b> ago</span></div>' +
+    '<div class="bar' + (finished ? " ok" : "") + '"><i style="width:' + pct.toFixed(1) + '%"></i></div><table>' + rows + '</table></div>' +
+    '<div><div class="preview">' + (s.latest ? '<img src="/timg/' + encodeURI(s.latest) + '" alt="latest frame">' : '') + '</div>' +
     '<div class="cap">latest: ' + esc(s.latest || "–") + '</div></div></div><div class="strip">' + strip + '</div></section>';
 }
 function overview(o) {
@@ -988,12 +1076,15 @@ function draw(d) {
   document.getElementById("badge-models").textContent = m && m.total ? m.done + "/" + m.total : "";
   const L = d.loadouts;
   document.getElementById("badge-loadouts").textContent = L && L.total ? L.done + "/" + L.total : "";
+  const T = d.titans || [];
+  const td = T.reduce((a, t) => a + t.done, 0), tt = T.reduce((a, t) => a + t.total, 0);
+  document.getElementById("badge-titans").textContent = tt ? Math.round(100 * td / tt) + "%" : "";
   const W = d.ironward, MC = d.monument, DC = d.dc, EG = d.egypt;
   document.getElementById("badge-egypt").textContent = EG && EG.total ? EG.done + "/" + EG.total : "";
   document.getElementById("badge-dc").textContent = DC && DC.total ? DC.done + "/" + DC.total : "";
   document.getElementById("badge-ironward").textContent = W && W.total ? W.done + "/" + W.total : "";
   document.getElementById("badge-monument").textContent = MC && MC.total ? MC.done + "/" + MC.total : "";
-  document.getElementById("main").innerHTML = pushPanel(d.push) + jobsPanel(d.jobs) + (tab === "ironward" ? ironward(W) : tab === "monument" ? ironward(MC) : tab === "dc" ? ironward(DC) : tab === "egypt" ? ironward(EG) : tab === "loadouts" ? loadouts(L) : tab === "models" ? models(m) :
+  document.getElementById("main").innerHTML = pushPanel(d.push) + jobsPanel(d.jobs) + (tab === "ironward" ? ironward(W) : tab === "monument" ? ironward(MC) : tab === "dc" ? ironward(DC) : tab === "egypt" ? ironward(EG) : tab === "loadouts" ? loadouts(L) : tab === "titans" ? T.map(titan).join("") : tab === "models" ? models(m) :
     overview(d.overview) + (d.soldiers.length ? d.soldiers.map(soldier).join("") : '<div class="card empty">No renders yet.</div>') + images(d.images));
 }
 function level(v, warm, hot) { return v == null ? "ok" : v >= hot ? "hot" : v >= warm ? "warm" : "ok"; }
@@ -1056,6 +1147,12 @@ class Handler(BaseHTTPRequestHandler):
                 self.send(404, b"not found", "text/plain")
                 return
             self.send(200, open(thumb, "rb").read(), "image/jpeg")
+        elif path.startswith("/timg/"):
+            full = os.path.normpath(os.path.join(TITAN_RENDER, unquote(path[6:])))
+            if not full.startswith(TITAN_RENDER + os.sep) or not full.endswith(".png") or not os.path.exists(full):
+                self.send(404, b"not found", "text/plain")
+                return
+            self.send(200, open(full, "rb").read(), "image/png")
         elif path.startswith("/mimg/"):
             full = os.path.normpath(os.path.join(MESH_RENDER, unquote(path[6:])))
             if not full.startswith(MESH_RENDER + os.sep) or not full.endswith(".png") or not os.path.exists(full):

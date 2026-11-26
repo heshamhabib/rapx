@@ -62,6 +62,10 @@ namespace OpenRA.Mods.RAPX.Traits
 
 	public sealed class PxShroudRenderer : IRenderShroud, IWorldLoaded, INotifyActorDisposing
 	{
+		// Margins of the hidden and settled cell maps, explained where those maps are declared below
+		const int HiddenMargin = 6;
+		const int SettledMargin = 4;
+
 		readonly PxShroudRendererInfo info;
 		readonly World world;
 		readonly Map map;
@@ -87,12 +91,20 @@ namespace OpenRA.Mods.RAPX.Traits
 		// The margin covers the shroud's own reach (soft border, edge warp and screen-space derivatives: 3 cells) plus
 		// the pixels those passes read from their neighbours (ripple refraction, relief: up to 2 cells when zoomed out),
 		// so the finished picture is identical.
-		const int HiddenMargin = 6;
 		ITexture hiddenMap;
 		readonly byte[] hiddenData;
 		readonly bool[] seen, seenRows;
 		bool hiddenDirty = true;
 		long lastTime;
+
+		// PERF: cells whose whole neighbourhood is explored, visible and settled (no fade, no reveal scan) and inside the
+		// map. The shroud pass leaves those pixels exactly as they are, so it skips its work there and copies them through.
+		// The margin covers the pass's reach from a 2x2 pixel quad (edge warp, soft border and bilinear filtering: under 3
+		// cells), which is where the screen-space derivatives are taken, so the skip is decided per quad.
+		ITexture settledMap;
+		readonly byte[] settledData;
+		readonly bool[] settled, settledRows;
+		bool settledDirty = true;
 
 		Shroud shroud;
 		Func<PPos, Shroud.CellVisibility> cellVisibility;
@@ -114,6 +126,9 @@ namespace OpenRA.Mods.RAPX.Traits
 			hiddenData = new byte[4 * texWidth * texHeight];
 			seen = new bool[size.X * size.Y];
 			seenRows = new bool[size.X * size.Y];
+			settledData = new byte[4 * texWidth * texHeight];
+			settled = new bool[size.X * size.Y];
+			settledRows = new bool[size.X * size.Y];
 
 			world.RenderPlayerChanged += WorldOnRenderPlayerChanged;
 		}
@@ -135,6 +150,7 @@ namespace OpenRA.Mods.RAPX.Traits
 			CellMap = Game.Renderer.CreateTexture();
 			CellMap.ScaleFilter = TextureScaleFilter.Linear;
 			hiddenMap = Game.Renderer.CreateTexture();
+			settledMap = Game.Renderer.CreateTexture();
 
 			WorldOnRenderPlayerChanged(world.RenderPlayer);
 		}
@@ -177,6 +193,7 @@ namespace OpenRA.Mods.RAPX.Traits
 			activeCells.Clear();
 			dataDirty = true;
 			hiddenDirty = true;
+			settledDirty = true;
 		}
 
 		void UpdateShroudCell(PPos puv)
@@ -191,6 +208,7 @@ namespace OpenRA.Mods.RAPX.Traits
 				active[i] = true;
 				activeCells.Add(i);
 				hiddenDirty = true;
+				settledDirty = true;
 			}
 		}
 
@@ -224,6 +242,7 @@ namespace OpenRA.Mods.RAPX.Traits
 					activeCells[k] = activeCells[^1];
 					activeCells.RemoveAt(activeCells.Count - 1);
 					hiddenDirty = true;
+					settledDirty = true;
 				}
 			}
 
@@ -306,6 +325,9 @@ namespace OpenRA.Mods.RAPX.Traits
 			shader.SetVec("HiddenTileSize", 1, 1);
 		}
 
+		/// <summary>Counts hidden map updates, so passes that cache their result know when the hidden cells changed.</summary>
+		public int HiddenVersion { get; private set; }
+
 		void UpdateHiddenMap()
 		{
 			hiddenDirty = false;
@@ -324,6 +346,8 @@ namespace OpenRA.Mods.RAPX.Traits
 					seen[y * size.X + x] = explored[i] > 0 || active[i];
 				}
 			}
+
+			var changed = false;
 
 			// Dilate by the margin: horizontally, then vertically
 			for (var y = 0; y < size.Y; y++)
@@ -349,11 +373,69 @@ namespace OpenRA.Mods.RAPX.Traits
 
 					var o = 4 * (y * texWidth + x);
 					var value = any ? (byte)0 : (byte)255;
+					changed |= hiddenData[o] != value;
 					hiddenData[o] = hiddenData[o + 1] = hiddenData[o + 2] = hiddenData[o + 3] = value;
 				}
 			}
 
+			// Units moving through fog change which cells are active many times a second, but rarely the hidden cells:
+			// upload, and tell caching passes, only when these did change
+			if (!changed && HiddenVersion > 0)
+				return;
+
+			HiddenVersion++;
 			hiddenMap.SetData(hiddenData, texWidth, texHeight);
+		}
+
+		// RAPX_NO_SETTLED_SKIP=1 runs the shroud shader on every pixel, for before/after comparisons
+		static readonly bool DisableSettledSkip = !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("RAPX_NO_SETTLED_SKIP"));
+
+		void UpdateSettledMap()
+		{
+			settledDirty = false;
+			var size = map.MapSize;
+			var bounds = map.Bounds;
+
+			// Settled: inside the playable area (the cell map marks the rest as outside), fully explored and visible, no
+			// reveal scan running and not changing (an active cell may change state before the next upload)
+			for (var y = 0; y < size.Y; y++)
+			{
+				for (var x = 0; x < size.X; x++)
+				{
+					var i = y * size.X + x;
+					settled[i] = bounds.Contains(x, y) && !active[i] && explored[i] == 1 && visible[i] == 1 && reveal[i] == 0;
+				}
+			}
+
+			// Erode by the margin: a cell counts only if its whole neighbourhood is settled (outside the map = not settled)
+			for (var y = 0; y < size.Y; y++)
+			{
+				var row = y * size.X;
+				for (var x = 0; x < size.X; x++)
+				{
+					var all = x - SettledMargin >= 0 && x + SettledMargin < size.X;
+					for (var dx = x - SettledMargin; dx <= x + SettledMargin && all; dx++)
+						all = settled[row + dx];
+
+					settledRows[row + x] = all;
+				}
+			}
+
+			for (var y = 0; y < size.Y; y++)
+			{
+				for (var x = 0; x < size.X; x++)
+				{
+					var all = y - SettledMargin >= 0 && y + SettledMargin < size.Y;
+					for (var dy = y - SettledMargin; dy <= y + SettledMargin && all; dy++)
+						all = settledRows[dy * size.X + x];
+
+					var o = 4 * (y * texWidth + x);
+					var value = all ? (byte)255 : (byte)0;
+					settledData[o] = settledData[o + 1] = settledData[o + 2] = settledData[o + 3] = value;
+				}
+			}
+
+			settledMap.SetData(settledData, texWidth, texHeight);
 		}
 
 		void IRenderShroud.RenderShroud(WorldRenderer wr)
@@ -365,10 +447,13 @@ namespace OpenRA.Mods.RAPX.Traits
 			// The world pass is scissored to the map; the styled off-map area needs the whole view.
 			// PERF: scissor to the view (plus a tile of margin) rather than none at all: the world buffer is a power of
 			// two in size, so without a scissor this shader also ran on the unused part of it (~35% at 2940x1846).
+			// The part of the view under opaque HUD panels is skipped too (WorldRenderer.PostProcessScissor).
 			Game.Renderer.Flush();
 			Game.Renderer.DisableScissor();
-			var view = wr.Viewport.BottomRight - wr.Viewport.TopLeft;
-			Game.Renderer.EnableScissor(new Rectangle(0, 0, view.X + wr.TileSize.Width, view.Y + wr.TileSize.Height));
+			Game.Renderer.EnableScissor(wr.PostProcessScissor());
+
+			if (settledDirty)
+				UpdateSettledMap();
 
 			var scroll = wr.Viewport.TopLeft;
 			var ts = wr.TileSize;
@@ -376,6 +461,8 @@ namespace OpenRA.Mods.RAPX.Traits
 			shader.SetTexture("WorldTexture", Game.Renderer.WorldBufferSnapshot());
 			shader.SetTexture("CellMap", CellMap);
 			shader.SetVec("CellMapSize", texWidth, texHeight);
+			shader.SetTexture("SettledMap", settledMap);
+			shader.SetVec("SettledSkip", DisableSettledSkip ? 0f : 1f);
 			shader.SetVec("TileSize", ts.Width, ts.Height);
 			shader.SetVec("Scroll", scroll.X, scroll.Y);
 			shader.SetVec("Downscale", Game.Renderer.WorldDownscaleFactor);
@@ -437,6 +524,7 @@ namespace OpenRA.Mods.RAPX.Traits
 			buffer?.Dispose();
 			CellMap?.Dispose();
 			hiddenMap?.Dispose();
+			settledMap?.Dispose();
 		}
 	}
 }

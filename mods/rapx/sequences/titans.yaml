@@ -1,0 +1,113 @@
+# Titans (rules/titans.yaml): rendered by artsrc/units/titans/make.sh (render_titan.py poses the models' own skeletons).
+# 16 facings, rendered at half the vehicle density, so Scale 0.4667 like elph-walk. Frames are trimmed sheets
+# (pack_trimmed.py), so every frame keeps its own offset.
+
+godz:
+	idle:
+		Filename: ra|bits/hd/units/titans/godz-idle.png
+		Facings: 32
+		Length: 8
+		Tick: 200
+		UseClassicFacings: False
+		Scale: 0.4667
+	# 8 steps per stride; Speed 50 covers one stride in ~1.6 s. Godzilla has 32 facings (smooth turns), Kong 16
+	move:
+		Filename: ra|bits/hd/units/titans/godz-walk.png
+		Facings: 32
+		Length: 8
+		Tick: 200
+		UseClassicFacings: False
+		Scale: 0.4667
+	# Atomic breath: frames 0-3 the plates light up (1.2 s, the weapon's FireDelay 30), 4-7 the beam
+	shoot:
+		Filename: ra|bits/hd/units/titans/godz-shoot.png
+		Facings: 32
+		Length: 8
+		Tick: 300
+		UseClassicFacings: False
+		Scale: 0.4667
+	# Sunk to the shoulders: only the head and the dorsal plates above the water; loops while he is in the water
+	swim:
+		Filename: ra|bits/hd/units/titans/godz-swim.png
+		Facings: 32
+		Length: 8
+		Tick: 220
+		UseClassicFacings: False
+		Scale: 0.4667
+	# Wading into / out of the water (PxTransitionAnimation): one stride while he sinks to the shoulders / rises
+	dive:
+		Filename: ra|bits/hd/units/titans/godz-dive.png
+		Facings: 32
+		Length: 6
+		Tick: 130
+		UseClassicFacings: False
+		Scale: 0.4667
+	emerge:
+		Filename: ra|bits/hd/units/titans/godz-emerge.png
+		Facings: 32
+		Length: 6
+		Tick: 130
+		UseClassicFacings: False
+		Scale: 0.4667
+	die:
+		Filename: ra|bits/hd/units/titans/godz-die.png
+		Length: 12
+		Tick: 140
+		Scale: 0.4667
+	icon:
+		Filename: ra|bits/hd/units/titans/godz-icon.png
+	# Catalogue / tile cameo (artsrc/px-cameos/generate.py from assets/units/renders/godz.png)
+	px-icon:
+		Filename: ra|bits/hd/icons/godz-icon.png
+		Scale: 0.5
+
+kong:
+	idle:
+		Filename: ra|bits/hd/units/titans/kong-idle.png
+		Facings: 16
+		Length: 8
+		Tick: 220
+		UseClassicFacings: False
+		Scale: 0.4667
+	move:
+		Filename: ra|bits/hd/units/titans/kong-walk.png
+		Facings: 16
+		Length: 8
+		Tick: 130
+		UseClassicFacings: False
+		Scale: 0.4667
+	# Double-fist hammer blow
+	shoot:
+		Filename: ra|bits/hd/units/titans/kong-shoot.png
+		Facings: 16
+		Length: 6
+		Tick: 90
+		UseClassicFacings: False
+		Scale: 0.4667
+	# Boulder throw: the rock leaves the hand on frame 4 (KongBoulder FireDelay 8)
+	throw:
+		Filename: ra|bits/hd/units/titans/kong-throw.png
+		Facings: 16
+		Length: 6
+		Tick: 70
+		UseClassicFacings: False
+		Scale: 0.4667
+	# Anti-air leap (KongLeap): the swat lands on frame 3 (FireDelay 7); rendered on a taller canvas, same scale
+	jump:
+		Filename: ra|bits/hd/units/titans/kong-jump.png
+		Facings: 16
+		Length: 8
+		Tick: 90
+		UseClassicFacings: False
+		Scale: 0.4667
+	die:
+		Filename: ra|bits/hd/units/titans/kong-die.png
+		Length: 12
+		Tick: 140
+		Scale: 0.4667
+	icon:
+		Filename: ra|bits/hd/units/titans/kong-icon.png
+	# Catalogue / tile cameo (artsrc/px-cameos/generate.py from assets/units/renders/kong.png)
+	px-icon:
+		Filename: ra|bits/hd/icons/kong-icon.png
+		Scale: 0.5

@@ -86,6 +86,9 @@ namespace OpenRA.Mods.RAPX.Widgets.Logic
 			insets = () => (0, 0, widget.IsVisible() ? widget.Bounds.Width : 0, 0);
 			Viewport.ViewInsets = insets;
 
+			// The sidebar is opaque: full-screen passes skip the world under it
+			WorldRenderer.VisibleViewArea = PxHudOcclusion.VisibleViewArea;
+
 			// The camera may sit past the edge from before the clamp applied (start position, other HUD): pull it in
 			worldRenderer.Viewport.Center(worldRenderer.Viewport.CenterPosition);
 		}
@@ -93,7 +96,10 @@ namespace OpenRA.Mods.RAPX.Widgets.Logic
 		protected override void Dispose(bool disposing)
 		{
 			if (Viewport.ViewInsets == insets)
+			{
 				Viewport.ViewInsets = null;
+				WorldRenderer.VisibleViewArea = null;
+			}
 
 			base.Dispose(disposing);
 		}

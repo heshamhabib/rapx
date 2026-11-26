@@ -50,6 +50,10 @@ namespace OpenRA.Graphics
 		readonly IRenderer[] renderers;
 		readonly IRenderPostProcessPass[] postProcessPasses;
 
+		/// <summary>RAPX developer tool: render steps skipped for A/B frame-time measurements (PxPerfLog, RAPX_PERF_ABLATE).
+		/// Names: Terrain, Actors, Shroud, or a post-processing pass's type name. Empty in normal play.</summary>
+		public static readonly HashSet<string> DevSkip = new();
+
 		// Smooth motion: actors only move once per logic tick (25 times a second at normal speed), so between
 		// ticks their renderables are drawn at a position interpolated from the previous tick to the current one.
 		sealed class MotionSample
@@ -370,12 +374,14 @@ namespace OpenRA.Graphics
 			if (enableDepthBuffer)
 				Game.Renderer.Context.EnableDepthBuffer();
 
-			terrainRenderer?.RenderTerrain(this, Viewport);
+			if (DevSkip.Count == 0 || !DevSkip.Contains("Terrain"))
+				terrainRenderer?.RenderTerrain(this, Viewport);
 
 			Game.Renderer.Flush();
 
-			for (var i = 0; i < preparedRenderables.Count; i++)
-				preparedRenderables[i].Render(this);
+			if (DevSkip.Count == 0 || !DevSkip.Contains("Actors"))
+				for (var i = 0; i < preparedRenderables.Count; i++)
+					preparedRenderables[i].Render(this);
 
 			if (enableDepthBuffer)
 				Game.Renderer.ClearDepthBuffer();
@@ -393,7 +399,8 @@ namespace OpenRA.Graphics
 
 			ApplyPostProcessing(PostProcessPassType.AfterWorld);
 
-			World.ApplyToActorsWithTrait<IRenderShroud>((actor, trait) => trait.RenderShroud(this));
+			if (DevSkip.Count == 0 || !DevSkip.Contains("Shroud"))
+				World.ApplyToActorsWithTrait<IRenderShroud>((actor, trait) => trait.RenderShroud(this));
 
 			if (enableDepthBuffer)
 				Game.Renderer.Context.DisableDepthBuffer();
@@ -411,21 +418,43 @@ namespace OpenRA.Graphics
 			Game.Renderer.Flush();
 		}
 
-		public void ApplyPostProcessing(PostProcessPassType type)
+		/// <summary>
+		/// RAPX: the part of the view that can be seen, in the post-processing scissor's space (world pixels from the view's
+		/// top-left), or null when all of it can. Mod chrome logic sets this when opaque HUD panels cover part of the view;
+		/// full-screen passes then skip the pixels under them. It must leave enough margin around the visible part for
+		/// passes that read their neighbours' pixels.
+		/// </summary>
+		public static Func<WorldRenderer, Rectangle?> VisibleViewArea;
+
+		/// <summary>
+		/// RAPX: the scissor rectangle for full-screen passes: the view plus a tile of margin, less what lies under opaque
+		/// HUD panels (<see cref="VisibleViewArea"/>; not while recording, which captures the world without the HUD).
+		/// </summary>
+		public Rectangle PostProcessScissor()
 		{
 			// PERF: full-screen passes cover the whole world buffer, which is rounded up to a power of two and is often
 			// much larger than the view (4096x2048 for a 2940x1846 window). Scissor them to the view (plus a tile of
 			// margin) so they skip the part that is never shown. Inside the map scissor this changes nothing.
+			var view = Viewport.BottomRight - Viewport.TopLeft;
+			var scissor = new Rectangle(0, 0, view.X + TileSize.Width, view.Y + TileSize.Height);
+			if (VisibleViewArea == null || Recorder.Active)
+				return scissor;
+
+			var visible = VisibleViewArea(this);
+			return visible.HasValue ? Rectangle.Intersect(scissor, visible.Value) : scissor;
+		}
+
+		public void ApplyPostProcessing(PostProcessPassType type)
+		{
 			var scissored = false;
 			foreach (var pass in postProcessPasses)
 			{
-				if (pass.Type != type || !pass.Enabled)
+				if (pass.Type != type || !pass.Enabled || (DevSkip.Count > 0 && DevSkip.Contains(pass.GetType().Name)))
 					continue;
 
 				if (!scissored)
 				{
-					var view = Viewport.BottomRight - Viewport.TopLeft;
-					Game.Renderer.EnableScissor(new Rectangle(0, 0, view.X + TileSize.Width, view.Y + TileSize.Height));
+					Game.Renderer.EnableScissor(PostProcessScissor());
 					scissored = true;
 				}
 

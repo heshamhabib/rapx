@@ -397,7 +397,7 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 				// The ruin shows through as the building sinks, sized to the footprint
 				var sprite = ruin.GetSprite(ruinFrame);
 				var alpha = Math.Clamp(time / (info.Duration * 0.8f), 0, 1) * fadeOut;
-				var scale = (radius.X * 2.7f + 24) / sprite.Size.X;
+				var scale = (radius.X * 2.7f + 24) / sprite.FrameSize.X;
 				if (alpha > 0)
 					yield return new SpriteRenderable(sprite, pos, WVec.Zero, ScorchZ, null, scale, alpha,
 						new float3(1, 1, 1), TintModifiers.None, false);
@@ -437,7 +437,7 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 			// Dust rolling out once as the building goes down, sized to the footprint, played to its end
 			if (dustVideo != null && time <= PxVideoEffect.Duration(dustVideo) + 1)
 			{
-				var scale = (radius.X * 2.4f + 40) / dustVideo.GetSprite(0).Size.X;
+				var scale = (radius.X * 2.4f + 40) / dustVideo.GetSprite(0).FrameSize.X;
 				foreach (var r in PxVideoEffect.Draw(dustVideo, time * 40 / dustVideo.Tick, pos, 512, scale, 1f, white))
 					yield return r;
 			}

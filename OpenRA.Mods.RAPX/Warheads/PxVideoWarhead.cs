@@ -72,7 +72,7 @@ namespace OpenRA.Mods.RAPX.Warheads
 				pos -= new WVec(0, 0, world.Map.DistanceAboveTerrain(pos).Length);
 
 			var scale = clip.Scale * Scale;
-			world.AddFrameEndTask(w => w.Add(new PxVideoEffect(w, pos, clip, scale, ZOffset)));
+			world.AddFrameEndTask(w => w.Add(new PxVideoEffect(w, pos, clip, scale, ZOffset, blast: true)));
 		}
 	}
 }

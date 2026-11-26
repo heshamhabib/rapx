@@ -23,6 +23,17 @@ namespace OpenRA
 		Embedded
 	}
 
+	/// <summary>
+	/// RAPX: the graphics card the game draws with, as its driver names it (GL_RENDERER; through ANGLE it reads
+	/// "ANGLE (vendor, card Direct3D11 ..., D3D11-driver version)") and the driver's vendor (GL_VENDOR).
+	/// Set once the OpenGL context exists, null before; shown in Settings > Display and written to the logs.
+	/// </summary>
+	public static class GraphicsCard
+	{
+		public static string Renderer { get; set; }
+		public static string Vendor { get; set; }
+	}
+
 	public interface IPlatform
 	{
 		IPlatformWindow CreateWindow(

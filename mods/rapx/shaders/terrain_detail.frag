@@ -62,6 +62,11 @@ uniform sampler2D HiddenMap;
 uniform vec2 HiddenMapSize;  // map size in cells (0: no shroud)
 uniform vec2 HiddenTileSize; // world pixels per cell
 
+// PERF: this pass's last result (a copy of the world buffer), drawn as is while nothing it depends on has changed
+// (TerrainDetailTextures decides)
+uniform sampler2D CacheTexture;
+uniform float UseCache;
+
 bool Hidden(vec2 worldPos)
 {
 	if (HiddenMapSize.x < 1.0)
@@ -167,6 +172,12 @@ vec4 ClassifyByReference(vec3 c)
 
 void main()
 {
+	if (UseCache > 0.5)
+	{
+		fragColor = vec4(texelFetch(CacheTexture, ivec2(gl_FragCoord.xy), 0).rgb, 1.0);
+		return;
+	}
+
 	vec2 world = Scroll + gl_FragCoord.xy * Downscale;
 	vec3 original = World(vec2(0.0));
 	if (Hidden(world))

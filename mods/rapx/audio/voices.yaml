@@ -158,3 +158,24 @@ ShokVoice:
 		Die: deaths/dedman1,deaths/dedman2,deaths/dedman3,deaths/dedman4,deaths/dedman5,deaths/dedman7,deaths/dedman8
 		Burned: deaths/dedman10
 		Zapped: deaths/dedman6
+
+# Titans (rules/titans.yaml): roars made from the mod's CC0 animal calls (artsrc/audio/make_titan_sounds.py)
+GodzillaVoice:
+	DefaultVariant: .ogg
+	DefaultPrefix: ra|audio/titans/
+	Voices:
+		Select: godz-roar1,godz-roar2,godz-roar3
+		Move: godz-roar2,godz-roar3
+		Attack: godz-roar1,godz-roar2
+		Action: godz-roar3
+		Die: godz-die
+
+KongVoice:
+	DefaultVariant: .ogg
+	DefaultPrefix: ra|audio/titans/
+	Voices:
+		Select: kong-roar1,kong-roar2,kong-chest
+		Move: kong-chest,kong-roar2
+		Attack: kong-roar1,kong-chest
+		Action: kong-roar2
+		Die: kong-die

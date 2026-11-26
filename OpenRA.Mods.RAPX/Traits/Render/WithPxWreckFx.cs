@@ -303,7 +303,7 @@ namespace OpenRA.Mods.RAPX.Traits.Render
 				var frame = (int)(now / 42 + phases[i]) % fire.Length;
 				var sprite = fire.GetSprite(frame);
 				var scale = fire.Scale * info.Size * (0.3f + 0.4f * k) * (i == 0 ? 1f : 0.75f) * (0.96f + 0.04f * flicker);
-				var lift = sprite.Size.Y * scale * 0.4f;
+				var lift = sprite.FrameSize.Y * scale * 0.4f;
 				var offset = PxParticles.ToWorld(spot.X, spot.Y - lift);
 				yield return new SpriteRenderable(sprite, origin + offset, WVec.Zero, ZBias - offset.Y, null, scale,
 					1f, new float3(1, 1, 1), TintModifiers.None, false, WAngle.Zero);

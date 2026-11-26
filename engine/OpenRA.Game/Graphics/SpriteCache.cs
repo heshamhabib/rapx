@@ -46,11 +46,20 @@ namespace OpenRA.Graphics
 
 		// RAPX: load profiling - texels packed per art folder and time spent copying frames into sheets
 		readonly Dictionary<string, long> texelsByFolder = new();
+
+		// RAPX: RAPX_SPRITE_REPORT=1 writes Logs/sprite-report.tsv after each load: one row per decoded file with its
+		// frames, decoded and packed texels, crop and downscale, to see what fills the sprite sheets
+		static readonly bool WriteReport = Environment.GetEnvironmentVariable("RAPX_SPRITE_REPORT") == "1";
+		readonly Dictionary<string, long> packedTexelsByFile = new();
+		readonly ConcurrentDictionary<string, (int Frames, long Texels)> decodedByFile = new();
 		readonly System.Diagnostics.Stopwatch copyTime = new();
 		readonly System.Diagnostics.Stopwatch readTime = new();
 		long workerTicks, totalBytesRead, parseTicks, downscaleTicks, cropTicks, premultiplyTicks, decodedTexels;
 
 		readonly Dictionary<int, Sprite[]> resolvedSprites = new();
+
+		// RAPX: which file each reservation asked for (Prefetcher)
+		readonly Dictionary<int, string> fileByToken = new();
 
 		// RAPX: files whose frames the decode workers convert to premultiplied BGRA (every use wants them
 		// premultiplied while packing and none adjusts the frames), so packing them is a plain copy
@@ -58,7 +67,9 @@ namespace OpenRA.Graphics
 
 		readonly Dictionary<int, (string Filename, MiniYamlNode.SourceLocation Location)> missingFiles = new();
 
-		int nextReservationToken = 1;
+		/// <summary>RAPX: fully transparent texels kept around each cropped frame (set from the sequence format metadata), so
+		/// linear filtering blends its edge pixels into transparency exactly as on the uncropped frame.</summary>
+		public static int CropMargin;
 
 		public SpriteCache(
 			IReadOnlyFileSystem fileSystem, ISpriteLoader[] loaders, int bgraSheetSize, int indexedSheetSize, int bgraSheetMargin = 1, int indexedSheetMargin = 1,
@@ -110,9 +121,10 @@ namespace OpenRA.Graphics
 					downscale.Filenames.Add(filename);
 			}
 
-			var token = nextReservationToken++;
+			var token = NextReservationToken++;
 			spriteReservations[token] = (frames?.ToArray(), location, adjustFrame, premultiplied);
 			reservationsByFilename.GetOrAdd(filename, _ => new List<int>()).Add(token);
+			fileByToken[token] = filename;
 			return token;
 		}
 
@@ -186,14 +198,38 @@ namespace OpenRA.Graphics
 			return factors;
 		}
 
+		// RAPX: per-file shrink factors, settled by the first load (every sequence has reserved its files by then)
+		Dictionary<string, float> downscales;
+
+		/// <summary>RAPX: the token the next reservation will get. Tokens are handed out in order, so the range between two
+		/// readings identifies everything reserved in between (one image's sequences, see SequenceSet).</summary>
+		public int NextReservationToken { get; private set; } = 1;
+
 		public void LoadReservations(ModData modData)
 		{
-			var downscales = ResolveDownscaleFactors();
+			LoadReservations(modData, null);
+		}
+
+		/// <summary>
+		/// RAPX: loads the files of the given reservation tokens only (null: everything still reserved). The other
+		/// reservations stay for a later call, so images can load when they are first used (SequenceSet.LoadSprites).
+		/// </summary>
+		public void LoadReservations(ModData modData, ISet<int> only, bool release = true)
+		{
+			downscales ??= ResolveDownscaleFactors();
+
+			var selected = new List<(string Filename, List<int> Tokens)>();
+			foreach (var (filename, tokens) in reservationsByFilename)
+			{
+				var picked = only == null ? tokens : tokens.Where(only.Contains).ToList();
+				if (picked.Count > 0)
+					selected.Add((filename, picked));
+			}
 
 			// RAPX: files whose sprites are all in the shared store (loaded by an earlier map) are resolved
 			// without decoding them again; everything else is decoded on worker threads below.
 			var toDecode = new List<(string Filename, SpriteCropMode Crop, float Downscale, List<int> Tokens)>();
-			foreach (var (filename, tokens) in reservationsByFilename)
+			foreach (var (filename, tokens) in selected)
 				if (!TryResolveShared(filename, tokens, downscales[filename]))
 				{
 					toDecode.Add((filename, CropMode(filename), downscales[filename], tokens));
@@ -242,19 +278,86 @@ namespace OpenRA.Graphics
 				$"GCs gen0/1/2 {GC.CollectionCount(0)}/{GC.CollectionCount(1)}/{GC.CollectionCount(2)}); packed megatexels by folder: " +
 				string.Join(", ", texelsByFolder.OrderByDescending(kv => kv.Value).Take(12).Select(kv => $"{kv.Key} {kv.Value / 1000000}")));
 
-			spriteReservations.Clear();
-			spriteReservations.TrimExcess();
-			reservationsByFilename.Clear();
-			reservationsByFilename.TrimExcess();
-			cropByFilename.Clear();
-			downscaleByFilename.Clear();
-			downscaleRequests.Clear();
+			if (WriteReport && toDecode.Count > 0)
+				WriteSpriteReport(toDecode);
+
 			premultiplyInWorker.Clear();
+			if (only == null)
+			{
+				spriteReservations.Clear();
+				spriteReservations.TrimExcess();
+				reservationsByFilename.Clear();
+				reservationsByFilename.TrimExcess();
+				cropByFilename.Clear();
+				downscaleByFilename.Clear();
+				downscaleRequests.Clear();
+			}
+			else
+			{
+				// Forget what was loaded; everything else stays reserved
+				foreach (var (filename, tokens) in selected)
+				{
+					foreach (var t in tokens)
+						spriteReservations.Remove(t);
+
+					var left = reservationsByFilename[filename];
+					var loaded = tokens.ToHashSet();
+					left.RemoveAll(loaded.Contains);
+					if (left.Count == 0)
+						reservationsByFilename.Remove(filename);
+				}
+			}
+
+			// Without release the current sheets keep their buffers, marked dirty: they reach the GPU when next drawn, so a
+			// run of small loads (sequences loaded on first use) costs one upload instead of one per load
+			if (!release)
+				return;
 
 			foreach (var sb in SheetBuilders.Values)
 				sb.Current.ReleaseBuffer();
 
 			shared?.ReleaseBuffers();
+		}
+
+		/// <summary>RAPX: every file still reserved, with where a sequence first asked for it, e.g. to check that deferred
+		/// images' files exist (a missing file fails the map load, as when everything loaded up front).</summary>
+		public IEnumerable<(string Filename, MiniYamlNode.SourceLocation Location)> ReservedFiles()
+		{
+			foreach (var (filename, tokens) in reservationsByFilename)
+				foreach (var t in tokens)
+					if (spriteReservations.TryGetValue(t, out var rs))
+					{
+						yield return (filename, rs.Location);
+						break;
+					}
+		}
+
+		/// <summary>RAPX: whether a reserved file exists in this cache's file system.</summary>
+		public bool FileExists(string filename)
+		{
+			return fileSystem.Exists(filename);
+		}
+
+		void WriteSpriteReport(List<(string Filename, SpriteCropMode Crop, float Downscale, List<int> Tokens)> files)
+		{
+			try
+			{
+				var path = Path.Combine(Platform.SupportDir, "Logs", "sprite-report.tsv");
+				using var writer = new StreamWriter(path, false);
+				writer.WriteLine("file\tframes\tdecoded\tpacked\tcrop\tdownscale\tsequences\tsource");
+				foreach (var (filename, crop, downscale, tokens) in files)
+				{
+					var (frames, decoded) = decodedByFile.GetValueOrDefault(filename);
+					var source = tokens.Select(t => spriteReservations.TryGetValue(t, out var rs) ? rs.Location.ToString() : null)
+						.FirstOrDefault(l => l != null);
+					var packed = packedTexelsByFile.GetValueOrDefault(filename);
+					writer.WriteLine($"{filename}\t{frames}\t{decoded}\t{packed}\t{crop}\t{downscale:0.###}\t{tokens.Count}\t{source}");
+				}
+			}
+			catch (Exception e)
+			{
+				Log.Write("perf", $"SpriteCache: could not write the sprite report: {e.Message}");
+			}
 		}
 
 		void PackBatch(ModData modData, List<(string Filename, SpriteCropMode Crop, float Downscale, List<int> Tokens)> files, int first,
@@ -326,6 +429,9 @@ namespace OpenRA.Graphics
 					{
 						var folder = string.Join('/', filename.Split('/').Take(3));
 						texelsByFolder[folder] = texelsByFolder.GetValueOrDefault(folder) + (long)frame.Size.Width * frame.Size.Height;
+						if (WriteReport)
+							packedTexelsByFile[filename] = packedTexelsByFile.GetValueOrDefault(filename) + (long)frame.Size.Width * frame.Size.Height;
+
 						var sheetType = SheetBuilder.FrameTypeToSheetType(frame.Type);
 						if (!share)
 							return AddFrame(SheetBuilders[sheetType], frame, premultiplied);
@@ -339,13 +445,23 @@ namespace OpenRA.Graphics
 				modData.LoadScreen?.Display();
 			}
 
+			copyTime.Start();
+			foreach (var sb in SheetBuilders.Values)
+				sb.FlushCopies();
+
+			if (shared != null)
+				foreach (var sb in shared.SheetBuilders.Values)
+					sb.FlushCopies();
+
+			copyTime.Stop();
 			Array.Clear(decoded);
 		}
 
 		Sprite AddFrame(SheetBuilder builder, ISpriteFrame frame, bool premultiplied)
 		{
+			// The pixels are copied in parallel when the sheet fills up or the batch ends (FlushCopies)
 			copyTime.Start();
-			var sprite = builder.Add(frame, premultiplied || frame is PremultipliedFrame || frame is CroppedFrame { Premultiplied: true });
+			var sprite = builder.AddDeferred(frame, premultiplied || frame is PremultipliedFrame || frame is CroppedFrame { Premultiplied: true });
 			copyTime.Stop();
 			if (frame is CroppedFrame c)
 				return new PaddedSprite(sprite, new float3(c.PaddedOffset, 0), new float2(c.PaddedSize.Width, c.PaddedSize.Height), c.CropOrigin);
@@ -422,7 +538,7 @@ namespace OpenRA.Graphics
 					var started = System.Diagnostics.Stopwatch.GetTimestamp();
 					try
 					{
-						var frames = Decode(files[first + index], data, started);
+						var frames = Decode(files[first + index], data, started, premultiplyInWorker.Contains(files[first + index].Filename));
 						lock (results)
 							results[index] = frames;
 					}
@@ -478,7 +594,7 @@ namespace OpenRA.Graphics
 			return (results.ToArray(), next);
 		}
 
-		ISpriteFrame[] Decode((string Filename, SpriteCropMode Crop, float Downscale, List<int> Tokens) file, byte[] data, long started)
+		ISpriteFrame[] Decode((string Filename, SpriteCropMode Crop, float Downscale, List<int> Tokens) file, byte[] data, long started, bool premultiply)
 		{
 			var (filename, crop, downscale, _) = file;
 			using var stream = new MemoryStream(data, false);
@@ -488,7 +604,10 @@ namespace OpenRA.Graphics
 
 			var t1 = System.Diagnostics.Stopwatch.GetTimestamp();
 			Interlocked.Add(ref parseTicks, t1 - started);
-			Interlocked.Add(ref decodedTexels, frames.Sum(fr => (long)fr.Size.Width * fr.Size.Height));
+			var texels = frames.Sum(fr => (long)fr.Size.Width * fr.Size.Height);
+			Interlocked.Add(ref decodedTexels, texels);
+			if (WriteReport)
+				decodedByFile[filename] = (frames.Length, texels);
 
 			// Shrink before cropping, so the crop sees the pixels that will be drawn
 			if (downscale > 1f)
@@ -516,12 +635,243 @@ namespace OpenRA.Graphics
 			var t3 = System.Diagnostics.Stopwatch.GetTimestamp();
 			Interlocked.Add(ref cropTicks, t3 - t2);
 
-			if (premultiplyInWorker.Contains(filename))
+			if (premultiply)
 				for (var f = 0; f < frames.Length; f++)
 					frames[f] = PremultipliedFrame.Convert(frames[f]);
 
 			Interlocked.Add(ref premultiplyTicks, System.Diagnostics.Stopwatch.GetTimestamp() - t3);
 			return frames;
+		}
+
+		/// <summary>RAPX: starts loading reserved files into the shared store in the background (see <see cref="Prefetcher"/>).</summary>
+		public Prefetcher StartPrefetch(int threads)
+		{
+			downscales ??= ResolveDownscaleFactors();
+			return new Prefetcher(this, threads);
+		}
+
+		/// <summary>
+		/// RAPX: loads reserved files into the shared sprite store in the background, so maps loaded later find them ready:
+		/// worker threads read and decode, and the main thread packs a little at a time in <see cref="Step"/>. Only files
+		/// that can be shared, need no per-sequence frame adjustment and come from folders (safe to read from any thread)
+		/// are taken. Nothing is resolved for this cache's own sequences.
+		/// </summary>
+		public sealed class Prefetcher
+		{
+			// Decoded frames waiting to be packed are capped, so the workers never run far ahead of the packing
+			const long MaxPendingBytes = 384L * 1024 * 1024;
+
+			sealed class Job
+			{
+				public string Filename;
+				public IReadOnlyPackage Package;
+				public string Path;
+				public SpriteCropMode Crop;
+				public float Downscale;
+				public int[] Frames;
+				public MiniYamlNode.SourceLocation Location;
+				public int FrameCount;
+				public int Left;
+				public long Bytes;
+			}
+
+			readonly SpriteCache cache;
+			readonly BlockingCollection<Job> jobs = new();
+			readonly ConcurrentQueue<(Job Job, ISpriteFrame[] Frames)> ready = new();
+			readonly HashSet<string> queued = new();
+			readonly List<(Job Job, int Index, ISpriteFrame Frame)> packing = new();
+			readonly Thread[] workers;
+			long pendingBytes;
+			int inFlight;
+			volatile bool stopping;
+
+			/// <summary>Files packed so far.</summary>
+			public int Packed { get; private set; }
+
+			/// <summary>Files queued so far.</summary>
+			public int Queued => queued.Count;
+
+			/// <summary>Work left: files waiting to be read, decoded or packed.</summary>
+			public bool Busy => !stopping && (jobs.Count > 0 || Volatile.Read(ref inFlight) > 0 || !ready.IsEmpty || packing.Count > 0);
+
+			internal Prefetcher(SpriteCache cache, int threads)
+			{
+				this.cache = cache;
+				workers = Enumerable.Range(0, Math.Max(1, threads)).Select(i => new Thread(Work)
+				{
+					IsBackground = true,
+					Priority = ThreadPriority.BelowNormal,
+					Name = "SpritePrefetch" + i
+				}).ToArray();
+
+				foreach (var w in workers)
+					w.Start();
+			}
+
+			/// <summary>Queues the files of these reservations that are not in the shared store yet.</summary>
+			public void Queue(ModData modData, IEnumerable<int> tokens)
+			{
+				if (stopping || cache.shared == null)
+					return;
+
+				foreach (var token in tokens)
+				{
+					if (!cache.fileByToken.TryGetValue(token, out var filename) || queued.Contains(filename) ||
+						!cache.reservationsByFilename.TryGetValue(filename, out var fileTokens) || !cache.CanShare(filename))
+						continue;
+
+					// Every sequence still waiting for this file must take the plain shared frames
+					var reservations = fileTokens.Where(cache.spriteReservations.ContainsKey).Select(t => cache.spriteReservations[t]).ToList();
+					if (reservations.Count == 0 || reservations.Any(rs => rs.AdjustFrame != null || rs.Premultiplied))
+						continue;
+
+					if (!modData.ModFiles.TryGetPackageContaining(filename, out var package, out var path) || package is not Folder)
+						continue;
+
+					var crop = cache.CropMode(filename);
+					var downscale = cache.downscales.GetValueOrDefault(filename, 1f);
+					var frames = reservations.Any(rs => rs.Frames == null) ? null :
+						reservations.SelectMany(rs => rs.Frames).Distinct().OrderBy(f => f).ToArray();
+
+					if (cache.shared.TryGetFile(filename, false, crop, downscale, out var have) &&
+						(frames ?? Enumerable.Range(0, have.Length)).All(f => f < have.Length && have[f] != null))
+						continue;
+
+					queued.Add(filename);
+					jobs.Add(new Job
+					{
+						Filename = filename,
+						Package = package,
+						Path = path,
+						Crop = crop,
+						Downscale = downscale,
+						Frames = frames,
+						Location = reservations[0].Location
+					});
+				}
+			}
+
+			void Work()
+			{
+				foreach (var job in jobs.GetConsumingEnumerable())
+				{
+					while (!stopping && Interlocked.Read(ref pendingBytes) > MaxPendingBytes)
+						Thread.Sleep(5);
+
+					if (stopping)
+						continue;
+
+					Interlocked.Increment(ref inFlight);
+					try
+					{
+						ISpriteFrame[] frames = null;
+						using (var stream = job.Package.GetStream(job.Path))
+						{
+							if (stream != null)
+							{
+								var data = stream.ReadAllBytes();
+								frames = cache.Decode((job.Filename, job.Crop, job.Downscale, null), data,
+									System.Diagnostics.Stopwatch.GetTimestamp(), true);
+							}
+						}
+
+						job.Bytes = frames?.Sum(f => (long)(f.Data?.Length ?? 0)) ?? 0;
+						Interlocked.Add(ref pendingBytes, job.Bytes);
+						ready.Enqueue((job, frames));
+					}
+					catch (Exception e)
+					{
+						// The file loads, and reports its problem, the normal way if a map ever needs it
+						Log.Write("perf", $"SpritePrefetch: {job.Filename} skipped: {e.Message}");
+					}
+					finally
+					{
+						Interlocked.Decrement(ref inFlight);
+					}
+				}
+			}
+
+			// Everything decoded so far joins the batch, shortest frames first like PackBatch, so sheet rows pack tightly
+			bool Refill()
+			{
+				var added = false;
+				while (ready.TryDequeue(out var r))
+				{
+					var (job, frames) = r;
+					if (frames == null)
+						continue;
+
+					var indices = job.Frames ?? Enumerable.Range(0, frames.Length).ToArray();
+					if (indices.Any(i => i >= frames.Length))
+						throw new InvalidOperationException($"{job.Location}: {job.Filename} does not contain frames: " +
+							string.Join(',', indices.Where(i => i >= frames.Length)));
+
+					job.FrameCount = frames.Length;
+					job.Left = indices.Length;
+					foreach (var i in indices)
+						packing.Add((job, i, frames[i]));
+
+					added = true;
+				}
+
+				// Sorted tallest first and taken from the end
+				if (added)
+					packing.Sort((a, b) => b.Frame.Size.Height.CompareTo(a.Frame.Size.Height));
+
+				return packing.Count > 0;
+			}
+
+			/// <summary>Packs decoded frames for up to <paramref name="budgetMs"/> milliseconds (main thread). True while work remains.</summary>
+			public bool Step(double budgetMs)
+			{
+				var clock = System.Diagnostics.Stopwatch.StartNew();
+				while (clock.Elapsed.TotalMilliseconds < budgetMs && (packing.Count > 0 || Refill()))
+					PackOne();
+
+				Flush();
+				return Busy;
+			}
+
+			void PackOne()
+			{
+				var (job, index, frame) = packing[^1];
+				packing.RemoveAt(packing.Count - 1);
+
+				var sharedFrames = cache.shared.GetOrAddFile(job.Filename, false, job.Crop, job.Downscale, job.FrameCount);
+				sharedFrames[index] ??= cache.AddFrame(cache.shared.SheetBuilders[SheetBuilder.FrameTypeToSheetType(frame.Type)], frame, false);
+
+				if (--job.Left == 0)
+				{
+					Packed++;
+					Interlocked.Add(ref pendingBytes, -job.Bytes);
+				}
+			}
+
+			void Flush()
+			{
+				foreach (var sb in cache.shared.SheetBuilders.Values)
+					sb.FlushCopies();
+			}
+
+			/// <summary>Stops the workers, packs what they already decoded and hands the sheets to the GPU.</summary>
+			public void Stop(ModData modData)
+			{
+				if (stopping)
+					return;
+
+				stopping = true;
+				jobs.CompleteAdding();
+				foreach (var w in workers)
+					while (!w.Join(20))
+						modData?.LoadScreen?.Display();
+
+				while (packing.Count > 0 || Refill())
+					PackOne();
+
+				Flush();
+				cache.shared.ReleaseBuffers();
+				jobs.Dispose();
+			}
 		}
 
 		public Sprite[] ResolveSprites(int token)
@@ -728,6 +1078,20 @@ namespace OpenRA.Graphics
 			return fixedWeights;
 		}
 
+		// Output texels [first, last] whose filter footprint touches source texels [lo, hi] (footprints are ordered)
+		static (int First, int Last) Window(int[] starts, int[][] weights, int lo, int hi)
+		{
+			var first = 0;
+			while (first < starts.Length && starts[first] + weights[first].Length - 1 < lo)
+				first++;
+
+			var last = starts.Length - 1;
+			while (last >= first && starts[last] > hi)
+				last--;
+
+			return (first, last);
+		}
+
 		static byte[] Resample(byte[] source, int stride, int sw, int sh, int dw, int dh)
 		{
 			var hasAlpha = stride == 4;
@@ -735,16 +1099,52 @@ namespace OpenRA.Graphics
 			var (yStarts, yWeightsF) = Weights(sh, dh);
 			var xWeights = ToFixed(xWeightsF);
 			var yWeights = ToFixed(yWeightsF);
+			var dst = new byte[dw * dh * stride];
 
-			// Pass 1: rows, into alpha-weighted (premultiplied) texels, 8 fractional bits
+			// PERF: only the window of output texels whose footprint reaches a visible source texel is computed. Fully
+			// transparent texels add nothing to any sum, so every texel outside it comes out zero, as dst already is, and
+			// the result is identical to resampling the whole frame (HD frames are mostly transparent padding).
+			int sx0 = 0, sx1 = sw - 1, sy0 = 0, sy1 = sh - 1;
+			if (hasAlpha)
+			{
+				sx0 = sw;
+				sx1 = sy1 = -1;
+				sy0 = sh;
+				for (var y = 0; y < sh; y++)
+				{
+					var row = y * sw * 4;
+					for (var x = 0; x < sw; x++)
+					{
+						if (source[row + 4 * x + 3] == 0)
+							continue;
+
+						sx0 = Math.Min(sx0, x);
+						sx1 = Math.Max(sx1, x);
+						sy0 = Math.Min(sy0, y);
+						sy1 = y;
+					}
+				}
+
+				if (sx1 < 0)
+					return dst;
+			}
+
+			var (ox0, ox1) = Window(xStarts, xWeights, sx0, sx1);
+			var (oy0, oy1) = Window(yStarts, yWeights, sy0, sy1);
+			if (ox1 < ox0 || oy1 < oy0)
+				return dst;
+
+			// Pass 1: rows, into alpha-weighted (premultiplied) texels, 8 fractional bits. Only the visible rows and the
+			// window's columns: rows outside the visible ones would be all zero
+			var ow = ox1 - ox0 + 1;
 			var src = source.AsSpan();
-			var rows = new int[sh * dw * 4];
+			var rows = new int[(sy1 - sy0 + 1) * ow * 4];
 			var rowSpan = rows.AsSpan();
-			for (var y = 0; y < sh; y++)
+			for (var y = sy0; y <= sy1; y++)
 			{
 				var srcRow = src.Slice(y * sw * stride, sw * stride);
-				var dstRow = rowSpan.Slice(y * dw * 4, dw * 4);
-				for (var x = 0; x < dw; x++)
+				var dstRow = rowSpan.Slice((y - sy0) * ow * 4, ow * 4);
+				for (var x = ox0; x <= ox1; x++)
 				{
 					int c0 = 0, c1 = 0, c2 = 0, a = 0;
 					var w = xWeights[x];
@@ -773,7 +1173,7 @@ namespace OpenRA.Graphics
 						}
 					}
 
-					var d = x * 4;
+					var d = (x - ox0) * 4;
 					dstRow[d] = c0;
 					dstRow[d + 1] = c1;
 					dstRow[d + 2] = c2;
@@ -781,18 +1181,19 @@ namespace OpenRA.Graphics
 				}
 			}
 
-			// Pass 2: columns (weights shifted back out as we go), then back to straight alpha bytes
-			var dst = new byte[dw * dh * stride];
-			var rowStride = dw * 4;
-			for (var y = 0; y < dh; y++)
+			// Pass 2: columns (weights shifted back out as we go), then back to straight alpha bytes. Footprint rows
+			// outside the visible ones are zero in pass 1, so they are skipped.
+			var rowStride = ow * 4;
+			for (var y = oy0; y <= oy1; y++)
 			{
 				var w = yWeights[y];
-				var first = yStarts[y] * rowStride;
-				for (var x = 0; x < dw; x++)
+				var k0 = Math.Max(0, sy0 - yStarts[y]);
+				var k1 = Math.Min(w.Length - 1, sy1 - yStarts[y]);
+				for (var x = ox0; x <= ox1; x++)
 				{
 					long c0 = 0, c1 = 0, c2 = 0, a = 0;
-					var s = first + x * 4;
-					for (var k = 0; k < w.Length; k++, s += rowStride)
+					var s = (yStarts[y] + k0 - sy0) * rowStride + (x - ox0) * 4;
+					for (var k = k0; k <= k1; k++, s += rowStride)
 					{
 						c0 += (long)rowSpan[s] * w[k];
 						c1 += (long)rowSpan[s + 1] * w[k];
@@ -916,17 +1317,17 @@ namespace OpenRA.Graphics
 			else if (mode == SpriteCropMode.Centred)
 			{
 				// Same margin on both sides of each axis, so the crop centre stays the frame centre
-				x0 = Math.Min(left, width - 1 - right);
-				y0 = Math.Min(top, height - 1 - bottom);
+				x0 = Math.Max(0, Math.Min(left, width - 1 - right) - SpriteCache.CropMargin);
+				y0 = Math.Max(0, Math.Min(top, height - 1 - bottom) - SpriteCache.CropMargin);
 				w = width - 2 * x0;
 				h = height - 2 * y0;
 			}
 			else
 			{
-				x0 = left;
-				y0 = top;
-				w = right - left + 1;
-				h = bottom - top + 1;
+				x0 = Math.Max(0, left - SpriteCache.CropMargin);
+				y0 = Math.Max(0, top - SpriteCache.CropMargin);
+				w = Math.Min(width - 1, right + SpriteCache.CropMargin) - x0 + 1;
+				h = Math.Min(height - 1, bottom + SpriteCache.CropMargin) - y0 + 1;
 			}
 
 			if (w * h > (1 - MinSaving) * width * height)
@@ -968,7 +1369,10 @@ namespace OpenRA.Graphics
 			if (frame is PremultipliedFrame || frame is CroppedFrame { Premultiplied: true } || frame.Size.Width == 0 || frame.Size.Height == 0)
 				return frame;
 
-			var data = Util.ToPremultipliedBgra(frame.Data, frame.Type, frame.Size.Width, frame.Size.Height);
+			// Cropped and downscaled frames hold pixel arrays made here and used nowhere else: convert those in place
+			var data = (frame is CroppedFrame || frame is DownscaledFrame) &&
+				Util.ToPremultipliedBgraInPlace(frame.Data, frame.Type, frame.Size.Width, frame.Size.Height)
+				? frame.Data : Util.ToPremultipliedBgra(frame.Data, frame.Type, frame.Size.Width, frame.Size.Height);
 			if (data == null)
 				return frame;
 

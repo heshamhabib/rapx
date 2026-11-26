@@ -27,6 +27,11 @@ uniform vec3 HoloColor;
 uniform vec2 Fog;           // brightness, saturation
 uniform vec3 FogTint;
 
+// PERF: one texel per cell, non-zero where the cell's whole neighbourhood is explored, visible and settled (see
+// PxShroudRenderer.UpdateSettledMap). This pass leaves such ground exactly as it is, so it copies it through.
+uniform sampler2D SettledMap;
+uniform float SettledSkip;  // 0: never skip
+
 out vec4 fragColor;
 
 const float TAU = 6.2831853;
@@ -214,6 +219,19 @@ void main()
 	vec2 world = Scroll + gl_FragCoord.xy * Downscale;
 	float px = Downscale;
 	vec2 c = world / TileSize;
+
+	// Settled visible ground: no fog, border, reveal scan or shroud reaches it, so the result would be world3 as is.
+	// Decided once per 2x2 pixel quad (from its first pixel) so the screen-space derivatives below see whole quads.
+	if (SettledSkip > 0.5)
+	{
+		ivec2 quadCell = ivec2(floor((Scroll + (floor(gl_FragCoord.xy * 0.5) * 2.0 + 0.5) * Downscale) / TileSize));
+		if (quadCell.x >= 0 && quadCell.y >= 0 && quadCell.x < int(CellMapSize.x) && quadCell.y < int(CellMapSize.y)
+			&& texelFetch(SettledMap, quadCell, 0).r > 0.5)
+		{
+			fragColor = vec4(world3, 1.0);
+			return;
+		}
+	}
 
 	// Organic, slowly breathing edge
 	vec2 warp = vec2(Noise(c * 0.9 + Time * 0.07), Noise(c * 0.9 + vec2(9.1, 3.7) - Time * 0.06)) - 0.5;

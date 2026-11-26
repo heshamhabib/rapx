@@ -37,6 +37,8 @@ engine-effects-settings.patch
 engine-map-preview-scale.patch
 engine-smooth-screen-shake.patch
 engine-faster-sprite-loading.patch
+engine-gpu-memory-and-fill.patch
+engine-graphics-card-info.patch
 ```
 
 ## Upgrading the engine

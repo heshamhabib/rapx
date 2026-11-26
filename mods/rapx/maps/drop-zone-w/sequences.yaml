@@ -1,12 +1,11 @@
+# The armed landing craft's machine-gun flash (rules.yaml LST: M60mg + WithMuzzleOverlay). HD art only: the classic
+# lst.shp / minigun.shp / mgun.shp went with the original game content (IDEA-31), so the flash is the jeep's.
 lst:
-	Defaults:
-		Filename: lst.shp
 	muzzle:
-		Filename: minigun.shp
+		Filename: ra|bits/hd/fx/blast/muzzle-mg.png
 		Start: 0
 		Length: 6
-		Facings: 8
-	turret:
-		Filename: mgun.shp
-		Start: 0
 		Facings: 32
+		UseClassicFacings: False
+		Stride: 6
+		Scale: 0.3333

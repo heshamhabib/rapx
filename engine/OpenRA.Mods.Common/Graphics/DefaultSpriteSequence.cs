@@ -44,6 +44,16 @@ namespace OpenRA.Mods.Common.Graphics
 			if (metadata.TryGetValue("CropTransparentExclude", out yaml))
 				cropExcludes = FieldLoader.GetValue<string[]>("CropTransparentExclude", yaml.Value).Select(GlobToRegex).ToArray();
 
+			// RAPX: files cropped evenly around the frame centre even when their sequences do not rotate (art that code draws
+			// rotated about the sprite centre, such as particles)
+			if (metadata.TryGetValue("CropTransparentCentred", out yaml))
+				cropCentred = FieldLoader.GetValue<string[]>("CropTransparentCentred", yaml.Value).Select(GlobToRegex).ToArray();
+
+			// RAPX: fully transparent texels kept around each crop, so the linear filter blends the edge pixels into
+			// transparency exactly as it does on the uncropped frame
+			if (metadata.TryGetValue("CropTransparentMargin", out yaml))
+				SpriteCache.CropMargin = Math.Max(0, FieldLoader.GetValue<int>("CropTransparentMargin", yaml.Value));
+
 			// RAPX: true colour files shrunk at load time to the largest size they can be drawn at (same glob syntax).
 			if (metadata.TryGetValue("Downscale", out yaml))
 				downscaleIncludes = FieldLoader.GetValue<string[]>("Downscale", yaml.Value).Select(GlobToRegex).ToArray();
@@ -68,6 +78,7 @@ namespace OpenRA.Mods.Common.Graphics
 
 		readonly Regex[] cropIncludes = Array.Empty<Regex>();
 		readonly Regex[] cropExcludes = Array.Empty<Regex>();
+		readonly Regex[] cropCentred = Array.Empty<Regex>();
 
 		readonly ModData modData;
 		readonly Regex[] downscaleIncludes = Array.Empty<Regex>();
@@ -140,7 +151,7 @@ namespace OpenRA.Mods.Common.Graphics
 			if (!cropIncludes.Any(r => r.IsMatch(filename)) || cropExcludes.Any(r => r.IsMatch(filename)))
 				return SpriteCropMode.None;
 
-			return rotates ? SpriteCropMode.Centred : SpriteCropMode.Tight;
+			return rotates || cropCentred.Any(r => r.IsMatch(filename)) ? SpriteCropMode.Centred : SpriteCropMode.Tight;
 		}
 
 		public virtual ISpriteSequence CreateSequence(
@@ -368,6 +379,10 @@ namespace OpenRA.Mods.Common.Graphics
 		int ISpriteSequence.ShadowZOffset => shadowZOffset;
 		bool ISpriteSequence.IgnoreWorldTint => ignoreWorldTint;
 		float ISpriteSequence.Scale => GetScale();
+
+		// RAPX: lets SequenceSet load this sequence on its own
+		IEnumerable<int> ISpriteSequence.ReservationTokens => depthSpriteReservation.HasValue
+			? spritesToLoad.Select(r => r.Token).Append(depthSpriteReservation.Value) : spritesToLoad.Select(r => r.Token);
 		Rectangle ISpriteSequence.Bounds
 		{
 			get

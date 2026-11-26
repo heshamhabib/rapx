@@ -35,10 +35,14 @@ namespace OpenRA.Mods.RAPX.Effects
 		readonly float scale;
 		readonly int zOffset;
 		readonly float3 tint;
+		readonly bool blast;
+		readonly float duration;
 		float time;
 		long lastTime = -1;
 
-		public PxVideoEffect(World world, WPos pos, ISpriteSequence clip, float scale, int zOffset, float3? tint = null)
+		// blast: a filmed explosion, played at real-life pace (fast fireball, slower smoke, see BlastSpeed) instead of the
+		// clip's own slow-motion rate
+		public PxVideoEffect(World world, WPos pos, ISpriteSequence clip, float scale, int zOffset, float3? tint = null, bool blast = false)
 		{
 			this.world = world;
 			this.pos = pos;
@@ -46,6 +50,8 @@ namespace OpenRA.Mods.RAPX.Effects
 			this.scale = scale;
 			this.zOffset = zOffset;
 			this.tint = tint ?? White;
+			this.blast = blast;
+			duration = blast ? BlastTicks((clip.Length - 1) * clip.Tick) : Duration(clip);
 		}
 
 		/// <summary>The clip of that name, or null when the name is empty or the clip is missing.</summary>
@@ -81,6 +87,40 @@ namespace OpenRA.Mods.RAPX.Effects
 		/// <summary>Ticks from the first to the last frame (40 ms game ticks, so clips keep pace with the game speed).</summary>
 		public static float Duration(ISpriteSequence clip) { return (clip.Length - 1) * clip.Tick / 40f; }
 
+		// Pacing of filmed explosions. The generated clips are cinematic slow motion: their fireballs take ~0.6-1.4 s to
+		// peak and ~1-3 s to burn out, where a real shell or bomb peaks in well under half a second. So a blast plays
+		// BlastSpeed times faster than filmed at first, easing (time constant BlastEaseMs, real time) into SmokeSpeed for
+		// the smoke and dust, which do hang in the air for seconds.
+		public const float BlastSpeed = 3f;
+		public const float SmokeSpeed = 1.5f;
+		public const float BlastEaseMs = 600f;
+
+		/// <summary>Clip milliseconds reached <paramref name="ticks"/> game ticks after a filmed explosion started (times
+		/// <paramref name="speed"/>, a weapon's own playback speed).</summary>
+		public static float BlastClipMs(float ticks, float speed = 1f)
+		{
+			var t = ticks * 40;
+			return speed * (SmokeSpeed * t + (BlastSpeed - SmokeSpeed) * BlastEaseMs * (1 - MathF.Exp(-t / BlastEaseMs)));
+		}
+
+		/// <summary>Game ticks until a filmed explosion reaches clip millisecond <paramref name="clipMs"/> (inverse of
+		/// BlastClipMs).</summary>
+		public static float BlastTicks(float clipMs, float speed = 1f)
+		{
+			// The clip runs at least SmokeSpeed: the answer lies below this; BlastClipMs only grows, so halve the interval
+			float lo = 0, hi = clipMs / (40 * SmokeSpeed * Math.Max(speed, 0.01f)) + 1;
+			for (var i = 0; i < 32; i++)
+			{
+				var mid = (lo + hi) / 2;
+				if (BlastClipMs(mid, speed) < clipMs)
+					lo = mid;
+				else
+					hi = mid;
+			}
+
+			return hi;
+		}
+
 		/// <summary>The clip at a fractional frame. blend: each frame crossfades into the next (one-shot explosions kept at
 		/// a few frames per second); fires and smoke loops are kept at a higher rate and drawn frame by frame, since
 		/// crossfading their see-through flames makes them pulse.</summary>
@@ -114,7 +154,7 @@ namespace OpenRA.Mods.RAPX.Effects
 
 		public void Tick(World world)
 		{
-			if (time > Duration(clip) + 1)
+			if (time > duration + 1)
 				world.AddFrameEndTask(w => w.Remove(this));
 		}
 
@@ -128,7 +168,8 @@ namespace OpenRA.Mods.RAPX.Effects
 			if (world.FogObscures(pos))
 				return SpriteRenderable.None;
 
-			return Draw(clip, time * 40 / clip.Tick, pos, zOffset, scale, 1f, tint);
+			var frame = blast ? BlastClipMs(time) / clip.Tick : time * 40 / clip.Tick;
+			return Draw(clip, frame, pos, zOffset, scale, 1f, tint);
 		}
 	}
 

@@ -110,7 +110,8 @@ namespace OpenRA.Mods.RAPX.Warheads
 		}
 
 		/// <summary>Ticks until the filmed impact's last frame (40 ms game ticks).</summary>
-		float ClipEnd => clip == null ? 0 : PxVideoEffect.Duration(clip);
+		// The impact clip is a filmed blast: real-life pacing (fast fireball, slower smoke), see PxVideoEffect.BlastSpeed
+		float ClipEnd => clip == null ? 0 : PxVideoEffect.BlastTicks((clip.Length - 1) * clip.Tick);
 
 		float Rand(float min, float max) { return min + random.NextFloat() * (max - min); }
 
@@ -248,7 +249,7 @@ namespace OpenRA.Mods.RAPX.Warheads
 			if (clip != null && time <= ClipEnd + 1)
 			{
 				var alpha = burn != null ? 1 - Math.Clamp((time - (ClipEnd - Handover)) / Handover, 0, 1) : 1;
-				foreach (var r in PxVideoEffect.Draw(clip, time * 40 / clip.Tick, ground, 512, clip.Scale * k2, alpha, white))
+				foreach (var r in PxVideoEffect.Draw(clip, PxVideoEffect.BlastClipMs(time) / clip.Tick, ground, 512, clip.Scale * k2, alpha, white))
 					yield return r;
 			}
 

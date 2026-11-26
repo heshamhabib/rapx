@@ -31,6 +31,7 @@ namespace OpenRA.Mods.Common.Server
 			public readonly int SpawnPoint;
 			public readonly int Team;
 			public readonly int Handicap;
+			public readonly string Titan;
 
 			public SkirmishSlot() { }
 
@@ -42,6 +43,7 @@ namespace OpenRA.Mods.Common.Server
 				SpawnPoint = c.SpawnPoint;
 				Team = c.Team;
 				Handicap = c.Handicap;
+				Titan = c.Titan;
 			}
 
 			public static void DeserializeToClient(MiniYaml yaml, Session.Client c)
@@ -53,6 +55,8 @@ namespace OpenRA.Mods.Common.Server
 				c.SpawnPoint = s.SpawnPoint;
 				c.Team = s.Team;
 				c.Handicap = s.Handicap;
+				c.Titan = s.Titan;
+				Log.Write("debug", $"Titan: skirmish file gives client {c.Index} ({c.Name}, slot {c.Slot}) titan '{c.Titan}'");
 			}
 		}
 

@@ -237,6 +237,9 @@ label-px-lobby-col-color = COLOR
 label-px-lobby-col-nation = NATION
 label-px-lobby-col-team = TEAM
 label-px-lobby-col-handicap = HANDICAP
+label-px-lobby-col-titan = TITAN
+checkbox-px-lobby-ready-tooltip = Ready / not ready: click when you are ready to start
+dropdownbutton-lobby-players-titan-tooltip = A giant that fights for this player from the start. If it dies it cannot be rebuilt.
 label-px-lobby-col-spawn = SPAWN
 label-px-lobby-col-status = STATUS
 label-px-lobby-open-slot = WAITING FOR COMMANDER
@@ -426,6 +429,25 @@ checkbox-px-ground-effects =
 checkbox-px-weather-effects =
     .label = Weather Effects
     .tooltip = Rain, snow, fog, sandstorms and the light each weather casts, and the pressure waves of big explosions bending the picture. The weather still changes and is still announced, it is just not drawn. Applies to the next match.
+
+## Display settings: graphics card
+dropdown-px-gpu-preference =
+    .label = Graphics Card:
+    .tooltip = Which graphics card Windows runs the game on. Most gaming laptops have two: a power-saving one built into the processor and a fast dedicated one. This is the same choice as Windows Settings > System > Display > Graphics, and it applies when the game next starts.
+    .high = High performance
+    .saving = Power saving
+    .windows = Let Windows decide
+label-px-gpu-in-use = Graphics card in use: { $name }
+label-px-gpu-unknown = not reported by the graphics driver
+label-px-gpu-direct3d = Direct3D { $version } through ANGLE
+label-px-gpu-opengl = OpenGL { $version }
+label-px-gpu-driver = { $api }, driver { $version }
+label-px-gpu-others = { $api }. Also in this PC: { $names }
+label-px-gpu-all = { $api }. Graphics cards in this PC: { $names }
+label-px-gpu-hint-integrated = The game is on the power-saving graphics. Choose High performance above and restart the game for a much higher frame rate.
+label-px-gpu-hint-software = No graphics driver is in use, so the processor is drawing the game. Install the latest driver for your graphics card.
+label-px-gpu-hint-no-driver = A graphics card in this PC is missing its driver. Install it from the NVIDIA, AMD or Intel website.
+label-px-gpu-hint-restart = Restart the game to switch graphics card.
 
 ## Observer sidebar
 label-px-observer-title = OBSERVER

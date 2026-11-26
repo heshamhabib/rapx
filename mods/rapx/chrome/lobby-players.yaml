@@ -21,72 +21,84 @@ Container@LOBBY_PLAYER_BIN:
 					TextColor: 9D9EA6
 					Text: label-px-lobby-col-commander
 				Image@HEADER_COLOR_ICON:
-					X: 260
+					X: 208
 					Y: 4
 					ImageCollection: px-lobby-icons
 					ImageName: col-color
 				Label@HEADER_COLOR:
-					X: 282
+					X: 228
 					Width: 120
 					Height: 24
 					Font: PXSidebarSmall
 					TextColor: 9D9EA6
 					Text: label-px-lobby-col-color
 				Image@HEADER_NATION_ICON:
-					X: 344
+					X: 272
 					Y: 4
 					ImageCollection: px-lobby-icons
 					ImageName: col-nation
 				Label@HEADER_NATION:
-					X: 366
+					X: 294
 					Width: 120
 					Height: 24
 					Font: PXSidebarSmall
 					TextColor: 9D9EA6
 					Text: label-px-lobby-col-nation
+				Image@HEADER_TITAN_ICON:
+					X: 466
+					Y: 4
+					ImageCollection: px-titans
+					ImageName: col-titan
+				Label@HEADER_TITAN:
+					X: 488
+					Width: 120
+					Height: 24
+					Font: PXSidebarSmall
+					TextColor: 9D9EA6
+					Text: label-px-lobby-col-titan
 				Image@HEADER_TEAM_ICON:
-					X: 548
+					X: 632
 					Y: 4
 					ImageCollection: px-lobby-icons
 					ImageName: col-team
 				Label@HEADER_TEAM:
-					X: 570
+					X: 652
 					Width: 120
 					Height: 24
 					Font: PXSidebarSmall
 					TextColor: 9D9EA6
 					Text: label-px-lobby-col-team
 				Image@HEADER_HANDICAP_ICON:
-					X: 620
+					X: 696
 					Y: 4
 					ImageCollection: px-lobby-icons
 					ImageName: col-handicap
 				Label@HEADER_HANDICAP:
-					X: 642
+					X: 716
 					Width: 120
 					Height: 24
 					Font: PXSidebarSmall
 					TextColor: 9D9EA6
 					Text: label-px-lobby-col-handicap
 				Image@HEADER_SPAWN_ICON:
-					X: 712
+					X: 772
 					Y: 4
 					ImageCollection: px-lobby-icons
 					ImageName: col-spawn
 				Label@HEADER_SPAWN:
-					X: 734
+					X: 792
 					Width: 120
 					Height: 24
 					Font: PXSidebarSmall
 					TextColor: 9D9EA6
 					Text: label-px-lobby-col-spawn
 				Image@HEADER_STATUS_ICON:
-					X: 784
+					X: 840
 					Y: 4
 					ImageCollection: px-lobby-icons
 					ImageName: col-status
 				Label@HEADER_STATUS:
-					X: 806
+					X: 860
 					Width: 120
 					Height: 24
 					Font: PXSidebarSmall
@@ -110,8 +122,8 @@ Container@LOBBY_PLAYER_BIN:
 						PxPlayerRowDecor@DECOR:
 							Width: 892
 							Height: 68
-							StatusX: 774
-							StatusWidth: 110
+							StatusX: 836
+							StatusWidth: 52
 							TagX: 74
 						Container@LATENCY:
 							X: 4
@@ -134,7 +146,7 @@ Container@LOBBY_PLAYER_BIN:
 						TextField@NAME:
 							X: 68
 							Y: 6
-							Width: 172
+							Width: 130
 							Height: 30
 							Text: Name
 							LeftMargin: 24
@@ -157,16 +169,16 @@ Container@LOBBY_PLAYER_BIN:
 						DropDownButton@SLOT_OPTIONS:
 							X: 68
 							Y: 6
-							Width: 172
+							Width: 130
 							Height: 30
 							Background: px-key
 							Text: label-lobby-players-name
 							Font: PXButton
 							Visible: false
 						DropDownButton@COLOR:
-							X: 250
+							X: 206
 							Y: 13
-							Width: 76
+							Width: 48
 							Height: 42
 							Background: px-key
 							IgnoreChildMouseOver: true
@@ -177,9 +189,9 @@ Container@LOBBY_PLAYER_BIN:
 									Width: PARENT_WIDTH - 40
 									Height: 18
 						DropDownButton@FACTION:
-							X: 334
+							X: 262
 							Y: 11
-							Width: 196
+							Width: 186
 							Height: 46
 							Background: px-key
 							IgnoreChildMouseOver: true
@@ -205,39 +217,69 @@ Container@LOBBY_PLAYER_BIN:
 									FlagSize: 48, 32
 									Width: 1
 									Height: 1
+						# Titan (PxTitanSpawner): portrait, name and subtitle like the nation box (PxTitanDecor)
+						DropDownButton@TITAN_DROPDOWN:
+							X: 456
+							Y: 11
+							Width: 168
+							Height: 46
+							Background: px-key
+							IgnoreChildMouseOver: true
+							TooltipContainer: TOOLTIP_CONTAINER
+							TooltipText: dropdownbutton-lobby-players-titan-tooltip
+							Children:
+								Image@TITANPORTRAIT:
+									ImageCollection: px-titans
+									Width: 1
+									Height: 1
+									Visible: false
+								Label@TITANNAME:
+									X: 54
+									Y: 4
+									Width: 70
+									Height: 22
+									Font: Bold
+								PxTitanDecor@DECOR:
+									Mode: Button
+									PortraitWidget: TITANPORTRAIT
+									PortraitSize: 40, 27
+									Width: 1
+									Height: 1
 						DropDownButton@TEAM_DROPDOWN:
-							X: 538
+							X: 632
 							Y: 13
-							Width: 64
+							Width: 56
 							Height: 42
 							Background: px-key
 							Font: PXDigitsSmall
 							Text: label-lobby-players-team
 						DropDownButton@HANDICAP_DROPDOWN:
-							X: 610
+							X: 696
 							Y: 13
-							Width: 84
+							Width: 68
 							Height: 42
 							Background: px-key
 							Font: PXDigitsSmall
 							TooltipContainer: TOOLTIP_CONTAINER
 							TooltipText: dropdownbutton-lobby-players-handicap-tooltip
 						DropDownButton@SPAWN_DROPDOWN:
-							X: 702
+							X: 772
 							Y: 13
-							Width: 64
+							Width: 56
 							Height: 42
 							Background: px-key
 							Font: PXDigitsSmall
 							Text: label-lobby-players-spawn
 						PxReadyPill@STATUS_CHECKBOX:
-							X: 774
+							X: 836
 							Y: 13
-							Width: 110
+							Width: 52
 							Height: 42
+							TooltipContainer: TOOLTIP_CONTAINER
+							TooltipText: checkbox-px-lobby-ready-tooltip
 							Visible: false
 						Image@STATUS_IMAGE:
-							X: 774
+							X: 836
 							Y: 13
 							Width: 1
 							Height: 1
@@ -254,8 +296,8 @@ Container@LOBBY_PLAYER_BIN:
 						PxPlayerRowDecor@DECOR:
 							Width: 892
 							Height: 68
-							StatusX: 774
-							StatusWidth: 110
+							StatusX: 836
+							StatusWidth: 52
 							TagX: 74
 						Container@LATENCY:
 							X: 4
@@ -290,14 +332,14 @@ Container@LOBBY_PLAYER_BIN:
 						Label@NAME:
 							X: 72
 							Y: 6
-							Width: 168
+							Width: 126
 							Height: 30
 							Font: PXButton
 							Text: label-lobby-players-name
 						DropDownButton@PLAYER_ACTION:
 							X: 68
 							Y: 6
-							Width: 172
+							Width: 130
 							Height: 30
 							Background: px-key
 							Font: PXButton
@@ -318,13 +360,13 @@ Container@LOBBY_PLAYER_BIN:
 									TooltipContainer: TOOLTIP_CONTAINER
 									Template: ANONYMOUS_PLAYER_TOOLTIP
 						ColorBlock@COLORBLOCK:
-							X: 258
+							X: 212
 							Y: 25
-							Width: 60
+							Width: 36
 							Height: 18
 						Container@FACTION:
-							X: 334
-							Width: 196
+							X: 262
+							Width: 186
 							Height: 68
 							Children:
 								Image@FACTIONFLAG:
@@ -346,52 +388,102 @@ Container@LOBBY_PLAYER_BIN:
 									FlagSize: 48, 32
 									Width: 1
 									Height: 1
+						Container@TITAN:
+							X: 456
+							Width: 168
+							Height: 68
+							Children:
+								Image@TITANPORTRAIT:
+									ImageCollection: px-titans
+									Width: 1
+									Height: 1
+									Visible: false
+								Label@TITANNAME:
+									X: 54
+									Y: 15
+									Width: 90
+									Height: 22
+									Font: Bold
+								PxTitanDecor@DECOR:
+									Mode: Button
+									PortraitWidget: TITANPORTRAIT
+									PortraitSize: 40, 27
+									Width: 1
+									Height: 1
+						# Titan (PxTitanSpawner): portrait, name and subtitle like the nation box (PxTitanDecor)
+						DropDownButton@TITAN_DROPDOWN:
+							X: 456
+							Y: 11
+							Width: 168
+							Height: 46
+							Background: px-key
+							IgnoreChildMouseOver: true
+							TooltipContainer: TOOLTIP_CONTAINER
+							TooltipText: dropdownbutton-lobby-players-titan-tooltip
+							Children:
+								Image@TITANPORTRAIT:
+									ImageCollection: px-titans
+									Width: 1
+									Height: 1
+									Visible: false
+								Label@TITANNAME:
+									X: 54
+									Y: 4
+									Width: 70
+									Height: 22
+									Font: Bold
+								PxTitanDecor@DECOR:
+									Mode: Button
+									PortraitWidget: TITANPORTRAIT
+									PortraitSize: 40, 27
+									Width: 1
+									Height: 1
 						Label@TEAM:
-							X: 538
-							Width: 64
+							X: 632
+							Width: 56
 							Height: 68
 							Align: Center
 							Font: PXDigitsSmall
 							Text: label-lobby-players-team
 						DropDownButton@TEAM_DROPDOWN:
-							X: 538
+							X: 632
 							Y: 13
-							Width: 64
+							Width: 56
 							Height: 42
 							Background: px-key
 							Font: PXDigitsSmall
 							Visible: false
 						Label@HANDICAP:
-							X: 610
-							Width: 84
+							X: 696
+							Width: 68
 							Height: 68
 							Align: Center
 							Font: PXDigitsSmall
 						DropDownButton@HANDICAP_DROPDOWN:
-							X: 610
+							X: 696
 							Y: 13
-							Width: 84
+							Width: 68
 							Height: 42
 							Background: px-key
 							Font: PXDigitsSmall
 							TooltipContainer: TOOLTIP_CONTAINER
 							TooltipText: dropdownbutton-lobby-players-handicap-tooltip
 						Label@SPAWN:
-							X: 702
-							Width: 64
+							X: 772
+							Width: 56
 							Height: 68
 							Align: Center
 							Font: PXDigitsSmall
 						DropDownButton@SPAWN_DROPDOWN:
-							X: 702
+							X: 772
 							Y: 13
-							Width: 64
+							Width: 56
 							Height: 42
 							Background: px-key
 							Font: PXDigitsSmall
 							Visible: false
 						Image@STATUS_IMAGE:
-							X: 774
+							X: 836
 							Y: 13
 							Width: 1
 							Height: 1
@@ -459,8 +551,8 @@ Container@LOBBY_PLAYER_BIN:
 						PxPlayerRowDecor@DECOR:
 							Width: 892
 							Height: 68
-							StatusX: 774
-							StatusWidth: 110
+							StatusX: 836
+							StatusWidth: 52
 							TagX: 74
 						Container@LATENCY:
 							X: 4
@@ -511,13 +603,15 @@ Container@LOBBY_PLAYER_BIN:
 							Font: PXButton
 							TextColor: 9D9EA6
 						PxReadyPill@STATUS_CHECKBOX:
-							X: 774
+							X: 836
 							Y: 13
-							Width: 110
+							Width: 52
 							Height: 42
+							TooltipContainer: TOOLTIP_CONTAINER
+							TooltipText: checkbox-px-lobby-ready-tooltip
 							Visible: false
 						Image@STATUS_IMAGE:
-							X: 774
+							X: 836
 							Y: 13
 							Width: 1
 							Height: 1
@@ -534,8 +628,8 @@ Container@LOBBY_PLAYER_BIN:
 						PxPlayerRowDecor@DECOR:
 							Width: 892
 							Height: 68
-							StatusX: 774
-							StatusWidth: 110
+							StatusX: 836
+							StatusWidth: 52
 							TagX: 74
 						Container@LATENCY:
 							X: 4
@@ -606,7 +700,7 @@ Container@LOBBY_PLAYER_BIN:
 							Font: PXButton
 							TextColor: 9D9EA6
 						Image@STATUS_IMAGE:
-							X: 774
+							X: 836
 							Y: 13
 							Width: 1
 							Height: 1
@@ -683,5 +777,34 @@ PxFactionPickerPanel@FACTION_DROPDOWN_TEMPLATE:
 					Font: PXButton
 				PxFactionDecor@DECOR:
 					Mode: Card
+					Width: 1
+					Height: 1
+
+# "Choose your titan" (PxTitanPickerPanel): big banner cards for the titans, a slim row for None and Random. PxTitanDecor
+# draws each card from its PORTRAIT id; LABEL only carries the name.
+PxTitanPickerPanel@TITAN_DROPDOWN_TEMPLATE:
+	Width: 640
+	Background: px-lobby-frame
+	ScrollBar: Hidden
+	TopBottomSpacing: 0
+	Children:
+		ScrollItem@TEMPLATE:
+			Background:
+			Width: 300
+			Height: 120
+			Visible: false
+			Children:
+				Image@PORTRAIT:
+					ImageCollection: px-titans
+					Width: 1
+					Height: 1
+					Visible: false
+				Label@LABEL:
+					Width: 1
+					Height: 1
+					Visible: false
+				PxTitanDecor@DECOR:
+					Mode: Card
+					PortraitSize: 60, 40
 					Width: 1
 					Height: 1

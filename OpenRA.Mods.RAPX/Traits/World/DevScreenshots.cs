@@ -364,6 +364,21 @@ namespace OpenRA.Mods.RAPX.Traits
 				else
 					Log.Write("debug", $"DevScreenshots: nothing to kill for {name}");
 			}
+			else if (action.StartsWith("probe ", StringComparison.Ordinal))
+			{
+				// "probe <actor>": log every actor of that type: owner, cell, facing, health, activity chain and armaments
+				var name = action[6..].Trim().ToLowerInvariant();
+				foreach (var a in currentWorld.Actors.Where(a => a.IsInWorld && a.Info.Name == name))
+				{
+					var chain = a.CurrentActivity?.ActivitiesImplementing<global::OpenRA.Activities.Activity>().Select(x => x.GetType().Name).ToList()
+						?? new List<string>();
+
+					var arms = string.Join(", ", a.TraitsImplementing<Armament>().Select(r => $"{r.Info.Name}:{r.Info.Weapon}{(r.IsReloading ? " reloading" : "")}"));
+					var health = a.TraitOrDefault<IHealth>();
+					Log.Write("debug", $"DevScreenshots: probe {name} owner={a.Owner.PlayerName} cell={a.Location} facing={a.TraitOrDefault<IFacing>()?.Facing.Angle} " +
+						$"hp={health?.HP}/{health?.MaxHP} activity=[{string.Join(" > ", chain)}] arms=[{arms}]");
+				}
+			}
 			else if (action.StartsWith("attack ", StringComparison.Ordinal) && currentWorld.LocalPlayer != null)
 			{
 				// "attack <attacker[,attacker]> <target type>": the local player's actors of those types attack the

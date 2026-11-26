@@ -105,6 +105,8 @@ def traits(nodes):
 ROLE_OVERRIDES = {
 	# Economy and base: handled by their own bot modules
 	'harv': 'harvester', 'mcv': 'skip',
+	# Titans come from the lobby (PxTitanSpawner), never from a factory; the AI's squads still take them along
+	'godz': 'skip', 'kong': 'skip',
 	# Units with one job, ordered by PxSpecialVehiclesBotModule / PxTransportBotModule
 	'truk': 'supplytruck', 'qtnk': 'madtank', 'mtrk': 'crusher', 'mnly': 'minelayer', 'mi17': 'transport',
 	# Units the AI has no use for (yet)

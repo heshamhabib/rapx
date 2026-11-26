@@ -185,6 +185,7 @@ namespace OpenRA.Mods.Common.Server
 				{ "faction", Faction },
 				{ "team", Team },
 				{ "handicap", Handicap },
+				{ "titan", Titan },
 				{ "spawn", Spawn },
 				{ "clear_spawn", ClearPlayerSpawn },
 				{ "color", PlayerColor },
@@ -1126,6 +1127,35 @@ namespace OpenRA.Mods.Common.Server
 				}
 
 				targetClient.Handicap = handicap;
+				server.SyncLobbyClients();
+
+				return true;
+			}
+		}
+
+		// RAPX: per-player titan (giant unit) picked in the lobby; the mod's world trait spawns it at game start.
+		// The id is only checked for shape here: the mod ignores ids it does not know.
+		static bool Titan(S server, Connection conn, Session.Client client, string s)
+		{
+			lock (server.LobbyInfo)
+			{
+				var parts = s.Split(' ');
+				if (!Exts.TryParseInt32Invariant(parts[0], out var index))
+					return false;
+
+				var targetClient = server.LobbyInfo.ClientWithIndex(index);
+				if (targetClient == null || (targetClient.Index != client.Index && !client.IsAdmin))
+					return true;
+
+				var titan = parts.Length > 1 ? parts[1] : "";
+				if (titan.Length > 24 || !titan.All(char.IsLetterOrDigit))
+				{
+					Log.Write("server", $"Invalid titan: {s}");
+					return false;
+				}
+
+				targetClient.Titan = titan.Length > 0 ? titan : null;
+				Log.Write("debug", $"Titan: client {targetClient.Index} ({targetClient.Name}) set to '{targetClient.Titan}' by client {client.Index}");
 				server.SyncLobbyClients();
 
 				return true;

@@ -119,7 +119,8 @@ namespace OpenRA.Traits
 
 		public void Add(IEffect effect, WPos position, Sprite sprite)
 		{
-			var size = new Size((int)sprite.Size.X, (int)sprite.Size.Y);
+			// RAPX: a sprite trimmed at load time still covers its whole frame
+			var size = new Size((int)sprite.FrameSize.X, (int)sprite.FrameSize.Y);
 			Add(effect, position, size);
 		}
 
@@ -131,7 +132,7 @@ namespace OpenRA.Traits
 
 		public void Update(IEffect effect, WPos position, Sprite sprite)
 		{
-			var size = new Size((int)sprite.Size.X, (int)sprite.Size.Y);
+			var size = new Size((int)sprite.FrameSize.X, (int)sprite.FrameSize.Y);
 			Update(effect, position, size);
 		}
 

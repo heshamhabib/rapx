@@ -729,7 +729,7 @@ namespace OpenRA.Mods.RAPX.Projectiles
 						LastLaunchBlast.Clear();
 					LastLaunchBlast[launcher] = world.WorldTick;
 					var foot = origin - new WVec(0, 0, world.Map.DistanceAboveTerrain(origin).Length);
-					world.AddFrameEndTask(w => w.Add(new PxVideoEffect(w, foot, clip, clip.Scale * info.LaunchVideoScale, 0)));
+					world.AddFrameEndTask(w => w.Add(new PxVideoEffect(w, foot, clip, clip.Scale * info.LaunchVideoScale, 0, blast: true)));
 				}
 
 				var gas = new float3(0.95f, 0.95f, 0.97f);
