@@ -28,6 +28,15 @@ namespace OpenRA.Mods.RAPX.Widgets.Logic
 	public class PxDisplaySettingsLogic : ChromeLogic
 	{
 		[FluentReference]
+		const string WeatherDetailHigh = "dropdown-px-weather-detail.high";
+
+		[FluentReference]
+		const string WeatherDetailMedium = "dropdown-px-weather-detail.medium";
+
+		[FluentReference]
+		const string WeatherDetailLow = "dropdown-px-weather-detail.low";
+
+		[FluentReference]
 		const string HighPerformance = "dropdown-px-gpu-preference.high";
 
 		[FluentReference]
@@ -111,7 +120,40 @@ namespace OpenRA.Mods.RAPX.Widgets.Logic
 			weatherEffects.IsChecked = () => ds.WeatherEffects;
 			weatherEffects.OnClick = () => ds.WeatherEffects ^= true;
 
+			BindWeatherDetail(widget, ds);
 			BindGraphicsCard(widget);
+		}
+
+		/// <summary>
+		/// Unlike the two checkboxes above, this one lands on the frame after it is picked: the passes are already
+		/// built and only read the tier per frame. A storm is the most expensive thing drawn, so it is the dial that
+		/// buys frames back without giving up the weather.
+		/// </summary>
+		static void BindWeatherDetail(Widget widget, GraphicSettings ds)
+		{
+			var labels = new Dictionary<int, string>
+			{
+				{ 2, FluentProvider.GetMessage(WeatherDetailHigh) },
+				{ 1, FluentProvider.GetMessage(WeatherDetailMedium) },
+				{ 0, FluentProvider.GetMessage(WeatherDetailLow) },
+			};
+
+			var dropdown = widget.Get<DropDownButtonWidget>("PX_WEATHER_DETAIL_DROPDOWN");
+			dropdown.GetText = () => labels[Math.Clamp(ds.WeatherDetail, 0, 2)];
+			dropdown.OnMouseDown = _ =>
+			{
+				ScrollItemWidget SetupItem(int option, ScrollItemWidget template)
+				{
+					var item = ScrollItemWidget.Setup(template,
+						() => Math.Clamp(ds.WeatherDetail, 0, 2) == option,
+						() => ds.WeatherDetail = option);
+
+					item.Get<LabelWidget>("LABEL").GetText = () => labels[option];
+					return item;
+				}
+
+				dropdown.ShowDropDown("LABEL_DROPDOWN_TEMPLATE", 500, labels.Keys, SetupItem);
+			};
 		}
 
 		static void BindGraphicsCard(Widget widget)

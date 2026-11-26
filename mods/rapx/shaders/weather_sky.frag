@@ -15,6 +15,10 @@ uniform float Downscale;    // world pixels per buffer pixel
 uniform vec2 ViewSize;      // visible view in buffer pixels
 uniform float Time;         // seconds
 
+// Graphics.WeatherDetail: 2 = high, 1 = medium, 0 = low. Every weather stays recognisable at each tier; the lower
+// ones spend less per pixel (fewer splash cells, fewer rain/snow depth layers, fewer fog octaves, plainer bolts).
+uniform float Detail;
+
 uniform float Rain, Snow, Sand, Fog, Storm, Haze, Wind, Dark, Dust, Flash;
 uniform vec2 WindDir;
 uniform vec2 FogOffset;     // integrated fog drift (world px)
@@ -56,17 +60,27 @@ float Noise(vec2 p)
 	return mix(mix(Hash(i), Hash(i + vec2(1.0, 0.0)), u.x), mix(Hash(i + vec2(0.0, 1.0)), Hash(i + vec2(1.0, 1.0)), u.x), u.y);
 }
 
+// The last octaves are the finest ripples in a fog bank or dust cloud, so dropping them softens the shape
+// without moving it. The remaining amplitude is scaled back up to keep each tier's banks the same density.
 float Fbm(vec2 p)
 {
+	float octaves = Detail >= 1.5 ? 4.0 : 3.0;
 	float v = 0.0;
 	float a = 0.5;
 	for (int i = 0; i < 4; i++)
 	{
+		if (float(i) >= octaves)
+			break;
+
 		v += a * Noise(p);
 		p = mat2(1.6, 1.2, -1.2, 1.6) * p + vec2(3.1, 1.7);
 		a *= 0.5;
 	}
 
+	// Three octaves carry 0.875 of the amplitude that four do, so scale back up to keep the banks as dense.
+	// Written as a constant rather than a running total: this runs several times per pixel, and at high detail
+	// it has to cost nothing at all.
+	v *= Detail >= 1.5 ? 1.0 : 1.0714286;
 	return clamp((v - 0.47) / 0.3 + 0.5, 0.0, 1.0);
 }
 
@@ -125,16 +139,27 @@ float FlakeLayer(vec2 p, float cell, float speed, float size, float density, flo
 	return smoothstep(s, s * 0.25, dist) * (0.6 + 0.4 * h / max(density, 0.001));
 }
 
-// Small splash crowns where drops hit the ground (world-anchored)
+// Small splash crowns where drops hit the ground (world-anchored).
+// PERF: this is the costliest thing in the pass - it runs for every pixel on screen the moment it rains, and each
+// cell it visits costs several hashes plus an exp/pow. A crown is at most ~3 px across in a 17 px cell, so the
+// neighbours only matter for the few that straddle a cell edge: below high detail we visit the home cell alone,
+// which is a ninth of the work and costs an occasional clipped crown.
 float Splashes(vec2 w, float density)
 {
 	const float Cell = 17.0;
+	float reach = Detail >= 1.5 ? 1.0 : 0.0;
 	vec2 id = floor(w / Cell);
 	float acc = 0.0;
 	for (int y = -1; y <= 1; y++)
 	{
+		if (abs(float(y)) > reach)
+			continue;
+
 		for (int x = -1; x <= 1; x++)
 		{
+			if (abs(float(x)) > reach)
+				continue;
+
 			vec2 c = id + vec2(float(x), float(y));
 			float cycle = Time * (1.7 + Hash(c + 2.2)) + Hash(c);
 			vec2 seed = c + floor(cycle) * 3.17;
@@ -215,11 +240,16 @@ vec3 Lightning(vec2 p, vec4 bolt, vec3 params)
 	if (SegDist(p, a, b) > amp * 1.2 + 200.0)
 		return result;
 
-	float d = BoltDist(p, a, b, seed, amp, 32.0);
+	// Fewer segments make the bolt straighter and fewer branches make it plainer, but it strikes in the same
+	// place with the same light. Only pixels near the bolt get this far, so it is a short, bright spike of cost.
+	float segs = Detail >= 1.5 ? 32.0 : (Detail >= 0.5 ? 20.0 : 12.0);
+	float branches = Detail >= 1.5 ? params.z : (Detail >= 0.5 ? min(params.z, 2.0) : 0.0);
+
+	float d = BoltDist(p, a, b, seed, amp, segs);
 	float core = smoothstep(2.0, 0.3, d / Downscale);
 	for (int k = 0; k < 3; k++)
 	{
-		if (float(k) >= params.z)
+		if (float(k) >= branches)
 			break;
 
 		float fk = float(k);
@@ -313,11 +343,22 @@ void main()
 
 		float light = 1.0 + Flash * 1.5;
 		vec3 dropColor = vec3(0.82, 0.88, 1.0);
+
+		// The two near layers carry the rain; r3 and r4 are the big foreground drops that sell the depth. Dropping
+		// them at low detail costs the parallax, so the remaining layers are weighted up to keep the rain as dense.
 		float r1 = RainLayer(view + Scroll * 1.0, slant, vec2(8.0, 60.0), 950.0, 0.45, 0.9, 0.5 * Rain * gust, 1.0);
 		float r2 = RainLayer(view + Scroll * 1.12, slant * 1.1, vec2(13.0, 100.0), 1300.0, 0.5, 1.2, 0.42 * Rain * gust, 2.0);
-		float r3 = RainLayer(view + Scroll * 1.3, slant * 1.2, vec2(22.0, 170.0), 1750.0, 0.55, 1.7, 0.32 * Rain * gust, 3.0);
-		float r4 = RainLayer(view + Scroll * 1.6, slant * 1.35, vec2(40.0, 320.0), 2400.0, 0.6, 3.0, 0.25 * Rain * Storm * gust, 4.0);
+		float r3 = 0.0;
+		float r4 = 0.0;
+		if (Detail >= 0.5)
+		{
+			r3 = RainLayer(view + Scroll * 1.3, slant * 1.2, vec2(22.0, 170.0), 1750.0, 0.55, 1.7, 0.32 * Rain * gust, 3.0);
+			if (Detail >= 1.5)
+				r4 = RainLayer(view + Scroll * 1.6, slant * 1.35, vec2(40.0, 320.0), 2400.0, 0.6, 3.0, 0.25 * Rain * Storm * gust, 4.0);
+		}
+
 		float drops = r1 * 0.4 + r2 * 0.55 + r3 * 0.7 + r4 * 0.5;
+		drops *= Detail >= 1.5 ? 1.0 : (Detail >= 0.5 ? 1.18 : 1.45);
 
 		// Near drops refract what is behind them
 		if (r3 + r4 > 0.01)
@@ -332,11 +373,20 @@ void main()
 		float stretch = 1.0 + Wind * Snow * 4.5;
 		float flutter = 6.0 * (1.0 - Wind * 0.6);
 		float density = min(1.0, Snow * 1.3);
+		// As with rain: the far layers are the depth, the near ones are the snow itself
 		float s1 = FlakeLayer(view + Scroll * 1.0, 12.0, 45.0, 1.1, 0.6 * density, 1.0, stretch, flutter);
 		float s2 = FlakeLayer(view + Scroll * 1.15, 20.0, 70.0, 1.8, 0.55 * density, 2.0, stretch, flutter);
-		float s3 = FlakeLayer(view + Scroll * 1.35, 38.0, 110.0, 3.0, 0.45 * density, 3.0, stretch, flutter);
-		float s4 = FlakeLayer(view + Scroll * 1.8, 90.0, 190.0, 6.5, 0.3 * density, 4.0, stretch, flutter * 2.0);
-		float flakes = clamp(s1 * 0.55 + s2 * 0.7 + s3 * 0.8 + s4 * 0.35, 0.0, 1.0);
+		float s3 = 0.0;
+		float s4 = 0.0;
+		if (Detail >= 0.5)
+		{
+			s3 = FlakeLayer(view + Scroll * 1.35, 38.0, 110.0, 3.0, 0.45 * density, 3.0, stretch, flutter);
+			if (Detail >= 1.5)
+				s4 = FlakeLayer(view + Scroll * 1.8, 90.0, 190.0, 6.5, 0.3 * density, 4.0, stretch, flutter * 2.0);
+		}
+
+		float flakes = clamp((s1 * 0.55 + s2 * 0.7 + s3 * 0.8 + s4 * 0.35)
+			* (Detail >= 1.5 ? 1.0 : (Detail >= 0.5 ? 1.2 : 1.5)), 0.0, 1.0);
 		vec3 flakeColor = vec3(0.96, 0.98, 1.0) * (1.0 - 0.25 * Dark) + Flash * 0.5;
 		col = mix(col, flakeColor, flakes);
 	}

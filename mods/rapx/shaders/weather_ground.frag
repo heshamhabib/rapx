@@ -16,6 +16,10 @@ uniform vec2 Scroll;           // world pixel at the buffer origin
 uniform float Downscale;       // world pixels per buffer pixel
 uniform float Time;            // seconds
 
+// Graphics.WeatherDetail: 2 = high, 1 = medium, 0 = low. Lower tiers spend less per pixel (fewer ripple cells
+// around each raindrop, fewer noise octaves in puddle and drift outlines); the weather itself is unchanged.
+uniform float Detail;
+
 uniform float Wetness;         // 0..1 soaked ground
 uniform float Rain;            // 0..1 falling rain (ripples)
 uniform float Puddles;         // share of open ground that floods when soaked
@@ -70,16 +74,26 @@ float Noise(vec2 p)
 	return mix(mix(Hash(i), Hash(i + vec2(1.0, 0.0)), u.x), mix(Hash(i + vec2(0.0, 1.0)), Hash(i + vec2(1.0, 1.0)), u.x), u.y);
 }
 
+// The last octave is the finest grain in a puddle edge or snow drift: dropping it below high detail softens
+// the outline without moving it. The remaining amplitude is scaled back up so each tier covers the same area.
 float Fbm(vec2 p)
 {
+	float octaves = Detail >= 1.5 ? 4.0 : 3.0;
 	float v = 0.0;
 	float a = 0.5;
 	for (int i = 0; i < 4; i++)
 	{
+		if (float(i) >= octaves)
+			break;
+
 		v += a * Noise(p);
 		p = mat2(1.6, 1.2, -1.2, 1.6) * p + vec2(3.1, 1.7);
 		a *= 0.5;
 	}
+
+	// Three octaves carry 0.875 of the amplitude that four do, so scale back up to keep the drifts as dense.
+	// A constant rather than a running total, so high detail pays nothing for the tier existing.
+	v *= Detail >= 1.5 ? 1.0 : 1.0714286;
 
 	// ~0.47 +- 0.15 -> roughly 0..1
 	return clamp((v - 0.47) / 0.3 + 0.5, 0.0, 1.0);
@@ -99,13 +113,20 @@ vec3 Fetch(ivec2 p)
 // Returns (outward slope xy, ring highlight).
 vec3 Ripples(vec2 p, float t, float density)
 {
+	// PERF: as with the splash crowns in the sky pass, every pixel of wet ground walks this neighbourhood.
+	// A ring reaches ~6 px in a 9 px cell, so the neighbours do carry rings here: medium keeps a cross of
+	// five cells (the diagonals contribute least), low keeps the home cell alone.
 	const float Cell = 9.0;
+	float reach = Detail >= 1.5 ? 2.0 : (Detail >= 0.5 ? 1.0 : 0.0);
 	vec2 id = floor(p / Cell);
 	vec3 acc = vec3(0.0);
 	for (int y = -1; y <= 1; y++)
 	{
 		for (int x = -1; x <= 1; x++)
 		{
+			if (abs(float(x)) + abs(float(y)) > reach)
+				continue;
+
 			vec2 c = id + vec2(float(x), float(y));
 			vec2 h = Hash2(c);
 			float speed = 0.8 + 0.6 * Hash(c + 5.1);

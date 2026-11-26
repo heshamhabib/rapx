@@ -430,6 +430,13 @@ checkbox-px-weather-effects =
     .label = Weather Effects
     .tooltip = Rain, snow, fog, sandstorms and the light each weather casts, and the pressure waves of big explosions bending the picture. The weather still changes and is still announced, it is just not drawn. Applies to the next match.
 
+dropdown-px-weather-detail =
+    .label = Weather Detail:
+    .tooltip = How much detail the weather is drawn with. A storm is the most expensive thing on screen, so turning this down buys frames back without losing the weather. Low keeps every weather recognisable but drops the splash crowns under rain, the furthest rain and snow layers and the branches on lightning. Applies at once.
+    .high = High
+    .medium = Medium
+    .low = Low
+
 ## Display settings: graphics card
 dropdown-px-gpu-preference =
     .label = Graphics Card:

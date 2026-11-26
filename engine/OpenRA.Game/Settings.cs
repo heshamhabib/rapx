@@ -211,6 +211,12 @@ namespace OpenRA
 			"The weather itself still changes and is still announced; only the full-screen drawing stops.")]
 		public bool WeatherEffects = true;
 
+		[Desc("How much per-pixel detail the weather passes draw: 2 = high, 1 = medium, 0 = low.",
+			"Every weather stays recognisable at each tier; the lower ones drop the costliest parts (the splash",
+			"crowns under rain, the furthest rain and snow layers, lightning branches, fog octaves). The sky pass",
+			"is the most expensive thing drawn in a storm, so this is the dial to turn before switching weather off.")]
+		public int WeatherDetail = 2;
+
 		[Desc("When drawing is slower than the game, run several game ticks per frame so the game keeps its real speed.")]
 		public bool LogicCatchUp = true;
 		public float UIScale = 1;

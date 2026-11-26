@@ -19,6 +19,23 @@ namespace OpenRA.Mods.RAPX.Traits
 	/// <summary>One full-screen shader pass over the world buffer, fed by PxWeatherManager.</summary>
 	public abstract class PxWeatherPass : IRenderPostProcessPass, IWorldLoaded, INotifyActorDisposing
 	{
+		/// <summary>
+		/// Graphics.WeatherDetail (2 = high, 1 = medium, 0 = low) as the shaders' Detail uniform. These passes are
+		/// per-pixel procedural over the whole view, so the tier decides how much work each pixel does rather than
+		/// what is drawn. RAPX_WEATHER_DETAIL overrides it for before/after measurements.
+		/// </summary>
+		static float Detail
+		{
+			get
+			{
+				var tier = Game.Settings.Graphics.WeatherDetail;
+				if (Exts.TryParseInt32Invariant(System.Environment.GetEnvironmentVariable("RAPX_WEATHER_DETAIL") ?? "", out var dev))
+					tier = dev;
+
+				return System.Math.Clamp(tier, 0, 2);
+			}
+		}
+
 		protected readonly IShader Shader;
 		readonly IVertexBuffer<RenderPostProcessPassVertex> buffer;
 		readonly PostProcessPassType type;
@@ -68,6 +85,7 @@ namespace OpenRA.Mods.RAPX.Traits
 			Shader.SetTexture("WorldTexture", WorldSnapshot);
 			Shader.SetVec("Scroll", scroll.X, scroll.Y);
 			Shader.SetVec("Downscale", Game.Renderer.WorldDownscaleFactor);
+			Shader.SetVec("Detail", Detail);
 			Shader.SetVec("Time", f.Time);
 			SetUniforms(wr, f);
 			Shader.PrepareRender();
