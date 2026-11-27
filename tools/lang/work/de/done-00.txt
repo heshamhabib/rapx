@@ -1,0 +1,26 @@
+2627	STARK
+2659	SCHWACH
+2628	Stark gegen
+2660	Schwach gegen
+2442	{""} und
+2443	, und
+606	Luftfahrzeuge
+611	Fahrzeuge
+609	Infanterie
+607	Gebäude
+2445	Flugabwehr
+2638	Panzer
+2612	Schiffe
+2631	U-Boote
+2546	Leichte Panzerung
+2555	Flugkörper
+2522	Bodeneinheiten
+2511	Kampfjets
+2561	Marineeinheiten
+2497	Drohnen
+2601	Roboter
+2548	Leichte Fahrzeuge
+2531	Hubschrauber
+2605	Satelliten
+2603	Raketen
+2495	Hunde

@@ -1,0 +1,243 @@
+2404	Hỗ trợ Hạng nhẹ
+2405	Chỉ MCV
+2406	Luôn Hiện
+2407	Hiện Khi Bị thương
+2408	Tiêu chuẩn
+2409	Tự động
+2410	Đã tắt
+2411	Thủ công
+2412	Chỉ Bộ binh
+2413	Không Siêu Vũ khí
+2414	Không giới hạn
+2415	Không giới hạn
+2416	{ $minutes ->\n[one] { $minutes } phút\n*[other] { $minutes } phút\n}
+2417	Tắt
+2418	Chỉ hình ảnh
+2419	Thường xuyên
+2420	Hiếm khi
+2421	Thất bại
+2422	Chiến thắng
+2423	{ $p0 } LIÊN MINH  ·  HỒ SƠ QUỐC GIA
+2424	{ $p0 } KHẢ DỤNG
+2425	{ $p0 } Ô
+2426	{ $p0 } Ô/GIÂY
+2427	{ $p0 } DPS
+2428	{ $p0 } ĐỘC QUYỀN
+2429	{ $p0 } GIÁ TREO
+2430	{ $p0 } QUỐC GIA   ·   { $p1 } MỤC   ·   DÙNG MŨI TÊN / TAB ĐỂ DUYỆT
+2431	{ $p0 } QUỐC GIA
+2432	{ $p0 } RAY PHÓNG
+2433	{ $p0 } BÀI HÁT · { $p1 }
+2434	{ $p0 } bệ đỗ vận tải: chỉ sản xuất và nạp lại vận tải cơ đường không
+2435	CHỈ HUY AI
+2436	KHÔNG QUÂN
+2437	Phòng không
+2438	Thả quân đường không: { $p0 } lính dù ({ $p1 })
+2439	MÁY BAY
+2440	Không vận
+2441	Lưỡng cư
+2444	Pháo sáng Angel: { $p0 } loạt lớn đánh lừa { $p1 }% tên lửa dẫn đường
+2446	Ngư lôi chống hạm
+2447	Titan khỉ đột
+2448	VŨ TRANG
+2449	GIÁP
+2450	GIÁP
+2451	QUÂN ĐỘI
+2452	DANH MỤC VŨ KHÍ
+2453	Đạn pháo
+2454	ATGM
+2455	Bom nguyên tử
+2456	Hơi thở nguyên tử cũng trúng cả máy bay\nBơi qua biển cả · 1.000.000 HP
+2457	Titan nguyên tử
+2458	Đạn đạo
+2459	Phòng thủ căn cứ
+2460	Công trình căn cứ
+2461	Tia
+2462	Thuyền
+2463	Máy bay ném bom
+2464	Bom
+2465	THỜI GIAN XÂY
+2466	Công trình
+2467	Có thể giao chiến với máy bay
+2468	Đạn pháo
+2469	KHẢ NĂNG
+2470	Chiếm công trình địch
+2471	ô
+2472	ô (tối thiểu { $p0 })
+2473	CHỌN QUỐC GIA CỦA BẠN
+2474	CHỌN TITAN CỦA BẠN
+2475	CIWS
+2476	Phòng thủ điểm cận chiến
+2477	Đạn chùm
+2478	CHỈ HUY · { $p0 }
+2479	CHỈ HUY
+2480	CHI PHÍ
+2481	Hành trình
+2482	CHU KỲ { $p0 }S
+2483	Chuyên phòng không
+2484	THUA CUỘC · { $p0 }
+2485	THUA CUỘC
+2486	PHÒNG THỦ
+2487	PHÒNG THỦ
+2488	Công trình Phòng thủ
+2489	Phát hiện đơn vị tàng hình
+2490	ĐÃ NGẮT KẾT NỐI
+2491	Cải trang thành xe dân sự
+2492	Cải trang thành lính địch
+2493	SÁT THƯƠNG { $p0 }
+2494	sát thương
+2496	Drone
+2498	Thả lính dù
+2499	ĐỘ BỀN
+2500	Tích lũy cấp bậc kinh nghiệm
+2501	HIỆU QUẢ TRƯỚC
+2502	ĐỊCH
+2503	Tia năng lượng
+2504	MỤC
+2505	ĐỘC QUYỀN
+2506	Mở rộng bán kính xây dựng
+2507	Phản lực tốc độ cao: tấn công rồi quay về nạp lại đạn
+2508	HỒ SƠ CHIẾN TRƯỜNG
+2509	Sửa chữa xe cơ giới tại chỗ
+2510	ĐƯỢC SỬ DỤNG BỞI
+2512	HỎA LỰC
+2513	Máy bay cánh cố định
+2514	Pháo sáng: { $p0 } loạt đánh lừa { $p1 }% tên lửa dẫn đường
+2515	Sàn đáp: phóng và nạp lại đạn cho máy bay phản lực
+2516	Công sự
+2517	ĐƯỢC CỦNG CỐ
+2518	Tạo ra { $p0 } điện
+2519	Tạo nguồn thu ổn định
+2520	Lựu đạn
+2521	MẶT ĐẤT
+2523	Xe mặt đất
+2524	Tên lửa dẫn đường
+2525	Cú đấm búa · ném đá tảng\nNhảy lên đập máy bay phản lực · 850.000 HP
+2526	Thu hoạch quặng và đá quý
+2527	Hồi phục bộ binh lân cận
+2528	MÁU
+2529	Hạng nặng
+2530	GIÁP DÀY
+2532	Che giấu căn cứ của bạn trong màn sương
+2533	ĐIỂM MÁU
+2534	CHỦ PHÒNG
+2535	CHỦ PHÒNG · BẠN
+2536	Siêu vượt âm
+2537	ĐANG CHIẾN ĐẤU
+2538	Gây cháy
+2539	BỘ BINH
+2540	Xâm nhập công trình địch
+2541	Đánh chặn tên lửa bay tới
+2542	Gây nhiễu tên lửa dẫn đường
+2543	Rải bãi mìn
+2544	Lao vào con mồi
+2545	Hạng nhẹ
+2547	GIÁP NHẸ
+2549	GIỚI HẠN
+2550	Ẩn mình dưới nước khi đứng yên
+2551	NHẠC NỀN MENU
+2552	NHẠC NỀN MENU · ĐÃ TẠM DỪNG
+2553	(TỐI THIỂU { $p0 })
+2554	Tên lửa đánh chặn
+2556	Tắt nhạc
+2557	QUỐC GIA
+2558	ĐƠN VỊ QUỐC GIA
+2559	HẢI QUÂN
+2560	Đơn vị Hải quân
+2562	Tàu chiến
+2563	TRUNG LẬP
+2564	KHÔNG CÓ MỤC NÀO CHO QUỐC GIA NÀY
+2565	Không có quái vật khổng lồ cho người chơi này
+2566	CHƯA CÀI ĐẶT NHẠC
+2567	CHƯA CHỌN GÌ
+2568	KHÔNG CÓ TITAN
+2569	Không có titan
+2570	Không có bài hát nào đang phát
+2571	CHƯA SẴN SÀNG
+2572	ĐANG PHÁT
+2573	Đầu đạn hạt nhân
+2574	NGOẠI TUYẾN
+2575	Mỗi người chơi 1 con. Nó xuất hiện ngay từ đầu và không thể xây lại.
+2576	TRỰC TUYẾN
+2577	ĐÃ TẠM DỪNG
+2578	HIỆU NĂNG
+2579	Được chọn trong phòng chờ (cột TITAN): mỗi người chơi 1 con, xuất hiện ngay từ đầu, không thể xây lại
+2580	Được chọn khi trận đấu bắt đầu
+2581	Gài thuốc nổ phá hủy
+2582	Phòng thủ điểm chống tên lửa
+2583	SẢN LƯỢNG ĐIỆN
+2584	MỨC DÙNG ĐIỆN
+2585	Sản xuất { $p0 }
+2586	PROJECT X  //  HỒ SƠ CHIẾN TRANH MẬT
+2587	PROJECT X · NHẠC NỀN GỐC
+2588	Cung cấp bản đồ radar thu nhỏ
+2589	NGẪU NHIÊN
+2590	TẦM BẮN { $p0 }
+2591	TẦM BẮN
+2592	Tinh luyện quặng thành tiền
+2593	Tiếp sóng và khuếch đại tia lăng kính
+2594	Nạp lại lính dù tại bệ đỗ trong { $p0 } giây, với chi phí tương ứng
+2595	Sửa cầu
+2596	Sửa chữa xe cơ giới tại bến đỗ
+2597	Lặp lại bài hát: tắt
+2598	Lặp lại bài hát: bật
+2599	BẢN GHI
+2600	CẦN
+2602	Rocket
+2604	Máy bay cánh quạt quay
+2606	ĐIỂM
+2607	Sóng xung kích địa chấn (tự hủy)
+2608	Chọn một đơn vị hoặc công trình
+2609	CHỌN QUỐC GIA
+2610	ĐƠN VỊ ĐÃ CHỌN ({ $p0 })
+2611	Tự sửa chữa theo thời gian
+2613	Bắn và chạy
+2614	Bắn hạ { $p0 }
+2615	Xé nát tên lửa nhắm vào nó, { $p0 }% mỗi loạt
+2616	Xáo trộn: tắt
+2617	Xáo trộn: bật
+2618	Vũ khí cá nhân
+2619	ÂM THANH ĐÃ TẮT
+2620	ĐANG XEM · { $p0 }
+2621	ĐANG XEM
+2622	TỐC ĐỘ
+2623	ĐANG CHỜ LỆNH
+2624	Tàng hình: vô hình khi đứng yên
+2625	ĐÃ DỪNG
+2626	Lưu trữ tiền
+2627	MẠNH
+2629	CÔNG TRÌNH
+2630	CÔNG TRÌNH
+2632	Lặn khuất tầm nhìn
+2633	HỖ TRỢ
+2634	Hỗ trợ: không gây sát thương trực tiếp
+2635	BẤT NGỜ
+2636	Bất ngờ
+2637	Biết bơi, nhanh hơn dưới nước so với trên cạn
+2639	Điểm đánh dấu mục tiêu
+2640	Dịch chuyển tức thời quãng ngắn
+2641	LIÊN MINH
+2642	TIÊN PHONG
+2643	TITAN
+2644	để xem chi tiết.
+2645	Ngư lôi
+2646	BÀI { $p0 } / { $p1 } · { $p2 }
+2647	Giẫm nát bộ binh dưới chân: họ không thể né tránh
+2648	Chở { $p0 } lính
+2649	Liên minh
+2650	Đơn vị
+2651	Bật nhạc
+2652	Tiên phong
+2653	XE CƠ GIỚI
+2654	CHIẾN THẮNG
+2655	CHIẾN THẮNG · { $p0 }
+2656	CHIẾN THẮNG
+2657	TẦM NHÌN
+2658	VTOL: lơ lửng và hạ cánh ở bất kỳ đâu
+2659	YẾU
+2661	BẠN
+2662	Khoáng sản Quý giá
+2663	{ $units ->\n[one] Đã chọn 1 đơn vị trên toàn bản đồ.\n*[other] Đã chọn { $units } đơn vị trên toàn bản đồ.\n}
+2664	{ $units ->\n[one] Đã chọn 1 đơn vị trên màn hình.\n*[other] Đã chọn { $units } đơn vị trên màn hình.\n}
+2665	ĐANG TẠM HOÃN
+2666	SẴN SÀNG

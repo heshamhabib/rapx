@@ -122,11 +122,11 @@ namespace OpenRA.Mods.RAPX.Widgets
 			string tag;
 			Color tagColor;
 			if (client.Bot != null)
-				(tag, tagColor) = ("AI COMMANDER", PxDraw.Muted);
+				(tag, tagColor) = (PxText.T("AI COMMANDER"), PxDraw.Muted);
 			else if (local != null && client.Index == local.Index)
-				(tag, tagColor) = (client.IsAdmin ? "HOST · YOU" : "YOU", PxDraw.AccentBright);
+				(tag, tagColor) = (client.IsAdmin ? PxText.T("HOST · YOU") : PxText.T("YOU"), PxDraw.AccentBright);
 			else
-				(tag, tagColor) = (client.IsAdmin ? "HOST" : "COMMANDER", PxDraw.Muted);
+				(tag, tagColor) = (client.IsAdmin ? PxText.T("HOST") : PxText.T("COMMANDER"), PxDraw.Muted);
 
 			Game.Renderer.Fonts[TagFont].DrawText(tag, new float2(rb.X + TagX, rb.Y + TagY), tagColor);
 
@@ -176,7 +176,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 			}
 
 			var font = Game.Renderer.Fonts["PXSidebarSmall"];
-			var text = ready ? "READY" : "NOT READY";
+			var text = ready ? PxText.T("READY") : PxText.T("NOT READY");
 			var size = font.Measure(text);
 			var x = r.X + (r.Width - size.X + 18) / 2;
 			var y = r.Y + (r.Height - size.Y) / 2;

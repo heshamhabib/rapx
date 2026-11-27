@@ -1,0 +1,300 @@
+2104	Địch
+2105	Lỗi không xác định
+2106	máy chủ không xác định
+2107	Trạng thái máy chủ không xác định
+2108	Bật tiếng người chơi này
+2109	chưa đóng gói
+2110	Địa hình Chưa hiện lộ
+2111	Bạn đang chạy phiên bản OpenRA đã lỗi thời.
+2112	Tải phiên bản mới nhất từ www.openra.net
+2113	Đang xác minh kho lưu trữ...
+2114	Màn hình { $number }
+2115	Đang chờ
+2116	Đang chờ người chơi
+2117	Bão tuyết
+2118	Trời quang
+2119	Sương mù
+2120	Hơi nóng
+2121	Mưa
+2122	Bão cát
+2123	Tuyết
+2124	Gió mạnh
+2125	Giông bão
+2126	Thua
+2127	Thắng
+2128	Không liên kết với hoặc được chứng thực bởi Electronic Arts. Command & Conquer và Red Alert là thương hiệu của Electronic Arts Inc.
+2129	Đang tiếp nhiên liệu cho đoàn xe tăng..., Đang hiệu chỉnh pháo binh..., Đang họp giao ban chỉ huy mặt trận..., Đang nạp năng lượng cuộn Tesla..., Đang điều động phi đội tiêm kích..., Đang rải bãi mìn..., Đang giải mã tín hiệu địch..., Đang tinh luyện quặng..., Đang triển khai xưởng xây dựng..., Đang đồng bộ đường truyền radar..., Đang phân hạch nguyên tử...
+2130	ĐANG KHỞI TẠO CHỈ HUY
+2131	ĐANG QUAY VỀ SỞ CHỈ HUY
+2132	ĐANG TRIỂN KHAI RA CHIẾN TRƯỜNG
+2133	Báo cáo
+2134	Chat
+2135	Gỡ lỗi
+2136	Mục tiêu
+2137	Tùy chọn
+2138	Hộp Đạn
+2139	Công trình
+2140	Hộp
+2141	Cầu
+2142	Cánh đồng
+2143	Đống rơm
+2144	Lều băng
+2145	Thùng đồ
+2146	Trực thăng
+2147	Trực thăng Bị phá hủy
+2148	Xe cơ giới Bị phá hủy
+2149	Lính
+2150	Mìn
+2151	Máy bay
+2152	Máy bay Bị phá hủy
+2153	Đá
+2154	Tàu
+2155	Công trình Dân sự
+2156	Cây
+2157	Cây (Cháy)
+2158	Xe cơ giới
+2159	Lật
+2160	Xoay
+2161	RedAlert Project X
+2162	Không có gì được chọn.
+2163	Phát hiện phóng bom nguyên tử.
+2164	Đang chuẩn bị bom nguyên tử.
+2165	Bom nguyên tử đã sẵn sàng.
+2166	Đã thêm { $name } ({ $id })
+2167	{ $amount ->\n[one] Đã thêm 1 ô đánh dấu loại { $type }\n*[other] Đã thêm { $amount } ô đánh dấu loại { $type }\n}
+2168	{ $amount ->\n[one] Đã thêm 1 ô loại { $type }\n*[other] Đã thêm { $amount } ô loại { $type }\n}
+2169	Đã thêm ô { $id }
+2170	Chỉ chủ phòng mới có thể thay đổi cấu hình.
+2171	Chỉ chủ phòng mới có thể thay đổi bản đồ.
+2172	Chỉ quản trị viên mới có thể xóa vị trí xuất phát.
+2173	Chỉ chủ phòng mới có thể đuổi người chơi.
+2174	{ $admin } đã đuổi { $player } khỏi máy chủ.
+2175	Chỉ chủ phòng mới có thể đặt thông tin phòng chờ.
+2176	Chỉ chủ phòng mới có thể chuyển người chơi thành người xem.
+2177	Chỉ chủ phòng mới có thể đặt tùy chọn đó.
+2178	Chỉ chủ phòng mới có thể bắt đầu trận đấu.
+2179	Chỉ quản trị viên mới có thể chuyển quyền quản trị cho người chơi khác.
+2180	Đơn vị trên không đã mất.
+2181	Đồng minh của ta đang bị tấn công.
+2182	Dưới đây là các lệnh khả dụng:
+2183	Căn cứ đang bị tấn công.
+2184	Tên máy chủ chứa từ bị cấm.
+2185	Công trình đã bị xâm nhập.
+2186	Không thể triển khai ở đây.
+2187	Sàn đáp: { $mode }
+2188	{ $player } đã đổi bản đồ thành { $map }.
+2189	{ $remaining ->\n[one] Chat đã bị vô hiệu hóa. Vui lòng thử lại sau { $remaining } giây.\n*[other] Chat đã bị vô hiệu hóa. Vui lòng thử lại sau { $remaining } giây.\n}
+2190	Đã dùng gian lận: { $cheat } bởi { $player }{ $suffix }.
+2191	Gian lận đã bị vô hiệu hóa.
+2192	Chronosphere đang nạp năng lượng.
+2193	Chronosphere đã sẵn sàng.
+2194	Đã xóa { $amount } ô đánh dấu
+2195	Đã xóa { $amount } ô đánh dấu loại { $type }
+2196	Đã xóa lựa chọn
+2197	{ $player } đang gặp sự cố kết nối.
+2198	Hoàn tất xây dựng.
+2199	{ $amount ->\n[one] Đã sao chép 1 ô\n*[other] Đã sao chép { $amount } ô\n}
+2200	Tiền đã bị đánh cắp.
+2201	Bản đồ này chứa luật tùy chỉnh. Trải nghiệm trận đấu có thể thay đổi.
+2202	Mất đồng bộ ở khung hình { $frame }.\nSo sánh tệp syncreport.log với người chơi khác.
+2203	Đã sửa { $name } ({ $id })
+2204	Đã sửa { $name } ({ $old-id }-> { $new-id })
+2205	Không có ai trong vị trí đó.
+2206	Trận đấu đã bắt đầu.
+2207	Không thể phân tích số đội: { $raw }.
+2208	Phát hiện máy bay ném bom nguyên tử.
+2209	Đã lấp đầy bằng ô { $id }
+2210	Trận đấu đã đầy.
+2211	Trận đấu đã bắt đầu.
+2212	Trận đấu chưa được quảng bá trực tuyến.
+2213	Trận đấu đã bị { $player } tạm dừng.
+2214	Đã lưu trận đấu.
+2215	Trận đấu đã bắt đầu.
+2216	Trận đấu đã được { $player } tiếp tục.
+2217	Máy chủ đang chạy một mod không tương thích.
+2218	Máy chủ đang chạy một giao thức không tương thích.
+2219	Máy chủ đang chạy một phiên bản không tương thích.
+2220	Sai mật khẩu.
+2221	Không thể bắt đầu trận đấu cho đến khi có thêm vị trí xuất phát được bật.
+2222	Không đủ tiền.
+2223	Không đủ điện.
+2224	Không đủ phiếu để đuổi người chơi { $kickee }.
+2225	Không thể thêm bot vào vị trí đã có người chơi khác.
+2226	Loại bot không hợp lệ.
+2227	Số tiền không hợp lệ.
+2228	{ $name } không phải là một lệnh hợp lệ.
+2229	Lệnh cấu hình không hợp lệ.
+2230	Không thể phân tích thông báo lỗi.
+2231	Phe đã chọn không hợp lệ: { $faction }.
+2232	Thông tin phòng chờ đã gửi không hợp lệ.
+2233	Không thể xác định màu người chơi hợp lệ. Một màu ngẫu nhiên đã được chọn.
+2234	Iron Curtain đang nạp năng lượng.
+2235	Iron Curtain đã sẵn sàng.
+2236	{ $player } đã tham gia trận đấu.
+2237	Bạn đã bỏ phiếu rồi.
+2238	Chủ phòng không thể tự đuổi chính mình.
+2239	{ $player } đã bị đuổi khỏi máy chủ.
+2240	{ $player } đã rời đi.
+2241	Thiếu điện.
+2242	Lệnh { $command } không đúng định dạng.
+2243	Bot đã bị vô hiệu hóa trên bản đồ này.
+2244	Không thể xóa bản đồ '{ $map }'. Xem tệp debug.log để biết chi tiết.
+2245	Đã thiết lập liên lạc với máy chủ chính.
+2246	Liên lạc với máy chủ chính thất bại.
+2247	Không thể chuyển mod.
+2248	{ $admin } đã chuyển { $player } thành người xem.
+2249	Đã di chuyển { $id } từ { $x1 },{ $y1 } đến { $x2 },{ $y2 }
+2250	Đơn vị hải quân đã mất.
+2251	{ $player } hiện là quản trị viên.
+2252	Tùy chọn xây dựng mới.
+2253	{ $player } giờ được gọi là { $name }.
+2254	Chỉ người xem và người chơi đã thua mới có thể bị đuổi sau khi trận đấu đã bắt đầu.
+2255	Bạn không có quyền tham gia máy chủ này.
+2256	Cổng máy chủ không thể truy cập được từ internet.
+2257	Không thể bắt đầu trận đấu cho đến khi các vị trí bắt buộc đã đầy đủ.
+2258	Trận đấu không thể bắt đầu nếu không có người chơi.
+2259	{ $player } (Người xem) đã ngắt kết nối.
+2260	Đã mở
+2261	{ $player } đã đổi { $name } thành { $value }.
+2262	{ $option } không thể thay đổi.
+2263	Hiệp ước đang có hiệu lực: bạn chưa thể tấn công người chơi khác.
+2264	Hiệp ước hòa bình đã kết thúc. Chiến tranh!
+2265	Hiệp ước hòa bình sẽ kết thúc sau { $minutes ->\n[one] { $minutes } phút\n*[other] { $minutes } phút\n}.
+2266	Hiện không có hiệp ước hòa bình nào có hiệu lực.
+2267	Hiệp ước hòa bình sẽ kết thúc sau { $seconds } giây...
+2268	Một hiệp ước hòa bình đang có hiệu lực trong { $minutes ->\n[one] { $minutes } phút\n*[other] { $minutes } phút\n}. Không có cuộc tấn công nào cho đến khi nó kết thúc. Gõ /endtreaty để bỏ phiếu kết thúc sớm.
+2269	Mọi người chơi đã đồng ý: hiệp ước sẽ kết thúc sau { $seconds } giây.
+2270	{ $player } bỏ phiếu kết thúc hiệp ước sớm ({ $votes }/{ $needed }).
+2271	Màu đã được điều chỉnh để bớt giống người chơi khác.
+2272	Màu đã được điều chỉnh để bớt giống địa hình.
+2273	{ $player } đã ngắt kết nối.
+2274	Một người chơi đã bị loại sau khi hết thời gian chờ.
+2275	{ $player } đã thua.
+2276	{ $player } đã thắng.
+2277	Công trình chính đã được chọn.
+2278	Không có chỗ để thả dây ở đó: trực thăng đang bay đi cùng số quân còn lại.
+2279	Thả dây: nhấp vào bãi đáp (Shift+nhấp để xếp hàng, nhấp phải để hủy).
+2280	Chọn một trực thăng vận tải có binh lính trên khoang để thả dây.
+2281	Chế độ điểm mốc: nhấp để thêm điểm, nhấp đúp hoặc nhấn lại phím để gửi lệnh.
+2282	Lệnh bắn: lực lượng hỗ trợ đang bắn vào làn khói đỏ.
+2283	Không có lực lượng hỗ trợ nào trong tầm của làn khói đỏ.
+2284	Khói đỏ đã sẵn sàng.
+2285	Phát hiện khói đỏ của địch. Hỏa lực đang ập đến!
+2286	Viện quân đã đến.
+2287	Đã xóa { $name } ({ $id })
+2288	Đã xóa khu vực { $x },{ $y } ({ $width },{ $height })
+2289	{ $amount ->\n[one] Đã xóa 1 ô đánh dấu\n*[other] Đã xóa { $amount } ô đánh dấu\n}
+2290	Đã xóa { $type }
+2291	Đang sửa chữa.
+2292	Không thể xóa tệp bản ghi '{ $file }'. Xem tệp debug.log để biết chi tiết.
+2293	Máy chủ yêu cầu người chơi phải có tài khoản diễn đàn OpenRA.
+2294	Chỉ chủ phòng mới có thể làm việc đó.
+2295	Máy chủ yêu cầu mật khẩu.
+2296	Vệ tinh đã được phóng.
+2297	Đã lưu bản đồ hiện tại.
+2298	Không thể xóa tệp lưu '{ $savePath }'. Xem tệp logs để biết chi tiết.
+2299	Đã lưu ảnh chụp màn hình { $filename }
+2300	Đang tìm bản đồ trên Resource Center...
+2301	Chọn mục tiêu.
+2302	Đã chọn đối tượng { $id }
+2303	Đã chọn khu vực { $x },{ $y } ({ $width },{ $height })
+2304	Cần thêm Kho chứa.
+2305	Vị trí của bạn đã bị chủ phòng đóng lại.
+2306	Xung Sonar đã sẵn sàng.
+2307	Vị trí xuất phát này đã bị khóa cho một vị trí người chơi khác.
+2308	Bạn không thể chiếm vị trí xuất phát giống một người chơi khác.
+2309	Máy bay Trinh sát đã sẵn sàng.
+2310	Không thể thay đổi trạng thái sau khi trận đấu đã bắt đầu ({ $command }).
+2311	Không thể thay đổi trạng thái khi đã đánh dấu sẵn sàng.
+2312	Công trình đã bị chiếm.
+2313	{ $player } (Đội { $team }) đã ngắt kết nối.
+2314	{ $admin } đã cấm tạm thời { $player } khỏi máy chủ.
+2315	Giới hạn thời gian đã hết.
+2316	{ $player } đã bị loại sau khi hết thời gian chờ.
+2317	{ $timeout ->\n[one] { $player } sẽ bị loại sau { $timeout } giây.\n*[other] { $player } sẽ bị loại sau { $timeout } giây.\n}
+2318	Titan của ta đã gục ngã.
+2319	Máy chủ này cần ít nhất hai người chơi thật để bắt đầu trận đấu.
+2320	Không thể xây thêm.
+2321	Không thể thực hiện. Đang trong quá trình xây dựng.
+2322	Không thể bắt đầu bỏ phiếu.
+2323	Đơn vị đã mất.
+2324	Đơn vị đã được thăng cấp.
+2325	Đơn vị đã sẵn sàng.
+2326	Đơn vị đã được sửa chữa.
+2327	Đơn vị đã bị đánh cắp.
+2328	Không tìm thấy bản đồ trên máy chủ.
+2329	Lệnh máy chủ không xác định: { $command }.
+2330	Bỏ phiếu đuổi đã bị vô hiệu hóa trên máy chủ này.
+2331	Bỏ phiếu đuổi người chơi { $kickee } đã thất bại.
+2332	{ $percentage }% người chơi đã bỏ phiếu đuổi người chơi { $kickee }.
+2333	Người chơi { $kicker } đã bắt đầu bỏ phiếu đuổi người chơi { $kickee }.
+2334	Thời tiết: { $weather }.
+2335	Dự báo thời tiết: { $weather } sau { $seconds } giây.
+2336	Bạn đã bị cấm khỏi máy chủ.
+2337	Bạn đã bị đuổi khỏi máy chủ.
+2338	Bạn đã bị cấm tạm thời khỏi máy chủ.
+2339	Gần
+2340	Xa
+2341	Xa nhất
+2342	Trung bình
+2343	Tất cả
+2344	Nhiều
+2345	Không có
+2346	Kết quả Tìm kiếm
+2347	Cổ điển
+2348	Hiện đại
+2349	Toàn màn hình
+2350	Toàn màn hình (Cũ)
+2351	Cửa sổ
+2352	Nhanh
+2353	Nhanh hơn
+2354	Nhanh nhất
+2355	Bình thường
+2356	Chậm hơn
+2357	Chậm nhất
+2358	Bot
+2359	Bot Bị Vô hiệu hóa
+2360	Đã đóng
+2361	Mở
+2362	Vị trí
+2363	Đảo ngược
+2364	Joystick
+2365	Quân đội
+2366	Quân đội (biểu đồ)
+2367	Cơ bản
+2368	Chiến đấu
+2369	Thu nhập (biểu đồ)
+2370	Kinh tế
+2371	Thông tin: Không có
+2372	Sản xuất
+2373	Sức mạnh Hỗ trợ
+2374	Ngày
+2375	Người chơi
+2376	Kích thước
+2377	Tiêu đề
+2378	Không có hiệp ước
+2379	Tùy chỉnh
+2380	Mặc định OpenRA
+2381	Red Alert 2
+2382	Red Alert 2 (lệnh bằng chuột phải)
+2383	14 ngày qua
+2384	30 ngày qua
+2385	7 ngày qua
+2386	Hôm nay
+2387	Dài (60+ phút)
+2388	Trung bình (30 phút)
+2389	Ngắn (10 phút)
+2390	Dưới 5 phút
+2391	Chơi mạng
+2392	Chơi đơn
+2393	Tất cả Người chơi
+2394	Tắt Màn sương
+2395	Khác
+2396	Thêm
+2397	Cấu hình Bot
+2398	Cấu hình Đội
+2399	Hỗn chiến tự do
+2400	Người chơi và Bot
+2401	Xóa
+2402	{ $count } Đội
+2403	Hỗ trợ Hạng nặng

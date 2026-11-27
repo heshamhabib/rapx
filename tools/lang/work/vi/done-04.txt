@@ -1,0 +1,300 @@
+904	Trực thăng vận tải hạng nặng
+905	"Xe tăng bay": một trực thăng vũ trang bọc thép với súng máy xích và cụm rocket, cùng khoang chở 5 lính. Nó quét sạch bãi đáp rồi thả toán quân xuống đó.
+906	Trụ sở tình báo bí mật của Anh. Nó mở khóa Gián điệp và các Xe Gián điệp. Chỉ Anh, mỗi người chơi 1 cái, và nó cần điện.
+907	Trụ sở tình báo
+908	Một máy bay cường kích tốc độ cao với tên lửa chống công trình và xe cơ giới. Tấn công rồi bay về Sân bay để nạp lại đạn.
+909	Phản lực tấn công
+910	Một bệ phóng rocket đa nòng bánh xích. Nó bắn hết toàn bộ giàn phóng chỉ trong vài giây, một loạt 19 rocket dày đặc trùm kín khu vực mục tiêu, rồi cần nhiều thời gian để nạp lại.
+911	Xe tăng rocket
+912	Rải mìn chống tăng và sát thương người, đồng thời có thể phát hiện mìn địch. Gài mìn ở mỏ quặng và các điểm thắt cổ chai để mọi cuộc tấn công đều phải trả giá đắt.
+913	Gây nhiễu Mái vòm Radar của địch ở gần và làm lệch hướng tên lửa dẫn đường bay tới. Dùng nó để hộ tống xe bọc thép của bạn vào khu vực phòng thủ dày đặc tên lửa.
+914	Máy gây nhiễu radar
+915	Một trận địa tên lửa tầm trung kiêm lá chắn rocket của bạn (kiểu Iron Dome): mười tên lửa đánh chặn tốc độ cao bắn ra liên tiếp, bay gần như thẳng đứng lên cao và phá tan các loạt rocket cùng rocket máy bay bay tới trên không, để lại những vệt sáng phía sau. Nó cũng đánh chặn máy bay, tên lửa hành trình và drone. Những loạt bắn lớn vẫn có thể áp đảo nó trong lúc nạp lại đạn. Chỉ đạt tầm bắn tối đa khi có Mái vòm Radar.
+916	Phòng không tầm trung
+917	Một hầm tên lửa hạt nhân. Sau một thời gian nạp năng lượng dài, nó phóng một quả bom nguyên tử san phẳng cả một khu vực trong căn cứ địch. Chỉ có thể xây 1 cái, và mọi đối thủ đều được cảnh báo khi nó sẵn sàng.
+918	Siêu vũ khí
+919	Một bệ công thành ngầm dưới nước, bắn tên lửa vào công trình, quân mặt đất và máy bay sâu trong đất liền. Yếu trước các tàu chiến khác.
+920	Tàu ngầm tên lửa
+921	Một xe tăng chiến đấu rẻ hơn của Tiên phong, đóng nhanh hơn Xe tăng Hạng nặng, trang bị pháo nhẹ hơn.
+922	Xe tăng vừa
+923	Một chiếc xe việt dã dân sự trên bánh xe khổng lồ, được trưng dụng vào quân đội. Nó không mang bất kỳ vũ khí nào: nó chỉ đơn giản là lái qua bộ binh, hàng rào và tường bao cát, và khoang lái cùng thùng xe chở theo một toán 4 lính. Chỉ Hoa Kỳ.
+924	Kẻ nghiền nát
+925	Kho vũ khí chung của Liên minh, được mọi quốc gia thành viên chia sẻ; lính dù của phe này bay trên chiếc C-141 Starlifter thân dài.
+926	Rồng đỏ: siêu tàu sân bay Fujian, tiêm kích tàng hình JX-20 và PHX-16, bệ phóng có tầm bắn xa nhất trong tất cả. Chiếc Y-20 Kunpeng chuyên chở quân đoàn không vận của phe này.
+927	Pháo đài đảo: những bệ phóng Grad cũ bền bỉ được bắn hàng loạt và hệ thống phòng thủ được xây dựng để trụ vững trước mọi cuộc vây hãm. Lính dù của phe này bay trên những chiếc B-29 Superfortress cũ.
+928	Bộ chỉ huy sa mạc: tàu sân bay trực thăng Mistral giá rẻ và rocket chùm Saqr-36 xé nát xe hạng nhẹ. Các lữ đoàn không vận của phe này bay trên những chiếc B-52 Stratofortress được cải tạo để thả quân.
+929	Bậc thầy nghi binh: gián điệp MI6, các Xe Gián điệp đầy trang bị và máy tạo vùng mù làm mù mắt địch. Lực lượng không vận của phe này bay trên chiếc C-17A Globemaster III, máy bay vận tải phản lực bền bỉ nhất trong tất cả.
+930	Chính xác và tàng hình: rocket dẫn đường GPS LRX, tiêm kích Rafale và Xe Vận tải Pha có khả năng tàng hình. Lính dù của phe này nhảy từ vận tải cơ C-130 Hercules.
+931	Kỹ sư thời gian: Xe tăng Chrono dịch chuyển tức thời khắp bản đồ và bệ phóng MARZ gieo rắc bãi mìn. Các cuộc đột kích đường không của phe này bay trên những chiếc B-17 Flying Fortress bị thu giữ, và chiếc cánh bay HG-229 Nachtflügel mang theo những quả bom dẫn đường hạng nặng.
+932	Cường quốc đang lên: tàu sân bay tự đóng trong nước Vikrant và bệ phóng Pinak bắn hết cụm đạn chỉ trong vài giây. Lính dù của phe này nhảy từ chiếc Il-76MD với súng đuôi của nó.
+933	Bậc thầy drone: tàu sân bay drone Bagheri, drone tấn công Shard và nguyên mẫu tàng hình Qahir-X. Lính dù của phe này bay trên một chiếc Boeing 707 cải tạo.
+934	Quân đoàn Địa Trung Hải: tàu sân bay hạng nhẹ Cavour và bệ phóng rocket Saetta nạp đạn nhanh. Lính dù của phe này bay từ các căn cứ thủy phi cơ trên chiếc thủy phi cơ khổng lồ Boeing 314 Clipper.
+935	Hải quân đảo quốc: tàu sân bay Kaga cho máy bay cất cánh thẳng đứng và xe Sea Arrow đánh chìm tàu chiến ngoài khơi xa. Lính dù của phe này nhảy từ vận tải cơ C-130 Hercules.
+936	Người giữ núi: rocket dẫn đường Fatah giáng đòn mạnh và chính xác từ sâu phía sau tiền tuyến. Lính dù của phe này nhảy từ vận tải cơ C-130 Hercules.
+937	Vũ khí Tesla: Lính Tesla, Xe tăng Tesla, tàu sân bay Kuznetsov và bệ phóng nhiệt áp TOZ-1 Sunflare. Lính dù của phe này nhảy từ chiếc Il-76MD với súng đuôi của nó.
+938	Lá chắn bán đảo: bệ phóng Chunmu chuyển đổi giữa loạt rocket và một tên lửa dẫn đường hạng nặng. Lính dù của phe này nhảy từ vận tải cơ C-130 Hercules.
+939	Kho vũ khí chung của Tiên phong, được mọi quốc gia thành viên chia sẻ; lính dù của phe này bay trên những chiếc B-29 Superfortress được sao chép từng con tán rivet. Từ Sân đỗ Trực thăng, phe này triển khai trực thăng vận tải hạng nặng Mi-26 Halo, trực thăng vũ trang Hind và Mi-35, cùng chiếc Ka-52 Alligator.
+940	Cửa ngõ các lục địa: chiến tranh drone từ tàu sân bay Anadolu, Drone Bầy đàn và rocket hạng nặng Kasirga. Lính dù của phe này nhảy từ vận tải cơ C-130 Hercules.
+941	Phá hủy: Xe tải Phá hủy hạt nhân, các phi vụ Bom dù, chiếc An-225 khổng lồ và rocket Vilkra chính xác. Lính dù của phe này nhảy từ chiếc Il-76MD, với súng đuôi đôi 23 mm giữ tiêm kích địch tránh xa.
+942	Kho vũ khí của dân chủ thuộc Liên minh: phi đội không quân rộng lớn nhất thế giới, các siêu tàu sân bay, xe rocket HIMAX và chiếc AB-35 Longwing thả bom nguyên tử Fatman. Lính dù của phe này bay trên vận tải cơ C-130 Hercules từ Căn cứ Không vận.
+943	Một giàn khoan trên mặt nước bơm một nguồn thu nhỏ giọt ổn định mà không cần xe tải để bảo vệ. Nó phải được xây trên mặt nước gần căn cứ của bạn và ngừng bơm khi thiếu điện. Tàu chiến và tàu ngầm là mối đe dọa lớn nhất của nó.
+944	Kinh tế ngoài khơi
+945	Một lô cốt bê tông trang bị súng máy. Nó phát hiện được đơn vị tàng hình và chặn đứng các đợt xung phong của bộ binh. Kết hợp nó với một tháp súng chống tăng.
+946	Boong-ke chống bộ binh
+947	Bệ phóng rocket có tầm bắn xa nhất trong trò chơi. Nó nã đạn vào căn cứ và các nhóm mục tiêu từ sâu phía sau tiền tuyến. Nạp đạn chậm.
+948	Bệ phóng rocket (Trung Quốc)
+949	Bắn hết toàn bộ số rocket mang theo chỉ trong vài giây. Một loạt đạn bất ngờ tàn khốc trước bộ binh và căn cứ.
+950	Bệ phóng rocket (Ấn Độ)
+951	Nguồn điện cơ bản cho căn cứ của bạn. Công trình phòng thủ, radar và siêu vũ khí sẽ ngừng hoạt động khi thiếu điện, nên hãy xây nhà máy điện trước khi nhu cầu tăng và dàn trải chúng ra: một đòn tấn công duy nhất vào một cụm nhà máy điện có thể khiến cả căn cứ mất điện.
+952	Phát điện
+953	Chuyển quặng và đá quý thành tiền, và đi kèm một Xe tải Quặng miễn phí. Xây nó gần các mỏ giàu để rút ngắn mỗi chuyến đi. Một nhà máy tinh luyện thứ hai gần mỏ khác gần như tăng gấp đôi nguồn thu của bạn.
+954	Một tàu tuần tra hạng nhẹ, tốc độ cao, phát hiện tàu ngầm và săn tàu nhỏ. Đôi mắt giá rẻ trên mặt nước.
+955	Một xe tăng tia tầm xa với tia sáng tinh thể gây sát thương diện rộng lên nhóm bộ binh, xe hạng nhẹ và công trình. Mỏng manh, nên hãy giữ nó phía sau xe bọc thép hạng nặng của bạn.
+956	Xe tăng lăng kính
+957	Bắn ra một tia sáng tinh thể. Các Tháp Lăng kính lân cận liên kết và truyền năng lượng vào tháp đang bắn: +40% sát thương cho mỗi tháp liên kết, tối đa +200%. Hãy xây chúng thành cụm.
+958	Phòng thủ lăng kính
+959	Xe tăng MAD làm rung chuyển mặt đất bằng sóng địa chấn, phá hủy xe cơ giới và công trình lân cận, và tự hủy trong quá trình đó. Hãy lái nó vào giữa căn cứ địch.
+960	Xe tăng địa chấn
+961	Súng ray của nó tấn công xe bọc thép từ tầm xa nhưng nạp năng lượng chậm. Hãy giữ nó phía sau một hàng bộ binh che chắn và để nó lần lượt hạ gục xe tăng.
+962	Robot chống giáp
+963	Đỉnh cao của một lực lượng không quân: chỗ đậu cho 10 máy bay trong một khu vực. Chỉ có thể xây 1 cái, nên hãy bảo vệ nó cẩn thận như Xưởng Xây dựng của bạn.
+964	Bộ chỉ huy không quân chiến lược
+965	Một bệ phóng bánh xích rẻ hơn, nạp đạn nhanh hơn. Nhiều chiếc Saetta bắn luân phiên sẽ duy trì áp lực liên tục.
+966	Bệ phóng rocket (Ý)
+967	Phóng tên lửa đất-đối-không vào máy bay và drone, và có thể bắn hạ một số rocket cùng tên lửa hành trình. Nó cần điện.
+968	Rocket chùm tách thành nhiều quả bom nhỏ phía trên mục tiêu. Tàn khốc với bộ binh và xe hạng nhẹ, yếu trước xe tăng và công trình.
+969	Bệ phóng rocket chùm (Ai Cập)
+970	Bao cát giá rẻ chặn bộ binh và xe hạng nhẹ, hướng kẻ tấn công vào tầm súng của bạn. Xe tăng có thể cán qua.
+971	Rào chắn hạng nhẹ
+972	Một căn cứ ném bom kiểu Soviet với một bệ đỗ khổng lồ, một nhà chứa máy bay mái vòm và một hầm vũ khí nhiệt hạch. Nó là nơi đồn trú của chiếc Tv-95 Bear và nạp năng lượng cho Đòn Nhiệt hạch khi máy bay ném bom còn sống. Chỉ Nga, mỗi người chơi 1 cái.
+973	Một chiếc xe sang giấu súng máy và rocket bật lên, chở một Gián điệp. Địch chỉ thấy một chiếc xe dân sự vô hại cho đến khi nó tấn công. Cần Trụ sở MI6.
+974	Xe gián điệp
+975	Một chiếc xe grand tourer cổ điển giấu súng máy đôi, chở một Gián điệp. Chắc chắn hơn và rẻ hơn Xe Gián điệp 1. Cần Trụ sở MI6.
+976	Một drone nhện tốc độ cao, giá rẻ, lao vào mục tiêu rồi kích nổ. Hãy gửi từng đợt chúng vào các đoàn xe tăng và đội quân robot.
+977	Drone cảm tử
+978	Một xe tăng điện tử từ phòng thí nghiệm Project X. Pháo chính của nó phóng ra một luồng điện mạnh thiêu đốt lớp giáp từ bên trong. Chỉ có thể triển khai 1 chiếc.
+979	Xe tăng thử nghiệm
+980	Bộ binh tinh nhuệ với cuộn Tesla cầm tay, phóng tia hồ quang xuyên qua cả bộ binh lẫn xe cơ giới. Người lính biểu tượng của Nga.
+981	Lính Tesla
+982	Kho chứa thêm cho tiền đã tinh luyện. Nếu không đủ kho chứa, quặng giao vượt quá giới hạn sẽ bị lãng phí. Giá rẻ, nên hãy xây thêm bất cứ khi nào nguồn thu của bạn vượt quá sức chứa.
+983	Kho chứa kinh tế
+984	Một xạ thủ bắn tỉa tầm xa, hạ gục hầu hết bộ binh chỉ bằng một phát và ẩn mình khi đứng yên. Chết chóc khi phục kích, nhưng vô dụng trước xe bọc thép.
+985	Xạ thủ bắn tỉa
+986	Xe tăng Nhện tám chân của Tiên phong len lỏi vào tầm bắn và phóng ra những tên lửa hạng nặng bổ nhào xuống lớp giáp nóc mỏng của xe tăng. Bệ phóng phòng không đôi của nó bắn tên lửa đánh chặn kiểu Iron Dome vào máy bay, và cũng bắn hạ cả rocket bay tới.
+987	Căn cứ tàu ngầm của Tiên phong. Nó sản xuất và sửa chữa tàu ngầm, tàu vận tải và tàu sân bay của Tiên phong. Phải được xây trên mặt nước.
+988	Cải trang thành lính địch và xâm nhập công trình: đánh cắp tiền từ nhà máy tinh luyện, đặt lại thời gian siêu vũ khí, làm mù radar hoặc tìm hiểu bí mật sản xuất. Chó có thể nhìn xuyên qua lớp ngụy trang.
+989	Kẻ xâm nhập
+990	Một chiếc xe tải với giá phóng xoay, nghiêng chứa bốn ống tên lửa: tên lửa tầm nhiệt Python cho mục tiêu gần và tên lửa radar Derby, với động cơ hai xung lướt đi giữa các lần đốt, cho mục tiêu xa. Cả hai đều bay vọt lên cao rồi bổ nhào xuống máy bay, bùng nổ thành những quả cầu lửa lớn. Chỉ Ấn Độ.
+991	Lặn khuất tầm nhìn và phóng ngư lôi vào tàu chiến. Nó phát hiện được tàu ngầm khác. Chỉ nổi lên để khai hỏa.
+992	Tàu ngầm tấn công
+993	Trung tâm nghiên cứu của Tiên phong. Nó mở khóa những xe tăng hạng nặng nhất, vũ khí Tesla và những máy bay phản lực tốt nhất của Tiên phong.
+994	Một xe vận tải bọc thép nhẹ tàng hình khi đứng yên và bắn tên lửa đối đất. Lén đưa một toán kỹ sư qua hệ thống phòng thủ mà không bị phát hiện.
+995	Xe vận tải tàng hình
+996	Một cỗ máy bốn chân chậm chạp của Tiên phong với pháo hạng nặng và súng máy. Nó đi xuyên qua bộ binh và áp đảo hỏa lực hầu hết xe tăng.
+997	Trạm điều khiển mặt đất cho vệ tinh của bạn. Nếu bạn mất hết các Trạm Vệ tinh Mặt đất, mọi vệ tinh của bạn sẽ ngừng hoạt động cho đến khi bạn xây một trạm mới, nên hãy xây thêm một trạm dự phòng ở xa tiền tuyến.
+998	Điều khiển vệ tinh
+999	Xưởng đóng tàu của Liên minh. Nó sản xuất và sửa chữa pháo hạm, khu trục hạm, tuần dương hạm, tàu vận tải và, với một số quốc gia, cả tàu sân bay. Phải được xây trên mặt nước.
+1000	Sản xuất hải quân
+1001	Một robot hạng nặng của Tiên phong phóng ra tia sét Tesla từ hai tay, gây chết chóc cho bộ binh và robot địch.
+1002	Robot Tesla
+1003	Doanh trại Liên minh: huấn luyện lính súng trường, lính rocket, kỹ sư, quân y và bộ binh robot. Nhiều doanh trại sẽ tăng tốc huấn luyện. Đặt điểm tập kết để các toán quân mới hành quân thẳng ra tiền tuyến.
+1004	Sản xuất bộ binh
+1005	Tiger: trực thăng vũ trang Pháp-Đức với tên lửa chống tăng HOT trên giá treo ngoài và cụm rocket bắn ra một loạt rocket 68 mm. Chỉ Pháp và Đức.
+1006	Trực thăng tấn công hạng nặng
+1007	Một bệ phóng nhiệt áp bọc thép. Tầm bắn ngắn, nhưng nó thiêu rụi bộ binh và công trình trong một quả cầu lửa khổng lồ.
+1008	Bệ phóng nhiệt áp (Nga)
+1009	Chinook: chở một toán bộ binh đến bất kỳ đâu trên bản đồ. Không vũ trang, nên hãy thả quân tránh xa khu vực phòng không.
+1010	Trực thăng vận tải
+1011	Vận chuyển tiền mặt đến nhà máy tinh luyện của đồng minh. Không vũ trang. Dùng nó để giúp đồng đội đang gặp khó khăn trụ vững trong trận đấu.
+1012	Xe tiếp tế
+1013	Phóng ra tia sét phá hủy cả bộ binh lẫn xe cơ giới. Nó cần rất nhiều điện, và mất điện sẽ khiến nó ngừng hoạt động, nên hãy bảo vệ nhà máy điện của bạn.
+1014	Phòng thủ Tesla
+1015	Một xe tăng gắn cuộn Tesla phóng tia sét xuyên qua cả bộ binh, xe cơ giới và công trình. Câu trả lời của Nga trước các đoàn xe bọc thép đông đảo.
+1016	Xe tăng Tesla
+1017	Bear: máy bay ném bom tầm xa với bốn động cơ cánh quạt đồng trục ngược chiều. Không vũ trang, nó chỉ bay một nhiệm vụ duy nhất: khi Đòn Nhiệt hạch sẵn sàng, nó thả bom khinh khí RDS-37 rồi bay về nhà. Mất nó thì thời gian nạp đòn đánh sẽ bắt đầu lại từ đầu. Chỉ Nga, mỗi người chơi 1 chiếc.
+1018	Máy bay ném bom nhiệt hạch
+1019	Một xe tên lửa tấn công tàu chiến ngoài khơi xa. Giữ nó trên bờ biển và hạm đội địch sẽ không thể đến gần.
+1020	Tên lửa chống hạm (Nhật Bản)
+1021	Bắn một quả rocket khổng lồ tàn phá bộ binh và công trình từ tầm xa. Nạp đạn chậm và yếu trước bất cứ thứ gì tiếp cận được nó.
+1022	Pháo rocket
+1023	Rocket tầm xa chính xác cao, tấn công công trình, bộ binh và xe cơ giới với độ chính xác tuyệt đối. Nạp đạn chậm.
+1024	Bệ phóng rocket (Ukraina)
+1025	Sản xuất mọi loại xe tăng, xe vận tải và bệ phóng rocket. Thêm một Trạm Bảo dưỡng và một Mái vòm Radar để mở khóa các thiết kế hạng nặng hơn, bao gồm cả bệ phóng rocket riêng của quốc gia bạn.
+1026	Sản xuất xe cơ giới
+1027	Pháo xe tăng 105 mm
+1028	Pháo xe tăng 120 mm
+1029	Lựu pháo 155 mm
+1030	Pháo hải quân 16 inch
+1031	Pháo tự động 25 mm
+1032	Pháo hải quân 2 inch
+1033	Pháo hải quân 8 inch
+1034	Pháo xe tăng 90 mm
+1035	Súng trường tấn công AK-47
+1036	Tên lửa phòng không đôi
+1037	Tên lửa phòng không
+1038	Tên lửa chống vệ tinh
+1039	Tia hồ quang Tesla
+1040	Súng máy xích
+1041	Pháo đôi
+1042	Pháo Gatling CIWS
+1043	Súng ngắn Colt .45
+1044	Hàm cắn
+1045	Súng ngắn tự động hạng nặng
+1046	Lao vào kích nổ
+1047	Bom chìm
+1048	Cú cắn
+1049	Tên lửa chống tăng Dragon
+1050	Súng trường blaster
+1051	Pháo đôi hạng nặng
+1052	Pháo tự động đôi
+1053	Cụm rocket vai
+1054	Bom nguyên tử Fatman
+1055	Bệ phóng cầu lửa
+1056	Pháo flak 23 mm (phòng không)
+1057	Pháo flak 23 mm (mặt đất)
+1058	Pháo flak đôi
+1059	Pháo flak
+1060	Súng phun lửa
+1061	Hơi thở nguyên tử
+1062	Giẫm đạp
+1063	Lựu đạn cầm tay
+1064	Pháo nổ trên không 35 mm
+1065	Loạt bốn tên lửa hồng ngoại
+1066	Túi cứu thương dã chiến
+1067	Loạt 30 rocket
+1068	Súng máy .50 cal
+1069	Súng máy hạng nặng dùng băng đạn dây
+1070	Tên lửa tầm xa AIM-54 Phoenix
+1071	Tên lửa tầm xa R-27T
+1072	Tên lửa tầm xa R-77
+1073	Tên lửa AIM-120 AMRAAM
+1074	Tên lửa tầm trung R-27T
+1075	Tên lửa tầm trung R-77
+1076	Tên lửa AIM-9 Sidewinder
+1077	Tên lửa tầm gần R-73
+1078	Tên lửa AGM-65 Maverick
+1079	Tên lửa chống tăng 9M120 Ataka
+1080	Tên lửa chống tăng HOT
+1081	Tên lửa đối đất Kh-29
+1082	Bom Mk 82
+1083	Bom chùm
+1084	Bom chùm (đôi)
+1085	Bom dẫn đường GBU
+1086	Pháo GAU-8 30 mm Avenger
+1087	Súng đuôi đôi 23 mm
+1088	Pháo 30 mm
+1089	Pháo 20 mm
+1090	Cụm rocket Hydra
+1091	Cụm rocket (bắn loạt)
+1092	Cụm rocket S-8
+1093	Cụm rocket S-8 (bắn loạt)
+1094	Bom phốt pho trắng
+1095	Bom phốt pho trắng (đôi)
+1096	Ném đá tảng
+1097	Nhảy vồ (chống máy bay)
+1098	Cú đấm búa
+1099	Pháo cỗ máy 152 mm
+1100	Súng carbine M1
+1101	Súng máy M60
+1102	Tên lửa phòng không Tusk
+1103	Tên lửa Maverick
+1104	Tên lửa đánh chặn trực diện
+1105	Bom hạt nhân mini
+1106	Loạt 19 rocket
+1107	SAM tầm trung
+1108	SAM hải quân
+1109	Tên lửa đất-đối-không Nike
+1110	Đánh dấu mục tiêu: pháo binh và máy bay sẽ bắn vào làn khói
+1111	Bay vọt lên cao rồi bổ nhào xuống phần giáp nóc của xe tăng
+1112	Laser quỹ đạo
+1113	Bom dù
+1114	Cuộn Tesla cầm tay
+1115	Tia lăng kính
+1116	Tia Tháp Lăng kính
+1117	Súng máy .50 bốn nòng
+1118	Súng ray
+1119	Bom khinh khí RDS-37
+1120	Tên lửa phòng không Redeye
+1121	Lựu đạn khói đỏ
+1122	Bộ sửa chữa dã chiến
+1123	Loạt rocket 239 mm Chunmu
+1124	Tên lửa dẫn đường Chunmu
+1125	Rocket Fajr-5
+1126	Drone lảng vảng Fajr
+1127	Rocket dẫn đường Fatah
+1128	Loạt rocket 122 mm Grad
+1129	Loạt rocket Hailstorm
+1130	Rocket dẫn đường HIMAX
+1131	Rocket hạng nặng Kasirga
+1132	Rocket dẫn đường GPS LRX
+1133	Loạt rocket Marz
+1134	Rocket rải mìn Marz
+1135	Rocket hạng nặng PHL-16
+1136	Loạt rocket Pinaka
+1137	Loạt rocket Saetta
+1138	Rocket chùm Saqr-36
+1139	Rocket nhiệt áp TOS
+1140	Tên lửa hành trình Type 12
+1141	Rocket dẫn đường Vilkha
+1142	Tên lửa đạn đạo SCUD
+1143	Pháo xung điện
+1144	Súng ngắn giảm thanh
+1145	Súng bắn tỉa
+1146	Tên lửa phòng không
+1147	Thuốc nổ tự hủy
+1148	Tên lửa tấn công từ trên cao
+1149	Bệ phóng rocket ngụy trang
+1150	Tên lửa radar Derby
+1151	Tên lửa tầm nhiệt Python
+1152	Rocket Stinger
+1153	Rocket phòng không Stinger
+1154	Pháo hạng nặng
+1155	Súng máy
+1156	Tên lửa phóng từ tàu ngầm
+1157	Tên lửa phòng không phóng từ tàu ngầm
+1158	Tia sét Tesla
+1159	Tên lửa hành trình Tomahawk
+1160	Ngư lôi
+1161	Cuộn Tesla đôi
+1162	Pháo tháp súng
+1163	Pháo gatling Vulcan 20 mm
+1164	Pháo XR-85
+1165	Tên lửa đạn đạo Zolfaghar
+1166	Pháo bốn nòng ZSU-23
+1167	France's XR-85: một bệ pháo chậm chạp di chuyển bằng chân, với khẩu pháo có tầm bắn xa hơn mọi xe tăng và gây sát thương mạnh hơn bất kỳ khẩu pháo nào khác.
+1168	Robot pháo hạng nặng
+1169	Máy bay vận tải phản lực hạng nặng tự chế tạo của Trung Quốc, xương sống của Quân đoàn Không vận PLA.
+1170	Một máy bay tấn công trang bị súng máy đôi, quét sạch bộ binh và giáp nhẹ.
+1171	Phản lực quét mục tiêu
+1172	Longwing: máy bay ném bom kiểu cánh bay với bốn động cơ cánh quạt đẩy. Nó không mang súng. Khi Đòn Fatman sẵn sàng, nó cất cánh, thả bom nguyên tử Fatman xuống mục tiêu rồi bay về nhà. Mất nó thì thời gian nạp đòn đánh sẽ bắt đầu lại từ đầu. Chỉ Hoa Kỳ, mỗi người chơi 1 chiếc.
+1173	Máy bay ném bom nguyên tử
+1174	Một bệ phóng bánh lốp hạng nặng với hai tên lửa đạn đạo tầm ngắn trên giá phóng. Nó có tầm bắn xa hơn mọi đơn vị mặt đất khác; chỉ phòng không tầm xa mới có thể chặn được tên lửa này. Chỉ Iran.
+1175	Xe tên lửa đạn đạo
+1176	Cho phép đồng minh đặt công trình trong khu vực xây dựng của bạn
+1177	Xây dựa vào Đồng minh
+1178	Hiện Thông báo Gỡ lỗi Bot
+1179	Giới hạn việc đặt công trình trong khu vực quanh Xưởng Xây dựng
+1180	Giới hạn Khu vực Xây dựng
+1181	Kiểm tra Đồng bộ quanh Mã BotModule
+1182	Kiểm tra Đồng bộ quanh Mã Unsynced
+1183	Dùng đơn vị thu thập thùng đồ để nhận thưởng hoặc phạt ngẫu nhiên
+1184	Thùng đồ
+1185	Bật mã gian lận và lệnh nhà phát triển
+1186	Menu Gỡ lỗi
+1187	Xây ở Bất kỳ đâu
+1188	Tắt Kiểm tra Tầm nhìn
+1189	Xây Mọi thứ
+1190	Tốc độ Xây dựng Tức thì
+1191	Thời gian Nạp Tức thì
+1192	Hiện Nhãn Đối tượng
+1193	Hiện Hình học Chiến đấu
+1194	Hiện Địa hình Tùy chỉnh
+1195	Hiện Hình học Kết xuất
+1196	Hiện Bản đồ Màn hình
+1197	Hiện Hình học Địa hình
+1198	Hiện Đường đi Đơn vị
+1199	Điện Vô hạn
+1200	Màn sương ban đầu của bản đồ được hiện lộ
+1201	Bản đồ Đã khám phá
+1202	Cần tầm nhìn trực tiếp để thấy lực lượng địch
+1203	Sương mù Chiến tranh

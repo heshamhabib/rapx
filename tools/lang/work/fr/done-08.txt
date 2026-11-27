@@ -1,0 +1,200 @@
+1130	Roquettes guidées HIMAX
+1131	Roquettes lourdes Kasirga
+1132	Roquettes LRX guidées par GPS
+1133	Salve de roquettes Marz
+1134	Roquettes mouilleuses de mines Marz
+1135	Roquettes lourdes PHL-16
+1136	Salve de roquettes Pinaka
+1137	Salve de roquettes Saetta
+1138	Roquettes à sous-munitions Saqr-36
+1139	Roquettes thermobariques TOS
+1140	Missiles de croisière Type 12
+1141	Roquettes guidées Vilkha
+1142	Missile balistique SCUD
+1143	Canon à choc
+1144	Pistolet silencieux
+1145	Fusil de précision
+1146	Missiles antiaériens
+1147	Charge d'autodestruction
+1148	Missiles à attaque par le haut
+1149	Lance-roquettes dissimulé
+1150	Missile radar Derby
+1151	Missile infrarouge Python
+1152	Roquettes Stinger
+1153	Roquettes antiaériennes Stinger
+1154	Canon lourd
+1155	Mitrailleuse
+1156	Missiles lancés par sous-marin
+1157	Missiles antiaériens lancés par sous-marin
+1158	Éclair Tesla
+1159	Missiles de croisière Tomahawk
+1160	Torpilles
+1161	Bobines Tesla jumelées
+1162	Canon de tourelle
+1163	Gatling Vulcan de 20 mm
+1164	Canon XR-85
+1165	Missiles balistiques Zolfaghar
+1166	Quadruple canon ZSU-23
+1167	Le XR-85 français : une plateforme d'artillerie lente et marchante dont le canon surpasse la portée de tous les chars et frappe plus fort que tout autre canon.
+1168	Droïde à canon lourd
+1169	Le transport lourd à réaction de conception chinoise, pilier du corps aéroporté de l'APL.
+1170	Un avion d'attaque armé de deux mitrailleuses qui mitraille l'infanterie et les blindés légers.
+1171	Avion de mitraillage
+1172	Le Longwing : un bombardier à aile volante à quatre hélices propulsives. Il n'a aucune arme. Quand la Frappe Fatman est prête, il décolle, largue la bombe atomique Fatman sur la cible et rentre à la base. Perdez-le et le compte à rebours repart de zéro. États-Unis uniquement, un par joueur.
+1173	Bombardier atomique
+1174	Un lourd lanceur à roues portant deux missiles balistiques de courte portée sur son érecteur. Il surpasse la portée de toutes les autres unités terrestres ; seule la défense antiaérienne longue portée peut arrêter ses missiles. Iran uniquement.
+1175	Camion lance-missiles balistiques
+1176	Permet aux alliés de placer des structures dans votre zone de construction
+1177	Construire chez les alliés
+1178	Afficher les messages de débogage des bots
+1179	Limite le placement des structures aux abords des chantiers de construction
+1180	Limiter la zone de construction
+1181	Vérifier la synchro autour du code BotModule
+1182	Vérifier la synchro autour du code non synchronisé
+1183	Ramassez des caisses avec vos unités pour obtenir des bonus ou malus aléatoires
+1184	Caisses
+1185	Active les triches et les commandes de développeur
+1186	Menu de débogage
+1187	Construire n'importe où
+1188	Désactiver les tests de visibilité
+1189	Tout construire
+1190	Construction instantanée
+1191	Recharge instantanée
+1192	Afficher les étiquettes d'acteurs
+1193	Afficher la géométrie de combat
+1194	Afficher le terrain personnalisé
+1195	Afficher la géométrie de rendu
+1196	Afficher la carte d'écran
+1197	Afficher la géométrie du terrain
+1198	Afficher les trajets des unités
+1199	Énergie illimitée
+1200	Le voile initial de la carte est révélé
+1201	Carte explorée
+1202	Une ligne de vue est nécessaire pour voir les forces ennemies
+1203	Brouillard de guerre
+1204	Activer le limiteur d'images ({ $fps } FPS)
+1205	Bannir temporairement
+1206	Les joueurs reçoivent des primes pour chaque unité ennemie détruite
+1207	Primes d'élimination
+1208	Afficher les messages de débogage de la carte
+1209	Envoyer les informations système
+1210	Annoncer en ligne
+1211	En cours
+1212	Vide
+1213	Incompatible
+1214	Protégé
+1215	Boucle
+1216	Aléatoire
+1217	Couper la musique du menu
+1218	Coupe la musique de fond quand aucun morceau précis n'est joué
+1219	Activer le journal de performances des ticks
+1220	Couleurs de relation
+1221	Change les couleurs des joueurs selon la relation (vous, ennemi, allié, neutre)
+1222	Effets de sol
+1223	Textures de détail du terrain et ombres de nuages mouvantes. Coûte autant à chaque image quoi qu'il arrive : c'est la première chose à désactiver sur la puce graphique intégrée d'un portable. S'applique à la prochaine partie.
+1224	Détails HD du monde
+1225	Affiche le champ de bataille à la pleine résolution de l'écran pour que les unités et bâtiments HD restent nets en zoomant. Bien plus exigeant pour le GPU sur les écrans haute résolution (Retina).
+1226	Mouvement fluide des unités
+1227	Dessine les unités en mouvement entre les ticks de jeu pour qu'elles glissent à la fréquence d'images maximale au lieu d'avancer par à-coups 25 fois par seconde.
+1228	Effets météo
+1229	Pluie, neige, brouillard, tempêtes de sable et la lumière propre à chaque météo, ainsi que les ondes de choc des grosses explosions qui déforment l'image. La météo change toujours et reste annoncée, elle n'est simplement pas affichée. S'applique à la prochaine partie.
+1230	Permet de replier les chantiers de construction
+1231	VCM redéployables
+1232	Activer les commandes de débogage dans les replays
+1233	Les ingénieurs restent sur le champ de bataille après avoir capturé une structure
+1234	Ingénieurs réutilisables
+1235	Les joueurs sans point de départ assigné commencent le plus loin possible des ennemis
+1236	Départs d'équipe séparés
+1237	Les joueurs sont vaincus quand leurs bases sont détruites
+1238	Partie courte
+1239	Détruisez toute opposition !
+1240	Permet de construire le silo à missiles et son missile nucléaire
+1241	Superarmes
+1242	Afficher les notifications d'événements
+1243	Affiche des notifications textuelles temporaires pour les événements de jeu
+1244	Afficher les notifications d'interface
+1245	Affiche des notifications textuelles temporaires pour les événements d'interface
+1246	active/désactive l'affichage des étiquettes d'acteurs.
+1247	active/désactive la construction n'importe où.
+1248	active/désactive l'affichage des déclencheurs de script.
+1249	active/désactive l'affichage de la géométrie de combat.
+1250	active/désactive l'affichage de débogage du terrain personnalisé.
+1251	active/désactive l'affichage du tampon de profondeur.
+1252	active/désactive toutes les triches et vous donne un peu d'argent pour la peine.
+1253	fait planter le jeu.
+1254	supprime les acteurs sélectionnés.
+1255	active/désactive la possibilité de tout construire.
+1256	voter pour mettre fin plus tôt au traité de paix
+1257	Affiche les sorties des usines.
+1258	active/désactive la recharge quasi instantanée des pouvoirs de soutien.
+1259	donne la somme par défaut ou indiquée.
+1260	donne la somme par défaut ou indiquée à tous les joueurs et IA.
+1261	fournit des informations utiles sur les différentes commandes.
+1262	active/désactive l'affichage du pathfinder hiérarchique.
+1263	active/désactive la construction instantanée.
+1264	tue les acteurs sélectionnés.
+1265	ajoute un nombre donné de niveaux aux acteurs sélectionnés.
+1266	aucune description disponible.
+1267	active/désactive la visualisation de la recherche de chemin.
+1268	met le jeu en pause ou le reprend.
+1269	ajoute une quantité donnée d'expérience au(x) propriétaire(s) des acteurs sélectionnés.
+1270	provoque une panne d'énergie de 5 secondes chez le(s) propriétaire(s) des acteurs sélectionnés.
+1271	active/désactive l'affichage de la géométrie de rendu.
+1272	active/désactive l'affichage de la carte d'écran.
+1273	autodétruit tout et perd la partie.
+1274	active/désactive l'affichage de la géométrie du terrain.
+1275	active/désactive les tests de visibilité et la minicarte.
+1276	active/désactive l'énergie infinie.
+1277	Une erreur s'est produite pendant la lecture de la vidéo.
+1278	Impossible de lire la vidéo
+1279	Supprimer toutes les cartes de cette page ?
+1280	Supprimer les cartes
+1281	{ $count ->\n[one] Supprimer { $count } replay.\n*[other] Supprimer { $count } replays.\n}
+1282	Supprimer tous les replays sélectionnés ?
+1283	Tout supprimer
+1284	{ $count ->\n[one] Supprimer { $count } sauvegarde.\n*[other] Supprimer { $count } sauvegardes.\n}
+1285	Supprimer toutes les sauvegardes ?
+1286	Supprimer la carte « { $title } » ?
+1287	Supprimer la carte
+1288	Supprimer le replay { $replay } ?
+1289	Supprimer le replay sélectionné ?
+1290	Supprimer
+1291	Supprimer « { $save } ».
+1292	Supprimer la sauvegarde sélectionnée ?
+1293	Retour
+1294	Trop de joueurs sont définis ({ $players }/{ $max }).
+1295	Erreur : nombre maximal de joueurs dépassé
+1296	Quitter
+1297	Quitter quand même
+1298	La carte a peut-être été supprimée hors de l'éditeur
+1299	Quitter et perdre toutes les modifications non enregistrées ?
+1300	Quitter l'éditeur de cartes
+1301	Rester
+1302	Retour à l'éditeur
+1303	Quitter cette partie et revenir à l'éditeur ?
+1304	Quitter la mission
+1305	Impossible de lire les métadonnées du replay.
+1306	{ -incompatible-replay-recorded } une version incompatible :\n{ $version }.
+1307	{ -incompatible-replay-recorded } une carte indisponible :\n{ $map }.
+1308	{ -incompatible-replay-recorded } un mod indisponible : { $mod }.
+1309	{ -incompatible-replay-recorded } un mod inconnu.
+1310	{ -incompatible-replay-recorded } une version inconnue.
+1311	Replay incompatible
+1312	Expulser
+1313	Ce joueur ne pourra pas rejoindre à nouveau la partie.
+1314	Expulser { $player } ?
+1315	{ $count ->\n[one] Voulez-vous vraiment expulser un spectateur ?\n*[other] Voulez-vous vraiment expulser { $count } spectateurs ?\n}
+1316	Les vidéos du jeu peuvent être installées depuis le menu\n« Gérer le contenu » du sélecteur de mods.
+1317	Vidéo non installée
+1318	Enregistrer
+1319	En enregistrant, vous écraserez\nune carte existante.
+1320	Avertissement
+1321	La carte a été modifiée hors de l'éditeur.\nEn enregistrant, vous risquez d'écraser des modifications.
+1322	Écraser
+1323	Écraser { $file } ?
+1324	Écraser la sauvegarde ?
+1325	OK
+1326	La carte a peut-être été supprimée ou contient\ndes erreurs qui empêchent son chargement.
+1327	Quitter le jeu ? La progression non sauvegardée sera perdue.
+1328	Quitter vers le bureau
+1329	Renommer le replay

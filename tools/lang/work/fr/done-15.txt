@@ -1,0 +1,150 @@
+2500	Gagne des rangs de vétéran
+2501	EFFICACE CONTRE
+2502	ENNEMI
+2503	Rayon d'énergie
+2504	ENTRÉES
+2505	EXCLUSIF
+2506	Étend le rayon de construction
+2507	Jet rapide : frappe, puis rentre se réarmer
+2508	DOSSIER DE TERRAIN
+2509	Répare les véhicules sur le terrain
+2510	EN SERVICE
+2512	PUISSANCE DE FEU
+2513	Avion à voilure fixe
+2514	Leurres : { $p0 } salves trompent { $p1 }% des missiles guidés
+2515	Pont d'envol : lance et réarme les avions
+2516	Fortification
+2517	FORTIFIÉ
+2518	Produit { $p0 } d'énergie
+2519	Génère un revenu régulier
+2520	Grenade
+2521	SOL
+2523	Véhicule terrestre
+2524	Missile guidé
+2525	Coups de massue · lance des rochers\nBondit pour frapper les avions · 850,000 PV
+2526	Récolte le minerai et les gemmes
+2527	Soigne l'infanterie proche
+2528	SANTÉ
+2529	Lourd
+2530	BLINDAGE LOURD
+2532	Cache votre base sous un champ de voile
+2533	POINTS DE VIE
+2534	HÔTE
+2535	HÔTE · VOUS
+2536	Hypersonique
+2537	AU COMBAT
+2538	Incendiaire
+2539	INFANTERIE
+2540	Infiltre les bâtiments ennemis
+2541	Intercepte les missiles entrants
+2542	Brouille les missiles guidés
+2543	Pose des champs de mines
+2544	Bondit sur sa proie
+2545	Léger
+2547	BLINDAGE LÉGER
+2549	LIMITÉ
+2550	Invisible dans l'eau à l'arrêt
+2551	THÈME DU MENU
+2552	THÈME DU MENU · EN PAUSE
+2553	(MIN. { $p0 })
+2554	Intercepteurs de missiles
+2556	Couper la musique
+2557	NATIONAL
+2558	UNITÉ NATIONALE
+2559	NAVAL
+2560	Unité navale
+2562	Navire de guerre
+2563	NEUTRE
+2564	AUCUNE ENTRÉE POUR CETTE NATION
+2565	Aucun géant pour ce joueur
+2566	AUCUNE MUSIQUE INSTALLÉE
+2567	AUCUNE SÉLECTION
+2568	AUCUN TITAN
+2569	Aucun titan
+2570	Aucun morceau en lecture
+2571	PAS PRÊT
+2572	EN LECTURE
+2573	Ogive nucléaire
+2574	HORS LIGNE
+2575	Un par joueur. Il entre en scène au début et ne peut pas être reconstruit.
+2576	EN LIGNE
+2577	EN PAUSE
+2578	PERFORMANCES
+2579	Choisi dans le salon (colonne TITAN) : un par joueur, entre en scène au début, ne peut pas être reconstruit
+2580	Choisi au début de la partie
+2581	Pose des charges de démolition
+2582	Défense rapprochée antimissile
+2583	PRODUCTION D'ÉNERGIE
+2584	CONSOMMATION D'ÉNERGIE
+2585	Produit : { $p0 }
+2586	PROJECT X  //  ARCHIVES DE GUERRE CLASSIFIÉES
+2587	PROJECT X · BANDE ORIGINALE
+2588	Fournit la minicarte radar
+2589	ALÉATOIRE
+2590	PORTÉE { $p0 }
+2591	PORTÉE
+2592	Raffine le minerai en crédits
+2593	Relaie et amplifie les rayons Prisme
+2594	Recharge ses parachutistes sur son aire en { $p0 } s, contre paiement
+2595	Répare les ponts
+2596	Répare les véhicules à quai
+2597	Répéter le morceau : non
+2598	Répéter le morceau : oui
+2599	REPLAY
+2600	NÉCESSITE
+2602	Roquette
+2604	Aéronef à voilure tournante
+2606	SCORE
+2607	Onde de choc sismique (autodestruction)
+2608	Sélectionnez une unité ou une structure
+2609	CHOISIR UNE NATION
+2610	UNITÉS SÉLECTIONNÉES ({ $p0 })
+2611	Se répare avec le temps
+2613	Tire et décroche
+2614	Abat : { $p0 }
+2615	Détruit les missiles qui le visent, { $p0 }% par rafale
+2616	Aléatoire : non
+2617	Aléatoire : oui
+2618	Armes légères
+2619	SON COUPÉ
+2620	OBSERVATION · { $p0 }
+2621	OBSERVATION
+2622	VITESSE
+2623	EN ATTENTE
+2624	Furtif : invisible à l'arrêt
+2625	ARRÊTÉ
+2626	Stocke les crédits
+2629	STRUCTURE
+2630	STRUCTURES
+2632	Plonge hors de vue
+2633	SOUTIEN
+2634	Soutien : aucun dégât direct
+2635	SURPRISE
+2636	Surprise
+2637	Nage, plus vite dans l'eau que sur terre
+2639	Marqueur de cible
+2640	Se téléporte sur de courtes distances
+2641	L'UNION
+2642	VANGUARD
+2643	TITAN
+2644	pour voir ses détails.
+2645	Torpille
+2646	MORCEAU { $p0 } / { $p1 } · { $p2 }
+2647	Piétine l'infanterie : elle ne peut pas l'esquiver
+2648	Transporte { $p0 } soldats
+2649	Union
+2650	Unité
+2651	Rétablir la musique
+2652	Vanguard
+2653	VÉHICULES
+2654	VICTORIEUX
+2655	VICTOIRE · { $p0 }
+2656	VICTOIRE
+2657	VISION
+2658	ADAV : vol stationnaire et atterrissage partout
+2661	VOUS
+2662	Minéraux précieux
+2663	{ $units ->\n[one] Une unité sélectionnée sur toute la carte.\n*[other] { $units } unités sélectionnées sur toute la carte.\n}
+2664	{ $units ->\n[one] Une unité sélectionnée à l'écran.\n*[other] { $units } unités sélectionnées à l'écran.\n}
+2665	EN ATTENTE
+2666	PRÊT

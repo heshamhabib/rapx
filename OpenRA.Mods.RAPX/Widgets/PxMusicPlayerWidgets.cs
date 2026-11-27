@@ -601,7 +601,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 			// Level meter in the top right corner
 			PxMusicCovers.DrawEqualizer(new Rectangle(right - 150, rb.Y + 18, 150, 40), 26, level, Color.FromArgb(200, PxDraw.Accent), PxDraw.AccentBright);
 
-			var name = song?.Title ?? "No track playing";
+			var name = song?.Title ?? PxText.T("No track playing");
 			name = WidgetUtils.TruncateText(name, right - x - 160, title);
 			title.DrawTextWithShadow(name, new float2(x, rb.Y + 44), Color.White, Color.FromArgb(160, 0, 0, 0), 2);
 			PxWarChrome.DrawSpaced(small, GetSubtitle(), x + 1, rb.Y + 84, 1, PxDraw.Muted);
@@ -736,7 +736,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 
 			if (current)
 			{
-				var tag = playing ? "NOW PLAYING" : "PAUSED";
+				var tag = playing ? PxText.T("NOW PLAYING") : PxText.T("PAUSED");
 				var tw = PxWarChrome.SpacedWidth(small, tag, 1);
 				var chip = new Rectangle(art.Right - tw - 22, art.Y + 10, tw + 14, 18);
 				WidgetUtils.FillRectWithColor(chip, playing ? PxDraw.Accent : Color.FromArgb(220, 40, 40, 46));

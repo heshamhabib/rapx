@@ -1,0 +1,24 @@
+2628	Mạnh trước
+2660	Yếu trước
+2442	{""} và
+2443	{""} và
+606	Máy bay
+607	Công trình
+609	Bộ binh
+611	Xe cơ giới
+2445	Phòng không
+2495	Chó
+2497	Drone
+2511	Tiêm kích
+2522	Quân mặt đất
+2531	Trực thăng
+2546	Giáp nhẹ
+2548	Xe hạng nhẹ
+2555	Tên lửa
+2561	Hải quân
+2601	Robot
+2603	Rocket
+2605	Vệ tinh
+2612	Tàu chiến
+2631	Tàu ngầm
+2638	Xe tăng

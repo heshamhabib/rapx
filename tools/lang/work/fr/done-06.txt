@@ -1,0 +1,180 @@
+780	Le Hind : un hélicoptère de combat lourd avec canons à chaîne qui fauche l'infanterie et les véhicules légers.
+781	Un lance-roquettes multiple à roues doté d'une batterie de tubes fermés. Il tire 30 roquettes légères en un long flot qui sature la zone ciblée, puis recharge.
+782	Camion lance-roquettes
+783	Le cheval de bataille de l'US Army : blindé, rapide, avec une mitrailleuse de 12,7 mm sur le toit et de la place pour une équipe de quatre. États-Unis uniquement.
+784	Véhicule de reconnaissance
+785	Construit et réarme les hélicoptères des deux camps : Chinook, Black Hawk et Longbow de l'Union, Mi-26, Hind, Mi-35 et Ka-52 de Vanguard. Chaque plateforme sert un hélicoptère à la fois : construisez-en une par hélicoptère de combat prévu.
+786	Base d'hélicoptères
+787	Le Candid : le transport lourd à réaction de l'Ukraine, de la Russie et de l'Inde. Il largue un stick de quarante hommes derrière les lignes ennemies et éloigne les chasseurs grâce à deux canons de 23 mm en queue.
+788	Transport aéroporté, 40 parachutistes
+789	Un soldat de Vanguard en exosquelette motorisé armé d'une mitrailleuse lourde à bande. Les chars ne peuvent pas l'écraser et il fauche l'infanterie.
+790	Infanterie en exosquelette
+791	Rend un groupe d'unités ou de bâtiments invulnérable pendant un court instant. Synchronisez-le avec une poussée de chars pour que la pointe arrive intouchable.
+792	Le Ranger : un éclaireur rapide armé d'une mitrailleuse qui transporte un soldat. Idéal pour reconnaître, chasser l'infanterie et traquer les camions de minerai.
+793	Véhicule d'éclaireur
+794	Le Thunderhog : un char volant construit autour d'un énorme canon rotatif. Lourdement blindé, lent et mortel pour les blindés. Tenez les chasseurs à distance.
+795	Attaque au sol, génération 3
+796	L'An-225 Dreamer : le plus gros avion jamais construit. Il transporte de l'infanterie à travers la carte. Non armé.
+797	Transport lourd, génération 4
+798	Le Wraith : un bombardier furtif à aile volante qui largue une charge massive loin derrière les lignes ennemies.
+799	Bombardier furtif, génération 5
+800	Le Stratoforce : un énorme bombardier de tapis qui rase des quartiers entiers d'une base. Escortez-le, car il ne peut pas se défendre contre les chasseurs.
+801	Bombardier lourd, génération 2
+802	Le Starflash : un intercepteur de la guerre froide au nez effilé, conçu pour la vitesse pure. Ses missiles frappent fort bâtiments et véhicules, mais il est peu blindé.
+803	Intercepteur, génération 2
+804	Le Nightjar : un jet furtif à facettes qui se faufile entre les défenses antiaériennes pour frapper les cibles de haute valeur.
+805	Frappe furtive, génération 3
+806	Le Bobcat : un défenseur de flotte à géométrie variable armé de missiles longue portée. Utilisé seulement par les États-Unis et l'Iran.
+807	Intercepteur, génération 3
+808	Le Fighting Kestrel : un chasseur multirôle léger et agile. Un bon rapport qualité-prix contre véhicules et bâtiments.
+809	Chasseur multirôle, génération 3
+810	Le Zero Viper : le chasseur d'attaque japonais, un Falcon allongé à voilure agrandie conçu pour chasser les navires loin en mer.
+811	Chasseur d'attaque naval, génération 4
+812	Le Raptorex : un chasseur furtif de cinquième génération, le meilleur avion de supériorité aérienne de l'Union. Rapide, discret et mortel.
+813	Chasseur furtif, génération 5
+814	Le Spectre II : un biréacteur robuste utilisé par plus de nations que tout autre avion du jeu. Une puissance de frappe fiable à prix raisonnable.
+815	Un avion radar non armé qui cache à l'ennemi le sol situé sous lui. Envoyez-le au-dessus d'une zone et il y tourne en cercle. Couvrez-en une poussée de chars.
+816	Générateur de brouillage aéroporté
+817	Le Grom-K : un drone de combat russe sans pilote. Bon marché, fragile et dangereux pour l'infanterie. Un par joueur.
+818	Le Harrow décolle à la verticale depuis de minuscules aires et ponts de porte-avions et frappe durement les véhicules.
+819	Avion à décollage vertical, génération 3
+820	Le Greif : le quadrimoteur allemand de la guerre, ses moteurs couplés entraînant deux grandes hélices, toujours capable d'emporter une lourde charge de bombes.
+821	Bombardier lourd, génération 0
+822	Le Nachtflügel : le bombardier à réaction allemand à aile volante, né du projet des frères Horten pendant la guerre et enfin construit avec des moteurs modernes et une lourde charge de bombes guidées.
+823	Le JX-20 Jade Dragon : le chasseur furtif chinois de cinquième génération, à long rayon d'action et difficile à repérer.
+824	Le L-39U Albatross : un avion d'entraînement et d'attaque léger étonnamment efficace contre l'infanterie, les blindés légers et les drones.
+825	Attaque légère, génération 2
+826	Le LaV-11 Fang : un robuste chasseur à moteur en étoile des années 1940. Bon marché et rapide à aligner en nombre.
+827	Le Mirago 2000 : un élégant chasseur multirôle à aile delta utilisé par de nombreuses nations.
+828	Le MiK-21 Fishbone : le jet le plus répandu du bloc Vanguard. Simple, rapide et bon marché.
+829	Chasseur à réaction, génération 2
+830	Le MiK-23 Flintlock : un chasseur-bombardier à géométrie variable qui frappe vite et repart vite.
+831	Le MiK-25 Foxbane : un intercepteur de haute altitude d'une vitesse brutale. Peu d'appareils peuvent le rattraper.
+832	Le MiK-3 Strela : un chasseur à hélice des années 1940. Bon marché et rapide à construire, idéal pour mitrailler l'infanterie et les véhicules légers.
+833	Chasseur à pistons, génération 0
+834	Le Qahir-X : le chasseur furtif expérimental iranien. Un par joueur.
+835	Prototype furtif
+836	Le Rafal F4 : un chasseur omnirôle moderne à aile delta et plans canard, aussi bon en frappe qu'en combat aérien.
+837	Le Saeqa : le chasseur iranien à double dérive, un solide avion de frappe contre véhicules et bâtiments.
+838	Chasseur à réaction, génération 3
+839	Le Sea Vixa : un chasseur d'attaque naval à double poutre spécialisé dans la destruction des navires.
+840	Attaque navale, génération 2
+841	Le Blackwing : un avion de reconnaissance à grande vitesse très difficile à intercepter. Il révèle la base ennemie sur son passage.
+842	Reconnaissance, génération 3
+843	Le Sk-25 Rook : un avion d'appui rapproché blindé qui pilonne chars et véhicules à basse altitude.
+844	Le Sk-27 Flankard : un gros chasseur biréacteur à long rayon d'action et lourdement armé.
+845	Supériorité aérienne, génération 3
+846	Le Flankard-M : le Flanker biplace qui combat et frappe à la fois, utilisé par Vanguard, la Russie, l'Inde et la Chine.
+847	Chasseur multirôle, génération 4
+848	Le Sk-35 Flankard-E : poussée vectorielle, supermanœuvrabilité, et le meilleur chasseur standard de Vanguard.
+849	Le Sk-47 Berkov : un chasseur furtif expérimental à ailes en flèche inversée. Un par joueur.
+850	Les drones d'essaim turcs : des attaquants sans pilote bon marché qui submergent l'infanterie et les blindés légers par le nombre.
+851	Essaim de drones, génération 3
+852	Le Tv-160 Swanwing : le bombardier supersonique russe à géométrie variable, qui délivre une charge massive à grande vitesse.
+853	Bombardier stratégique, génération 3
+854	Le Typhon : un chasseur européen à aile delta et plans canard, très agile et lourdement armé.
+855	Le convertible Kestrel décolle comme un hélicoptère et vole comme un avion, transportant l'infanterie loin derrière les lignes ennemies. Non armé.
+856	Transport convertible, génération 4
+857	Le Volcan : un bombardier V à aile delta, l'arme lourde à long rayon d'action de l'Angleterre contre les bases.
+858	Le Stingray : un drone de combat sans pilote. Bon marché et fragile, mais il mitraille l'infanterie et les blindés légers sans risquer de pilote. Un par joueur.
+859	Prototype de drone de combat
+860	Le Yk-141 Freestyler : un prototype supersonique à décollage vertical qui frappe les véhicules. Un par joueur.
+861	Prototype à décollage vertical
+862	Le Black Recluse : un chasseur furtif expérimental. Un seul par joueur, un as rare et mortel.
+863	Chasseur prototype
+864	Un dirigeable blindé à l'énorme charge de bombes. Très lent, mais un Zeppelin à pleine charge au-dessus d'une base est dévastateur. Abattez-le tôt.
+865	Dirigeable de bombardement
+866	L'Alligator : deux rotors coaxiaux et pas de rotor de queue le rendent rapide et agile. Missiles antichars et canon de 30 mm traquent les blindés. La réponse de Vanguard au Longbow.
+867	Roquettes lourdes de 300 mm à très longue portée qui écrasent bâtiments et unités groupées. Rechargement lent.
+868	Lance-roquettes (Turquie)
+869	Entraîne des chiens d'attaque : des chasseurs rapides et bon marché qui tuent un fantassin d'une morsure et flairent les espions déguisés.
+870	Dressage canin
+871	Le singe géant traverse murs et colonnes de chars sans distinction. Au contact, son double coup de poing écrase tout ; plus loin, il arrache des rochers et les lance. Les avions et hélicoptères qui le survolent ne sont pas à l'abri : il bondit en l'air et les abat d'un seul coup. Plus rapide que Godzilla, mais l'eau l'arrête. Choisi dans le salon, un par joueur, et une fois tombé, il est perdu pour de bon.
+872	Titan : singe géant
+873	Une caisse de char lourd avec un canon de 152 mm, portée par deux jambes blindées au lieu de chenilles. Lent, mais il enjambe murs, tranchées et quiconque se trouve sur son chemin.
+874	Un navire d'assaut à pont plat qui transporte tout un groupe de débarquement jusqu'à la plage et repousse les aéronefs en chemin. États-Unis uniquement.
+875	Navire d'assaut amphibie
+876	Construit et lance des satellites depuis l'onglet Aéronefs, jusqu'à 8 en orbite. La porte d'accès au réseau laser orbital.
+877	Lancement spatial
+878	Un lanceur chenillé à roquettes guidées par GPS. Précis, avec +50 % de dégâts contre les bâtiments. Le meilleur outil pour démanteler les défenses.
+879	Lance-roquettes (France)
+880	Classe Patriot / S-400. Arrête aéronefs, missiles de croisière et missiles balistiques tactiques bien au-delà des limites de votre base. Nécessite un dôme radar pour sa portée maximale.
+881	Défense antiaérienne longue portée
+882	Plane très haut au-dessus de la carte et tire un laser à la verticale sur les ennemis en dessous. Les satellites à moins de 12 cases forment un réseau qui renforce le rayon. Seuls les sites ASAT peuvent l'atteindre.
+883	Arme orbitale
+884	Transporte infanterie et chars sur l'eau et les débarque sur n'importe quelle plage. Non armé.
+885	Péniche de débarquement
+886	Un half-track avec quatre mitrailleuses lourdes sur affût tournant. Bon marché et rapide : il déchiquette hélicoptères, avions volant bas et infanterie, mais les chars l'ignorent.
+887	Véhicule antiaérien
+888	Un lanceur chenillé tirant une salve de 12 roquettes. Déployez-le pour passer à des roquettes qui dispersent des mines antichars sur le chemin de l'ennemi.
+889	Lance-roquettes (Allemagne)
+890	Se déploie en chantier de construction. Servez-vous-en pour ouvrir une seconde base près d'un gisement éloigné, ou pour reconstruire après un désastre.
+891	Construction mobile
+892	Un camion lanceur aux conteneurs dressés à la verticale. Chaque intercepteur est éjecté par gaz, allume son moteur au-dessus et s'incline vers la cible, actionnant de petits propulseurs latéraux à l'approche pour un impact direct. Il peut tirer dans toutes les directions sans pivoter et abat aussi les missiles de croisière et balistiques. Nations de l'Union.
+893	Répare les véhicules sur le terrain, pour que vos chars combattent loin d'un dépôt de maintenance.
+894	Mécanicien de campagne
+895	Soigne l'infanterie proche sur le terrain. Gardez-en un dans chaque groupe d'infanterie et vos escouades survivront bien plus longtemps.
+896	Infirmier de campagne
+897	Couvre les alentours d'un voile. Faites-le accompagner votre armée pour que l'ennemi ne voie pas venir l'attaque.
+898	Générateur de brouillage mobile
+899	Le Black Hawk : un hélicoptère de combat avec deux canons à chaîne contre l'infanterie et les véhicules légers. Rapide à réarmer et idéal pour nettoyer l'infanterie.
+900	Hélicoptère d'assaut
+901	Le Hip : l'hélicoptère bon à tout faire de Vanguard. Il emmène une escouade complète de huit au front, avec une mitrailleuse de sabord pour tenir l'ennemi à couvert sur la zone d'atterrissage.
+902	Hélicoptère de transport de troupes
+903	Le Halo : le plus gros hélicoptère ayant jamais volé, son rotor à huit pales soulève douze soldats à la fois. La réponse de Vanguard au Chinook. Non armé : posez l'escouade loin de la DCA.
+904	Hélicoptère de transport lourd
+905	Le char volant : un hélicoptère de combat blindé avec canon à chaîne et nacelles de roquettes, et une cabine pour 5 soldats. Il mitraille la zone d'atterrissage, puis y dépose son escouade.
+906	Quartier général des services secrets britanniques. Débloque l'Espion et les voitures d'espion. Angleterre uniquement, un par joueur, nécessite de l'énergie.
+907	QG du renseignement
+908	Un avion d'attaque au sol rapide avec des missiles contre bâtiments et véhicules. Frappez, puis retournez à l'aérodrome pour vous réarmer.
+909	Avion d'attaque
+910	Un lance-roquettes multiple chenillé. Il vide tout son panier en quelques secondes, un flot massif de 19 roquettes qui couvre la zone ciblée, puis met longtemps à recharger.
+911	Char lance-roquettes
+912	Pose des mines antichars et antipersonnel et voit les mines ennemies. Minez les gisements et les points de passage pour faire payer cher chaque attaque.
+913	Brouille les dômes radar ennemis proches et dévie les missiles guidés entrants. Escortez avec lui vos blindés face aux défenses riches en missiles.
+914	Brouilleur radar
+915	Une batterie de missiles moyenne portée et votre bouclier anti-roquettes (style Dôme de fer) : dix intercepteurs rapides partent en salve, montent presque à la verticale et détruisent en vol les salves de roquettes et roquettes d'avions, laissant des traînées lumineuses. Il intercepte aussi aéronefs, missiles de croisière et drones. D'énormes salves peuvent encore le saturer pendant qu'il recharge. N'atteint sa portée maximale qu'avec un dôme radar.
+916	Défense antiaérienne moyenne portée
+917	Un silo de missile nucléaire. Après une longue charge, il lance une bombe atomique qui rase tout un quartier d'une base ennemie. Un seul exemplaire possible, et tous les adversaires sont prévenus quand il est prêt.
+918	Superarme
+919	Une plateforme de siège sous-marine qui tire des missiles sur les bâtiments, unités terrestres et aéronefs loin dans les terres. Faible contre les autres navires.
+920	Sous-marin lance-missiles
+921	Un char de combat de Vanguard moins cher et plus rapide à construire que le char lourd, avec un canon plus léger.
+922	Char moyen
+923	Un tout-terrain civil sur roues géantes, réquisitionné. Il n'a aucune arme : il roule simplement sur l'infanterie, les clôtures et les murs de sacs de sable, et sa cabine et sa benne accueillent une escouade de quatre. États-Unis uniquement.
+924	Écraseur
+925	L'arsenal commun de l'Union, partagé par toutes ses nations ; ses parachutistes volent à bord du long C-141 Starlifter.
+926	Dragon rouge : le super porte-avions Fujian, le chasseur furtif JX-20 et le PHX-16, le lanceur à plus longue portée de tous. Le Y-20 Kunpeng transporte son corps aéroporté.
+927	Forteresse insulaire : de robustes vieux lanceurs Grad tirés en nombre et une défense conçue pour tenir n'importe quel siège. Ses parachutistes volent à bord de vieilles B-29 Superfortress.
+928	Commandement du désert : porte-hélicoptères Mistral bon marché et roquettes à sous-munitions Saqr-36 qui déchiquettent les véhicules légers. Ses brigades aéroportées volent à bord de B-52 Stratofortress réaménagés pour larguer des troupes.
+929	Maîtres de la tromperie : espions du MI6, voitures d'espion bourrées de gadgets et générateurs de brouillage qui aveuglent l'ennemi. Ses forces aéroportées volent sur C-17A Globemaster III, le plus robuste des transports à réaction.
+930	Précision et furtivité : roquettes LRX guidées par GPS, chasseurs Rafale et Transport à phase camouflé. Ses parachutistes sautent de C-130 Hercules.
+931	Ingénieurs du temps : chars Chrono qui se téléportent à travers la carte et lanceurs MARZ qui sèment des champs de mines. Ses raids aéroportés volent à bord de B-17 Flying Fortress capturées, et l'aile volante HG-229 Nachtflügel emporte ses lourdes bombes guidées.
+932	Puissance montante : le porte-avions Vikrant de conception nationale et les lanceurs Pinak qui vident leurs nacelles en quelques secondes. Ses parachutistes sautent de l'Il-76MD et de ses canons de queue.
+933	Maîtres des drones : le porte-drones Bagheri, les drones d'attaque Shard et le prototype furtif Qahir-X. Ses parachutistes volent à bord d'un Boeing 707 réaménagé.
+934	Légion méditerranéenne : le porte-avions léger Cavour et le lance-roquettes Saetta à rechargement rapide. Ses parachutistes décollent de bases d'hydravions à bord du grand hydravion Boeing 314 Clipper.
+935	Une marine insulaire : le porte-avions Kaga pour avions à décollage vertical et les camions Sea Arrow qui coulent les navires loin en mer. Ses parachutistes sautent de C-130 Hercules.
+936	Défenseurs des montagnes : roquettes guidées Fatah qui frappent fort et juste depuis l'arrière du front. Ses parachutistes sautent de C-130 Hercules.
+937	Armes Tesla : soldats de choc, chars Tesla, le porte-avions Kouznetsov et le lanceur thermobarique TOZ-1 Sunflare. Ses parachutistes sautent de l'Il-76MD et de ses canons de queue.
+938	Bouclier de la péninsule : lanceurs Chunmu qui alternent entre salves de roquettes et un missile guidé lourd. Ses parachutistes sautent de C-130 Hercules.
+939	L'arsenal commun de Vanguard, partagé par toutes ses nations ; ses parachutistes volent à bord de B-29 Superfortress copiées rivet pour rivet. Depuis l'héliport, il aligne l'hélicoptère lourd Mi-26 Halo, les hélicoptères de combat Hind et Mi-35 et le Ka-52 Alligator.
+940	Porte des continents : guerre des drones depuis le porte-drones Anadolu, drones d'essaim et lourdes roquettes Kasirga. Ses parachutistes sautent de C-130 Hercules.
+941	Démolitions : camions de démolition nucléaires, raids de parabombes, l'énorme An-225 et les roquettes de précision Vilkra. Ses parachutistes sautent de l'Il-76MD, dont les deux canons de queue de 23 mm tiennent les chasseurs à distance.
+942	L'arsenal de la démocratie de l'Union : la plus grande flotte aérienne au monde, des super porte-avions, le camion lance-roquettes HIMAX et l'AB-35 Longwing qui largue la bombe atomique Fatman. Ses parachutistes volent à bord de C-130 Hercules depuis la base aéroportée.
+943	Une plateforme marine qui pompe un filet régulier de crédits, sans camions à protéger. Elle doit être construite sur l'eau près de votre base et cesse de pomper en cas de manque d'énergie. Navires et sous-marins sont sa plus grande menace.
+944	Économie offshore
+945	Une casemate en béton avec une mitrailleuse. Elle repère les unités furtives et fauche les assauts d'infanterie. Associez-la à une tourelle antichar.
+946	Bunker anti-infanterie
+947	Le lance-roquettes à plus longue portée du jeu. Il pilonne bases et groupes depuis loin derrière le front. Rechargement lent.
+948	Lance-roquettes (Chine)
+949	Tire toute sa charge de roquettes en quelques secondes. Une salve surprise dévastatrice contre l'infanterie et les bases.
+950	Lance-roquettes (Inde)
+951	L'énergie de base de votre base. Défenses, radar et superarmes s'arrêtent en cas de manque d'énergie : construisez des centrales avant d'en avoir besoin et dispersez-les, car une seule frappe sur un groupe de centrales peut plonger toute la base dans le noir.
+952	Production d'énergie
+953	Transforme minerai et gemmes en crédits et est livrée avec un camion de minerai gratuit. Construisez-la près des gisements riches pour raccourcir chaque trajet. Une seconde raffinerie près d'un autre gisement double presque vos revenus.
+954	Un patrouilleur léger et rapide qui détecte les sous-marins et chasse les petits navires. Des yeux bon marché sur l'eau.
+955	Un char à rayon longue portée dont le faisceau de cristal frappe les groupes d'infanterie, de véhicules légers et de bâtiments. Fragile : gardez-le derrière vos blindés lourds.
+956	Char Prisme
+957	Tire un faisceau lumineux de cristal. Les tours Prisme proches se relient et envoient leur énergie à celle qui tire : +40 % de dégâts par tour reliée, jusqu'à +200 %. Construisez-les en groupes.
+958	Défense Prisme
+959	Le char MAD secoue le sol d'ondes sismiques qui détruisent véhicules et structures proches, et se détruit lui-même au passage. Conduisez-le au milieu d'une base ennemie.

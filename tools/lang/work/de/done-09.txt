@@ -1,0 +1,250 @@
+2000	Einheiten auswählen
+2001	Linksklick / links ziehen
+2002	(zweimal: ganze Karte)
+2003	(erneut: Route senden)
+2004	Steuerungsschema: { $scheme }
+2005	Team zur Auswahl hinzufügen
+2006	Team erstellen
+2007	Ansicht auf Team zentrieren
+2008	Team auswählen (zweimal: zentrieren)
+2009	Steuerung
+2010	(nicht belegt)
+2011	{ $buildings } GEBÄUDE · { $mobile } EINHEITEN
+2012	{ $buildings } GEBÄUDE · { $mobile } MBF
+2013	FEINDLICHE TRUPPEN
+2014	FEINDLICHE GEBÄUDE
+2015	{ $api }. Grafikkarten in diesem PC: { $names }
+2016	Direct3D { $version } über ANGLE
+2017	{ $api }, Treiber { $version }
+2018	Das Spiel läuft auf der stromsparenden Grafik. Wähle oben Hohe Leistung und starte das Spiel neu, um eine viel höhere Bildrate zu erhalten.
+2019	Einer Grafikkarte in diesem PC fehlt der Treiber. Installiere ihn von der Website von NVIDIA, AMD oder Intel.
+2020	Starte das Spiel neu, um die Grafikkarte zu wechseln.
+2021	Es wird kein Grafiktreiber verwendet, daher zeichnet der Prozessor das Spiel. Installiere den neuesten Treiber für deine Grafikkarte.
+2022	Verwendete Grafikkarte: { $name }
+2023	OpenGL { $version }
+2024	{ $api }. Außerdem in diesem PC: { $names }
+2025	vom Grafiktreiber nicht gemeldet
+2026	NATION  ·  KOMMANDANT
+2027	MISSIONSSTATUS
+2028	RANG
+2029	STATUS
+2030	GEFECHTSBERICHT
+2031	RED ALERT  //  PROJECT X
+2032	SOUNDTRACK
+2033	IM KAMPF
+2034	LIVE
+2035	SPIELER
+2036	BEOBACHTER
+2037	KAMERAANSICHT
+2038	GEBÄUDEAKTIONEN
+2039	BEFEHLE
+2040	SAMMELN
+2041	SIGNAL
+2042	Baue eine Radarkuppel zur Aktivierung
+2043	CREDITS
+2044	KEIN RADARSIGNAL
+2045	ENERGIE
+2046	RADAR
+2047	REPARIEREN
+2048	VERKAUFEN
+2049	EINSATZZEIT
+2050	OPENRA { $engine }  ·  COMMIT { $build }
+2051	OPENRA { $engine }
+2052	PROJECT X  //  VERSION
+2053	WECHSELND
+2054	VORHERSAGE
+2055	IM ANZUG
+2056	NÄCHSTES
+2057	STABIL
+2058	WETTER
+2059	Das Wetter auf dieser Karte ändert sich nicht.
+2060	Nur optisch: Das Wetter beeinflusst keine Einheiten.
+2061	Nächstes: { $weather } in { $time }
+2062	Jetzt: { $weather }
+2063	Ein Authentifizierungsschlüssel wurde in deine
+2064	Zwischenablage kopiert. Füge ihn im Benutzerkontrollzentrum
+2065	des OpenRA-Forums hinzu und drücke dann Weiter.
+2066	{ $percentage }% abgeschlossen
+2067	Wiederholung wählen
+2068	{ $percentage }% Tempo
+2069	Wiederholungsbetrachter
+2070	Benötigt { $prerequisites }.
+2071	Autor:
+2072	Verzeichnis:
+2073	Dateiname:
+2074	Karte speichern
+2075	Titel:
+2076	Sichtbarkeit:
+2077	Das Kartenskript hat einen schweren Fehler festgestellt
+2078	Die Fehlerdetails wurden in lua.log im Ordner „logs“ gespeichert.
+2079	Bitte sende diese Datei an den Kartenautor, damit er das Problem beheben kann.
+2080	Serverliste konnte nicht abgefragt werden.
+2081	Keine Spiele gefunden. Versuche andere Filter.
+2082	Suche nach { $title }
+2083	Diagonal:
+2084	Ressourcen:
+2085	Filter
+2086	Die Versionen deines Betriebssystems, von OpenGL und der .NET-Laufzeit sowie deine Spracheinstellungen werden mit einer anonymen ID gesendet, um die künftige Entwicklung zu priorisieren.
+2087	Server wird heruntergefahren
+2088	Silo-Auslastung: { $usage }/{ $capacity }
+2089	Der Ton wurde in den Einstellungen stummgeschaltet.
+2090	Zuschauer
+2091	{ $spectators ->\n[0] Keine Zuschauer\n[one] Ein Zuschauer\n*[other] { $spectators } Zuschauer\n}
+2092	Aktionen
+2093	Fraktion
+2094	Spieler
+2095	Punkte
+2096	VERBÜNDET
+2097	FEINDLICH
+2098	EIGEN
+2099	Team { $team }
+2100	Suche:
+2101	Werkzeug:
+2102	Markierungskacheln
+2103	Verbündeter
+2104	Feind
+2105	Unbekannter Fehler
+2106	unbekannter Host
+2107	Unbekannter Serverstatus
+2108	Stummschaltung aufheben
+2109	entpackt
+2110	Unaufgedecktes Gelände
+2111	Du verwendest eine veraltete Version von OpenRA.
+2112	Lade die neueste Version von www.openra.net herunter
+2113	Prüfe Archiv...
+2114	Bildschirm { $number }
+2115	Wartet
+2116	Warte auf Spieler
+2117	Schneesturm
+2118	Klarer Himmel
+2119	Nebel
+2120	Hitzeflimmern
+2121	Regen
+2122	Sandsturm
+2123	Schnee
+2124	Starker Wind
+2125	Gewitter
+2126	Verloren
+2127	Gewonnen
+2128	Nicht mit Electronic Arts verbunden oder von EA unterstützt. Command & Conquer und Red Alert sind Marken von Electronic Arts Inc.
+2129	Betanke die Panzerkolonnen..., Kalibriere die Artillerie..., Weise die Feldkommandanten ein..., Lade die Tesla-Spulen..., Alarmiere die Jagdstaffeln..., Verlege Minenfelder..., Entschlüssle feindliche Funksprüche..., Raffiniere Erz..., Baue Bauhöfe auf..., Synchronisiere den Radar-Uplink..., Spalte Atome...
+2130	KOMMANDO WIRD INITIALISIERT
+2131	RÜCKKEHR ZUM KOMMANDO
+2132	VERLEGUNG AUFS SCHLACHTFELD
+2133	Einsatzbesprechung
+2134	Chat
+2135	Debug
+2136	Ziele
+2137	Optionen
+2138	Munitionskiste
+2139	Gebäude
+2140	Kisten
+2141	Brücke
+2142	Feld
+2143	Heuhaufen
+2144	Iglu
+2145	Kiste
+2146	Hubschrauber
+2147	Zerstörter Hubschrauber
+2148	Zerstörtes Fahrzeug
+2149	Soldat
+2150	Mine
+2151	Flugzeug
+2152	Zerstörtes Flugzeug
+2153	Fels
+2154	Schiff
+2155	Zivilgebäude
+2156	Baum
+2157	Baum (verbrannt)
+2158	Fahrzeug
+2159	Spiegeln
+2160	Drehen
+2161	RedAlert Project X
+2162	Nichts ausgewählt.
+2163	Atombombenstart erkannt.
+2164	Atombombe wird vorbereitet.
+2165	Atombombe bereit.
+2166	{ $name } ({ $id }) hinzugefügt
+2167	{ $amount ->\n[one] Eine Markierungskachel vom Typ { $type } hinzugefügt\n*[other] { $amount } Markierungskacheln vom Typ { $type } hinzugefügt\n}
+2168	{ $amount ->\n[one] Ein Feld { $type } hinzugefügt\n*[other] { $amount } Felder { $type } hinzugefügt\n}
+2169	Kachel { $id } hinzugefügt
+2170	Nur der Host kann die Konfiguration ändern.
+2171	Nur der Host kann die Karte ändern.
+2172	Nur Admins können Startpunkte löschen.
+2173	Nur der Host kann Spieler entfernen.
+2174	{ $admin } hat { $player } vom Server entfernt.
+2175	Nur der Host kann Lobby-Infos festlegen.
+2176	Nur der Host kann Spieler zu Zuschauern machen.
+2177	Nur der Host kann diese Option festlegen.
+2178	Nur der Host kann das Spiel starten.
+2179	Nur Admins können die Admin-Rolle an andere Spieler übertragen.
+2180	Lufteinheit verloren.
+2181	Unser Verbündeter wird angegriffen.
+2182	Verfügbare Befehle:
+2183	Basis wird angegriffen.
+2184	Der Servername enthält ein gesperrtes Wort.
+2185	Gebäude infiltriert.
+2186	Hier kann nicht aufgebaut werden.
+2187	Flugdeck: { $mode }
+2188	{ $player } hat die Karte zu { $map } geändert.
+2189	{ $remaining ->\n[one] Chat ist deaktiviert. Bitte versuche es in { $remaining } Sekunde erneut.\n*[other] Chat ist deaktiviert. Bitte versuche es in { $remaining } Sekunden erneut.\n}
+2190	Cheat verwendet: { $cheat } von { $player }{ $suffix }.
+2191	Cheats sind deaktiviert.
+2192	Chronosphäre lädt.
+2193	Chronosphäre bereit.
+2194	{ $amount } Markierungskacheln entfernt
+2195	{ $amount } Markierungskacheln vom Typ { $type } entfernt
+2196	Auswahl aufgehoben
+2197	{ $player } hat Verbindungsprobleme.
+2198	Bau abgeschlossen.
+2199	{ $amount ->\n[one] Eine Kachel kopiert\n*[other] { $amount } Kacheln kopiert\n}
+2200	Credits gestohlen.
+2201	Diese Karte enthält eigene Regeln. Das Spielerlebnis kann abweichen.
+2202	Asynchron in Frame { $frame }.\nVergleiche syncreport.log mit anderen Spielern.
+2203	{ $name } ({ $id }) bearbeitet
+2204	{ $name } ({ $old-id }-> { $new-id }) bearbeitet
+2205	Niemand auf diesem Platz.
+2206	Das Spiel hat bereits begonnen.
+2207	Anzahl der Teams konnte nicht gelesen werden: { $raw }.
+2208	Atombomber gesichtet.
+2209	Mit Kachel { $id } gefüllt
+2210	Das Spiel ist voll.
+2211	Das Spiel hat begonnen.
+2212	Das Spiel wurde nicht online angekündigt.
+2213	Das Spiel wurde von { $player } angehalten.
+2214	Spiel gespeichert.
+2215	Spiel gestartet.
+2216	Das Spiel wurde von { $player } fortgesetzt.
+2217	Auf dem Server läuft eine inkompatible Mod.
+2218	Auf dem Server läuft ein inkompatibles Protokoll.
+2219	Auf dem Server läuft eine inkompatible Version.
+2220	Falsches Passwort.
+2221	Das Spiel kann erst starten, wenn mehr Startpunkte aktiviert sind.
+2222	Nicht genug Geld.
+2223	Nicht genug Energie.
+2224	Nicht genug Stimmen, um { $kickee } zu entfernen.
+2225	Bots können nicht auf einen Platz mit einem anderen Client gesetzt werden.
+2226	Ungültiger Bot-Typ.
+2227	Ungültiger Geldbetrag.
+2228	{ $name } ist kein gültiger Befehl.
+2229	Ungültiger Konfigurationsbefehl.
+2230	Fehlermeldung konnte nicht gelesen werden.
+2231	Ungültige Fraktion gewählt: { $faction }.
+2232	Ungültige Lobby-Infos gesendet.
+2233	Keine gültige Spielerfarbe ermittelbar. Eine zufällige Farbe wurde gewählt.
+2234	Eiserner Vorhang lädt.
+2235	Eiserner Vorhang bereit.
+2236	{ $player } ist dem Spiel beigetreten.
+2237	Du hast bereits abgestimmt.
+2238	Der Host kann sich nicht selbst entfernen.
+2239	{ $player } wurde vom Server entfernt.
+2240	{ $player } hat das Spiel verlassen.
+2241	Energie niedrig.
+2242	Fehlerhafter Befehl { $command }.
+2243	Bots sind auf dieser Karte deaktiviert.
+2244	Karte „{ $map }“ konnte nicht gelöscht werden. Details siehe debug.log.
+2245	Verbindung zum Master-Server hergestellt.
+2246	Kommunikation mit dem Master-Server fehlgeschlagen.
+2247	Mod-Wechsel fehlgeschlagen.
+2248	{ $admin } hat { $player } zu den Zuschauern verschoben.
+2249	{ $id } von { $x1 },{ $y1 } nach { $x2 },{ $y2 } verschoben

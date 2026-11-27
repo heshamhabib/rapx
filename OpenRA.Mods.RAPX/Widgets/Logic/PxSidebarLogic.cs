@@ -31,12 +31,12 @@ namespace OpenRA.Mods.RAPX.Widgets.Logic
 	{
 		static readonly Dictionary<string, string> QueueTitles = new()
 		{
-			{ "Building", "STRUCTURES" },
-			{ "Defense", "DEFENSES" },
-			{ "Infantry", "INFANTRY" },
-			{ "Vehicle", "VEHICLES" },
-			{ "Aircraft", "AIRCRAFT" },
-			{ "Ship", "NAVAL" },
+			{ "Building", PxText.N("STRUCTURES") },
+			{ "Defense", PxText.N("DEFENSES") },
+			{ "Infantry", PxText.N("INFANTRY") },
+			{ "Vehicle", PxText.N("VEHICLES") },
+			{ "Aircraft", PxText.N("AIRCRAFT") },
+			{ "Ship", PxText.N("NAVAL") },
 		};
 
 		static readonly Color Online = Color.FromArgb(93, 255, 122);
@@ -66,7 +66,7 @@ namespace OpenRA.Mods.RAPX.Widgets.Logic
 			if (playerName != null)
 			{
 				var font = Game.Renderer.Fonts[playerName.Font];
-				var text = WidgetUtils.TruncateText("COMMANDER · " + player.ResolvedPlayerName.ToUpperInvariant(), playerName.Bounds.Width, font);
+				var text = WidgetUtils.TruncateText(PxText.F("COMMANDER · {0}", player.ResolvedPlayerName.ToUpperInvariant()), playerName.Bounds.Width, font);
 				playerName.GetText = () => text;
 			}
 
@@ -83,7 +83,7 @@ namespace OpenRA.Mods.RAPX.Widgets.Logic
 			var status = widget.GetOrNull<LabelWidget>("RADAR_STATUS");
 			if (status != null)
 			{
-				status.GetText = () => radarEnabled ? "ONLINE" : "OFFLINE";
+				status.GetText = () => radarEnabled ? PxText.T("ONLINE") : PxText.T("OFFLINE");
 				status.GetColor = () => radarEnabled ? Online : Offline;
 			}
 
@@ -210,13 +210,13 @@ namespace OpenRA.Mods.RAPX.Widgets.Logic
 						return category.ToUpperInvariant();
 
 					var group = q.Info.Group ?? q.Info.Type;
-					return QueueTitles.TryGetValue(group, out var t) ? t : group.ToUpperInvariant();
+					return QueueTitles.TryGetValue(group, out var t) ? PxText.T(t) : group.ToUpperInvariant();
 				};
 
 			var count = widget.GetOrNull<LabelWidget>("QUEUE_COUNT");
 			if (count != null)
 			{
-				var cached = new CachedTransform<int, string>(c => c.ToString(CultureInfo.CurrentCulture) + " AVAILABLE");
+				var cached = new CachedTransform<int, string>(c => PxText.F("{0} AVAILABLE", c));
 				count.GetText = () => palette.CurrentQueue == null ? "" : cached.Update(palette.TotalIconCount);
 			}
 

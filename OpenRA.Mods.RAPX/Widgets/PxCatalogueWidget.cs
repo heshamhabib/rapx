@@ -51,7 +51,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 		static readonly Color Faint = Color.FromArgb(96, 98, 108);
 		static readonly Color Holo = Color.FromArgb(120, 220, 255);
 
-		static readonly string[] CategoryLabels = { "STRUCTURES", "DEFENCES", "INFANTRY", "VEHICLES", "AIRCRAFT", "NAVAL" };
+		static readonly string[] CategoryLabels = { PxText.N("STRUCTURES"), PxText.N("DEFENCES"), PxText.N("INFANTRY"), PxText.N("VEHICLES"), PxText.N("AIRCRAFT"), PxText.N("NAVAL") };
 
 		readonly ModData modData;
 		readonly World world;
@@ -448,12 +448,13 @@ namespace OpenRA.Mods.RAPX.Widgets
 			HGradient(new Rectangle(h.X, h.Bottom - 2, h.Width, 2), AccentDeep, Color.FromArgb(0, AccentDeep));
 			Fill(new Rectangle(h.X + 22, h.Y + 18, 4, HeaderHeight - 36), Accent);
 
-			PxWarChrome.DrawSpaced(header, "PROJECT X  //  CLASSIFIED WAR ARCHIVE", h.X + 38, h.Y + 14, 2, Accent);
-			Text(title, "ARSENAL CATALOGUE", h.X + 36, h.Y + 26, Ink);
+			PxWarChrome.DrawSpaced(header, PxText.T("PROJECT X  //  CLASSIFIED WAR ARCHIVE"), h.X + 38, h.Y + 14, 2, Accent);
+			var heading = PxText.T("ARSENAL CATALOGUE");
+			Text(title, heading, h.X + 36, h.Y + 26, Ink);
 
 			var total = data.Entries.Count;
-			var stats = $"{data.Nations.Count} NATIONS   ·   {total} ENTRIES   ·   ARROWS / TAB TO BROWSE";
-			var sx = h.X + 36 + title.Measure("ARSENAL CATALOGUE").X + 28;
+			var stats = PxText.F("{0} NATIONS   ·   {1} ENTRIES   ·   ARROWS / TAB TO BROWSE", data.Nations.Count, total);
+			var sx = h.X + 36 + title.Measure(heading).X + 28;
 			PxWarChrome.DrawSpaced(tiny, stats, sx, h.Y + 40, 1, Faint);
 		}
 
@@ -478,7 +479,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 		{
 			Gradient(rail, Color.FromArgb(200, 22, 23, 28), Color.FromArgb(200, 12, 13, 16));
 			PxWarChrome.DrawBorder(rail, Color.FromArgb(255, 36, 37, 44), 1);
-			PxWarChrome.DrawSpaced(header, "SELECT NATION", rail.X + 14, rail.Y + 14, 2, Dim);
+			PxWarChrome.DrawSpaced(header, PxText.T("SELECT NATION"), rail.X + 14, rail.Y + 14, 2, Dim);
 			Fill(new Rectangle(rail.X + 14, rail.Y + 32, rail.Width - 28, 1), Color.FromArgb(60, 255, 106, 85));
 
 			var mouse = Viewport.LastMousePos;
@@ -492,7 +493,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 					Fill(new Rectangle(rail.X + 14, hy + 8, 3, 12), SideColor(n.Side));
 					PxWarChrome.DrawSpaced(header, n.Side.ToUpperInvariant(), rail.X + 24, hy + 6, 3, SideText(n.Side));
 					var count = data.Nations.Count(o => o.Side == n.Side);
-					TextRight(tiny, $"{count} NATIONS", rail.Right - 14, hy + 8, Faint);
+					TextRight(tiny, PxText.F("{0} NATIONS", count), rail.Right - 14, hy + 8, Faint);
 				}
 
 				var sel = n == nation;
@@ -541,7 +542,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 
 			var x = fr.Right + 26;
 			var fade = Math.Clamp((Game.RunTime - nationTime) / 250f, 0, 1);
-			PxWarChrome.DrawSpaced(header, $"{nation.Side.ToUpperInvariant()} ALLIANCE  ·  NATIONAL DOSSIER", x, b.Y + 14, 2, Alpha(SideText(nation.Side), fade));
+			PxWarChrome.DrawSpaced(header, PxText.F("{0} ALLIANCE  ·  NATIONAL DOSSIER", PxText.T(nation.Side).ToUpperInvariant()), x, b.Y + 14, 2, Alpha(SideText(nation.Side), fade));
 			Text(displayLarge, nation.Name.ToUpperInvariant(), x, b.Y + 30, Alpha(Color.White, fade));
 			var nameW = displayLarge.Measure(nation.Name.ToUpperInvariant()).X;
 			if (!string.IsNullOrEmpty(nation.Motto))
@@ -553,15 +554,15 @@ namespace OpenRA.Mods.RAPX.Widgets
 			var mine = data.Entries.Where(e => e.Nations.Contains(nation.Id)).ToList();
 			var exclusive = mine.Count(e => e.Nations.Count == 1);
 			var national = mine.Count(e => e.Nations.Count > 1 && e.Nations.Count < data.Nations.Count(n => n.Side == nation.Side));
-			DrawTile(new Rectangle(tilesX, b.Y + 18, TileW, 74), mine.Count.ToString(CultureInfo.InvariantCulture), "ENTRIES", Ink);
-			DrawTile(new Rectangle(tilesX + TileW + 8, b.Y + 18, TileW, 74), exclusive.ToString(CultureInfo.InvariantCulture), "EXCLUSIVE", Gold);
-			DrawTile(new Rectangle(tilesX + 2 * (TileW + 8), b.Y + 18, TileW, 74), national.ToString(CultureInfo.InvariantCulture), "LIMITED", SideText(nation.Side));
+			DrawTile(new Rectangle(tilesX, b.Y + 18, TileW, 74), mine.Count.ToString(CultureInfo.InvariantCulture), PxText.T("ENTRIES"), Ink);
+			DrawTile(new Rectangle(tilesX + TileW + 8, b.Y + 18, TileW, 74), exclusive.ToString(CultureInfo.InvariantCulture), PxText.T("EXCLUSIVE"), Gold);
+			DrawTile(new Rectangle(tilesX + 2 * (TileW + 8), b.Y + 18, TileW, 74), national.ToString(CultureInfo.InvariantCulture), PxText.T("LIMITED"), SideText(nation.Side));
 
 			// Doctrine: specials, else the written nation lore
 			var textW = tilesX - x - 20;
 			var lines = new List<(string Text, Color Color)>();
-			var specials = nation.Specials.Where(s => !s.Contains("coming soon", StringComparison.OrdinalIgnoreCase) &&
-				!s.StartsWith("Full ", StringComparison.Ordinal));
+			// Only "Special Unit: X" style lines; the generic arsenal lines have no colon in any language
+			var specials = nation.Specials.Where(s => s.Contains(':') || s.Contains('：'));
 			foreach (var s in specials)
 				lines.Add(("+ " + s.ToUpperInvariant(), Gold));
 			if (!string.IsNullOrEmpty(nation.Lore))
@@ -613,7 +614,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 					Gradient(r, Color.FromArgb(hover ? 255 : 230, hover ? 38 : 26, hover ? 39 : 27, hover ? 46 : 32), Color.FromArgb(230, 15, 16, 19));
 
 				PxWarChrome.DrawBorder(r, sel ? Alpha(Accent, 0.6f) : Color.FromArgb(255, 40, 41, 48), 1);
-				var text = CategoryLabels[c];
+				var text = PxText.T(CategoryLabels[c]);
 				var color = count == 0 ? Faint : sel ? Color.White : hover ? Ink : Dim;
 				var tw = PxWarChrome.SpacedWidth(button, text, 1);
 				var countText = count.ToString(CultureInfo.InvariantCulture);
@@ -683,7 +684,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 
 				if (e.Nations.Count == 1 || e.Nations.Count < sideCount)
 				{
-					var badge = e.Nations.Count == 1 ? "EXCLUSIVE" : "NATIONAL";
+					var badge = e.Nations.Count == 1 ? PxText.T("EXCLUSIVE") : PxText.T("NATIONAL");
 					var bw = tiny.Measure(badge).X + 12;
 					var bc = e.Nations.Count == 1 ? Gold : SideColor(nation.Side);
 					Fill(new Rectangle(art.X + 4, art.Y + 4, bw, 16), bc);
@@ -704,7 +705,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 			Game.Renderer.DisableScissor();
 
 			if (visible.Count == 0)
-				Text(label, "NO ENTRIES FOR THIS NATION", grid.X + 10, grid.Y + 10, Faint);
+				Text(label, PxText.T("NO ENTRIES FOR THIS NATION"), grid.X + 10, grid.Y + 10, Faint);
 
 			// Scrollbar
 			if (gridHeight > grid.Height)
@@ -780,7 +781,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 			var sideCount = data.Nations.Count(n => n.Side == nation.Side);
 			if (selected.Nations.Count == 1 || selected.Nations.Count < sideCount)
 			{
-				var badge = selected.Nations.Count == 1 ? $"{nation.Name.ToUpperInvariant()} EXCLUSIVE" : "NATIONAL UNIT";
+				var badge = selected.Nations.Count == 1 ? PxText.F("{0} EXCLUSIVE", nation.Name.ToUpperInvariant()) : PxText.T("NATIONAL UNIT");
 				var bw = PxWarChrome.SpacedWidth(tiny, badge, 1) + 16;
 				var by = s.Y + 18;
 				var bx = s.Right - 22 - bw;
@@ -801,7 +802,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 			PxWarChrome.DrawSpaced(header, role, s.X + 22, s.Y + 18, 2, Alpha(Accent, fade));
 			Text(displayLarge, selected.Name.ToUpperInvariant(), s.X + 20, s.Y + 34, Alpha(Color.White, fade));
 
-			var tier = $"{PxCatalogueData.Categories[category].ToUpperInvariant()}  ·  {selected.Actor.Name.ToUpperInvariant()}";
+			var tier = $"{PxText.T(PxCatalogueData.Categories[category]).ToUpperInvariant()}  ·  {selected.Actor.Name.ToUpperInvariant()}";
 			PxWarChrome.DrawSpaced(tiny, tier, s.X + 22, s.Bottom - 24, 1, Faint);
 		}
 
@@ -820,16 +821,16 @@ namespace OpenRA.Mods.RAPX.Widgets
 			// Spec tiles
 			var specs = new List<(string Value, string Caption, Color Color)>
 			{
-				(Money(e.Cost), "COST", Gold),
-				(Seconds(e.BuildTicks), "BUILD TIME", Ink),
+				(Money(e.Cost), PxText.T("COST"), Gold),
+				(Seconds(e.BuildTicks), PxText.T("BUILD TIME"), Ink),
 			};
 
 			if (e.Power != 0)
-				specs.Add(((e.Power > 0 ? "+" : "") + e.Power.ToString(CultureInfo.InvariantCulture), "POWER", e.Power > 0 ? PxWarChrome.Friendly : PxWarChrome.Hostile));
+				specs.Add(((e.Power > 0 ? "+" : "") + e.Power.ToString(CultureInfo.InvariantCulture), PxText.T("POWER"), e.Power > 0 ? PxWarChrome.Friendly : PxWarChrome.Hostile));
 			if (e.HP > 0)
-				specs.Add((e.HP.ToString("N0", CultureInfo.InvariantCulture), "HIT POINTS", Ink));
+				specs.Add((e.HP.ToString("N0", CultureInfo.InvariantCulture), PxText.T("HIT POINTS"), Ink));
 			if (e.Armor != null)
-				specs.Add((ArmorName(e.Armor), "ARMOUR", Holo));
+				specs.Add((ArmorName(e.Armor), PxText.T("ARMOUR"), Holo));
 
 			var tw = (w - (specs.Count - 1) * 6) / specs.Count;
 			for (var i = 0; i < specs.Count; i++)
@@ -845,21 +846,21 @@ namespace OpenRA.Mods.RAPX.Widgets
 			y += 54 + 20;
 
 			// Performance bars
-			y = Section("PERFORMANCE", r.X, y, w);
+			y = Section(PxText.T("PERFORMANCE"), r.X, y, w);
 			var cat = e.Category;
 			var bars = new List<(string Label, float Value, float Max, string Text)>
 			{
-				("DURABILITY", e.HP, data.CategoryMax["hp-" + cat], e.HP.ToString("N0", CultureInfo.InvariantCulture)),
+				(PxText.T("DURABILITY"), e.HP, data.CategoryMax["hp-" + cat], e.HP.ToString("N0", CultureInfo.InvariantCulture)),
 			};
 
 			if (e.Dps > 0)
-				bars.Add(("FIREPOWER", e.Dps, data.CategoryMax["dps-" + cat], Num(e.Dps) + " DPS"));
+				bars.Add((PxText.T("FIREPOWER"), e.Dps, data.CategoryMax["dps-" + cat], PxText.F("{0} DPS", Num(e.Dps))));
 			if (e.Range > 0)
-				bars.Add(("RANGE", e.Range, data.CategoryMax["range-" + cat], Num(e.Range) + " CELLS"));
+				bars.Add((PxText.T("RANGE"), e.Range, data.CategoryMax["range-" + cat], PxText.F("{0} CELLS", Num(e.Range))));
 			if (e.Speed > 0)
-				bars.Add(("SPEED", e.Speed, data.CategoryMax["speed-" + cat], Num(e.Speed) + " CELLS/S"));
+				bars.Add((PxText.T("SPEED"), e.Speed, data.CategoryMax["speed-" + cat], PxText.F("{0} CELLS/S", Num(e.Speed))));
 			if (e.Sight > 0)
-				bars.Add(("VISION", e.Sight, data.CategoryMax["sight-" + cat], Num(e.Sight) + " CELLS"));
+				bars.Add((PxText.T("VISION"), e.Sight, data.CategoryMax["sight-" + cat], PxText.F("{0} CELLS", Num(e.Sight))));
 
 			foreach (var (name, value, max, text) in bars)
 			{
@@ -875,7 +876,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 			// Damage grades
 			if (e.Weapons.Any(wp => !wp.Support))
 			{
-				y = Section("EFFECTIVE AGAINST", r.X, y, w);
+				y = Section(PxText.T("EFFECTIVE AGAINST"), r.X, y, w);
 				var n = PxCatalogueData.Classes.Length;
 				var gw = (w - (n - 1) * 6) / n;
 				for (var i = 0; i < n; i++)
@@ -889,7 +890,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 					Fill(new Rectangle(g.X, g.Bottom - 3, (int)(g.Width * f * a), 3), gc);
 					var lw = displayLarge.Measure(letter).X;
 					Text(displayLarge, letter, g.X + (g.Width - lw) / 2, g.Y + 6, Alpha(gc, a));
-					var cl = PxCatalogueData.Classes[i].Label;
+					var cl = PxText.T(PxCatalogueData.Classes[i].Label);
 					var lab = WidgetUtils.TruncateText(cl, g.Width - 6, tiny);
 					Text(tiny, lab, g.X + (g.Width - tiny.Measure(lab).X) / 2, g.Bottom - 20, Dim, false);
 				}
@@ -900,14 +901,14 @@ namespace OpenRA.Mods.RAPX.Widgets
 			// Weapons
 			if (e.Weapons.Count > 0)
 			{
-				y = Section("ARMAMENT", r.X, y, w);
+				y = Section(PxText.T("ARMAMENT"), r.X, y, w);
 				foreach (var wp in e.Weapons)
 				{
 					var row = new Rectangle(r.X, y, w, 50);
 					Gradient(row, Color.FromArgb(255, 24, 25, 30), Color.FromArgb(255, 16, 17, 20));
 					Fill(new Rectangle(row.X, row.Y, 3, row.Height), wp.Support ? PxWarChrome.Friendly : Accent);
 					Text(label, wp.Name.ToUpperInvariant(), row.X + 14, row.Y + 5, Ink);
-					var kind = wp.Kind.ToUpperInvariant();
+					var kind = PxText.T(wp.Kind).ToUpperInvariant();
 					var kx = row.X + 14 + label.Measure(wp.Name.ToUpperInvariant()).X + 10;
 					var kw = tiny.Measure(kind).X + 10;
 					Fill(new Rectangle(kx, row.Y + 8, kw, 15), Color.FromArgb(255, 52, 40, 38));
@@ -915,16 +916,16 @@ namespace OpenRA.Mods.RAPX.Widgets
 
 					var targets = new List<string>();
 					if (wp.Ground)
-						targets.Add("GROUND");
+						targets.Add(PxText.T("GROUND"));
 					if (wp.Air)
-						targets.Add("AIR");
+						targets.Add(PxText.T("AIR"));
 					if (wp.Naval)
-						targets.Add("NAVAL");
+						targets.Add(PxText.T("NAVAL"));
 					TextRight(tiny, string.Join("  ·  ", targets), row.Right - 10, row.Y + 9, Holo);
 
-					var dmg = wp.Support ? "SUPPORT" : $"DMG {wp.Damage}" + (wp.Burst > 1 ? $" x{wp.Burst}" : "");
-					var line = $"{dmg}     RANGE {Num(wp.Range)}" + (wp.MinRange > 0 ? $" (MIN {Num(wp.MinRange)})" : "") +
-						$"     CYCLE {wp.Reload.ToString("0.0", CultureInfo.InvariantCulture)}s" + (wp.Support ? "" : $"     {Num(wp.Dps)} DPS");
+					var dmg = wp.Support ? PxText.T("SUPPORT") : PxText.F("DMG {0}", wp.Damage) + (wp.Burst > 1 ? $" x{wp.Burst}" : "");
+					var line = $"{dmg}     " + PxText.F("RANGE {0}", Num(wp.Range)) + (wp.MinRange > 0 ? " " + PxText.F("(MIN {0})", Num(wp.MinRange)) : "") +
+						"     " + PxText.F("CYCLE {0}s", wp.Reload.ToString("0.0", CultureInfo.InvariantCulture)) + (wp.Support ? "" : "     " + PxText.F("{0} DPS", Num(wp.Dps)));
 					PxWarChrome.DrawSpaced(tiny, line, row.X + 14, row.Y + 30, 1, Dim);
 					y += 56;
 				}
@@ -935,7 +936,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 			// Capabilities as chips
 			if (e.Features.Count > 0)
 			{
-				y = Section("CAPABILITIES", r.X, y, w);
+				y = Section(PxText.T("CAPABILITIES"), r.X, y, w);
 				var x = r.X;
 				foreach (var f in e.Features)
 				{
@@ -959,7 +960,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 			}
 
 			// Dossier
-			y = Section("FIELD DOSSIER", r.X, y, w);
+			y = Section(PxText.T("FIELD DOSSIER"), r.X, y, w);
 			if (!string.IsNullOrEmpty(e.Lore))
 			{
 				foreach (var l in Wrap(e.Lore, w, body))
@@ -991,7 +992,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 			var requires = data.Requires(e, nation).ToList();
 			if (requires.Count > 0)
 			{
-				PxWarChrome.DrawSpaced(tiny, "REQUIRES", r.X, y + 2, 1, Faint);
+				PxWarChrome.DrawSpaced(tiny, PxText.T("REQUIRES"), r.X, y + 2, 1, Faint);
 				foreach (var l in Wrap(string.Join("  ·  ", requires).ToUpperInvariant(), w - 90, small))
 				{
 					Text(small, l, r.X + 90, y, Ink, false);
@@ -1002,7 +1003,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 			}
 
 			// Who fields it
-			PxWarChrome.DrawSpaced(tiny, "FIELDED BY", r.X, y + 4, 1, Faint);
+			PxWarChrome.DrawSpaced(tiny, PxText.T("FIELDED BY"), r.X, y + 4, 1, Faint);
 			var fx = r.X + 90;
 			foreach (var n in data.Nations.Where(n => e.Nations.Contains(n.Id)))
 			{
@@ -1053,10 +1054,10 @@ namespace OpenRA.Mods.RAPX.Widgets
 		{
 			switch (armor)
 			{
-				case "None": return "INFANTRY";
-				case "Wood": return "STRUCTURE";
-				case "Concrete": return "FORTIFIED";
-				default: return armor.ToUpperInvariant();
+				case "None": return PxText.T("INFANTRY");
+				case "Wood": return PxText.T("STRUCTURE");
+				case "Concrete": return PxText.T("FORTIFIED");
+				default: return PxText.T(armor).ToUpperInvariant();
 			}
 		}
 

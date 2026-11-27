@@ -245,23 +245,48 @@ namespace OpenRA.Mods.Common.Widgets
 
 			var stateOffset = Depressed ? new int2(VisualHeight, VisualHeight) : new int2(0, 0);
 
-			var position = GetTextPosition(text, font, rb);
+			// A translation longer than the button's own label (the common case in non-English languages)
+			// is shrunk to fit; if even the minimum readable size would still overflow, it is also truncated.
+			var scale = FitScale(font, text);
+			if (scale <= MinTextScale)
+				text = WidgetUtils.TruncateText(text, (int)((UsableWidth - LeftMargin - RightMargin) / MinTextScale), font);
+
+			var position = GetTextPosition(text, font, rb, scale);
 
 			var hover = Ui.MouseOverWidget == this || Children.FirstOrDefault(c => c == Ui.MouseOverWidget) != null;
 			DrawBackground(rb, disabled, Depressed, hover, highlighted);
 			if (Contrast)
 				font.DrawTextWithContrast(text, position + stateOffset,
-					disabled ? colordisabled : color, bgDark, bgLight, ContrastRadius);
+					disabled ? colordisabled : color, bgDark, bgLight, ContrastRadius, scale);
 			else if (Shadow)
-				font.DrawTextWithShadow(text, position, color, bgDark, bgLight, 1);
+				font.DrawTextWithShadowScaled(text, position, color, bgDark, bgLight, 1, scale);
 			else
-				font.DrawText(text, position + stateOffset,
-					disabled ? colordisabled : color);
+				font.DrawTextScaled(text, position + stateOffset,
+					disabled ? colordisabled : color, scale);
 		}
 
-		int2 GetTextPosition(string text, SpriteFont font, Rectangle rb)
+		// Below this, a translation is truncated (with an ellipsis) rather than shrunk further into illegibility.
+		const float MinTextScale = 0.62f;
+
+		float FitScale(SpriteFont font, string text)
 		{
-			var textSize = font.Measure(text);
+			if (string.IsNullOrEmpty(text))
+				return 1f;
+
+			var available = UsableWidth - LeftMargin - RightMargin;
+			if (available <= 0)
+				return 1f;
+
+			var width = font.Measure(text).X;
+			if (width <= available)
+				return 1f;
+
+			return Math.Max(MinTextScale, available / (float)width);
+		}
+
+		int2 GetTextPosition(string text, SpriteFont font, Rectangle rb, float scale = 1f)
+		{
+			var textSize = font.Measure(text, scale);
 			var y = rb.Y + (Bounds.Height - textSize.Y - font.TopOffset) / 2;
 
 			switch (Align)

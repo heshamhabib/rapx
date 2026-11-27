@@ -10,6 +10,7 @@
 #endregion
 
 using System;
+using System.Linq;
 using System.Text;
 using OpenRA.FileSystem;
 
@@ -26,7 +27,13 @@ namespace OpenRA
 		{
 			lock (SyncObject)
 			{
-				modFluentBundle = new FluentBundle(modData.Manifest.FluentCulture, modData.Manifest.FluentMessages, fileSystem);
+				// The selected interface language is loaded on top, so its missing keys keep the default text
+				var messages = modData.Manifest.FluentMessages;
+				var language = FluentLanguages.For(modData.Manifest)?.Active;
+				if (language != null)
+					messages = messages.Concat(language.Messages).ToArray();
+
+				modFluentBundle = new FluentBundle(modData.Manifest.FluentCulture, messages, fileSystem);
 				if (fileSystem is Map map && map.FluentMessageDefinitions != null)
 				{
 					var files = Array.Empty<string>();

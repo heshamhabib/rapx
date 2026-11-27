@@ -28,7 +28,30 @@ namespace OpenRA.Mods.RAPX.Widgets
 
 		static readonly Color StrongColor = Color.FromArgb(120, 214, 96);
 		static readonly Color WeakColor = Color.FromArgb(255, 92, 72);
-		static readonly string[] Separators = { ", and ", " and ", ", ", " & " };
+		static readonly string[] EnglishSeparators = { ", and ", " and ", ", ", " & " };
+
+		// Each language words the description lines its own way; these must match how its translations write them
+		// List commas of other scripts: Chinese/Japanese 、 and ，, Arabic ،
+		static readonly string[] ScriptSeparators = { "、", "，", "، ", "،" };
+
+		static string[] Separators() => EnglishSeparators.Concat(ScriptSeparators)
+			.Concat(new[] { ", and ", " and ", ", " }.Select(Translated)).Distinct().OrderByDescending(s => s.Length).ToArray();
+
+		// Fluent drops a message's trailing space: " und " comes back as " und", so restore it for spaced words
+		static string Translated(string english)
+		{
+			var t = PxText.T(english);
+			return english.EndsWith(' ') && t.StartsWith(' ') && !t.EndsWith(' ') ? t + " " : t;
+		}
+
+		static int PrefixLength(string s, string english)
+		{
+			if (s.StartsWith(english, StringComparison.Ordinal))
+				return english.Length;
+
+			var translated = PxText.T(english);
+			return s.StartsWith(translated, StringComparison.Ordinal) ? translated.Length : -1;
+		}
 
 		sealed class Line
 		{
@@ -48,7 +71,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 		public int ContentWidth { get; private set; }
 
 		/// <summary>Chevron, the wider of the two labels and a gap: where the first target starts.</summary>
-		int LabelWidth() => 21 + Math.Max(Game.Renderer.Fonts[LabelFont].Measure("STRONG").X, Game.Renderer.Fonts[LabelFont].Measure("WEAK").X) + 10;
+		int LabelWidth() => 21 + Math.Max(Game.Renderer.Fonts[LabelFont].Measure(PxText.T("STRONG")).X, Game.Renderer.Fonts[LabelFont].Measure(PxText.T("WEAK")).X) + 10;
 		public int ContentHeight { get; private set; }
 
 		public void SetText(string text)
@@ -66,18 +89,19 @@ namespace OpenRA.Mods.RAPX.Widgets
 				if (s.Length == 0)
 					continue;
 
-				bool? strong = s.StartsWith("Strong vs ", StringComparison.Ordinal) ? true
-					: s.StartsWith("Weak vs ", StringComparison.Ordinal) ? false : null;
+				var strongAt = PrefixLength(s, "Strong vs ");
+				var weakAt = strongAt < 0 ? PrefixLength(s, "Weak vs ") : -1;
+				bool? strong = strongAt >= 0 ? true : weakAt >= 0 ? false : null;
 				if (strong == null)
 				{
 					lines.Add(new Line { Text = s });
 					continue;
 				}
 
-				var rest = s[(strong.Value ? 10 : 8)..].TrimEnd('.');
-				var terms = rest.Split(Separators, StringSplitOptions.RemoveEmptyEntries)
+				var rest = s[(strong.Value ? strongAt : weakAt)..].TrimEnd('.', '。');
+				var terms = rest.Split(Separators(), StringSplitOptions.RemoveEmptyEntries)
 					.Select(t => t.Trim()).Where(t => t.Length > 0)
-					.Select(t => (PxTooltipIcons.ForTerm(t), char.ToUpperInvariant(t[0]) + t[1..])).ToList();
+					.Select(t => (PxTooltipIcons.ForTerm(PxTextExtra.EnglishTerm(t)), char.ToUpperInvariant(t[0]) + t[1..])).ToList();
 				lines.Add(new Line { Strong = strong, Terms = terms });
 			}
 
@@ -140,7 +164,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 				cr.FillRect(new float3(row.X, row.Y, 0), new float3(row.X + 2, row.Y, 0), new float3(row.X + 2, row.Bottom, 0), new float3(row.X, row.Bottom, 0), color);
 
 				PxTooltipIcons.Draw(strong ? "strong" : "weak", new float2(row.X + 6, row.Y + 3), 12, color);
-				var text = strong ? "STRONG" : "WEAK";
+				var text = strong ? PxText.T("STRONG") : PxText.T("WEAK");
 				label.DrawTextWithShadow(text, new float2(row.X + 21, row.Y + 3), color, Color.Black, 1);
 
 				var x = row.X + LabelWidth();

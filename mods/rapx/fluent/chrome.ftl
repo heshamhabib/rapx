@@ -5,6 +5,28 @@ label-px-version-kicker = PROJECT X  //  VERSION
 label-px-version-engine = OPENRA { $engine }
 label-px-version-build = OPENRA { $engine }  ·  COMMIT { $build }
 
+## language.yaml
+button-px-main-menu-language = Language
+button-px-language-apply = Apply
+label-px-language-kicker = PROJECT X  //  COMMS PROTOCOL
+label-px-language-title = Language
+label-px-language-subtitle = Choose the language for menus, orders and briefings.
+label-px-language-active = ACTIVE
+label-px-language-selected = SELECTED
+label-px-language-rtl = RIGHT-TO-LEFT
+label-px-language-coverage = INTERFACE
+label-px-language-note = Double-click a language or press Apply. The interface reloads in the new language.
+label-px-language-pending = Press Apply to switch. The interface reloads in the new language.
+label-px-language-name-en = English
+label-px-language-name-ar = Arabic
+label-px-language-name-de = German
+label-px-language-name-fr = French
+label-px-language-name-zh = Chinese
+label-px-language-name-vi = Vietnamese
+
+## Skirmish lobby title (engine Game.CreateLocalServer)
+label-skirmish-game-name = Skirmish Game
+
 ## gamesave-loading.yaml
 label-gamesave-loading-screen-title = Loading Saved Game
 label-gamesave-loading-screen-desc = Press Escape to cancel loading and return to the main menu

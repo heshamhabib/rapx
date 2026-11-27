@@ -274,6 +274,9 @@ namespace OpenRA
 	{
 		[Desc("Sets the player nickname.")]
 		public string Name = "Commander";
+
+		[Desc("Interface language id (see FluentLanguages in the mod manifest).")]
+		public string Language = "en";
 		public Color Color = Color.FromArgb(200, 32, 32);
 		public string LastServer = "localhost:1234";
 		public Color[] CustomColors = Array.Empty<Color>();

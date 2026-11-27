@@ -1,0 +1,26 @@
+2628	Fort contre
+2660	Faible contre
+2442	{""} et
+2443	{""} et
+606	Aéronefs
+611	Véhicules
+609	Infanterie
+607	Bâtiments
+2445	DCA
+2638	Chars
+2612	Navires
+2631	Sous-marins
+2546	Blindés légers
+2555	Missiles
+2522	Unités terrestres
+2511	Chasseurs
+2561	Unités navales
+2497	Drones
+2601	Robots
+2548	Véhicules légers
+2531	Hélicoptères
+2605	Satellites
+2603	Roquettes
+2495	Chiens
+2627	FORT
+2659	FAIBLE

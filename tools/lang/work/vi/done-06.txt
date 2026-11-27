@@ -1,0 +1,300 @@
+1504	Vị trí 15
+1505	Vị trí 16
+1506	Vị trí 17
+1507	Vị trí 18
+1508	Vị trí 19
+1509	Vị trí 20
+1510	Vị trí 21
+1511	Vị trí 22
+1512	Vị trí 23
+1513	Vị trí 24
+1514	Tab Máy bay
+1515	Tab Công trình
+1516	Tab Phòng thủ
+1517	Tab Bộ binh
+1518	Tab Hải quân
+1519	Tab Xe cơ giới
+1520	Thả dây nhanh (trực thăng vận tải)
+1521	Chế độ điểm mốc
+1522	Xóa khỏi nhóm điều khiển
+1523	Chế độ sửa chữa
+1524	Tốc độ nhanh
+1525	Tốc độ tối đa
+1526	Tốc độ thường
+1527	Tốc độ chậm
+1528	Đặt lại thu phóng
+1529	Phân tán
+1530	Chọn mọi đơn vị chiến đấu
+1531	Công trình hiện tại
+1532	Chọn đơn vị theo loại
+1533	Chế độ bán
+1534	Tấn công bất kỳ
+1535	Phòng thủ
+1536	Ngừng bắn
+1537	Bắn trả
+1538	Thống kê Quân đội
+1539	Biểu đồ Giá trị Quân đội
+1540	Thống kê Cơ bản
+1541	Thống kê Chiến đấu
+1542	Thống kê Kinh tế
+1543	Biểu đồ Thống kê
+1544	Tắt Thống kê
+1545	Thống kê Sản xuất
+1546	Thống kê Sức mạnh Hỗ trợ
+1547	Chụp ảnh màn hình
+1548	Chuyển Chế độ Chat
+1549	Bật/tắt tiếng
+1550	Bật/tắt màu tư thế người chơi
+1551	Nhảy đến sự kiện radar gần nhất
+1552	Nhảy đến lựa chọn
+1553	Phóng to
+1554	Thu nhỏ
+1555	Lệnh Chat
+1556	Nhóm Điều khiển
+1557	Lệnh Trình sửa
+1558	Lệnh Trận đấu
+1559	Lệnh Âm nhạc
+1560	Lệnh Người xem / Bản ghi
+1561	Lệnh Sản xuất
+1562	Lệnh Sức mạnh Hỗ trợ
+1563	Lệnh Đơn vị
+1564	Lệnh Tư thế Đơn vị
+1565	Lệnh Khung nhìn
+1566	Cần Mật khẩu
+1567	Cần tài khoản diễn đàn OpenRA
+1568	AC Back
+1569	AC Bookmarks
+1570	AC Forward
+1571	AC Home
+1572	AC Refresh
+1573	AC Search
+1574	AC Stop
+1575	Again
+1576	AltErase
+1577	Application
+1578	AudioMute
+1579	AudioNext
+1580	AudioPlay
+1581	AudioPrev
+1582	AudioStop
+1583	Backspace
+1584	BrightnessDown
+1585	BrightnessUp
+1586	Calculator
+1587	CapsLock
+1588	Clear
+1589	Clear / Again
+1590	Computer
+1591	Copy
+1592	CrSel
+1593	CurrencySubUnit
+1594	CurrencyUnit
+1595	Cut
+1596	DecimalSeparator
+1597	DisplaySwitch
+1598	Down
+1599	Eject
+1600	End
+1601	Escape
+1602	Execute
+1603	ExSel
+1604	Find
+1605	Help
+1606	Home
+1607	Insert
+1608	KBDIllumDown
+1609	KBDIllumToggle
+1610	KBDIllumUp
+1611	Keypad 0
+1612	Keypad 00
+1613	Keypad 000
+1614	Keypad 1
+1615	Keypad 2
+1616	Keypad 3
+1617	Keypad 4
+1618	Keypad 5
+1619	Keypad 6
+1620	Keypad 7
+1621	Keypad 8
+1622	Keypad 9
+1623	Keypad A
+1624	Keypad &
+1625	Keypad @
+1626	Keypad B
+1627	Keypad Backspace
+1628	Keypad Binary
+1629	Keypad C
+1630	Keypad Clear
+1631	Keypad ClearEntry
+1632	Keypad :
+1633	Keypad ,
+1634	Keypad D
+1635	Keypad &&
+1636	Keypad ||
+1637	Keypad Decimal
+1638	Keypad /
+1639	Keypad E
+1640	Keypad Enter
+1641	Keypad =
+1642	Keypad (AS400)
+1643	Keypad !
+1644	Keypad F
+1645	Keypad >
+1646	Keypad #
+1647	Keypad Hexadecimal
+1648	Keypad {"{"}
+1649	Keypad (
+1650	Keypad <
+1651	Keypad MemAdd
+1652	Keypad MemClear
+1653	Keypad MemDivide
+1654	Keypad MemMultiply
+1655	Keypad MemRecall
+1656	Keypad MemStore
+1657	Keypad MemSubtract
+1658	Keypad -
+1659	Keypad *
+1660	Keypad Octal
+1661	Keypad %
+1662	Keypad .
+1663	Keypad +
+1664	Keypad +/-
+1665	Keypad ^
+1666	Keypad {"}"}
+1667	Keypad )
+1668	Keypad Space
+1669	Keypad Tab
+1670	Keypad |
+1671	Keypad XOR
+1672	Left Alt
+1673	Left Ctrl
+1674	Left
+1675	Left GUI
+1676	Left Shift
+1677	Mail
+1678	MediaSelect
+1679	Menu
+1680	ModeSwitch
+1681	Mouse 4
+1682	Mouse 5
+1683	Mute
+1684	Numlock
+1685	Oper
+1686	Out
+1687	PageDown
+1688	PageUp
+1689	Paste
+1690	Pause
+1691	Power
+1692	PrintScreen
+1693	Prior
+1694	Right Alt
+1695	Right Ctrl
+1696	Return
+1697	Right GUI
+1698	Right
+1699	Right Shift
+1700	ScrollLock
+1701	Select
+1702	Separator
+1703	Sleep
+1704	Space
+1705	Stop
+1706	SysReq
+1707	Tab
+1708	ThousandsSeparator
+1709	Undo
+1710	Undefined
+1711	Up
+1712	VolumeDown
+1713	VolumeUp
+1714	WWW
+1715	Alt
+1716	Cmd
+1717	Ctrl
+1718	Meta
+1719	Shift
+1720	Chủ sở hữu:
+1721	ID
+1722	Nhập ID Đối tượng
+1723	Chủ sở hữu
+1724	Loại: { $actorType }
+1725	Tất cả Bản đồ
+1726	Tất cả Gói
+1727	Vui lòng gắn hoặc cài đặt một trong các nguồn nội dung sau:
+1728	Người chơi Ẩn danh
+1729	Giải nén kho lưu trữ thất bại
+1730	Kiểm tra kho lưu trữ thất bại
+1731	Thông tin Khu vực
+1732	Chọn Khu vực
+1733	Lọc theo tên
+1734	Bảng màu:
+1735	Chọn nguồn tài nguyên
+1736	Lỗi khi hiển thị tệp. Xem tệp assetbrowser.log để biết chi tiết.
+1737	Tỷ lệ:
+1738	Trình duyệt Tài nguyên
+1739	Đã tắt tiếng.
+1740	Đã bật tiếng.
+1741	bởi { $author } lúc { $datetime }
+1742	Vị trí xuất phát khả dụng
+1743	APM
+1744	Đã bị phá hủy
+1745	Tiền
+1746	Tử trận
+1747	Hạ gục
+1748	Lọc:
+1749	Bot do { $name } quản lý
+1750	Người chơi AI
+1751	Bot
+1752	{ $bots ->\n[0] Không có Bot\n[one] Một Bot\n*[other] { $bots } Bot\n}
+1753	PHÓNG
+1754	HỖN HỢP
+1755	THU HỒI
+1756	SÀN ĐÁP
+1757	{ $seconds ->\n[one] Chat sẽ khả dụng sau { $seconds } giây...\n*[other] Chat sẽ khả dụng sau { $seconds } giây...\n}
+1758	Chat Bị vô hiệu hóa
+1759	Xem tệp install.log trong thư mục logs để biết chi tiết.
+1760	Đang truy vấn thông tin tài khoản từ
+1761	diễn đàn OpenRA...
+1762	Đang Kiểm tra Nguồn
+1763	Đã rời
+1764	Giá trị Quân đội
+1765	CT Mất
+1766	CT Diệt
+1767	ĐV Mất
+1768	ĐV Diệt
+1769	Tầm nhìn
+1770	Đang kết nối...
+1771	Đang kết nối
+1772	Đang kết nối đến { $endpoint }...
+1773	Không thể kết nối đến diễn đàn OpenRA.
+1774	Vui lòng kiểm tra kết nối internet của bạn.
+1775	Kết nối Thất bại
+1776	Máy chủ này đang chạy một mod khác:
+1777	Chuyển mod và tham gia máy chủ?
+1778	Chuyển Mod
+1779	Mật khẩu:
+1780	Bài hát
+1781	Chọn các gói nội dung bạn muốn cài đặt:
+1782	Đang sao chép { $filename }
+1783	Đang sao chép { $filename } ({ $progress }%)
+1784	Không thể kết nối đến { $target }
+1785	Được tạo bởi { $author }
+1786	Màu Tùy chỉnh
+1787	Các tùy chọn dành riêng cho nhà phát triển có thể được bật thông qua
+1788	cài đặt Debug.DisplayDeveloperSettings hoặc cờ khởi chạy
+1789	Tùy chọn Gỡ lỗi
+1790	Hiển thị Trực quan
+1791	Đang phát hiện ổ đĩa
+1792	Bản Cài đặt Số
+1793	Địa chỉ Máy chủ:
+1794	Kết nối đến Máy chủ
+1795	Vị trí xuất phát bị vô hiệu hóa
+1796	Tải xuống thất bại
+1797	Đang tải xuống { $title }
+1798	Đang tải xuống từ { $host } { $received } { $suffix }
+1799	Đang tải xuống từ { $host } { $received } / { $total } { $suffix } ({ $progress }%)
+1800	Đang tải xuống { $size } kB
+1801	Đang tải xuống { $size } kB ({ $progress }%)
+1802	ID Đối tượng Trùng lặp
+1803	ID này đã được dùng cho "{ $key }" trong ngữ cảnh { $context }

@@ -1,0 +1,170 @@
+960	Char sismique
+961	Son canon électromagnétique frappe les blindés à longue portée mais recharge lentement. Gardez-le derrière un écran d'infanterie et laissez-le éliminer les chars un par un.
+962	Robot antiblindé
+963	Le joyau d'une armée de l'air : un parking pour 10 avions dans une seule enceinte. Un seul exemplaire possible : défendez-le aussi bien que votre chantier de construction.
+964	Commandement aérien stratégique
+965	Un lanceur chenillé moins cher qui recharge plus vite. Plusieurs Saetta tirant à tour de rôle maintiennent une pression constante.
+966	Lance-roquettes (Italie)
+967	Tire des missiles sol-air sur les aéronefs et les drones, et peut abattre certaines roquettes et missiles de croisière. Nécessite de l'énergie.
+968	Roquettes à sous-munitions qui libèrent des bombettes au-dessus de la cible. Ravageuses contre l'infanterie et les véhicules légers, faibles contre les chars et les bâtiments.
+969	Lance-roquettes à sous-munitions (Égypte)
+970	Des sacs de sable bon marché qui arrêtent l'infanterie et les véhicules légers et canalisent les assaillants vers vos canons. Les chars les écrasent.
+971	Barrière légère
+972	Une base de bombardiers de style soviétique avec une piste immense, un hangar voûté et une soute à armes thermonucléaires. Elle abrite le Tv-95 Bear et charge la Frappe thermonucléaire tant que le bombardier vit. Russie uniquement, une par joueur.
+973	Une voiture de luxe avec mitrailleuses cachées et roquettes escamotables, qui transporte un Espion. L'ennemi voit une voiture civile inoffensive jusqu'à ce qu'elle attaque. Nécessite le QG du MI6.
+974	Véhicule d'espion
+975	Un grand tourisme classique avec deux mitrailleuses cachées, qui transporte un Espion. Plus robuste et moins cher que la voiture d'espion 1. Nécessite le QG du MI6.
+976	Un drone araignée rapide et bon marché qui fonce sur sa cible et explose. Envoyez-les par vagues contre les colonnes de chars et les armées de robots.
+977	Drone suicide
+978	Un char cybernétique des laboratoires Project X. Son canon principal projette une lourde décharge électrique qui cuit les blindages de l'intérieur. Un seul peut être déployé.
+979	Char expérimental
+980	Infanterie d'élite équipée de bobines Tesla portatives dont les arcs frappent infanterie et véhicules. Le soldat emblématique de la Russie.
+981	Soldat Tesla
+982	Stockage supplémentaire pour les crédits raffinés. Sans stockage suffisant, le minerai livré au-delà de votre limite est perdu. Bon marché : construisez-en un dès que vos revenus dépassent votre capacité.
+983	Stockage économique
+984	Un tireur d'élite longue portée qui tue la plupart des fantassins d'un tir et se cache à l'arrêt. Mortel en couverture, inutile contre les blindés.
+985	Tireur d'élite
+986	Le char araignée à huit pattes de Vanguard trottine jusqu'à portée et lâche de lourds missiles qui plongent sur le mince blindage supérieur des chars. Ses deux lanceurs antiaériens tirent des intercepteurs de style Dôme de fer sur les aéronefs et abattent aussi les roquettes entrantes.
+987	Base sous-marine de Vanguard. Construit et répare sous-marins, transports et porte-avions de Vanguard. Doit être construite sur l'eau.
+988	Se déguise en soldat ennemi et infiltre les bâtiments : volez des fonds dans une raffinerie, réinitialisez les superarmes, aveuglez un radar ou découvrez des secrets de production. Les chiens percent le déguisement à jour.
+989	Infiltrateur
+990	Un camion avec un affût rotatif incliné de quatre conteneurs : missiles Python à guidage infrarouge pour les cibles proches et missiles Derby à guidage radar, dont le moteur à deux impulsions plane entre les allumages, pour les cibles lointaines. Tous montent haut puis plongent sur les aéronefs, explosant en grosses boules de feu. Inde uniquement.
+991	Plonge hors de vue et torpille les navires. Détecte les autres sous-marins. Ne fait surface que pour tirer.
+992	Sous-marin d'attaque
+993	Centre de recherche de Vanguard. Débloque les chars les plus lourds de Vanguard, les armes Tesla et les meilleurs avions.
+994	Un transport blindé léger qui se camoufle à l'arrêt et tire des missiles air-sol. Faites passer une escouade d'ingénieurs devant les défenses sans être vu.
+995	Transport furtif
+996	Un marcheur quadrupède lent de Vanguard avec canon lourd et mitrailleuse. Il traverse l'infanterie et surclasse la plupart des chars.
+997	Contrôle au sol de vos satellites. Si vous perdez toutes vos liaisons, tous vos satellites sont hors ligne jusqu'à ce que vous en construisiez une : construisez-en une de réserve loin du front.
+998	Contrôle satellite
+999	Chantier naval de l'Union. Construit et répare canonnières, destroyers, croiseurs, transports et, pour certaines nations, porte-avions. Doit être construit sur l'eau.
+1000	Production navale
+1001	Un robot lourd de Vanguard qui projette des éclairs Tesla de ses mains, mortel pour l'infanterie et les robots ennemis.
+1002	Robot Tesla
+1003	Caserne de l'Union : entraîne fusiliers, lance-roquettes, ingénieurs, infirmiers et infanterie robotisée. Plusieurs casernes accélèrent l'entraînement. Définissez un point de ralliement pour que les nouvelles escouades marchent droit au front.
+1004	Production d'infanterie
+1005	Le Tigre : un hélicoptère de combat franco-allemand avec missiles antichars HOT sur les pylônes extérieurs et nacelles tirant un flot de roquettes de 68 mm. France et Allemagne uniquement.
+1006	Hélicoptère d'attaque lourd
+1007	Un lanceur thermobarique blindé. Courte portée, mais il calcine infanterie et bâtiments dans une énorme boule de feu.
+1008	Lanceur thermobarique (Russie)
+1009	Le Chinook : transporte une escouade d'infanterie n'importe où sur la carte. Non armé : déposez vos troupes loin de la DCA.
+1010	Hélicoptère de transport
+1011	Apporte des fonds à la raffinerie d'un allié. Non armé. Utilisez-le pour maintenir en jeu un coéquipier en difficulté.
+1012	Camion de ravitaillement
+1013	Projette des éclairs qui détruisent infanterie et véhicules. Consomme beaucoup d'énergie, et une panne l'éteint : protégez vos centrales.
+1014	Défense Tesla
+1015	Un char équipé d'une bobine Tesla dont les arcs frappent infanterie, véhicules et bâtiments. La réponse de la Russie aux blindés en masse.
+1016	Char Tesla
+1017	Le Bear : un bombardier à long rayon d'action doté de quatre moteurs à hélices contrarotatives. Non armé, il n'a qu'une mission : quand la Frappe thermonucléaire est prête, il largue la bombe H RDS-37 et rentre à la base. Perdez-le et le compte à rebours repart de zéro. Russie uniquement, un par joueur.
+1018	Bombardier thermonucléaire
+1019	Un camion lance-missiles qui frappe les navires loin en mer. Postez-le sur la côte et les flottes ennemies ne pourront pas approcher.
+1020	Missiles antinavires (Japon)
+1021	Tire une énorme roquette qui dévaste infanterie et bâtiments à longue portée. Rechargement lent, vulnérable à tout ce qui l'atteint.
+1022	Artillerie à roquettes
+1023	Roquettes de précision longue portée qui frappent bâtiments, infanterie et véhicules avec une précision chirurgicale. Rechargement lent.
+1024	Lance-roquettes (Ukraine)
+1025	Construit tous les chars, transports et lance-roquettes. Ajoutez un dépôt de maintenance et un dôme radar pour débloquer les modèles plus lourds, dont le lance-roquettes propre à votre nation.
+1026	Production de véhicules
+1027	Canon de char de 105 mm
+1028	Canon de char de 120 mm
+1029	Obusier de 155 mm
+1030	Canons navals de 406 mm
+1031	Canon automatique de 25 mm
+1032	Canon naval de 2 pouces
+1033	Canons navals de 203 mm
+1034	Canon de char de 90 mm
+1035	Fusil d'assaut AK-47
+1036	Missiles antiaériens doubles
+1037	Missiles antiaériens
+1038	Missile antisatellite
+1039	Arc Tesla
+1040	Canon à chaîne
+1041	Canons jumelés
+1042	Système CIWS Gatling
+1043	Pistolet Colt .45
+1044	Mâchoires
+1045	Pistolet automatique lourd
+1046	Charge explosive
+1047	Grenades anti-sous-marines
+1048	Morsure
+1049	Missile antichar Dragon
+1050	Fusil blaster
+1051	Double canon lourd
+1052	Canons automatiques jumelés
+1053	Lance-roquettes d'épaule
+1054	Bombe atomique Fatman
+1055	Lanceur de boules de feu
+1056	Flak de 23 mm (antiaérien)
+1057	Flak de 23 mm (sol)
+1058	Canons Flak jumelés
+1059	Canon Flak
+1060	Lance-flammes
+1061	Souffle atomique
+1062	Piétinement
+1063	Grenades à main
+1064	Canon de 35 mm à explosion aérienne
+1065	Salve de quatre missiles infrarouges
+1066	Trousse de soins
+1067	Flot de 30 roquettes
+1068	Mitrailleuse de 12,7 mm
+1069	Mitrailleuse lourde à bande
+1070	Missiles longue portée AIM-54 Phoenix
+1071	Missiles longue portée R-27T
+1072	Missiles longue portée R-77
+1073	Missiles AIM-120 AMRAAM
+1074	Missiles moyenne portée R-27T
+1075	Missiles moyenne portée R-77
+1076	Missiles AIM-9 Sidewinder
+1077	Missiles courte portée R-73
+1078	Missiles AGM-65 Maverick
+1079	Missiles antichars 9M120 Ataka
+1080	Missiles antichars HOT
+1081	Missiles air-sol Kh-29
+1082	Bombes Mk 82
+1083	Bombes à sous-munitions
+1084	Bombes à sous-munitions (paire)
+1085	Bombes guidées GBU
+1086	GAU-8 Avenger de 30 mm
+1087	Deux canons de queue de 23 mm
+1088	Canon de 30 mm
+1089	Canon de 20 mm
+1090	Nacelles de roquettes Hydra
+1091	Nacelles de roquettes (tir en salve)
+1092	Nacelles de roquettes S-8
+1093	Nacelles de roquettes S-8 (tir en salve)
+1094	Bombes au phosphore blanc
+1095	Bombes au phosphore blanc (paire)
+1096	Lancer de rocher
+1097	Frappe bondissante (antiaérien)
+1098	Coup de massue
+1099	Canon de marcheur de 152 mm
+1100	Carabine M1
+1101	Mitrailleuse M60
+1102	Missiles antiaériens Tusk
+1103	Missiles Maverick
+1104	Intercepteurs à impact direct
+1105	Mini-bombe nucléaire
+1106	Salve de 19 roquettes
+1107	SAM moyenne portée
+1108	SAM naval
+1109	Missile sol-air Nike
+1110	Désigne une cible : l'artillerie et l'aviation tirent sur la fumée
+1111	Monte haut puis plonge sur le blindage supérieur des chars
+1112	Laser orbital
+1113	Bombes à parachute
+1114	Bobine Tesla portative
+1115	Rayon Prisme
+1116	Rayon de tour Prisme
+1117	Quatre mitrailleuses de 12,7 mm
+1118	Canon électromagnétique
+1119	Bombe H RDS-37
+1120	Missile antiaérien Redeye
+1121	Grenade fumigène rouge
+1122	Trousse de réparation
+1123	Salve de roquettes Chunmu de 239 mm
+1124	Missile guidé Chunmu
+1125	Roquettes Fajr-5
+1126	Drone rôdeur Fajr
+1127	Roquettes guidées Fatah
+1128	Salve de roquettes Grad de 122 mm
+1129	Salve de roquettes Hailstorm

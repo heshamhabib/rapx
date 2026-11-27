@@ -1,0 +1,47 @@
+# Main menu > Language: one card per interface language. Everything inside is drawn by PxLanguageWidget
+# (OpenRA.Mods.RAPX/Widgets/PxLanguageWidget.cs); languages, translation files and fonts are FluentLanguages in mod.yaml.
+
+Container@PX_LANGUAGE_PANEL:
+	Logic: PxLanguageLogic
+	X: (WINDOW_WIDTH - WIDTH) / 2
+	Y: (WINDOW_HEIGHT - HEIGHT) / 2
+	Width: 1100
+	Height: 680
+	Children:
+		PxLanguage@LANGUAGES:
+			Width: PARENT_WIDTH
+			Height: PARENT_HEIGHT
+		Button@BACK_BUTTON:
+			X: PARENT_WIDTH - 26 - 2 * WIDTH - 12
+			Y: PARENT_HEIGHT - 76 + (76 - HEIGHT) / 2
+			Width: 170
+			Height: 44
+			Background: px-key
+			Font: PXButton
+			Align: Left
+			LeftMargin: 50
+			Text: button-back
+			Key: escape
+			Children:
+				Image@ICON:
+					X: 18
+					Y: 13
+					ImageCollection: px-lobby-icons
+					ImageName: back
+		Button@APPLY_BUTTON:
+			X: PARENT_WIDTH - 26 - WIDTH
+			Y: PARENT_HEIGHT - 76 + (76 - HEIGHT) / 2
+			Width: 170
+			Height: 44
+			Background: px-key
+			Font: PXButton
+			Align: Left
+			LeftMargin: 50
+			Text: button-px-language-apply
+			Key: return
+			Children:
+				Image@ICON:
+					X: 18
+					Y: 14
+					ImageCollection: px-lobby-icons
+					ImageName: tick

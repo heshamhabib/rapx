@@ -1,0 +1,820 @@
+diff --git a/OpenRA.Game/FluentProvider.cs b/OpenRA.Game/FluentProvider.cs
+index 6dba8e9..363623a 100644
+--- a/OpenRA.Game/FluentProvider.cs
++++ b/OpenRA.Game/FluentProvider.cs
+@@ -10,6 +10,7 @@
+ #endregion
+ 
+ using System;
++using System.Linq;
+ using System.Text;
+ using OpenRA.FileSystem;
+ 
+@@ -26,7 +27,13 @@ public static void Initialize(ModData modData, IReadOnlyFileSystem fileSystem)
+ 		{
+ 			lock (SyncObject)
+ 			{
+-				modFluentBundle = new FluentBundle(modData.Manifest.FluentCulture, modData.Manifest.FluentMessages, fileSystem);
++				// The selected interface language is loaded on top, so its missing keys keep the default text
++				var messages = modData.Manifest.FluentMessages;
++				var language = FluentLanguages.For(modData.Manifest)?.Active;
++				if (language != null)
++					messages = messages.Concat(language.Messages).ToArray();
++
++				modFluentBundle = new FluentBundle(modData.Manifest.FluentCulture, messages, fileSystem);
+ 				if (fileSystem is Map map && map.FluentMessageDefinitions != null)
+ 				{
+ 					var files = Array.Empty<string>();
+diff --git a/OpenRA.Game/Graphics/PlatformInterfaces.cs b/OpenRA.Game/Graphics/PlatformInterfaces.cs
+index f90b9f7..d35696c 100644
+--- a/OpenRA.Game/Graphics/PlatformInterfaces.cs
++++ b/OpenRA.Game/Graphics/PlatformInterfaces.cs
+@@ -217,6 +217,7 @@ public enum WindowMode
+ 	public interface IFont : IDisposable
+ 	{
+ 		FontGlyph CreateGlyph(char c, int size, float deviceScale);
++		bool HasGlyph(char c);
+ 	}
+ 
+ 	public struct FontGlyph
+diff --git a/OpenRA.Game/Settings.cs b/OpenRA.Game/Settings.cs
+index 392019c..9e117a3 100644
+--- a/OpenRA.Game/Settings.cs
++++ b/OpenRA.Game/Settings.cs
+@@ -274,6 +274,9 @@ public class PlayerSettings
+ 	{
+ 		[Desc("Sets the player nickname.")]
+ 		public string Name = "Commander";
++
++		[Desc("Interface language id (see FluentLanguages in the mod manifest).")]
++		public string Language = "en";
+ 		public Color Color = Color.FromArgb(200, 32, 32);
+ 		public string LastServer = "localhost:1234";
+ 		public Color[] CustomColors = Array.Empty<Color>();
+diff --git a/OpenRA.Mods.Common/Widgets/Logic/Settings/SettingsLogic.cs b/OpenRA.Mods.Common/Widgets/Logic/Settings/SettingsLogic.cs
+index f1f8d6e..5bffd8e 100644
+--- a/OpenRA.Mods.Common/Widgets/Logic/Settings/SettingsLogic.cs
++++ b/OpenRA.Mods.Common/Widgets/Logic/Settings/SettingsLogic.cs
+@@ -176,6 +176,11 @@ ButtonWidget AddSettingsTab(string id, string label)
+ 			}
+ 
+ 			tab.Id = id;
++
++			// Tab titles are plain text; a translation can still supply them as settings-tab-<title>
++			if (FluentProvider.TryGetMessage("settings-tab-" + label.ToLowerInvariant(), out var translated))
++				label = translated;
++
+ 			tab.GetText = () => label;
+ 			tab.IsHighlighted = () => activePanel == id;
+ 			tab.OnClick = () =>
+diff --git a/OpenRA.Platforms.Default/FreeTypeFont.cs b/OpenRA.Platforms.Default/FreeTypeFont.cs
+index c17ab83..6f8bc5e 100644
+--- a/OpenRA.Platforms.Default/FreeTypeFont.cs
++++ b/OpenRA.Platforms.Default/FreeTypeFont.cs
+@@ -49,6 +49,9 @@ static class FreeType
+ 
+ 		[DllImport("freetype6", CallingConvention = CallingConvention.Cdecl)]
+ 		internal static extern uint FT_Load_Char(IntPtr face, uint char_code, int load_flags);
++
++		[DllImport("freetype6", CallingConvention = CallingConvention.Cdecl)]
++		internal static extern uint FT_Get_Char_Index(IntPtr face, uint char_code);
+ 	}
+ 
+ 	public sealed class FreeTypeFont : IFont
+@@ -76,6 +79,11 @@ public FreeTypeFont(byte[] data)
+ 				throw new InvalidDataException("Failed to initialize font");
+ 		}
+ 
++		public bool HasGlyph(char c)
++		{
++			return FreeType.FT_Get_Char_Index(face, c) != 0;
++		}
++
+ 		public FontGlyph CreateGlyph(char c, int size, float deviceScale)
+ 		{
+ 			var scaledSize = (uint)(size * deviceScale);
+diff --git a/OpenRA.Game/Renderer.cs b/OpenRA.Game/Renderer.cs
+--- a/OpenRA.Game/Renderer.cs
++++ b/OpenRA.Game/Renderer.cs
+@@ -151,9 +151,17 @@
+ 			{
+ 				fontSheetBuilder?.Dispose();
+ 				fontSheetBuilder = new SheetBuilder(SheetType.BGRA, modData.Manifest.FontSheetSize);
++				// The selected interface language can swap the font files and adds fallbacks for other scripts
++				var languages = FluentLanguages.For(modData.Manifest);
++				var fallbacks = languages?.FallbackFonts.Select(f => modData.DefaultFileSystem.Open(f).ReadAllBytes()).ToArray()
++					?? Array.Empty<byte[]>();
++				var fontData = new Dictionary<string, byte[]>();
++				byte[] Load(string file) => fontData.GetOrAdd(languages?.FontFor(file) ?? file,
++					f => modData.DefaultFileSystem.Open(f).ReadAllBytes());
++
+ 				Fonts = modData.Manifest.Get<Fonts>().FontList.ToDictionary(x => x.Key,
+ 					x => new SpriteFont(
+-						platform, x.Value.Font, modData.DefaultFileSystem.Open(x.Value.Font).ReadAllBytes(),
++						platform, x.Value.Font, Load(x.Value.Font), fallbacks,
+ 						x.Value.Size, x.Value.Ascender, Window.EffectiveWindowScale, fontSheetBuilder));
+ 			}
+ 
+diff --git a/OpenRA.Game/FluentLanguages.cs b/OpenRA.Game/FluentLanguages.cs
+new file mode 100644
+index 0000000..ce640a3
+--- /dev/null
++++ b/OpenRA.Game/FluentLanguages.cs
+@@ -0,0 +1,80 @@
++#region Copyright & License Information
++/*
++ * Copyright (c) The OpenRA Developers and Contributors
++ * This file is part of OpenRA, which is free software. It is made
++ * available to you under the terms of the GNU General Public License
++ * as published by the Free Software Foundation, either version 3 of
++ * the License, or (at your option) any later version. For more
++ * information, see COPYING.
++ */
++#endregion
++
++using System;
++using System.Collections.Generic;
++using System.Linq;
++
++namespace OpenRA
++{
++	public class FluentLanguage
++	{
++		public readonly string Id;
++
++		[Desc("English name of the language.")]
++		public readonly string Name;
++
++		[Desc("Name of the language in itself.")]
++		public readonly string NativeName;
++
++		[Desc("Fluent files loaded on top of the mod's FluentMessages. Missing keys fall back to the defaults.")]
++		public readonly string[] Messages = Array.Empty<string>();
++
++		[Desc("Font files replaced while this language is active (default font -> replacement).")]
++		public readonly Dictionary<string, string> Fonts = new();
++
++		public FluentLanguage(string id, MiniYaml yaml)
++		{
++			Id = id;
++			FieldLoader.Load(this, yaml);
++		}
++	}
++
++	/// <summary>Interface languages, picked with Game.Settings.Player.Language.</summary>
++	public class FluentLanguages : IGlobalModData
++	{
++		public const string DefaultLanguage = "en";
++
++		public readonly IReadOnlyList<FluentLanguage> Languages;
++
++		[Desc("Fonts tried, in order, for characters the main font does not have.")]
++		public readonly string[] FallbackFonts = Array.Empty<string>();
++
++		public FluentLanguages(MiniYaml yaml)
++		{
++			var languages = new List<FluentLanguage>();
++			foreach (var node in yaml.Nodes)
++			{
++				if (node.Key == "FallbackFonts")
++					FallbackFonts = FieldLoader.GetValue<string[]>(node.Key, node.Value.Value);
++				else
++					languages.Add(new FluentLanguage(node.Key, node.Value));
++			}
++
++			Languages = languages;
++		}
++
++		public static string SelectedId => Game.Settings?.Player.Language ?? DefaultLanguage;
++
++		public static FluentLanguages For(Manifest manifest)
++		{
++			return manifest.Contains<FluentLanguages>() ? manifest.Get<FluentLanguages>() : null;
++		}
++
++		public FluentLanguage Active => Languages.FirstOrDefault(l => l.Id == SelectedId);
++
++		public string FontFor(string font)
++		{
++			var active = Active;
++			return active != null && active.Fonts.TryGetValue(font, out var replacement) ? replacement : font;
++		}
++	}
++}
+diff --git a/OpenRA.Game/Graphics/TextShaper.cs b/OpenRA.Game/Graphics/TextShaper.cs
+new file mode 100644
+index 0000000..ec67c64
+--- /dev/null
++++ b/OpenRA.Game/Graphics/TextShaper.cs
+@@ -0,0 +1,214 @@
++#region Copyright & License Information
++/*
++ * Copyright (c) The OpenRA Developers and Contributors
++ * This file is part of OpenRA, which is free software. It is made
++ * available to you under the terms of the GNU General Public License
++ * as published by the Free Software Foundation, either version 3 of
++ * the License, or (at your option) any later version. For more
++ * information, see COPYING.
++ */
++#endregion
++
++using System.Collections.Generic;
++using System.Text;
++
++namespace OpenRA.Graphics
++{
++	/// <summary>
++	/// Arabic support for the glyph-by-glyph font renderer: joins letters into their presentation forms and
++	/// lays right-to-left lines out in visual order, keeping Latin words and numbers left-to-right.
++	/// Text without Arabic letters is returned unchanged.
++	/// </summary>
++	public static class TextShaper
++	{
++		// Letter -> its first presentation form (FExx isolated form) and whether it also joins to the next letter.
++		// Final, initial and medial forms follow the isolated one; right-joining letters have only isolated + final.
++		static readonly Dictionary<char, (int Form, bool Dual)> Letters = new()
++		{
++			{ 'آ', (0xFE81, false) }, { 'أ', (0xFE83, false) }, { 'ؤ', (0xFE85, false) },
++			{ 'إ', (0xFE87, false) }, { 'ئ', (0xFE89, true) }, { 'ا', (0xFE8D, false) },
++			{ 'ب', (0xFE8F, true) }, { 'ة', (0xFE93, false) }, { 'ت', (0xFE95, true) },
++			{ 'ث', (0xFE99, true) }, { 'ج', (0xFE9D, true) }, { 'ح', (0xFEA1, true) },
++			{ 'خ', (0xFEA5, true) }, { 'د', (0xFEA9, false) }, { 'ذ', (0xFEAB, false) },
++			{ 'ر', (0xFEAD, false) }, { 'ز', (0xFEAF, false) }, { 'س', (0xFEB1, true) },
++			{ 'ش', (0xFEB5, true) }, { 'ص', (0xFEB9, true) }, { 'ض', (0xFEBD, true) },
++			{ 'ط', (0xFEC1, true) }, { 'ظ', (0xFEC5, true) }, { 'ع', (0xFEC9, true) },
++			{ 'غ', (0xFECD, true) }, { 'ف', (0xFED1, true) }, { 'ق', (0xFED5, true) },
++			{ 'ك', (0xFED9, true) }, { 'ل', (0xFEDD, true) }, { 'م', (0xFEE1, true) },
++			{ 'ن', (0xFEE5, true) }, { 'ه', (0xFEE9, true) }, { 'و', (0xFEED, false) },
++			{ 'ى', (0xFEEF, false) }, { 'ي', (0xFEF1, true) },
++		};
++
++		// Alef variant -> isolated lam-alef ligature (the final form follows it)
++		static readonly Dictionary<char, int> LamAlef = new()
++		{
++			{ 'آ', 0xFEF5 }, { 'أ', 0xFEF7 }, { 'إ', 0xFEF9 }, { 'ا', 0xFEFB },
++		};
++
++		const char Lam = 'ل';
++		const char Tatweel = 'ـ';
++
++		static readonly object SyncObject = new();
++		static readonly Dictionary<string, string> Cache = new();
++
++		public static string Shape(string text)
++		{
++			if (string.IsNullOrEmpty(text) || !HasArabic(text))
++				return text;
++
++			lock (SyncObject)
++			{
++				if (Cache.TryGetValue(text, out var shaped))
++					return shaped;
++
++				if (Cache.Count > 4096)
++					Cache.Clear();
++
++				var lines = text.Split('\n');
++				for (var i = 0; i < lines.Length; i++)
++					if (HasArabic(lines[i]))
++						lines[i] = Reorder(Join(lines[i]));
++
++				shaped = string.Join('\n', lines);
++				Cache[text] = shaped;
++				return shaped;
++			}
++		}
++
++		static bool HasArabic(string text)
++		{
++			foreach (var c in text)
++				if (c >= '؀' && c <= 'ۿ')
++					return true;
++
++			return false;
++		}
++
++		static bool IsMark(char c) => (c >= 'ً' && c <= 'ٟ') || c == 'ٰ';
++		static bool JoinsNext(char c) => c == Tatweel || (Letters.TryGetValue(c, out var l) && l.Dual);
++		static bool Joins(char c) => c == Tatweel || Letters.ContainsKey(c);
++
++		/// <summary>Replaces letters with the contextual forms they take inside a word (logical order kept).</summary>
++		static string Join(string line)
++		{
++			// Vowel marks are dropped: the renderer has no mark positioning
++			var chars = new List<char>(line.Length);
++			foreach (var c in line)
++				if (!IsMark(c))
++					chars.Add(c);
++
++			var sb = new StringBuilder(chars.Count);
++			for (var i = 0; i < chars.Count; i++)
++			{
++				var c = chars[i];
++				var joinPrev = i > 0 && JoinsNext(chars[i - 1]);
++
++				if (c == Lam && i + 1 < chars.Count && LamAlef.TryGetValue(chars[i + 1], out var ligature))
++				{
++					sb.Append((char)(ligature + (joinPrev ? 1 : 0)));
++					i++;
++					continue;
++				}
++
++				if (!Letters.TryGetValue(c, out var letter))
++				{
++					sb.Append(c);
++					continue;
++				}
++
++				var joinNext = letter.Dual && i + 1 < chars.Count && Joins(chars[i + 1]);
++				if (joinPrev && joinNext)
++					sb.Append((char)(letter.Form + 3));
++				else if (joinNext)
++					sb.Append((char)(letter.Form + 2));
++				else if (joinPrev)
++					sb.Append((char)(letter.Form + 1));
++				else
++					sb.Append(c); // Fonts often map only the base letter for the isolated form
++			}
++
++			return sb.ToString();
++		}
++
++		static bool IsRtl(char c) => (c >= '؀' && c <= 'ۿ' && !(c >= '٠' && c <= '٩')) || (c >= 'ﭐ' && c <= '﻿');
++		static bool IsLtr(char c) => !IsRtl(c) && char.IsLetterOrDigit(c);
++
++		static char Mirror(char c)
++		{
++			switch (c)
++			{
++				case '(': return ')';
++				case ')': return '(';
++				case '[': return ']';
++				case ']': return '[';
++				case '{': return '}';
++				case '}': return '{';
++				case '<': return '>';
++				case '>': return '<';
++				case '«': return '»';
++				case '»': return '«';
++				default: return c;
++			}
++		}
++
++		/// <summary>Lays a right-to-left line out left-to-right: runs of Latin/numbers stay in reading order.</summary>
++		static string Reorder(string line)
++		{
++			// Split into left-to-right runs (strong LTR characters and the neutrals between them) and the rest
++			var runs = new List<(int Start, int End, bool Ltr)>();
++			var i = 0;
++			while (i < line.Length)
++			{
++				if (!IsLtr(line[i]))
++				{
++					var start = i;
++					while (i < line.Length && !IsLtr(line[i]))
++						i++;
++					runs.Add((start, i, false));
++					continue;
++				}
++
++				var runStart = i;
++				var lastStrong = i;
++				while (i < line.Length && !IsRtl(line[i]))
++				{
++					if (IsLtr(line[i]))
++						lastStrong = i;
++					i++;
++				}
++
++				// Leading signs and trailing percent belong to the number they touch
++				var s = runStart;
++				while (s > 0 && "$+-#".IndexOf(line[s - 1]) >= 0)
++					s--;
++				var e = lastStrong + 1;
++				while (e < line.Length && line[e] == '%')
++					e++;
++
++				if (s < runStart && runs.Count > 0)
++				{
++					var prev = runs[^1];
++					runs[^1] = (prev.Start, s, prev.Ltr);
++					if (prev.Start == s)
++						runs.RemoveAt(runs.Count - 1);
++				}
++
++				runs.Add((s, e, true));
++				i = e;
++			}
++
++			var sb = new StringBuilder(line.Length);
++			for (var r = runs.Count - 1; r >= 0; r--)
++			{
++				var run = runs[r];
++				if (run.Ltr)
++					sb.Append(line, run.Start, run.End - run.Start);
++				else
++					for (var k = run.End - 1; k >= run.Start; k--)
++						sb.Append(Mirror(line[k]));
++			}
++
++			return sb.ToString();
++		}
++	}
++}
+diff --git a/OpenRA.Game/Game.cs b/OpenRA.Game/Game.cs
+--- a/OpenRA.Game/Game.cs
++++ b/OpenRA.Game/Game.cs
+@@ -1003,7 +1003,8 @@
+ 		{
+ 			var settings = new ServerSettings()
+ 			{
+-				Name = "Skirmish Game",
++				// The lobby shows the server name as its title, so take it from the interface language
++				Name = FluentProvider.TryGetMessage("label-skirmish-game-name", out var name) ? name : "Skirmish Game",
+ 				Map = map,
+ 				AdvertiseOnline = false
+ 			};
+diff --git a/OpenRA.Game/Graphics/SpriteFont.cs b/OpenRA.Game/Graphics/SpriteFont.cs
+index 59f9051..794a92e 100644
+--- a/OpenRA.Game/Graphics/SpriteFont.cs
++++ b/OpenRA.Game/Graphics/SpriteFont.cs
+@@ -21,6 +21,7 @@ public sealed class SpriteFont : IDisposable
+ 		readonly int size;
+ 		readonly SheetBuilder builder;
+ 		readonly IFont font;
++		readonly IFont[] fallbacks;
+ 		readonly Cache<char, GlyphInfo> glyphs;
+ 		readonly Cache<(char C, int Radius), Sprite> contrastGlyphs;
+ 		readonly Cache<int, float[]> dilationElements;
+@@ -28,6 +29,9 @@ public sealed class SpriteFont : IDisposable
+ 		float deviceScale;
+ 
+ 		public SpriteFont(IPlatform platform, string name, byte[] data, int size, int ascender, float scale, SheetBuilder builder)
++			: this(platform, name, data, Array.Empty<byte[]>(), size, ascender, scale, builder) { }
++
++		public SpriteFont(IPlatform platform, string name, byte[] data, byte[][] fallbackData, int size, int ascender, float scale, SheetBuilder builder)
+ 		{
+ 			if (builder.Type != SheetType.BGRA)
+ 				throw new ArgumentException("The sheet builder must create BGRA sheets.", nameof(builder));
+@@ -37,6 +41,7 @@ public SpriteFont(IPlatform platform, string name, byte[] data, int size, int as
+ 			this.builder = builder;
+ 
+ 			font = platform.CreateFont(data);
++			fallbacks = Array.ConvertAll(fallbackData, platform.CreateFont);
+ 			glyphs = new Cache<char, GlyphInfo>(CreateGlyph);
+ 			contrastGlyphs = new Cache<(char, int), Sprite>(CreateContrastGlyph);
+ 			dilationElements = new Cache<int, float[]>(CreateCircularWeightMap);
+@@ -58,10 +63,12 @@ public void SetScale(float scale)
+ 			contrastGlyphs.Clear();
+ 		}
+ 
+-		void DrawTextContrast(string text, float2 location, Color contrastColor, int contrastOffset)
++		void DrawTextContrast(string text, float2 location, Color contrastColor, int contrastOffset, float scale = 1f)
+ 		{
++			text = TextShaper.Shape(text);
++
+ 			// Offset from the baseline position to the top-left of the glyph for rendering
+-			location += new float2(0, size);
++			location += new float2(0, size * scale);
+ 
+ 			// Calculate positions in screen pixel coordinates
+ 			var screenContrast = (int)(contrastOffset * deviceScale);
+@@ -72,7 +79,7 @@ void DrawTextContrast(string text, float2 location, Color contrastColor, int con
+ 			{
+ 				if (s == '\n')
+ 				{
+-					location += new float2(0, size);
++					location += new float2(0, size * scale);
+ 					screen = new int2((int)(location.X * deviceScale + 0.5f), (int)(location.Y * deviceScale + 0.5f));
+ 					continue;
+ 				}
+@@ -84,17 +91,19 @@ void DrawTextContrast(string text, float2 location, Color contrastColor, int con
+ 				{
+ 					var contrastSprite = contrastGlyphs[(s, screenContrast)];
+ 					Game.Renderer.RgbaSpriteRenderer.DrawSprite(contrastSprite,
+-						(screen + g.Offset - contrastVector) / deviceScale,
+-						1f / deviceScale,
++						(screen.ToFloat2() + g.Offset.ToFloat2() * scale - contrastVector) / deviceScale,
++						scale / deviceScale,
+ 						tint, 1f);
+ 				}
+ 
+-				screen += new int2((int)(g.Advance + 0.5f), 0);
++				screen += new int2((int)(g.Advance * scale + 0.5f), 0);
+ 			}
+ 		}
+ 
+ 		public void DrawText(string text, float2 location, Color c)
+ 		{
++			text = TextShaper.Shape(text);
++
+ 			// Offset from the baseline position to the top-left of the glyph for rendering
+ 			location += new float2(0, size);
+ 
+@@ -123,6 +132,38 @@ public void DrawText(string text, float2 location, Color c)
+ 			}
+ 		}
+ 
++		public void DrawTextScaled(string text, float2 location, Color c, float scale = 1f)
++		{
++			text = TextShaper.Shape(text);
++
++			// Offset from the baseline position to the top-left of the glyph for rendering
++			location += new float2(0, size * scale);
++
++			// Calculate positions in screen pixel coordinates
++			var screen = new int2((int)(location.X * deviceScale + 0.5f), (int)(location.Y * deviceScale + 0.5f));
++			var tint = new float3(c.R / 255f, c.G / 255f, c.B / 255f);
++			foreach (var s in text)
++			{
++				if (s == '\n')
++				{
++					location += new float2(0, size * scale);
++					screen = new int2((int)(location.X * deviceScale + 0.5f), (int)(location.Y * deviceScale + 0.5f));
++					continue;
++				}
++
++				var g = glyphs[s];
++
++				// Convert screen coordinates back to UI coordinates for drawing
++				if (g.Sprite != null)
++					Game.Renderer.RgbaSpriteRenderer.DrawSprite(g.Sprite,
++					(screen.ToFloat2() + g.Offset.ToFloat2() * scale) / deviceScale,
++					scale / deviceScale,
++					tint, 1f);
++
++				screen += new int2((int)(g.Advance * scale + 0.5f), 0);
++			}
++		}
++
+ 		static float2 Rotate(float2 v, float sina, float cosa, float2 offset)
+ 		{
+ 			return new float2(
+@@ -132,6 +173,8 @@ static float2 Rotate(float2 v, float sina, float cosa, float2 offset)
+ 
+ 		public void DrawText(string text, float2 location, Color c, float angle)
+ 		{
++			text = TextShaper.Shape(text);
++
+ 			// Offset from the baseline position to the top-left of the glyph for rendering
+ 			// All positions are calculated in UI coordinates
+ 			var offset = new float2(0, size);
+@@ -178,17 +221,17 @@ public void DrawText(string text, float2 location, Color c, float angle)
+ 			}
+ 		}
+ 
+-		public void DrawTextWithContrast(string text, float2 location, Color fg, Color bg, int offset)
++		public void DrawTextWithContrast(string text, float2 location, Color fg, Color bg, int offset, float scale = 1f)
+ 		{
+ 			if (offset > 0)
+-				DrawTextContrast(text, location, bg, offset);
++				DrawTextContrast(text, location, bg, offset, scale);
+ 
+-			DrawText(text, location, fg);
++			DrawTextScaled(text, location, fg, scale);
+ 		}
+ 
+-		public void DrawTextWithContrast(string text, float2 location, Color fg, Color bgDark, Color bgLight, int offset)
++		public void DrawTextWithContrast(string text, float2 location, Color fg, Color bgDark, Color bgLight, int offset, float scale = 1f)
+ 		{
+-			DrawTextWithContrast(text, location, fg, GetContrastColor(fg, bgDark, bgLight), offset);
++			DrawTextWithContrast(text, location, fg, GetContrastColor(fg, bgDark, bgLight), offset, scale);
+ 		}
+ 
+ 		public void DrawTextWithShadow(string text, float2 location, Color fg, Color bg, int offset)
+@@ -209,6 +252,24 @@ public void DrawTextWithShadow(string text, float2 location, Color fg, Color bgD
+ 			DrawTextWithShadow(text, location, fg, GetContrastColor(fg, bgDark, bgLight), offset);
+ 		}
+ 
++		public void DrawTextWithShadowScaled(string text, float2 location, Color fg, Color bg, int offset, float scale = 1f)
++		{
++			if (offset != 0)
++			{
++				// Shadow offsets are rounded to an integer number of screen pixels.
++				// This makes sure the shadow will be positioned consistently everywhere on the screen.
++				var screenOffset = (int)(offset * deviceScale) / deviceScale;
++				DrawTextScaled(text, location + new float2(screenOffset, screenOffset), bg, scale);
++			}
++
++			DrawTextScaled(text, location, fg, scale);
++		}
++
++		public void DrawTextWithShadowScaled(string text, float2 location, Color fg, Color bgDark, Color bgLight, int offset, float scale = 1f)
++		{
++			DrawTextWithShadowScaled(text, location, fg, GetContrastColor(fg, bgDark, bgLight), offset, scale);
++		}
++
+ 		public void DrawTextWithShadow(string text, float2 location, Color fg, Color bg, int offset, float angle)
+ 		{
+ 			if (offset != 0)
+@@ -232,7 +293,7 @@ public int2 Measure(string text)
+ 			if (string.IsNullOrEmpty(text))
+ 				return new int2(0, size);
+ 
+-			var lines = text.SplitLines('\n');
++			var lines = TextShaper.Shape(text).SplitLines('\n');
+ 
+ 			var maxWidth = 0f;
+ 			var rows = 0;
+@@ -245,6 +306,16 @@ public int2 Measure(string text)
+ 			return new int2((int)Math.Ceiling(maxWidth), rows * size);
+ 		}
+ 
++		/// <summary>Measures text as it would be drawn with DrawText(..., scale): the same layout, shrunk uniformly.</summary>
++		public int2 Measure(string text, float scale)
++		{
++			if (scale >= 1f)
++				return Measure(text);
++
++			var m = Measure(text);
++			return new int2((int)Math.Ceiling(m.X * scale), (int)Math.Ceiling(m.Y * scale));
++		}
++
+ 		float LineWidth(ReadOnlySpan<char> line)
+ 		{
+ 			var result = 0f;
+@@ -256,7 +327,12 @@ float LineWidth(ReadOnlySpan<char> line)
+ 
+ 		GlyphInfo CreateGlyph(char c)
+ 		{
+-			var glyph = font.CreateGlyph(c, size, deviceScale);
++			// Characters the main font lacks (other scripts) come from the first fallback that has them
++			var source = font;
++			if (fallbacks.Length > 0 && c > 0x7f && !font.HasGlyph(c))
++				source = Array.Find(fallbacks, f => f.HasGlyph(c)) ?? font;
++
++			var glyph = source.CreateGlyph(c, size, deviceScale);
+ 			if (glyph.Data == null)
+ 			{
+ 				return new GlyphInfo
+@@ -424,6 +500,8 @@ static Color GetContrastColor(Color fgColor, Color bgDark, Color bgLight)
+ 		public void Dispose()
+ 		{
+ 			font.Dispose();
++			foreach (var f in fallbacks)
++				f.Dispose();
+ 		}
+ 	}
+ 
+diff --git a/OpenRA.Mods.Common/Widgets/ButtonWidget.cs b/OpenRA.Mods.Common/Widgets/ButtonWidget.cs
+index 27d5475..99f56ed 100644
+--- a/OpenRA.Mods.Common/Widgets/ButtonWidget.cs
++++ b/OpenRA.Mods.Common/Widgets/ButtonWidget.cs
+@@ -245,23 +245,48 @@ public override void Draw()
+ 
+ 			var stateOffset = Depressed ? new int2(VisualHeight, VisualHeight) : new int2(0, 0);
+ 
+-			var position = GetTextPosition(text, font, rb);
++			// A translation longer than the button's own label (the common case in non-English languages)
++			// is shrunk to fit; if even the minimum readable size would still overflow, it is also truncated.
++			var scale = FitScale(font, text);
++			if (scale <= MinTextScale)
++				text = WidgetUtils.TruncateText(text, (int)((UsableWidth - LeftMargin - RightMargin) / MinTextScale), font);
++
++			var position = GetTextPosition(text, font, rb, scale);
+ 
+ 			var hover = Ui.MouseOverWidget == this || Children.FirstOrDefault(c => c == Ui.MouseOverWidget) != null;
+ 			DrawBackground(rb, disabled, Depressed, hover, highlighted);
+ 			if (Contrast)
+ 				font.DrawTextWithContrast(text, position + stateOffset,
+-					disabled ? colordisabled : color, bgDark, bgLight, ContrastRadius);
++					disabled ? colordisabled : color, bgDark, bgLight, ContrastRadius, scale);
+ 			else if (Shadow)
+-				font.DrawTextWithShadow(text, position, color, bgDark, bgLight, 1);
++				font.DrawTextWithShadowScaled(text, position, color, bgDark, bgLight, 1, scale);
+ 			else
+-				font.DrawText(text, position + stateOffset,
+-					disabled ? colordisabled : color);
++				font.DrawTextScaled(text, position + stateOffset,
++					disabled ? colordisabled : color, scale);
++		}
++
++		// Below this, a translation is truncated (with an ellipsis) rather than shrunk further into illegibility.
++		const float MinTextScale = 0.62f;
++
++		float FitScale(SpriteFont font, string text)
++		{
++			if (string.IsNullOrEmpty(text))
++				return 1f;
++
++			var available = UsableWidth - LeftMargin - RightMargin;
++			if (available <= 0)
++				return 1f;
++
++			var width = font.Measure(text).X;
++			if (width <= available)
++				return 1f;
++
++			return Math.Max(MinTextScale, available / (float)width);
+ 		}
+ 
+-		int2 GetTextPosition(string text, SpriteFont font, Rectangle rb)
++		int2 GetTextPosition(string text, SpriteFont font, Rectangle rb, float scale = 1f)
+ 		{
+-			var textSize = font.Measure(text);
++			var textSize = font.Measure(text, scale);
+ 			var y = rb.Y + (Bounds.Height - textSize.Y - font.TopOffset) / 2;
+ 
+ 			switch (Align)
+diff --git a/OpenRA.Mods.Common/Widgets/LabelForInputWidget.cs b/OpenRA.Mods.Common/Widgets/LabelForInputWidget.cs
+index 9ac4c36..f024d1c 100644
+--- a/OpenRA.Mods.Common/Widgets/LabelForInputWidget.cs
++++ b/OpenRA.Mods.Common/Widgets/LabelForInputWidget.cs
+@@ -38,9 +38,9 @@ protected LabelForInputWidget(LabelForInputWidget other)
+ 			textColor = new CachedTransform<bool, Color>(disabled => disabled ? TextDisabledColor : TextColor);
+ 		}
+ 
+-		protected override void DrawInner(string text, SpriteFont font, Color color, int2 position)
++		protected override void DrawInner(string text, SpriteFont font, Color color, int2 position, float scale = 1f)
+ 		{
+-			font.DrawText(text, position, textColor.Update(inputWidget.Value.IsDisabled()));
++			font.DrawTextScaled(text, position, textColor.Update(inputWidget.Value.IsDisabled()), scale);
+ 		}
+ 
+ 		public override Widget Clone() { return new LabelForInputWidget(this); }
+diff --git a/OpenRA.Mods.Common/Widgets/LabelWidget.cs b/OpenRA.Mods.Common/Widgets/LabelWidget.cs
+index d24a24e..beb2984 100644
+--- a/OpenRA.Mods.Common/Widgets/LabelWidget.cs
++++ b/OpenRA.Mods.Common/Widgets/LabelWidget.cs
+@@ -88,10 +88,19 @@ public override void Draw()
+ 			if (text == null)
+ 				return;
+ 
++			// Word-wrapped text already handles overflow by spilling onto further lines, so it is left alone;
++			// a single-line label instead shrinks (and, failing that, truncates) a translation too long to fit.
++			var scale = 1f;
+ 			if (WordWrap)
+ 				text = WidgetUtils.WrapText(text, Bounds.Width, font);
++			else
++			{
++				scale = FitScale(font, text);
++				if (scale <= MinTextScale)
++					text = WidgetUtils.TruncateText(text, (int)(Bounds.Width / MinTextScale), font);
++			}
+ 
+-			var textSize = font.Measure(text);
++			var textSize = font.Measure(text, scale);
+ 			var position = RenderOrigin;
+ 			var offset = font.TopOffset;
+ 
+@@ -110,19 +119,34 @@ public override void Draw()
+ 			if (Align == TextAlign.Right)
+ 				position += new int2(Bounds.Width - textSize.X, 0);
+ 
+-			DrawInner(text, font, GetColor(), position);
++			DrawInner(text, font, GetColor(), position, scale);
++		}
++
++		// Below this, a translation is truncated (with an ellipsis) rather than shrunk further into illegibility.
++		protected const float MinTextScale = 0.62f;
++
++		float FitScale(SpriteFont font, string text)
++		{
++			if (string.IsNullOrEmpty(text) || Bounds.Width <= 0)
++				return 1f;
++
++			var width = font.Measure(text).X;
++			if (width <= Bounds.Width)
++				return 1f;
++
++			return Math.Max(MinTextScale, Bounds.Width / (float)width);
+ 		}
+ 
+-		protected virtual void DrawInner(string text, SpriteFont font, Color color, int2 position)
++		protected virtual void DrawInner(string text, SpriteFont font, Color color, int2 position, float scale = 1f)
+ 		{
+ 			var bgDark = GetContrastColorDark();
+ 			var bgLight = GetContrastColorLight();
+ 			if (Contrast)
+-				font.DrawTextWithContrast(text, position, color, bgDark, bgLight, ContrastRadius);
++				font.DrawTextWithContrast(text, position, color, bgDark, bgLight, ContrastRadius, scale);
+ 			else if (Shadow)
+-				font.DrawTextWithShadow(text, position, color, bgDark, bgLight, 1);
++				font.DrawTextWithShadowScaled(text, position, color, bgDark, bgLight, 1, scale);
+ 			else
+-				font.DrawText(text, position, color);
++				font.DrawTextScaled(text, position, color, scale);
+ 		}
+ 
+ 		public override Widget Clone() { return new LabelWidget(this); }
+diff --git a/OpenRA.Mods.Common/Widgets/LabelWithHighlightWidget.cs b/OpenRA.Mods.Common/Widgets/LabelWithHighlightWidget.cs
+index 8c07afb..6ca65eb 100644
+--- a/OpenRA.Mods.Common/Widgets/LabelWithHighlightWidget.cs
++++ b/OpenRA.Mods.Common/Widgets/LabelWithHighlightWidget.cs
+@@ -71,13 +71,13 @@ protected LabelWithHighlightWidget(LabelWithHighlightWidget other)
+ 			return components.ToArray();
+ 		}
+ 
+-		protected override void DrawInner(string text, SpriteFont font, Color color, int2 position)
++		protected override void DrawInner(string text, SpriteFont font, Color color, int2 position, float scale = 1f)
+ 		{
+ 			var advance = 0;
+ 			foreach (var c in textComponents.Update(text))
+ 			{
+-				base.DrawInner(c.Text, font, c.Highlighted ? HighlightColor : color, position + new int2(advance, 0));
+-				advance += font.Measure(c.Text).X;
++				base.DrawInner(c.Text, font, c.Highlighted ? HighlightColor : color, position + new int2(advance, 0), scale);
++				advance += font.Measure(c.Text, scale).X;
+ 			}
+ 		}
+ 

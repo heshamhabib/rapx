@@ -92,18 +92,18 @@ namespace OpenRA.Mods.RAPX.Widgets
 			foreach (var i in actor.TraitInfos<PxInterceptorInfo>())
 				rows.Add(new Row
 				{
-					Weapon = new PxCatalogueData.Weapon { Name = "Missile interceptors", Kind = "Air defence", Range = i.Range.Length / 1024f, Versus = new int[6] },
+					Weapon = new PxCatalogueData.Weapon { Name = PxText.T("Missile interceptors"), Kind = PxText.N("Air defence"), Range = i.Range.Length / 1024f, Versus = new int[6] },
 					Rounds = i.Rails,
-					Note = "Shoots down " + string.Join(", ", i.Chances.Where(c => c.Value > 0).OrderByDescending(c => c.Value)
-						.Select(c => $"{c.Key.ToLowerInvariant()} {c.Value}%"))
+					Note = PxText.F("Shoots down {0}", string.Join(", ", i.Chances.Where(c => c.Value > 0).OrderByDescending(c => c.Value)
+						.Select(c => $"{PxText.T(c.Key).ToLowerInvariant()} {c.Value}%")))
 				});
 
 			foreach (var p in actor.TraitInfos<PxPointDefenseInfo>())
 				rows.Add(new Row
 				{
-					Weapon = new PxCatalogueData.Weapon { Name = "Close-in point defence", Kind = "CIWS", Range = p.Range.Length / 1024f, Versus = new int[6] },
+					Weapon = new PxCatalogueData.Weapon { Name = PxText.T("Close-in point defence"), Kind = PxText.N("CIWS"), Range = p.Range.Length / 1024f, Versus = new int[6] },
 					Rounds = p.Mounts.Length,
-					Note = $"Shreds missiles aimed at it, {p.Chance}% per burst"
+					Note = PxText.F("Shreds missiles aimed at it, {0}% per burst", p.Chance)
 				});
 
 			var nameFont = Game.Renderer.Fonts[NameFont];
@@ -113,9 +113,9 @@ namespace OpenRA.Mods.RAPX.Widgets
 			const int Lead = 8 + TileSize + 9 + 8;
 			ContentWidth = rows.Select(r =>
 			{
-				var head = nameFont.Measure(r.Weapon.Name).X + 16 + tagFont.Measure(r.Weapon.Kind.ToUpperInvariant()).X +
+				var head = nameFont.Measure(r.Weapon.Name).X + 16 + tagFont.Measure(PxText.T(r.Weapon.Kind).ToUpperInvariant()).X +
 					(Rounds(r) is string b ? tagFont.Measure(b).X + 18 : 0);
-				var note = r.Note ?? r.Weapon.Note ?? (r.Weapon.Support ? "Support: no direct damage" : null);
+				var note = r.Note ?? r.Weapon.Note ?? (r.Weapon.Support ? PxText.T("Support: no direct damage") : null);
 				var third = note != null ? statFont.Measure(note).X : PxTooltipIcons.ClassIcons.Length * ClassCell;
 				return Lead + Math.Max(head, Math.Max(StatsWidth(r, valueFont, statFont), third));
 			}).DefaultIfEmpty(0).Max();
@@ -129,16 +129,16 @@ namespace OpenRA.Mods.RAPX.Widgets
 			if (r.Rounds <= 0)
 				return null;
 
-			return r.Note != null && r.Weapon.Kind == "Air defence" ? $"{r.Rounds} RAILS" : r.Note != null ? $"{r.Rounds} MOUNTS" : $"×{r.Rounds}";
+			return r.Note != null && r.Weapon.Kind == "Air defence" ? PxText.F("{0} RAILS", r.Rounds) : r.Note != null ? PxText.F("{0} MOUNTS", r.Rounds) : $"×{r.Rounds}";
 		}
 
 		/// <summary>Stat cells on the card's second line: glyph, value, unit.</summary>
 		static IEnumerable<(string Icon, string Value, string Unit)> StatCells(Row r)
 		{
 			var w = r.Weapon;
-			yield return ("range", Num(w.Range), w.MinRange > 0 ? $"cells (min {Num(w.MinRange)})" : "cells");
+			yield return ("range", Num(w.Range), w.MinRange > 0 ? PxText.F("cells (min {0})", Num(w.MinRange)) : PxText.T("cells"));
 			if (w.Damage > 0)
-				yield return ("damage", w.Burst > 1 ? $"{w.Damage}×{w.Burst}" : w.Damage.ToString(CultureInfo.InvariantCulture), "dmg");
+				yield return ("damage", w.Burst > 1 ? $"{w.Damage}×{w.Burst}" : w.Damage.ToString(CultureInfo.InvariantCulture), PxText.T("dmg"));
 			if (w.Reload > 0)
 				yield return ("reload", Num(w.Reload), "s");
 			if (w.Dps > 0)
@@ -167,8 +167,8 @@ namespace OpenRA.Mods.RAPX.Widgets
 
 			// Header: spaced stencil title, weapon count and a red rule that fades out
 			var y = rb.Y;
-			PxWarChrome.DrawSpaced(statFont, "ARMAMENT", rb.X, y + 3, 3, PxWarChrome.Stencil);
-			var titleW = PxWarChrome.SpacedWidth(statFont, "ARMAMENT", 3);
+			PxWarChrome.DrawSpaced(statFont, PxText.T("ARMAMENT"), rb.X, y + 3, 3, PxWarChrome.Stencil);
+			var titleW = PxWarChrome.SpacedWidth(statFont, PxText.T("ARMAMENT"), 3);
 			var count = rows.Count.ToString(CultureInfo.InvariantCulture);
 			statFont.DrawTextWithShadow(count, new float2(rb.Right - statFont.Measure(count).X, y + 3), PxWarChrome.Amber, Color.Black, 1);
 			var ruleY = y + 10;
@@ -201,7 +201,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 				// Line 1: name, then the kind as a tag on the right (and the rounds badge before it)
 				var x = tile.Right + 9;
 				nameFont.DrawTextWithShadow(w.Name, new float2(x, card.Y + 3), Color.White, Color.Black, 1);
-				var kind = w.Kind.ToUpperInvariant();
+				var kind = PxText.T(w.Kind).ToUpperInvariant();
 				var kindW = tagFont.Measure(kind).X;
 				var right = card.Right - 8;
 				tagFont.DrawTextWithShadow(kind, new float2(right - kindW, card.Y + 6), PxWarChrome.Lerp(accent, Color.White, 0.3f), Color.Black, 1);
@@ -240,7 +240,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 				var ey = card.Y + 39;
 				if (r.Note != null || w.Support)
 				{
-					var note = r.Note ?? w.Note ?? "Support: no direct damage";
+					var note = r.Note ?? w.Note ?? PxText.T("Support: no direct damage");
 					statFont.DrawTextWithShadow(note, new float2(x, ey), PxWarChrome.Lerp(accent, Color.White, 0.35f), Color.Black, 1);
 				}
 				else

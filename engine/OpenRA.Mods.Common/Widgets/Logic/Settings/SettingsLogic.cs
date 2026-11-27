@@ -176,6 +176,11 @@ namespace OpenRA.Mods.Common.Widgets.Logic
 			}
 
 			tab.Id = id;
+
+			// Tab titles are plain text; a translation can still supply them as settings-tab-<title>
+			if (FluentProvider.TryGetMessage("settings-tab-" + label.ToLowerInvariant(), out var translated))
+				label = translated;
+
 			tab.GetText = () => label;
 			tab.IsHighlighted = () => activePanel == id;
 			tab.OnClick = () =>

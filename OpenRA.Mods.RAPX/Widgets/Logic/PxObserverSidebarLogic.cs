@@ -42,10 +42,10 @@ namespace OpenRA.Mods.RAPX.Widgets.Logic
 			{
 				var font = Game.Renderer.Fonts[subtitle.Font];
 				var name = player?.ResolvedPlayerName.ToUpperInvariant();
-				var text = world.IsReplay ? "REPLAY" :
-					player == null ? "SPECTATING" :
-					player.WinState == WinState.Won ? "VICTORY · " + name :
-					player.WinState == WinState.Lost ? "DEFEATED · " + name : "SPECTATING · " + name;
+				var text = world.IsReplay ? PxText.T("REPLAY") :
+					player == null ? PxText.T("SPECTATING") :
+					player.WinState == WinState.Won ? PxText.F("VICTORY · {0}", name) :
+					player.WinState == WinState.Lost ? PxText.F("DEFEATED · {0}", name) : PxText.F("SPECTATING · {0}", name);
 				text = WidgetUtils.TruncateText(text, subtitle.Bounds.Width, font);
 				subtitle.GetText = () => text;
 				subtitle.GetColor = () => player?.WinState == WinState.Won ? Color.FromArgb(255, 209, 102) : subtitle.TextColor;

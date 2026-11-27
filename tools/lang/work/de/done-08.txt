@@ -1,0 +1,250 @@
+1750	KI-Spieler
+1751	Bot
+1752	{ $bots ->\n[0] Keine Bots\n[one] Ein Bot\n*[other] { $bots } Bots\n}
+1753	STARTEN
+1754	GEMISCHT
+1755	BERGEN
+1756	FLUGDECK
+1757	{ $seconds ->\n[one] Chat verfügbar in { $seconds } Sekunde...\n*[other] Chat verfügbar in { $seconds } Sekunden...\n}
+1758	Chat deaktiviert
+1759	Details siehe install.log im Ordner „logs“.
+1760	Kontodaten werden abgefragt von
+1761	dem OpenRA-Forum...
+1762	Quellen werden geprüft
+1763	Weg
+1764	Armeewert
+1765	Geb. verl.
+1766	Geb. zerst.
+1767	Einh. verl.
+1768	Einh. zerst.
+1769	Sicht
+1770	Verbinde...
+1771	Verbinden
+1772	Verbinde mit { $endpoint }...
+1773	Verbindung zum OpenRA-Forum fehlgeschlagen.
+1774	Bitte prüfe deine Internetverbindung.
+1775	Verbindung fehlgeschlagen
+1776	Auf diesem Server läuft eine andere Mod:
+1777	Mod wechseln und Server beitreten?
+1778	Mod wechseln
+1779	Passwort:
+1780	Titel
+1781	Wähle die Inhaltspakete, die du installieren möchtest:
+1782	Kopiere { $filename }
+1783	Kopiere { $filename } ({ $progress }%)
+1784	Verbindung zu { $target } nicht möglich
+1785	Erstellt von { $author }
+1786	Eigene Farben
+1787	Weitere Entwickleroptionen lassen sich über die
+1788	Einstellung oder den Startparameter Debug.DisplayDeveloperSettings aktivieren
+1789	Debug-Optionen
+1790	Visualisierungen
+1791	Laufwerke werden erkannt
+1792	Digitale Installationen
+1793	Serveradresse:
+1794	Mit Server verbinden
+1795	Deaktivierter Startpunkt
+1796	Download fehlgeschlagen
+1797	Lade { $title } herunter
+1798	Lade von { $host } { $received } { $suffix }
+1799	Lade von { $host } { $received } / { $total } { $suffix } ({ $progress }%)
+1800	Lade { $size } kB herunter
+1801	Lade { $size } kB herunter ({ $progress }%)
+1802	Doppelte Objekt-ID
+1803	Wird bereits für „{ $key }“ im Kontext { $context } verwendet
+1804	Dauer: { $time }
+1805	Vermögen
+1806	Ölbohrtürme
+1807	Verdient
+1808	Sammler
+1809	Einkommen
+1810	Ausgegeben
+1811	Entpacke...
+1812	Entpacke { $entry }
+1813	Entpacke { $filename }
+1814	Entpacke { $filename } ({ $progress }%)
+1815	Spiegelserver werden abgerufen...
+1816	Objekte
+1817	in
+1818	Sortieren nach:
+1819	Ressourcen
+1820	Gelände
+1821	Datum:
+1822	Dauer:
+1823	Fraktion:
+1824	Typ:
+1825	Karte:
+1826	Ergebnis:
+1827	Spieler:
+1828	Filter
+1829	Dein Authentifizierungsschlüssel ist mit keinem
+1830	OpenRA-Forenkonto verbunden.
+1831	Ein oder mehrere Spieler sind noch nicht bereit.
+1832	Willst du den Spielstart wirklich erzwingen?
+1833	Spiel starten?
+1834	Spielleiter
+1835	Spielinhalte nicht gefunden
+1836	Spielquellen
+1837	Spiel laden
+1838	Spiel speichern
+1839	[NEUE DATEI ERSTELLEN]
+1840	Drücke Escape, um das Laden abzubrechen und zum Hauptmenü zurückzukehren
+1841	Spielstand wird geladen
+1842	Verbinde ein Forenkonto, um dich anderen
+1843	Spielern auszuweisen, privaten Servern
+1844	beizutreten und Abzeichen anzuzeigen.
+1845	Authentifizierungs-Schlüsselpaar wird erzeugt.
+1846	Das dauert einige Sekunden...
+1847	Kein Tastenkürzel passt zu den Filterkriterien.
+1848	Kontext:
+1849	Nach Name filtern:
+1850	{ $minutes ->\n[0] Läuft seit weniger als einer Minute.\n[one] Läuft seit { $minutes } Minute.\n*[other] Läuft seit { $minutes } Minuten.\n}
+1851	Unbegrenzt
+1852	Installation fehlgeschlagen
+1853	Inhalte werden installiert
+1854	Internetserver (UPnP/NAT-PMP
+1855	Aktiviert
+1856	Nicht unterstützt
+1857	Du kannst auch eine vorübergehende Sperre verhängen, die
+1858	den Spieler für den Rest dieses Spiels fernhält.
+1859	Zuschauer entfernen
+1860	Einem oder mehreren Clients fehlt die gewählte
+1861	Karte; sie werden vom Server entfernt.
+1862	Latenz:
+1863	{ $length } s
+1864	Lade Neuigkeiten
+1865	Lade Spielerprofil...
+1866	Spielerprofil konnte nicht geladen werden.
+1867	Kartenoptionen
+1868	Farbe
+1869	Handicap
+1870	Name
+1871	Bereit
+1872	Start
+1873	Lokaler Server:
+1874	Wir möchten einige Systemdaten sammeln, die uns helfen, OpenRA zu optimieren.
+1875	Mit deiner Erlaubnis werden bei jedem Spielstart folgende anonyme Daten gesendet:
+1876	Verwalten
+1877	Unbekannte Karte
+1878	Diese Karte ist nicht kompatibel
+1879	mit dieser Version von OpenRA
+1880	Bei der Installation ist ein Fehler aufgetreten
+1881	Durchsuche OpenRA Resource Center...
+1882	{ $count ->\n[one] Durchsuche das OpenRA Resource Center nach { $count } Karte...\n*[other] Durchsuche das OpenRA Resource Center nach { $count } Karten...\n}
+1883	(Riesig)
+1884	(Groß)
+1885	(Mittel)
+1886	(Klein)
+1887	Suche...
+1888	Diese Karte wurde nicht gefunden im
+1889	OpenRA Resource Center
+1890	{ $count ->\n[one] { $count } Karte wurde im OpenRA Resource Center nicht gefunden\n*[other] { $count } Karten wurden im OpenRA Resource Center nicht gefunden\n}
+1891	Eine neue Version der Karte
+1892	wurde auf deinem Computer gefunden
+1893	Prüfe...
+1894	Karte wählen
+1895	Kachel-Alpha
+1896	Achsenwinkel
+1897	Anzahl Seiten
+1898	Spiegelmodus
+1899	Höchsttempo
+1900	Kein Online-Spiegel verfügbar. Bitte von einer Original-CD installieren.
+1901	Erfüllt
+1902	Gescheitert
+1903	Läuft
+1904	Mission:
+1905	- Gebäude platzieren mit der <Left> Maustaste
+1906	- Einheiten befehligen mit der <Left> Maustaste
+1907	oder durch Bewegen des Mauszeigers an den Bildschirmrand
+1908	- Schlachtfeld schwenken mit der <Middle> Maustaste
+1909	- Schlachtfeld schwenken mit der <Right> Maustaste
+1910	- Einheiten auswählen mit der <Left> Maustaste
+1911	- Unterstützungsfähigkeiten zielen mit der <Left> Maustaste
+1912	- Schlachtfeld zoomen mit dem <Scroll Wheel>
+1913	- Schlachtfeld zoomen mit <MODIFIER + Scroll Wheel>
+1914	- Einheiten befehligen mit der <Right> Maustaste
+1915	(optional)
+1916	Port:
+1917	Servername:
+1918	Server erstellen
+1919	Länge
+1920	Lautstärke:
+1921	Ton stumm
+1922	Diesen Spieler stummschalten
+1923	Höhe:
+1924	Tileset:
+1925	Neue Karte
+1926	Breite:
+1927	Neuigkeiten konnten nicht gelesen werden: { $message }
+1928	Neuigkeiten konnten nicht abgerufen werden: { $message }
+1929	Keine Treffer
+1930	Die Spielmusik kann über das Menü
+1931	„Inhalte verwalten“ installiert werden.
+1932	Musik nicht installiert
+1933	Kein Server ausgewählt
+1934	Es läuft kein Titel
+1935	Kein Team
+1936	Nicht verfügbar
+1937	Du verwendest eine veraltete Version von OpenRA. Lade die neueste Version von www.openra.net herunter
+1938	Eine Vorschau auf die nächste OpenRA-Version kann getestet werden. Lade den Playtest von www.openra.net herunter
+1939	Du verwendest eine unbekannte Version von OpenRA. Lade die neueste Version von www.openra.net herunter
+1940	- Das Spiel wird nur im lokalen Netzwerk angekündigt.
+1941	- Du musst deine Firewall manuell für Verbindungen freigeben.
+1942	- Spieler können sich per Direkter IP aus dem Internet verbinden, wenn du
+1943	an deinem Router manuell eine Portweiterleitung einrichtest.
+1944	- Das Spiel wird im lokalen Netzwerk und im Internet angekündigt.
+1945	- Du musst deinen Router manuell so einrichten, dass er Verbindungen
+1946	an deine lokale IP und deinen Port weiterleitet.
+1947	- Du kannst UPnP/NAT-PMP (falls dein Router es unterstützt)
+1948	im Reiter Erweitert der Einstellungen aktivieren.
+1949	Dieses Tastenkürzel kann nicht geändert werden
+1950	- Das Spiel richtet die Portweiterleitung automatisch ein.
+1951	- Du kannst UPnP/NAT-PMP in den Einstellungen deaktivieren.
+1952	OpenRA
+1953	Standard ist „{ $key }“
+1954	{ $players ->\n[one] Ein weiterer Spieler\n*[other] { $players } weitere Spieler\n}
+1955	Passwortgeschützt
+1956	Passwort erforderlich
+1957	Pausiert
+1958	WAFFENRUHE IN KRAFT
+1959	WAFFENRUHE LÄUFT AB
+1960	/ENDTREATY EINGEBEN, UM FÜR KRIEG ZU STIMMEN
+1961	STIMMEN FÜR VERTRAGSENDE { $votes }/{ $needed }
+1962	KRIEG
+1963	ALLE EINHEITEN ANGREIFEN
+1964	{ $players ->\n[one] { $players } Spieler\n*[other] { $players } Spieler\n}
+1965	{ $players ->\n[0] Keine Spieler\n[one] Ein Spieler\n*[other] { $players } Spieler\n}
+1966	{ $players ->\n[one] { $players } Spieler online\n*[other] { $players } Spieler online\n}
+1967	Läuft
+1968	Energieverbrauch: { $usage }/{ $capacity }
+1969	Vorgabefarben
+1970	TEAMFARBE
+1971	Deine eigene Einstellungsmischung. Wähle ein Schema, um alles zurückzusetzen.
+1972	Die Standard-Maus- und Tastenbelegung von OpenRA.
+1973	Linksklick wählt aus und gibt Befehle, Rechtsklick hebt die Auswahl auf, Ziehen mit rechts schwenkt. RA2-Tasten (T, G, D, Z…).
+1974	Rechtsklick gibt Befehle, Ziehen mit rechts schwenkt. RA2-Tasten (T, G, D, Z…).
+1975	Zu Kartenposition springen
+1976	Kartenposition speichern
+1977	BASIS
+1978	MAUS
+1979	SEITENLEISTEN-REITER
+1980	TEAMS & ANSICHT
+1981	EINHEITENBEFEHLE
+1982	Zur Auswahl hinzufügen
+1983	Shift + Klick
+1984	Auswahl aufheben
+1985	Linksklick auf freien Boden
+1986	Feuer erzwingen
+1987	Ctrl + Klick
+1988	Bewegung erzwingen
+1989	Alt + Klick
+1990	Bewegen / angreifen
+1991	Linksklick
+1992	Rechtsklick
+1993	Fabrik als primär festlegen
+1994	Fabrik doppelt anklicken
+1995	Diesen Typ auf dem Bildschirm wählen
+1996	Einheit doppelt anklicken
+1997	Karte schwenken
+1998	Mittlere Taste halten + ziehen
+1999	Rechte Taste halten + ziehen

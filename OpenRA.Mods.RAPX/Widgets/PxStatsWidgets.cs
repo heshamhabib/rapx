@@ -218,11 +218,11 @@ namespace OpenRA.Mods.RAPX.Widgets
 			string tag;
 			Color tagColor;
 			if (player.IsBot)
-				(tag, tagColor) = ("AI COMMANDER", PxDraw.Muted);
+				(tag, tagColor) = (PxText.T("AI COMMANDER"), PxDraw.Muted);
 			else if (isLocal)
-				(tag, tagColor) = ("YOU", PxDraw.AccentBright);
+				(tag, tagColor) = (PxText.T("YOU"), PxDraw.AccentBright);
 			else
-				(tag, tagColor) = ("COMMANDER", PxDraw.Muted);
+				(tag, tagColor) = (PxText.T("COMMANDER"), PxDraw.Muted);
 
 			var tagFont = Game.Renderer.Fonts[TagFont];
 			var tagY = rb.Bottom - 30;
@@ -243,8 +243,8 @@ namespace OpenRA.Mods.RAPX.Widgets
 			var nation = FluentProvider.GetMessage(faction.Name).ToUpperInvariant();
 			var side = faction.Side switch
 			{
-				"Union" => "THE UNION",
-				"Vanguard" => "THE VANGUARD",
+				"Union" => PxText.T("THE UNION"),
+				"Vanguard" => PxText.T("THE VANGUARD"),
 				_ => null
 			};
 
@@ -255,13 +255,13 @@ namespace OpenRA.Mods.RAPX.Widgets
 			string status;
 			Color statusColor;
 			if (gone)
-				(status, statusColor) = ("DISCONNECTED", Color.FromArgb(138, 139, 147));
+				(status, statusColor) = (PxText.T("DISCONNECTED"), Color.FromArgb(138, 139, 147));
 			else if (won)
-				(status, statusColor) = ("VICTORIOUS", Color.FromArgb(93, 255, 122));
+				(status, statusColor) = (PxText.T("VICTORIOUS"), Color.FromArgb(93, 255, 122));
 			else if (lost)
-				(status, statusColor) = ("DEFEATED", Color.FromArgb(255, 77, 77));
+				(status, statusColor) = (PxText.T("DEFEATED"), Color.FromArgb(255, 77, 77));
 			else
-				(status, statusColor) = ("IN COMBAT", Color.FromArgb(255, 190, 70));
+				(status, statusColor) = (PxText.T("IN COMBAT"), Color.FromArgb(255, 190, 70));
 
 			var chip = new Rectangle(rb.Right - ChipRight, rb.Y + (rb.Height - 26) / 2, 128, 26);
 			WidgetUtils.FillRectWithColor(chip, Color.FromArgb(110, statusColor));
@@ -280,7 +280,8 @@ namespace OpenRA.Mods.RAPX.Widgets
 			var scoreFont = Game.Renderer.Fonts[ScoreFont];
 			var scoreSize = scoreFont.Measure(score);
 			var scoreX = rb.Right - ScoreRight - scoreSize.X;
-			tagFont.DrawText("SCORE", new float2(rb.Right - ScoreRight - tagFont.Measure("SCORE").X, rb.Y + 14), PxDraw.Dim);
+			var scoreLabel = PxText.T("SCORE");
+			tagFont.DrawText(scoreLabel, new float2(rb.Right - ScoreRight - tagFont.Measure(scoreLabel).X, rb.Y + 14), PxDraw.Dim);
 			scoreFont.DrawTextWithShadow(score, new float2(scoreX, rb.Y + 32), lost ? PxDraw.Dim : Color.White, Color.FromArgb(160, 0, 0, 0), 2);
 		}
 	}

@@ -1,0 +1,150 @@
+2500	Earns veterancy ranks
+2501	EFFECTIVE AGAINST
+2502	ENEMY
+2503	Energy beam
+2504	ENTRIES
+2505	EXCLUSIVE
+2506	Extends the build radius
+2507	Fast jet: strikes, then returns to rearm
+2508	FIELD DOSSIER
+2509	Field-repairs vehicles
+2510	FIELDED BY
+2512	FIREPOWER
+2513	Fixed-wing aircraft
+2514	Flares: { $p0 } salvos fool { $p1 }% of guided missiles
+2515	Flight deck: launches and rearms jets
+2516	Fortification
+2517	FORTIFIED
+2518	Generates { $p0 } power
+2519	Generates steady income
+2520	Grenade
+2521	GROUND
+2523	Ground vehicle
+2524	Guided missile
+2525	Hammer blows · hurls boulders\nLeaps to swat jets · 850,000 HP
+2526	Harvests ore and gems
+2527	Heals nearby infantry
+2528	HEALTH
+2529	Heavy
+2530	HEAVY ARMOUR
+2532	Hides your base in a shroud field
+2533	HIT POINTS
+2534	HOST
+2535	HOST · YOU
+2536	Hypersonic
+2537	IN COMBAT
+2538	Incendiary
+2539	INFANTRY
+2540	Infiltrates enemy buildings
+2541	Intercepts incoming missiles
+2542	Jams guided missiles
+2543	Lays minefields
+2544	Leaps at its prey
+2545	Light
+2547	LIGHT ARMOUR
+2549	LIMITED
+2550	Lurks unseen in water when still
+2551	MENU THEME
+2552	MENU THEME · PAUSED
+2553	(MIN { $p0 })
+2554	Missile interceptors
+2556	Mute music
+2557	NATIONAL
+2558	NATIONAL UNIT
+2559	NAVAL
+2560	Naval Unit
+2562	Naval vessel
+2563	NEUTRAL
+2564	NO ENTRIES FOR THIS NATION
+2565	No giant for this player
+2566	NO MUSIC INSTALLED
+2567	NO SELECTION
+2568	NO TITAN
+2569	No titan
+2570	No track playing
+2571	NOT READY
+2572	NOW PLAYING
+2573	Nuclear warhead
+2574	OFFLINE
+2575	One per player. It walks out at the start and cannot be rebuilt.
+2576	ONLINE
+2577	PAUSED
+2578	PERFORMANCE
+2579	Picked in the lobby (TITAN column): one per player, walks out at the start, cannot be rebuilt
+2580	Picked when the game starts
+2581	Plants demolition charges
+2582	Point defence vs missiles
+2583	POWER OUTPUT
+2584	POWER USAGE
+2585	Produces { $p0 }
+2586	PROJECT X  //  CLASSIFIED WAR ARCHIVE
+2587	PROJECT X · ORIGINAL SOUNDTRACK
+2588	Provides the radar minimap
+2589	RANDOM
+2590	RANGE { $p0 }
+2591	RANGE
+2592	Refines ore into credits
+2593	Relays and amplifies prism beams
+2594	Reloads its paratroopers on its pad in { $p0 } s, paying their price
+2595	Repairs bridges
+2596	Repairs docked vehicles
+2597	Repeat track: off
+2598	Repeat track: on
+2599	REPLAY
+2600	REQUIRES
+2602	Rocket
+2604	Rotary-wing aircraft
+2606	SCORE
+2607	Seismic shockwave (self-destructs)
+2608	Select a unit or structure
+2609	SELECT NATION
+2610	SELECTED UNITS ({ $p0 })
+2611	Self-repairs over time
+2613	Shoot and scoot
+2614	Shoots down { $p0 }
+2615	Shreds missiles aimed at it, { $p0 }% per burst
+2616	Shuffle: off
+2617	Shuffle: on
+2618	Small arms
+2619	SOUND IS MUTED
+2620	SPECTATING · { $p0 }
+2621	SPECTATING
+2622	SPEED
+2623	STANDING BY
+2624	Stealth: invisible when idle
+2625	STOPPED
+2626	Stores credits
+2629	STRUCTURE
+2630	STRUCTURES
+2632	Submerges out of sight
+2633	SUPPORT
+2634	Support: no direct damage
+2635	SURPRISE
+2636	Surprise
+2637	Swims, faster in water than on land
+2639	Target marker
+2640	Teleports short distances
+2641	THE UNION
+2642	THE VANGUARD
+2643	TITAN
+2644	to see its details.
+2645	Torpedo
+2646	TRACK { $p0 } / { $p1 } · { $p2 }
+2647	Tramples infantry underfoot: they cannot dodge
+2648	Transports { $p0 } soldiers
+2649	Union
+2650	Unit
+2651	Unmute music
+2652	Vanguard
+2653	VEHICLES
+2654	VICTORIOUS
+2655	VICTORY · { $p0 }
+2656	VICTORY
+2657	VISION
+2658	VTOL: hovers and lands anywhere
+2661	YOU
+2662	Valuable Minerals
+2663	{ $units ->\n[one] Selected one unit across map.\n*[other] Selected { $units } units across map.\n}
+2664	{ $units ->\n[one] Selected one unit across screen.\n*[other] Selected { $units } units across screen.\n}
+2665	ON HOLD
+2666	READY

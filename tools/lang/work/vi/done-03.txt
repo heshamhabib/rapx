@@ -1,0 +1,300 @@
+600	Xem Video Giới thiệu
+601	Dừng Video Giới thiệu
+602	Đổi Bản đồ
+603	Tạo
+604	TỐI ĐA
+605	Chơi
+608	Phòng thủ
+610	Hải quân
+612	Đăng xuất
+613	Xác nhận
+614	Khởi động lại
+615	Đặt Điểm tập kết
+616	Xem
+617	Thử lại
+618	Thử Cài đặt lại
+619	Thử Tìm kiếm lại
+620	Tư thế Tấn công Bất kỳ
+621	Đặt các đơn vị đã chọn vào tư thế Tấn công Bất kỳ:\n- Đơn vị sẽ tấn công đơn vị và công trình địch ngay khi nhìn thấy\n- Đơn vị sẽ truy đuổi kẻ tấn công khắp chiến trường
+622	Tư thế Phòng thủ
+623	Đặt các đơn vị đã chọn vào tư thế Phòng thủ:\n- Đơn vị sẽ tấn công đơn vị địch ngay khi nhìn thấy\n- Đơn vị sẽ không di chuyển hoặc truy đuổi kẻ địch
+624	Tư thế Ngừng bắn
+625	Đặt các đơn vị đã chọn vào tư thế Ngừng bắn:\n- Đơn vị sẽ không bắn vào kẻ địch\n- Đơn vị sẽ không di chuyển hoặc truy đuổi kẻ địch
+626	Tư thế Bắn trả
+627	Đặt các đơn vị đã chọn vào tư thế Bắn trả:\n- Đơn vị sẽ đáp trả kẻ địch tấn công mình\n- Đơn vị sẽ không di chuyển hoặc truy đuổi kẻ địch
+628	Đội
+629	Đặt Tín hiệu
+630	Về nhà: căn giữa màn hình vào Xưởng Xây dựng của bạn
+631	Tắt điện
+632	Sửa chữa
+633	Bán
+634	Bỏ phiếu đuổi người chơi này
+635	Nhanh và rẻ, lý tưởng để trinh sát, quấy rối xe tải quặng và bắt gọn xe hạng nhẹ. Nó thua thiệt khi đối đầu trực diện với xe tăng hạng nặng hơn.
+636	Xe tăng nhẹ
+637	Xe tăng chủ lực của Liên minh: cân bằng tốt giữa tốc độ, giáp và hỏa lực. Tập hợp chúng cùng lính rocket và Pháo Flak Cơ động để có một đội quân hoàn chỉnh.
+638	Xe tăng chủ lực
+639	Xe tăng chủ lực của Tiên phong với pháo đôi hạng nặng. Chậm hơn xe tăng Liên minh nhưng gây sát thương mạnh hơn nhiều. Thắng thế trong các trận đấu tăng trực diện.
+640	Xe tăng hạng nặng
+641	Mammoth: pháo đôi để diệt xe tăng, cụm tên lửa để chống máy bay và bộ binh, giáp dày và tự sửa chữa khi bị hư hại. Chậm và đắt tiền, nhưng có thể húc đổ cả tường bê tông.
+642	Xe tăng siêu nặng
+643	Một sân bay lớn hơn với chỗ đậu cho 6 máy bay. Mở rộng phi đội của bạn mà không cần dàn trải nhiều bệ đỗ khắp căn cứ.
+644	Căn cứ không quân lớn
+645	Căn cứ của các lữ đoàn lính dù: doanh trại, nhà xếp dù và ba bệ đỗ cho vận tải cơ hạng nặng, mỗi chiếc chở 40 lính đến bất kỳ đâu trên bản đồ.
+646	Căn cứ không vận, 3 bệ đỗ vận tải cơ
+647	Một căn cứ không lực đầy đủ với chỗ đậu cho 8 máy bay, dành cho một phi đội tấn công hùng hậu.
+648	Căn cứ không lực
+649	Sản xuất và nạp lại máy bay phản lực, với chỗ đậu cho 4 máy bay. Nó cũng mở khóa sức mạnh hỗ trợ Máy bay Trinh sát và Lính dù. Tiêm kích quay về đây để nạp đạn sau mỗi phi vụ.
+650	Căn cứ không quân
+651	Một khẩu pháo flak xé nát máy bay, drone và tên lửa hành trình bay tới ở tầm gần. Nó cần điện. Bố trí quanh căn cứ để chống máy bay ném bom.
+652	Phòng không tầm gần
+653	Chở một toán bộ binh dưới lớp giáp bảo vệ và hỗ trợ họ bằng súng máy. Thả kỹ sư vào căn cứ địch hoặc đưa nhanh lính rocket ra tiền tuyến.
+654	Xe vận tải bọc thép
+655	Sản lượng điện gấp đôi một Nhà máy Điện trên diện tích lớn hơn. Mục tiêu hàng đầu của máy bay ném bom địch, nên hãy bảo vệ nó bằng phòng không.
+656	Phát điện công suất lớn
+657	Lựu pháo tầm xa nã đạn vào công trình phòng thủ và bộ binh từ ngoài tầm phản công của chúng. Rất yếu ớt ở cự ly gần, nên luôn cần có lực lượng hộ tống.
+658	Bắn hạ vệ tinh địch bay ngang qua trong phạm vi 12 ô. Nó không thể bắn trúng quân mặt đất hoặc máy bay. Tuyến phòng thủ duy nhất của bạn trước mạng lưới laser quỹ đạo.
+659	Chống vệ tinh
+660	Trung tâm nghiên cứu của Liên minh. Nó mở khóa những vũ khí tiên tiến nhất của Liên minh và phóng Vệ tinh GPS, hiện lộ toàn bộ bản đồ.
+661	Nghiên cứu cao cấp
+662	Merlin: trực thăng ba động cơ tốc độ cao, chở mười lính đi quãng đường xa. Chỉ Ấn Độ.
+663	Một chiếc Flying Fortress bị thu giữ, giống những chiếc phi đội đặc biệt thời chiến dùng để thả điệp viên sau phòng tuyến địch.
+664	Chiếc Superfortress mà Tiên phong sao chép từng con tán rivet, khoang bom giờ đây chất đầy lính dù.
+665	Một chiếc thủy phi cơ khổng lồ của thời đại clipper, chở lính dù của Ý từ các căn cứ thủy phi cơ.
+666	Một chiếc Stratofortress đã tháo bỏ khoang bom và cải tạo để thả một toán 40 lính dù.
+667	Doanh trại Tiên phong: huấn luyện lính nghĩa vụ, lính lựu đạn, lính phun lửa, Lính Tesla và các bộ giáp trợ lực Vệ binh Sắt. Nhiều doanh trại sẽ tăng tốc huấn luyện.
+668	Những khẩu pháo lớn nhất trên biển: tháp pháo ba nòng 16 inch ở mũi và đuôi tàu, nã đạn vào bờ biển từ ngoài tầm phản công của hầu hết công trình phòng thủ. Chậm và rất khó đánh chìm, nhưng mù trước tàu ngầm.
+669	Robot giá rẻ của Liên minh trang bị súng blaster, được sản xuất hàng loạt. Dùng chúng để áp đảo bộ binh địch và hứng hỏa lực thay quân khác.
+670	Robot chiến đấu
+671	Một sân bay ném bom được canh gác chặt chẽ, có một bệ đỗ khổng lồ, một nhà chứa máy bay và một hầm bom bọc thép. Nó là nơi đồn trú của chiếc AB-35 Longwing và nạp năng lượng cho Đòn Fatman khi máy bay ném bom còn sống. Chỉ Hoa Kỳ, mỗi người chơi 1 cái.
+672	Sân bay siêu vũ khí
+673	Lớp THAAD. Nó đánh chặn tên lửa đạn đạo và siêu vượt âm ở độ cao và khoảng cách lớn, là câu trả lời cho các đòn tấn công bằng tên lửa đạn đạo (còn rocket thì để SAM Tầm trung xử lý). Cần Mái vòm Radar để đạt tầm bắn tối đa.
+674	Phòng thủ tên lửa đạn đạo
+675	Những bức tường bê tông chặn đứng mọi đơn vị mặt đất và cản hỏa lực địch. Chỉ Xe tăng Mammoth mới có thể húc đổ chúng. Dùng chúng để bảo vệ nhà máy điện và nhà máy tinh luyện.
+676	Rào chắn hạng nặng
+677	Xe bọc thép chở quân tám bánh với pháo tự động trên tháp pháo: di chuyển nhanh trên đường, thả 5 bộ binh ở tiền tuyến và tiếp tục khai hỏa. Chỉ Nga.
+678	Hercules: cỗ máy bốn động cơ chủ lực của lực lượng không vận từ Hoa Kỳ đến Pháp, Nhật Bản, Hàn Quốc, Thổ Nhĩ Kỳ và Pakistan.
+679	Chiếc phản lực thân dài đã chuyên chở các sư đoàn không vận của Liên minh suốt nhiều thập kỷ.
+680	Máy bay vận tải chiến lược của Không quân Hoàng gia Anh: bốn động cơ turbofan, khoang hàng khổng lồ và thả một toán 40 lính qua cửa hông.
+681	Một chiến hạm rất chậm với những khẩu pháo tầm xa khổng lồ, nã đạn vào căn cứ ven biển từ ngoài khơi xa. Hộ tống nó bằng khu trục hạm để chống tàu ngầm.
+682	Một tuần dương hạm tên lửa dẫn đường: tên lửa Tomahawk vươn tới mục tiêu sâu trong đất liền, trong khi SAM và pháo cận chiến của nó bảo vệ hạm đội trước các cuộc tấn công từ trên không. Chỉ Hoa Kỳ.
+683	Tuần dương hạm tên lửa
+684	Một bệ phóng bánh lốp hạng nặng với loạt 6 rocket. Triển khai để chuyển sang bắn một tên lửa dẫn đường hạng nặng với tầm bắn xa hơn.
+685	Bệ phóng rocket (Hàn Quốc)
+686	Kẻ săn mồi lâu đời nhất của sông Nile, được Ai Cập nuôi dưỡng và huấn luyện. Nó đi trên cạn, bơi nhanh hơn đi bộ, và nằm im dưới nước chỉ để lộ đôi mắt, không ai thấy được cho đến khi nó ra đòn. Một cú lao tới và một cú cắn là đủ để hạ gục một người lính hay một con chó; rồi nó dừng lại để nuốt chửng con mồi. Lớp da đầy vảy của nó chống chịu được đạn súng trường. Chỉ Ai Cập.
+687	Kẻ săn mồi phục kích
+688	Bắn tên lửa đối đất và có thể dịch chuyển tức thời đến bất kỳ đâu trong tầm. Dịch chuyển ra sau phòng tuyến địch để tấn công pháo binh và nhà máy tinh luyện, rồi dịch chuyển đi ngay.
+689	Xe tăng Chrono
+690	Một tàu sân bay lớp Essex từ Thế chiến thứ hai: một căn cứ không quân nổi với bệ phóng SAM để phòng thủ. Phóng và nạp lại đạn cho máy bay phản lực ngay trên biển.
+691	Tàu sân bay hạm đội
+692	Tàu sân bay chạy năng lượng hạt nhân đầu tiên, lớp Enterprise: sàn đáp lớn hơn, thân tàu chắc chắn hơn và nhiều bệ phóng SAM hơn.
+693	Tàu sân bay chiến đấu
+694	Một siêu tàu sân bay hạt nhân lớp Nimitz, kỳ hạm giáp dày của hạm đội.
+695	Một tàu sân bay lớp Gerald R. Ford với hệ thống phòng thủ hiện đại nhất. Chiến hạm mạnh nhất đang hoạt động.
+696	Siêu tàu sân bay thế hệ mới
+697	Fujian: siêu tàu sân bay mới nhất của Trung Quốc, trang bị máy phóng điện từ.
+698	Siêu tàu sân bay (Trung Quốc)
+699	Mistral: tàu sân bay trực thăng đổ bộ. Rẻ và đóng nhanh.
+700	Tàu sân bay trực thăng (Ai Cập)
+701	Charles de Gaulle, tàu sân bay chạy năng lượng hạt nhân của Pháp và là niềm tự hào của Hải quân Pháp.
+702	Tàu sân bay (Pháp)
+703	Tàu sân bay Queen Elizabeth của Hải quân Hoàng gia Anh, với mũi tàu kiểu ski-jump và hai đảo chỉ huy.
+704	Tàu sân bay (Anh)
+705	Vikrant: tàu sân bay tự đóng trong nước của Ấn Độ với mũi tàu kiểu ski-jump.
+706	Tàu sân bay (Ấn Độ)
+707	Bagheri: một tàu buôn được hoán cải với sàn đáp cho drone. Rẻ, nhưng mỏng manh.
+708	Tàu sân bay drone (Iran)
+709	Cavour: tàu sân bay hạng nhẹ của Ý dành cho máy bay cất cánh thẳng đứng và trực thăng.
+710	Tàu sân bay hạng nhẹ (Ý)
+711	Kaga: khu trục hạm trực thăng được cải tạo thành tàu sân bay hạng nhẹ cho tiêm kích cất cánh thẳng đứng.
+712	Tàu sân bay hạng nhẹ (Nhật Bản)
+713	Kuznetsov: tuần dương hạm mang máy bay hạng nặng với mũi tàu kiểu ski-jump và hệ thống phòng không SAM mạnh.
+714	Tàu sân bay (Nga)
+715	Kiev: nửa tàu sân bay, nửa tuần dương hạm, với sàn đáp ở đuôi tàu và bệ phóng tên lửa ở mũi tàu.
+716	Tuần dương hạm hàng không
+717	Anadolu: tàu đổ bộ được chuyển đổi thành tàu sân bay drone, phóng ra bầy drone tấn công.
+718	Tàu sân bay drone (Thổ Nhĩ Kỳ)
+719	Một cyborg bọc thép của Liên minh trang bị súng ngắn tự động hạng nặng. Nó không thể bị xe tăng cán và không bao giờ cần nấp. Một lính giữ tuyến kiên cường.
+720	Bộ binh cyborg
+721	Một chiến hạm đa năng tốc độ cao, phát hiện tàu ngầm và giao chiến với tàu chiến, xe cơ giới và máy bay. Xương sống của hạm đội Liên minh.
+722	Nhanh và rẻ, nó giết bộ binh chỉ bằng một cú cắn và đánh hơi ra gián điệp cải trang. Giữ một cặp ở nhà làm thợ săn gián điệp.
+723	Chó tấn công
+724	Bật radar thu nhỏ trên bản đồ và mở khóa hầu hết đơn vị cùng công trình phòng thủ tầm trung. Nó cũng giúp SAM tầm xa của bạn đạt tầm bắn tối đa. Mất nó sẽ khiến bạn mù thông tin, nên hãy bảo vệ nó cẩn thận.
+725	Tình báo
+726	Một chiếc xe tải mang đầu đạn hạt nhân đã kích hoạt với lớp giáp mỏng như giấy. Lái nó vào căn cứ địch và kích nổ. Nó sẽ phá hủy mọi thứ xung quanh, kể cả đơn vị của chính bạn.
+727	Xe bom hạt nhân
+728	Xương sống của mọi đội quân: rẻ, huấn luyện nhanh và hiệu quả trước bộ binh khác. Đưa họ vào đồn trú trong lô cốt, hoặc tập hợp số đông để che chắn xe tăng của bạn khỏi lính rocket.
+729	Bộ binh súng trường
+730	Ném lựu đạn gây sát thương diện rộng lên nhóm bộ binh và làm hư hại công trình. Lựu đạn của họ có thể gây hại cho đơn vị phe mình ở gần, nên hãy giữ họ phía sau tiền tuyến.
+731	Rocket vác vai bắn trúng cả xe bọc thép lẫn máy bay. Giá rẻ, là câu trả lời của bộ binh trước xe tăng và trực thăng, nhưng dễ trở thành mồi ngon cho súng máy.
+732	Chống tăng / phòng không
+733	Súng phun lửa tầm gần thiêu cháy bộ binh đang ẩn nấp và đốt cháy công trình. Mạnh khi dọn sạch boong-ke và tấn công căn cứ.
+734	Lính phun lửa
+735	Chiếm công trình địch, sửa chữa công trình của bạn và sửa cầu bị hỏng. Hộ tống họ vào căn cứ địch và chiếm một Nhà máy Chiến xa hoặc Trung tâm Công nghệ để đánh cắp công nghệ.
+736	Tanya: hai súng ngắn hạ gục bộ binh chỉ bằng một phát, và thuốc nổ C4 san phẳng bất kỳ công trình nào cô tiếp cận được. Chỉ có thể triển khai 1 người. Giữ cô tránh xa xe tăng và chó.
+737	Biệt kích tinh nhuệ
+738	Một khung thân Boeing 707 loại mà không quân Iran đã sử dụng suốt nửa thế kỷ, được cải tạo để chở quân.
+739	Voi chiến bọc thép của Ấn Độ: một pháo đài di động trên bốn chân thép, với pháo đôi hạng nặng trên lưng bắn hết loạt đạn này đến loạt khác. Binh lính không thể né nó như né xe tăng: bất cứ ai ở dưới chân nó đều bị giẫm nát. Chậm và tốn kém, nhưng rất khó ngăn chặn. Chỉ Ấn Độ.
+740	Cỗ máy voi chiến
+741	Một cỗ máy hai chân hạng nặng của Liên minh. Pháo tự động đôi trên hai tay xé nát bộ binh và cụm rocket trên vai xuyên phá giáp. Một pháo đài di động để phá vỡ phòng tuyến địch.
+742	Cỗ máy tấn công
+743	Trái tim của mọi căn cứ. Nó xây dựng mọi công trình khác và xác định bán kính xây dựng của bạn, nên mất nó sẽ ngừng mọi sự mở rộng. Hãy giữ nó sâu trong vòng phòng thủ, và nếu phòng chờ cho phép, hãy gấp nó lại thành MCV để di chuyển căn cứ.
+744	Chỉ huy căn cứ
+745	Tầm bắn xa với giá rẻ, nhưng thiếu chính xác. Triển khai để chuyển sang dùng 2 drone tấn công Shard-136 với tầm bắn rất xa.
+746	Bệ phóng rocket (Iran)
+747	Rocket dẫn đường tầm xa, chính xác cao trước cả công trình, bộ binh lẫn xe cơ giới. Nạp đạn chậm.
+748	Bệ phóng rocket (Pakistan)
+749	Dây thép gai chặn bộ binh và xe hạng nhẹ. Xe tăng có thể cán qua.
+750	Sửa chữa xe cơ giới lái vào bệ đỗ của nó, có thu phí. Nó cũng mở khóa xe cơ giới cao cấp. Đặt nó giữa Nhà máy Chiến xa và tiền tuyến để xe tăng hư hại nhanh chóng quay lại chiến đấu.
+751	Sửa chữa dã chiến
+752	Một khẩu pháo flak đôi hạng nặng trên bệ xoay. Loạt đạn của nó gây sát thương cho mọi máy bay lân cận, và có thể hạ gục drone cùng tên lửa hành trình.
+753	Phòng thủ phòng không
+754	Một khẩu pháo flak gắn trên xe tải, xé nát máy bay, drone và bộ binh. Luôn mang theo một chiếc cùng mỗi đoàn xe bọc thép.
+755	Phòng không cơ động
+756	Tưới nhiên liệu cháy lên bất cứ ai đến gần. Nó tiêu diệt bộ binh và xe hạng nhẹ, nhưng tầm bắn ngắn và không thể chạm tới xe tăng từ xa.
+757	Tháp chống bộ binh
+758	Bao phủ căn cứ của bạn trong màn sương để địch không thể thấy bên trong. Trinh sát và máy bay gián điệp chỉ hiện lộ nó trong chốc lát. Nó cần điện.
+759	Phản gián
+760	Một ngọn núi vảy lội ra từ biển khơi. Khi các tấm vảy lưng của nó phát sáng màu hồng, mọi thứ phía trước sắp bị thiêu rụi: hơi thở nguyên tử của nó vươn xa hơn hầu hết pháo binh và hạ gục cả máy bay trên không. Xe tăng đến gần sẽ bị giẫm nát. Được chọn trong phòng chờ, mỗi người chơi 1 con, và khi nó gục ngã thì sẽ mất vĩnh viễn.
+761	Titan: siêu vũ khí di động
+762	Một bệ phóng Grad cũ: rẻ nhưng thiếu chính xác. Tập hợp số đông và trút rocket ngập một khu vực.
+763	Bệ phóng rocket (Cuba)
+764	Một tháp pháo xoay xuyên thủng xe tăng. Rẻ và đáng tin cậy, nhưng yếu trước bộ binh đông đảo và bất lực trước máy bay.
+765	Tháp súng chống giáp
+766	Một xe tải tám bánh hạng nặng mang mô-đun chiến đấu xoay: hai cụm tên lửa hồng ngoại nhỏ và một khẩu pháo 35 mm ở giữa. Nó bắn ra bốn tên lửa cùng lúc, mỗi quả xoáy chặt trong không trung, và ngòi nổ cận đích của chúng bùng lên thành những đám khói flak đen. Các quốc gia Tiên phong trừ Ấn Độ.
+767	Phòng không cơ động
+768	Một bệ phóng bánh xích bắn loạt 12 rocket lớn trên diện rộng. Mạnh trước bộ binh và căn cứ, nhưng chậm.
+769	Bệ phóng rocket (Anh)
+770	Thu thập quặng và đá quý rồi mang về nhà máy tinh luyện của bạn. Giáp dày, nhưng không vũ trang. Hãy bảo vệ xe tải của bạn: chúng chính là nguồn thu của bạn.
+771	Xe tải quặng
+772	Một lô cốt được ngụy trang kín đáo. Địch không thấy nó cho đến khi đến gần, nên đây là điểm phục kích hoàn hảo trên tuyến đường tấn công tiềm năng.
+773	Boong-ke ngụy trang
+774	Một tuần dương hạm với sàn đáp trực thăng ở đuôi tàu: tên lửa và súng gatling chống máy bay, bom chìm và sonar chống tàu ngầm.
+775	Tuần dương hạm trực thăng
+776	Longbow: trực thăng vũ trang tên lửa săn lùng xe tăng, công trình và máy bay khác. Đánh rồi rút, sau đó quay về Sân đỗ Trực thăng để nạp lại đạn.
+777	Trực thăng tấn công
+778	Một bệ phóng bánh lốp tốc độ cao với rocket dẫn đường tầm xa. Nó bắn rồi chạy, rời đi ngay sau mỗi lần phóng, nên hỏa lực phản công thường chỉ trúng vào khoảng không.
+779	Bệ phóng rocket (Hoa Kỳ)
+780	Hind: trực thăng vũ trang hạng nặng với súng máy quét sạch bộ binh và xe hạng nhẹ.
+781	Một bệ phóng rocket đa nòng trên bánh lốp với dàn ống phóng kín. Nó bắn ra 30 rocket nhẹ thành một loạt dài trùm kín khu vực mục tiêu, rồi nạp lại đạn.
+782	Xe rocket
+783	Cỗ máy chủ lực của Lục quân Hoa Kỳ: bọc thép, nhanh nhẹn, với súng .50 cal trên nóc và chỗ cho một tổ 4 lính. Chỉ Hoa Kỳ.
+784	Xe trinh sát
+785	Sản xuất và nạp lại đạn cho trực thăng của cả hai phe: Chinook, Black Hawk và Longbow của Liên minh, Mi-26, Hind, Mi-35 và Ka-52 của Tiên phong. Mỗi bệ đỗ chỉ phục vụ một trực thăng tại một thời điểm, nên hãy xây thêm một cái cho mỗi trực thăng vũ trang bạn định triển khai.
+786	Căn cứ trực thăng
+787	Candid: máy bay vận tải phản lực hạng nặng của Ukraina, Nga và Ấn Độ. Nó thả một toán 40 lính dù sau phòng tuyến địch và giữ tiêm kích địch tránh xa đuôi bằng súng đôi 23 mm.
+788	Vận tải cơ đường không, 40 lính dù
+789	Một lính Tiên phong mặc bộ giáp trợ lực với súng máy hạng nặng dùng băng đạn dây. Xe tăng không thể cán nó, và nó quét sạch bộ binh.
+790	Bộ binh giáp trợ lực
+791	Khiến một nhóm đơn vị hoặc công trình bất tử trong một thời gian ngắn. Tính toán thời điểm cùng một đợt tấn công bằng xe tăng để mũi nhọn tiến công trở nên bất khả xâm phạm.
+792	Ranger: xe trinh sát tốc độ cao với súng máy, chở theo một lính. Dùng nó để trinh sát, truy đuổi bộ binh và săn xe tải quặng.
+793	Xe trinh sát
+794	Thunderhog: một "xe tăng bay" được chế tạo quanh một khẩu pháo quay cỡ lớn. Giáp dày, chậm và gây chết chóc cho xe bọc thép. Hãy giữ tiêm kích tránh xa nó.
+795	Cường kích mặt đất, cấp 3
+796	An-225 Dreamer: chiếc máy bay lớn nhất từng được chế tạo. Nó chở bộ binh khắp bản đồ. Không vũ trang.
+797	Vận tải hạng nặng, cấp 4
+798	Wraith: máy bay ném bom tàng hình kiểu cánh bay, mang tải trọng bom khổng lồ sâu sau phòng tuyến địch.
+799	Máy bay ném bom tàng hình, cấp 5
+800	Stratoforce: máy bay ném bom rải thảm khổng lồ, san phẳng cả một khu vực căn cứ. Hãy hộ tống nó, vì nó không thể tự vệ trước tiêm kích địch.
+801	Máy bay ném bom hạng nặng, cấp 2
+802	Starflash: máy bay đánh chặn mũi nhọn thời Chiến tranh Lạnh, được chế tạo cho tốc độ thuần túy. Tên lửa của nó gây sát thương mạnh lên công trình và xe cơ giới, nhưng giáp rất mỏng.
+803	Máy bay đánh chặn, cấp 2
+804	Nightjar: tiêm kích tàng hình nhiều mặt, len lỏi qua hệ thống phòng không để tấn công các mục tiêu giá trị cao.
+805	Tấn công tàng hình, cấp 3
+806	Bobcat: máy bay bảo vệ hạm đội cánh cụp xòe với tên lửa tầm xa. Chỉ được Hoa Kỳ và Iran sử dụng.
+807	Máy bay đánh chặn, cấp 3
+808	Fighting Kestrel: tiêm kích đa năng nhẹ, nhanh nhẹn. Hiệu quả cao khi tấn công xe cơ giới và công trình.
+809	Tiêm kích đa năng, cấp 3
+810	Zero Viper: tiêm kích tấn công tự chế tạo của Nhật Bản, một biến thể Falcon kéo dài với cánh lớn hơn, chuyên để săn tàu chiến ngoài khơi xa.
+811	Tiêm kích tấn công hải quân, cấp 4
+812	Raptorex: tiêm kích tàng hình thế hệ thứ năm và là máy bay chiếm ưu thế trên không tốt nhất của Liên minh. Nhanh, khó bị phát hiện và chết chóc.
+813	Tiêm kích tàng hình, cấp 5
+814	Spectre II: tiêm kích hai động cơ bền bỉ, được nhiều quốc gia sử dụng hơn bất kỳ máy bay phản lực nào khác trong trò chơi. Sức mạnh tấn công đáng tin cậy với mức giá hợp lý.
+815	Một máy bay radar không vũ trang che giấu mặt đất bên dưới nó khỏi tầm nhìn địch. Ra lệnh bay đến một khu vực để nó bay vòng tại đó. Dùng nó để yểm trợ một đợt tấn công bằng xe tăng.
+816	Máy tạo vùng mù bay
+817	Grom-K: drone chiến đấu không người lái của Nga. Rẻ, mỏng manh và nguy hiểm với bộ binh. Mỗi người chơi 1 chiếc.
+818	Harrow cất cánh thẳng đứng từ những bệ đỗ nhỏ và sàn tàu sân bay, gây sát thương mạnh lên xe cơ giới.
+819	Máy bay cất cánh thẳng đứng VTOL, cấp 3
+820	Greif: máy bay ném bom bốn động cơ thời chiến của Đức, các cặp động cơ dẫn động hai cánh quạt lớn, vẫn mang tải trọng bom nặng nề.
+821	Máy bay ném bom hạng nặng, cấp 0
+822	Nachtflügel: máy bay ném bom phản lực kiểu cánh bay của Đức, ra đời từ thiết kế thời chiến của anh em nhà Horten và cuối cùng được chế tạo với động cơ hiện đại cùng tải trọng bom dẫn đường hạng nặng.
+823	JX-20 Jade Dragon: tiêm kích tàng hình thế hệ thứ năm của Trung Quốc, tầm bắn xa và khó bị phát hiện.
+824	L-39U Albatross: máy bay huấn luyện tấn công hạng nhẹ, hiệu quả bất ngờ trước bộ binh, giáp nhẹ và drone.
+825	Cường kích hạng nhẹ, cấp 2
+826	LaV-11 Fang: tiêm kích động cơ hình sao bền bỉ từ thập niên 1940. Rẻ và nhanh để triển khai số đông.
+827	Mirago 2000: tiêm kích đa năng cánh tam giác thanh thoát, được nhiều quốc gia sử dụng.
+828	MiK-21 Fishbone: máy bay phản lực được sử dụng rộng rãi nhất trong khối Tiên phong. Đơn giản, nhanh và rẻ.
+829	Tiêm kích phản lực, cấp 2
+830	MiK-23 Flintlock: tiêm kích-ném bom cánh cụp xòe, tấn công nhanh và rút nhanh.
+831	MiK-25 Foxbane: máy bay đánh chặn tầm cao với tốc độ đáng sợ. Rất ít thứ có thể đuổi kịp nó.
+832	MiK-3 Strela: tiêm kích cánh quạt thập niên 1940. Rẻ và đóng nhanh, hiệu quả khi quét bộ binh và xe hạng nhẹ.
+833	Tiêm kích động cơ piston, cấp 0
+834	Qahir-X: tiêm kích tàng hình thử nghiệm của Iran. Mỗi người chơi 1 chiếc.
+835	Nguyên mẫu tàng hình
+836	Rafal F4: tiêm kích đa nhiệm cánh tam giác-canard hiện đại, mạnh cả khi tấn công lẫn không chiến.
+837	Saeqa: tiêm kích tự chế tạo hai đuôi của Iran, một máy bay tấn công đáng gờm trước xe cơ giới và công trình.
+838	Tiêm kích phản lực, cấp 3
+839	Sea Vixa: tiêm kích tấn công hải quân hai thân đuôi, chuyên đánh chìm tàu chiến.
+840	Tấn công hải quân, cấp 2
+841	Blackwing: máy bay trinh sát phản lực tốc độ cao, rất khó bị bắt kịp. Nó hiện lộ căn cứ địch trên đường bay qua.
+842	Trinh sát, cấp 3
+843	Sk-25 Rook: máy bay yểm trợ cận chiến bọc thép, giáng đòn mạnh vào xe tăng và xe cơ giới ở độ cao thấp.
+844	Sk-27 Flankard: tiêm kích hai động cơ cỡ lớn với tầm bay xa và tải trọng vũ khí nặng.
+845	Chiếm ưu thế trên không, cấp 3
+846	Flankard-M: biến thể Flanker hai chỗ ngồi vừa không chiến vừa tấn công, được Tiên phong, Nga, Ấn Độ và Trung Quốc sử dụng.
+847	Tiêm kích đa năng, cấp 4
+848	Sk-35 Flankard-E: khả năng siêu cơ động nhờ vectơ lực đẩy, tiêm kích chủ lực tốt nhất của Tiên phong.
+849	Sk-47 Berkov: tiêm kích tàng hình cánh vút ngược thử nghiệm. Mỗi người chơi 1 chiếc.
+850	Drone Bầy đàn của Thổ Nhĩ Kỳ: những kẻ tấn công không người lái giá rẻ, áp đảo bộ binh và giáp nhẹ bằng số đông.
+851	Bầy drone, cấp 3
+852	Tv-160 Swanwing: máy bay ném bom siêu thanh cánh cụp xòe của Nga, mang tải trọng khổng lồ với tốc độ cao.
+853	Máy bay ném bom chiến lược, cấp 3
+854	Typhon: tiêm kích cánh tam giác-canard của châu Âu, cơ động cao và tải trọng tấn công nặng.
+855	Kestrel tiltrotor cất cánh như trực thăng và bay như máy bay, chở bộ binh sâu sau phòng tuyến địch. Không vũ trang.
+856	Vận tải cánh xoay, cấp 4
+857	Volcan: máy bay ném bom cánh tam giác kiểu V, vũ khí tầm xa chủ lực của Anh để tấn công căn cứ.
+858	Stingray: drone chiến đấu không người lái. Rẻ và mỏng manh, nhưng quét bộ binh và giáp nhẹ mà không cần mạo hiểm tính mạng phi công. Mỗi người chơi 1 chiếc.
+859	Nguyên mẫu drone chiến đấu
+860	Yk-141 Freestyler: nguyên mẫu máy bay cất cánh thẳng đứng siêu thanh, tấn công xe cơ giới. Mỗi người chơi 1 chiếc.
+861	Nguyên mẫu VTOL
+862	Black Recluse: tiêm kích tàng hình thử nghiệm. Chỉ mỗi người chơi 1 chiếc, một át chủ bài hiếm có và chết chóc.
+863	Tiêm kích nguyên mẫu
+864	Một khí cầu bọc thép với tải trọng bom khổng lồ. Rất chậm, nhưng một chiếc Zeppelin chở đầy bom bay trên căn cứ sẽ gây tàn phá khủng khiếp. Hãy bắn hạ nó sớm.
+865	Khí cầu ném bom
+866	Alligator: hai cánh quạt đồng trục và không có cánh quạt đuôi giúp nó nhanh và cơ động. Tên lửa chống tăng và pháo 30 mm săn lùng xe bọc thép. Câu trả lời của Tiên phong trước Longbow.
+867	Rocket 300 mm hạng nặng với tầm bắn rất xa, nghiền nát công trình và các nhóm đơn vị. Nạp đạn chậm.
+868	Bệ phóng rocket (Thổ Nhĩ Kỳ)
+869	Huấn luyện chó tấn công: những thợ săn nhanh nhẹn, giá rẻ, giết bộ binh chỉ bằng một cú cắn và đánh hơi ra gián điệp cải trang.
+870	Huấn luyện chó
+871	Con khỉ đột khổng lồ băng qua cả tường thành lẫn đoàn xe tăng. Ở cự ly gần, cú đấm búa song thủ của nó san phẳng mọi thứ; ở xa hơn, nó xé toạc đá tảng và ném đi. Máy bay phản lực và trực thăng bay ngang qua nó cũng không an toàn: nó nhảy vọt lên không trung và đập chúng rơi chỉ bằng một cú. Nhanh hơn Godzilla, nhưng mặt nước ngăn được nó. Được chọn trong phòng chờ, mỗi người chơi 1 con, và khi nó gục ngã thì sẽ mất vĩnh viễn.
+872	Titan: khỉ đột khổng lồ
+873	Một thân xe tăng hạng nặng với pháo 152 mm, đặt trên hai chân bọc thép thay vì bánh xích. Chậm, nhưng nó bước qua tường thành, chiến hào và bất cứ ai cản đường.
+874	Một tàu tấn công sàn phẳng chở cả một nhóm đổ bộ lên bãi biển và chống trả máy bay trên đường đi. Chỉ Hoa Kỳ.
+875	Tàu đổ bộ tấn công
+876	Chế tạo và phóng vệ tinh từ tab Máy bay, tối đa 8 vệ tinh trên quỹ đạo. Cánh cửa dẫn đến mạng lưới laser quỹ đạo.
+877	Phóng vệ tinh
+878	Một bệ phóng bánh xích với rocket dẫn đường GPS. Chính xác cao, +50% sát thương trước công trình. Công cụ tốt nhất để phá vỡ hệ thống phòng thủ.
+879	Bệ phóng rocket (Pháp)
+880	Lớp Patriot / S-400. Nó chặn máy bay, tên lửa hành trình và tên lửa đạn đạo chiến thuật từ xa ngoài rìa căn cứ của bạn. Cần Mái vòm Radar để đạt tầm bắn tối đa.
+881	Phòng không tầm xa
+882	Lơ lửng cao trên bản đồ và bắn tia laser thẳng xuống kẻ địch bên dưới. Các vệ tinh trong phạm vi 12 ô liên kết thành mạng lưới giúp tăng cường tia laser. Chỉ trận địa ASAT mới có thể vươn tới nó.
+883	Vũ khí quỹ đạo
+884	Chở bộ binh và xe tăng qua mặt nước và đổ bộ lên bất kỳ bãi biển nào. Không vũ trang.
+885	Tàu đổ bộ
+886	Một xe bán xích với bốn súng máy hạng nặng trên bệ xoay. Rẻ và nhanh: nó xé nát trực thăng, máy bay bay thấp và bộ binh, nhưng xe tăng thì không hề hấn gì.
+887	Xe phòng không
+888	Một bệ phóng bánh xích với loạt 12 rocket. Triển khai để chuyển sang bắn rocket mìn, rải mìn chống tăng trên đường tiến quân của địch.
+889	Bệ phóng rocket (Đức)
+890	Triển khai thành Xưởng Xây dựng. Dùng nó để mở căn cứ thứ hai gần một mỏ quặng xa, hoặc để xây dựng lại sau thảm họa.
+891	Xây dựng cơ động
+892	Một xe phóng với các ống phóng dựng thẳng đứng. Mỗi tên lửa đánh chặn được khí nén đẩy ra, kích hoạt động cơ trên không rồi gập xuống nhắm vào mục tiêu, bắn những động cơ đẩy phụ nhỏ ở hai bên khi áp sát để đánh trúng trực diện. Nó có thể bắn theo mọi hướng mà không cần xoay bệ phóng, và cũng hạ gục được tên lửa hành trình lẫn tên lửa đạn đạo. Các quốc gia Liên minh.
+893	Sửa chữa xe cơ giới ngay tại chiến trường, giúp xe tăng của bạn tiếp tục chiến đấu dù ở xa Trạm Bảo dưỡng.
+894	Thợ máy dã chiến
+895	Hồi phục bộ binh lân cận ngay tại chiến trường. Luôn mang theo một người cùng mỗi nhóm bộ binh để các toán quân của bạn sống sót lâu hơn nhiều.
+896	Quân y dã chiến
+897	Bao phủ khu vực xung quanh nó trong màn sương. Lái nó theo cùng đội quân của bạn để địch không thể thấy đòn tấn công sắp tới.
+898	Máy tạo vùng mù cơ động
+899	Black Hawk: trực thăng vũ trang với súng máy đôi chống bộ binh và xe hạng nhẹ. Nạp lại đạn nhanh và rất hiệu quả khi dọn sạch bộ binh.
+900	Trực thăng tấn công
+901	Hip: trực thăng chủ lực của Tiên phong. Nó chở trọn một toán 8 lính ra tiền tuyến, với súng máy cửa giữ đầu địch cúi thấp tại bãi đáp.
+902	Trực thăng chở quân
+903	Halo: trực thăng lớn nhất từng được vận hành, cánh quạt tám lá nâng mười hai lính cùng lúc. Câu trả lời của Tiên phong trước Chinook. Không vũ trang, nên hãy đổ quân tránh xa khu vực phòng không.

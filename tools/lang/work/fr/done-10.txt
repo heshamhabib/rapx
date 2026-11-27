@@ -1,0 +1,200 @@
+1530	Sélectionner toutes les unités de combat
+1531	Installation actuelle
+1532	Sélectionner les unités par type
+1533	Mode vente
+1534	Tout attaquer
+1535	Défendre
+1536	Cessez-le-feu
+1537	Riposte
+1538	Statistiques de l'armée
+1539	Graphique de la valeur de l'armée
+1540	Statistiques de base
+1541	Statistiques de combat
+1542	Statistiques économiques
+1543	Graphique des statistiques
+1544	Désactiver les statistiques
+1545	Statistiques de production
+1546	Statistiques des pouvoirs de soutien
+1547	Capture d'écran
+1548	Changer de mode de chat
+1549	Couper/rétablir le son
+1550	Couleurs de relation des joueurs
+1551	Aller au dernier événement radar
+1552	Aller à la sélection
+1553	Zoom avant
+1554	Zoom arrière
+1555	Commandes du chat
+1556	Groupes de contrôle
+1557	Commandes de l'éditeur
+1558	Commandes de jeu
+1559	Commandes de musique
+1560	Commandes d'observateur / replay
+1561	Commandes de production
+1562	Commandes des pouvoirs de soutien
+1563	Commandes d'unité
+1564	Commandes de posture
+1565	Commandes de la vue
+1566	Mot de passe requis
+1567	Compte du forum OpenRA requis
+1568	AC Back
+1569	AC Bookmarks
+1570	AC Forward
+1571	AC Home
+1572	AC Refresh
+1573	AC Search
+1574	AC Stop
+1575	Again
+1576	AltErase
+1577	Application
+1578	AudioMute
+1579	AudioNext
+1580	AudioPlay
+1581	AudioPrev
+1582	AudioStop
+1583	Retour arrière
+1584	BrightnessDown
+1585	BrightnessUp
+1586	Calculatrice
+1587	Verr. Maj
+1588	Clear
+1589	Clear / Again
+1590	Ordinateur
+1591	Copier
+1592	CrSel
+1593	CurrencySubUnit
+1594	CurrencyUnit
+1595	Couper
+1596	Séparateur décimal
+1597	DisplaySwitch
+1598	Bas
+1599	Éjecter
+1600	Fin
+1601	Échap
+1602	Exécuter
+1603	ExSel
+1604	Rechercher
+1605	Aide
+1606	Origine
+1607	Inser
+1608	KBDIllumDown
+1609	KBDIllumToggle
+1610	KBDIllumUp
+1611	Pavé num. 0
+1612	Pavé num. 00
+1613	Pavé num. 000
+1614	Pavé num. 1
+1615	Pavé num. 2
+1616	Pavé num. 3
+1617	Pavé num. 4
+1618	Pavé num. 5
+1619	Pavé num. 6
+1620	Pavé num. 7
+1621	Pavé num. 8
+1622	Pavé num. 9
+1623	Pavé num. A
+1624	Pavé num. &
+1625	Pavé num. @
+1626	Pavé num. B
+1627	Pavé num. Retour arrière
+1628	Pavé num. Binaire
+1629	Pavé num. C
+1630	Pavé num. Clear
+1631	Pavé num. ClearEntry
+1632	Pavé num. :
+1633	Pavé num. ,
+1634	Pavé num. D
+1635	Pavé num. &&
+1636	Pavé num. ||
+1637	Pavé num. Décimal
+1638	Pavé num. /
+1639	Pavé num. E
+1640	Pavé num. Entrée
+1641	Pavé num. =
+1642	Pavé num. (AS400)
+1643	Pavé num. !
+1644	Pavé num. F
+1645	Pavé num. >
+1646	Pavé num. #
+1647	Pavé num. Hexadécimal
+1648	Pavé num. {"{"}
+1649	Pavé num. (
+1650	Pavé num. <
+1651	Pavé num. MemAdd
+1652	Pavé num. MemClear
+1653	Pavé num. MemDivide
+1654	Pavé num. MemMultiply
+1655	Pavé num. MemRecall
+1656	Pavé num. MemStore
+1657	Pavé num. MemSubtract
+1658	Pavé num. -
+1659	Pavé num. *
+1660	Pavé num. Octal
+1661	Pavé num. %
+1662	Pavé num. .
+1663	Pavé num. +
+1664	Pavé num. +/-
+1665	Pavé num. ^
+1666	Pavé num. {"}"}
+1667	Pavé num. )
+1668	Pavé num. Espace
+1669	Pavé num. Tab
+1670	Pavé num. |
+1671	Pavé num. XOR
+1672	Alt gauche
+1673	Ctrl gauche
+1674	Gauche
+1675	GUI gauche
+1676	Shift gauche
+1677	Mail
+1678	MediaSelect
+1679	Menu
+1680	ModeSwitch
+1681	Souris 4
+1682	Souris 5
+1683	Muet
+1684	Verr. Num
+1685	Oper
+1686	Out
+1687	Page suiv.
+1688	Page préc.
+1689	Coller
+1690	Pause
+1691	Alimentation
+1692	Impr. écran
+1693	Prior
+1694	Alt droit
+1695	Ctrl droit
+1696	Entrée
+1697	GUI droit
+1698	Droite
+1699	Shift droit
+1700	Arrêt défil.
+1701	Sélectionner
+1702	Séparateur
+1703	Veille
+1704	Espace
+1705	Stop
+1706	SysReq
+1707	Tab
+1708	Séparateur de milliers
+1709	Annuler
+1710	Non défini
+1711	Haut
+1712	Volume -
+1713	Volume +
+1714	WWW
+1715	Alt
+1716	Cmd
+1717	Ctrl
+1718	Meta
+1719	Shift
+1720	Propriétaire :
+1721	ID
+1722	Entrez un ID d'acteur
+1723	Propriétaire
+1724	Type : { $actorType }
+1725	Toutes les cartes
+1726	Tous les paquets
+1727	Veuillez insérer ou installer l'une des sources de contenu suivantes :
+1728	Joueur anonyme
+1729	Échec de l'extraction de l'archive

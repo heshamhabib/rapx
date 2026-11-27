@@ -1,0 +1,300 @@
+1804	Thời lượng: { $time }
+1805	Tài nguyên
+1806	Giàn khoan Dầu
+1807	Đã kiếm được
+1808	Xe thu hoạch
+1809	Thu nhập
+1810	Đã chi
+1811	Đang giải nén...
+1812	Đang giải nén { $entry }
+1813	Đang giải nén { $filename }
+1814	Đang giải nén { $filename } ({ $progress }%)
+1815	Đang lấy danh sách máy chủ sao lưu...
+1816	Đối tượng
+1817	trong
+1818	Sắp xếp theo:
+1819	Tài nguyên
+1820	Địa hình
+1821	Ngày:
+1822	Thời lượng:
+1823	Phe:
+1824	Loại:
+1825	Bản đồ:
+1826	Kết quả:
+1827	Người chơi:
+1828	Lọc
+1829	Khóa xác thực của bạn chưa được kết nối
+1830	với tài khoản diễn đàn OpenRA.
+1831	Một hoặc nhiều người chơi chưa sẵn sàng.
+1832	Bạn có chắc muốn buộc bắt đầu trận đấu?
+1833	Bắt đầu Trận đấu?
+1834	Quản trị viên Trận đấu
+1835	Không tìm thấy Nội dung Trận đấu
+1836	Nguồn Trận đấu
+1837	Tải trận đấu
+1838	Lưu trận đấu
+1839	[TẠO TỆP MỚI]
+1840	Nhấn Escape để hủy tải và quay về menu chính
+1841	Đang Tải Trận đã Lưu
+1842	Kết nối với tài khoản diễn đàn để xác định
+1843	danh tính của bạn với người chơi khác, tham gia máy chủ
+1844	riêng tư, và hiển thị huy hiệu.
+1845	Đang tạo cặp khóa xác thực.
+1846	Việc này sẽ mất vài giây...
+1847	Không có phím tắt nào khớp với tiêu chí lọc.
+1848	Ngữ cảnh:
+1849	Lọc theo tên:
+1850	{ $minutes ->\n[0] Đang diễn ra chưa đầy một phút.\n[one] Đang diễn ra được { $minutes } phút.\n*[other] Đang diễn ra được { $minutes } phút.\n}
+1851	Vô hạn
+1852	Cài đặt Thất bại
+1853	Đang Cài đặt Nội dung
+1854	Máy chủ Internet (UPnP/NAT-PMP
+1855	Đã bật
+1856	Không được hỗ trợ
+1857	Bạn cũng có thể áp dụng lệnh cấm tạm thời, ngăn
+1858	họ tham gia lại trong phần còn lại của trận đấu này.
+1859	Đuổi Người xem
+1860	Một hoặc nhiều máy khách đang thiếu
+1861	bản đồ đã chọn, và sẽ bị đuổi khỏi máy chủ.
+1862	Độ trễ:
+1863	{ $length } giây
+1864	Đang tải tin tức
+1865	Đang tải hồ sơ người chơi...
+1866	Không thể tải hồ sơ người chơi.
+1867	Tùy chọn Bản đồ
+1868	Màu
+1869	Chấp
+1870	Tên
+1871	Sẵn sàng
+1872	Vị trí xuất phát
+1873	Máy chủ Cục bộ:
+1874	Chúng tôi muốn thu thập một số thông tin hệ thống để giúp tối ưu hóa OpenRA.
+1875	Với sự cho phép của bạn, dữ liệu ẩn danh sau sẽ được gửi đi mỗi khi khởi chạy trò chơi:
+1876	Quản lý
+1877	Bản đồ Không xác định
+1878	Bản đồ này không tương thích
+1879	với phiên bản OpenRA này
+1880	Đã xảy ra lỗi trong quá trình cài đặt
+1881	Đang tìm kiếm trên OpenRA Resource Center...
+1882	{ $count ->\n[one] Đang tìm { $count } bản đồ trên OpenRA Resource Center...\n*[other] Đang tìm { $count } bản đồ trên OpenRA Resource Center...\n}
+1883	(Khổng lồ)
+1884	(Lớn)
+1885	(Vừa)
+1886	(Nhỏ)
+1887	Đang tìm kiếm...
+1888	Không tìm thấy bản đồ này trên
+1889	OpenRA Resource Center
+1890	{ $count ->\n[one] Không tìm thấy { $count } bản đồ trên OpenRA Resource Center\n*[other] Không tìm thấy { $count } bản đồ trên OpenRA Resource Center\n}
+1891	Một phiên bản mới của bản đồ
+1892	đã được tìm thấy trên máy tính của bạn
+1893	Đang kiểm tra hợp lệ...
+1894	Chọn Bản đồ
+1895	Độ trong suốt Ô
+1896	Góc Trục
+1897	Số Cạnh
+1898	Chế độ Đối xứng
+1899	Tốc độ Tối đa
+1900	Máy chủ sao lưu trực tuyến không khả dụng. Vui lòng cài đặt từ đĩa gốc.
+1901	Hoàn thành
+1902	Thất bại
+1903	Đang diễn ra
+1904	Nhiệm vụ:
+1905	- Đặt công trình bằng nút chuột <Left>
+1906	- Ra lệnh cho đơn vị bằng nút chuột <Left>
+1907	hoặc bằng cách di chuyển con trỏ đến mép màn hình
+1908	- Di chuyển góc nhìn chiến trường bằng nút chuột <Middle>
+1909	- Di chuyển góc nhìn chiến trường bằng nút chuột <Right>
+1910	- Chọn đơn vị bằng nút chuột <Left>
+1911	- Nhắm mục tiêu sức mạnh hỗ trợ bằng nút chuột <Left>
+1912	- Thu phóng chiến trường bằng <Scroll Wheel>
+1913	- Thu phóng chiến trường bằng <MODIFIER + Scroll Wheel>
+1914	- Ra lệnh cho đơn vị bằng nút chuột <Right>
+1915	(tùy chọn)
+1916	Cổng:
+1917	Tên Máy chủ:
+1918	Tạo Máy chủ
+1919	Độ dài
+1920	Âm lượng:
+1921	Đã Tắt Tiếng
+1922	Tắt tiếng người chơi này
+1923	Chiều cao:
+1924	Bộ Ô:
+1925	Bản đồ Mới
+1926	Chiều rộng:
+1927	Không thể phân tích tin tức: { $message }
+1928	Không thể lấy tin tức: { $message }
+1929	Không có kết quả khớp
+1930	Nhạc trò chơi có thể được cài đặt
+1931	từ menu "Quản lý Nội dung".
+1932	Chưa Cài đặt Nhạc
+1933	Chưa Chọn Máy chủ
+1934	Không có bài hát nào đang phát
+1935	Không có Đội
+1936	Không khả dụng
+1937	Bạn đang chạy phiên bản OpenRA đã lỗi thời. Tải phiên bản mới nhất từ www.openra.net
+1938	Một bản xem trước của phiên bản OpenRA tiếp theo đã có để thử nghiệm. Tải bản playtest từ www.openra.net
+1939	Bạn đang chạy một phiên bản OpenRA không xác định. Tải phiên bản mới nhất từ www.openra.net
+1940	- Trận đấu sẽ chỉ được quảng bá trong Mạng Nội bộ (LAN).
+1941	- Bạn phải tự cấu hình tường lửa để cho phép kết nối.
+1942	- Người chơi có thể kết nối bằng IP Trực tiếp từ Internet nếu bạn
+1943	tự cấu hình chuyển tiếp cổng trên router của mình.
+1944	- Trận đấu sẽ được quảng bá trong Mạng Nội bộ và Internet.
+1945	- Bạn phải tự cấu hình router để cho phép và chuyển tiếp
+1946	kết nối đến IP cục bộ và Cổng của bạn.
+1947	- Bạn có thể bật UPnP/NAT-PMP (nếu router hỗ trợ)
+1948	trong tab Nâng cao của menu cài đặt.
+1949	Phím tắt này không thể thay đổi
+1950	- Trận đấu sẽ tự động cấu hình chuyển tiếp cổng.
+1951	- Bạn có thể tắt UPnP/NAT-PMP trong menu cài đặt.
+1952	OpenRA
+1953	Mặc định là "{ $key }"
+1954	{ $players ->\n[one] Một người chơi khác\n*[other] { $players } người chơi khác\n}
+1955	Có mật khẩu bảo vệ
+1956	Cần Mật khẩu
+1957	Đã tạm dừng
+1958	NGỪNG BẮN ĐANG CÓ HIỆU LỰC
+1959	NGỪNG BẮN SẮP HẾT HẠN
+1960	GÕ /ENDTREATY ĐỂ BỎ PHIẾU GÂY CHIẾN
+1961	PHIẾU KẾT THÚC HIỆP ƯỚC { $votes }/{ $needed }
+1962	CHIẾN TRANH
+1963	TOÀN QUÂN GIAO CHIẾN
+1964	{ $players ->\n[one] { $players } Người chơi\n*[other] { $players } Người chơi\n}
+1965	{ $players ->\n[0] Không có Người chơi\n[one] Một Người chơi\n*[other] { $players } Người chơi\n}
+1966	{ $players ->\n[one] { $players } Người chơi Trực tuyến\n*[other] { $players } Người chơi Trực tuyến\n}
+1967	Đang chơi
+1968	Mức Dùng Điện: { $usage }/{ $capacity }
+1969	Màu Có sẵn
+1970	MÀU ĐỘI
+1971	Tổ hợp cài đặt riêng của bạn. Chọn một sơ đồ để đặt lại mọi thứ.
+1972	Chuột và phím tiêu chuẩn của OpenRA.
+1973	Nhấp trái để chọn và ra lệnh, nhấp phải để bỏ chọn, kéo phải để cuộn. Phím kiểu RA2 (T, G, D, Z…).
+1974	Nhấp phải để ra lệnh, kéo phải để cuộn. Phím kiểu RA2 (T, G, D, Z…).
+1975	Nhảy đến vị trí trên bản đồ
+1976	Lưu vị trí trên bản đồ
+1977	CĂN CỨ
+1978	CHUỘT
+1979	TAB THANH BÊN
+1980	ĐỘI & GÓC NHÌN
+1981	LỆNH ĐƠN VỊ
+1982	Thêm vào lựa chọn
+1983	Shift + nhấp chuột
+1984	Bỏ chọn
+1985	Nhấp trái vào mặt đất trống
+1986	Buộc khai hỏa
+1987	Ctrl + nhấp chuột
+1988	Buộc di chuyển
+1989	Alt + nhấp chuột
+1990	Di chuyển / tấn công
+1991	Nhấp trái
+1992	Nhấp phải
+1993	Đặt nhà máy làm chính
+1994	Nhấp đúp vào nhà máy
+1995	Chọn loại đó trên màn hình
+1996	Nhấp đúp vào một đơn vị
+1997	Cuộn bản đồ
+1998	Giữ nút giữa + kéo
+1999	Giữ nút phải + kéo
+2000	Chọn đơn vị
+2001	Nhấp trái / kéo trái
+2002	(hai lần: toàn bộ bản đồ)
+2003	(lại lần nữa: gửi lộ trình)
+2004	Kiểu điều khiển: { $scheme }
+2005	Thêm đội vào lựa chọn
+2006	Tạo đội
+2007	Căn giữa góc nhìn vào đội
+2008	Chọn đội (hai lần: căn giữa góc nhìn)
+2009	Điều khiển
+2010	(chưa đặt)
+2011	{ $buildings } CÔNG TRÌNH · { $mobile } ĐƠN VỊ
+2012	{ $buildings } CÔNG TRÌNH · { $mobile } MCV
+2013	LỰC LƯỢNG ĐỊCH
+2014	CÔNG TRÌNH ĐỊCH
+2015	{ $api }. Card đồ họa trên máy này: { $names }
+2016	Direct3D { $version } qua ANGLE
+2017	{ $api }, driver { $version }
+2018	Trò chơi đang dùng card đồ họa tiết kiệm điện. Hãy chọn Hiệu năng cao ở trên và khởi động lại game để có tốc độ khung hình cao hơn nhiều.
+2019	Một card đồ họa trên máy này thiếu driver. Cài đặt driver từ trang web của NVIDIA, AMD hoặc Intel.
+2020	Khởi động lại game để đổi card đồ họa.
+2021	Không có driver đồ họa nào đang được dùng, nên bộ xử lý đang đảm nhận việc vẽ hình. Hãy cài driver mới nhất cho card đồ họa của bạn.
+2022	Card đồ họa đang dùng: { $name }
+2023	OpenGL { $version }
+2024	{ $api }. Máy này còn có: { $names }
+2025	không được driver đồ họa báo cáo
+2026	QUỐC GIA  ·  CHỈ HUY
+2027	TRẠNG THÁI NHIỆM VỤ
+2028	CẤP BẬC
+2029	TRẠNG THÁI
+2030	BÁO CÁO TRẬN ĐẤU
+2031	RED ALERT  //  PROJECT X
+2032	NHẠC NỀN
+2033	TRONG TRẬN
+2034	TRỰC TIẾP
+2035	NGƯỜI CHƠI
+2036	NGƯỜI XEM
+2037	GÓC NHÌN CAMERA
+2038	HÀNH ĐỘNG CÔNG TRÌNH
+2039	LỆNH
+2040	TẬP KẾT
+2041	TÍN HIỆU
+2042	Xây Mái vòm Radar để kích hoạt
+2043	TIỀN
+2044	KHÔNG CÓ TÍN HIỆU RADAR
+2045	ĐIỆN
+2046	RADAR
+2047	SỬA CHỮA
+2048	BÁN
+2049	THỜI GIAN NHIỆM VỤ
+2050	OPENRA { $engine }  ·  COMMIT { $build }
+2051	OPENRA { $engine }
+2052	PROJECT X  //  PHIÊN BẢN
+2053	ĐANG THAY ĐỔI
+2054	DỰ BÁO
+2055	SẮP TỚI
+2056	TIẾP THEO
+2057	ỔN ĐỊNH
+2058	THỜI TIẾT
+2059	Thời tiết trên bản đồ này không thay đổi.
+2060	Chỉ là hình ảnh: thời tiết không ảnh hưởng đến đơn vị.
+2061	Tiếp theo: { $weather } sau { $time }
+2062	Hiện tại: { $weather }
+2063	Một khóa xác thực đã được sao chép vào
+2064	clipboard của bạn. Thêm khóa này vào Bảng Điều khiển Người dùng
+2065	trên diễn đàn OpenRA rồi nhấn Tiếp tục.
+2066	{ $percentage }% hoàn tất
+2067	Chọn Bản ghi
+2068	Tốc độ { $percentage }%
+2069	Trình xem Bản ghi
+2070	Cần { $prerequisites }.
+2071	Tác giả:
+2072	Thư mục:
+2073	Tên tệp:
+2074	Lưu Bản đồ
+2075	Tiêu đề:
+2076	Khả năng hiển thị:
+2077	Kịch bản bản đồ đã gặp lỗi nghiêm trọng
+2078	Chi tiết lỗi đã được lưu vào tệp lua.log trong thư mục logs.
+2079	Vui lòng gửi tệp này cho tác giả bản đồ để họ có thể khắc phục vấn đề.
+2080	Không thể truy vấn danh sách máy chủ.
+2081	Không tìm thấy trận đấu nào. Hãy thử đổi bộ lọc.
+2082	Đang tìm { $title }
+2083	Đường chéo:
+2084	Tài nguyên:
+2085	Bộ lọc
+2086	Hệ điều hành, phiên bản OpenGL và .NET runtime, cùng cài đặt ngôn ngữ của bạn sẽ được gửi đi kèm một ID ẩn danh để giúp ưu tiên định hướng phát triển trong tương lai.
+2087	Máy chủ đang tắt
+2088	Mức Dùng Kho chứa: { $usage }/{ $capacity }
+2089	Âm thanh đã bị tắt trong cài đặt.
+2090	Người xem
+2091	{ $spectators ->\n[0] Không có Người xem\n[one] Một Người xem\n*[other] { $spectators } Người xem\n}
+2092	Hành động
+2093	Phe
+2094	Người chơi
+2095	Điểm
+2096	ĐỒNG MINH
+2097	THÙ ĐỊCH
+2098	CỦA BẠN
+2099	Đội { $team }
+2100	Tìm kiếm:
+2101	Công cụ:
+2102	Ô Đánh dấu
+2103	Đồng minh

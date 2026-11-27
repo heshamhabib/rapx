@@ -88,10 +88,19 @@ namespace OpenRA.Mods.Common.Widgets
 			if (text == null)
 				return;
 
+			// Word-wrapped text already handles overflow by spilling onto further lines, so it is left alone;
+			// a single-line label instead shrinks (and, failing that, truncates) a translation too long to fit.
+			var scale = 1f;
 			if (WordWrap)
 				text = WidgetUtils.WrapText(text, Bounds.Width, font);
+			else
+			{
+				scale = FitScale(font, text);
+				if (scale <= MinTextScale)
+					text = WidgetUtils.TruncateText(text, (int)(Bounds.Width / MinTextScale), font);
+			}
 
-			var textSize = font.Measure(text);
+			var textSize = font.Measure(text, scale);
 			var position = RenderOrigin;
 			var offset = font.TopOffset;
 
@@ -110,19 +119,34 @@ namespace OpenRA.Mods.Common.Widgets
 			if (Align == TextAlign.Right)
 				position += new int2(Bounds.Width - textSize.X, 0);
 
-			DrawInner(text, font, GetColor(), position);
+			DrawInner(text, font, GetColor(), position, scale);
 		}
 
-		protected virtual void DrawInner(string text, SpriteFont font, Color color, int2 position)
+		// Below this, a translation is truncated (with an ellipsis) rather than shrunk further into illegibility.
+		protected const float MinTextScale = 0.62f;
+
+		float FitScale(SpriteFont font, string text)
+		{
+			if (string.IsNullOrEmpty(text) || Bounds.Width <= 0)
+				return 1f;
+
+			var width = font.Measure(text).X;
+			if (width <= Bounds.Width)
+				return 1f;
+
+			return Math.Max(MinTextScale, Bounds.Width / (float)width);
+		}
+
+		protected virtual void DrawInner(string text, SpriteFont font, Color color, int2 position, float scale = 1f)
 		{
 			var bgDark = GetContrastColorDark();
 			var bgLight = GetContrastColorLight();
 			if (Contrast)
-				font.DrawTextWithContrast(text, position, color, bgDark, bgLight, ContrastRadius);
+				font.DrawTextWithContrast(text, position, color, bgDark, bgLight, ContrastRadius, scale);
 			else if (Shadow)
-				font.DrawTextWithShadow(text, position, color, bgDark, bgLight, 1);
+				font.DrawTextWithShadowScaled(text, position, color, bgDark, bgLight, 1, scale);
 			else
-				font.DrawText(text, position, color);
+				font.DrawTextScaled(text, position, color, scale);
 		}
 
 		public override Widget Clone() { return new LabelWidget(this); }

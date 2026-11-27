@@ -1,0 +1,200 @@
+1730	Échec de la validation de l'archive
+1731	Infos de zone
+1732	Sélection de zone
+1733	Filtrer par nom
+1734	Palette :
+1735	Choisir la source des ressources
+1736	Erreur d'affichage du fichier. Consultez assetbrowser.log pour plus de détails.
+1737	Échelle :
+1738	Navigateur de ressources
+1739	Son coupé.
+1740	Son rétabli.
+1741	par { $author } le { $datetime }
+1742	Point de départ disponible
+1743	APM
+1744	Détruits
+1745	Crédits
+1746	Morts
+1747	Éliminations
+1748	Filtre :
+1749	Bot géré par { $name }
+1750	Joueur IA
+1751	Bot
+1752	{ $bots ->\n[0] Aucun bot\n[one] Un bot\n*[other] { $bots } bots\n}
+1753	DÉCOLLAGE
+1754	MIXTE
+1755	APPONTAGE
+1756	PONT D'ENVOL
+1757	{ $seconds ->\n[one] Chat disponible dans { $seconds } seconde...\n*[other] Chat disponible dans { $seconds } secondes...\n}
+1758	Chat désactivé
+1759	Consultez install.log dans le dossier des journaux pour plus de détails.
+1760	Récupération des informations du compte depuis
+1761	le forum OpenRA...
+1762	Vérification des sources
+1763	Parti
+1764	Valeur de l'armée
+1765	Bât. perdus
+1766	Bât. détruits
+1767	Unités perdues
+1768	Unités tuées
+1769	Vision
+1770	Connexion...
+1771	Connexion
+1772	Connexion à { $endpoint }...
+1773	Échec de la connexion au forum OpenRA.
+1774	Veuillez vérifier votre connexion Internet.
+1775	Échec de la connexion
+1776	Ce serveur utilise un autre mod :
+1777	Changer de mod et rejoindre le serveur ?
+1778	Changer de mod
+1779	Mot de passe :
+1780	Morceau
+1781	Choisissez les paquets de contenu à installer :
+1782	Copie de { $filename }
+1783	Copie de { $filename } ({ $progress }%)
+1784	Impossible de se connecter à { $target }
+1785	Créé par { $author }
+1786	Couleurs personnalisées
+1787	D'autres options pour les développeurs peuvent être activées via le
+1788	réglage ou l'option de lancement Debug.DisplayDeveloperSettings
+1789	Options de débogage
+1790	Visualisations
+1791	Détection des lecteurs
+1792	Installations numériques
+1793	Adresse du serveur :
+1794	Se connecter au serveur
+1795	Point de départ désactivé
+1796	Échec du téléchargement
+1797	Téléchargement de { $title }
+1798	Téléchargement depuis { $host } { $received } { $suffix }
+1799	Téléchargement depuis { $host } { $received } / { $total } { $suffix } ({ $progress }%)
+1800	Téléchargement de { $size } ko
+1801	Téléchargement de { $size } ko ({ $progress }%)
+1802	ID d'acteur en double
+1803	Déjà utilisé pour « { $key } » dans le contexte { $context }
+1804	Durée : { $time }
+1805	Actifs
+1806	Derricks pétroliers
+1807	Gagné
+1808	Collecteurs
+1809	Revenus
+1810	Dépensé
+1811	Extraction...
+1812	Extraction de { $entry }
+1813	Extraction de { $filename }
+1814	Extraction de { $filename } ({ $progress }%)
+1815	Récupération de la liste des miroirs...
+1816	Acteurs
+1817	dans
+1818	Trier par :
+1819	Ressources
+1820	Terrain
+1821	Date :
+1822	Durée :
+1823	Faction :
+1824	Type :
+1825	Carte :
+1826	Résultat :
+1827	Joueur :
+1828	Filtre
+1829	Votre clé d'authentification n'est pas liée
+1830	à un compte du forum OpenRA.
+1831	Un ou plusieurs joueurs ne sont pas encore prêts.
+1832	Voulez-vous vraiment forcer le lancement de la partie ?
+1833	Lancer la partie ?
+1834	Admin de la partie
+1835	Contenu du jeu introuvable
+1836	Sources du jeu
+1837	Charger une partie
+1838	Sauvegarder la partie
+1839	[CRÉER UN NOUVEAU FICHIER]
+1840	Appuyez sur Échap pour annuler le chargement et revenir au menu principal
+1841	Chargement de la sauvegarde
+1842	Connectez un compte du forum pour vous identifier
+1843	auprès des autres joueurs, rejoindre des serveurs
+1844	privés et afficher des badges.
+1845	Génération de la paire de clés d'authentification.
+1846	Cela prendra quelques secondes...
+1847	Aucun raccourci ne correspond au filtre.
+1848	Contexte :
+1849	Filtrer par nom :
+1850	{ $minutes ->\n[0] En cours depuis moins d'une minute.\n[one] En cours depuis { $minutes } minute.\n*[other] En cours depuis { $minutes } minutes.\n}
+1851	Infini
+1852	Échec de l'installation
+1853	Installation du contenu
+1854	Serveur Internet (UPnP/NAT-PMP
+1855	Activé
+1856	Non pris en charge
+1857	Vous pouvez aussi appliquer un bannissement temporaire, qui
+1858	l'empêche de rejoindre jusqu'à la fin de cette partie.
+1859	Expulser les spectateurs
+1860	Un ou plusieurs clients n'ont pas la carte
+1861	choisie et seront expulsés du serveur.
+1862	Latence :
+1863	{ $length } s
+1864	Chargement des actualités
+1865	Chargement du profil du joueur...
+1866	Échec du chargement du profil du joueur.
+1867	Options de la carte
+1868	Couleur
+1869	Handicap
+1870	Nom
+1871	Prêt
+1872	Départ
+1873	Serveur local :
+1874	Nous aimerions collecter quelques informations système pour nous aider à optimiser OpenRA.
+1875	Avec votre accord, les données anonymes suivantes seront envoyées à chaque lancement :
+1876	Gérer
+1877	Carte inconnue
+1878	Cette carte n'est pas compatible
+1879	avec cette version d'OpenRA
+1880	Une erreur s'est produite pendant l'installation
+1881	Recherche dans l'OpenRA Resource Center...
+1882	{ $count ->\n[one] Recherche de { $count } carte dans l'OpenRA Resource Center...\n*[other] Recherche de { $count } cartes dans l'OpenRA Resource Center...\n}
+1883	(Immense)
+1884	(Grande)
+1885	(Moyenne)
+1886	(Petite)
+1887	Recherche...
+1888	Cette carte est introuvable sur
+1889	l'OpenRA Resource Center
+1890	{ $count ->\n[one] { $count } carte est introuvable sur l'OpenRA Resource Center\n*[other] { $count } cartes sont introuvables sur l'OpenRA Resource Center\n}
+1891	Une nouvelle version de la carte
+1892	a été trouvée sur votre ordinateur
+1893	Validation...
+1894	Choisir une carte
+1895	Alpha des tuiles
+1896	Angle de l'axe
+1897	Nombre de côtés
+1898	Mode miroir
+1899	Vitesse max.
+1900	Aucun miroir en ligne disponible. Veuillez installer depuis un disque original.
+1901	Accomplie
+1902	Échouée
+1903	En cours
+1904	Mission :
+1905	- Placez les structures avec le bouton <Left> de la souris
+1906	- Commandez les unités avec le bouton <Left> de la souris
+1907	ou en déplaçant le curseur au bord de l'écran
+1908	- Déplacez la vue avec le bouton <Middle> de la souris
+1909	- Déplacez la vue avec le bouton <Right> de la souris
+1910	- Sélectionnez les unités avec le bouton <Left> de la souris
+1911	- Ciblez les pouvoirs de soutien avec le bouton <Left> de la souris
+1912	- Zoomez sur le champ de bataille avec la <Scroll Wheel>
+1913	- Zoomez sur le champ de bataille avec <MODIFIER + Scroll Wheel>
+1914	- Commandez les unités avec le bouton <Right> de la souris
+1915	(facultatif)
+1916	Port :
+1917	Nom du serveur :
+1918	Créer un serveur
+1919	Durée
+1920	Volume :
+1921	Son coupé
+1922	Couper ce joueur
+1923	Hauteur :
+1924	Jeu de tuiles :
+1925	Nouvelle carte
+1926	Largeur :
+1927	Échec de l'analyse des actualités : { $message }
+1928	Échec de la récupération des actualités : { $message }
+1929	Aucun résultat

@@ -1,0 +1,150 @@
+450	Soldat de choc
+451	Stocke le surplus de minerai\net de gemmes raffinés.
+452	Silo
+453	Tireur d'élite longue portée. Un tir tue la plupart\ndes fantassins. Se cache à l'arrêt.\nFort contre Infanterie\nFaible contre Véhicules, Bâtiments
+454	Tireur d'élite
+455	Char lance-missiles à huit pattes de Vanguard : missiles\nlourds à attaque par le haut, missiles antiaériens\net intercepteurs qui abattent les roquettes.\nFort contre Véhicules, Aéronefs\nFaible contre Infanterie
+456	Char araignée
+457	Épave (Char araignée)
+458	Produit et répare les sous-marins\net les transports.
+459	Base sous-marine
+460	Infiltre les structures ennemies pour du renseignement\nou du sabotage. L'effet dépend du\nbâtiment infiltré.\nPerd son déguisement en attaquant.\nPeut détecter les espions.\nFort contre Infanterie\nFaible contre Véhicules et Aéronefs\nCapacité spéciale : déguisement
+461	Espion
+462	Espion britannique
+463	Défense antiaérienne mobile : lanceur rotatif de missiles Python\nà guidage infrarouge et Derby à guidage radar qui grimpent\nhaut puis plongent sur les aéronefs.\nFort contre Aéronefs et Hélicoptères\nNe peut pas attaquer les cibles au sol
+464	Spyder Talon
+465	Unité sous-marine antinavire armée de torpilles.\nPeut détecter les autres sous-marins.\nFort contre Unités navales\nFaible contre Unités terrestres et Aéronefs\nCapacité spéciale : plongée
+466	Sous-marin
+467	Fournit la technologie avancée de Vanguard.
+468	Centre technologique de Vanguard
+469	Transport d'infanterie blindé léger capable\nde se camoufler. Armé de missiles air-sol.\nFort contre Blindés légers\nFaible contre Infanterie, Chars et Aéronefs
+470	Transport à phase
+471	Marcheur d'assaut quadrupède lent de Vanguard\navec canon lourd et mitrailleuse.\nFort contre Véhicules, Infanterie\nFaible contre Aéronefs
+472	Strider
+473	Contrôle au sol de vos satellites.\nSi vous perdez toutes vos liaisons, tous vos satellites\nsont hors ligne jusqu'à ce que vous en construisiez une.
+474	Liaison satellite
+475	Produit et répare les navires\net les transports.
+476	Chantier naval
+477	Piège antichar
+478	Robot lourd de Vanguard qui projette des éclairs\nTesla de ses mains.\nFort contre Infanterie, Robots\nFaible contre Véhicules, Aéronefs
+479	Automate Tesla
+480	Centre technologique
+481	Entraîne l'infanterie.
+482	Caserne de l'Union
+483	Hélicoptère d'attaque lourd : missiles antichars HOT\net nacelles tirant un flot de roquettes.\nFrance et Allemagne uniquement.\nFort contre Chars, Véhicules et Infanterie\nFaible contre DCA
+484	Tigre
+485	Lanceur thermobarique blindé. Courte portée,\nmais dévastateur à bout portant.\nFort contre Infanterie et Bâtiments\nFaible contre Chars et Aéronefs
+486	TOZ-1 Sunflare
+487	Hélicoptère de transport d'infanterie rapide.\nDéploie un écran de fumée et fait descendre ses\ntroupes en corde lisse en vol stationnaire (F ici, G pour choisir un point).\nNon armé
+488	Chinook
+489	Épave (Chinook)
+490	Transporte des fonds vers d'autres joueurs.\nNon armé
+491	Camion de ravitaillement
+492	Défense de base avancée.\nNécessite de l'énergie.\nPeut détecter les unités camouflées.\nFort contre Véhicules et Infanterie\nFaible contre Aéronefs
+493	Bobine Tesla
+494	Char équipé d'une bobine Tesla.\nFort contre Infanterie, Véhicules et Bâtiments\nFaible contre Aéronefs
+495	Char Tesla
+496	Bombardier stratégique quadrimoteur.\nLargue la bombe H RDS-37 quand la\nFrappe thermonucléaire est prête. Il n'a pas d'autre arme.\nRussie uniquement. Maximum 1.
+497	Tv-95 Bear
+498	Camion lance-missiles antinavires : frappe les navires loin en mer.\nFort contre Navires\nFaible contre cibles terrestres et Aéronefs
+499	Type-12 Sea Arrow
+500	Épave (Avion espion)
+501	Avion espion
+502	Poteau électrique
+503	Église
+504	Épave (Pompe à pétrole)
+505	Pompe à pétrole
+506	Artillerie lance-roquettes longue portée.\nFort contre Infanterie et Bâtiments\nFaible contre Véhicules et Aéronefs
+507	Lance-roquettes V2
+508	Roquettes de précision longue portée.\nFort contre Bâtiments, Infanterie et Véhicules\nFaible contre Aéronefs ; rechargement lent
+509	Vilkra
+510	(point de passage pour comportement scripté)
+511	Caisse en bois
+512	Produit les véhicules.
+513	Usine d'armement
+514	Moulin à vent
+515	Clôture en bois
+516	Plateforme d'artillerie lourde française. Très lente, mais\nson canon surpasse la portée de tous les chars et frappe\nplus fort que tout autre canon.\nFort contre Véhicules, Bâtiments\nFaible contre Infanterie au contact, Aéronefs
+517	Droïde-char XR-85
+518	Épave (Droïde-char XR-85)
+519	Y-20 Kunpeng
+520	Avion d'attaque armé de deux mitrailleuses.\nFort contre Infanterie et Blindés légers\nFaible contre Chars et Aéronefs
+521	Avion d'attaque Yak
+522	Bombardier atomique à aile volante.\nLargue la bombe Fatman quand la Frappe Fatman est prête.\nIl n'a pas d'autre arme.\nÉtats-Unis uniquement. Maximum 1.
+523	AB-35 Longwing
+524	Camion lance-missiles balistiques : tire les deux missiles de son\nérecteur sur des cibles à 22 cases, puis recharge lentement.\nSeule la défense antiaérienne longue portée peut arrêter ces missiles.\nFort contre Bâtiments et Unités terrestres\nFaible contre Aéronefs et combat rapproché
+525	Zolfaghar
+526	IA brutale
+527	IA facile
+528	IA difficile
+529	IA navale
+530	IA normale
+531	Défense aérienne
+532	Armée de l'air
+533	Garde-côtes
+534	Commandement
+535	Défense terrestre
+536	Infanterie de marine
+537	Marine
+538	Force spatiale
+539	Stratégique
+540	Sans pilote
+541	Murs
+542	Annuler
+543	Changer de mode de chat
+544	Mélangeur
+545	Palette
+546	Aléatoire
+547	Enregistrer
+548	Les unités sélectionnées se rendent à la destination\net attaquent tous les ennemis rencontrés en chemin.\nMaintenez <(Ctrl)> en ciblant pour ordonner un mouvement d'assaut\nqui attaque toutes les unités ou structures rencontrées en chemin.\nClic gauche sur l'icône puis clic droit sur la destination.
+549	Les unités sélectionnées effectuent leur action de déploiement\n- Les VCM se déploient en chantier de construction\n- Les chantiers de construction se replient en VCM\n- Les transports débarquent leurs passagers\n- Les camions de démolition et chars MAD s'autodétruisent\n- Les mouilleurs de mines posent une mine\n- Les aéronefs retournent à la base\nAgit immédiatement sur les unités sélectionnées.
+550	Attaque forcée
+551	Les unités sélectionnées attaquent l'unité ou la zone ciblée\n- L'action par défaut sur la cible est ignorée\n- Permet de cibler ses propres forces ou celles des alliés\n- L'artillerie à longue portée cible toujours la\nzone, sans tenir compte des unités et bâtiments\nClic gauche sur l'icône puis clic droit sur la cible.\nMaintenez <(Ctrl)> pour l'activer temporairement en donnant des ordres.
+552	Déplacement forcé
+553	Les unités sélectionnées se rendent à la destination\n- L'action par défaut sur la cible est ignorée\n- Les véhicules tentent d'écraser les ennemis sur place\n- Les hélicoptères se posent à la destination\n- Les chars Chrono se téléportent vers la destination\nClic gauche sur l'icône puis clic droit sur la cible.\nMaintenez <(Alt)> pour l'activer temporairement en donnant des ordres.
+554	Les unités sélectionnées suivent l'unité ciblée.\nClic gauche sur l'icône puis clic droit sur l'unité cible.
+555	Mode points de passage
+556	Le mode points de passage permet d'enchaîner plusieurs ordres\npour les unités sélectionnées. Les unités exécutent les ordres\ndès leur réception.\nClic gauche sur l'icône puis donnez les ordres sur le terrain.\nMaintenez <(Shift)> pour l'activer temporairement en donnant des ordres.
+557	Les unités sélectionnées interrompent leur action\net se déplacent à proximité.\nAgit immédiatement sur les unités sélectionnées.
+558	Les unités sélectionnées interrompent leur action.\nLes bâtiments sélectionnés réinitialisent leur point de ralliement.\nAgit immédiatement sur les cibles sélectionnées.
+559	Changer
+560	Abandonner
+561	Donner $20,000
+562	Dissiper le voile
+563	Faire pousser les ressources
+564	Réinitialiser le voile
+565	Supprimer l'acteur sélectionné
+566	Supprimer tout dans la zone sélectionnée
+567	Rejoindre
+568	Copier la zone sélectionnée
+569	Coller la zone enregistrée
+570	Rétablir
+571	Rétablir la dernière étape
+572	Annuler la dernière étape
+573	Replays
+574	Réinitialiser les filtres
+575	Démarrer
+576	Charger
+577	Se connecter à un compte du forum OpenRA
+578	Supprimer le raccourci
+579	Remplacer
+580	Rétablir par défaut
+581	Expulser ce joueur
+582	OK
+583	Gérer le contenu
+584	Installation manuelle
+585	Installer la carte
+586	Historique
+587	Calques
+588	Sélection
+589	Tuiles
+590	Outils
+591	Mettre à jour la carte
+592	Supprimer toutes les cartes
+593	Supprimer la carte
+594	Carte aléatoire
+595	Cartes du serveur
+596	Cartes officielles
+597	Cartes perso
+598	Tout effacer
+599	Effacer l'actuel

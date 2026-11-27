@@ -36,12 +36,12 @@ namespace OpenRA.Mods.RAPX.Widgets
 		// Damage classes for the "effective against" grades: label, armour type(s) and target types that reach them
 		public static readonly (string Label, string[] Armor, string[] Targets)[] Classes =
 		{
-			("INFANTRY", new[] { "None" }, new[] { "Ground", "GroundActor", "Infantry" }),
-			("LIGHT ARMOUR", new[] { "Light" }, new[] { "Ground", "GroundActor", "Vehicle" }),
-			("HEAVY ARMOUR", new[] { "Heavy" }, new[] { "Ground", "GroundActor", "Vehicle" }),
-			("STRUCTURES", new[] { "Wood", "Concrete" }, new[] { "Ground", "GroundActor", "Structure" }),
-			("AIRCRAFT", new[] { "Light" }, new[] { "Air", "AirborneActor" }),
-			("NAVAL", new[] { "Light", "Heavy" }, new[] { "Water", "WaterActor", "Underwater", "Ship", "Submarine" }),
+			(PxText.N("INFANTRY"), new[] { "None" }, new[] { "Ground", "GroundActor", "Infantry" }),
+			(PxText.N("LIGHT ARMOUR"), new[] { "Light" }, new[] { "Ground", "GroundActor", "Vehicle" }),
+			(PxText.N("HEAVY ARMOUR"), new[] { "Heavy" }, new[] { "Ground", "GroundActor", "Vehicle" }),
+			(PxText.N("STRUCTURES"), new[] { "Wood", "Concrete" }, new[] { "Ground", "GroundActor", "Structure" }),
+			(PxText.N("AIRCRAFT"), new[] { "Light" }, new[] { "Air", "AirborneActor" }),
+			(PxText.N("NAVAL"), new[] { "Light", "Heavy" }, new[] { "Water", "WaterActor", "Underwater", "Ship", "Submarine" }),
 		};
 
 		public sealed class Nation
@@ -164,7 +164,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 
 				var lines = f.Description != null ? FluentProvider.GetMessage(f.Description).Split('\n') : Array.Empty<string>();
 				var first = lines.Length > 0 ? lines[0].Trim() : "";
-				var colon = first.IndexOf(':');
+				var colon = first.IndexOfAny(new[] { ':', '：' });
 				Nations.Add(new Nation
 				{
 					Id = f.InternalName,
@@ -336,12 +336,12 @@ namespace OpenRA.Mods.RAPX.Widgets
 		{
 			switch (e.Category)
 			{
-				case "Building": return "Base structure";
-				case "Defense": return e.HP > 0 && e.Actor.HasTraitInfo<ArmamentInfo>() ? "Base defence" : "Fortification";
-				case "Infantry": return "Infantry";
-				case "Vehicle": return "Ground vehicle";
-				case "Aircraft": return aircraft != null && aircraft.VTOL ? "Rotary-wing aircraft" : "Fixed-wing aircraft";
-				default: return "Naval vessel";
+				case "Building": return PxText.T("Base structure");
+				case "Defense": return e.HP > 0 && e.Actor.HasTraitInfo<ArmamentInfo>() ? PxText.T("Base defence") : PxText.T("Fortification");
+				case "Infantry": return PxText.T("Infantry");
+				case "Vehicle": return PxText.T("Ground vehicle");
+				case "Aircraft": return aircraft != null && aircraft.VTOL ? PxText.T("Rotary-wing aircraft") : PxText.T("Fixed-wing aircraft");
+				default: return PxText.T("Naval vessel");
 			}
 		}
 
@@ -363,31 +363,31 @@ namespace OpenRA.Mods.RAPX.Widgets
 		{
 			var name = w.Projectile?.GetType().Name ?? "";
 			if (name.Contains("GravityBomb") && w.Warheads.Any(h => h is PxRadiationWarhead))
-				return "Atomic bomb";
+				return PxText.N("Atomic bomb");
 			if (name.Contains("Laser") || name.Contains("Railgun"))
-				return "Energy beam";
+				return PxText.N("Energy beam");
 			if (name.Contains("Tesla") || name.Contains("Lightning"))
-				return "Tesla arc";
+				return PxText.N("Tesla arc");
 			if (name.Contains("Flame"))
-				return "Flamethrower";
+				return PxText.N("Flamethrower");
 			if (name.Contains("Missile") || name.Contains("Rocket"))
-				return "Guided missile";
+				return PxText.N("Guided missile");
 			if (name.Contains("Torpedo"))
-				return "Torpedo";
+				return PxText.N("Torpedo");
 			if (name.Contains("GravityBomb"))
-				return "Bombs";
+				return PxText.N("Bombs");
 			if (name.Contains("InstantHit") || name.Contains("Tracer"))
-				return "Small arms";
+				return PxText.N("Small arms");
 			if (name.Contains("AreaBeam"))
-				return "Beam";
+				return PxText.N("Beam");
 			if (name.Contains("Nuke"))
-				return "Nuclear warhead";
+				return PxText.N("Nuclear warhead");
 
 			// Lobbed rounds: long-range artillery, or a grenade thrown by hand
 			if (w.Projectile is BulletInfo bullet && bullet.LaunchAngle.Any(a => a.Angle > 0))
-				return w.Range.Length >= 7168 ? "Artillery shell" : "Grenade";
+				return w.Range.Length >= 7168 ? PxText.N("Artillery shell") : PxText.N("Grenade");
 
-			return "Cannon shell";
+			return PxText.N("Cannon shell");
 		}
 
 		/// <summary>Damage warheads a shot delivers, with how many times each goes off: its own, the bomblets a
@@ -407,7 +407,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 
 				var cells = c.Footprint.Count(ch => ch == 'x' || ch == 'X');
 				var count = c.RandomClusterCount > 0 ? c.RandomClusterCount + c.Footprint.Count(ch => ch == 'X') : cells;
-				kind ??= "Cluster munition";
+				kind ??= PxText.N("Cluster munition");
 				CollectDamage(sub, rules, times * Math.Max(1, count), into, ref kind, depth + 1);
 			}
 
@@ -416,7 +416,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 				if (!rules.Weapons.TryGetValue(b.Weapon.ToLowerInvariant(), out var burn))
 					continue;
 
-				kind = "Incendiary";
+				kind = PxText.N("Incendiary");
 				CollectDamage(burn, rules, times * Math.Max(1, b.Duration / Math.Max(1, b.Interval)), into, ref kind, depth + 1);
 			}
 		}
@@ -445,7 +445,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 			var weapon = new Weapon
 			{
 				Name = label,
-				Kind = special ?? (perShot <= 0 && w.Warheads.Any(h => h is PxSpawnActorWarhead) ? "Target marker" : ProjectileKind(w)),
+				Kind = special ?? (perShot <= 0 && w.Warheads.Any(h => h is PxSpawnActorWarhead) ? PxText.N("Target marker") : ProjectileKind(w)),
 				Note = Text($"catalogue-weapon-note-{id}"),
 				Damage = perShot,
 				Burst = w.Burst,
@@ -484,23 +484,23 @@ namespace OpenRA.Mods.RAPX.Widgets
 				var total = airlift.Troops.Values.Sum();
 				var troops = string.Join(", ", airlift.Troops.Select(kv =>
 					$"{kv.Value} {(rules.Actors.TryGetValue(kv.Key.ToLowerInvariant(), out var t) ? ActorName(t) : kv.Key)}"));
-				e.Features.Add($"Airborne drop: {total} paratroopers ({troops})");
+				e.Features.Add(PxText.F("Airborne drop: {0} paratroopers ({1})", total, troops));
 
 				var pool = e.Actor.TraitInfos<AmmoPoolInfo>().FirstOrDefault(p => p.Name == airlift.AmmoPool);
 				if (pool != null)
 				{
 					var seconds = pool.Ammo * pool.ReloadDelay / pool.ReloadCount / Ticks;
-					e.Features.Add($"Reloads its paratroopers on its pad in {seconds} s, paying their price");
+					e.Features.Add(PxText.F("Reloads its paratroopers on its pad in {0} s, paying their price", seconds));
 				}
 			}
 
 			if (e.Prerequisites.Contains("disabled.lobby.titan"))
-				e.Features.Add("Picked in the lobby (TITAN column): one per player, walks out at the start, cannot be rebuilt");
+				e.Features.Add(PxText.T("Picked in the lobby (TITAN column): one per player, walks out at the start, cannot be rebuilt"));
 
 			if (e.Actor.HasTraitInfo<PxAirliftBaseInfo>())
 			{
 				var pads = e.Actor.TraitInfoOrDefault<ReservableInfo>()?.SlotOffsets.Length ?? 0;
-				e.Features.Add($"{pads} transport pads: builds and reloads airborne transports only");
+				e.Features.Add(PxText.F("{0} transport pads: builds and reloads airborne transports only", pads));
 			}
 		}
 
@@ -514,70 +514,70 @@ namespace OpenRA.Mods.RAPX.Widgets
 			}
 
 			if (e.Weapons.Any(w => w.Air && !w.Support))
-				Add(e.Weapons.All(w => w.Air && !w.Ground) ? "Dedicated anti-air" : "Can engage aircraft");
+				Add(e.Weapons.All(w => w.Air && !w.Ground) ? PxText.T("Dedicated anti-air") : PxText.T("Can engage aircraft"));
 			if (e.Weapons.Any(w => w.Naval && !w.Support && w.Kind == "Torpedo"))
-				Add("Anti-ship torpedoes");
+				Add(PxText.T("Anti-ship torpedoes"));
 			if (e.Weapons.Any(w => w.Support && w.Name.Contains("Heal", StringComparison.OrdinalIgnoreCase)))
-				Add("Heals nearby infantry");
+				Add(PxText.T("Heals nearby infantry"));
 			if (e.Weapons.Any(w => w.Support && w.Name.Contains("Repair", StringComparison.OrdinalIgnoreCase)))
-				Add("Field-repairs vehicles");
+				Add(PxText.T("Field-repairs vehicles"));
 			if (e.Power > 0)
-				Add($"Generates {e.Power} power");
+				Add(PxText.F("Generates {0} power", e.Power));
 
 			if (aircraft != null)
-				Add(aircraft.VTOL ? "VTOL: hovers and lands anywhere" : "Fast jet: strikes, then returns to rearm");
+				Add(aircraft.VTOL ? PxText.T("VTOL: hovers and lands anywhere") : PxText.T("Fast jet: strikes, then returns to rearm"));
 			if (mobile?.Locomotor != null && mobile.Locomotor.Contains("amph", StringComparison.OrdinalIgnoreCase))
-				Add("Amphibious");
+				Add(PxText.T("Amphibious"));
 			if (mobile?.Locomotor == "crocodile")
-				Add("Swims, faster in water than on land");
+				Add(PxText.T("Swims, faster in water than on land"));
 
 			foreach (var t in e.Actor.TraitInfos<TraitInfo>())
 			{
 				switch (t)
 				{
-					case DetectCloakedInfo: Add("Detects stealth units"); break;
-					case CloakInfo when mobile?.Locomotor == "crocodile": Add("Lurks unseen in water when still"); break;
-					case CloakInfo: Add(mobile?.Locomotor == "naval" ? "Submerges out of sight" : "Stealth: invisible when idle"); break;
-					case CargoInfo c when c.MaxWeight > 0: Add($"Transports {c.MaxWeight} soldiers"); break;
-					case CapturesInfo: Add("Captures enemy buildings"); break;
-					case RepairsUnitsInfo: Add("Repairs docked vehicles"); break;
-					case RepairsBridgesInfo: Add("Repairs bridges"); break;
-					case HarvesterInfo: Add("Harvests ore and gems"); break;
-					case RefineryInfo: Add("Refines ore into credits"); break;
-					case StoresPlayerResourcesInfo: Add("Stores credits"); break;
-					case ProductionInfo p: Add("Produces " + string.Join(", ", p.Produces.Select(x => x.ToLowerInvariant()))); break;
-					case CreatesShroudInfo: Add("Hides your base in a shroud field"); break;
+					case DetectCloakedInfo: Add(PxText.T("Detects stealth units")); break;
+					case CloakInfo when mobile?.Locomotor == "crocodile": Add(PxText.T("Lurks unseen in water when still")); break;
+					case CloakInfo: Add(mobile?.Locomotor == "naval" ? PxText.T("Submerges out of sight") : PxText.T("Stealth: invisible when idle")); break;
+					case CargoInfo c when c.MaxWeight > 0: Add(PxText.F("Transports {0} soldiers", c.MaxWeight)); break;
+					case CapturesInfo: Add(PxText.T("Captures enemy buildings")); break;
+					case RepairsUnitsInfo: Add(PxText.T("Repairs docked vehicles")); break;
+					case RepairsBridgesInfo: Add(PxText.T("Repairs bridges")); break;
+					case HarvesterInfo: Add(PxText.T("Harvests ore and gems")); break;
+					case RefineryInfo: Add(PxText.T("Refines ore into credits")); break;
+					case StoresPlayerResourcesInfo: Add(PxText.T("Stores credits")); break;
+					case ProductionInfo p: Add(PxText.F("Produces {0}", string.Join(", ", p.Produces.Select(x => PxText.T(x).ToLowerInvariant())))); break;
+					case CreatesShroudInfo: Add(PxText.T("Hides your base in a shroud field")); break;
 					case SupportPowerInfo s when s.Name != null: Add("Support power: " + FluentProvider.GetMessage(s.Name)); break;
-					case MinelayerInfo: Add("Lays minefields"); break;
-					case PxCivilianDisguiseInfo: Add("Disguises as a civilian car"); break;
-					case PxInterceptorInfo: Add("Intercepts incoming missiles"); break;
-					case PxPointDefenseInfo: Add("Point defence vs missiles"); break;
+					case MinelayerInfo: Add(PxText.T("Lays minefields")); break;
+					case PxCivilianDisguiseInfo: Add(PxText.T("Disguises as a civilian car")); break;
+					case PxInterceptorInfo: Add(PxText.T("Intercepts incoming missiles")); break;
+					case PxPointDefenseInfo: Add(PxText.T("Point defence vs missiles")); break;
 					case PxFlareDispenserInfo fd when fd.Style == Effects.PxFlareStyle.Angel:
-						Add($"Angel flares: {fd.Salvos} huge salvos fool {fd.DecoyChance}% of guided missiles");
+						Add(PxText.F("Angel flares: {0} huge salvos fool {1}% of guided missiles", fd.Salvos, fd.DecoyChance));
 						break;
-					case PxFlareDispenserInfo fd: Add($"Flares: {fd.Salvos} salvos fool {fd.DecoyChance}% of guided missiles"); break;
-					case JamsMissilesInfo: Add("Jams guided missiles"); break;
-					case PxShootAndScootInfo: Add("Shoot and scoot"); break;
-					case PxTrampleInfo: Add("Tramples infantry underfoot: they cannot dodge"); break;
-					case PxCarrierDeckInfo: Add("Flight deck: launches and rearms jets"); break;
-					case PxPrismRelayInfo: Add("Relays and amplifies prism beams"); break;
-					case CashTricklerInfo: Add("Generates steady income"); break;
-					case BaseProviderInfo: Add("Extends the build radius"); break;
-					case GainsExperienceInfo: Add("Earns veterancy ranks"); break;
-					case ParaDropInfo: Add("Drops paratroopers"); break;
+					case PxFlareDispenserInfo fd: Add(PxText.F("Flares: {0} salvos fool {1}% of guided missiles", fd.Salvos, fd.DecoyChance)); break;
+					case JamsMissilesInfo: Add(PxText.T("Jams guided missiles")); break;
+					case PxShootAndScootInfo: Add(PxText.T("Shoot and scoot")); break;
+					case PxTrampleInfo: Add(PxText.T("Tramples infantry underfoot: they cannot dodge")); break;
+					case PxCarrierDeckInfo: Add(PxText.T("Flight deck: launches and rearms jets")); break;
+					case PxPrismRelayInfo: Add(PxText.T("Relays and amplifies prism beams")); break;
+					case CashTricklerInfo: Add(PxText.T("Generates steady income")); break;
+					case BaseProviderInfo: Add(PxText.T("Extends the build radius")); break;
+					case GainsExperienceInfo: Add(PxText.T("Earns veterancy ranks")); break;
+					case ParaDropInfo: Add(PxText.T("Drops paratroopers")); break;
 				}
 
 				// Traits from OpenRA.Mods.Cnc (not referenced) or not public
 				switch (t.GetType().Name)
 				{
-					case "ChangesHealthInfo": Add("Self-repairs over time"); break;
-					case "ProvidesRadarInfo": Add("Provides the radar minimap"); break;
-					case "DemolitionInfo": Add("Plants demolition charges"); break;
-					case "DisguiseInfo": Add("Disguises as enemy soldiers"); break;
-					case "InfiltratesInfo": Add("Infiltrates enemy buildings"); break;
-					case "MadTankInfo": Add("Seismic shockwave (self-destructs)"); break;
-					case "AttackLeapInfo": Add("Leaps at its prey"); break;
-					case "PortableChronoInfo": Add("Teleports short distances"); break;
+					case "ChangesHealthInfo": Add(PxText.T("Self-repairs over time")); break;
+					case "ProvidesRadarInfo": Add(PxText.T("Provides the radar minimap")); break;
+					case "DemolitionInfo": Add(PxText.T("Plants demolition charges")); break;
+					case "DisguiseInfo": Add(PxText.T("Disguises as enemy soldiers")); break;
+					case "InfiltratesInfo": Add(PxText.T("Infiltrates enemy buildings")); break;
+					case "MadTankInfo": Add(PxText.T("Seismic shockwave (self-destructs)")); break;
+					case "AttackLeapInfo": Add(PxText.T("Leaps at its prey")); break;
+					case "PortableChronoInfo": Add(PxText.T("Teleports short distances")); break;
 				}
 			}
 		}

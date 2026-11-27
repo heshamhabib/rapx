@@ -1,0 +1,250 @@
+1500	Platz 11
+1501	Platz 12
+1502	Platz 13
+1503	Platz 14
+1504	Platz 15
+1505	Platz 16
+1506	Platz 17
+1507	Platz 18
+1508	Platz 19
+1509	Platz 20
+1510	Platz 21
+1511	Platz 22
+1512	Platz 23
+1513	Platz 24
+1514	Reiter Luftfahrzeuge
+1515	Reiter Gebäude
+1516	Reiter Verteidigung
+1517	Reiter Infanterie
+1518	Reiter Marine
+1519	Reiter Fahrzeuge
+1520	Abseilen (Transporthubschrauber)
+1521	Wegpunktmodus
+1522	Aus Kampfgruppe entfernen
+1523	Reparaturmodus
+1524	Schnelles Tempo
+1525	Maximales Tempo
+1526	Normales Tempo
+1527	Langsames Tempo
+1528	Zoom zurücksetzen
+1529	Ausweichen
+1530	Alle Kampfeinheiten auswählen
+1531	Aktuelle Anlage
+1532	Einheiten nach Typ auswählen
+1533	Verkaufsmodus
+1534	Alles angreifen
+1535	Verteidigen
+1536	Feuer einstellen
+1537	Feuer erwidern
+1538	Armeestatistik
+1539	Diagramm Armeewert
+1540	Basisstatistik
+1541	Kampfstatistik
+1542	Wirtschaftsstatistik
+1543	Statistikdiagramm
+1544	Statistik ausblenden
+1545	Produktionsstatistik
+1546	Statistik Unterstützungsfähigkeiten
+1547	Screenshot aufnehmen
+1548	Chatmodus wechseln
+1549	Ton stumm/an
+1550	Beziehungsfarben umschalten
+1551	Zum letzten Radarereignis springen
+1552	Zur Auswahl springen
+1553	Heranzoomen
+1554	Herauszoomen
+1555	Chatbefehle
+1556	Kampfgruppen
+1557	Editorbefehle
+1558	Spielbefehle
+1559	Musikbefehle
+1560	Zuschauer-/Wiederholungsbefehle
+1561	Produktionsbefehle
+1562	Befehle Unterstützungsfähigkeiten
+1563	Einheitenbefehle
+1564	Haltungsbefehle
+1565	Kamerabefehle
+1566	Passwort erforderlich
+1567	OpenRA-Forenkonto erforderlich
+1720	Besitzer:
+1721	ID
+1722	Objekt-ID eingeben
+1723	Besitzer
+1724	Typ: { $actorType }
+1725	Alle Karten
+1726	Alle Pakete
+1727	Bitte lege eine der folgenden Inhaltsquellen ein oder installiere sie:
+1728	Anonymer Spieler
+1729	Entpacken des Archivs fehlgeschlagen
+1730	Prüfung des Archivs fehlgeschlagen
+1731	Bereichsinfo
+1732	Bereichsauswahl
+1733	Nach Name filtern
+1734	Palette:
+1735	Asset-Quelle wählen
+1736	Fehler beim Anzeigen der Datei. Details siehe assetbrowser.log.
+1737	Skalierung:
+1738	Asset-Browser
+1739	Ton stummgeschaltet.
+1740	Ton eingeschaltet.
+1741	von { $author } am { $datetime }
+1742	Freier Startpunkt
+1743	APM
+1744	Zerstört
+1745	Geld
+1746	Verluste
+1747	Abschüsse
+1748	Filter:
+1749	Bot verwaltet von { $name }
+1568	AC Back
+1569	AC Bookmarks
+1570	AC Forward
+1571	AC Home
+1572	AC Refresh
+1573	AC Search
+1574	AC Stop
+1575	Again
+1576	AltErase
+1577	Application
+1578	AudioMute
+1579	AudioNext
+1580	AudioPlay
+1581	AudioPrev
+1582	AudioStop
+1583	Backspace
+1584	BrightnessDown
+1585	BrightnessUp
+1586	Rechner
+1587	CapsLock
+1588	Clear
+1589	Clear / Again
+1590	Computer
+1591	Kopieren
+1592	CrSel
+1593	CurrencySubUnit
+1594	CurrencyUnit
+1595	Ausschneiden
+1596	DecimalSeparator
+1597	DisplaySwitch
+1598	Runter
+1599	Auswerfen
+1600	Ende
+1601	Esc
+1602	Execute
+1603	ExSel
+1604	Suchen
+1605	Hilfe
+1606	Pos1
+1607	Einfg
+1608	KBDIllumDown
+1609	KBDIllumToggle
+1610	KBDIllumUp
+1611	Num 0
+1612	Num 00
+1613	Num 000
+1614	Num 1
+1615	Num 2
+1616	Num 3
+1617	Num 4
+1618	Num 5
+1619	Num 6
+1620	Num 7
+1621	Num 8
+1622	Num 9
+1623	Num A
+1624	Num &
+1625	Num @
+1626	Num B
+1627	Num Backspace
+1628	Num Binary
+1629	Num C
+1630	Num Clear
+1631	Num ClearEntry
+1632	Num :
+1633	Num ,
+1634	Num D
+1635	Num &&
+1636	Num ||
+1637	Num Decimal
+1638	Num /
+1639	Num E
+1640	Num Eingabe
+1641	Num =
+1642	Num (AS400)
+1643	Num !
+1644	Num F
+1645	Num >
+1646	Num #
+1647	Num Hexadecimal
+1648	Num {"{"}
+1649	Num (
+1650	Num <
+1651	Num MemAdd
+1652	Num MemClear
+1653	Num MemDivide
+1654	Num MemMultiply
+1655	Num MemRecall
+1656	Num MemStore
+1657	Num MemSubtract
+1658	Num -
+1659	Num *
+1660	Num Octal
+1661	Num %
+1662	Num .
+1663	Num +
+1664	Num +/-
+1665	Num ^
+1666	Num {"}"}
+1667	Num )
+1668	Num Leertaste
+1669	Num Tab
+1670	Num |
+1671	Num XOR
+1672	Alt links
+1673	Ctrl links
+1674	Links
+1675	GUI links
+1676	Shift links
+1677	Mail
+1678	MediaSelect
+1679	Menü
+1680	ModeSwitch
+1681	Maus 4
+1682	Maus 5
+1683	Stumm
+1684	Numlock
+1685	Oper
+1686	Out
+1687	PageDown
+1688	PageUp
+1689	Einfügen
+1690	Pause
+1691	Power
+1692	PrintScreen
+1693	Prior
+1694	Alt rechts
+1695	Ctrl rechts
+1696	Eingabe
+1697	GUI rechts
+1698	Rechts
+1699	Shift rechts
+1700	ScrollLock
+1701	Select
+1702	Separator
+1703	Ruhezustand
+1704	Leertaste
+1705	Stop
+1706	SysReq
+1707	Tab
+1708	ThousandsSeparator
+1709	Rückgängig
+1710	Unbelegt
+1711	Hoch
+1712	VolumeDown
+1713	VolumeUp
+1714	WWW
+1715	Alt
+1716	Cmd
+1717	Ctrl
+1718	Meta
+1719	Shift

@@ -1,0 +1,200 @@
+1930	La musique du jeu peut être installée
+1931	depuis le menu « Gérer le contenu ».
+1932	Musique non installée
+1933	Aucun serveur sélectionné
+1934	Aucun morceau en lecture
+1935	Sans équipe
+1936	Indisponible
+1937	Vous utilisez une version obsolète d'OpenRA. Téléchargez la dernière version sur www.openra.net
+1938	Un aperçu de la prochaine version d'OpenRA est disponible pour test. Téléchargez la version de test sur www.openra.net
+1939	Vous utilisez une version non reconnue d'OpenRA. Téléchargez la dernière version sur www.openra.net
+1940	- La partie ne sera annoncée que sur le réseau local.
+1941	- Vous devez configurer votre pare-feu pour autoriser les connexions.
+1942	- Les joueurs peuvent se connecter par IP directe depuis Internet si vous
+1943	configurez la redirection de port sur votre routeur.
+1944	- La partie sera annoncée sur le réseau local et sur Internet.
+1945	- Vous devez configurer votre routeur pour autoriser et rediriger
+1946	les connexions vers votre IP et votre port locaux.
+1947	- Vous pouvez activer UPnP/NAT-PMP (si votre routeur le prend en charge)
+1948	dans l'onglet Avancé des paramètres.
+1949	Ce raccourci ne peut pas être modifié
+1950	- La partie configurera automatiquement la redirection de port.
+1951	- Vous pouvez désactiver UPnP/NAT-PMP dans les paramètres.
+1952	OpenRA
+1953	Par défaut : « { $key } »
+1954	{ $players ->\n[one] Un autre joueur\n*[other] { $players } autres joueurs\n}
+1955	Protégé par mot de passe
+1956	Mot de passe requis
+1957	En pause
+1958	CESSEZ-LE-FEU EN VIGUEUR
+1959	FIN DU CESSEZ-LE-FEU IMMINENTE
+1960	TAPEZ /ENDTREATY POUR VOTER LA GUERRE
+1961	VOTES DE FIN DU TRAITÉ { $votes }/{ $needed }
+1962	GUERRE
+1963	TOUTES UNITÉS AU COMBAT
+1964	{ $players ->\n[one] { $players } joueur\n*[other] { $players } joueurs\n}
+1965	{ $players ->\n[0] Aucun joueur\n[one] Un joueur\n*[other] { $players } joueurs\n}
+1966	{ $players ->\n[one] { $players } joueur en ligne\n*[other] { $players } joueurs en ligne\n}
+1967	En lecture
+1968	Énergie utilisée : { $usage }/{ $capacity }
+1969	Couleurs prédéfinies
+1970	COULEUR D'ÉQUIPE
+1971	Votre propre combinaison de réglages. Choisissez un schéma pour tout réinitialiser.
+1972	La souris et les touches standard d'OpenRA.
+1973	Clic gauche pour sélectionner et donner des ordres, clic droit pour désélectionner, glisser droit pour défiler. Touches RA2 (T, G, D, Z…).
+1974	Clic droit pour donner des ordres, glisser droit pour défiler. Touches RA2 (T, G, D, Z…).
+1975	Aller à la position enregistrée
+1976	Enregistrer la position
+1977	BASE
+1978	SOURIS
+1979	ONGLETS DE LA BARRE LATÉRALE
+1980	ÉQUIPES ET VUE
+1981	ORDRES AUX UNITÉS
+1982	Ajouter à la sélection
+1983	Shift + clic
+1984	Désélectionner
+1985	Clic gauche sur un terrain vide
+1986	Tir forcé
+1987	Ctrl + clic
+1988	Déplacement forcé
+1989	Alt + clic
+1990	Déplacer / attaquer
+1991	Clic gauche
+1992	Clic droit
+1993	Définir une usine principale
+1994	Double-clic sur l'usine
+1995	Sélectionner ce type à l'écran
+1996	Double-clic sur une unité
+1997	Faire défiler la carte
+1998	Maintenir le bouton du milieu + glisser
+1999	Maintenir le bouton droit + glisser
+2000	Sélectionner des unités
+2001	Clic gauche / glisser gauche
+2002	(deux fois : toute la carte)
+2003	(à nouveau : envoyer l'itinéraire)
+2004	Schéma de contrôle : { $scheme }
+2005	Ajouter l'équipe à la sélection
+2006	Créer une équipe
+2007	Centrer la vue sur l'équipe
+2008	Sélectionner l'équipe (deux fois : centrer la vue)
+2009	Commandes
+2010	(non défini)
+2011	{ $buildings } BÂTIMENTS · { $mobile } UNITÉS
+2012	{ $buildings } BÂTIMENTS · { $mobile } VCM
+2013	FORCES ENNEMIES
+2014	STRUCTURES ENNEMIES
+2015	{ $api }. Cartes graphiques de ce PC : { $names }
+2016	Direct3D { $version } via ANGLE
+2017	{ $api }, pilote { $version }
+2018	Le jeu tourne sur la carte graphique économe. Choisissez Hautes performances ci-dessus et redémarrez le jeu pour une fréquence d'images bien plus élevée.
+2019	Il manque le pilote d'une carte graphique de ce PC. Installez-le depuis le site de NVIDIA, AMD ou Intel.
+2020	Redémarrez le jeu pour changer de carte graphique.
+2021	Aucun pilote graphique n'est utilisé : c'est le processeur qui dessine le jeu. Installez le dernier pilote de votre carte graphique.
+2022	Carte graphique utilisée : { $name }
+2023	OpenGL { $version }
+2024	{ $api }. Également dans ce PC : { $names }
+2025	non indiqué par le pilote graphique
+2026	NATION  ·  COMMANDANT
+2027	ÉTAT DE LA MISSION
+2028	RANG
+2029	ÉTAT
+2030	RAPPORT DE BATAILLE
+2031	RED ALERT  //  PROJECT X
+2032	BANDE ORIGINALE
+2033	AU COMBAT
+2034	DIRECT
+2035	JOUEURS
+2036	OBSERVATEUR
+2037	VUE CAMÉRA
+2038	ACTIONS DE STRUCTURE
+2039	ORDRES
+2040	RALLIEMENT
+2041	BALISE
+2042	Construisez un dôme radar pour l'activer
+2043	CRÉDITS
+2044	AUCUN SIGNAL RADAR
+2045	ÉNERGIE
+2046	RADAR
+2047	RÉPARER
+2048	VENDRE
+2049	DURÉE DE MISSION
+2050	OPENRA { $engine }  ·  COMMIT { $build }
+2051	OPENRA { $engine }
+2052	PROJECT X  //  VERSION
+2053	CHANGEANTE
+2054	PRÉVISIONS
+2055	EN APPROCHE
+2056	SUIVANTE
+2057	STABLE
+2058	MÉTÉO
+2059	La météo de cette carte ne change pas.
+2060	Visuel uniquement : la météo n'affecte pas les unités.
+2061	Prochaine : { $weather } dans { $time }
+2062	Actuelle : { $weather }
+2063	Une clé d'authentification a été copiée dans votre
+2064	presse-papiers. Ajoutez-la à votre panneau de contrôle
+2065	sur le forum OpenRA, puis appuyez sur Continuer.
+2066	{ $percentage }% terminé
+2067	Choisir un replay
+2068	Vitesse { $percentage }%
+2069	Lecteur de replays
+2070	Nécessite : { $prerequisites }.
+2071	Auteur :
+2072	Dossier :
+2073	Nom du fichier :
+2074	Enregistrer la carte
+2075	Titre :
+2076	Visibilité :
+2077	Le script de la carte a rencontré une erreur fatale
+2078	Les détails de l'erreur ont été enregistrés dans lua.log, dans le dossier des journaux.
+2079	Veuillez envoyer ce fichier à l'auteur de la carte pour qu'il corrige le problème.
+2080	Échec de la récupération de la liste des serveurs.
+2081	Aucune partie trouvée. Essayez de modifier les filtres.
+2082	Recherche de { $title }
+2083	Diagonale :
+2084	Ressources :
+2085	Filtres
+2086	Les versions de votre système d'exploitation, d'OpenGL et de .NET ainsi que vos paramètres de langue seront envoyés avec un identifiant anonyme pour aider à prioriser le développement.
+2087	Arrêt du serveur
+2088	Silos utilisés : { $usage }/{ $capacity }
+2089	Le son a été coupé dans les paramètres.
+2090	Spectateurs
+2091	{ $spectators ->\n[0] Aucun spectateur\n[one] Un spectateur\n*[other] { $spectators } spectateurs\n}
+2092	Actions
+2093	Faction
+2094	Joueur
+2095	Score
+2096	ALLIÉ
+2097	HOSTILE
+2098	À VOUS
+2099	Équipe { $team }
+2100	Rechercher :
+2101	Outil :
+2102	Tuiles marqueurs
+2103	Allié
+2104	Ennemi
+2105	Erreur inconnue
+2106	hôte inconnu
+2107	État du serveur inconnu
+2108	Rétablir le son de ce joueur
+2109	décompressé
+2110	Terrain non révélé
+2111	Vous utilisez une version obsolète d'OpenRA.
+2112	Téléchargez la dernière version sur www.openra.net
+2113	Vérification de l'archive...
+2114	Écran { $number }
+2115	En attente
+2116	En attente de joueurs
+2117	Blizzard
+2118	Ciel dégagé
+2119	Brouillard
+2120	Brume de chaleur
+2121	Pluie
+2122	Tempête de sable
+2123	Neige
+2124	Vent violent
+2125	Orage
+2126	Défaite
+2127	Victoire
+2128	Non affilié à Electronic Arts ni approuvé par elle. Command & Conquer et Red Alert sont des marques d'Electronic Arts Inc.
+2129	Ravitaillement des colonnes de chars..., Calibrage de l'artillerie..., Briefing des commandants..., Chargement des bobines Tesla..., Décollage d'urgence des escadrilles..., Pose des champs de mines..., Décryptage des transmissions ennemies..., Raffinage du minerai..., Déploiement des chantiers de construction..., Synchronisation de la liaison radar..., Fission des atomes...

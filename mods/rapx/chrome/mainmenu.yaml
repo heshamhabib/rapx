@@ -99,7 +99,8 @@ Container@MAINMENU:
 							Align: Left
 							LeftMargin: 24
 							Text: button-extras-title
-						Button@CONTENT_BUTTON:
+						Button@LANGUAGE_BUTTON:
+							Logic: PxLanguageButtonLogic
 							X: 30
 							Y: 320
 							Width: PARENT_WIDTH - 60
@@ -108,7 +109,7 @@ Container@MAINMENU:
 							Font: PXButton
 							Align: Left
 							LeftMargin: 24
-							Text: button-main-menu-content
+							Text: button-px-main-menu-language
 						Button@QUIT_BUTTON:
 							X: 30
 							Y: 374

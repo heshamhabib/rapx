@@ -1,0 +1,300 @@
+0	Được ghi lại bằng
+1	Xe tăng nhanh; thích hợp trinh sát.\nMạnh trước Giáp nhẹ\nYếu trước Bộ binh, Xe tăng và Máy bay
+2	Xe tăng
+3	Xe tăng nhẹ
+4	Xe tăng chủ lực của Liên minh.\nMạnh trước Xe cơ giới\nYếu trước Bộ binh và Máy bay
+5	Xe tăng vừa
+6	Xác (Xe tăng vừa)
+7	Xe tăng chủ lực của Tiên phong, trang bị pháo hạng nặng.\nMạnh trước Xe cơ giới\nYếu trước Bộ binh và Máy bay
+8	Xe tăng hạng nặng
+9	Xác (Xe tăng hạng nặng)
+10	Xe tăng lớn, chậm, có khả năng phòng không.\nCó thể húc đổ tường bê tông.\nMạnh trước Xe cơ giới, Bộ binh và Máy bay\nYếu trước Không gì cả
+11	Xe tăng Mammoth
+12	Xác (Xe tăng Mammoth)
+13	Sản xuất và nạp lại máy bay.\nChỗ đậu cho 6 máy bay.
+14	Căn cứ Không quân
+15	Căn cứ của lính dù: ba bệ đỗ cho vận tải cơ\nhạng nặng, mỗi chiếc chở theo 40 lính dù\nđể thả xuống bất kỳ đâu trên bản đồ.\nSản xuất và nạp lại vận tải cơ đường không\nCần có Sân bay
+16	Căn cứ Không vận
+17	Sản xuất và nạp lại máy bay.\nChỗ đậu cho 8 máy bay.
+18	Căn cứ Không lực
+19	Một chiếc Badger thả bom dù\nxuống vị trí đã chọn.
+20	Bom dù
+21	Hiện lộ một khu vực trên bản đồ.
+22	Sản xuất và nạp lại máy bay.\nChỗ đậu cho 4 máy bay.\nKỹ năng đặc biệt: Máy bay Trinh sát\nKỹ năng đặc biệt: Lính dù
+23	Sân bay
+24	Một chiếc Badger thả một toán bộ binh\nxuống vị trí đã chọn.
+25	Lính dù
+26	Sản xuất và nạp lại máy bay.\nKỹ năng đặc biệt: Máy bay Trinh sát\nKỹ năng đặc biệt: Lính dù\nKỹ năng đặc biệt: Bom dù
+27	Công trình phòng thủ phòng không. Cũng bắn hạ drone,\ntên lửa hành trình và một số rocket ở tầm gần.\nCần điện để hoạt động.\nMạnh trước Máy bay và Drone\nYếu trước Quân mặt đất
+28	Pháo Phòng không
+29	Bất kỳ công trình phát điện nào
+30	Xe chở quân bọc thép chắc chắn.\nMạnh trước Bộ binh và Giáp nhẹ\nYếu trước Xe tăng và Máy bay
+31	Xe Bọc thép Chở quân
+32	Cung cấp lượng điện gấp đôi một\nNhà máy Điện thường.
+33	Nhà máy Điện Cao cấp
+34	Pháo binh tầm xa.\nMạnh trước Bộ binh và Công trình\nYếu trước Xe cơ giới và Máy bay
+35	Pháo binh
+36	Bắn hạ vệ tinh địch\nbay ngang qua trong phạm vi 12 ô.\nMạnh trước Vệ tinh\nKhông thể tấn công quân mặt đất hoặc máy bay
+37	Trận địa Tên lửa ASAT
+38	Cung cấp công nghệ cao cấp của Liên minh.\nKỹ năng đặc biệt: Vệ tinh GPS
+39	Hiện lộ địa hình bản đồ và cung cấp thông tin chiến thuật.\nCần điện và radar đang hoạt động.
+40	Vệ tinh GPS
+41	Trung tâm Công nghệ Liên minh
+42	Trực thăng vận tải hạng nặng tốc độ cao.\nChở 10 bộ binh. Chỉ Ấn Độ.\nThả màn khói và thả quân bằng dây\ntừ tư thế lượn đứng (F tại đây, G để chọn điểm hạ).\nKhông vũ trang\nYếu trước Phòng không
+43	AW101 Merlin
+44	B-17 Flying Fortress
+45	B-29 Superfortress
+46	Boeing 314 Clipper
+47	B-52 Stratofortress
+48	Badger
+49	Hàng rào Dây thép gai
+50	Thùng thuốc nổ
+51	Huấn luyện bộ binh.
+52	Doanh trại Tiên phong
+53	Sản xuất Bộ binh
+54	Chiến hạm khổng lồ, giáp dày, trang bị pháo 16 inch,\nkhẩu pháo có tầm bắn xa nhất trên biển.\nMạnh trước Công trình, Quân mặt đất và Tàu chiến\nYếu trước Tàu ngầm và Máy bay
+55	Thiết giáp hạm
+56	Robot chiến đấu giá rẻ của Liên minh, trang bị súng blaster.\nĐược sản xuất hàng loạt.\nMạnh trước Bộ binh\nYếu trước Xe cơ giới, Máy bay
+57	Robot Chiến đấu
+58	Chiếm để sản xuất đơn vị Phòng thí nghiệm Sinh học.
+59	Cung cấp điều kiện để sản xuất đơn vị Phòng thí nghiệm Sinh học.
+60	Phòng thí nghiệm Sinh học
+61	Căn cứ của máy bay ném bom nguyên tử AB-35 Longwing.\nNạp năng lượng cho Đòn Fatman khi máy bay ném bom còn sống.\nChỉ Hoa Kỳ. Chỉ có thể xây 1 cái.
+62	Chiếc AB-35 Longwing cất cánh và thả\nmột quả bom nguyên tử Fatman xuống mục tiêu.\nSức công phá nhỏ hơn Tên lửa Hạt nhân.
+63	Đòn Fatman
+64	Sân bay Ném bom Chiến lược
+65	Phòng thủ tên lửa đạn đạo (lớp THAAD): đánh chặn\ntên lửa đạn đạo và siêu vượt âm từ xa.\nCần Mái vòm Radar để đạt tầm bắn tối đa.\nMạnh trước Tên lửa đạn đạo và siêu vượt âm\nKhông thể bắn máy bay, drone hoặc rocket
+66	Lá chắn Tên lửa
+67	Chặn đơn vị và cản hỏa lực của địch.
+68	Tường Bê tông
+69	Xe bọc thép bánh lốp tốc độ cao, trang bị pháo tự động\ntrên tháp pháo. Chở 5 bộ binh. Chỉ Nga.\nMạnh trước Bộ binh và Giáp nhẹ\nYếu trước Xe tăng và Máy bay
+70	BTR
+71	Vận tải cơ đường không chở theo 40 lính dù.\nNhấp chuột phải xuống mặt đất để thả quân; máy bay\nsẽ bay về căn cứ và nhận toán quân mới (trả phí) sau một phút.\nKhông vũ trang\nĐược sản xuất tại Căn cứ Không vận
+72	C-130 Hercules
+73	C-141 Starlifter
+74	C-17A Globemaster III
+75	Chiến hạm tầm xa, tốc độ rất chậm.\nMạnh trước Công trình và Quân mặt đất\nYếu trước Hải quân và Máy bay
+76	Tuần dương hạm
+77	(hiện lộ khu vực cho chủ sở hữu)
+78	(camera đại diện cho sức mạnh hỗ trợ)
+79	Bắn tên lửa hành trình Tomahawk sâu vào đất liền\nvà bảo vệ hạm đội trước máy bay địch.\nChỉ Hoa Kỳ.\nMạnh trước Công trình và Máy bay\nYếu trước Tàu ngầm
+80	Tuần dương hạm Tên lửa
+81	Xe phóng bánh lốp hạng nặng, bắn loạt 6 rocket.\nTriển khai để chuyển sang bắn một tên lửa dẫn đường hạng nặng\ncó tầm bắn xa hơn.\nMạnh trước Bộ binh và Công trình\nYếu trước Xe cơ giới và Máy bay; đắt tiền
+82	Chunmu
+83	Lao vào binh lính và chó, giết chúng\nchỉ bằng một cú cắn. Bơi nhanh và khi nằm\nyên dưới nước thì không thể bị phát hiện. Chỉ Ai Cập.\nMạnh trước Bộ binh và Chó\nYếu trước Xe cơ giới và Công trình
+84	Cá sấu
+85	Cá sấu sông Nile
+86	Lá cờ
+87	Trang bị tên lửa đối đất.\nDịch chuyển tức thời đến bất kỳ khu vực nào trong tầm.\nMạnh trước Xe cơ giới và Công trình\nYếu trước Bộ binh và Máy bay\nKỹ năng đặc biệt: Có thể dịch chuyển tức thời
+88	Xe tăng Chrono
+89	Tàu sân bay lớp Essex từ Thế chiến thứ hai.\nMột căn cứ không quân nổi với bệ phóng SAM để phòng thủ.\nMạnh trước Máy bay, Tên lửa\nYếu trước Tàu chiến, Tàu ngầm\nTối đa 1 chiếc: có thể đóng chiếc khác khi chiếc này bị mất.
+90	Tàu sân bay Hạm đội
+91	Tàu sân bay chạy năng lượng hạt nhân đầu tiên (lớp Enterprise).\nSàn đáp lớn hơn, thân tàu chắc chắn hơn, nhiều bệ phóng SAM hơn.\nMạnh trước Máy bay, Tên lửa\nYếu trước Tàu chiến, Tàu ngầm\nTối đa 1 chiếc: có thể đóng chiếc khác khi chiếc này bị mất.
+92	Tàu sân bay Chiến đấu
+93	Siêu tàu sân bay hạt nhân lớp Nimitz.\nKỳ hạm giáp dày của hạm đội.\nMạnh trước Máy bay, Tên lửa\nYếu trước Tàu chiến, Tàu ngầm\nTối đa 1 chiếc: có thể đóng chiếc khác khi chiếc này bị mất.
+94	Siêu Tàu sân bay
+95	Tàu sân bay lớp Gerald R. Ford với hệ thống\nphòng thủ hiện đại nhất. Chiến hạm mạnh nhất đang hoạt động.\nMạnh trước Máy bay, Tên lửa\nYếu trước Tàu chiến, Tàu ngầm\nTối đa 1 chiếc: có thể đóng chiếc khác khi chiếc này bị mất.
+96	Tàu sân bay Tương lai
+97	Siêu tàu sân bay mới nhất của Trung Quốc, trang bị\nmáy phóng điện từ.\nMạnh trước Máy bay, Tên lửa\nYếu trước Tàu chiến, Tàu ngầm\nTối đa 1 chiếc: có thể đóng chiếc khác khi chiếc này bị mất.
+98	Tàu sân bay Fujian
+99	Tàu sân bay trực thăng đổ bộ của Ai Cập.\nRẻ và đóng nhanh.\nMạnh trước Máy bay, Tên lửa\nYếu trước Tàu chiến, Tàu ngầm\nTối đa 1 chiếc: có thể đóng chiếc khác khi chiếc này bị mất.
+100	Tàu sân bay Trực thăng Mistral
+101	Tàu sân bay chạy năng lượng hạt nhân của Pháp,\nniềm tự hào của Hải quân Pháp.\nMạnh trước Máy bay, Tên lửa\nYếu trước Tàu chiến, Tàu ngầm\nTối đa 1 chiếc: có thể đóng chiếc khác khi chiếc này bị mất.
+102	Tàu sân bay Charles de Gaulle
+103	Tàu sân bay của Hải quân Hoàng gia Anh, có mũi tàu\nkiểu ski-jump và hai đảo chỉ huy.\nMạnh trước Máy bay, Tên lửa\nYếu trước Tàu chiến, Tàu ngầm\nTối đa 1 chiếc: có thể đóng chiếc khác khi chiếc này bị mất.
+104	Tàu sân bay Queen Elizabeth
+105	Tàu sân bay tự đóng trong nước của Ấn Độ, có\nmũi tàu kiểu ski-jump.\nMạnh trước Máy bay, Tên lửa\nYếu trước Tàu chiến, Tàu ngầm\nTối đa 1 chiếc: có thể đóng chiếc khác khi chiếc này bị mất.
+106	Tàu sân bay Vikrant
+107	Tàu buôn được hoán cải với sàn đáp\ncho drone. Rẻ nhưng mỏng manh.\nMạnh trước Máy bay, Tên lửa\nYếu trước Tàu chiến, Tàu ngầm\nTối đa 1 chiếc: có thể đóng chiếc khác khi chiếc này bị mất.
+108	Tàu sân bay Drone Bagheri
+109	Tàu sân bay hạng nhẹ của Ý dành cho máy bay\ncất cánh thẳng đứng và trực thăng.\nMạnh trước Máy bay, Tên lửa\nYếu trước Tàu chiến, Tàu ngầm\nTối đa 1 chiếc: có thể đóng chiếc khác khi chiếc này bị mất.
+110	Tàu sân bay Hạng nhẹ Cavour
+111	Khu trục hạm trực thăng được cải tạo thành tàu sân bay\nhạng nhẹ cho tiêm kích cất cánh thẳng đứng.\nMạnh trước Máy bay, Tên lửa\nYếu trước Tàu chiến, Tàu ngầm\nTối đa 1 chiếc: có thể đóng chiếc khác khi chiếc này bị mất.
+112	Tàu sân bay Kaga
+113	Tuần dương hạm mang máy bay hạng nặng, có\nmũi tàu kiểu ski-jump và hệ thống phòng không SAM mạnh.\nMạnh trước Máy bay, Tên lửa\nYếu trước Tàu chiến, Tàu ngầm\nTối đa 1 chiếc: có thể đóng chiếc khác khi chiếc này bị mất.
+114	Tàu sân bay Kuznetsov
+115	Nửa tàu sân bay, nửa tuần dương hạm: sàn đáp\nở đuôi tàu và bệ phóng tên lửa ở mũi tàu.\nMạnh trước Máy bay, Tên lửa\nYếu trước Tàu chiến, Tàu ngầm\nTối đa 1 chiếc: có thể đóng chiếc khác khi chiếc này bị mất.
+116	Tuần dương hạm Hàng không Kiev
+117	Tàu đổ bộ được chuyển đổi thành tàu sân bay drone.\nPhóng ra bầy drone tấn công.\nMạnh trước Máy bay, Tên lửa\nYếu trước Tàu chiến, Tàu ngầm\nTối đa 1 chiếc: có thể đóng chiếc khác khi chiếc này bị mất.
+118	Tàu sân bay Drone Anadolu
+119	Cyborg bọc thép của Liên minh, trang bị súng ngắn tự động hạng nặng.\nKhông thể bị cán và không bao giờ nấp.\nMạnh trước Bộ binh\nYếu trước Xe cơ giới, Máy bay
+120	Lính Cyborg
+121	Hàng rào Lưới thép
+122	Đài tưởng niệm Jefferson
+123	Đài tưởng niệm Lincoln
+124	Chiếm để nhận nguồn thu rất lớn.
+125	Cung cấp nguồn thu rất lớn.
+126	Đài tưởng niệm Washington
+127	Nhà Trắng
+128	Chiến hạm đa năng tốc độ cao.\nCó thể phát hiện tàu ngầm.\nMạnh trước Hải quân, Xe cơ giới và Máy bay\nYếu trước Bộ binh
+129	Khu trục hạm
+130	Đơn vị chống bộ binh.\nCó thể phát hiện gián điệp.\nMạnh trước Bộ binh\nYếu trước Xe cơ giới và Máy bay
+131	Chó
+132	Chó Tấn công
+133	Cung cấp cái nhìn tổng quan về\nchiến trường.\nCần điện để hoạt động.
+134	Mái vòm Radar
+135	Xe tải chở thuốc nổ hạt nhân đã kích hoạt,\ngiáp rất mỏng.
+136	Xe tải Phá hủy
+137	Bộ binh đa dụng.\nMạnh trước Bộ binh\nYếu trước Xe cơ giới và Máy bay
+138	Bộ binh Súng trường
+139	Bộ binh trang bị lựu đạn.\nMạnh trước Công trình và Bộ binh\nYếu trước Xe cơ giới và Máy bay
+140	Lính Lựu đạn
+141	Bộ binh chống tăng/phòng không.\nMạnh trước Xe cơ giới và Máy bay\nYếu trước Bộ binh
+142	Lính Rocket
+143	Đơn vị chống công trình cao cấp.\nMạnh trước Bộ binh và Công trình\nYếu trước Xe cơ giới và Máy bay
+144	Bộ binh Phun lửa
+145	Xâm nhập và chiếm giữ\ncông trình địch.\nKhông vũ trang
+146	Kỹ sư
+147	Biệt kích tinh nhuệ, trang bị hai súng ngắn\nvà thuốc nổ C4.\nChỉ có thể huấn luyện 1 người.\nMạnh trước Bộ binh và Công trình\nYếu trước Xe cơ giới và Máy bay\nKỹ năng đặc biệt: Phá hủy công trình bằng C4
+148	Tanya
+149	Boeing 707 (khung thân E-8C)
+150	Tháp Cairo
+151	Đền Karnak
+152	Bảo tàng Ai Cập Vĩ đại
+153	Đại Kim tự tháp Giza
+154	Tượng Nhân sư Vĩ đại
+155	Voi chiến cơ khí trang bị pháo đôi hạng nặng.\nGiẫm chết mọi bộ binh nó đi qua.\nCần Trung tâm Công nghệ. Chỉ Ấn Độ.\nMạnh trước Xe tăng, Công trình và Bộ binh\nYếu trước Máy bay
+156	Elephanta
+157	Cỗ máy tấn công hai chân hạng nặng của Liên minh.\nSúng tự động đôi trên hai tay xé nát bộ binh, cụm\nrocket trên vai xuyên phá giáp.\nMạnh trước Bộ binh, Xe cơ giới\nYếu trước Máy bay
+158	Cỗ máy Enforcer
+159	Sản xuất công trình.
+160	Xưởng Xây dựng
+161	Tầm bắn xa với giá rẻ, nhưng thiếu chính xác.\nTriển khai để chuyển sang dùng 2 drone tấn công Shard-136\ncó tầm bắn rất xa.\nMạnh trước Bộ binh và Công trình\nYếu trước Xe cơ giới và Máy bay
+162	Fajir-5
+163	Rocket dẫn đường tầm xa; độ chính xác cao.\nMạnh trước Công trình, Bộ binh và Xe cơ giới\nYếu trước Máy bay; nạp đạn chậm
+164	Fatah-X
+165	Chiếm để mở rộng khu vực xây dựng.
+166	Cung cấp khu vực xây dựng.
+167	Sở Chỉ huy Tiền phương
+168	Hàng rào Dây kẽm
+169	Sửa chữa xe cơ giới để lấy tiền.
+170	Trạm Bảo dưỡng
+171	Pháo phòng không đôi hạng nặng. Loạt đạn của nó gây sát thương\ncho mọi máy bay lân cận và có thể hạ gục drone\ncùng tên lửa hành trình.\nMạnh trước Máy bay và Drone\nYếu trước Quân mặt đất
+172	Pháo Flak
+173	Pháo sáng
+174	Đơn vị cơ động trang bị pháo Flak.\nMạnh trước Bộ binh, Giáp nhẹ và Máy bay\nYếu trước Xe tăng
+175	Pháo Flak Cơ động
+176	Công trình phòng thủ chống bộ binh.\nCó thể phát hiện đơn vị tàng hình.\nMạnh trước Bộ binh và Giáp nhẹ\nYếu trước Xe tăng và Máy bay
+177	Tháp Phun lửa
+178	Che khuất tầm nhìn của địch bằng màn sương.\nCần điện để hoạt động.
+179	Máy tạo Vùng mù
+180	Mỏ Đá quý
+181	Vua của các quái vật. Được chọn trong phòng chờ: mỗi người chơi 1 con, không thể xây lại.\nHơi thở nguyên tử thiêu rụi mọi thứ trên một đường thẳng dài, kể cả máy bay.\nGiẫm nát bất cứ thứ gì đến gần. Lội qua sông và biển.\nMạnh trước mọi thứ
+182	Godzilla
+183	Bệ phóng Grad cũ: rẻ nhưng thiếu chính xác.\nMạnh trước Bộ binh và các nhóm mục tiêu\nYếu trước Xe cơ giới và Máy bay
+184	Guajiro Grad
+185	Công trình phòng thủ chống giáp.\nCó thể phát hiện đơn vị tàng hình.\nMạnh trước Xe cơ giới\nYếu trước Bộ binh và Máy bay
+186	Tháp súng
+187	Phòng không cơ động: loạt bốn tên lửa tốc độ cao\nxoáy vào máy bay, cùng pháo 35 mm\ncho bất cứ thứ gì đến gần.\nMạnh trước Máy bay và Trực thăng\nKhông thể tấn công mục tiêu mặt đất
+188	Gürz Mace
+189	Bệ phóng bánh xích: loạt 12 rocket lớn trên diện rộng.\nMạnh trước Bộ binh và Công trình\nYếu trước Xe cơ giới và Máy bay; chậm
+190	Hailstorm
+191	Thu thập Quặng và Đá quý để\nchế biến.\nKhông vũ trang
+192	Xe thu hoạch
+193	Xe tải Quặng
+194	Xác (Xe tải Quặng)
+195	Công trình phòng thủ cố định ngụy trang, có lỗ châu mai\ncho binh lính đồn trú.\nCó thể phát hiện đơn vị tàng hình.\nMạnh trước Bộ binh và Giáp nhẹ\nYếu trước Xe tăng và Máy bay
+196	Lô cốt Ngụy trang
+197	Tàu hộ tống phòng không và chống ngầm, trang bị\ntên lửa, pháo cận chiến và bom chìm.\nMạnh trước Máy bay và Tàu ngầm\nYếu trước Quân mặt đất
+198	Tuần dương hạm Trực thăng
+199	Thùng Hồi phục
+200	Trực thăng tấn công hạng nhẹ tốc độ cao, trang bị tên lửa\nchống tăng HOT và pháo 20 mm.\nMạnh trước Xe tăng và Xe cơ giới\nYếu trước Bộ binh và Phòng không
+201	Longbow
+202	Bệ phóng bánh lốp tốc độ cao, trang bị rocket dẫn đường tầm xa.\nBắn và chạy: rời đi ngay sau mỗi lần bắn.\nMạnh trước Bộ binh, Công trình và Xe cơ giới\nYếu trước Máy bay
+203	HIMAX
+204	Trực thăng vũ trang trang bị súng máy đôi.\nMạnh trước Bộ binh và Giáp nhẹ\nYếu trước Xe tăng và Máy bay
+205	Hind
+206	Xe rocket tốc độ cao: bắn một loạt dài\n30 rocket nhẹ từ ống phóng.\nMạnh trước Bộ binh và Công trình\nYếu trước Xe tăng và Máy bay
+207	Xe Rocket Hailfire
+208	Xe trinh sát chắc chắn, trang bị súng máy .50 cal trên nóc.\nChở 4 bộ binh. Chỉ Hoa Kỳ.\nMạnh trước Bộ binh và Giáp nhẹ\nYếu trước Xe tăng
+209	Humvee
+210	Chiếm để kích hoạt khả năng tự hồi phục cho bộ binh.
+211	Giúp bộ binh tự hồi phục.
+212	Bệnh viện
+213	Sản xuất và nạp lại trực thăng.
+214	Sân đỗ Trực thăng
+215	Tảng băng trôi
+216	Vận tải cơ đường không hạng nặng chở theo 40 lính dù.\nNhấp chuột phải xuống mặt đất để thả quân; máy bay\nsẽ bay về căn cứ và nhận toán quân mới (trả phí) sau một phút.\nTháp súng đuôi: pháo đôi 23 mm chống máy bay\nĐược sản xuất tại Căn cứ Không vận
+217	Il-76MD Candid
+218	Lính Tiên phong mặc bộ giáp trợ lực, trang bị\nsúng máy hạng nặng dùng băng đạn dây.\nKhông thể bị cán và không bao giờ nấp.\nMạnh trước Bộ binh\nYếu trước Xe cơ giới, Máy bay
+219	Vệ binh Sắt
+220	Ban cho một nhóm đơn vị khả năng\nbất tử tạm thời.\nCần điện để hoạt động.\nChỉ có thể xây 1 cái.\nKỹ năng đặc biệt: Bất tử
+221	Ban cho một nhóm đơn vị khả năng bất tử\ntrong 20 giây.
+222	Bất tử
+223	Bức màn Sắt
+224	Chiếm để nhận nguồn thu lớn.
+225	Cung cấp nguồn thu lớn.
+226	Tháp Warden
+227	Xe trinh sát tốc độ cao, chống bộ binh.\nChỉ có thể chở một đơn vị bộ binh.\nMạnh trước Bộ binh\nYếu trước Xe cơ giới và Máy bay
+228	Ranger
+229	Tiêm kích cường kích bọc thép.\nMạnh trước Xe tăng và Xe cơ giới\nYếu trước Tiêm kích\nThế hệ cấp 3\nĐược lái bởi: Liên minh, Hoa Kỳ
+230	AA-10 Thunderhog
+231	Máy bay vận tải.\nChở bộ binh\nKhông vũ trang\nThế hệ cấp 4\nĐược lái bởi: Ukraina
+232	An-225 Dreamer
+233	Máy bay ném bom hạng nặng.\nMạnh trước Công trình\nYếu trước Tiêm kích và Phòng không\nThế hệ cấp 5\nĐược lái bởi: Liên minh, Hoa Kỳ
+234	AB-2 Wraith
+235	Máy bay ném bom hạng nặng.\nMạnh trước Công trình\nYếu trước Tiêm kích và Phòng không\nThế hệ cấp 2\nĐược lái bởi: Hoa Kỳ
+236	AB-52 Stratoforce
+237	Tiêm kích đánh chặn tốc độ cao.\nMạnh trước Công trình và Xe cơ giới\nYếu trước Phòng không\nThế hệ cấp 2\nĐược lái bởi: Liên minh, Hoa Kỳ, Đức, Ý, Nhật Bản, Thổ Nhĩ Kỳ, Pakistan
+238	AF-104 Starflash
+239	Tiêm kích tàng hình.\nMạnh trước Công trình và Xe cơ giới\nYếu trước Phòng không\nThế hệ cấp 3\nĐược lái bởi: Liên minh, Hoa Kỳ
+240	AF-117 Nightjar
+241	Tiêm kích đánh chặn tốc độ cao.\nMạnh trước Công trình và Xe cơ giới\nYếu trước Phòng không\nThế hệ cấp 3\nĐược lái bởi: Liên minh, Hoa Kỳ, Iran
+242	AF-14 Bobcat
+243	Tiêm kích đa năng.\nMạnh trước Công trình và Xe cơ giới\nYếu trước Phòng không\nThế hệ cấp 3\nĐược lái bởi: Liên minh, Hoa Kỳ, Ý, Hàn Quốc, Ai Cập, Thổ Nhĩ Kỳ, Pakistan, Ukraina
+244	AF-16 Fighting Kestrel
+245	Tiêm kích tấn công hải quân.\nMạnh trước Tàu chiến và Xe cơ giới\nYếu trước Phòng không\nThế hệ cấp 4\nĐược lái bởi: Nhật Bản
+246	AF-2 Zero Viper
+247	Tiêm kích tàng hình.\nMạnh trước Công trình và Xe cơ giới\nYếu trước Phòng không\nThế hệ cấp 5\nĐược lái bởi: Liên minh, Hoa Kỳ
+248	AF-22 Raptorex
+249	Tiêm kích đánh chặn tốc độ cao.\nMạnh trước Công trình và Xe cơ giới\nYếu trước Phòng không\nThế hệ cấp 2\nĐược lái bởi: Liên minh, Hoa Kỳ, Anh, Đức, Nhật Bản, Hàn Quốc, Ai Cập, Thổ Nhĩ Kỳ, Iran
+250	AF-4 Spectre II
+251	Máy tạo Vùng mù bay: máy bay radar không vũ trang\nche giấu mặt đất bên dưới nó khỏi tầm nhìn địch.\nRa lệnh bay đến một khu vực để nó bay vòng tại đó.\nCần Trung tâm Công nghệ\nKhông vũ trang, yếu trước Phòng không
+252	AE-2 Shroud Hawk
+253	Drone chiến đấu không người lái.\nRẻ, lượng máu thấp\nMạnh trước Bộ binh và Giáp nhẹ\nNguyên mẫu, mỗi người 1 chiếc\nĐược lái bởi: Nga
+254	Grom-K
+255	Máy bay cất cánh thẳng đứng VTOL.\nMạnh trước Xe cơ giới\nYếu trước Phòng không\nThế hệ cấp 3\nĐược lái bởi: Liên minh, Hoa Kỳ, Anh, Ý, Ấn Độ
+256	Harrow
+257	Máy bay ném bom hạng nặng.\nMạnh trước Công trình\nYếu trước Tiêm kích và Phòng không\nThế hệ cấp 0\nĐược lái bởi: Đức
+258	He-177 Greif
+259	Máy bay ném bom hạng nặng.\nMạnh trước Công trình\nYếu trước Tiêm kích và Phòng không\nThế hệ cấp 5\nĐược lái bởi: Đức
+260	HG-229 Nachtflügel
+261	Tiêm kích tàng hình.\nMạnh trước Công trình và Xe cơ giới\nYếu trước Phòng không\nThế hệ cấp 5\nĐược lái bởi: Trung Quốc
+262	JX-20 Jade Dragon
+263	Máy bay cường kích hạng nhẹ.\nMạnh trước Bộ binh, Giáp nhẹ và drone\nYếu trước Tiêm kích và Phòng không\nThế hệ cấp 2\nĐược lái bởi: Ukraina, Cuba, Ai Cập
+264	L-39U Albatross
+265	Tiêm kích động cơ piston từ thập niên 1940.\nRẻ và đóng nhanh\nMạnh trước Bộ binh và Giáp nhẹ\nThế hệ cấp 0\nĐược lái bởi: Tiên phong, Nga, Trung Quốc
+266	LaV-11 Fang
+267	Tiêm kích đa năng.\nMạnh trước Công trình và Xe cơ giới\nYếu trước Phòng không\nThế hệ cấp 3\nĐược lái bởi: Liên minh, Pháp, Ai Cập, Ấn Độ, Ukraina
+268	Mirago 2000
+269	Tiêm kích phản lực.\nMạnh trước Công trình và Xe cơ giới\nYếu trước Phòng không\nThế hệ cấp 2\nĐược lái bởi: Tiên phong, Nga, Ukraina, Cuba, Ấn Độ, Trung Quốc, Pakistan, Iran, Ai Cập
+270	MiK-21 Fishbone
+271	Tiêm kích đa năng.\nMạnh trước Công trình và Xe cơ giới\nYếu trước Phòng không\nThế hệ cấp 3\nĐược lái bởi: Tiên phong, Nga, Ukraina, Cuba, Ấn Độ, Ai Cập
+272	MiK-23 Flintlock
+273	Tiêm kích đánh chặn tốc độ cao.\nMạnh trước Công trình và Xe cơ giới\nYếu trước Phòng không\nThế hệ cấp 3\nĐược lái bởi: Tiên phong, Nga, Ukraina, Ấn Độ
+274	MiK-25 Foxbane
+275	Tiêm kích động cơ piston từ thập niên 1940.\nRẻ và đóng nhanh\nMạnh trước Bộ binh và Giáp nhẹ\nThế hệ cấp 0\nĐược lái bởi: Tiên phong, Nga
+276	MiK-3 Strela
+277	Tiêm kích tàng hình.\nMạnh trước Công trình và Xe cơ giới\nYếu trước Phòng không\nNguyên mẫu, mỗi người 1 chiếc\nĐược lái bởi: Iran
+278	Qahir-X
+279	Tiêm kích đa năng.\nMạnh trước Công trình và Xe cơ giới\nYếu trước Phòng không\nThế hệ cấp 4\nĐược lái bởi: Pháp, Ai Cập, Ấn Độ, Ukraina
+280	Rafal F4
+281	Tiêm kích phản lực.\nMạnh trước Công trình và Xe cơ giới\nYếu trước Phòng không\nThế hệ cấp 3\nĐược lái bởi: Iran
+282	Saeqa
+283	Tiêm kích tấn công hải quân.\nMạnh trước Tàu chiến và Xe cơ giới\nYếu trước Phòng không\nThế hệ cấp 2\nĐược lái bởi: Anh
+284	Sea Vixa
+285	Máy bay trinh sát phản lực tốc độ cao.\nRất khó bị bắt kịp\nYếu trước Phòng không\nThế hệ cấp 3\nĐược lái bởi: Hoa Kỳ
+286	SR-7 Blackwing
+287	Tiêm kích cường kích bọc thép.\nMạnh trước Xe tăng và Xe cơ giới\nYếu trước Tiêm kích\nThế hệ cấp 3\nĐược lái bởi: Tiên phong, Nga, Ukraina, Iran
+288	Sk-25 Rook
+289	Tiêm kích phản lực.\nMạnh trước Công trình và Xe cơ giới\nYếu trước Phòng không\nThế hệ cấp 3\nĐược lái bởi: Tiên phong, Nga, Ukraina, Trung Quốc
+290	Sk-27 Flankard
+291	Tiêm kích đa năng.\nMạnh trước Công trình và Xe cơ giới\nYếu trước Phòng không\nThế hệ cấp 4\nĐược lái bởi: Tiên phong, Nga, Ấn Độ, Trung Quốc
+292	Sk-30 Flankard-M
+293	Tiêm kích đa năng.\nMạnh trước Công trình và Xe cơ giới\nYếu trước Phòng không\nThế hệ cấp 4\nĐược lái bởi: Tiên phong, Nga, Trung Quốc, Ai Cập, Iran
+294	Sk-35 Flankard-E
+295	Tiêm kích tàng hình.\nMạnh trước Công trình và Xe cơ giới\nYếu trước Phòng không\nNguyên mẫu, mỗi người 1 chiếc\nĐược lái bởi: Tiên phong, Nga
+296	Sk-47 Berkov
+297	Drone chiến đấu không người lái.\nRẻ, lượng máu thấp\nMạnh trước Bộ binh và Giáp nhẹ\nThế hệ cấp 3\nĐược lái bởi: Thổ Nhĩ Kỳ
+298	Drone Bầy đàn
+299	Máy bay ném bom hạng nặng.\nMạnh trước Công trình\nYếu trước Tiêm kích và Phòng không\nThế hệ cấp 3\nĐược lái bởi: Nga

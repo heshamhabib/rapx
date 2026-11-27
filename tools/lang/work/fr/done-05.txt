@@ -1,0 +1,176 @@
+600	Voir la vidéo
+601	Arrêter la vidéo
+602	Changer de carte
+603	Créer
+604	MAX
+605	Jouer
+608	Défense
+610	Marine
+612	Déconnexion
+613	Confirmer
+614	Recommencer
+615	Point de ralliement
+616	Observer
+617	Réessayer
+618	Réessayer l'installation
+619	Relancer la recherche
+620	Posture : tout attaquer
+621	Passe les unités sélectionnées en posture « tout attaquer » :\n- Les unités attaquent les unités et structures ennemies à vue\n- Les unités poursuivent les assaillants sur tout le champ de bataille
+622	Posture défensive
+623	Passe les unités sélectionnées en posture défensive :\n- Les unités attaquent les unités ennemies à vue\n- Les unités ne bougent pas et ne poursuivent pas
+624	Posture : cessez-le-feu
+625	Passe les unités sélectionnées en posture « cessez-le-feu » :\n- Les unités ne tirent pas sur l'ennemi\n- Les unités ne bougent pas et ne poursuivent pas
+626	Posture : riposte
+627	Passe les unités sélectionnées en posture « riposte » :\n- Les unités ripostent contre les ennemis qui les attaquent\n- Les unités ne bougent pas et ne poursuivent pas
+628	Équipe
+629	Placer une balise
+630	Origine : centrer sur votre chantier de construction
+631	Couper l'énergie
+632	Réparer
+633	Vendre
+634	Voter l'expulsion de ce joueur
+635	Rapide et bon marché, idéal pour la reconnaissance, le harcèlement des camions de minerai et la chasse aux véhicules légers. Il perd un duel direct contre des chars plus lourds.
+636	Char léger
+637	Le char de combat principal de l'Union : un bon équilibre entre vitesse, blindage et puissance de feu. Associez-le aux lance-roquettes et au Flak mobile pour une armée complète.
+638	Char de combat principal
+639	Le char de combat principal de Vanguard, avec deux canons lourds. Plus lent que les blindés de l'Union mais frappe bien plus fort. Gagne les affrontements de chars frontaux.
+640	Char lourd
+641	Le Mammouth : deux canons contre les chars, des nacelles de missiles contre les aéronefs et l'infanterie, un blindage lourd et une autoréparation quand il est endommagé. Lent et coûteux, il écrase même les murs en béton.
+642	Char super-lourd
+643	Un aérodrome plus grand avec un parking pour 6 avions. Agrandissez votre escadre sans éparpiller les pistes dans la base.
+644	Grande base aérienne
+645	Base des brigades parachutistes : casernes, salle de pliage des parachutes et trois aires pour les transports lourds qui emportent chacun 40 soldats n'importe où sur la carte.
+646	Base aéroportée, 3 aires de transport
+647	Une véritable base aérienne avec un parking pour 8 avions, pour une escadre de frappe sérieuse.
+648	Base de l'armée de l'air
+649	Construit et réarme les avions, avec un parking pour 4 appareils. Fournit aussi les pouvoirs de soutien Avion espion et Parachutistes. Les chasseurs y reviennent se réarmer après chaque sortie.
+650	Base aérienne
+651	Un canon Flak qui déchiquette aéronefs, drones et missiles de croisière à courte portée. Nécessite de l'énergie. Entourez-en votre base contre les bombardiers.
+652	Défense antiaérienne courte portée
+653	Transporte une escouade d'infanterie sous blindage et l'appuie avec une mitrailleuse. Déposez des ingénieurs dans une base ennemie ou envoyez vite des lance-roquettes au front.
+654	Transport blindé
+655	Deux fois la production d'une centrale électrique, sur une plus grande surface. Cible de choix pour les bombardiers ennemis : protégez-la avec de la DCA.
+656	Production d'énergie lourde
+657	Obusier à longue portée qui pilonne défenses et infanterie hors de leur portée. Très fragile au contact : gardez toujours une escorte.
+658	Abat les satellites ennemis en orbite dans un rayon de 12 cases. Ne peut toucher ni unités terrestres ni aéronefs. Votre seule défense contre un réseau laser orbital.
+659	Antisatellite
+660	Centre de recherche de l'Union. Débloque les armes les plus avancées de l'Union et lance le satellite GPS, qui révèle toute la carte.
+661	Recherche avancée
+662	Le Merlin : un hélicoptère trimoteur rapide qui transporte dix soldats sur de longues distances. Inde uniquement.
+663	Une Forteresse volante capturée, comme celles de l'escadrille spéciale qui larguait des agents derrière les lignes pendant la guerre.
+664	La Superforteresse copiée rivet pour rivet par Vanguard, ses soutes à bombes désormais remplies de parachutistes.
+665	Un grand hydravion de l'âge des clippers, qui emporte les parachutistes italiens depuis ses bases d'hydravions.
+666	Une Stratofortress aux soutes vidées et réaménagées pour larguer un stick de quarante hommes.
+667	Caserne de Vanguard : entraîne conscrits, grenadiers, lance-flammes, soldats de choc et exosquelettes Garde de fer. Plusieurs casernes accélèrent l'entraînement.
+668	Les plus gros canons en mer : des tourelles triples de 406 mm à l'avant et à l'arrière qui pilonnent la côte hors de portée de la plupart des défenses. Lent et très difficile à couler, mais aveugle face aux sous-marins.
+669	Droïdes bon marché de l'Union armés de fusils blasters, produits en masse. Utilisez-les pour submerger l'infanterie ennemie et encaisser les tirs.
+670	Droïde de combat
+671	Un terrain de bombardiers gardé avec une piste géante, un hangar et un bunker à bombes blindé. Il abrite l'AB-35 Longwing et charge la Frappe Fatman tant que le bombardier vit. États-Unis uniquement, un par joueur.
+672	Aérodrome de superarme
+673	Classe THAAD. Intercepte les missiles balistiques et hypersoniques haut et loin : la réponse aux frappes de missiles balistiques (il laisse les roquettes au SAM moyenne portée). Nécessite un dôme radar pour sa portée maximale.
+674	Défense antimissile balistique
+675	Des murs en béton qui arrêtent toutes les unités terrestres et bloquent les tirs ennemis. Seul le char Mammouth peut les écraser. Utilisez-les pour protéger centrales et raffineries.
+676	Barrière lourde
+677	Un véhicule blindé de transport de troupes à huit roues avec canon automatique en tourelle : rapide sur route, il dépose 5 fantassins au front et continue de tirer. Russie uniquement.
+678	Le Hercules : le quadrimoteur bon à tout faire des forces aéroportées, des États-Unis à la France, au Japon, à la Corée du Sud, à la Turquie et au Pakistan.
+679	Le long jet qui a transporté les divisions aéroportées de l'Union pendant des décennies.
+680	L'avion de transport stratégique de la Royal Air Force : quatre turboréacteurs, une soute immense et un stick de quarante hommes par les portes latérales.
+681	Un navire très lent aux énormes canons longue portée qui pilonnent les bases côtières depuis le large. Escortez-le de destroyers contre les sous-marins.
+682	Un croiseur lance-missiles : ses Tomahawk frappent loin dans les terres, tandis que ses SAM et son canon de défense rapprochée protègent la flotte des attaques aériennes. États-Unis uniquement.
+683	Croiseur lance-missiles
+684	Un lanceur lourd à roues tirant une salve de 6 roquettes. Déployez-le pour passer à un missile guidé lourd à plus longue portée.
+685	Lance-roquettes (Corée du Sud)
+686	Le plus vieux chasseur du Nil, élevé et dressé par l'Égypte. Il marche sur terre, nage plus vite qu'il ne marche et reste immobile dans l'eau, seuls les yeux dépassant, invisible jusqu'à ce qu'il frappe. Un bond et une morsure achèvent un soldat ou un chien ; il s'arrête ensuite pour avaler. Sa peau écailleuse résiste aux tirs de fusil. Égypte uniquement.
+687	Prédateur embusqué
+688	Tire des missiles air-sol et peut se téléporter n'importe où à portée. Surgissez derrière les lignes ennemies pour frapper artillerie et raffineries, puis repartez.
+689	Char Chrono
+690	Un porte-avions de classe Essex de la Seconde Guerre mondiale : une base aérienne flottante défendue par des lanceurs SAM. Lance et réarme les avions en mer.
+691	Porte-avions d'escadre
+692	Le premier porte-avions nucléaire, classe Enterprise : pont plus grand, coque plus solide et davantage de lanceurs SAM.
+693	Porte-avions de combat
+694	Un super porte-avions nucléaire de classe Nimitz, navire amiral lourdement blindé de la flotte.
+695	Un porte-avions de classe Gerald R. Ford doté des défenses les plus récentes. Le navire le plus puissant à flot.
+696	Super porte-avions nouvelle génération
+697	Le Fujian : le plus récent super porte-avions chinois, équipé de catapultes électromagnétiques.
+698	Super porte-avions (Chine)
+699	Le Mistral : un porte-hélicoptères amphibie. Bon marché et rapide à construire.
+700	Porte-hélicoptères (Égypte)
+701	Le Charles de Gaulle, porte-avions nucléaire de la France et fierté de la Marine nationale.
+702	Porte-avions (France)
+703	Le Queen Elizabeth de la Royal Navy, avec tremplin et double îlot.
+704	Porte-avions (Angleterre)
+705	Le Vikrant : porte-avions de conception indienne avec tremplin.
+706	Porte-avions (Inde)
+707	Le Bagheri : un navire marchand converti avec un pont d'envol pour drones. Bon marché, mais fragile.
+708	Porte-drones (Iran)
+709	Le Cavour : un porte-avions léger italien pour avions à décollage vertical et hélicoptères.
+710	Porte-avions léger (Italie)
+711	Le Kaga : un destroyer porte-hélicoptères reconverti en porte-avions léger pour chasseurs à décollage vertical.
+712	Porte-avions léger (Japon)
+713	Le Kouznetsov : un croiseur porte-aéronefs lourd avec tremplin et solides défenses SAM.
+714	Porte-avions (Russie)
+715	Le Kiev : mi-porte-avions, mi-croiseur, avec un pont d'envol à l'arrière et des lance-missiles à l'avant.
+716	Croiseur porte-aéronefs
+717	L'Anadolu : un navire amphibie reconverti en porte-drones qui lance des essaims de drones d'attaque.
+718	Porte-drones (Turquie)
+719	Un cyborg blindé de l'Union armé d'un pistolet automatique lourd. Les chars ne peuvent pas l'écraser et il n'a jamais besoin de se mettre à couvert. Un solide pilier de ligne.
+720	Infanterie cyborg
+721	Un navire de guerre polyvalent et rapide qui détecte les sous-marins et combat navires, véhicules et aéronefs. L'épine dorsale de la flotte de l'Union.
+722	Rapide et bon marché, il tue un fantassin d'une morsure et flaire les espions déguisés. Gardez-en une paire à la base pour chasser les espions.
+723	Chien d'attaque
+724	Active votre minicarte radar et débloque la plupart des unités et défenses de milieu de partie. Donne aussi leur portée maximale à vos SAM longue portée. Le perdre vous rend aveugle : protégez-le.
+725	Renseignement
+726	Un camion avec une ogive nucléaire armée et un blindage en papier. Conduisez-le dans la base ennemie et faites-le exploser. Il emporte tout ce qui l'entoure, y compris vos propres unités.
+727	Camion à bombe nucléaire
+728	La colonne vertébrale de toute armée : bon marché, vite entraîné et efficace contre l'infanterie. Placez-les en garnison dans les casemates, ou massez-les pour protéger vos chars des lance-roquettes.
+729	Fusiliers
+730	Lance des grenades qui touchent les groupes d'infanterie et endommagent les bâtiments. Leurs grenades peuvent blesser les unités alliées proches : gardez-les derrière la ligne de front.
+731	Roquettes à l'épaule efficaces contre blindés et aéronefs. Bon marché, c'est la réponse de l'infanterie aux chars et hélicoptères, mais une proie facile pour les mitrailleuses.
+732	Antichar / antiaérien
+733	Lance-flammes à courte portée qui brûlent l'infanterie à couvert et incendient les bâtiments. Parfaits pour nettoyer les bunkers et assaillir les bases.
+734	Lance-flammes
+735	Capture les bâtiments ennemis, répare les vôtres et remet en état les ponts détruits. Escortez-les dans la base ennemie et prenez une usine d'armement ou un centre technologique pour voler sa technologie.
+736	Tanya : deux pistolets qui abattent un fantassin d'un tir, et du C4 qui rase tout bâtiment qu'elle atteint. Une seule peut être déployée. Tenez-la à l'écart des chars et des chiens.
+737	Commando d'élite
+738	Une cellule de Boeing 707, comme celles que l'armée de l'air iranienne utilise depuis un demi-siècle, réaménagée pour le transport de troupes.
+739	L'éléphant de guerre blindé de l'Inde : une forteresse ambulante sur quatre pattes d'acier, avec sur le dos un double canon lourd qui tire obus sur obus. Les soldats ne peuvent pas l'esquiver comme un char : quiconque se trouve sous ses pieds est piétiné. Lent et coûteux, mais très difficile à arrêter. Inde uniquement.
+740	Éléphant de guerre marcheur
+741	Un marcheur bipède lourd de l'Union. Ses deux canons automatiques déchiquettent l'infanterie et son lance-roquettes d'épaule perce les blindages. Une forteresse ambulante pour enfoncer les lignes défensives.
+742	Marcheur d'assaut
+743	Le cœur de toute base. Il construit toutes les autres structures et définit votre rayon de construction : le perdre stoppe toute expansion. Gardez-le au cœur de vos défenses et, si le salon le permet, repliez-le en VCM pour déplacer votre base.
+744	Commandement de base
+745	Longue portée à petit prix, mais imprécis. Déployez-le pour passer à deux drones d'attaque Shard-136 à très longue portée.
+746	Lance-roquettes (Iran)
+747	Roquettes guidées à longue portée, très précises contre bâtiments, infanterie et véhicules. Rechargement lent.
+748	Lance-roquettes (Pakistan)
+749	Des barbelés qui arrêtent l'infanterie et les véhicules légers. Les chars les écrasent.
+750	Répare, contre paiement, les véhicules qui montent sur sa plateforme. Débloque aussi les véhicules avancés. Placez-le entre l'usine d'armement et le front pour que les chars endommagés reviennent vite au combat.
+751	Réparation de campagne
+752	Un double canon Flak lourd sur affût tournant. Ses rafales touchent tous les aéronefs proches et peuvent abattre drones et missiles de croisière.
+753	Défense antiaérienne
+754	Un canon Flak sur camion qui déchiquette aéronefs, drones et infanterie. Gardez-en un dans chaque colonne blindée.
+755	Antiaérien mobile
+756	Arrose de carburant enflammé quiconque s'approche. Dévastateur contre l'infanterie et les véhicules légers, mais de courte portée et inefficace contre les chars à distance.
+757	Tour anti-infanterie
+758	Enveloppe votre base d'un voile pour que l'ennemi ne voie pas l'intérieur. Les éclaireurs et avions espions ne la révèlent que brièvement. Nécessite de l'énergie.
+759	Contre-espionnage
+760	Une montagne d'écailles qui surgit de la mer. Quand ses plaques dorsales s'illuminent de rose, tout ce qui est devant lui va brûler : le souffle atomique porte plus loin que la plupart des artilleries et abat les aéronefs. Les chars qui s'approchent sont écrasés. Choisi dans le salon, un par joueur, et une fois tombé, il est perdu pour de bon.
+761	Titan : superarme ambulante
+762	Un vieux lance-roquettes Grad : bon marché mais imprécis. Massez-les pour saturer une zone de roquettes.
+763	Lance-roquettes (Cuba)
+764	Une tourelle à canon rotatif qui perce les chars. Bon marché et fiable, mais faible contre l'infanterie en masse et impuissante contre les aéronefs.
+765	Tourelle antiblindés
+766	Un lourd camion à huit roues portant un module de combat rotatif : deux nacelles de petits missiles infrarouges et un canon de 35 mm entre elles. Il tire quatre missiles à la fois, chacun décrivant une vrille serrée, et leurs fusées de proximité éclatent en flocons de flak noirs. Nations de Vanguard sauf l'Inde.
+767	Défense antiaérienne mobile
+768	Un lanceur chenillé qui tire une grosse salve de 12 roquettes sur une large zone. Efficace contre l'infanterie et les bases, mais lent.
+769	Lance-roquettes (Angleterre)
+770	Collecte le minerai et les gemmes et les apporte à votre raffinerie. Lourdement blindé, mais non armé. Protégez vos camions : ce sont vos revenus.
+771	Camion de minerai
+772	Une casemate dissimulée sous un camouflage. L'ennemi ne la voit qu'une fois tout proche : une embuscade parfaite sur une route d'attaque probable.
+773	Bunker camouflé
+774	Un croiseur avec un pont pour hélicoptères à l'arrière : missiles et canon Gatling contre les aéronefs, grenades ASM et sonar contre les sous-marins.
+775	Croiseur porte-hélicoptères
+776	Le Longbow : un hélicoptère lance-missiles qui chasse chars, bâtiments et autres aéronefs. Frappez puis repliez-vous, et retournez à l'héliport pour vous réarmer.
+777	Hélicoptère d'attaque
+778	Un lanceur à roues rapide tirant des roquettes guidées à longue portée. Il tire et décroche après chaque salve : la contre-batterie frappe généralement un terrain vide.
+779	Lance-roquettes (États-Unis)

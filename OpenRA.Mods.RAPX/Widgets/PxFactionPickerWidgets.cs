@@ -27,7 +27,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 	/// </summary>
 	public class PxFactionPickerPanelWidget : ScrollPanelWidget
 	{
-		public readonly string Title = "CHOOSE YOUR NATION";
+		public readonly string Title = PxText.N("CHOOSE YOUR NATION");
 		public readonly string TitleFont = "PXDisplay";
 		public readonly int Padding = 16;
 		public readonly int TitleHeight = 46;
@@ -71,7 +71,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 			base.DrawOuter();
 			var font = Game.Renderer.Fonts[TitleFont];
 			var rb = RenderBounds;
-			font.DrawTextWithShadow(Title, new float2(rb.X + Padding + 4, rb.Y + 14), Color.White, Color.Black, 1);
+			font.DrawTextWithShadow(PxText.T(Title), new float2(rb.X + Padding + 4, rb.Y + 14), Color.White, Color.Black, 1);
 			WidgetUtils.FillRectWithColor(new Rectangle(rb.X + Padding, rb.Y + TitleHeight - 6, rb.Width - 2 * Padding, 1),
 				Color.FromArgb(60, 255, 106, 85));
 		}
@@ -217,7 +217,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 					var f = g.First();
 					var lines = f.Description != null ? FluentProvider.GetMessage(f.Description).Split('\n') : Array.Empty<string>();
 					var first = lines.Length > 0 ? lines[0].Trim() : "";
-					var colon = first.IndexOf(':');
+					var colon = first.IndexOfAny(new[] { ':', '：' });
 					var motto = colon >= 0 ? first[(colon + 1)..].Trim() : first;
 					var special = lines.Length > 1 ? lines[1].Trim().ToUpperInvariant() : "";
 					return (f.Side ?? "", motto, special);
@@ -253,7 +253,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 					WidgetUtils.DrawSprite(sprite, new float2(rb.X + 8, y), FlagSize);
 
 				var font = Game.Renderer.Fonts[SpecialFont];
-				var label = side == "Random" ? "RANDOM" : side.ToUpperInvariant();
+				var label = side == "Random" ? PxText.T("RANDOM") : PxText.T(side).ToUpperInvariant();
 				font.DrawText(label, new float2(rb.X + FlagSize.X + 16, rb.Bottom - font.Measure(label).Y - 6), SideText(side));
 				return;
 			}
@@ -273,7 +273,8 @@ namespace OpenRA.Mods.RAPX.Widgets
 
 			if (!string.IsNullOrEmpty(special) && side != "Random")
 			{
-				var isSpecial = special.StartsWith("SPECIAL", StringComparison.Ordinal);
+				// Special lines read "Special Unit: X" in every language; the generic arsenal lines have no colon
+				var isSpecial = special.Contains(':') || special.Contains('：');
 				var specialFont = Game.Renderer.Fonts[SpecialFont];
 				var line = WidgetUtils.TruncateText(special, rb.Right - textX - 8, specialFont);
 				specialFont.DrawText(line, new float2(textX, rb.Y + 42), isSpecial ? Gold : Color.FromArgb(138, 139, 147));

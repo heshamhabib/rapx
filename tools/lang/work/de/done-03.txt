@@ -1,0 +1,246 @@
+500	Wrack (Spionageflugzeug)
+501	Spionageflugzeug
+502	Strommast
+503	Kirche
+504	Wrack (Ölpumpe)
+505	Ölpumpe
+506	Weitreichende Raketenartillerie.\nStark gegen Infanterie und Gebäude\nSchwach gegen Fahrzeuge und Luftfahrzeuge
+507	V2-Raketenwerfer
+508	Präzise Langstreckenraketen.\nStark gegen Gebäude, Infanterie und Fahrzeuge\nSchwach gegen Luftfahrzeuge; langsames Nachladen
+509	Vilkra
+510	(Wegpunkt für Skriptverhalten)
+511	Holzkiste
+512	Produziert Fahrzeuge.
+513	Waffenfabrik
+514	Windmühle
+515	Holzzaun
+516	Französische schwere Geschützplattform. Sehr langsam,\naber ihre Kanone übertrifft jeden Panzer an Reichweite\nund trifft härter als jedes andere Geschütz.\nStark gegen Fahrzeuge, Gebäude\nSchwach gegen Infanterie im Nahkampf, Luftfahrzeuge
+517	XR-85 Panzerdroide
+518	Wrack (XR-85 Panzerdroide)
+519	Y-20 Kunpeng
+520	Erdkampfflugzeug mit zwei Maschinengewehren.\nStark gegen Infanterie und leichte Panzerung\nSchwach gegen Panzer und Luftfahrzeuge
+521	Yak-Erdkampfflugzeug
+522	Nurflügel-Atombomber.\nWirft die Fatman-Bombe ab, wenn der Fatman-Schlag bereit ist.\nKeine weitere Waffe.\nNur USA. Maximal 1 baubar.
+523	AB-35 Longwing
+524	Ballistischer Raketen-Lkw: feuert die zwei Raketen auf seiner\nStartrampe auf Ziele in 22 Feldern Entfernung und lädt dann langsam nach.\nNur weitreichende Flugabwehr kann die Raketen stoppen.\nStark gegen Gebäude und Bodeneinheiten\nSchwach gegen Luftfahrzeuge und im Nahkampf
+525	Zolfaghar
+526	Brutale KI
+527	Leichte KI
+528	Schwere KI
+529	Marine-KI
+530	Normale KI
+531	Luftverteidigung
+532	Luftwaffe
+533	Küstenwache
+534	Kommando
+535	Bodenverteidigung
+536	Marineinfanterie
+537	Marine
+538	Weltraumstreitkräfte
+539	Strategisch
+540	Unbemannt
+541	Mauern
+542	Abbrechen
+543	Chatmodus wechseln
+544	Mischer
+545	Palette
+546	Zufall
+547	Shop
+548	Ausgewählte Einheiten bewegen sich zum Zielort\nund greifen unterwegs alle Feinde an.\nHalte <(Ctrl)> beim Zielen für einen Sturmangriff,\nder unterwegs alle Einheiten und Gebäude angreift.\nSymbol links anklicken, dann Zielort rechts anklicken.
+549	Ausgewählte Einheiten führen ihre Standard-Aufbauaktion aus\n- MBF bauen sich zum Bauhof auf\n- Bauhöfe packen sich wieder zum MBF zusammen\n- Transporter entladen ihre Passagiere\n- Sprengstoff-Lkw und MAD-Panzer zerstören sich selbst\n- Minenleger legen eine Mine\n- Luftfahrzeuge kehren zur Basis zurück\nWirkt sofort auf ausgewählte Einheiten.
+550	Erzwungener Angriff
+551	Ausgewählte Einheiten greifen die Zieleinheit oder den Zielort an\n- Die Standardaktion für das Ziel wird unterdrückt\n- Erlaubt das Anvisieren eigener oder verbündeter Truppen\n- Weitreichende Artillerie zielt immer auf den\nOrt und ignoriert Einheiten und Gebäude\nSymbol links anklicken, dann Ziel rechts anklicken.\nHalte <(Ctrl)>, um es beim Befehlen kurz zu aktivieren.
+552	Erzwungene Bewegung
+553	Ausgewählte Einheiten bewegen sich zum Zielort\n- Die Standardaktion für das Ziel wird unterdrückt\n- Fahrzeuge versuchen, Feinde am Zielort zu überrollen\n- Hubschrauber landen am Zielort\n- Chrono-Panzer teleportieren sich zum Zielort\nSymbol links anklicken, dann Ziel rechts anklicken.\nHalte <(Alt)>, um es beim Befehlen kurz zu aktivieren.
+554	Ausgewählte Einheiten folgen der Zieleinheit.\nSymbol links anklicken, dann Zieleinheit rechts anklicken.
+555	Wegpunktmodus
+556	Im Wegpunktmodus gibst du den ausgewählten Einheiten\nmehrere verkettete Befehle. Die Einheiten führen die\nBefehle sofort nach Erhalt aus.\nSymbol links anklicken, dann Befehle in der Spielwelt geben.\nHalte <(Shift)>, um es beim Befehlen kurz zu aktivieren.
+557	Ausgewählte Einheiten brechen ihre aktuelle Aktion ab\nund weichen an einen nahen Ort aus.\nWirkt sofort auf ausgewählte Einheiten.
+558	Ausgewählte Einheiten brechen ihre aktuelle Aktion ab.\nAusgewählte Gebäude setzen ihren Sammelpunkt zurück.\nWirkt sofort auf ausgewählte Ziele.
+559	Wechseln
+560	Abbrechen
+561	$20.000 geben
+562	Nebel entfernen
+563	Ressourcen wachsen lassen
+564	Nebel zurücksetzen
+565	Gewähltes Objekt entfernen
+566	Alles im gewählten Bereich entfernen
+567	Beitreten
+568	Gewählten Bereich kopieren
+569	Gespeicherten Bereich einfügen
+570	Wiederholen
+571	Letzten Schritt wiederholen
+572	Letzten Schritt rückgängig machen
+573	Wiederholungen
+574	Filter zurücksetzen
+575	Starten
+576	Laden
+577	Mit einem OpenRA-Forenkonto verbinden
+578	Tastenkürzel entfernen
+579	Überschreiben
+580	Auf Standard zurücksetzen
+581	Diesen Spieler entfernen
+582	OK
+583	Inhalte verwalten
+584	Manuelle Installation
+585	Karte installieren
+586	Verlauf
+587	Overlays
+588	Auswahl
+589	Kacheln
+590	Werkzeuge
+591	Karte aktualisieren
+592	Alle Karten löschen
+593	Karte löschen
+594	Zufallskarte
+595	Serverkarten
+596	Offizielle Karten
+597	Eigene Karten
+598	Alles löschen
+599	Aktuelle löschen
+600	Infovideo ansehen
+601	Infovideo stoppen
+602	Karte ändern
+603	Erstellen
+604	MAX
+605	Spielen
+608	Verteidigung
+610	Marine
+612	Abmelden
+613	Bestätigen
+614	Neustart
+615	Sammelpunkt setzen
+616	Zuschauen
+617	Wiederholen
+618	Installation wiederholen
+619	Suche wiederholen
+620	Haltung: Alles angreifen
+621	Ausgewählte Einheiten auf Haltung „Alles angreifen“ setzen:\n- Einheiten greifen feindliche Einheiten und Gebäude bei Sicht an\n- Einheiten verfolgen Angreifer über das Schlachtfeld
+622	Haltung: Verteidigen
+623	Ausgewählte Einheiten auf Haltung „Verteidigen“ setzen:\n- Einheiten greifen feindliche Einheiten bei Sicht an\n- Einheiten bewegen sich nicht und verfolgen keine Feinde
+624	Haltung: Feuer einstellen
+625	Ausgewählte Einheiten auf Haltung „Feuer einstellen“ setzen:\n- Einheiten feuern nicht auf Feinde\n- Einheiten bewegen sich nicht und verfolgen keine Feinde
+626	Haltung: Feuer erwidern
+627	Ausgewählte Einheiten auf Haltung „Feuer erwidern“ setzen:\n- Einheiten wehren sich gegen Feinde, die sie angreifen\n- Einheiten bewegen sich nicht und verfolgen keine Feinde
+628	Team
+629	Signal setzen
+630	Pos1: auf deinen Bauhof zentrieren
+631	Abschalten
+632	Reparieren
+633	Verkaufen
+634	Für Rauswurf dieses Spielers stimmen
+635	Schnell und billig, ideal zur Aufklärung, zum Bedrängen von Erzsammlern und zum Jagen leichter Fahrzeuge. Im direkten Kampf gegen schwerere Panzer unterliegt er.
+636	Leichter Panzer
+637	Der Kampfpanzer der Union: ausgewogen in Tempo, Panzerung und Feuerkraft. Zusammen mit Raketensoldaten und Mobiler Flak ergibt er eine vollständige Armee.
+638	Kampfpanzer
+639	Der Kampfpanzer der Vanguard mit schweren Zwillingskanonen. Langsamer als die Panzer der Union, trifft aber viel härter. Gewinnt direkte Panzerduelle.
+640	Schwerer Panzer
+641	Der Mammut: Zwillingskanonen gegen Panzer, Raketenwerfer gegen Luftfahrzeuge und Infanterie, schwere Panzerung und Selbstreparatur bei Schaden. Langsam und teuer – und er zermalmt sogar Betonmauern.
+642	Superschwerer Panzer
+643	Ein größerer Flugplatz mit Stellplätzen für 6 Flugzeuge. Erweitere deine Luftstreitmacht, ohne Landeplätze über die Basis zu verteilen.
+644	Großer Fliegerhorst
+645	Heimat der Fallschirmjägerbrigaden: Kaserne, Fallschirmpackhalle und drei Plätze für die schweren Transporter, die je 40 Soldaten überallhin auf der Karte bringen.
+646	Luftlandebasis, 3 Transportplätze
+647	Ein vollständiger Luftwaffenstützpunkt mit Stellplätzen für 8 Flugzeuge für ein ernsthaftes Angriffsgeschwader.
+648	Luftwaffenstützpunkt
+649	Baut und munitioniert Jets, mit Stellplätzen für 4 Flugzeuge. Liefert außerdem die Unterstützung Spionageflugzeug und Fallschirmjäger. Jäger kehren nach jedem Einsatz hierher zum Nachladen zurück.
+650	Fliegerhorst
+651	Eine Flakkanone, die Luftfahrzeuge, Drohnen und anfliegende Marschflugkörper auf kurze Distanz zerfetzt. Benötigt Energie. Umgib deine Basis damit gegen Bomber.
+652	Flugabwehr kurzer Reichweite
+653	Trägt einen Infanterietrupp unter Panzerschutz und unterstützt ihn mit einem MG. Bring Ingenieure in eine feindliche Basis oder Raketensoldaten schnell an die Front.
+654	Gepanzerter Transporter
+655	Doppelte Leistung eines Kraftwerks auf größerer Fläche. Ein Hauptziel feindlicher Bomber, also schütze es mit Flugabwehr.
+656	Schwere Energieerzeugung
+657	Weitreichende Haubitze, die Verteidigungen und Infanterie außerhalb ihrer Reichweite beschießt. Aus der Nähe sehr verwundbar, also immer mit Eskorte.
+658	Schießt feindliche Satelliten im Umkreis von 12 Feldern ab. Kann keine Bodeneinheiten oder Luftfahrzeuge treffen. Deine einzige Abwehr gegen ein orbitales Lasernetz.
+659	Anti-Satellit
+660	Forschungszentrum der Union. Schaltet die fortschrittlichsten Waffen der Union frei und startet den GPS-Satelliten, der die ganze Karte aufdeckt.
+661	Fortgeschrittene Forschung
+662	Der Merlin: ein schneller dreistrahliger Hubschrauber, der zehn Soldaten über weite Strecken trägt. Nur Indien.
+663	Eine erbeutete Flying Fortress, wie sie die Sonderstaffel im Krieg flog, um Agenten hinter den Linien abzusetzen.
+664	Die Superfortress, die die Vanguard Niete für Niete kopiert hat – ihre Bombenschächte sind jetzt voller Fallschirmjäger.
+665	Ein großes Flugboot aus der Clipper-Ära, das Italiens Fallschirmjäger von seinen Wasserflugzeugbasen trägt.
+666	Eine Stratofortress mit ausgeräumten Bombenschächten, umgerüstet zum Absetzen von vierzig Mann.
+667	Kaserne der Vanguard: bildet Wehrpflichtige, Grenadiere, Flammentruppen, Schocktruppler und die Eisengarde-Exoanzüge aus. Mehrere Kasernen beschleunigen die Ausbildung.
+668	Die größten Geschütze auf See: Drillingstürme mit 16-Zoll-Kanonen vorn und achtern beschießen die Küste außerhalb der Reichweite der meisten Verteidigungen. Langsam und sehr schwer zu versenken, aber blind gegenüber U-Booten.
+669	Billige Droiden der Union mit Blastergewehren, in großer Zahl gebaut. Überrenne damit feindliche Infanterie und fange Feuer ab.
+670	Kampfdroide
+671	Ein bewachter Bomberflugplatz mit einem riesigen Abstellplatz, einem Hangar und einem gepanzerten Bombenbunker. Beherbergt die AB-35 Longwing und lädt den Fatman-Schlag, solange der Bomber lebt. Nur USA, einer pro Spieler.
+672	Superwaffen-Flugplatz
+673	THAAD-Klasse. Fängt ballistische und Hyperschallraketen hoch und weit draußen ab – die Antwort auf ballistische Raketenangriffe (Raketen überlässt sie der Mittelstrecken-SAM). Benötigt eine Radarkuppel für volle Reichweite.
+674	Abwehr ballistischer Raketen
+675	Betonmauern, die jede Bodeneinheit aufhalten und feindliches Feuer blockieren. Nur der Mammut-Panzer kann sie zermalmen. Schütze damit Kraftwerke und Raffinerien.
+676	Schwere Barriere
+677	Ein achträdriger Schützenpanzer mit Maschinenkanone im Turm: schnell auf Straßen, setzt 5 Infanteristen an der Front ab und schießt weiter. Nur Russland.
+678	Die Hercules: das viermotorige Arbeitspferd der Luftlandetruppen von den USA bis Frankreich, Japan, Südkorea, Türkei und Pakistan.
+679	Der langgestreckte Jet, der jahrzehntelang die Luftlandedivisionen der Union trug.
+680	Der strategische Transporter der Royal Air Force: vier Mantelstromtriebwerke, ein riesiger Frachtraum und vierzig Mann durch die Seitentüren.
+681	Ein sehr langsames Schiff mit riesigen Langstreckengeschützen, die Küstenbasen von weit draußen auf See beschießen. Eskortiere es mit Zerstörern gegen U-Boote.
+682	Ein Lenkwaffenkreuzer: Tomahawks erreichen Ziele tief im Landesinneren, während SAMs und Nahbereichsgeschütz die Flotte aus der Luft schützen. Nur USA.
+683	Lenkwaffenkreuzer
+684	Ein schwerer Radwerfer mit 6-Raketen-Salve. Aufbauen, um auf eine schwere Lenkrakete mit größerer Reichweite umzuschalten.
+685	Raketenwerfer (Südkorea)
+686	Der älteste Jäger des Nils, von Ägypten aufgezogen und abgerichtet. Es läuft an Land, schwimmt schneller als es läuft und liegt im Wasser, nur die Augen sichtbar, ungesehen bis zum Zuschlagen. Ein Sprung und ein Biss erledigen einen Soldaten oder Hund; dann hält es an, um zu schlucken. Seine schuppige Haut steckt Gewehrfeuer weg. Nur Ägypten.
+687	Lauerjäger
+688	Feuert Boden-Raketen und teleportiert sich überallhin in Reichweite. Springe hinter feindliche Linien, triff Artillerie und Raffinerien und springe wieder weg.
+689	Chrono-Panzer
+690	Ein Träger der Essex-Klasse aus dem Zweiten Weltkrieg: ein schwimmender Flugplatz mit SAM-Werfern zur Verteidigung. Startet und munitioniert Jets auf See.
+691	Flottenträger
+692	Der erste Flugzeugträger mit Atomantrieb, Enterprise-Klasse: größeres Deck, härterer Rumpf und mehr SAM-Werfer.
+693	Kampfträger
+694	Ein atomgetriebener Superträger der Nimitz-Klasse, das schwer gepanzerte Flaggschiff der Flotte.
+695	Ein Träger der Gerald-R.-Ford-Klasse mit modernster Abwehr. Das stärkste Schiff auf See.
+696	Superträger der nächsten Generation
+697	Die Fujian: Chinas neuester Superträger mit elektromagnetischen Katapulten.
+698	Superträger (China)
+699	Die Mistral: ein amphibischer Hubschrauberträger. Billig und schnell gebaut.
+700	Hubschrauberträger (Ägypten)
+701	Die Charles de Gaulle, Frankreichs atomgetriebener Flugzeugträger und Stolz der Marine nationale.
+702	Träger (Frankreich)
+703	Die Queen Elizabeth der Royal Navy mit Skisprungschanze und zwei Inselaufbauten.
+704	Träger (England)
+705	Die Vikrant: Indiens selbst gebauter Träger mit Skisprungschanze.
+706	Träger (Indien)
+707	Die Bagheri: ein umgebautes Handelsschiff mit Flugdeck für Drohnen. Billig, aber zerbrechlich.
+708	Drohnenträger (Iran)
+709	Die Cavour: ein italienischer leichter Träger für Senkrechtstarter und Hubschrauber.
+710	Leichter Träger (Italien)
+711	Die Kaga: ein Hubschrauberzerstörer, umgebaut zum leichten Träger für senkrechtstartende Jäger.
+712	Leichter Träger (Japan)
+713	Die Kusnezow: ein schwerer flugzeugtragender Kreuzer mit Skisprungschanze und starker SAM-Abwehr.
+714	Träger (Russland)
+715	Die Kiew: halb Träger, halb Kreuzer, mit Flugdeck achtern und Raketenwerfern vorn.
+716	Flugdeckkreuzer
+717	Die Anadolu: ein Amphibienschiff, umgebaut zum Drohnenträger, das Schwärme von Kampfdrohnen startet.
+718	Drohnenträger (Türkei)
+719	Ein gepanzerter Cyborg der Union mit schwerer Automatikpistole. Kann von Panzern nicht überrollt werden und braucht nie Deckung. Ein zäher Linienhalter.
+720	Cyborg-Infanterie
+721	Ein schnelles Mehrzweck-Kriegsschiff, das U-Boote aufspürt und gegen Schiffe, Fahrzeuge und Luftfahrzeuge kämpft. Das Rückgrat einer Union-Flotte.
+722	Schnell und billig, tötet Infanterie mit einem Biss und wittert verkleidete Spione. Halte ein Paar zu Hause als Spionjäger.
+723	Kampfhund
+724	Aktiviert deine Radar-Minikarte und schaltet die meisten Einheiten und Verteidigungen der mittleren Stufe frei. Gibt deinen weitreichenden SAMs außerdem volle Reichweite. Verlierst du sie, bist du blind – also schütze sie.
+725	Aufklärung
+726	Ein Lkw mit scharfem Atomsprengkopf und hauchdünner Panzerung. Fahr ihn in die feindliche Basis und zünde ihn. Er reißt alles in der Nähe mit, auch deine eigenen Einheiten.
+727	Atombomben-Lkw
+728	Das Rückgrat jeder Armee: billig, schnell ausgebildet und gut gegen andere Infanterie. Stationiere sie in Bunkern oder setze sie in Massen ein, um deine Panzer vor Raketensoldaten zu schützen.
+729	Schützen
+730	Wirft Granaten, die Infanteriegruppen treffen und Gebäude beschädigen. Die Granaten können nahe eigene Einheiten verletzen, also halte sie hinter der Front.
+731	Schultergestützte Raketen gegen Panzerung und Luftfahrzeuge. Billig und die Antwort der Infanterie auf Panzer und Hubschrauber, aber leichte Beute für Maschinengewehre.
+732	Panzer-/Flugabwehr
+733	Flammenwerfer kurzer Reichweite, die Infanterie in Deckung verbrennen und Gebäude in Brand setzen. Stark beim Räumen von Bunkern und beim Sturm auf Basen.
+734	Flammenwerfer
+735	Erobert feindliche Gebäude, repariert eigene und flickt zerstörte Brücken. Eskortiere sie in die feindliche Basis und nimm eine Waffenfabrik oder ein Technologiezentrum ein, um dessen Technologie zu stehlen.
+736	Tanya: zwei Pistolen, die Infanterie mit einem Schuss fällen, und C4, das jedes Gebäude dem Erdboden gleichmacht, das sie erreicht. Nur eine kann eingesetzt werden. Halte sie von Panzern und Hunden fern.
+737	Elite-Kommando
+738	Eine Boeing-707-Zelle, wie sie Irans Luftwaffe seit einem halben Jahrhundert fliegt, umgerüstet für den Truppentransport.
+739	Indiens gepanzerter Kriegselefant: eine wandelnde Festung auf vier Stahlbeinen, mit einer schweren Zwillingskanone auf dem Rücken, die Granate um Granate abfeuert. Soldaten können ihm nicht ausweichen wie einem Panzer: Wer unter seine Füße gerät, wird zertrampelt. Langsam und teuer, aber kaum aufzuhalten. Nur Indien.
+740	Kriegselefanten-Läufer
+741	Ein schwerer zweibeiniger Läufer der Union. Zwei Arm-Maschinenkanonen zerfetzen Infanterie, ein Schulter-Raketenwerfer knackt Panzerung. Eine wandelnde Festung zum Durchbrechen von Verteidigungslinien.
+742	Sturmläufer
+743	Das Herz jeder Basis. Er baut alle anderen Gebäude und bestimmt deinen Bauradius – verlierst du ihn, endet jede Expansion. Halte ihn tief in deinen Verteidigungen und pack ihn, falls die Lobby es erlaubt, wieder zum MBF zusammen, um deine Basis zu verlegen.
+744	Basiskommando
+745	Große Reichweite für wenig Geld, aber ungenau. Aufbauen, um auf zwei Shard-136-Kampfdrohnen mit sehr großer Reichweite umzuschalten.
+746	Raketenwerfer (Iran)
+747	Gelenkte Langstreckenraketen, sehr präzise gegen Gebäude, Infanterie und Fahrzeuge gleichermaßen. Lädt langsam nach.
+748	Raketenwerfer (Pakistan)
+749	Stacheldraht, der Infanterie und leichte Fahrzeuge aufhält. Panzer walzen ihn nieder.

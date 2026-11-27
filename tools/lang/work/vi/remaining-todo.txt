@@ -1,0 +1,2643 @@
+0	It was recorded with
+1	Fast tank; good for scouting.\nStrong vs Light armor\nWeak vs Infantry, Tanks and Aircraft
+2	Tank
+3	Light Tank
+4	Union Main Battle Tank.\nStrong vs Vehicles\nWeak vs Infantry and Aircraft
+5	Medium Tank
+6	Husk (Medium Tank)
+7	Vanguard Main Battle Tank with a heavy cannon.\nStrong vs Vehicles\nWeak vs Infantry and Aircraft
+8	Heavy Tank
+9	Husk (Heavy Tank)
+10	Large, slow tank with anti-air capabilities.\nCan crush concrete walls.\nStrong vs Vehicles, Infantry and Aircraft\nWeak vs Nothing
+11	Mammoth Tank
+12	Husk (Mammoth Tank)
+13	Produces and reloads aircraft.\nParking for 6 planes.
+14	Air Base
+15	Home of the paratroopers: three pads for heavy\nairborne transports, each flying out with\n40 paratroopers to drop anywhere on the map.\nBuilds and reloads airborne transports\nRequires Airfield
+16	Airborne Base
+17	Produces and reloads aircraft.\nParking for 8 planes.
+18	Air Force Base
+19	A Badger drops parachuted bombs\nat the selected location.
+20	Parabombs
+21	Reveals an area of the map.
+22	Produces and reloads aircraft.\nParking for 4 planes.\nSpecial Ability: Spy Plane\nSpecial Ability: Paratroopers
+23	Airfield
+24	A Badger drops a squad of infantry\nat the selected location.
+25	Paratroopers
+26	Produces and reloads aircraft.\nSpecial Ability: Spy Plane\nSpecial Ability: Paratroopers\nSpecial Ability: Parabombs
+27	Anti-Air base defense. Also shoots down drones,\ncruise missiles and some rockets at short range.\nRequires power to operate.\nStrong vs Aircraft and Drones\nWeak vs Ground units
+28	AA Gun
+29	Any Power Generation
+30	Tough infantry transport.\nStrong vs Infantry and Light armor\nWeak vs Tanks and Aircraft
+31	Armored Personnel Carrier
+32	Provides double the power of a standard\nPower Plant.
+33	Advanced Power Plant
+34	Long-range artillery.\nStrong vs Infantry and Buildings\nWeak vs Vehicles and Aircraft
+35	Artillery
+36	Shoots down enemy satellites\noverhead within 12 cells.\nStrong vs Satellites\nCannot hit ground units or aircraft
+37	ASAT Missile Site
+38	Provides advanced Union technology.\nSpecial Ability: GPS Satellite
+39	Reveals map terrain and provides tactical information.\nRequires power and active radar.
+40	GPS Satellite
+41	Union Tech Center
+42	Fast heavy transport helicopter.\nCarries 10 infantry. India only.\nLays a smoke screen and fast-ropes its\ntroops down from a hover (F here, G to pick a spot).\nUnarmed\nWeak vs Anti-Air
+43	AW101 Merlin
+44	B-17 Flying Fortress
+45	B-29 Superfortress
+46	Boeing 314 Clipper
+47	B-52 Stratofortress
+48	Badger
+49	Barbed-Wire Fence
+50	Explosive Barrel
+51	Trains infantry units.
+52	Vanguard Barracks
+53	Infantry Production
+54	Huge, heavily armoured ship with 16-inch guns,\nthe longest-range guns at sea.\nStrong vs Buildings, Ground units and Ships\nWeak vs Submarines and Aircraft
+55	Battleship
+56	Cheap Union combat droid with a blaster rifle.\nBuilt in numbers.\nStrong vs Infantry\nWeak vs Vehicles, Aircraft
+57	Battle Droid
+58	Capture to produce Bio-Lab units.
+59	Provides prerequisite for Bio-Lab units.
+60	Biological Lab
+61	Home of the AB-35 Longwing atomic bomber.\nCharges the Fatman Strike while the bomber is alive.\nUSA only. Maximum 1 can be built.
+62	The AB-35 Longwing takes off and drops\na Fatman atomic bomb on the target.\nA smaller blast than the Nuclear Missile.
+63	Fatman Strike
+64	Strategic Bomber Field
+65	Ballistic missile defence (THAAD class): intercepts\nballistic and hypersonic missiles far out.\nNeeds a Radar Dome for full range.\nStrong vs Ballistic and Hypersonic missiles\nCannot shoot aircraft, drones or rockets
+66	Missile Shield
+67	Stops units and blocks enemy fire.
+68	Concrete Wall
+69	Fast wheeled armoured transport with a turret\nautocannon. Carries 5 infantry. Russia only.\nStrong vs Infantry and Light armor\nWeak vs Tanks and Aircraft
+70	BTR
+71	Airborne transport with 40 paratroopers aboard.\nRight-click the ground to drop them there; it flies\nhome and takes on a new force (paid) in a minute.\nUnarmed\nBuilt on the Airborne Base
+72	C-130 Hercules
+73	C-141 Starlifter
+74	C-17A Globemaster III
+75	Very slow long-range ship.\nStrong vs Buildings and Ground units\nWeak vs Naval units and Aircraft
+76	Cruiser
+77	(reveals area to owner)
+78	(support power proxy camera)
+79	Fires Tomahawk cruise missiles deep inland\nand guards the fleet against aircraft.\nUSA only.\nStrong vs Buildings and Aircraft\nWeak vs Submarines
+80	Missile Cruiser
+81	Heavy wheeled launcher firing a 6-rocket salvo.\nDeploy to switch to one heavy guided missile\nwith longer range.\nStrong vs Infantry and Buildings\nWeak vs Vehicles and Aircraft; expensive
+82	Chunmu
+83	Lunges at soldiers and dogs and kills\nthem with one bite. Swims fast and, lying\nstill in water, cannot be seen. Egypt only.\nStrong vs Infantry and Dogs\nWeak vs Vehicles and Buildings
+84	Crocodile
+85	Nile Crocodile
+86	Flag
+87	Armed with anti-ground missiles.\nTeleports to any area within range.\nStrong vs Vehicles and Buildings\nWeak vs Infantry and Aircraft\nSpecial ability: Can teleport
+88	Chrono Tank
+89	Essex-class carrier from the Second World War.\nA floating airbase with SAM launchers for defence.\nStrong vs Aircraft, Missiles\nWeak vs Ships, Submarines\nMaximum 1: another can be built once it is lost.
+90	Fleet Carrier
+91	The first nuclear-powered carrier (Enterprise class).\nBigger deck, tougher hull, more SAM launchers.\nStrong vs Aircraft, Missiles\nWeak vs Ships, Submarines\nMaximum 1: another can be built once it is lost.
+92	Battle Carrier
+93	Nimitz-class nuclear supercarrier.\nHeavily armoured flagship of the fleet.\nStrong vs Aircraft, Missiles\nWeak vs Ships, Submarines\nMaximum 1: another can be built once it is lost.
+94	Supercarrier
+95	Gerald R. Ford-class carrier with the latest\ndefences. The most powerful ship afloat.\nStrong vs Aircraft, Missiles\nWeak vs Ships, Submarines\nMaximum 1: another can be built once it is lost.
+96	Future Carrier
+97	China's newest supercarrier with\nelectromagnetic catapults.\nStrong vs Aircraft, Missiles\nWeak vs Ships, Submarines\nMaximum 1: another can be built once it is lost.
+98	Fujian Carrier
+99	Egyptian amphibious helicopter carrier.\nCheap and quick to build.\nStrong vs Aircraft, Missiles\nWeak vs Ships, Submarines\nMaximum 1: another can be built once it is lost.
+100	Mistral Helicopter Carrier
+101	France's nuclear-powered carrier,\nthe pride of the Marine nationale.\nStrong vs Aircraft, Missiles\nWeak vs Ships, Submarines\nMaximum 1: another can be built once it is lost.
+102	Charles de Gaulle Carrier
+103	Royal Navy carrier with a ski-jump bow\nand twin islands.\nStrong vs Aircraft, Missiles\nWeak vs Ships, Submarines\nMaximum 1: another can be built once it is lost.
+104	Queen Elizabeth Carrier
+105	India's home-built carrier with\na ski-jump bow.\nStrong vs Aircraft, Missiles\nWeak vs Ships, Submarines\nMaximum 1: another can be built once it is lost.
+106	Vikrant Carrier
+107	A converted merchant ship with a flight\ndeck for drones. Cheap, but fragile.\nStrong vs Aircraft, Missiles\nWeak vs Ships, Submarines\nMaximum 1: another can be built once it is lost.
+108	Bagheri Drone Carrier
+109	Italian light carrier for jump jets\nand helicopters.\nStrong vs Aircraft, Missiles\nWeak vs Ships, Submarines\nMaximum 1: another can be built once it is lost.
+110	Cavour Light Carrier
+111	Helicopter destroyer rebuilt as a light\ncarrier for jump-jet fighters.\nStrong vs Aircraft, Missiles\nWeak vs Ships, Submarines\nMaximum 1: another can be built once it is lost.
+112	Kaga Carrier
+113	Heavy aircraft-carrying cruiser with\na ski-jump bow and strong SAM defences.\nStrong vs Aircraft, Missiles\nWeak vs Ships, Submarines\nMaximum 1: another can be built once it is lost.
+114	Kuznetsov Carrier
+115	Half carrier, half cruiser: a flight deck\naft and missile launchers forward.\nStrong vs Aircraft, Missiles\nWeak vs Ships, Submarines\nMaximum 1: another can be built once it is lost.
+116	Kiev Aviation Cruiser
+117	Amphibious ship turned drone carrier.\nLaunches swarms of attack drones.\nStrong vs Aircraft, Missiles\nWeak vs Ships, Submarines\nMaximum 1: another can be built once it is lost.
+118	Anadolu Drone Carrier
+119	Armoured Union cyborg with a heavy auto-pistol.\nCan't be crushed and never takes cover.\nStrong vs Infantry\nWeak vs Vehicles, Aircraft
+120	Cyborg Trooper
+121	Chain-Link Barrier
+122	Jefferson Memorial
+123	Lincoln Memorial
+124	Capture to receive a very large income.
+125	Provides a very large income.
+126	Washington Monument
+127	The White House
+128	Fast multi-role ship.\nCan detect submarines.\nStrong vs Naval units, Vehicles and Aircraft\nWeak vs Infantry
+129	Destroyer
+130	Anti-infantry unit.\nCan detect spies.\nStrong vs Infantry\nWeak vs Vehicles and Aircraft
+131	Dog
+132	Attack Dog
+133	Provides an overview of\nthe battlefield.\nRequires power to operate.
+134	Radar Dome
+135	Truck carrying armed nuclear explosives,\nwith very weak armor.
+136	Demolition Truck
+137	General-purpose infantry.\nStrong vs Infantry\nWeak vs Vehicles and Aircraft
+138	Rifle Infantry
+139	Infantry with grenades.\nStrong vs Buildings and Infantry\nWeak vs Vehicles and Aircraft
+140	Grenadier
+141	Anti-tank/Anti-aircraft infantry.\nStrong vs Vehicles and Aircraft\nWeak vs Infantry
+142	Rocket Soldier
+143	Advanced anti-structure unit.\nStrong vs Infantry and Buildings\nWeak vs Vehicles and Aircraft
+144	Flame Infantry
+145	Infiltrates and captures\nenemy structures.\nUnarmed
+146	Engineer
+147	Elite commando infantry, with dual pistols\nand C4.\nMaximum of one can be built.\nStrong vs Infantry and Buildings\nWeak vs Vehicles and Aircraft\nSpecial Ability: Destroys buildings with C4
+148	Tanya
+149	Boeing 707 (E-8C airframe)
+150	Cairo Tower
+151	Temple of Karnak
+152	Grand Egyptian Museum
+153	Great Pyramid of Giza
+154	Great Sphinx
+155	Mech war elephant with a twin heavy cannon.\nTramples any infantry it walks over.\nRequires Tech Center. India only.\nStrong vs Tanks, Buildings and Infantry\nWeak vs Aircraft
+156	Elephanta
+157	Heavy two-legged Union assault walker.\nTwin arm autocannons shred infantry, a shoulder\nrocket pod cracks armour.\nStrong vs Infantry, Vehicles\nWeak vs Aircraft
+158	Enforcer Walker
+159	Produces structures.
+160	Construction Yard
+161	Long range for a cheap price, but inaccurate.\nDeploy to switch to 2 Shard-136 attack drones\nwith very long range.\nStrong vs Infantry and Buildings\nWeak vs Vehicles and Aircraft
+162	Fajir-5
+163	Guided long-range rockets; very accurate.\nStrong vs Buildings, Infantry and Vehicles\nWeak vs Aircraft; slow reload
+164	Fatah-X
+165	Capture to give buildable area.
+166	Provides buildable area.
+167	Forward Command
+168	Wire Fence
+169	Repairs vehicles for credits.
+170	Service Depot
+171	Heavy twin anti-aircraft gun. Its bursts damage\nevery aircraft nearby and can knock down drones\nand cruise missiles.\nStrong vs Aircraft and Drones\nWeak vs Ground units
+172	Flak Cannon
+173	Flare
+174	Mobile unit with a Flak cannon.\nStrong vs Infantry, Light armor and Aircraft\nWeak vs Tanks
+175	Mobile Flak
+176	Anti-Infantry base defense.\nCan detect cloaked units.\nStrong vs Infantry and Light armor\nWeak vs Tanks and Aircraft
+177	Flame Tower
+178	Obscures the enemy's view with shroud.\nRequires power to operate.
+179	Gap Generator
+180	Gem Mine
+181	King of the monsters. Picked in the lobby: one per player, cannot be rebuilt.\nAtomic breath burns everything in a long line of sight, even aircraft.\nStomps whatever comes close. Wades through rivers and the sea.\nStrong vs everything
+182	Godzilla
+183	Old Grad launcher: cheap but inaccurate.\nStrong vs Infantry and groups\nWeak vs Vehicles and Aircraft
+184	Guajiro Grad
+185	Anti-Armor base defense.\nCan detect cloaked units.\nStrong vs Vehicles\nWeak vs Infantry and Aircraft
+186	Turret
+187	Mobile air defence: ripples of four fast missiles\nthat corkscrew onto aircraft, and a 35 mm cannon\nfor anything that comes close.\nStrong vs Aircraft and Helicopters\nCannot attack ground targets
+188	Gürz Mace
+189	Tracked launcher: a big 12-rocket salvo over a wide area.\nStrong vs Infantry and Buildings\nWeak vs Vehicles and Aircraft; slow
+190	Hailstorm
+191	Collects Ore and Gems for\nprocessing.\nUnarmed
+192	Harvester
+193	Ore Truck
+194	Husk (Ore Truck)
+195	Camouflaged static defense with a fireport\nfor a garrisoned soldier.\nCan detect cloaked units.\nStrong vs Infantry and Light armor\nWeak vs Tanks and Aircraft
+196	Camo Pillbox
+197	Anti-air and anti-submarine escort with\nmissiles, a close-in gun and depth charges.\nStrong vs Aircraft and Submarines\nWeak vs Ground units
+198	Helicopter Cruiser
+199	Heal Crate
+200	Fast light attack helicopter with HOT\nanti-tank missiles and a 20 mm cannon.\nStrong vs Tanks and Vehicles\nWeak vs Infantry and Anti-Air
+201	Longbow
+202	Fast wheeled launcher with long-range guided rockets.\nShoot and scoot: drives off after each launch.\nStrong vs Infantry, Buildings and Vehicles\nWeak vs Aircraft
+203	HIMAX
+204	Helicopter gunship with dual chain guns.\nStrong vs Infantry and Light armor\nWeak vs Tanks and Aircraft
+205	Hind
+206	Fast rocket truck: fires a long stream of\n30 light rockets from its launch tubes.\nStrong vs Infantry and Buildings\nWeak vs Tanks and Aircraft
+207	Hailfire Rocket Truck
+208	Tough scout car with a roof .50 cal machine gun.\nCarries 4 infantry. USA only.\nStrong vs Infantry and Light armor\nWeak vs Tanks
+209	Humvee
+210	Capture to enable self-healing for infantry.
+211	Provides infantry with self-healing.
+212	Hospital
+213	Produces and reloads helicopters.
+214	Helipad
+215	Ice Floe
+216	Heavy airborne transport with 40 paratroopers aboard.\nRight-click the ground to drop them there; it flies\nhome and takes on a new force (paid) in a minute.\nTail turret: twin 23 mm guns against aircraft\nBuilt on the Airborne Base
+217	Il-76MD Candid
+218	Vanguard soldier in a powered exosuit with\na belt-fed heavy machine gun.\nCan't be crushed and never takes cover.\nStrong vs Infantry\nWeak vs Vehicles, Aircraft
+219	Iron Guard
+220	Grants a group of units temporary\ninvulnerability.\nRequires power to operate.\nMaximum of one can be built.\nSpecial Ability: Invulnerability
+221	Grants invulnerability to a group of units\nfor 20 seconds.
+222	Invulnerability
+223	Iron Curtain
+224	Capture to receive a large income.
+225	Provides a large income.
+226	Warden's Spire
+227	Fast scout and anti-infantry vehicle.\nCan carry just one infantry unit.\nStrong vs Infantry\nWeak vs Vehicles and Aircraft
+228	Ranger
+229	Armoured ground-attack jet.\nStrong vs Tanks and Vehicles\nWeak vs Fighters\nGeneration tier 3\nFlown by: Union, USA
+230	AA-10 Thunderhog
+231	Transport aircraft.\nCarries infantry\nUnarmed\nGeneration tier 4\nFlown by: Ukraine
+232	An-225 Dreamer
+233	Heavy bomber.\nStrong vs Buildings\nWeak vs Fighters and Anti-Air\nGeneration tier 5\nFlown by: Union, USA
+234	AB-2 Wraith
+235	Heavy bomber.\nStrong vs Buildings\nWeak vs Fighters and Anti-Air\nGeneration tier 2\nFlown by: USA
+236	AB-52 Stratoforce
+237	Fast interceptor.\nStrong vs Buildings and Vehicles\nWeak vs Anti-Air\nGeneration tier 2\nFlown by: Union, USA, Germany, Italy, Japan, Turkey, Pakistan
+238	AF-104 Starflash
+239	Stealth fighter.\nStrong vs Buildings and Vehicles\nWeak vs Anti-Air\nGeneration tier 3\nFlown by: Union, USA
+240	AF-117 Nightjar
+241	Fast interceptor.\nStrong vs Buildings and Vehicles\nWeak vs Anti-Air\nGeneration tier 3\nFlown by: Union, USA, Iran
+242	AF-14 Bobcat
+243	Multirole fighter.\nStrong vs Buildings and Vehicles\nWeak vs Anti-Air\nGeneration tier 3\nFlown by: Union, USA, Italy, South Korea, Egypt, Turkey, Pakistan, Ukraine
+244	AF-16 Fighting Kestrel
+245	Naval strike fighter.\nStrong vs Ships and Vehicles\nWeak vs Anti-Air\nGeneration tier 4\nFlown by: Japan
+246	AF-2 Zero Viper
+247	Stealth fighter.\nStrong vs Buildings and Vehicles\nWeak vs Anti-Air\nGeneration tier 5\nFlown by: Union, USA
+248	AF-22 Raptorex
+249	Fast interceptor.\nStrong vs Buildings and Vehicles\nWeak vs Anti-Air\nGeneration tier 2\nFlown by: Union, USA, England, Germany, Japan, South Korea, Egypt, Turkey, Iran
+250	AF-4 Spectre II
+251	Flying Gap Generator: an unarmed radar plane\nthat hides the ground under it from the enemy.\nOrder it over an area and it circles there.\nRequires Tech Center\nUnarmed, weak vs Anti-Air
+252	AE-2 Shroud Hawk
+253	Unmanned combat drone.\nCheap, low health\nStrong vs Infantry and Light armor\nPrototype, one per player\nFlown by: Russia
+254	Grom-K
+255	VTOL jump jet.\nStrong vs Vehicles\nWeak vs Anti-Air\nGeneration tier 3\nFlown by: Union, USA, England, Italy, India
+256	Harrow
+257	Heavy bomber.\nStrong vs Buildings\nWeak vs Fighters and Anti-Air\nGeneration tier 0\nFlown by: Germany
+258	He-177 Greif
+259	Heavy bomber.\nStrong vs Buildings\nWeak vs Fighters and Anti-Air\nGeneration tier 5\nFlown by: Germany
+260	HG-229 Nachtflügel
+261	Stealth fighter.\nStrong vs Buildings and Vehicles\nWeak vs Anti-Air\nGeneration tier 5\nFlown by: China
+262	JX-20 Jade Dragon
+263	Light attack jet.\nStrong vs Infantry, Light armor and drones\nWeak vs Fighters and Anti-Air\nGeneration tier 2\nFlown by: Ukraine, Cuba, Egypt
+264	L-39U Albatross
+265	Piston-engined fighter from the 1940s.\nCheap and quick to build\nStrong vs Infantry and Light armor\nGeneration tier 0\nFlown by: Vanguard, Russia, China
+266	LaV-11 Fang
+267	Multirole fighter.\nStrong vs Buildings and Vehicles\nWeak vs Anti-Air\nGeneration tier 3\nFlown by: Union, France, Egypt, India, Ukraine
+268	Mirago 2000
+269	Jet fighter.\nStrong vs Buildings and Vehicles\nWeak vs Anti-Air\nGeneration tier 2\nFlown by: Vanguard, Russia, Ukraine, Cuba, India, China, Pakistan, Iran, Egypt
+270	MiK-21 Fishbone
+271	Multirole fighter.\nStrong vs Buildings and Vehicles\nWeak vs Anti-Air\nGeneration tier 3\nFlown by: Vanguard, Russia, Ukraine, Cuba, India, Egypt
+272	MiK-23 Flintlock
+273	Fast interceptor.\nStrong vs Buildings and Vehicles\nWeak vs Anti-Air\nGeneration tier 3\nFlown by: Vanguard, Russia, Ukraine, India
+274	MiK-25 Foxbane
+275	Piston-engined fighter from the 1940s.\nCheap and quick to build\nStrong vs Infantry and Light armor\nGeneration tier 0\nFlown by: Vanguard, Russia
+276	MiK-3 Strela
+277	Stealth fighter.\nStrong vs Buildings and Vehicles\nWeak vs Anti-Air\nPrototype, one per player\nFlown by: Iran
+278	Qahir-X
+279	Multirole fighter.\nStrong vs Buildings and Vehicles\nWeak vs Anti-Air\nGeneration tier 4\nFlown by: France, Egypt, India, Ukraine
+280	Rafal F4
+281	Jet fighter.\nStrong vs Buildings and Vehicles\nWeak vs Anti-Air\nGeneration tier 3\nFlown by: Iran
+282	Saeqa
+283	Naval strike fighter.\nStrong vs Ships and Vehicles\nWeak vs Anti-Air\nGeneration tier 2\nFlown by: England
+284	Sea Vixa
+285	High-speed reconnaissance jet.\nVery hard to catch\nWeak vs Anti-Air\nGeneration tier 3\nFlown by: USA
+286	SR-7 Blackwing
+287	Armoured ground-attack jet.\nStrong vs Tanks and Vehicles\nWeak vs Fighters\nGeneration tier 3\nFlown by: Vanguard, Russia, Ukraine, Iran
+288	Sk-25 Rook
+289	Jet fighter.\nStrong vs Buildings and Vehicles\nWeak vs Anti-Air\nGeneration tier 3\nFlown by: Vanguard, Russia, Ukraine, China
+290	Sk-27 Flankard
+291	Multirole fighter.\nStrong vs Buildings and Vehicles\nWeak vs Anti-Air\nGeneration tier 4\nFlown by: Vanguard, Russia, India, China
+292	Sk-30 Flankard-M
+293	Multirole fighter.\nStrong vs Buildings and Vehicles\nWeak vs Anti-Air\nGeneration tier 4\nFlown by: Vanguard, Russia, China, Egypt, Iran
+294	Sk-35 Flankard-E
+295	Stealth fighter.\nStrong vs Buildings and Vehicles\nWeak vs Anti-Air\nPrototype, one per player\nFlown by: Vanguard, Russia
+296	Sk-47 Berkov
+297	Unmanned combat drone.\nCheap, low health\nStrong vs Infantry and Light armor\nGeneration tier 3\nFlown by: Turkey
+298	Swarm Drone
+299	Heavy bomber.\nStrong vs Buildings\nWeak vs Fighters and Anti-Air\nGeneration tier 3\nFlown by: Russia
+300	Tv-160 Swanwing
+301	Multirole fighter.\nStrong vs Buildings and Vehicles\nWeak vs Anti-Air\nGeneration tier 4\nFlown by: England, Germany, Italy, Turkey
+302	Typhon
+303	Transport aircraft.\nLays a smoke screen and fast-ropes its\ntroops down from a hover (F here, G to pick a spot).\nCarries infantry\nUnarmed\nGeneration tier 4\nFlown by: USA, Japan
+304	Kestrel Tiltrotor
+305	Heavy bomber.\nStrong vs Buildings\nWeak vs Fighters and Anti-Air\nGeneration tier 2\nFlown by: England
+306	Volcan
+307	Unmanned combat drone.\nCheap, low health\nStrong vs Infantry and Light armor\nPrototype, one per player\nFlown by: USA
+308	AX-47 Stingray
+309	VTOL jump jet.\nStrong vs Vehicles\nWeak vs Anti-Air\nPrototype, one per player\nFlown by: Vanguard, Russia
+310	Yk-141 Freestyler
+311	Stealth fighter.\nStrong vs Buildings and Vehicles\nWeak vs Anti-Air\nPrototype, one per player\nFlown by: Union, USA
+312	AYF-23 Black Recluse
+313	Armoured bombing airship.\nHuge bomb load, very slow\nWeak vs Anti-Air\nPrototype, one per player\nFlown by: Vanguard, Russia, Ukraine, Cuba, India, China, Turkey, Pakistan, Iran
+314	Zeppelin
+315	Fast attack helicopter with anti-tank missiles\nand a cannon. Requires Tech Center.\nStrong vs Tanks and Vehicles\nWeak vs Anti-Air
+316	Ka-52 Alligator
+317	Heavy 300 mm rockets with very long range.\nStrong vs Buildings and groups\nWeak vs Aircraft; slow reload
+318	Kasirga-X
+319	Trains Attack Dogs.
+320	Kennel
+321	The giant ape. Picked in the lobby: one per player, cannot be rebuilt.\nHammer blows smash tanks; hurls boulders further out.\nLeaps up to swat jets and helicopters flying over him.\nFaster than Godzilla, but cannot cross water.\nStrong vs everything up close
+322	King Kong
+323	Heavy walker: a KV tank body with a 152 mm gun\non two legs. Steps over walls and infantry.\nStrong vs Vehicles and Buildings\nWeak vs Aircraft
+324	KV Strider
+325	Carries twice as much as a Transport\nto the beach and defends itself against aircraft.\nUSA only.\nStrong vs Aircraft\nWeak vs Ships and Submarines
+326	Amphibious Assault Ship
+327	Lighthouse
+328	Builds and launches satellites\n(Aircraft tab). Up to 8 satellites.
+329	Launch Complex
+330	Tracked launcher with GPS-guided rockets.\nPrecise; +50% damage vs buildings.\nStrong vs Buildings and Infantry\nWeak vs Vehicles and Aircraft
+331	LRX
+332	Long-range air defence (Patriot / S-400 class):\nstops aircraft, cruise and tactical ballistic missiles.\nNeeds a Radar Dome for full range.\nStrong vs Aircraft and Missiles\nWeak vs Ground units
+333	Long-range SAM
+334	Hovers high above the map and fires a laser\nstraight down at enemies below it.\nSatellites within 12 cells link into a mesh:\neach linked satellite adds +40% to a shot\n(up to +200%). Needs a Satellite Uplink.\nOnly ASAT Missile Sites can hit it
+335	Satellite
+336	Laser Satellite
+337	General-purpose naval transport.\nCarries infantry and tanks\nUnarmed
+338	Transport
+339	Cheap anti-aircraft vehicle with four\nheavy machine guns on a turning mount.\nStrong vs Aircraft and Infantry\nWeak vs Tanks
+340	Quad AA Halftrack
+341	Tracked launcher: a big 12-rocket salvo.\nDeploy to switch to mine rockets that scatter\nanti-tank mines.\nStrong vs Infantry and Buildings\nWeak vs Vehicles and Aircraft; slow
+342	MARZ II
+343	US Capitol
+344	The Pentagon
+345	Mount Rushmore
+346	Willis Tower
+347	Deploys into a Construction Yard.\nUnarmed
+348	Mobile Construction Vehicle
+349	Husk (Mobile Construction Vehicle)
+350	Long-range mobile air defence: hit-to-kill missiles\nlaunched straight up, fired in any direction without\nturning. Also shoots down rockets, cruise and\nballistic missiles.\nStrong vs Aircraft and Missiles\nCannot attack ground targets
+351	Aegis Lance
+352	Repairs nearby vehicles and restores husks to\nworking condition by capturing them.\nUnarmed
+353	Mechanic
+354	Heals nearby infantry.\nUnarmed
+355	Medic
+356	Regenerates shroud to obscure nearby areas.\nUnarmed
+357	Mobile Gap Generator
+358	Husk (Mobile Gap Generator)
+359	Black Hawk
+360	Troop helicopter: carries 8 infantry\nand defends itself with a door gun.\nLays a smoke screen and fast-ropes its\ntroops down from a hover (F here, G to pick a spot).\nUnarmed against vehicles\nWeak vs Anti-Air
+361	Mi-17 Hip
+362	The world's heaviest transport helicopter:\ncarries 12 infantry anywhere on the map.\nLays a smoke screen and fast-ropes its\ntroops down from a hover (F here, G to pick a spot).\nUnarmed
+363	Mi-26 Halo
+364	Armoured gunship with a chain gun and rockets\nthat also carries 5 infantry.\nLays a smoke screen and fast-ropes its\ntroops down from a hover (F here, G to pick a spot).\nStrong vs Infantry and Vehicles\nWeak vs Anti-Air
+365	Mi-35M Hind-E
+366	British secret intelligence headquarters.\nUnlocks the Spy and the Spy Cars. England only.\nMaximum of one can be built.\nRequires power to operate.
+367	MI6 Headquarters
+368	Fast Ground-Attack Plane.\nStrong vs Buildings and Vehicles\nWeak vs Infantry and Aircraft
+369	MiG Attack Plane
+370	Ore Mine
+371	Capture to give visual range.
+372	Provides range of vision.
+373	Communications Center
+374	Tracked rocket tank: fires its whole rack of 19\nrockets in one heavy stream, then reloads.\nStrong vs Infantry, Buildings and groups of vehicles\nWeak vs Aircraft and close combat
+375	Thunderhead MLRS
+376	Lays mines to destroy\nunwary enemy units.\nCan detect mines.\nUnarmed
+377	Minelayer
+378	Money Crate
+379	(multiplayer starting point)
+380	Jams nearby enemy Radar Domes\nand deflects incoming missiles.\nUnarmed
+381	Mobile Radar Jammer
+382	Medium-range air defence and rocket shield: ten\nfast interceptors ripple out to burst rocket salvos\nin the sky. Also shoots aircraft, cruise missiles\nand drones. Needs a Radar Dome for full range.\nStrong vs Rockets, Aircraft, Cruise missiles and Drones\nWeak vs Ground units; cannot stop ballistic missiles
+383	Medium SAM
+384	Provides an atomic bomb.\nRequires power to operate.\nMaximum of one can be built.\nSpecial Ability: Atom Bomb
+385	Missile Silo
+386	Launches a devastating atomic bomb\nat the target location.
+387	Atom Bomb
+388	Submerged anti-ground siege unit with anti-air\ncapabilities.\nCan detect other submarines.\nStrong vs Buildings, Ground units and Aircraft\nWeak vs Naval units\nSpecial Ability: Submerge
+389	Missile Submarine
+390	Vanguard battle tank: cheaper and quicker\nthan the Heavy Tank, with a lighter gun.\nStrong vs Vehicles\nWeak vs Infantry, Aircraft
+391	Very fast truck on giant wheels. No gun:\nit runs over infantry, fences and sandbags.\nCarries 4 infantry. USA only.\nStrong vs Infantry\nWeak vs everything that shoots back
+392	Monster Truck
+393	Capture to receive additional funds.
+394	Provides additional funds.
+395	Oil Derrick
+396	Offshore platform that pumps oil and gas\nfor a steady income. Must be built on water\nnext to your base.\nIncome: $75 every 10 seconds\nStops pumping on low power
+397	Oil Rig
+398	Static defense with a fireport for\na garrisoned soldier.\nCan detect cloaked units.\nStrong vs Infantry and Light armor\nWeak vs Tanks and Aircraft
+399	Pillbox
+400	The longest-range rocket launcher.\nStrong vs Buildings and groups\nWeak vs Aircraft; slow reload
+401	PHX-16 Longreach
+402	Fires its whole load of rockets very quickly.\nStrong vs Infantry and Buildings\nWeak vs Vehicles and Aircraft
+403	Pinak
+404	A Badger drops parachuted bombs\nover a selected location.
+405	Parabombs (Single Use)
+406	A Badger drops a squad of infantry\nanywhere on the map.
+407	Reveals all submarines in the vicinity for a\nshort time.
+408	Sonar Pulse
+409	Provides power for other\nstructures.
+410	Power Plant
+411	Refines Ore and Gems into\ncredits.
+412	Ore Refinery
+413	Light scout and support ship.\nCan detect submarines.\nStrong vs Naval units\nWeak vs Ground units and Aircraft
+414	Gunboat
+415	Long-range Allied beam tank. Its crystal fires\na light beam that splashes groups of enemies.\nStrong vs Infantry, Light vehicles, Buildings\nWeak vs Tanks, Aircraft
+416	Prism Tank
+417	Allied crystal beam defense.\nNearby Prism Towers link up and beam their\nenergy into the one that fires: +40% damage\nper linked tower (up to +200%).\nRequires power to operate.\nStrong vs Infantry, Vehicles\nWeak vs Aircraft
+418	Prism Tower
+419	Deals seismic damage to nearby vehicles\nand structures.\nStrong vs Vehicles and Buildings\nWeak vs Infantry and Aircraft
+420	MAD Tank
+421	Abandoned Mine
+422	Your nearest soldier throws a red smoke canister.\nAfter 4 seconds, your idle artillery, rocket launchers, ships\nand up to 4 attack aircraft fire on the smoke for 20 seconds.\nThe cloud drifts with the wind, and the fire follows it.\nThe enemy can see the smoke too.
+423	Red Smoke
+424	Long-range Union anti-armour robot.\nIts railgun hits hard but recharges slowly.\nStrong vs Vehicles, Robots\nWeak vs Infantry, Aircraft
+425	Railgun Robot
+426	Produces and reloads aircraft.\nParking for 10 planes.\nMaximum 1 can be built.
+427	Strategic Air Command
+428	Cheaper tracked launcher that reloads faster.\nStrong vs Infantry and Buildings\nWeak vs Vehicles and Aircraft
+429	Saetta
+430	SAM Site
+431	Cluster rockets: each splits into bomblets.\nStrong vs Infantry and Light vehicles\nWeak vs Tanks, Buildings and Aircraft
+432	Saqr-36
+433	Stops infantry and light vehicles.\nCan be crushed by tanks.
+434	Sandbag Wall
+435	Home of the Tv-95 Bear strategic bomber.\nCharges the Thermonuclear Strike while the bomber is alive.\nRussia only. Maximum 1 can be built.
+436	Long-Range Aviation Base
+437	The Tv-95 Bear takes off and drops\nan RDS-37 hydrogen bomb on the target.\nBigger than the Fatman, smaller than the Nuclear Missile.
+438	Thermonuclear Strike
+439	Fast luxury car for the Spy with hidden machine\nguns and pop-up rockets. Carries one Spy.\nRequires MI6 Headquarters.\nEnemies see a harmless civilian car until it\nis shot at or opens fire.\nStrong vs Infantry, Vehicles\nWeak vs Aircraft
+440	Civilian Car
+441	Spy Car 1
+442	Classic grand tourer with hidden twin machine\nguns. Tougher and cheaper than Spy Car 1.\nCarries one Spy. Requires MI6 Headquarters.\nEnemies see a harmless civilian car until it\nis shot at or opens fire.\nStrong vs Infantry\nWeak vs Tanks, Aircraft
+443	Spy Car 2
+444	Steel Crate
+445	Fast, cheap Vanguard bomb drone. Runs at its\ntarget and detonates.\nStrong vs Vehicles, Robots\nWeak vs Infantry, Buildings
+446	Spider Drone
+447	Experimental cyber tank: its cannon fires a heavy\nelectric discharge. Maximum 1 can be built.\nStrong vs Tanks and Vehicles\nWeak vs Aircraft
+448	Shockfang
+449	Elite infantry with portable Tesla coils.\nStrong vs Infantry and Vehicles\nWeak vs Aircraft
+450	Shock Trooper
+451	Stores excess refined\nOre and Gems.
+452	Silo
+453	Long-range marksman. One shot kills most\ninfantry. Hides when standing still.\nStrong vs Infantry\nWeak vs Vehicles, Buildings
+454	Sniper
+455	Vanguard eight-legged missile tank: heavy\ntop-attack missiles, anti-aircraft missiles\nand interceptors that shoot down rockets.\nStrong vs Vehicles, Aircraft\nWeak vs Infantry
+456	Spider Tank
+457	Husk (Spider Tank)
+458	Produces and repairs submarines\nand transports.
+459	Sub Pen
+460	Infiltrates enemy structures for intel or\nsabotage. Exact effect depends on the\nbuilding infiltrated.\nLoses disguise when attacking.\nCan detect spies.\nStrong vs Infantry\nWeak vs Vehicles and Aircraft\nSpecial Ability: Disguised
+461	Spy
+462	British Spy
+463	Mobile air defence: a turning launcher with Python\nheat-seeking and Derby radar missiles that climb\nhigh and dive onto aircraft.\nStrong vs Aircraft and Helicopters\nCannot attack ground targets
+464	Spyder Talon
+465	Submerged anti-ship unit with torpedoes.\nCan detect other submarines.\nStrong vs Naval units\nWeak vs Ground units and Aircraft\nSpecial Ability: Submerge
+466	Submarine
+467	Provides advanced Vanguard technology.
+468	Vanguard Tech Center
+469	Light armored infantry transport which can\ncloak. Armed with anti-ground missiles.\nStrong vs Light armor\nWeak vs Infantry, Tanks and Aircraft
+470	Phase Transport
+471	Slow four-legged Vanguard assault walker\nwith a heavy cannon and a machine gun.\nStrong vs Vehicles, Infantry\nWeak vs Aircraft
+472	Strider
+473	Ground control for your satellites.\nIf you lose every Uplink, all your satellites\ngo offline until you build a new one.
+474	Satellite Uplink
+475	Produces and repairs ships and\ntransports.
+476	Naval Yard
+477	Tank Trap
+478	Heavy Vanguard robot that throws Tesla\nlightning from its hands.\nStrong vs Infantry, Robots\nWeak vs Vehicles, Aircraft
+479	Tesla Automaton
+480	Tech Center
+481	Trains infantry.
+482	Union Barracks
+483	Heavy attack helicopter: HOT anti-tank missiles\nand pods that fire a stream of rockets.\nFrance and Germany only.\nStrong vs Tanks, Vehicles and Infantry\nWeak vs Anti-Air
+484	Tiger
+485	Armoured thermobaric launcher. Short range,\nbut devastating up close.\nStrong vs Infantry and Buildings\nWeak vs Tanks and Aircraft
+486	TOZ-1 Sunflare
+487	Fast infantry transport helicopter.\nLays a smoke screen and fast-ropes its\ntroops down from a hover (F here, G to pick a spot).\nUnarmed
+488	Chinook
+489	Husk (Chinook)
+490	Transports cash to other players.\nUnarmed
+491	Supply Truck
+492	Advanced base defense.\nRequires power to operate.\nCan detect cloaked units.\nStrong vs Vehicles and Infantry\nWeak vs Aircraft
+493	Tesla Coil
+494	Tank with mounted Tesla coil.\nStrong vs Infantry, Vehicles and Buildings\nWeak vs Aircraft
+495	Tesla Tank
+496	Four-engined strategic bomber.\nDrops the RDS-37 hydrogen bomb when the\nThermonuclear Strike is ready. It has no other weapon.\nRussia only. Maximum 1 can be built.
+497	Tv-95 Bear
+498	Anti-ship missile truck: hits ships far out at sea.\nStrong vs Ships\nWeak vs land targets and Aircraft
+499	Type-12 Sea Arrow
+500	Husk (Spy Plane)
+501	Spy Plane
+502	Utility Pole
+503	Church
+504	Husk (Oil Pump)
+505	Oil Pump
+506	Long-range rocket artillery.\nStrong vs Infantry and Buildings\nWeak vs Vehicles and Aircraft
+507	V2 Rocket Launcher
+508	Precision long-range rockets.\nStrong vs Buildings, Infantry and Vehicles\nWeak vs Aircraft; slow reload
+509	Vilkra
+510	(waypoint for scripted behavior)
+511	Wooden Crate
+512	Produces vehicles.
+513	War Factory
+514	Windmill
+515	Wooden Fence
+516	French heavy gun platform. Very slow, but\nits cannon out-ranges every tank and hits\nharder than any other gun.\nStrong vs Vehicles, Buildings\nWeak vs Infantry up close, Aircraft
+517	XR-85 Tank Droid
+518	Husk (XR-85 Tank Droid)
+519	Y-20 Kunpeng
+520	Attack Plane with dual machine guns.\nStrong vs Infantry and Light armor\nWeak vs Tanks and Aircraft
+521	Yak Attack Plane
+522	Flying-wing atomic bomber.\nDrops the Fatman bomb when the Fatman Strike is ready.\nIt has no other weapon.\nUSA only. Maximum 1 can be built.
+523	AB-35 Longwing
+524	Ballistic missile truck: fires the two missiles on its\nerector at targets 22 cells away, then reloads slowly.\nOnly long-range air defence can stop the missiles.\nStrong vs Buildings and Ground units\nWeak vs Aircraft and close combat
+525	Zolfaghar
+526	Brutal AI
+527	Easy AI
+528	Hard AI
+529	Naval AI
+530	Normal AI
+531	Air Defense
+532	Air Force
+533	Coast Guard
+534	Command
+535	Ground Defense
+536	Marine Corps
+537	Navy
+538	Space Force
+539	Strategic
+540	Unmanned
+541	Walls
+542	Cancel
+543	Toggle chat mode
+544	Mixer
+545	Palette
+546	Random
+547	Store
+548	Selected units will move to the desired location\nand attack any enemies they encounter en route.\nHold <(Ctrl)> while targeting to order an Assault Move\nthat attacks any units or structures encountered en route.\nLeft-click icon then right-click on target location.
+549	Selected units will perform their default deploy activity\n- MCVs will unpack into a Construction Yard\n- Construction Yards will re-pack into a MCV\n- Transports will unload their passengers\n- Demolition Trucks and MAD Tanks will self-destruct\n- Minelayers will deploy a mine\n- Aircraft will return to base\nActs immediately on selected units.
+550	Force Attack
+551	Selected units will attack the targeted unit or location\n- Default activity for the target is suppressed\n- Allows targeting of own or ally forces\n- Long-range artillery units will always target the\nlocation, ignoring units and buildings\nLeft-click icon then right-click on target.\nHold <(Ctrl)> to activate temporarily while commanding units.
+552	Force Move
+553	Selected units will move to the desired location\n- Default activity for the target is suppressed\n- Vehicles will attempt to crush enemies at the target location\n- Helicopters will land at the target location\n- Chrono Tanks will teleport towards the target location\nLeft-click icon then right-click on target.\nHold <(Alt)> to activate temporarily while commanding units.
+554	Selected units will follow the targeted unit.\nLeft-click icon then right-click on target unit.
+555	Waypoint Mode
+556	Use Waypoint Mode to give multiple linking commands\nto the selected units. Units will execute the commands\nimmediately upon receiving them.\nLeft-click icon then give commands in the game world.\nHold <(Shift)> to activate temporarily while commanding units.
+557	Selected units will stop their current activity\nand move to a nearby location.\nActs immediately on selected units.
+558	Selected units will stop their current activity.\nSelected buildings will reset their rally point.\nActs immediately on selected targets.
+559	Switch
+560	Abort
+561	Give $20,000
+562	Clear Shroud
+563	Grow Resources
+564	Reset Shroud
+565	Remove the selected actor
+566	Remove everything in the selected area
+567	Join
+568	Copy the selected area
+569	Paste the saved area
+570	Redo
+571	Redo last step
+572	Undo last step
+573	Replays
+574	Reset Filters
+575	Start
+576	Load
+577	Connect to an OpenRA forum account
+578	Unbind the hotkey
+579	Override
+580	Reset to default
+581	Kick this player
+582	Ok
+583	Manage Content
+584	Manual Install
+585	Install Map
+586	History
+587	Overlays
+588	Selection
+589	Tiles
+590	Tools
+591	Update Map
+592	Delete All Maps
+593	Delete Map
+594	Random Map
+595	Server Maps
+596	Official Maps
+597	Custom Maps
+598	Clear All
+599	Clear Current
+600	Watch Info Video
+601	Stop Info Video
+602	Change Map
+603	Create
+604	MAX
+605	Play
+608	Defense
+610	Naval
+612	Logout
+613	Confirm
+614	Restart
+615	Set Rally Point
+616	Watch
+617	Retry
+618	Retry Install
+619	Retry Search
+620	Attack Anything Stance
+621	Set the selected units to Attack Anything stance:\n- Units will attack enemy units and structures on sight\n- Units will pursue attackers across the battlefield
+622	Defend Stance
+623	Set the selected units to Defend stance:\n- Units will attack enemy units on sight\n- Units will not move or pursue enemies
+624	Hold Fire Stance
+625	Set the selected units to Hold Fire stance:\n- Units will not fire upon enemies\n- Units will not move or pursue enemies
+626	Return Fire Stance
+627	Set the selected units to Return Fire stance:\n- Units will retaliate against enemies that attack them\n- Units will not move or pursue enemies
+628	Team
+629	Place Beacon
+630	Home: centre on your Construction Yard
+631	Power Down
+632	Repair
+633	Sell
+634	Vote to kick this player
+635	Fast and cheap, ideal for scouting, harassing ore trucks and catching light vehicles. It loses a straight fight with heavier tanks.
+636	Light tank
+637	The Union's main battle tank: a good balance of speed, armour and firepower. Mass them with rocket soldiers and Mobile Flak for a complete army.
+638	Main battle tank
+639	The Vanguard's main battle tank with twin heavy cannons. Slower than Union armour but hits much harder. Wins head-on tank battles.
+640	Heavy tank
+641	The Mammoth: twin cannons for tanks, missile pods for aircraft and infantry, heavy armour and self-repair when damaged. Slow and expensive, and it crushes even concrete walls.
+642	Super-heavy tank
+643	A bigger airfield with parking for 6 planes. Expand your air wing without spreading pads across the base.
+644	Large air base
+645	Home of the paratrooper brigades: barracks, a parachute packing hall and three pads for the heavy transports that carry 40 soldiers each anywhere on the map.
+646	Airborne base, 3 transport pads
+647	A full air force base with parking for 8 planes for a serious strike wing.
+648	Air force base
+649	Builds and rearms jets, with parking for 4 planes. It also gives the Spy Plane and Paratrooper support powers. Fighters return here to reload after each sortie.
+650	Air base
+651	A flak cannon that shreds aircraft, drones and incoming cruise missiles at short range. It needs power. Ring your base with them against bombers.
+652	Short-range air defence
+653	Carries a squad of infantry under armour and supports it with a machine gun. Drop engineers into an enemy base or rush rocket soldiers to the front.
+654	Armoured transport
+655	Twice the output of a Power Plant on a larger footprint. A prime target for enemy bombers, so guard it with anti-air.
+656	Heavy power generation
+657	Long-range howitzer that shells defences and infantry from beyond their reach. Very fragile up close, so always keep an escort.
+658	Shoots down enemy satellites overhead within 12 cells. It can't hit ground units or aircraft. Your only defence against an orbital laser mesh.
+659	Anti-satellite
+660	Union research centre. It unlocks the most advanced Union weapons and launches the GPS Satellite, which reveals the whole map.
+661	Advanced research
+662	The Merlin: a fast three-engined helicopter that carries ten soldiers over long distances. India only.
+663	A captured Flying Fortress, like those the wartime special squadron flew to drop agents behind the lines.
+664	The Superfortress the Vanguard copied rivet for rivet, its bomb bays now full of paratroopers.
+665	A great flying boat of the clipper age, carrying Italy's paratroopers from its seaplane bases.
+666	A Stratofortress with its bomb bays stripped and refitted to drop a forty-man stick.
+667	Vanguard barracks: trains conscripts, grenadiers, flame troops, Shock Troopers and the Iron Guard exosuits. Several barracks speed up training.
+668	The biggest guns at sea: three-gun 16-inch turrets fore and aft that shell the coast from beyond the reach of most defences. Slow and very hard to sink, but blind to submarines.
+669	Cheap Union droids with blaster rifles, built in numbers. Use them to swamp enemy infantry and absorb fire.
+670	Combat droid
+671	A guarded bomber field with one giant pad, a hangar and an armoured bomb bunker. It houses the AB-35 Longwing and charges the Fatman Strike while the bomber lives. USA only, one per player.
+672	Superweapon airfield
+673	THAAD class. It intercepts ballistic and hypersonic missiles high and far out, the answer to ballistic missile strikes (it leaves rockets to the Medium SAM). Needs a Radar Dome for full range.
+674	Ballistic missile defence
+675	Concrete walls that stop every ground unit and block enemy fire. Only the Mammoth Tank can crush them. Use them to protect power plants and refineries.
+676	Heavy barrier
+677	An eight-wheeled armoured personnel carrier with a turret autocannon: quick on roads, it drops 5 infantry at the front and keeps shooting. Russia only.
+678	The Hercules: the four-engined workhorse of airborne forces from the USA to France, Japan, South Korea, Turkey and Pakistan.
+679	The long-bodied jet that carried the Union's airborne divisions for decades.
+680	The Royal Air Force's strategic airlifter: four turbofans, a huge cargo hold and a forty-man stick out of the side doors.
+681	A very slow ship with huge long-range guns that shell coastal bases from far out at sea. Escort it with destroyers against submarines.
+682	A guided-missile cruiser: Tomahawks reach targets far inland, while its SAMs and close-in gun cover the fleet from the air. USA only.
+683	Missile cruiser
+684	A heavy wheeled launcher with a 6-rocket salvo. Deploy it to switch to one heavy guided missile with longer range.
+685	Rocket launcher (South Korea)
+686	The Nile's oldest hunter, raised and trained by Egypt. It walks on land, swims faster than it walks, and lies in the water with only its eyes showing, unseen until it strikes. One lunge and one bite finish a soldier or a dog; then it stops to swallow. Its scaly hide shrugs off rifle fire. Egypt only.
+687	Ambush predator
+688	Fires anti-ground missiles and can teleport anywhere within range. Blink behind enemy lines to strike artillery and refineries, then blink out.
+689	Chrono tank
+690	An Essex-class carrier from the Second World War: a floating airbase with SAM launchers for defence. Launches and rearms jets at sea.
+691	Fleet carrier
+692	The first nuclear-powered carrier, Enterprise class: a bigger deck, tougher hull and more SAM launchers.
+693	Battle carrier
+694	A Nimitz-class nuclear supercarrier, the heavily armoured flagship of the fleet.
+695	A Gerald R. Ford-class carrier with the latest defences. The most powerful ship afloat.
+696	Next-gen supercarrier
+697	The Fujian: China's newest supercarrier, with electromagnetic catapults.
+698	Supercarrier (China)
+699	The Mistral: an amphibious helicopter carrier. Cheap and quick to build.
+700	Helicopter carrier (Egypt)
+701	The Charles de Gaulle, France's nuclear-powered carrier and the pride of the Marine nationale.
+702	Carrier (France)
+703	The Royal Navy's Queen Elizabeth carrier, with a ski-jump bow and twin islands.
+704	Carrier (England)
+705	The Vikrant: India's home-built carrier with a ski-jump bow.
+706	Carrier (India)
+707	The Bagheri: a converted merchant ship with a flight deck for drones. Cheap, but fragile.
+708	Drone carrier (Iran)
+709	The Cavour: an Italian light carrier for jump jets and helicopters.
+710	Light carrier (Italy)
+711	The Kaga: a helicopter destroyer rebuilt as a light carrier for jump-jet fighters.
+712	Light carrier (Japan)
+713	The Kuznetsov: a heavy aircraft-carrying cruiser with a ski-jump bow and strong SAM defences.
+714	Carrier (Russia)
+715	The Kiev: half carrier, half cruiser, with a flight deck aft and missile launchers forward.
+716	Aviation cruiser
+717	The Anadolu: an amphibious ship turned drone carrier that launches swarms of attack drones.
+718	Drone carrier (Turkey)
+719	An armoured Union cyborg with a heavy auto-pistol. It can't be crushed by tanks and never needs cover. A tough line holder.
+720	Cyborg infantry
+721	A fast multi-role warship that detects submarines and fights ships, vehicles and aircraft. The backbone of a Union fleet.
+722	Fast and cheap, it kills infantry in one bite and sniffs out disguised spies. Keep a pair at home as spy hunters.
+723	Attack dog
+724	Turns on your radar minimap and unlocks most mid-tier units and defences. It also gives your long-range SAMs their full reach. Losing it blinds you, so guard it.
+725	Intelligence
+726	A truck with an armed nuclear warhead and paper-thin armour. Drive it into the enemy base and detonate it. It takes everything nearby with it, including your own units.
+727	Nuclear bomb truck
+728	The backbone of every army: cheap, quick to train and good against other infantry. Garrison them in pillboxes, or mass them to screen your tanks from rocket soldiers.
+729	Rifle infantry
+730	Lobs grenades that splash groups of infantry and damage buildings. Their grenades can hurt friendly units nearby, so keep them behind the front line.
+731	Shoulder-fired rockets that hit both armour and aircraft. Cheap, and the infantry answer to tanks and helicopters, but easy prey for machine guns.
+732	Anti-tank / anti-air
+733	Short-range flamethrowers that burn infantry in cover and set buildings ablaze. Strong for clearing bunkers and assaulting bases.
+734	Flame trooper
+735	Captures enemy buildings, repairs your own and fixes broken bridges. Escort them into the enemy base and take a War Factory or Tech Center to steal its technology.
+736	Tanya: dual pistols that drop infantry in one shot, and C4 that levels any building she reaches. Only one can be fielded. Keep her away from tanks and dogs.
+737	Elite commando
+738	A Boeing 707 airframe of the kind Iran's air force has flown for half a century, refitted to carry troops.
+739	India's armoured war elephant: a walking fortress on four steel legs, with a twin heavy cannon on its back that fires shell after shell. Soldiers cannot dodge it as they dodge a tank: anyone under its feet is trampled. Slow and costly, but very hard to stop. India only.
+740	War elephant walker
+741	A heavy two-legged Union walker. Twin arm autocannons shred infantry and a shoulder rocket pod cracks armour. A walking fortress for breaking defensive lines.
+742	Assault walker
+743	The heart of every base. It builds all other structures and sets your build radius, so losing it stops all expansion. Keep it deep inside your defences and, if the lobby allows it, pack it back into an MCV to move your base.
+744	Base command
+745	Long range for a low price, but inaccurate. Deploy it to switch to two Shard-136 attack drones with very long range.
+746	Rocket launcher (Iran)
+747	Guided long-range rockets that are very accurate against buildings, infantry and vehicles alike. Slow to reload.
+748	Rocket launcher (Pakistan)
+749	Barbed wire that stops infantry and light vehicles. Tanks crush it.
+750	Repairs vehicles that drive onto its pad, for a fee. It also unlocks advanced vehicles. Place it between the War Factory and the front so damaged tanks get back into the fight quickly.
+751	Field repair
+752	A heavy twin flak gun on a turning mount. Its bursts hurt every aircraft nearby, and it can knock drones and cruise missiles out of the sky.
+753	Anti-air defence
+754	A truck-mounted flak cannon that shreds aircraft, drones and infantry. Keep one with every armoured column.
+755	Mobile anti-air
+756	Pours burning fuel over anyone who gets close. It ruins infantry and light vehicles, but has short range and can't touch tanks at a distance.
+757	Anti-infantry tower
+758	Wraps your base in shroud so the enemy cannot see what is inside. Scouts and spy planes reveal it only briefly. It needs power.
+759	Counter-intelligence
+760	A mountain of scales that wades out of the sea. When its dorsal plates light up pink, everything in front of it is about to burn: the atomic breath reaches farther than most artillery and cuts aircraft out of the sky. Tanks that get close are stepped on. Picked in the lobby, one per player, and when it falls it is gone for good.
+761	Titan: walking superweapon
+762	An old Grad launcher: cheap but inaccurate. Mass them and saturate an area with rockets.
+763	Rocket launcher (Cuba)
+764	A rotating cannon turret that punches through tanks. Cheap and reliable, but weak against massed infantry and helpless against aircraft.
+765	Anti-armour turret
+766	A heavy eight-wheeled truck carrying a turning combat module: two pods of small infrared missiles and a 35 mm cannon between them. It ripples off four missiles at a time, each rolling in a tight corkscrew, and their proximity fuses burst into black flak puffs. Vanguard nations except India.
+767	Mobile air defence
+768	A tracked launcher that fires a big 12-rocket salvo over a wide area. Strong against infantry and bases, but slow.
+769	Rocket launcher (England)
+770	Collects ore and gems and brings them to your refinery. Heavily armoured, but unarmed. Protect your trucks: they are your income.
+771	Ore truck
+772	A pillbox hidden under camouflage. Enemies don't see it until they are close, so it is a perfect ambush on a likely attack route.
+773	Camouflaged bunker
+774	A cruiser with a helicopter deck aft: missiles and a gatling gun against aircraft, depth charges and sonar against submarines.
+775	Helicopter cruiser
+776	The Longbow: a missile gunship that hunts tanks, buildings and other aircraft. Hit and run, then return to the Helipad to rearm.
+777	Attack helicopter
+778	A fast wheeled launcher with long-range guided rockets. It shoots and scoots, driving off after each launch, so counter-fire usually hits empty ground.
+779	Rocket launcher (USA)
+780	The Hind: a heavy gunship with chain guns that mows down infantry and light vehicles.
+781	A wheeled multiple rocket launcher with a bank of closed launch tubes. It ripples off 30 light rockets in a long stream that saturates the target area, then reloads.
+782	Rocket truck
+783	The workhorse of the US Army: armoured, quick, with a .50 cal on the roof and room for a fire team of four. USA only.
+784	Scout car
+785	Builds and rearms helicopters for both sides: the Union's Chinook, Black Hawk and Longbow, the Vanguard's Mi-26, Hind, Mi-35 and Ka-52. Each pad services one helicopter at a time, so build one per gunship you plan to field.
+786	Helicopter base
+787	The Candid: the heavy jet transport of Ukraine, Russia and India. It drops a forty-man stick behind enemy lines and keeps fighters off its tail with twin 23 mm guns.
+788	Airborne transport, 40 paratroopers
+789	A Vanguard soldier in a powered exosuit with a belt-fed heavy machine gun. Tanks can't crush it, and it mows down infantry.
+790	Exosuit infantry
+791	Makes a group of units or buildings invulnerable for a short time. Time it with a tank push so the spearhead arrives untouchable.
+792	The Ranger: a fast scout with a machine gun that carries one soldier. Use it to scout, chase infantry and hunt ore trucks.
+793	Scout vehicle
+794	The Thunderhog: a flying tank built around a huge rotary cannon. Heavily armoured, slow and lethal to armour. Keep fighters away from it.
+795	Ground attack, tier 3
+796	The An-225 Dreamer: the largest aircraft ever built. It carries infantry across the map. Unarmed.
+797	Heavy transport, tier 4
+798	The Wraith: a flying-wing stealth bomber that delivers a massive bomb load deep behind enemy lines.
+799	Stealth bomber, tier 5
+800	The Stratoforce: a huge carpet-bomber that levels whole blocks of a base. Escort it, because it can't defend itself against fighters.
+801	Heavy bomber, tier 2
+802	The Starflash: a needle-nosed Cold War interceptor built for raw speed. Its missiles hit buildings and vehicles hard, but it has little armour.
+803	Interceptor, tier 2
+804	The Nightjar: a faceted stealth jet that slips past air defences to hit high-value targets.
+805	Stealth strike, tier 3
+806	The Bobcat: a swing-wing fleet defender with long-range missiles. Flown only by the USA and Iran.
+807	Interceptor, tier 3
+808	The Fighting Kestrel: a light, agile multirole fighter. Good value for strikes on vehicles and buildings.
+809	Multirole fighter, tier 3
+810	The Zero Viper: Japan's home-built strike fighter, a stretched Falcon with a bigger wing made to hunt ships far out at sea.
+811	Naval strike fighter, tier 4
+812	The Raptorex: a fifth-generation stealth fighter and the best Union air superiority jet. Fast, hard to see and deadly.
+813	Stealth fighter, tier 5
+814	The Spectre II: a rugged twin-engine workhorse flown by more nations than any other jet in the game. Reliable strike power at a fair price.
+815	An unarmed radar plane that hides the ground below it from the enemy. Order it over an area and it circles there. Cover a tank push with it.
+816	Airborne gap generator
+817	The Grom-K: a Russian unmanned combat drone. Cheap, fragile and dangerous to infantry. One per player.
+818	The Harrow takes off vertically from tiny pads and carrier decks and hits vehicles hard.
+819	VTOL jump jet, tier 3
+820	The Greif: Germany's wartime four-engined bomber, its paired engines driving two big propellers, still hauling a heavy bomb load.
+821	Heavy bomber, tier 0
+822	The Nachtflügel: Germany's flying-wing jet bomber, born from the Horten brothers' wartime design and built at last with modern engines and a heavy guided bomb load.
+823	The JX-20 Jade Dragon: China's fifth-generation stealth fighter, long-ranged and hard to see.
+824	The L-39U Albatross: a light attack trainer that is surprisingly effective against infantry, light armour and drones.
+825	Light attack, tier 2
+826	The LaV-11 Fang: a rugged radial-engine fighter from the 1940s. Cheap and fast to field in numbers.
+827	The Mirago 2000: a sleek delta-wing multirole fighter used by many nations.
+828	The MiK-21 Fishbone: the most widely flown jet in the Vanguard bloc. Simple, fast and cheap.
+829	Jet fighter, tier 2
+830	The MiK-23 Flintlock: a swing-wing fighter-bomber that strikes fast and leaves fast.
+831	The MiK-25 Foxbane: a brutally fast high-altitude interceptor. Few things can catch it.
+832	The MiK-3 Strela: a 1940s propeller fighter. Cheap and quick to build, good for strafing infantry and light vehicles.
+833	Piston fighter, tier 0
+834	The Qahir-X: Iran's experimental stealth fighter. One per player.
+835	Stealth prototype
+836	The Rafal F4: a modern canard-delta omnirole fighter, as good at strikes as at dogfights.
+837	The Saeqa: Iran's twin-tailed home-built fighter, a solid strike jet against vehicles and buildings.
+838	Jet fighter, tier 3
+839	The Sea Vixa: a twin-boom naval strike fighter that specialises in sinking ships.
+840	Naval strike, tier 2
+841	The Blackwing: a high-speed reconnaissance jet that is very hard to catch. It reveals the enemy base on its way through.
+842	Reconnaissance, tier 3
+843	The Sk-25 Rook: an armoured close-support jet that hammers tanks and vehicles at low level.
+844	The Sk-27 Flankard: a large twin-engine fighter with long range and a heavy weapons load.
+845	Air superiority, tier 3
+846	The Flankard-M: the two-seat Flanker that both dogfights and strikes, flown by the Vanguard, Russia, India and China.
+847	Multirole fighter, tier 4
+848	The Sk-35 Flankard-E: thrust-vectoring supermanoeuvrability and the Vanguard's best mainstream fighter.
+849	The Sk-47 Berkov: an experimental forward-swept-wing stealth fighter. One per player.
+850	Turkey's Swarm Drones: cheap unmanned attackers that overwhelm infantry and light armour in numbers.
+851	Drone swarm, tier 3
+852	The Tv-160 Swanwing: Russia's supersonic swing-wing bomber, which delivers a massive payload at high speed.
+853	Strategic bomber, tier 3
+854	The Typhon: a European canard-delta fighter with great agility and a heavy strike load.
+855	The Kestrel tiltrotor takes off like a helicopter and flies like a plane, carrying infantry far behind enemy lines. Unarmed.
+856	Tiltrotor transport, tier 4
+857	The Volcan: a delta-wing V-bomber, England's long-range heavy hitter against bases.
+858	The Stingray: an unmanned combat drone. Cheap and fragile, but it strafes infantry and light armour without risking a pilot. One per player.
+859	Combat drone prototype
+860	The Yk-141 Freestyler: a supersonic VTOL jump jet prototype that strikes vehicles. One per player.
+861	VTOL prototype
+862	The Black Recluse: an experimental stealth fighter. Only one per player, a rare and lethal ace.
+863	Prototype fighter
+864	An armoured airship with an enormous bomb load. Very slow, but a fully loaded Zeppelin over a base is devastating. Shoot it down early.
+865	Bombing airship
+866	The Alligator: two coaxial rotors and no tail rotor make it fast and agile. Anti-tank missiles and a 30 mm cannon hunt armour. The Vanguard's answer to the Longbow.
+867	Heavy 300 mm rockets with very long range that crush buildings and grouped units. Slow to reload.
+868	Rocket launcher (Turkey)
+869	Trains attack dogs: fast, cheap hunters that kill infantry in one bite and sniff out disguised spies.
+870	Dog training
+871	The giant ape walks through walls and tank columns alike. Up close its double-fist hammer blow flattens anything; further out it tears up boulders and hurls them. Jets and helicopters that fly over it are not safe either: it leaps into the air and swats them down with one blow. Faster than Godzilla, but water stops it. Picked in the lobby, one per player, and when it falls it is gone for good.
+872	Titan: giant ape
+873	A heavy tank hull with a 152 mm gun, carried on two armoured legs instead of tracks. Slow, but it strides over walls, trenches and anyone in its way.
+874	A flat-deck assault ship that carries a whole landing group to the beach and fights off aircraft on the way. USA only.
+875	Amphibious assault ship
+876	Builds and launches satellites from the Aircraft tab, up to 8 in orbit. The gateway to the orbital laser mesh.
+877	Space launch
+878	A tracked launcher with GPS-guided rockets. Precise, with +50% damage against buildings. The best tool for picking apart defences.
+879	Rocket launcher (France)
+880	Patriot / S-400 class. It stops aircraft, cruise missiles and tactical ballistic missiles far beyond your base edge. Needs a Radar Dome for full range.
+881	Long-range air defence
+882	Hovers high above the map and fires a laser straight down at enemies below it. Satellites within 12 cells link into a mesh that strengthens the beam. Only ASAT sites can reach it.
+883	Orbital weapon
+884	Carries infantry and tanks across water and lands them on any beach. Unarmed.
+885	Landing craft
+886	A halftrack with four heavy machine guns on a turning mount. Cheap and quick: it shreds helicopters, low jets and infantry, but tanks shrug it off.
+887	Anti-air vehicle
+888	A tracked launcher with a 12-rocket salvo. Deploy it to switch to mine rockets that scatter anti-tank mines across the enemy's path.
+889	Rocket launcher (Germany)
+890	Deploys into a Construction Yard. Use it to open a second base near a distant ore field, or to rebuild after a disaster.
+891	Mobile construction
+892	A launcher truck with its canisters raised upright. Each interceptor is thrown out by gas, lights its motor overhead and bends over onto the target, firing tiny side thrusters as it closes for a direct hit. It can shoot in any direction without turning, and it also knocks down cruise and ballistic missiles. Union nations.
+893	Repairs vehicles in the field, keeping your tanks fighting far from a Service Depot.
+894	Field mechanic
+895	Heals nearby infantry in the field. Keep one with every infantry group and your squads survive much longer.
+896	Field medic
+897	Covers the area around it in shroud. Drive it along with your army so the enemy can't see the attack coming.
+898	Mobile gap generator
+899	The Black Hawk: a gunship with dual chain guns for infantry and light vehicles. Fast to rearm and great for clearing infantry.
+900	Assault helicopter
+901	The Hip: the Vanguard's workhorse helicopter. It lifts a full squad of eight to the front, with a door gun to keep heads down at the landing zone.
+902	Troop helicopter
+903	The Halo: the biggest helicopter ever flown, its eight-blade rotor lifting twelve soldiers at once. The Vanguard's answer to the Chinook. Unarmed, so land the squad away from anti-air.
+904	Heavy transport helicopter
+905	The flying tank: an armoured gunship with a chain gun and rocket pods, and a cabin for 5 soldiers. It strafes the landing zone, then drops its squad into it.
+906	British secret service headquarters. It unlocks the Spy and the Spy Cars. England only, one per player, and it needs power.
+907	Intelligence headquarters
+908	A fast ground-attack plane with missiles for buildings and vehicles. Strike, then fly back to the Airfield to rearm.
+909	Strike jet
+910	A tracked multiple rocket launcher. It empties its entire rack in a few seconds, a heavy stream of 19 rockets that blankets the target area, then needs a long time to reload.
+911	Rocket tank
+912	Lays anti-tank and anti-personnel mines and can see enemy mines. Seed ore fields and choke points to make every attack expensive.
+913	Jams nearby enemy Radar Domes and deflects incoming guided missiles. Escort your armour into missile-heavy defences with it.
+914	Radar jammer
+915	A medium-range missile battery and your rocket shield (Iron Dome style): ten fast interceptors ripple out, climb almost straight up and burst incoming rocket salvos and jet rockets in the sky, leaving glowing streaks behind. It also intercepts aircraft, cruise missiles and drones. Huge salvos can still saturate it while it reloads. Reaches full range only with a Radar Dome.
+916	Medium-range air defence
+917	A nuclear missile silo. After a long charge it launches an atom bomb that flattens a whole district of an enemy base. Only one can be built, and every opponent is warned when it is ready.
+918	Superweapon
+919	A submerged siege platform that fires missiles at buildings, ground units and aircraft deep inland. Weak against other ships.
+920	Missile submarine
+921	A cheaper Vanguard battle tank that is quicker to build than the Heavy Tank, with a lighter gun.
+922	Medium tank
+923	A civilian off-roader on giant wheels, pressed into service. It carries no weapon at all: it simply drives over infantry, fences and sandbag walls, and its cab and bed carry a squad of four. USA only.
+924	Crusher
+925	The Union's common arsenal, shared by all its nations; its paratroopers fly in the long-bodied C-141 Starlifter.
+926	Red dragon: the Fujian supercarrier, the JX-20 stealth fighter and the PHX-16, longest-range launcher of all. The Y-20 Kunpeng carries its airborne corps.
+927	Island fortress: rugged old Grad launchers fired in numbers and a defence built to outlast any siege. Its paratroopers fly in old B-29 Superfortresses.
+928	Desert command: cheap Mistral helicopter carriers and Saqr-36 cluster rockets that shred light vehicles. Its airborne brigades fly in B-52 Stratofortresses refitted to drop troops.
+929	Masters of deception: MI6 spies, gadget-packed Spy Cars and gap generators that blind the enemy. Its airborne forces fly the C-17A Globemaster III, the toughest jet transport of all.
+930	Precision and stealth: GPS-guided LRX rockets, Rafale fighters and the cloaking Phase Transport. Its paratroopers jump from C-130 Hercules transports.
+931	Engineers of time: Chrono Tanks that blink across the map and MARZ launchers that seed minefields. Its airborne raids fly in captured B-17 Flying Fortresses, and the HG-229 Nachtflügel flying wing carries its heavy guided bombs.
+932	Rising power: the home-built Vikrant carrier and Pinak launchers that empty their pods in seconds. Its paratroopers jump from the Il-76MD with its tail guns.
+933	Drone masters: the Bagheri drone carrier, Shard attack drones and the Qahir-X stealth prototype. Its paratroopers fly in a refitted Boeing 707.
+934	Mediterranean legion: the Cavour light carrier and the fast-reloading Saetta rocket launcher. Its paratroopers fly from seaplane bases in the great Boeing 314 Clipper flying boat.
+935	An island navy: the Kaga jump-jet carrier and Sea Arrow trucks that sink ships far out at sea. Its paratroopers jump from C-130 Hercules transports.
+936	Mountain defenders: Fatah guided rockets that hit hard and true from deep behind the front. Its paratroopers jump from C-130 Hercules transports.
+937	Tesla weapons: Shock Troopers, Tesla Tanks, the Kuznetsov carrier and the thermobaric TOZ-1 Sunflare. Its paratroopers jump from the Il-76MD with its tail guns.
+938	Peninsula shield: Chunmu launchers that switch between rocket salvos and one heavy guided missile. Its paratroopers jump from C-130 Hercules transports.
+939	The Vanguard's common arsenal, shared by all its nations; its paratroopers fly in B-29 Superfortresses copied rivet for rivet. From the Helipad it fields the Mi-26 Halo heavy lifter, Hind and Mi-35 gunships and the Ka-52 Alligator.
+940	Gateway of continents: drone warfare from the Anadolu carrier, Swarm Drones and heavy Kasirga rockets. Its paratroopers jump from C-130 Hercules transports.
+941	Demolitions: nuclear Demolition Trucks, Parabomb runs, the giant An-225 and precise Vilkra rockets. Its paratroopers jump from the Il-76MD, whose twin 23 mm tail guns keep fighters away.
+942	The Union's arsenal of democracy: the widest air wing in the world, supercarriers, the HIMAX rocket truck and the AB-35 Longwing that drops the Fatman atomic bomb. Its paratroopers fly in C-130 Hercules transports from the Airborne Base.
+943	A water platform that pumps a steady trickle of credits with no trucks to protect. It must be built on water next to your base and stops pumping on low power. Ships and submarines are its biggest threat.
+944	Offshore economy
+945	A concrete pillbox with a machine gun. It sees stealth units and cuts down infantry rushes. Pair it with an anti-tank turret.
+946	Anti-infantry bunker
+947	The longest-range rocket launcher in the game. It shells bases and groups from far behind the front. Slow to reload.
+948	Rocket launcher (China)
+949	Fires its whole rocket load in seconds. A devastating surprise volley against infantry and bases.
+950	Rocket launcher (India)
+951	Basic power for your base. Defences, radar and superweapons shut down on low power, so build plants ahead of demand and spread them out: a single strike on a cluster of plants can black out the whole base.
+952	Power generation
+953	Turns ore and gems into credits and comes with a free Ore Truck. Build it close to rich fields to shorten each trip. A second refinery near another field almost doubles your income.
+954	A light, fast patrol boat that detects submarines and hunts small ships. Cheap eyes on the water.
+955	A long-range beam tank whose crystal light beam splashes groups of infantry, light vehicles and buildings. Fragile, so keep it behind your heavy armour.
+956	Prism tank
+957	Fires a crystal light beam. Nearby Prism Towers link up and feed their energy into the one that fires: +40% damage per linked tower, up to +200%. Build them in clusters.
+958	Prism defence
+959	The MAD Tank shakes the ground with seismic waves that wreck nearby vehicles and structures, and destroys itself in the process. Drive it into the middle of an enemy base.
+960	Seismic tank
+961	Its railgun hits armour from long range but recharges slowly. Keep it behind a screen of infantry and let it pick off tanks.
+962	Anti-armour robot
+963	The crown of an air force: parking for 10 planes in one compound. Only one can be built, so defend it as well as your Construction Yard.
+964	Strategic air command
+965	A cheaper tracked launcher that reloads faster. Several Saettas firing in turn keep up constant pressure.
+966	Rocket launcher (Italy)
+967	Launches surface-to-air missiles at aircraft and drones, and can shoot down some rockets and cruise missiles. It needs power.
+968	Cluster rockets that split into bomblets over the target. Ruinous for infantry and light vehicles, weak against tanks and buildings.
+969	Cluster launcher (Egypt)
+970	Cheap sandbags that stop infantry and light vehicles and steer attackers into your guns. Tanks crush them.
+971	Light barrier
+972	A Soviet-style bomber base with one huge pad, an arched hangar and a thermonuclear weapons vault. It houses the Tv-95 Bear and charges the Thermonuclear Strike while the bomber lives. Russia only, one per player.
+973	A luxury car with hidden machine guns and pop-up rockets that carries one Spy. Enemies see a harmless civilian car until it attacks. Needs the MI6 Headquarters.
+974	Spy vehicle
+975	A classic grand tourer with hidden twin machine guns that carries one Spy. Tougher and cheaper than Spy Car 1. Needs the MI6 Headquarters.
+976	A fast, cheap spider drone that runs at its target and detonates. Send waves of them at tank columns and robot armies.
+977	Suicide drone
+978	A cyber tank from the Project X labs. Its main gun throws a heavy electric discharge that cooks armour from the inside. Only one can be fielded.
+979	Experimental tank
+980	Elite infantry with portable Tesla coils that arc through infantry and vehicles alike. Russia's signature soldier.
+981	Tesla trooper
+982	Extra storage for refined credits. Without enough storage, ore delivered beyond your limit is wasted. Cheap, so build one whenever your income outgrows storage.
+983	Economy storage
+984	A long-range marksman who kills most infantry with one shot and hides when standing still. Deadly in overwatch, useless against armour.
+985	Marksman
+986	The Vanguard's eight-legged Spider Tank skitters into range and looses heavy missiles that dive onto the thin roof armour of tanks. Its twin anti-aircraft launchers fire Iron Dome-style interceptors at aircraft, and they shoot down incoming rockets too.
+987	Vanguard submarine pen. It builds and repairs submarines, transports and Vanguard carriers. It must be built on water.
+988	Disguises as an enemy soldier and infiltrates buildings: steal cash from a refinery, reset superweapons, blind a radar or learn production secrets. Dogs see through the disguise.
+989	Infiltrator
+990	A truck with a turning, tilted rack of four missile canisters: Python heat-seekers for close targets and Derby radar missiles, whose two-pulse motors coast between burns, for distant ones. Both climb high and dive onto aircraft, bursting in big fireballs. India only.
+991	Submerges out of sight and torpedoes ships. It detects other submarines. Only surfaces to fire.
+992	Attack submarine
+993	Vanguard research centre. It unlocks the heaviest Vanguard tanks, Tesla weapons and the best jets.
+994	A light armoured transport that cloaks when idle and fires anti-ground missiles. Slip a squad of engineers past defences unseen.
+995	Stealth transport
+996	A slow four-legged Vanguard walker with a heavy cannon and a machine gun. It walks through infantry and outguns most tanks.
+997	Ground control for your satellites. If you lose every Uplink, all your satellites go offline until you build a new one, so build a spare far from the front.
+998	Satellite control
+999	Union shipyard. It builds and repairs gunboats, destroyers, cruisers, transports and, for some nations, aircraft carriers. It must be built on water.
+1000	Naval production
+1001	A heavy Vanguard robot that throws Tesla lightning from its hands, deadly to infantry and enemy robots.
+1002	Tesla robot
+1003	Union barracks: trains riflemen, rocket soldiers, engineers, medics and the robot infantry. Several barracks speed up training. Set a rally point so fresh squads march straight to the front.
+1004	Infantry production
+1005	The Tiger: a Franco-German gunship with HOT anti-tank missiles on its outer racks and rocket pods that ripple off a stream of 68 mm rockets. France and Germany only.
+1006	Heavy attack helicopter
+1007	An armoured thermobaric launcher. Short range, but it burns out infantry and buildings in a huge fireball.
+1008	Thermobaric launcher (Russia)
+1009	The Chinook: carries a squad of infantry anywhere on the map. Unarmed, so drop your troops away from anti-air.
+1010	Transport helicopter
+1011	Carries cash to an allied player's refinery. Unarmed. Use it to keep a struggling teammate in the game.
+1012	Supply truck
+1013	Hurls lightning that destroys infantry and vehicles alike. It needs a lot of power, and a blackout switches it off, so protect your plants.
+1014	Tesla defence
+1015	A tank with a mounted Tesla coil whose lightning arcs through infantry, vehicles and buildings. Russia's answer to massed armour.
+1016	Tesla tank
+1017	The Bear: a long-range bomber with four contra-rotating propeller engines. Unarmed, it flies one mission: when the Thermonuclear Strike is ready it drops the RDS-37 hydrogen bomb and flies home. Lose it and the strike timer starts over. Russia only, one per player.
+1018	Thermonuclear bomber
+1019	A missile truck that hits ships far out at sea. Keep it on the coast and enemy fleets can't come close.
+1020	Anti-ship missiles (Japan)
+1021	Fires one huge rocket that devastates infantry and buildings from long range. Slow to reload and weak to anything that reaches it.
+1022	Rocket artillery
+1023	Precision long-range rockets that strike buildings, infantry and vehicles with surgical accuracy. Slow to reload.
+1024	Rocket launcher (Ukraine)
+1025	Builds every tank, transport and rocket launcher. Add a Service Depot and a Radar Dome to unlock the heavier designs, including your nation's own rocket launcher.
+1026	Vehicle production
+1027	105 mm tank gun
+1028	120 mm tank gun
+1029	155 mm howitzer
+1030	16-inch naval guns
+1031	25 mm autocannon
+1032	2-inch naval gun
+1033	8-inch naval guns
+1034	90 mm tank gun
+1035	AK-47 assault rifle
+1036	Twin anti-air missiles
+1037	Anti-air missiles
+1038	Anti-satellite missile
+1039	Tesla arc
+1040	Chain gun
+1041	Twin cannons
+1042	Gatling CIWS
+1043	Colt .45 pistol
+1044	Jaws
+1045	Heavy auto-pistol
+1046	Detonation run
+1047	Depth charges
+1048	Bite
+1049	Dragon anti-tank missile
+1050	Blaster rifle
+1051	Twin heavy cannon
+1052	Twin autocannons
+1053	Shoulder rocket pod
+1054	Fatman atomic bomb
+1055	Fireball launcher
+1056	23 mm flak (anti-air)
+1057	23 mm flak (ground)
+1058	Twin flak guns
+1059	Flak gun
+1060	Flamethrower
+1061	Atomic breath
+1062	Stomp
+1063	Hand grenades
+1064	35 mm airburst cannon
+1065	Four-missile infrared ripple
+1066	Field medkit
+1067	30-rocket stream
+1068	.50 cal machine gun
+1069	Belt-fed heavy machine gun
+1070	AIM-54 Phoenix long-range missiles
+1071	R-27T long-range missiles
+1072	R-77 long-range missiles
+1073	AIM-120 AMRAAM missiles
+1074	R-27T medium-range missiles
+1075	R-77 medium-range missiles
+1076	AIM-9 Sidewinder missiles
+1077	R-73 short-range missiles
+1078	AGM-65 Maverick missiles
+1079	9M120 Ataka anti-tank missiles
+1080	HOT anti-tank missiles
+1081	Kh-29 air-to-ground missiles
+1082	Mk 82 bombs
+1083	Cluster bombs
+1084	Cluster bombs (pair)
+1085	GBU guided bombs
+1086	GAU-8 30 mm Avenger
+1087	Twin 23 mm tail guns
+1088	30 mm cannon
+1089	20 mm cannon
+1090	Hydra rocket pods
+1091	Rocket pods (ripple fire)
+1092	S-8 rocket pods
+1093	S-8 rocket pods (ripple fire)
+1094	White phosphorus bombs
+1095	White phosphorus bombs (pair)
+1096	Boulder throw
+1097	Leaping swat (anti-air)
+1098	Hammer blow
+1099	152 mm walker gun
+1100	M1 carbine
+1101	M60 machine gun
+1102	Tusk anti-air missiles
+1103	Maverick missiles
+1104	Hit-to-kill interceptors
+1105	Mini nuke
+1106	19-rocket salvo
+1107	Medium-range SAM
+1108	Naval SAM
+1109	Nike surface-to-air missile
+1110	Marks a target: artillery and aircraft fire on the smoke
+1111	Loft high and dive onto the roof armour of tanks
+1112	Orbital laser
+1113	Parachute bombs
+1114	Portable tesla coil
+1115	Prism beam
+1116	Prism tower beam
+1117	Quad .50 machine guns
+1118	Railgun
+1119	RDS-37 hydrogen bomb
+1120	Redeye anti-air missile
+1121	Red smoke grenade
+1122	Field repair kit
+1123	Chunmu 239 mm rocket salvo
+1124	Chunmu guided missile
+1125	Fajr-5 rockets
+1126	Fajr loitering drone
+1127	Fatah guided rockets
+1128	Grad 122 mm rocket salvo
+1129	Hailstorm rocket salvo
+1130	HIMAX guided rockets
+1131	Kasirga heavy rockets
+1132	LRX GPS-guided rockets
+1133	Marz rocket salvo
+1134	Marz mine-laying rockets
+1135	PHL-16 heavy rockets
+1136	Pinaka rocket salvo
+1137	Saetta rocket salvo
+1138	Saqr-36 cluster rockets
+1139	TOS thermobaric rockets
+1140	Type 12 cruise missiles
+1141	Vilkha guided rockets
+1142	SCUD ballistic missile
+1143	Shock cannon
+1144	Silenced pistol
+1145	Sniper rifle
+1146	Anti-aircraft missiles
+1147	Self-destruct charge
+1148	Top-attack missiles
+1149	Concealed rocket launcher
+1150	Derby radar missile
+1151	Python heat-seeking missile
+1152	Stinger rockets
+1153	Stinger anti-air rockets
+1154	Heavy cannon
+1155	Machine gun
+1156	Sub-launched missiles
+1157	Sub-launched anti-air missiles
+1158	Tesla bolt
+1159	Tomahawk cruise missiles
+1160	Torpedoes
+1161	Twin tesla coils
+1162	Turret cannon
+1163	Vulcan 20 mm gatling
+1164	XR-85 cannon
+1165	Zolfaghar ballistic missiles
+1166	ZSU-23 quad cannons
+1167	France's XR-85: a slow, walking gun platform whose cannon out-ranges every tank and hits harder than any other gun.
+1168	Heavy gun droid
+1169	China's own heavy jet transport, the backbone of the PLA Airborne Corps.
+1170	An attack plane with dual machine guns that strafes infantry and light armour.
+1171	Strafing jet
+1172	The Longwing: a flying-wing bomber with four pusher propellers. It carries no guns. When the Fatman Strike is ready it takes off, drops the Fatman atomic bomb on the target and flies home. Lose it and the strike timer starts over. USA only, one per player.
+1173	Atomic bomber
+1174	A heavy wheeled launcher with two short-range ballistic missiles on its erector. It outranges every other ground unit; only long-range air defence can stop the missiles. Iran only.
+1175	Ballistic missile truck
+1176	Allows allies to place structures within your build area
+1177	Build Off Allies
+1178	Show Bot Debug Messages
+1179	Limits structure placement to areas around Construction Yards
+1180	Limit Build Area
+1181	Check Sync around BotModule Code
+1182	Check Sync around Unsynced Code
+1183	Collect crates with units to receive random bonuses or penalties
+1184	Crates
+1185	Enables cheats and developer commands
+1186	Debug Menu
+1187	Build Anywhere
+1188	Disable Visibility Checks
+1189	Build Everything
+1190	Instant Build Speed
+1191	Instant Charge Time
+1192	Show Actor Tags
+1193	Show Combat Geometry
+1194	Show Custom Terrain
+1195	Show Render Geometry
+1196	Show Screen Map
+1197	Show Terrain Geometry
+1198	Show Unit Paths
+1199	Unlimited Power
+1200	Initial map shroud is revealed
+1201	Explored Map
+1202	Line of sight is required to view enemy forces
+1203	Fog of War
+1204	Enable Frame Limiter ({ $fps } FPS)
+1205	Temporarily Ban
+1206	Players receive cash bonuses for killing enemy units
+1207	Kill Bounties
+1208	Show Map Debug Messages
+1209	Send System Information
+1210	Advertise Online
+1211	Started
+1212	Empty
+1213	Incompatible
+1214	Protected
+1215	Loop
+1216	Shuffle
+1217	Mute Menu Music
+1218	Mute background music when no specific track is playing
+1219	Enable Tick Performance Logging
+1220	Player Relationship Colors
+1221	Change player colors based on relationship (own, enemy, ally, neutral)
+1222	Ground Effects
+1223	Terrain detail textures and moving cloud shadows. Costs the same every frame whatever is happening, so it is the first thing to turn off on a laptop's built-in graphics. Applies to the next match.
+1224	HD World Detail
+1225	Render the battlefield at the screen's full resolution so HD units and buildings stay sharp when zoomed in. Much heavier on the GPU on high-resolution (Retina) screens.
+1226	Smooth Unit Motion
+1227	Draw moving units between game ticks so they glide at the full frame rate instead of stepping 25 times a second.
+1228	Weather Effects
+1229	Rain, snow, fog, sandstorms and the light each weather casts, and the pressure waves of big explosions bending the picture. The weather still changes and is still announced, it is just not drawn. Applies to the next match.
+1230	Allows Construction Yards to be undeployed
+1231	Redeployable MCVs
+1232	Enable Debug Commands in Replays
+1233	Engineers stay on the battlefield after capturing a structure
+1234	Reusable Engineers
+1235	Players without assigned spawn points start as far as possible from enemy players
+1236	Separate Team Spawns
+1237	Players are defeated when their bases are destroyed
+1238	Short Game
+1239	Destroy all opposition!
+1240	Allows the Missile Silo and its nuclear missile to be built
+1241	Superweapons
+1242	Show Game Event Notifications
+1243	Show transient text notifications for game events
+1244	Show UI Feedback Notifications
+1245	Show transient text notifications for UI events
+1246	toggles actor tags overlay.
+1247	toggles the ability to build anywhere.
+1248	toggles the script triggers overlay.
+1249	toggles combat geometry overlay.
+1250	toggles the custom terrain debug overlay.
+1251	toggles depth buffer overlay.
+1252	toggles all cheats and gives you some cash for your trouble.
+1253	crashes the game.
+1254	disposes selected actors.
+1255	toggles the ability to build everything.
+1256	vote to end the peace treaty early
+1257	Displays exits for factories.
+1258	toggles near-instant support power charging.
+1259	gives the default or specified amount of money.
+1260	gives the default or specified amount of money to all players and AI.
+1261	provides useful info about various commands.
+1262	toggles the hierarchical pathfinder overlay.
+1263	toggles instant building.
+1264	kills selected actors.
+1265	adds a specified number of levels to the selected actors.
+1266	no description available.
+1267	toggles a visualization of path searching.
+1268	pause or unpause the game.
+1269	adds a specified amount of player experience to the owner(s) of selected actors.
+1270	causes a 5-second power outage for the owner(s) of selected actors.
+1271	toggles render geometry overlay.
+1272	toggles screen map overlay.
+1273	self-destruct everything and lose the game.
+1274	toggles the terrain geometry overlay.
+1275	toggles visibility checks and minimap.
+1276	toggles infinite power.
+1277	Something went wrong during video playback.
+1278	Unable to play video
+1279	Delete all maps on this page?
+1280	Delete maps
+1281	{ $count ->\n[one] Delete { $count } replay.\n*[other] Delete { $count } replays.\n}
+1282	Delete all selected replays?
+1283	Delete All
+1284	{ $count ->\n[one] Delete { $count } save.\n*[other] Delete { $count } saves.\n}
+1285	Delete all game saves?
+1286	Delete the map '{ $title }'?
+1287	Delete map
+1288	Delete replay { $replay }?
+1289	Delete selected replay?
+1290	Delete
+1291	Delete '{ $save }'.
+1292	Delete selected game save?
+1293	Back
+1294	There are too many players defined ({ $players }/{ $max }).
+1295	Error: Max player count exceeded
+1296	Exit
+1297	Exit anyway
+1298	The map may have been deleted outside the editor
+1299	Exit and lose all unsaved changes?
+1300	Exit Map Editor
+1301	Stay
+1302	Back To Editor
+1303	Leave this game and return to the editor?
+1304	Leave Mission
+1305	Replay metadata could not be read.
+1306	{ -incompatible-replay-recorded } an incompatible version:\n{ $version }.
+1307	{ -incompatible-replay-recorded } an unavailable map:\n{ $map }.
+1308	{ -incompatible-replay-recorded } an unavailable mod: { $mod }.
+1309	{ -incompatible-replay-recorded } an unknown mod.
+1310	{ -incompatible-replay-recorded } an unknown version.
+1311	Incompatible Replay
+1312	Kick
+1313	This player will not be able to rejoin the game.
+1314	Kick { $player }?
+1315	{ $count ->\n[one] Are you sure you want to kick one spectator?\n*[other] Are you sure you want to kick { $count } spectators?\n}
+1316	The game videos can be installed from the\n"Manage Content" menu in the mod chooser.
+1317	Video not installed
+1318	Save
+1319	By saving you will overwrite\nan already existing map.
+1320	Warning
+1321	The map has been edited from outside the editor.\nBy saving you may overwrite progress.
+1322	Overwrite
+1323	Overwrite { $file }?
+1324	Overwrite saved game?
+1325	Okay
+1326	The map may have been deleted or contains\nerrors that prevent it from being loaded.
+1327	Quit the game? Unsaved progress will be lost.
+1328	Exit to Desktop
+1329	Rename Replay
+1330	Rename
+1331	Enter a new file name:
+1332	Rename Save
+1333	OK
+1334	See debug.log for details.
+1335	Failed to save map
+1336	Could not listen on port { $port }.
+1337	Error is: "{ $message }" ({ $code }).
+1338	Check if the port is already being used.
+1339	Server Creation Failed
+1340	Reset
+1341	Are you sure you want to reset\nall settings in this panel?
+1342	Reset { $panel }
+1343	Restart Later
+1344	Restart Now
+1345	Some changes will not be applied until\nthe game is restarted. Restart now?
+1346	Restart Now?
+1347	Continue
+1348	Some changes will not be applied until\nthe game is restarted.
+1349	Restart Required
+1350	{ $bots ->\n[one] Kicking the game admin will also kick 1 bot.\n*[other] Kicking the game admin will also kick { $bots } bots.\n}
+1351	Vote to kick { $player }?
+1352	Vote Against
+1353	Abstain
+1354	Vote For
+1355	Start Vote
+1356	Controls the rate at which time passes
+1357	Game Speed
+1358	The difficulty of the mission
+1359	Difficulty
+1360	No player can attack, damage or capture another player until the treaty ends. Type /endtreaty in chat to vote to end it early.
+1361	Peace Treaty
+1362	High performance
+1363	Graphics Card:
+1364	Power saving
+1365	Which graphics card Windows runs the game on. Most gaming laptops have two: a power-saving one built into the processor and a fast dedicated one. This is the same choice as Windows Settings > System > Display > Graphics, and it applies when the game next starts.
+1366	Let Windows decide
+1367	High
+1368	Weather Detail:
+1369	Low
+1370	How much detail the weather is drawn with. A storm is the most expensive thing on screen, so turning this down buys frames back without losing the weather. Low keeps every weather recognisable but drops the splash crowns under rain, the furthest rain and snow layers and the branches on lightning. Applies at once.
+1371	The units players start with at the beginning of the game
+1372	Starting Units
+1373	The units and abilities available to players
+1374	Tech Level
+1375	The player or team with the highest score at the end of this time wins
+1376	Time Limit
+1377	Rain, thunderstorms, snow, fog, sandstorms and wind that follow the map's climate and change during the match.
+1378	Weather
+1379	How often the weather changes.
+1380	Weather Changes
+1381	Asset types
+1382	Folders
+1383	Anyone
+1384	Select BlockedByActor
+1385	Select Locomotor
+1386	A handicap decreases the combat effectiveness of the player's forces
+1387	A giant that fights for this player from the start. If it dies it cannot be rebuilt.
+1388	Filter Games
+1389	Battlefield News
+1390	Map Visibility
+1391	Slot Admin
+1392	{ $name } { $number ->\n*[zero] {""}\n[other] { $number }\n}
+1393	Chat Input
+1394	Editor
+1395	Spectator
+1396	Any
+1397	Attack Move
+1398	Autocomplete
+1399	Add to group 1
+1400	Add to group 2
+1401	Add to group 3
+1402	Add to group 4
+1403	Add to group 5
+1404	Add to group 6
+1405	Add to group 7
+1406	Add to group 8
+1407	Add to group 9
+1408	Add to group 0
+1409	Combine with group 1
+1410	Combine with group 2
+1411	Combine with group 3
+1412	Combine with group 4
+1413	Combine with group 5
+1414	Combine with group 6
+1415	Combine with group 7
+1416	Combine with group 8
+1417	Combine with group 9
+1418	Combine with group 0
+1419	Create group 1
+1420	Create group 2
+1421	Create group 3
+1422	Create group 4
+1423	Create group 5
+1424	Create group 6
+1425	Create group 7
+1426	Create group 8
+1427	Create group 9
+1428	Create group 0
+1429	Jump to group 1
+1430	Jump to group 2
+1431	Jump to group 3
+1432	Jump to group 4
+1433	Jump to group 5
+1434	Jump to group 6
+1435	Jump to group 7
+1436	Jump to group 8
+1437	Jump to group 9
+1438	Jump to group 0
+1439	Select group 1
+1440	Select group 2
+1441	Select group 3
+1442	Select group 4
+1443	Select group 5
+1444	Select group 6
+1445	Select group 7
+1446	Select group 8
+1447	Select group 9
+1448	Select group 0
+1449	Jump to base
+1450	Cycle Harvesters
+1451	Next facility
+1452	Cycle status bars display
+1453	Deploy
+1454	Actors Tab
+1455	Delete Selection
+1456	History Tab
+1457	Overlays Tab
+1458	Select Tab
+1459	Settings Tab
+1460	Tiles Tab
+1461	Buildable Terrain Overlay
+1462	Grid Overlay
+1463	Marker Layer Overlay
+1464	Tools Tab
+1465	Guard
+1466	Jump to bookmark 1
+1467	Jump to bookmark 2
+1468	Jump to bookmark 3
+1469	Jump to bookmark 4
+1470	Record bookmark 1
+1471	Record bookmark 2
+1472	Record bookmark 3
+1473	Record bookmark 4
+1474	Jump to bottom edge
+1475	Jump to left edge
+1476	Jump to right edge
+1477	Jump to top edge
+1478	Scroll down
+1479	Scroll left
+1480	Scroll right
+1481	Scroll up
+1482	Next
+1483	Open General Chat
+1484	Open Team Chat
+1485	Pause / Unpause
+1486	Pause or Resume
+1487	Place beacon
+1488	Power-down mode
+1489	Previous
+1490	Slot 01
+1491	Slot 02
+1492	Slot 03
+1493	Slot 04
+1494	Slot 05
+1495	Slot 06
+1496	Slot 07
+1497	Slot 08
+1498	Slot 09
+1499	Slot 10
+1500	Slot 11
+1501	Slot 12
+1502	Slot 13
+1503	Slot 14
+1504	Slot 15
+1505	Slot 16
+1506	Slot 17
+1507	Slot 18
+1508	Slot 19
+1509	Slot 20
+1510	Slot 21
+1511	Slot 22
+1512	Slot 23
+1513	Slot 24
+1514	Aircraft Tab
+1515	Building Tab
+1516	Defense Tab
+1517	Infantry Tab
+1518	Naval Tab
+1519	Vehicle Tab
+1520	Fast-rope (transport helicopters)
+1521	Waypoint mode
+1522	Remove from control group
+1523	Repair mode
+1524	Fast speed
+1525	Maximum speed
+1526	Regular speed
+1527	Slow speed
+1528	Reset zoom
+1529	Scatter
+1530	Select all combat units
+1531	Current facility
+1532	Select units by type
+1533	Sell mode
+1534	Attack anything
+1535	Defend
+1536	Hold fire
+1537	Return fire
+1538	Army statistics
+1539	Army value graph
+1540	Basic statistics
+1541	Combat statistics
+1542	Economy statistics
+1543	Statistics graph
+1544	Disable statistics
+1545	Production statistics
+1546	Support Power statistics
+1547	Take screenshot
+1548	Toggle Chat Mode
+1549	Toggle audio mute
+1550	Toggle player stance colors
+1551	Jump to last radar event
+1552	Jump to selection
+1553	Zoom in
+1554	Zoom out
+1555	Chat Commands
+1556	Control Groups
+1557	Editor Commands
+1558	Game Commands
+1559	Music Commands
+1560	Observer / Replay Commands
+1561	Production Commands
+1562	Support Power Commands
+1563	Unit Commands
+1564	Unit Stance Commands
+1565	Viewport Commands
+1566	Requires Password
+1567	Requires OpenRA forum account
+1568	AC Back
+1569	AC Bookmarks
+1570	AC Forward
+1571	AC Home
+1572	AC Refresh
+1573	AC Search
+1574	AC Stop
+1575	Again
+1576	AltErase
+1577	Application
+1578	AudioMute
+1579	AudioNext
+1580	AudioPlay
+1581	AudioPrev
+1582	AudioStop
+1583	Backspace
+1584	BrightnessDown
+1585	BrightnessUp
+1586	Calculator
+1587	CapsLock
+1588	Clear
+1589	Clear / Again
+1590	Computer
+1591	Copy
+1592	CrSel
+1593	CurrencySubUnit
+1594	CurrencyUnit
+1595	Cut
+1596	DecimalSeparator
+1597	DisplaySwitch
+1598	Down
+1599	Eject
+1600	End
+1601	Escape
+1602	Execute
+1603	ExSel
+1604	Find
+1605	Help
+1606	Home
+1607	Insert
+1608	KBDIllumDown
+1609	KBDIllumToggle
+1610	KBDIllumUp
+1611	Keypad 0
+1612	Keypad 00
+1613	Keypad 000
+1614	Keypad 1
+1615	Keypad 2
+1616	Keypad 3
+1617	Keypad 4
+1618	Keypad 5
+1619	Keypad 6
+1620	Keypad 7
+1621	Keypad 8
+1622	Keypad 9
+1623	Keypad A
+1624	Keypad &
+1625	Keypad @
+1626	Keypad B
+1627	Keypad Backspace
+1628	Keypad Binary
+1629	Keypad C
+1630	Keypad Clear
+1631	Keypad ClearEntry
+1632	Keypad :
+1633	Keypad ,
+1634	Keypad D
+1635	Keypad &&
+1636	Keypad ||
+1637	Keypad Decimal
+1638	Keypad /
+1639	Keypad E
+1640	Keypad Enter
+1641	Keypad =
+1642	Keypad (AS400)
+1643	Keypad !
+1644	Keypad F
+1645	Keypad >
+1646	Keypad #
+1647	Keypad Hexadecimal
+1648	Keypad {"{"}
+1649	Keypad (
+1650	Keypad <
+1651	Keypad MemAdd
+1652	Keypad MemClear
+1653	Keypad MemDivide
+1654	Keypad MemMultiply
+1655	Keypad MemRecall
+1656	Keypad MemStore
+1657	Keypad MemSubtract
+1658	Keypad -
+1659	Keypad *
+1660	Keypad Octal
+1661	Keypad %
+1662	Keypad .
+1663	Keypad +
+1664	Keypad +/-
+1665	Keypad ^
+1666	Keypad {"}"}
+1667	Keypad )
+1668	Keypad Space
+1669	Keypad Tab
+1670	Keypad |
+1671	Keypad XOR
+1672	Left Alt
+1673	Left Ctrl
+1674	Left
+1675	Left GUI
+1676	Left Shift
+1677	Mail
+1678	MediaSelect
+1679	Menu
+1680	ModeSwitch
+1681	Mouse 4
+1682	Mouse 5
+1683	Mute
+1684	Numlock
+1685	Oper
+1686	Out
+1687	PageDown
+1688	PageUp
+1689	Paste
+1690	Pause
+1691	Power
+1692	PrintScreen
+1693	Prior
+1694	Right Alt
+1695	Right Ctrl
+1696	Return
+1697	Right GUI
+1698	Right
+1699	Right Shift
+1700	ScrollLock
+1701	Select
+1702	Separator
+1703	Sleep
+1704	Space
+1705	Stop
+1706	SysReq
+1707	Tab
+1708	ThousandsSeparator
+1709	Undo
+1710	Undefined
+1711	Up
+1712	VolumeDown
+1713	VolumeUp
+1714	WWW
+1715	Alt
+1716	Cmd
+1717	Ctrl
+1718	Meta
+1719	Shift
+1720	Owner:
+1721	ID
+1722	Enter an Actor ID
+1723	Owner
+1724	Type: { $actorType }
+1725	All Maps
+1726	All Packages
+1727	Please insert or install one of the following content sources:
+1728	Anonymous Player
+1729	Archive extraction failed
+1730	Archive validation failed
+1731	Area Info
+1732	Area Selection
+1733	Filter by name
+1734	Palette:
+1735	Select asset source
+1736	Error displaying file. See assetbrowser.log for details.
+1737	Scale:
+1738	Asset Browser
+1739	Audio muted.
+1740	Audio unmuted.
+1741	by { $author } at { $datetime }
+1742	Available spawn
+1743	APM
+1744	Destroyed
+1745	Cash
+1746	Deaths
+1747	Kills
+1748	Filter:
+1749	Bot managed by { $name }
+1750	AI Player
+1751	Bot
+1752	{ $bots ->\n[0] No Bots\n[one] One Bot\n*[other] { $bots } Bots\n}
+1753	LAUNCH
+1754	MIXED
+1755	RECOVER
+1756	FLIGHT DECK
+1757	{ $seconds ->\n[one] Chat available in { $seconds } second...\n*[other] Chat available in { $seconds } seconds...\n}
+1758	Chat Disabled
+1759	Refer to install.log in the logs directory for details.
+1760	Querying account details from
+1761	the OpenRA forum...
+1762	Checking Sources
+1763	Gone
+1764	Army Value
+1765	B. Lost
+1766	B. Killed
+1767	U. Lost
+1768	U. Killed
+1769	Vision
+1770	Connecting...
+1771	Connecting
+1772	Connecting to { $endpoint }...
+1773	Failed to connect to the OpenRA forum.
+1774	Please check your internet connection.
+1775	Connection Failed
+1776	This server is running a different mod:
+1777	Switch mods and join server?
+1778	Switch Mod
+1779	Password:
+1780	Track
+1781	Select which content packages you want to install:
+1782	Copying { $filename }
+1783	Copying { $filename } ({ $progress }%)
+1784	Could not connect to { $target }
+1785	Created by { $author }
+1786	Custom Colors
+1787	Additional developer-specific options can be enabled via the
+1788	Debug.DisplayDeveloperSettings setting or launch flag
+1789	Debug Options
+1790	Visualizations
+1791	Detecting drives
+1792	Digital Installs
+1793	Server Address:
+1794	Connect to Server
+1795	Disabled spawn
+1796	Download failed
+1797	Downloading { $title }
+1798	Downloading from { $host } { $received } { $suffix }
+1799	Downloading from { $host } { $received } / { $total } { $suffix } ({ $progress }%)
+1800	Downloading { $size } kB
+1801	Downloading { $size } kB ({ $progress }%)
+1802	Duplicate Actor ID
+1803	This is already used for "{ $key }" in the { $context } context
+1804	Duration: { $time }
+1805	Assets
+1806	Oil Derricks
+1807	Earned
+1808	Harvesters
+1809	Income
+1810	Spent
+1811	Extracting...
+1812	Extracting { $entry }
+1813	Extracting { $filename }
+1814	Extracting { $filename } ({ $progress }%)
+1815	Fetching list of mirrors...
+1816	Actors
+1817	in
+1818	Order by:
+1819	Resources
+1820	Terrain
+1821	Date:
+1822	Duration:
+1823	Faction:
+1824	Type:
+1825	Map:
+1826	Outcome:
+1827	Player:
+1828	Filter
+1829	Your authentication key is not connected
+1830	to an OpenRA forum account.
+1831	One or more players are not yet ready.
+1832	Are you sure that you want to force start the game?
+1833	Start Game?
+1834	Game Admin
+1835	Game Content Not Found
+1836	Game Sources
+1837	Load game
+1838	Save game
+1839	[CREATE NEW FILE]
+1840	Press Escape to cancel loading and return to the main menu
+1841	Loading Saved Game
+1842	Connect to a forum account to identify
+1843	yourself to other players, join private
+1844	servers, and display badges.
+1845	Generating authentication key pair.
+1846	This will take several seconds...
+1847	No hotkeys match the filter criteria.
+1848	Context:
+1849	Filter by name:
+1850	{ $minutes ->\n[0] In progress for less than a minute.\n[one] In progress for { $minutes } minute.\n*[other] In progress for { $minutes } minutes.\n}
+1851	Infinite
+1852	Installation Failed
+1853	Installing Content
+1854	Internet Server (UPnP/NAT-PMP
+1855	Enabled
+1856	Not Supported
+1857	You may also apply a temporary ban, preventing
+1858	them from joining for the remainder of this game.
+1859	Kick Spectators
+1860	One or more clients are missing the selected
+1861	map, and will be kicked from the server.
+1862	Latency:
+1863	{ $length } sec
+1864	Loading news
+1865	Loading player profile...
+1866	Failed to load player profile.
+1867	Map Options
+1868	Color
+1869	Handicap
+1870	Name
+1871	Ready
+1872	Spawn
+1873	Local Server:
+1874	We would like to collect some system details that will help us optimize OpenRA.
+1875	With your permission, the following anonymous data will be sent each game launch:
+1876	Manage
+1877	Unknown Map
+1878	This map is not compatible
+1879	with this version of OpenRA
+1880	An error occurred during installation
+1881	Searching OpenRA Resource Center...
+1882	{ $count ->\n[one] Searching the OpenRA Resource Center for { $count } map...\n*[other] Searching the OpenRA Resource Center for { $count } maps...\n}
+1883	(Huge)
+1884	(Large)
+1885	(Medium)
+1886	(Small)
+1887	Searching...
+1888	This map was not found on the
+1889	OpenRA Resource Center
+1890	{ $count ->\n[one] { $count } map was not found on the OpenRA Resource Center\n*[other] { $count } maps were not found on the OpenRA Resource Center\n}
+1891	A new version of the map
+1892	was found on your computer
+1893	Validating...
+1894	Choose Map
+1895	Tile Alpha
+1896	Axis Angle
+1897	Number of Sides
+1898	Mirror Mode
+1899	Max Speed
+1900	Online mirror is not available. Please install from an original disc.
+1901	Accomplished
+1902	Failed
+1903	In progress
+1904	Mission:
+1905	- Place structures using the <Left> mouse button
+1906	- Command units using the <Left> mouse button
+1907	or by moving the cursor to the edge of the screen
+1908	- Pan the battlefield using the <Middle> mouse button
+1909	- Pan the battlefield using the <Right> mouse button
+1910	- Select units using the <Left> mouse button
+1911	- Target support powers using the <Left> mouse button
+1912	- Zoom the battlefield using the <Scroll Wheel>
+1913	- Zoom the battlefield using <MODIFIER + Scroll Wheel>
+1914	- Command units using the <Right> mouse button
+1915	(optional)
+1916	Port:
+1917	Server Name:
+1918	Create Server
+1919	Length
+1920	Volume:
+1921	Audio Muted
+1922	Mute this player
+1923	Height:
+1924	Tileset:
+1925	New Map
+1926	Width:
+1927	Failed to parse news: { $message }
+1928	Failed to retrieve news: { $message }
+1929	No matches
+1930	The game music can be installed
+1931	from the "Manage Content" menu.
+1932	Music Not Installed
+1933	No Server Selected
+1934	No song is playing
+1935	No Team
+1936	Not Available
+1937	You are running an outdated version of OpenRA. Download the latest version from www.openra.net
+1938	A preview of the next OpenRA release is available for testing. Download the playtest from www.openra.net
+1939	You are running an unrecognized version of OpenRA. Download the latest version from www.openra.net
+1940	- Game will be advertised to the Local Area Network only.
+1941	- You must manually configure your firewall to allow connections.
+1942	- Players can connect using Direct IP from the Internet if you
+1943	manually configure port forwarding on your router.
+1944	- Game will be advertised to the Local Area Network and Internet.
+1945	- You must manually configure your router to allow and forward
+1946	connections to your local IP and Port.
+1947	- You can enable UPnP/NAT-PMP (if supported by your router)
+1948	in the Advanced tab of the settings menu.
+1949	This hotkey cannot be modified
+1950	- Game will automatically configure port forwarding.
+1951	- You can disable UPnP/NAT-PMP in the settings menu.
+1952	OpenRA
+1953	The default is "{ $key }"
+1954	{ $players ->\n[one] One other player\n*[other] { $players } other players\n}
+1955	Password protected
+1956	Password Required
+1957	Paused
+1958	CEASEFIRE IN EFFECT
+1959	CEASEFIRE EXPIRING
+1960	TYPE /ENDTREATY TO VOTE FOR WAR
+1961	END-TREATY VOTES { $votes }/{ $needed }
+1962	WAR
+1963	ALL UNITS ENGAGE
+1964	{ $players ->\n[one] { $players } Player\n*[other] { $players } Players\n}
+1965	{ $players ->\n[0] No Players\n[one] One Player\n*[other] { $players } Players\n}
+1966	{ $players ->\n[one] { $players } Player Online\n*[other] { $players } Players Online\n}
+1967	Playing
+1968	Power Usage: { $usage }/{ $capacity }
+1969	Preset Colors
+1970	TEAM COLOR
+1971	Your own mix of settings. Pick a scheme to reset everything.
+1972	The standard OpenRA mouse and keys.
+1973	Left click selects and gives orders, right click deselects, right drag scrolls. RA2 keys (T, G, D, Z…).
+1974	Right click gives orders, right drag scrolls. RA2 keys (T, G, D, Z…).
+1975	Jump to map position
+1976	Save map position
+1977	BASE
+1978	MOUSE
+1979	SIDEBAR TABS
+1980	TEAMS & VIEW
+1981	UNIT COMMANDS
+1982	Add to selection
+1983	Shift + click
+1984	Deselect
+1985	Left click on empty ground
+1986	Force fire
+1987	Ctrl + click
+1988	Force move
+1989	Alt + click
+1990	Move / attack
+1991	Left click
+1992	Right click
+1993	Make a factory primary
+1994	Double-click the factory
+1995	Select that type on screen
+1996	Double-click a unit
+1997	Scroll the map
+1998	Hold middle button + drag
+1999	Hold right button + drag
+2000	Select units
+2001	Left click / left drag
+2002	(twice: whole map)
+2003	(again: send route)
+2004	Control scheme: { $scheme }
+2005	Add team to selection
+2006	Create team
+2007	Centre view on team
+2008	Select team (twice: centre view)
+2009	Controls
+2010	(not set)
+2011	{ $buildings } BUILDINGS · { $mobile } UNITS
+2012	{ $buildings } BUILDINGS · { $mobile } MCV
+2013	ENEMY FORCES
+2014	ENEMY STRUCTURES
+2015	{ $api }. Graphics cards in this PC: { $names }
+2016	Direct3D { $version } through ANGLE
+2017	{ $api }, driver { $version }
+2018	The game is on the power-saving graphics. Choose High performance above and restart the game for a much higher frame rate.
+2019	A graphics card in this PC is missing its driver. Install it from the NVIDIA, AMD or Intel website.
+2020	Restart the game to switch graphics card.
+2021	No graphics driver is in use, so the processor is drawing the game. Install the latest driver for your graphics card.
+2022	Graphics card in use: { $name }
+2023	OpenGL { $version }
+2024	{ $api }. Also in this PC: { $names }
+2025	not reported by the graphics driver
+2026	NATION  ·  COMMANDER
+2027	MISSION STATUS
+2028	RANK
+2029	STATUS
+2030	BATTLE REPORT
+2031	RED ALERT  //  PROJECT X
+2032	SOUNDTRACK
+2033	IN BATTLE
+2034	LIVE
+2035	PLAYERS
+2036	OBSERVER
+2037	CAMERA VIEW
+2038	STRUCTURE ACTIONS
+2039	COMMANDS
+2040	RALLY
+2041	BEACON
+2042	Build a Radar Dome to activate
+2043	CREDITS
+2044	NO RADAR SIGNAL
+2045	POWER
+2046	RADAR
+2047	REPAIR
+2048	SELL
+2049	MISSION TIME
+2050	OPENRA { $engine }  ·  COMMIT { $build }
+2051	OPENRA { $engine }
+2052	PROJECT X  //  VERSION
+2053	CHANGING
+2054	FORECAST
+2055	INCOMING
+2056	NEXT
+2057	STABLE
+2058	WEATHER
+2059	The weather on this map does not change.
+2060	Visual only: weather does not affect units.
+2061	Next: { $weather } in { $time }
+2062	Now: { $weather }
+2063	An authentication key has been copied to your
+2064	clipboard. Add this to your User Control Panel
+2065	on the OpenRA forum then press Continue.
+2066	{ $percentage }% complete
+2067	Choose Replay
+2068	{ $percentage }% Speed
+2069	Replay Viewer
+2070	Requires { $prerequisites }.
+2071	Author:
+2072	Directory:
+2073	Filename:
+2074	Save Map
+2075	Title:
+2076	Visibility:
+2077	The map script has encountered a fatal error
+2078	The details of the error have been saved to lua.log in the logs directory.
+2079	Please send this file to the map author so that they can fix this issue.
+2080	Failed to query server list.
+2081	No games found. Try changing filters.
+2082	Searching for { $title }
+2083	Diagonal:
+2084	Resources:
+2085	Filters
+2086	Your Operating System, OpenGL and .NET runtime versions, and language settings will be sent along with an anonymous ID to help prioritize future development.
+2087	Server shutting down
+2088	Silo Usage: { $usage }/{ $capacity }
+2089	Audio has been muted in settings.
+2090	Spectators
+2091	{ $spectators ->\n[0] No Spectators\n[one] One Spectator\n*[other] { $spectators } Spectators\n}
+2092	Actions
+2093	Faction
+2094	Player
+2095	Score
+2096	ALLY
+2097	HOSTILE
+2098	YOURS
+2099	Team { $team }
+2100	Search:
+2101	Tool:
+2102	Marker Tiles
+2103	Ally
+2104	Enemy
+2105	Unknown error
+2106	unknown host
+2107	Unknown server state
+2108	Unmute this player
+2109	unpacked
+2110	Unrevealed Terrain
+2111	You are running an outdated version of OpenRA.
+2112	Download the latest version from www.openra.net
+2113	Verifying archive...
+2114	Display { $number }
+2115	Waiting
+2116	Waiting for players
+2117	Blizzard
+2118	Clear skies
+2119	Fog
+2120	Heat haze
+2121	Rain
+2122	Sandstorm
+2123	Snow
+2124	Strong wind
+2125	Thunderstorm
+2126	Lost
+2127	Won
+2128	Not affiliated with or endorsed by Electronic Arts. Command & Conquer and Red Alert are trademarks of Electronic Arts Inc.
+2129	Fuelling the tank columns..., Calibrating artillery..., Briefing field commanders..., Charging Tesla coils..., Scrambling fighter wings..., Laying minefields..., Decrypting enemy transmissions..., Refining ore..., Deploying construction yards..., Synchronising radar uplink..., Splitting atoms...
+2130	INITIALIZING COMMAND
+2131	RETURNING TO COMMAND
+2132	DEPLOYING TO BATTLEFIELD
+2133	Briefing
+2134	Chat
+2135	Debug
+2136	Objectives
+2137	Options
+2138	Ammo Box
+2139	Structure
+2140	Boxes
+2141	Bridge
+2142	Field
+2143	Haystack
+2144	Igloo
+2145	Crate
+2146	Helicopter
+2147	Destroyed Helicopter
+2148	Destroyed Vehicle
+2149	Soldier
+2150	Mine
+2151	Plane
+2152	Destroyed Plane
+2153	Rock
+2154	Ship
+2155	Civilian Building
+2156	Tree
+2157	Tree (Burnt)
+2158	Vehicle
+2159	Flip
+2160	Rotate
+2161	RedAlert Project X
+2162	Nothing selected.
+2163	A-bomb launch detected.
+2164	A-bomb prepping.
+2165	A-bomb ready.
+2166	Added { $name } ({ $id })
+2167	{ $amount ->\n[one] Added one marker tile of type { $type }\n*[other] Added { $amount } marker tiles of type { $type }\n}
+2168	{ $amount ->\n[one] Added one cell of { $type }\n*[other] Added { $amount } cells of { $type }\n}
+2169	Added tile { $id }
+2170	Only the host can change the configuration.
+2171	Only the host can change the map.
+2172	Only admins can clear spawn points.
+2173	Only the host can kick players.
+2174	{ $admin } kicked { $player } from the server.
+2175	Only the host can set lobby info.
+2176	Only the host can move players to spectators.
+2177	Only the host can set that option.
+2178	Only the host can start the game.
+2179	Only admins can transfer admin to another player.
+2180	Airborne Unit lost.
+2181	Our ally is under attack.
+2182	Here are the available commands:
+2183	Base under attack.
+2184	Server name contains a blacklisted word.
+2185	Building infiltrated.
+2186	Cannot deploy here.
+2187	Flight deck: { $mode }
+2188	{ $player } changed the map to { $map }.
+2189	{ $remaining ->\n[one] Chat is disabled. Please try again in { $remaining } second.\n*[other] Chat is disabled. Please try again in { $remaining } seconds.\n}
+2190	Cheat used: { $cheat } by { $player }{ $suffix }.
+2191	Cheats are disabled.
+2192	Chronosphere charging.
+2193	Chronosphere ready.
+2194	Cleared { $amount } marker tiles
+2195	Cleared { $amount } marker tiles of type { $type }
+2196	Cleared selection
+2197	{ $player } is experiencing connection problems.
+2198	Construction complete.
+2199	{ $amount ->\n[one] Copied one tile\n*[other] Copied { $amount } tiles\n}
+2200	Credits stolen.
+2201	This map contains custom rules. Game experience may change.
+2202	Out of sync in frame { $frame }.\nCompare syncreport.log with other players.
+2203	Edited { $name } ({ $id })
+2204	Edited { $name } ({ $old-id }-> { $new-id })
+2205	No one in that slot.
+2206	The game has already started.
+2207	Could not parse the number of teams: { $raw }.
+2208	Atomic bomber detected.
+2209	Filled with tile { $id }
+2210	The game is full.
+2211	The game has started.
+2212	Game has not been advertised online.
+2213	The game has been paused by { $player }.
+2214	Game saved.
+2215	Game started.
+2216	The game has been un-paused by { $player }.
+2217	Server is running an incompatible mod.
+2218	Server is running an incompatible protocol.
+2219	Server is running an incompatible version.
+2220	Incorrect password.
+2221	Unable to start the game until more spawn points are enabled.
+2222	Insufficient funds.
+2223	Insufficient power.
+2224	Insufficient votes to kick player { $kickee }.
+2225	Cannot add bots to a slot with another client.
+2226	Invalid bot type.
+2227	Invalid cash amount.
+2228	{ $name } is not a valid command.
+2229	Invalid configuration command.
+2230	Failed to parse error message.
+2231	Invalid faction selected: { $faction }.
+2232	Invalid lobby info sent.
+2233	Unable to determine a valid player color. A random color has been selected.
+2234	Iron curtain charging.
+2235	Iron curtain ready.
+2236	{ $player } has joined the game.
+2237	You have already voted.
+2238	The host cannot kick themselves.
+2239	{ $player } was kicked from the server.
+2240	{ $player } has left.
+2241	Low power.
+2242	Malformed { $command } command.
+2243	Bots have been disabled on this map.
+2244	Failed to delete map '{ $map }'. See the debug.log file for details.
+2245	Master server communication established.
+2246	Master server communication failed.
+2247	Failed to switch mod.
+2248	{ $admin } moved { $player } to spectators.
+2249	Moved { $id } from { $x1 },{ $y1 } to { $x2 },{ $y2 }
+2250	Naval Unit lost.
+2251	{ $player } is now the admin.
+2252	New construction options.
+2253	{ $player } is now known as { $name }.
+2254	Only spectators and defeated players can be kicked after the game has started.
+2255	You do not have permission to join this server.
+2256	Server port is not accessible from the internet.
+2257	Unable to start the game until required slots are full.
+2258	Game cannot start without players.
+2259	{ $player } (Spectator) has disconnected.
+2260	Opened
+2261	{ $player } changed { $name } to { $value }.
+2262	{ $option } cannot be changed.
+2263	Treaty in effect: you cannot attack other players yet.
+2264	The peace treaty has ended. War!
+2265	Peace treaty ends in { $minutes ->\n[one] { $minutes } minute\n*[other] { $minutes } minutes\n}.
+2266	There is no peace treaty in effect.
+2267	Peace treaty ends in { $seconds }...
+2268	A peace treaty is in effect for { $minutes ->\n[one] { $minutes } minute\n*[other] { $minutes } minutes\n}. No attacks until it ends. Type /endtreaty to vote to end it early.
+2269	All players agreed: the treaty ends in { $seconds } seconds.
+2270	{ $player } votes to end the treaty early ({ $votes }/{ $needed }).
+2271	Color was adjusted to be less similar to another player.
+2272	Color was adjusted to be less similar to the terrain.
+2273	{ $player } has disconnected.
+2274	A player has been dropped after timing out.
+2275	{ $player } is defeated.
+2276	{ $player } is victorious.
+2277	Primary building selected.
+2278	No room to fast-rope there: the helicopter is climbing away with the rest of its troops.
+2279	Fast-rope: click the landing zone (Shift+click to queue, right click to cancel).
+2280	Select a transport helicopter with soldiers aboard to fast-rope.
+2281	Waypoint mode: click to add points, double-click or press the key again to send.
+2282	Fire mission: support is firing on the red smoke.
+2283	No support in range of the red smoke.
+2284	Red smoke ready.
+2285	Enemy red smoke spotted. Incoming fire!
+2286	Reinforcements have arrived.
+2287	Removed { $name } ({ $id })
+2288	Removed area { $x },{ $y } ({ $width },{ $height })
+2289	{ $amount ->\n[one] Removed one marker tile\n*[other] Removed { $amount } marker tiles\n}
+2290	Removed { $type }
+2291	Repairing.
+2292	Failed to delete replay file '{ $file }'. See the debug.log file for details.
+2293	Server requires players to have an OpenRA forum account.
+2294	Only the host can do that.
+2295	Server requires a password.
+2296	Satellite launched.
+2297	Saved current map.
+2298	Failed to delete save file '{ $savePath }'. See the logs for details.
+2299	Saved screenshot { $filename }
+2300	Searching for map on the Resource Center...
+2301	Select target.
+2302	Selected actor { $id }
+2303	Selected area { $x },{ $y } ({ $width },{ $height })
+2304	Silos needed.
+2305	Your slot was closed by the host.
+2306	Sonar pulse ready.
+2307	The spawn point is locked to another player slot.
+2308	You cannot occupy the same spawn point as another player.
+2309	Spy plane ready.
+2310	State cannot be changed once the game has started ({ $command }).
+2311	Cannot change state when marked as ready.
+2312	Structure captured.
+2313	{ $player } (Team { $team }) has disconnected.
+2314	{ $admin } temporarily banned { $player } from the server.
+2315	Time limit has expired.
+2316	{ $player } has been dropped after timing out.
+2317	{ $timeout ->\n[one] { $player } will be dropped in { $timeout } second.\n*[other] { $player } will be dropped in { $timeout } seconds.\n}
+2318	Our titan has fallen.
+2319	This server requires at least two human players to start a match.
+2320	Unable to build more.
+2321	Unable to comply. Building in progress.
+2322	Unable to start a vote.
+2323	Unit lost.
+2324	Unit promoted.
+2325	Unit ready.
+2326	Unit repaired.
+2327	Unit stolen.
+2328	Map was not found on server.
+2329	Unknown server command: { $command }.
+2330	Vote kick is disabled on this server.
+2331	Vote to kick player { $kickee } has failed.
+2332	{ $percentage }% of players have voted to kick player { $kickee }.
+2333	Player { $kicker } has started a vote to kick player { $kickee }.
+2334	Weather: { $weather }.
+2335	Weather forecast: { $weather } in { $seconds } seconds.
+2336	You have been banned from the server.
+2337	You have been kicked from the server.
+2338	You have been temporarily banned from the server.
+2339	Close
+2340	Far
+2341	Furthest
+2342	Medium
+2343	All
+2344	Multiple
+2345	None
+2346	Search Results
+2347	Classic
+2348	Modern
+2349	Fullscreen
+2350	Fullscreen (Legacy)
+2351	Windowed
+2352	Fast
+2353	Faster
+2354	Fastest
+2355	Normal
+2356	Slower
+2357	Slowest
+2358	Bots
+2359	Bots Disabled
+2360	Closed
+2361	Open
+2362	Slot
+2363	Inverted
+2364	Joystick
+2365	Army
+2366	Army (graph)
+2367	Basic
+2368	Combat
+2369	Earnings (graph)
+2370	Economy
+2371	Information: None
+2372	Production
+2373	Support Powers
+2374	Date
+2375	Players
+2376	Size
+2377	Title
+2378	No treaty
+2379	Custom
+2380	OpenRA default
+2381	Red Alert 2
+2382	Red Alert 2 (right-click orders)
+2383	Last 14 days
+2384	Last 30 days
+2385	Last 7 days
+2386	Today
+2387	Long (60+ min)
+2388	Medium (30 min)
+2389	Short (10 min)
+2390	Under 5 min
+2391	Multiplayer
+2392	Singleplayer
+2393	All Players
+2394	Disable Shroud
+2395	Other
+2396	Add
+2397	Configure Bots
+2398	Configure Teams
+2399	Free for all
+2400	Humans vs Bots
+2401	Remove
+2402	{ $count } Teams
+2403	Heavy Support
+2404	Light Support
+2405	MCV Only
+2406	Always Show
+2407	Show On Damage
+2408	Standard
+2409	Automatic
+2410	Disabled
+2411	Manual
+2412	Infantry Only
+2413	No Superweapons
+2414	Unrestricted
+2415	No limit
+2416	{ $minutes ->\n[one] { $minutes } minute\n*[other] { $minutes } minutes\n}
+2417	Off
+2418	Visual only
+2419	Frequent
+2420	Rare
+2421	Defeat
+2422	Victory
+2423	{ $p0 } ALLIANCE  ·  NATIONAL DOSSIER
+2424	{ $p0 } AVAILABLE
+2425	{ $p0 } CELLS
+2426	{ $p0 } CELLS/S
+2427	{ $p0 } DPS
+2428	{ $p0 } EXCLUSIVE
+2429	{ $p0 } MOUNTS
+2430	{ $p0 } NATIONS   ·   { $p1 } ENTRIES   ·   ARROWS / TAB TO BROWSE
+2431	{ $p0 } NATIONS
+2432	{ $p0 } RAILS
+2433	{ $p0 } TRACKS · { $p1 }
+2434	{ $p0 } transport pads: builds and reloads airborne transports only
+2435	AI COMMANDER
+2436	AIR
+2437	Air defence
+2438	Airborne drop: { $p0 } paratroopers ({ $p1 })
+2439	AIRCRAFT
+2440	Airlift
+2441	Amphibious
+2444	Angel flares: { $p0 } huge salvos fool { $p1 }% of guided missiles
+2446	Anti-ship torpedoes
+2447	Ape titan
+2448	ARMAMENT
+2449	ARMOR
+2450	ARMOUR
+2451	ARMY
+2452	ARSENAL CATALOGUE
+2453	Artillery shell
+2454	ATGM
+2455	Atomic bomb
+2456	Atomic breath hits aircraft too\nSwims the seas · 1,000,000 HP
+2457	Atomic titan
+2458	Ballistic
+2459	Base defence
+2460	Base structure
+2461	Beam
+2462	Boat
+2463	Bomber
+2464	Bombs
+2465	BUILD TIME
+2466	Building
+2467	Can engage aircraft
+2468	Cannon shell
+2469	CAPABILITIES
+2470	Captures enemy buildings
+2471	cells
+2472	cells (min { $p0 })
+2473	CHOOSE YOUR NATION
+2474	CHOOSE YOUR TITAN
+2475	CIWS
+2476	Close-in point defence
+2477	Cluster munition
+2478	COMMANDER · { $p0 }
+2479	COMMANDER
+2480	COST
+2481	Cruise
+2482	CYCLE { $p0 }s
+2483	Dedicated anti-air
+2484	DEFEATED · { $p0 }
+2485	DEFEATED
+2486	DEFENCES
+2487	DEFENSES
+2488	Defensive Structure
+2489	Detects stealth units
+2490	DISCONNECTED
+2491	Disguises as a civilian car
+2492	Disguises as enemy soldiers
+2493	DMG { $p0 }
+2494	dmg
+2496	Drone
+2498	Drops paratroopers
+2499	DURABILITY
+2500	Earns veterancy ranks
+2501	EFFECTIVE AGAINST
+2502	ENEMY
+2503	Energy beam
+2504	ENTRIES
+2505	EXCLUSIVE
+2506	Extends the build radius
+2507	Fast jet: strikes, then returns to rearm
+2508	FIELD DOSSIER
+2509	Field-repairs vehicles
+2510	FIELDED BY
+2512	FIREPOWER
+2513	Fixed-wing aircraft
+2514	Flares: { $p0 } salvos fool { $p1 }% of guided missiles
+2515	Flight deck: launches and rearms jets
+2516	Fortification
+2517	FORTIFIED
+2518	Generates { $p0 } power
+2519	Generates steady income
+2520	Grenade
+2521	GROUND
+2523	Ground vehicle
+2524	Guided missile
+2525	Hammer blows · hurls boulders\nLeaps to swat jets · 850,000 HP
+2526	Harvests ore and gems
+2527	Heals nearby infantry
+2528	HEALTH
+2529	Heavy
+2530	HEAVY ARMOUR
+2532	Hides your base in a shroud field
+2533	HIT POINTS
+2534	HOST
+2535	HOST · YOU
+2536	Hypersonic
+2537	IN COMBAT
+2538	Incendiary
+2539	INFANTRY
+2540	Infiltrates enemy buildings
+2541	Intercepts incoming missiles
+2542	Jams guided missiles
+2543	Lays minefields
+2544	Leaps at its prey
+2545	Light
+2547	LIGHT ARMOUR
+2549	LIMITED
+2550	Lurks unseen in water when still
+2551	MENU THEME
+2552	MENU THEME · PAUSED
+2553	(MIN { $p0 })
+2554	Missile interceptors
+2556	Mute music
+2557	NATIONAL
+2558	NATIONAL UNIT
+2559	NAVAL
+2560	Naval Unit
+2562	Naval vessel
+2563	NEUTRAL
+2564	NO ENTRIES FOR THIS NATION
+2565	No giant for this player
+2566	NO MUSIC INSTALLED
+2567	NO SELECTION
+2568	NO TITAN
+2569	No titan
+2570	No track playing
+2571	NOT READY
+2572	NOW PLAYING
+2573	Nuclear warhead
+2574	OFFLINE
+2575	One per player. It walks out at the start and cannot be rebuilt.
+2576	ONLINE
+2577	PAUSED
+2578	PERFORMANCE
+2579	Picked in the lobby (TITAN column): one per player, walks out at the start, cannot be rebuilt
+2580	Picked when the game starts
+2581	Plants demolition charges
+2582	Point defence vs missiles
+2583	POWER OUTPUT
+2584	POWER USAGE
+2585	Produces { $p0 }
+2586	PROJECT X  //  CLASSIFIED WAR ARCHIVE
+2587	PROJECT X · ORIGINAL SOUNDTRACK
+2588	Provides the radar minimap
+2589	RANDOM
+2590	RANGE { $p0 }
+2591	RANGE
+2592	Refines ore into credits
+2593	Relays and amplifies prism beams
+2594	Reloads its paratroopers on its pad in { $p0 } s, paying their price
+2595	Repairs bridges
+2596	Repairs docked vehicles
+2597	Repeat track: off
+2598	Repeat track: on
+2599	REPLAY
+2600	REQUIRES
+2602	Rocket
+2604	Rotary-wing aircraft
+2606	SCORE
+2607	Seismic shockwave (self-destructs)
+2608	Select a unit or structure
+2609	SELECT NATION
+2610	SELECTED UNITS ({ $p0 })
+2611	Self-repairs over time
+2613	Shoot and scoot
+2614	Shoots down { $p0 }
+2615	Shreds missiles aimed at it, { $p0 }% per burst
+2616	Shuffle: off
+2617	Shuffle: on
+2618	Small arms
+2619	SOUND IS MUTED
+2620	SPECTATING · { $p0 }
+2621	SPECTATING
+2622	SPEED
+2623	STANDING BY
+2624	Stealth: invisible when idle
+2625	STOPPED
+2626	Stores credits
+2627	STRONG
+2629	STRUCTURE
+2630	STRUCTURES
+2632	Submerges out of sight
+2633	SUPPORT
+2634	Support: no direct damage
+2635	SURPRISE
+2636	Surprise
+2637	Swims, faster in water than on land
+2639	Target marker
+2640	Teleports short distances
+2641	THE UNION
+2642	THE VANGUARD
+2643	TITAN
+2644	to see its details.
+2645	Torpedo
+2646	TRACK { $p0 } / { $p1 } · { $p2 }
+2647	Tramples infantry underfoot: they cannot dodge
+2648	Transports { $p0 } soldiers
+2649	Union
+2650	Unit
+2651	Unmute music
+2652	Vanguard
+2653	VEHICLES
+2654	VICTORIOUS
+2655	VICTORY · { $p0 }
+2656	VICTORY
+2657	VISION
+2658	VTOL: hovers and lands anywhere
+2659	WEAK
+2661	YOU
+2662	Valuable Minerals
+2663	{ $units ->\n[one] Selected one unit across map.\n*[other] Selected { $units } units across map.\n}
+2664	{ $units ->\n[one] Selected one unit across screen.\n*[other] Selected { $units } units across screen.\n}
+2665	ON HOLD
+2666	READY

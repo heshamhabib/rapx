@@ -1,0 +1,250 @@
+750	Repariert gegen Gebühr Fahrzeuge, die auf seine Plattform fahren. Schaltet außerdem fortschrittliche Fahrzeuge frei. Platziere es zwischen Waffenfabrik und Front, damit beschädigte Panzer schnell wieder kämpfen.
+751	Feldreparatur
+752	Eine schwere Zwillings-Flak auf drehbarer Lafette. Ihre Salven treffen jedes Luftfahrzeug in der Nähe und holen auch Drohnen und Marschflugkörper vom Himmel.
+753	Flugabwehrstellung
+754	Eine Flakkanone auf Lkw, die Luftfahrzeuge, Drohnen und Infanterie zerfetzt. Gib jeder Panzerkolonne eine mit.
+755	Mobile Flugabwehr
+756	Übergießt jeden, der zu nahe kommt, mit brennendem Treibstoff. Verheerend gegen Infanterie und leichte Fahrzeuge, aber mit kurzer Reichweite und machtlos gegen entfernte Panzer.
+757	Anti-Infanterie-Turm
+758	Hüllt deine Basis in Nebel, sodass der Feind nicht hineinsehen kann. Späher und Spionageflugzeuge decken sie nur kurz auf. Benötigt Energie.
+759	Spionageabwehr
+760	Ein Berg aus Schuppen, der aus dem Meer watet. Wenn seine Rückenplatten rosa aufleuchten, wird gleich alles vor ihm brennen: Der Atomatem reicht weiter als die meiste Artillerie und holt Luftfahrzeuge vom Himmel. Panzer, die zu nahe kommen, werden zertreten. Wird in der Lobby gewählt, einer pro Spieler – fällt er, ist er für immer verloren.
+761	Titan: wandelnde Superwaffe
+762	Ein alter Grad-Werfer: billig, aber ungenau. Setze sie in Massen ein und überziehe ein Gebiet mit Raketen.
+763	Raketenwerfer (Kuba)
+764	Ein drehbarer Kanonenturm, der Panzer durchschlägt. Billig und zuverlässig, aber schwach gegen Infanteriemassen und hilflos gegen Luftfahrzeuge.
+765	Panzerabwehrturm
+766	Ein schwerer achträdriger Lkw mit drehbarem Kampfmodul: zwei Behälter mit kleinen Infrarotraketen und dazwischen eine 35-mm-Kanone. Er feuert je vier Raketen in Folge ab, jede in enger Spirale, und ihre Annäherungszünder platzen zu schwarzen Flakwolken. Vanguard-Nationen außer Indien.
+767	Mobile Flugabwehr
+768	Ein Kettenwerfer, der eine große 12-Raketen-Salve über eine weite Fläche feuert. Stark gegen Infanterie und Basen, aber langsam.
+769	Raketenwerfer (England)
+770	Sammelt Erz und Edelsteine und bringt sie zu deiner Raffinerie. Schwer gepanzert, aber unbewaffnet. Schütze deine Sammler: Sie sind dein Einkommen.
+771	Erzsammler
+772	Ein unter Tarnung versteckter Bunker. Feinde sehen ihn erst aus der Nähe – ein perfekter Hinterhalt an einer wahrscheinlichen Angriffsroute.
+773	Getarnter Bunker
+774	Ein Kreuzer mit Hubschrauberdeck achtern: Raketen und Gatling gegen Luftfahrzeuge, Wasserbomben und Sonar gegen U-Boote.
+775	Hubschrauberkreuzer
+776	Der Longbow: ein Raketen-Kampfhubschrauber, der Panzer, Gebäude und andere Luftfahrzeuge jagt. Zuschlagen, abdrehen und am Heli-Landeplatz nachmunitionieren.
+777	Kampfhubschrauber
+778	Ein schneller Radwerfer mit gelenkten Langstreckenraketen. Schießt und fährt nach jedem Abschuss weg, sodass Gegenfeuer meist ins Leere geht.
+779	Raketenwerfer (USA)
+780	Der Hind: ein schwerer Kampfhubschrauber mit Kettenkanonen, der Infanterie und leichte Fahrzeuge niedermäht.
+781	Ein Mehrfachraketenwerfer auf Rädern mit geschlossenen Startrohren. Er feuert 30 leichte Raketen in einem langen Strom, der das Zielgebiet überzieht, und lädt dann nach.
+782	Raketen-Lkw
+783	Das Arbeitspferd der US Army: gepanzert, schnell, mit .50 cal auf dem Dach und Platz für einen Trupp aus vier Mann. Nur USA.
+784	Spähwagen
+785	Baut und munitioniert Hubschrauber für beide Seiten: Chinook, Black Hawk und Longbow der Union, Mi-26, Hind, Mi-35 und Ka-52 der Vanguard. Jeder Landeplatz versorgt nur einen Hubschrauber gleichzeitig – baue also einen pro geplantem Kampfhubschrauber.
+786	Hubschrauberbasis
+787	Die Candid: der schwere Jet-Transporter der Ukraine, Russlands und Indiens. Setzt vierzig Mann hinter feindlichen Linien ab und hält Jäger mit zwei 23-mm-Kanonen vom Heck fern.
+788	Lufttransporter, 40 Fallschirmjäger
+789	Ein Vanguard-Soldat in einem Kraftanzug mit gurtgespeistem schwerem MG. Panzer können ihn nicht überrollen, und er mäht Infanterie nieder.
+790	Exoanzug-Infanterie
+791	Macht eine Gruppe von Einheiten oder Gebäuden kurz unverwundbar. Stimme es auf einen Panzervorstoß ab, damit die Speerspitze unantastbar ankommt.
+792	Der Ranger: ein schneller Späher mit MG, der einen Soldaten trägt. Zum Aufklären, Infanteriejagen und Sammlerjagen.
+793	Spähfahrzeug
+794	Der Thunderhog: ein fliegender Panzer rund um eine riesige Gatling-Kanone. Schwer gepanzert, langsam und tödlich für Panzer. Halte Jäger von ihm fern.
+795	Erdkampf, Stufe 3
+796	Die An-225 Dreamer: das größte je gebaute Flugzeug. Trägt Infanterie über die Karte. Unbewaffnet.
+797	Schwertransporter, Stufe 4
+798	Der Wraith: ein Nurflügel-Tarnkappenbomber, der eine gewaltige Bombenlast tief hinter feindliche Linien bringt.
+799	Tarnkappenbomber, Stufe 5
+800	Der Stratoforce: ein riesiger Flächenbomber, der ganze Blöcke einer Basis einebnet. Eskortiere ihn, denn gegen Jäger kann er sich nicht wehren.
+801	Schwerer Bomber, Stufe 2
+802	Der Starflash: ein nadelnasiger Abfangjäger aus dem Kalten Krieg, gebaut für pures Tempo. Seine Raketen treffen Gebäude und Fahrzeuge hart, aber er hat kaum Panzerung.
+803	Abfangjäger, Stufe 2
+804	Der Nightjar: ein kantiger Tarnkappenjet, der an Flugabwehr vorbeischlüpft, um hochwertige Ziele zu treffen.
+805	Tarnkappenschlag, Stufe 3
+806	Der Bobcat: ein Flottenverteidiger mit Schwenkflügeln und Langstreckenraketen. Nur von USA und Iran geflogen.
+807	Abfangjäger, Stufe 3
+808	Der Fighting Kestrel: ein leichter, wendiger Mehrzweckjäger. Preiswert für Schläge gegen Fahrzeuge und Gebäude.
+809	Mehrzweckjäger, Stufe 3
+810	Der Zero Viper: Japans selbst gebauter Jagdbomber, eine gestreckte Falcon mit größerem Flügel, gebaut für die Schiffsjagd weit draußen auf See.
+811	Marine-Jagdbomber, Stufe 4
+812	Der Raptorex: ein Tarnkappenjäger der fünften Generation und der beste Luftüberlegenheitsjet der Union. Schnell, schwer zu sehen und tödlich.
+813	Tarnkappenjäger, Stufe 5
+814	Der Spectre II: ein robustes zweistrahliges Arbeitspferd, geflogen von mehr Nationen als jeder andere Jet im Spiel. Zuverlässige Schlagkraft zu fairem Preis.
+815	Ein unbewaffnetes Radarflugzeug, das den Boden unter sich vor dem Feind verbirgt. Schicke es über ein Gebiet, dann kreist es dort. Deckt damit einen Panzervorstoß.
+816	Fliegender Lückengenerator
+817	Die Grom-K: eine russische unbemannte Kampfdrohne. Billig, zerbrechlich und gefährlich für Infanterie. Eine pro Spieler.
+818	Der Harrow startet senkrecht von winzigen Plätzen und Trägerdecks und trifft Fahrzeuge hart.
+819	VTOL-Senkrechtstarter, Stufe 3
+820	Der Greif: Deutschlands viermotoriger Bomber aus dem Krieg, dessen gekoppelte Motoren zwei große Propeller antreiben – noch immer mit schwerer Bombenlast.
+821	Schwerer Bomber, Stufe 0
+822	Der Nachtflügel: Deutschlands Nurflügel-Düsenbomber, entstanden aus dem Kriegsentwurf der Brüder Horten und endlich gebaut – mit modernen Triebwerken und schwerer Lenkbombenlast.
+823	Der JX-20 Jade Dragon: Chinas Tarnkappenjäger der fünften Generation, mit großer Reichweite und schwer zu sehen.
+824	Die L-39U Albatross: ein leichter Erdkampf-Trainer, überraschend wirksam gegen Infanterie, leichte Panzerung und Drohnen.
+825	Leichter Erdkampf, Stufe 2
+826	Die LaV-11 Fang: ein robuster Sternmotor-Jäger aus den 1940ern. Billig und schnell in großer Zahl aufgestellt.
+827	Die Mirago 2000: ein eleganter Deltaflügel-Mehrzweckjäger, den viele Nationen fliegen.
+828	Die MiK-21 Fishbone: der meistgeflogene Jet im Vanguard-Block. Einfach, schnell und billig.
+829	Düsenjäger, Stufe 2
+830	Die MiK-23 Flintlock: ein Jagdbomber mit Schwenkflügeln, der schnell zuschlägt und schnell wieder weg ist.
+831	Die MiK-25 Foxbane: ein brutal schneller Höhenabfangjäger. Kaum etwas kann ihn einholen.
+832	Die MiK-3 Strela: ein Propellerjäger aus den 1940ern. Billig und schnell gebaut, gut zum Beschießen von Infanterie und leichten Fahrzeugen.
+833	Kolbenmotorjäger, Stufe 0
+834	Die Qahir-X: Irans experimenteller Tarnkappenjäger. Einer pro Spieler.
+835	Tarnkappen-Prototyp
+836	Die Rafal F4: ein moderner Canard-Delta-Omnirole-Jäger, so gut im Erdkampf wie im Luftkampf.
+837	Die Saeqa: Irans selbst gebauter Jäger mit Doppelleitwerk, ein solider Jagdbomber gegen Fahrzeuge und Gebäude.
+838	Düsenjäger, Stufe 3
+839	Die Sea Vixa: ein Marine-Jagdbomber mit Doppelleitwerksträger, spezialisiert auf das Versenken von Schiffen.
+840	Seeangriff, Stufe 2
+841	Die Blackwing: ein Hochgeschwindigkeits-Aufklärungsjet, der kaum abzufangen ist. Deckt im Überflug die feindliche Basis auf.
+842	Aufklärung, Stufe 3
+843	Die Sk-25 Rook: ein gepanzerter Erdkampfjet, der Panzer und Fahrzeuge im Tiefflug zermürbt.
+844	Die Sk-27 Flankard: ein großer zweistrahliger Jäger mit großer Reichweite und schwerer Waffenlast.
+845	Luftüberlegenheit, Stufe 3
+846	Die Flankard-M: die zweisitzige Flanker für Luftkampf und Erdkampf, geflogen von Vanguard, Russland, Indien und China.
+847	Mehrzweckjäger, Stufe 4
+848	Die Sk-35 Flankard-E: Supermanövrierfähigkeit dank Schubvektorsteuerung und der beste Standardjäger der Vanguard.
+849	Die Sk-47 Berkov: ein experimenteller Tarnkappenjäger mit vorwärts gepfeilten Flügeln. Einer pro Spieler.
+850	Die Schwarmdrohnen der Türkei: billige unbemannte Angreifer, die Infanterie und leichte Panzerung durch Masse überwältigen.
+851	Drohnenschwarm, Stufe 3
+852	Die Tv-160 Swanwing: Russlands Überschallbomber mit Schwenkflügeln, der eine gewaltige Last mit hohem Tempo ins Ziel bringt.
+853	Strategischer Bomber, Stufe 3
+854	Der Typhon: ein europäischer Canard-Delta-Jäger mit großer Wendigkeit und schwerer Angriffslast.
+855	Der Kestrel-Kipprotor startet wie ein Hubschrauber und fliegt wie ein Flugzeug – mit Infanterie weit hinter feindliche Linien. Unbewaffnet.
+856	Kipprotor-Transporter, Stufe 4
+857	Die Volcan: ein Deltaflügel-V-Bomber, Englands schwerer Langstreckenschlag gegen Basen.
+858	Die Stingray: eine unbemannte Kampfdrohne. Billig und zerbrechlich, beschießt aber Infanterie und leichte Panzerung, ohne einen Piloten zu riskieren. Eine pro Spieler.
+859	Kampfdrohnen-Prototyp
+860	Die Yk-141 Freestyler: ein Überschall-VTOL-Prototyp, der Fahrzeuge angreift. Einer pro Spieler.
+861	VTOL-Prototyp
+862	Die Black Recluse: ein experimenteller Tarnkappenjäger. Nur einer pro Spieler – ein seltenes und tödliches Ass.
+863	Prototyp-Jäger
+864	Ein gepanzertes Luftschiff mit gewaltiger Bombenlast. Sehr langsam, aber ein voll beladener Zeppelin über einer Basis ist verheerend. Schieß ihn früh ab.
+865	Bomben-Luftschiff
+866	Der Alligator: zwei Koaxialrotoren und kein Heckrotor machen ihn schnell und wendig. Panzerabwehrraketen und eine 30-mm-Kanone jagen Panzer. Die Antwort der Vanguard auf den Longbow.
+867	Schwere 300-mm-Raketen mit sehr großer Reichweite, die Gebäude und Einheitengruppen zerschmettern. Lädt langsam nach.
+868	Raketenwerfer (Türkei)
+869	Bildet Kampfhunde aus: schnelle, billige Jäger, die Infanterie mit einem Biss töten und verkleidete Spione wittern.
+870	Hundeausbildung
+871	Der Riesenaffe walzt gleichermaßen durch Mauern und Panzerkolonnen. Aus der Nähe plättet sein beidhändiger Hammerschlag alles; auf Distanz reißt er Felsbrocken heraus und schleudert sie. Auch Jets und Hubschrauber über ihm sind nicht sicher: Er springt in die Luft und schlägt sie mit einem Hieb herunter. Schneller als Godzilla, aber Wasser hält ihn auf. Wird in der Lobby gewählt, einer pro Spieler – fällt er, ist er für immer verloren.
+872	Titan: Riesenaffe
+873	Ein schwerer Panzerrumpf mit 152-mm-Geschütz, getragen von zwei gepanzerten Beinen statt Ketten. Langsam, aber er schreitet über Mauern, Gräben und alles, was im Weg steht.
+874	Ein Angriffsschiff mit Flachdeck, das eine ganze Landungsgruppe an den Strand bringt und unterwegs Luftangriffe abwehrt. Nur USA.
+875	Amphibisches Angriffsschiff
+876	Baut und startet Satelliten über den Reiter Luftfahrzeuge, bis zu 8 im Orbit. Das Tor zum orbitalen Lasernetz.
+877	Raumstart
+878	Ein Kettenwerfer mit GPS-gelenkten Raketen. Präzise, mit +50 % Schaden gegen Gebäude. Das beste Werkzeug, um Verteidigungen zu zerlegen.
+879	Raketenwerfer (Frankreich)
+880	Patriot-/S-400-Klasse. Stoppt Luftfahrzeuge, Marschflugkörper und taktische ballistische Raketen weit jenseits deines Basisrands. Benötigt eine Radarkuppel für volle Reichweite.
+881	Weitreichende Flugabwehr
+882	Schwebt hoch über der Karte und feuert einen Laser senkrecht auf Feinde unter ihm. Satelliten im Umkreis von 12 Feldern bilden ein Netz, das den Strahl verstärkt. Nur ASAT-Stellungen erreichen ihn.
+883	Orbitalwaffe
+884	Bringt Infanterie und Panzer über das Wasser und setzt sie an jedem Strand ab. Unbewaffnet.
+885	Landungsboot
+886	Ein Halbkettenfahrzeug mit vier schweren MGs auf drehbarer Lafette. Billig und schnell: zerfetzt Hubschrauber, tief fliegende Jets und Infanterie, aber Panzer lässt es kalt.
+887	Flugabwehrfahrzeug
+888	Ein Kettenwerfer mit 12-Raketen-Salve. Aufbauen, um auf Minenraketen umzuschalten, die Panzerminen auf den Weg des Feindes streuen.
+889	Raketenwerfer (Deutschland)
+890	Wird zum Bauhof aufgebaut. Eröffne damit eine zweite Basis an einem fernen Erzfeld oder baue nach einer Katastrophe neu auf.
+891	Mobiler Bau
+892	Ein Werfer-Lkw mit senkrecht aufgerichteten Behältern. Jede Abfangrakete wird per Gas ausgestoßen, zündet über dem Fahrzeug ihren Motor und schwenkt aufs Ziel ein, wobei winzige Seitendüsen sie für den Volltreffer nachsteuern. Feuert ohne Drehen in jede Richtung und holt auch Marschflugkörper und ballistische Raketen herunter. Union-Nationen.
+893	Repariert Fahrzeuge im Feld und hält deine Panzer fern vom Reparaturdepot im Kampf.
+894	Feldmechaniker
+895	Heilt Infanterie in der Nähe im Feld. Gib jeder Infanteriegruppe einen mit, und deine Trupps überleben viel länger.
+896	Feldsanitäter
+897	Hüllt seine Umgebung in Nebel. Fahre ihn mit deiner Armee mit, damit der Feind den Angriff nicht kommen sieht.
+898	Mobiler Lückengenerator
+899	Der Black Hawk: ein Kampfhubschrauber mit zwei Kettenkanonen gegen Infanterie und leichte Fahrzeuge. Schnell nachmunitioniert und ideal zum Räumen von Infanterie.
+900	Sturmhubschrauber
+901	Die Hip: das Arbeitspferd unter den Hubschraubern der Vanguard. Bringt einen vollen Trupp aus acht Mann an die Front, mit Türgeschütz, um die Landezone niederzuhalten.
+902	Truppenhubschrauber
+903	Die Halo: der größte je geflogene Hubschrauber, dessen Achtblattrotor zwölf Soldaten auf einmal hebt. Die Antwort der Vanguard auf den Chinook. Unbewaffnet, also setze den Trupp fern von Flugabwehr ab.
+904	Schwerer Transporthubschrauber
+905	Der fliegende Panzer: ein gepanzerter Kampfhubschrauber mit Kettenkanone, Raketenbehältern und Kabine für 5 Soldaten. Er beschießt die Landezone und setzt dann seinen Trupp darin ab.
+906	Hauptquartier des britischen Geheimdienstes. Schaltet den Spion und die Spionagewagen frei. Nur England, eines pro Spieler, benötigt Energie.
+907	Geheimdienst-Hauptquartier
+908	Ein schnelles Erdkampfflugzeug mit Raketen gegen Gebäude und Fahrzeuge. Zuschlagen, dann zum Flugfeld zurückfliegen und nachmunitionieren.
+909	Angriffsjet
+910	Ein Mehrfachraketenwerfer auf Ketten. Er leert sein ganzes Gestell in wenigen Sekunden, ein schwerer Strom aus 19 Raketen, der das Zielgebiet überzieht – und braucht dann lange zum Nachladen.
+911	Raketenpanzer
+912	Legt Panzer- und Antipersonenminen und sieht feindliche Minen. Vermine Erzfelder und Engpässe, damit jeder Angriff teuer wird.
+913	Stört feindliche Radarkuppeln in der Nähe und lenkt anfliegende Lenkraketen ab. Eskortiere damit deine Panzer in raketenstarke Verteidigungen.
+914	Radarstörer
+915	Eine Raketenbatterie mittlerer Reichweite und dein Raketenschild (nach Art des Iron Dome): zehn schnelle Abfangraketen starten in Folge, steigen fast senkrecht auf und zerlegen anfliegende Raketensalven und Jet-Raketen am Himmel, mit leuchtenden Streifen dahinter. Fängt auch Luftfahrzeuge, Marschflugkörper und Drohnen ab. Riesige Salven können sie beim Nachladen dennoch überlasten. Volle Reichweite nur mit Radarkuppel.
+916	Flugabwehr mittlerer Reichweite
+917	Ein Atomraketensilo. Nach langer Ladezeit startet es eine Atombombe, die ein ganzes Viertel einer feindlichen Basis einebnet. Nur eines baubar, und jeder Gegner wird gewarnt, sobald es bereit ist.
+918	Superwaffe
+919	Eine getauchte Belagerungsplattform, die Raketen auf Gebäude, Bodeneinheiten und Luftfahrzeuge tief im Landesinneren feuert. Schwach gegen andere Schiffe.
+920	Raketen-U-Boot
+921	Ein billigerer Kampfpanzer der Vanguard, schneller gebaut als der Schwere Panzer, mit leichterer Kanone.
+922	Mittlerer Panzer
+923	Ein ziviler Geländewagen auf Riesenrädern, zum Dienst eingezogen. Er hat überhaupt keine Waffe: Er überrollt einfach Infanterie, Zäune und Sandsackwälle, und in Kabine und Ladefläche passt ein Trupp aus vier Mann. Nur USA.
+924	Zermalmer
+925	Das gemeinsame Arsenal der Union, geteilt von allen ihren Nationen; ihre Fallschirmjäger fliegen in der langgestreckten C-141 Starlifter.
+926	Roter Drache: der Superträger Fujian, der Tarnkappenjäger JX-20 und der PHX-16, der Raketenwerfer mit der größten Reichweite. Die Y-20 Kunpeng trägt sein Luftlandekorps.
+927	Inselfestung: robuste alte Grad-Werfer in großer Zahl und eine Verteidigung, die jede Belagerung übersteht. Seine Fallschirmjäger fliegen in alten B-29 Superfortress.
+928	Wüstenkommando: billige Mistral-Hubschrauberträger und Saqr-36-Streuraketen, die leichte Fahrzeuge zerfetzen. Seine Luftlandebrigaden fliegen in B-52 Stratofortress, umgerüstet zum Absetzen von Truppen.
+929	Meister der Täuschung: MI6-Spione, mit Gadgets vollgepackte Spionagewagen und Lückengeneratoren, die den Feind blenden. Seine Luftlandetruppen fliegen die C-17A Globemaster III, den robustesten Jet-Transporter von allen.
+930	Präzision und Tarnung: GPS-gelenkte LRX-Raketen, Rafale-Jäger und der tarnfähige Phasentransporter. Seine Fallschirmjäger springen aus C-130 Hercules.
+931	Ingenieure der Zeit: Chrono-Panzer, die über die Karte springen, und MARZ-Werfer, die Minenfelder säen. Seine Luftlandeangriffe fliegen in erbeuteten B-17 Flying Fortress, und der Nurflügel HG-229 Nachtflügel trägt seine schweren Lenkbomben.
+932	Aufstrebende Macht: der selbst gebaute Träger Vikrant und Pinak-Werfer, die ihre Behälter in Sekunden leeren. Seine Fallschirmjäger springen aus der Il-76MD mit ihren Heckkanonen.
+933	Meister der Drohnen: der Drohnenträger Bagheri, Shard-Kampfdrohnen und der Tarnkappen-Prototyp Qahir-X. Seine Fallschirmjäger fliegen in einer umgerüsteten Boeing 707.
+934	Mittelmeer-Legion: der leichte Träger Cavour und der schnell nachladende Raketenwerfer Saetta. Seine Fallschirmjäger fliegen von Wasserflugzeugbasen im großen Flugboot Boeing 314 Clipper.
+935	Eine Inselmarine: der Senkrechtstarter-Träger Kaga und Sea-Arrow-Lkw, die Schiffe weit draußen auf See versenken. Seine Fallschirmjäger springen aus C-130 Hercules.
+936	Verteidiger der Berge: Fatah-Lenkraketen, die tief hinter der Front hart und präzise treffen. Seine Fallschirmjäger springen aus C-130 Hercules.
+937	Tesla-Waffen: Schocktruppler, Tesla-Panzer, der Träger Kusnezow und der thermobarische TOZ-1 Sunflare. Seine Fallschirmjäger springen aus der Il-76MD mit ihren Heckkanonen.
+938	Schild der Halbinsel: Chunmu-Werfer, die zwischen Raketensalven und einer schweren Lenkrakete wechseln. Seine Fallschirmjäger springen aus C-130 Hercules.
+939	Das gemeinsame Arsenal der Vanguard, geteilt von allen ihren Nationen; ihre Fallschirmjäger fliegen in B-29 Superfortress, Niete für Niete kopiert. Vom Heli-Landeplatz kommen der Schwerlasthubschrauber Mi-26 Halo, die Kampfhubschrauber Hind und Mi-35 sowie der Ka-52 Alligator.
+940	Tor der Kontinente: Drohnenkrieg vom Träger Anadolu, Schwarmdrohnen und schwere Kasirga-Raketen. Seine Fallschirmjäger springen aus C-130 Hercules.
+941	Sprengmeister: atomare Sprengstoff-Lkw, Fallschirmbomben-Angriffe, die riesige An-225 und präzise Vilkra-Raketen. Seine Fallschirmjäger springen aus der Il-76MD, deren 23-mm-Zwillingskanonen am Heck Jäger fernhalten.
+942	Das Arsenal der Demokratie der Union: die größte Luftflotte der Welt, Superträger, der Raketen-Lkw HIMAX und die AB-35 Longwing, die die Fatman-Atombombe abwirft. Seine Fallschirmjäger fliegen in C-130 Hercules von der Luftlandebasis.
+943	Eine Wasserplattform, die stetig Credits fördert – ohne Sammler, die geschützt werden müssen. Muss auf Wasser neben deiner Basis gebaut werden und fördert bei Energiemangel nicht. Schiffe und U-Boote sind ihre größte Bedrohung.
+944	Offshore-Wirtschaft
+945	Ein Betonbunker mit MG. Sieht getarnte Einheiten und mäht Infanterieangriffe nieder. Kombiniere ihn mit einem Panzerabwehrturm.
+946	Anti-Infanterie-Bunker
+947	Der Raketenwerfer mit der größten Reichweite im Spiel. Beschießt Basen und Gruppen von weit hinter der Front. Lädt langsam nach.
+948	Raketenwerfer (China)
+949	Feuert seine ganze Raketenladung in Sekunden ab. Eine verheerende Überraschungssalve gegen Infanterie und Basen.
+950	Raketenwerfer (Indien)
+951	Grundversorgung für deine Basis. Verteidigungen, Radar und Superwaffen fallen bei Energiemangel aus – baue Kraftwerke also vorausschauend und verteile sie: Ein einziger Schlag auf eine Kraftwerksgruppe kann die ganze Basis lahmlegen.
+952	Energieerzeugung
+953	Verwandelt Erz und Edelsteine in Credits und kommt mit einem kostenlosen Erzsammler. Baue sie nahe an reichen Feldern, um jede Fahrt zu verkürzen. Eine zweite Raffinerie an einem anderen Feld verdoppelt dein Einkommen fast.
+954	Ein leichtes, schnelles Patrouillenboot, das U-Boote aufspürt und kleine Schiffe jagt. Billige Augen auf dem Wasser.
+955	Ein weitreichender Strahlenpanzer, dessen Kristall-Lichtstrahl Gruppen von Infanterie, leichten Fahrzeugen und Gebäuden trifft. Zerbrechlich, also halte ihn hinter deinen schweren Panzern.
+956	Prismapanzer
+957	Feuert einen Kristall-Lichtstrahl. Nahe Prismatürme verbinden sich und leiten ihre Energie in den feuernden Turm: +40 % Schaden pro verbundenem Turm, bis zu +200 %. Baue sie in Gruppen.
+958	Prisma-Verteidigung
+959	Der MAD-Panzer erschüttert den Boden mit seismischen Wellen, die Fahrzeuge und Gebäude in der Nähe zerstören – und vernichtet sich dabei selbst. Fahre ihn mitten in eine feindliche Basis.
+960	Seismischer Panzer
+961	Seine Railgun trifft Panzerung aus großer Entfernung, lädt aber langsam. Halte ihn hinter einem Infanterieschirm und lass ihn Panzer abschießen.
+962	Panzerabwehr-Roboter
+963	Die Krone einer Luftwaffe: Stellplätze für 10 Flugzeuge auf einem Gelände. Nur eines baubar – verteidige es so gut wie deinen Bauhof.
+964	Strategisches Luftkommando
+965	Ein billigerer Kettenwerfer, der schneller nachlädt. Mehrere abwechselnd feuernde Saettas halten den Druck konstant hoch.
+966	Raketenwerfer (Italien)
+967	Feuert Boden-Luft-Raketen auf Luftfahrzeuge und Drohnen und kann manche Raketen und Marschflugkörper abschießen. Benötigt Energie.
+968	Streuraketen, die über dem Ziel in Submunition zerfallen. Verheerend für Infanterie und leichte Fahrzeuge, schwach gegen Panzer und Gebäude.
+969	Streuraketenwerfer (Ägypten)
+970	Billige Sandsäcke, die Infanterie und leichte Fahrzeuge aufhalten und Angreifer vor deine Geschütze lenken. Panzer walzen sie nieder.
+971	Leichte Barriere
+972	Eine Bomberbasis im sowjetischen Stil mit einem riesigen Abstellplatz, einem Bogenhangar und einem thermonuklearen Waffenlager. Beherbergt die Tv-95 Bear und lädt den thermonuklearen Schlag, solange der Bomber lebt. Nur Russland, eine pro Spieler.
+973	Ein Luxuswagen mit versteckten MGs und ausfahrbaren Raketen, der einen Spion trägt. Feinde sehen ein harmloses Zivilfahrzeug, bis er angreift. Benötigt das MI6-Hauptquartier.
+974	Spionagefahrzeug
+975	Ein klassischer Gran Turismo mit versteckten Zwillings-MGs, der einen Spion trägt. Robuster und billiger als Spionagewagen 1. Benötigt das MI6-Hauptquartier.
+976	Eine schnelle, billige Spinnendrohne, die auf ihr Ziel zurennt und detoniert. Schicke Wellen davon gegen Panzerkolonnen und Roboterarmeen.
+977	Selbstmorddrohne
+978	Ein Cyberpanzer aus den Labors von Project X. Seine Hauptwaffe schleudert eine schwere elektrische Entladung, die Panzerung von innen gart. Nur einer kann eingesetzt werden.
+979	Experimenteller Panzer
+980	Elite-Infanterie mit tragbaren Tesla-Spulen, deren Blitze gleichermaßen durch Infanterie und Fahrzeuge schlagen. Russlands Markenzeichen-Soldat.
+981	Tesla-Soldat
+982	Zusätzlicher Speicher für raffinierte Credits. Ohne genug Speicher verfällt Erz, das über dein Limit hinaus geliefert wird. Billig – baue also eines, sobald dein Einkommen den Speicher übersteigt.
+983	Wirtschaftsspeicher
+984	Ein weitreichender Scharfschütze, der fast jeden Infanteristen mit einem Schuss tötet und sich im Stillstand versteckt. Tödlich als Sicherung, nutzlos gegen Panzerung.
+985	Scharfschütze
+986	Der achtbeinige Spinnenpanzer der Vanguard huscht in Reichweite und entfesselt schwere Raketen, die auf die dünne Dachpanzerung von Panzern stürzen. Seine zwei Flugabwehrwerfer feuern Abfangraketen nach Art des Iron Dome auf Luftfahrzeuge und schießen auch anfliegende Raketen ab.
+987	U-Boot-Bunker der Vanguard. Baut und repariert U-Boote, Transporter und Träger der Vanguard. Muss auf Wasser gebaut werden.
+988	Verkleidet sich als feindlicher Soldat und infiltriert Gebäude: Geld aus einer Raffinerie stehlen, Superwaffen zurücksetzen, ein Radar blenden oder Produktionsgeheimnisse erfahren. Hunde durchschauen die Verkleidung.
+989	Infiltrator
+990	Ein Lkw mit drehbarem, geneigtem Gestell aus vier Raketenbehältern: Python-Infrarotraketen für nahe Ziele und Derby-Radarraketen, deren Zweipulsmotoren zwischen den Brennphasen gleiten, für ferne. Beide steigen hoch, stürzen sich auf Luftziele und zerplatzen in großen Feuerbällen. Nur Indien.
+991	Taucht außer Sicht ab und torpediert Schiffe. Spürt andere U-Boote auf. Taucht nur zum Feuern auf.
+992	Jagd-U-Boot
+993	Forschungszentrum der Vanguard. Schaltet die schwersten Panzer, Tesla-Waffen und die besten Jets der Vanguard frei.
+994	Ein leicht gepanzerter Transporter, der sich im Stillstand tarnt und Boden-Raketen feuert. Schleuse einen Trupp Ingenieure ungesehen an Verteidigungen vorbei.
+995	Tarntransporter
+996	Ein langsamer vierbeiniger Läufer der Vanguard mit schwerer Kanone und MG. Er walzt durch Infanterie und schlägt die meisten Panzer.
+997	Bodenkontrolle für deine Satelliten. Verlierst du jeden Uplink, gehen alle Satelliten offline, bis du einen neuen baust – baue also einen Ersatz weit weg von der Front.
+998	Satellitenkontrolle
+999	Werft der Union. Baut und repariert Kanonenboote, Zerstörer, Kreuzer, Transporter und, für manche Nationen, Flugzeugträger. Muss auf Wasser gebaut werden.

@@ -1,0 +1,150 @@
+0	Enregistré avec
+1	Char rapide, idéal pour la reconnaissance.\nFort contre Blindés légers\nFaible contre Infanterie, Chars et Aéronefs
+2	Char
+3	Char léger
+4	Char de combat principal de l'Union.\nFort contre Véhicules\nFaible contre Infanterie et Aéronefs
+5	Char moyen
+6	Épave (Char moyen)
+7	Char de combat principal de Vanguard, doté d'un canon lourd.\nFort contre Véhicules\nFaible contre Infanterie et Aéronefs
+8	Char lourd
+9	Épave (Char lourd)
+10	Char lent et massif, doté de capacités antiaériennes.\nPeut écraser les murs en béton.\nFort contre Véhicules, Infanterie et Aéronefs\nFaible contre Rien
+11	Char Mammouth
+12	Épave (Char Mammouth)
+13	Produit et réarme les avions.\nParking pour 6 avions.
+14	Base aérienne
+15	Base des parachutistes : trois aires pour\nles gros transports aéroportés, chacun emportant\n40 parachutistes à larguer n'importe où sur la carte.\nConstruit et réarme les transports aéroportés\nNécessite un aérodrome
+16	Base aéroportée
+17	Produit et réarme les avions.\nParking pour 8 avions.
+18	Base de l'armée de l'air
+19	Un Badger largue des bombes à parachute\nsur la zone choisie.
+20	Parabombes
+21	Révèle une zone de la carte.
+22	Produit et réarme les avions.\nParking pour 4 avions.\nCapacité spéciale : Avion espion\nCapacité spéciale : Parachutistes
+23	Aérodrome
+24	Un Badger largue une escouade d'infanterie\nsur la zone choisie.
+25	Parachutistes
+26	Produit et réarme les avions.\nCapacité spéciale : Avion espion\nCapacité spéciale : Parachutistes\nCapacité spéciale : Parabombes
+27	Défense antiaérienne de base. Abat aussi les drones,\nles missiles de croisière et certaines roquettes à courte portée.\nNécessite de l'énergie.\nFort contre Aéronefs et Drones\nFaible contre Unités terrestres
+28	Canon AA
+29	Toute production d'énergie
+30	Transport de troupes robuste.\nFort contre Infanterie et Blindés légers\nFaible contre Chars et Aéronefs
+31	Véhicule blindé de transport de troupes
+32	Fournit deux fois plus d'énergie qu'une\ncentrale électrique standard.
+33	Centrale électrique avancée
+34	Artillerie à longue portée.\nFort contre Infanterie et Bâtiments\nFaible contre Véhicules et Aéronefs
+35	Artillerie
+36	Abat les satellites ennemis\nen orbite dans un rayon de 12 cases.\nFort contre Satellites\nNe peut pas toucher les unités terrestres ni les aéronefs
+37	Site de missiles ASAT
+38	Fournit la technologie avancée de l'Union.\nCapacité spéciale : Satellite GPS
+39	Révèle le terrain de la carte et fournit des informations tactiques.\nNécessite de l'énergie et un radar actif.
+40	Satellite GPS
+41	Centre technologique de l'Union
+42	Hélicoptère de transport lourd et rapide.\nTransporte 10 fantassins. Inde uniquement.\nDéploie un écran de fumée et fait descendre ses\ntroupes en corde lisse en vol stationnaire (F ici, G pour choisir un point).\nNon armé\nFaible contre DCA
+43	AW101 Merlin
+44	B-17 Flying Fortress
+45	B-29 Superfortress
+46	Boeing 314 Clipper
+47	B-52 Stratofortress
+48	Badger
+49	Clôture de barbelés
+50	Baril explosif
+51	Entraîne l'infanterie.
+52	Caserne de Vanguard
+53	Production d'infanterie
+54	Navire géant lourdement blindé armé de canons de 406 mm,\nles plus longues portées en mer.\nFort contre Bâtiments, Unités terrestres et Navires\nFaible contre Sous-marins et Aéronefs
+55	Cuirassé
+56	Droïde de combat bon marché de l'Union, armé d'un fusil blaster.\nProduit en masse.\nFort contre Infanterie\nFaible contre Véhicules, Aéronefs
+57	Droïde de combat
+58	Capturez-le pour produire les unités du Bio-labo.
+59	Débloque les unités du Bio-labo.
+60	Laboratoire biologique
+61	Base du bombardier atomique AB-35 Longwing.\nCharge la Frappe Fatman tant que le bombardier est en vie.\nÉtats-Unis uniquement. Maximum 1.
+62	L'AB-35 Longwing décolle et largue\nune bombe atomique Fatman sur la cible.\nExplosion plus petite que celle du missile nucléaire.
+63	Frappe Fatman
+64	Base de bombardiers stratégiques
+65	Défense antimissile balistique (classe THAAD) : intercepte\nles missiles balistiques et hypersoniques à grande distance.\nNécessite un dôme radar pour sa portée maximale.\nFort contre Missiles balistiques et hypersoniques\nNe peut abattre ni aéronefs, ni drones, ni roquettes
+66	Bouclier antimissile
+67	Arrête les unités et bloque les tirs ennemis.
+68	Mur en béton
+69	Transport blindé rapide à roues avec un canon\nautomatique en tourelle. Transporte 5 fantassins. Russie uniquement.\nFort contre Infanterie et Blindés légers\nFaible contre Chars et Aéronefs
+70	BTR
+71	Transport aéroporté avec 40 parachutistes à bord.\nClic droit sur le sol pour les y larguer ; il rentre\nà la base et embarque une nouvelle force (payante) en une minute.\nNon armé\nConstruit à la base aéroportée
+72	C-130 Hercules
+73	C-141 Starlifter
+74	C-17A Globemaster III
+75	Navire très lent à longue portée.\nFort contre Bâtiments et Unités terrestres\nFaible contre Unités navales et Aéronefs
+76	Croiseur
+77	(révèle la zone à son propriétaire)
+78	(caméra relais de pouvoir de soutien)
+79	Tire des missiles de croisière Tomahawk loin dans les terres\net protège la flotte contre les aéronefs.\nÉtats-Unis uniquement.\nFort contre Bâtiments et Aéronefs\nFaible contre Sous-marins
+80	Croiseur lance-missiles
+81	Lanceur lourd à roues tirant une salve de 6 roquettes.\nDéployez-le pour passer à un missile guidé lourd\nà plus longue portée.\nFort contre Infanterie et Bâtiments\nFaible contre Véhicules et Aéronefs ; coûteux
+82	Chunmu
+83	Bondit sur les soldats et les chiens et les tue\nd'une seule morsure. Nage vite et, immobile\ndans l'eau, reste invisible. Égypte uniquement.\nFort contre Infanterie et Chiens\nFaible contre Véhicules et Bâtiments
+84	Crocodile
+85	Crocodile du Nil
+86	Drapeau
+87	Armé de missiles air-sol.\nSe téléporte n'importe où à portée.\nFort contre Véhicules et Bâtiments\nFaible contre Infanterie et Aéronefs\nCapacité spéciale : téléportation
+88	Char Chrono
+89	Porte-avions de classe Essex de la Seconde Guerre mondiale.\nUne base aérienne flottante défendue par des lanceurs SAM.\nFort contre Aéronefs, Missiles\nFaible contre Navires, Sous-marins\nMaximum 1 : un autre peut être construit s'il est perdu.
+90	Porte-avions d'escadre
+91	Le premier porte-avions nucléaire (classe Enterprise).\nPont plus grand, coque plus solide, plus de lanceurs SAM.\nFort contre Aéronefs, Missiles\nFaible contre Navires, Sous-marins\nMaximum 1 : un autre peut être construit s'il est perdu.
+92	Porte-avions de combat
+93	Super porte-avions nucléaire de classe Nimitz.\nNavire amiral lourdement blindé de la flotte.\nFort contre Aéronefs, Missiles\nFaible contre Navires, Sous-marins\nMaximum 1 : un autre peut être construit s'il est perdu.
+94	Super porte-avions
+95	Porte-avions de classe Gerald R. Ford doté des\ndéfenses les plus récentes. Le navire le plus puissant à flot.\nFort contre Aéronefs, Missiles\nFaible contre Navires, Sous-marins\nMaximum 1 : un autre peut être construit s'il est perdu.
+96	Porte-avions du futur
+97	Le plus récent super porte-avions chinois,\néquipé de catapultes électromagnétiques.\nFort contre Aéronefs, Missiles\nFaible contre Navires, Sous-marins\nMaximum 1 : un autre peut être construit s'il est perdu.
+98	Porte-avions Fujian
+99	Porte-hélicoptères amphibie égyptien.\nBon marché et rapide à construire.\nFort contre Aéronefs, Missiles\nFaible contre Navires, Sous-marins\nMaximum 1 : un autre peut être construit s'il est perdu.
+100	Porte-hélicoptères Mistral
+101	Le porte-avions nucléaire de la France,\nfierté de la Marine nationale.\nFort contre Aéronefs, Missiles\nFaible contre Navires, Sous-marins\nMaximum 1 : un autre peut être construit s'il est perdu.
+102	Porte-avions Charles de Gaulle
+103	Porte-avions de la Royal Navy avec tremplin\net double îlot.\nFort contre Aéronefs, Missiles\nFaible contre Navires, Sous-marins\nMaximum 1 : un autre peut être construit s'il est perdu.
+104	Porte-avions Queen Elizabeth
+105	Porte-avions de conception indienne\navec tremplin.\nFort contre Aéronefs, Missiles\nFaible contre Navires, Sous-marins\nMaximum 1 : un autre peut être construit s'il est perdu.
+106	Porte-avions Vikrant
+107	Navire marchand converti avec un pont\nd'envol pour drones. Bon marché mais fragile.\nFort contre Aéronefs, Missiles\nFaible contre Navires, Sous-marins\nMaximum 1 : un autre peut être construit s'il est perdu.
+108	Porte-drones Bagheri
+109	Porte-avions léger italien pour avions à décollage\nvertical et hélicoptères.\nFort contre Aéronefs, Missiles\nFaible contre Navires, Sous-marins\nMaximum 1 : un autre peut être construit s'il est perdu.
+110	Porte-avions léger Cavour
+111	Destroyer porte-hélicoptères reconverti en porte-avions\nléger pour chasseurs à décollage vertical.\nFort contre Aéronefs, Missiles\nFaible contre Navires, Sous-marins\nMaximum 1 : un autre peut être construit s'il est perdu.
+112	Porte-avions Kaga
+113	Croiseur porte-aéronefs lourd avec\ntremplin et solides défenses SAM.\nFort contre Aéronefs, Missiles\nFaible contre Navires, Sous-marins\nMaximum 1 : un autre peut être construit s'il est perdu.
+114	Porte-avions Kouznetsov
+115	Mi-porte-avions, mi-croiseur : un pont d'envol\nà l'arrière et des lance-missiles à l'avant.\nFort contre Aéronefs, Missiles\nFaible contre Navires, Sous-marins\nMaximum 1 : un autre peut être construit s'il est perdu.
+116	Croiseur porte-aéronefs Kiev
+117	Navire amphibie reconverti en porte-drones.\nLance des essaims de drones d'attaque.\nFort contre Aéronefs, Missiles\nFaible contre Navires, Sous-marins\nMaximum 1 : un autre peut être construit s'il est perdu.
+118	Porte-drones Anadolu
+119	Cyborg blindé de l'Union armé d'un pistolet automatique lourd.\nNe peut pas être écrasé et ne se met jamais à couvert.\nFort contre Infanterie\nFaible contre Véhicules, Aéronefs
+120	Soldat cyborg
+121	Grillage
+122	Jefferson Memorial
+123	Lincoln Memorial
+124	Capturez-le pour recevoir un très gros revenu.
+125	Fournit un très gros revenu.
+126	Washington Monument
+127	La Maison-Blanche
+128	Navire polyvalent rapide.\nPeut détecter les sous-marins.\nFort contre Unités navales, Véhicules et Aéronefs\nFaible contre Infanterie
+129	Destroyer
+130	Unité anti-infanterie.\nPeut détecter les espions.\nFort contre Infanterie\nFaible contre Véhicules et Aéronefs
+131	Chien
+132	Chien d'attaque
+133	Offre une vue d'ensemble\ndu champ de bataille.\nNécessite de l'énergie.
+134	Dôme radar
+135	Camion transportant des explosifs nucléaires armés,\nau blindage très faible.
+136	Camion de démolition
+137	Infanterie polyvalente.\nFort contre Infanterie\nFaible contre Véhicules et Aéronefs
+138	Fusilier
+139	Infanterie armée de grenades.\nFort contre Bâtiments et Infanterie\nFaible contre Véhicules et Aéronefs
+140	Grenadier
+141	Infanterie antichar et antiaérienne.\nFort contre Véhicules et Aéronefs\nFaible contre Infanterie
+142	Lance-roquettes
+143	Unité anti-structures avancée.\nFort contre Infanterie et Bâtiments\nFaible contre Véhicules et Aéronefs
+144	Lance-flammes
+145	Infiltre et capture\nles structures ennemies.\nNon armé
+146	Ingénieur
+147	Commando d'élite armé de deux pistolets\net de C4.\nUn seul exemplaire possible.\nFort contre Infanterie et Bâtiments\nFaible contre Véhicules et Aéronefs\nCapacité spéciale : détruit les bâtiments au C4
+148	Tanya
+149	Boeing 707 (cellule E-8C)

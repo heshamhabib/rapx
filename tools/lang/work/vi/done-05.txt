@@ -1,0 +1,300 @@
+1204	Bật Giới hạn Khung hình ({ $fps } FPS)
+1205	Cấm Tạm thời
+1206	Người chơi nhận thưởng tiền khi tiêu diệt đơn vị địch
+1207	Tiền thưởng Tiêu diệt
+1208	Hiện Thông báo Gỡ lỗi Bản đồ
+1209	Gửi Thông tin Hệ thống
+1210	Quảng bá Trực tuyến
+1211	Đã bắt đầu
+1212	Trống
+1213	Không tương thích
+1214	Được bảo vệ
+1215	Lặp lại
+1216	Xáo trộn
+1217	Tắt Nhạc Menu
+1218	Tắt nhạc nền khi không có bài hát cụ thể nào đang phát
+1219	Bật Ghi log Hiệu năng Tick
+1220	Màu theo Quan hệ Người chơi
+1221	Đổi màu người chơi theo quan hệ (bản thân, địch, đồng minh, trung lập)
+1222	Hiệu ứng Mặt đất
+1223	Họa tiết chi tiết địa hình và bóng mây di chuyển. Tốn tài nguyên như nhau ở mỗi khung hình bất kể đang diễn ra gì, nên đây là thứ đầu tiên nên tắt trên card đồ họa tích hợp của laptop. Áp dụng cho trận đấu tiếp theo.
+1224	Chi tiết Thế giới HD
+1225	Kết xuất chiến trường ở độ phân giải đầy đủ của màn hình để đơn vị và công trình HD luôn sắc nét khi phóng to. Tốn GPU hơn nhiều trên màn hình độ phân giải cao (Retina).
+1226	Chuyển động Đơn vị Mượt mà
+1227	Vẽ các đơn vị đang di chuyển giữa các tick của game để chúng lướt đi ở tốc độ khung hình đầy đủ thay vì giật 25 lần mỗi giây.
+1228	Hiệu ứng Thời tiết
+1229	Mưa, tuyết, sương mù, bão cát và ánh sáng mà mỗi loại thời tiết tạo ra, cùng sóng áp suất từ các vụ nổ lớn làm méo hình ảnh. Thời tiết vẫn thay đổi và vẫn được thông báo, chỉ là không được vẽ ra. Áp dụng cho trận đấu tiếp theo.
+1230	Cho phép gấp lại Xưởng Xây dựng
+1231	MCV Có thể Triển khai lại
+1232	Bật Lệnh Gỡ lỗi trong Bản ghi
+1233	Kỹ sư ở lại chiến trường sau khi chiếm công trình
+1234	Kỹ sư Tái sử dụng
+1235	Người chơi không có vị trí xuất phát cố định sẽ bắt đầu càng xa người chơi địch càng tốt
+1236	Vị trí Xuất phát Riêng theo Đội
+1237	Người chơi thua cuộc khi căn cứ của họ bị phá hủy
+1238	Trận Ngắn
+1239	Tiêu diệt mọi đối thủ!
+1240	Cho phép xây Hầm Tên lửa và tên lửa hạt nhân của nó
+1241	Siêu Vũ khí
+1242	Hiện Thông báo Sự kiện Trận đấu
+1243	Hiện thông báo văn bản thoáng qua cho các sự kiện trận đấu
+1244	Hiện Thông báo Phản hồi Giao diện
+1245	Hiện thông báo văn bản thoáng qua cho các sự kiện giao diện
+1246	bật/tắt lớp phủ nhãn đối tượng.
+1247	bật/tắt khả năng xây ở bất kỳ đâu.
+1248	bật/tắt lớp phủ trình kích hoạt kịch bản.
+1249	bật/tắt lớp phủ hình học chiến đấu.
+1250	bật/tắt lớp phủ gỡ lỗi địa hình tùy chỉnh.
+1251	bật/tắt lớp phủ bộ đệm độ sâu.
+1252	bật/tắt mọi mã gian lận và tặng bạn một ít tiền cho công sức.
+1253	làm sập game.
+1254	hủy bỏ các đối tượng đã chọn.
+1255	bật/tắt khả năng xây mọi thứ.
+1256	bỏ phiếu kết thúc hiệp ước hòa bình sớm
+1257	Hiển thị lối ra cho các nhà máy.
+1258	bật/tắt nạp sức mạnh hỗ trợ gần như tức thì.
+1259	cho một số tiền mặc định hoặc theo chỉ định.
+1260	cho tất cả người chơi và AI một số tiền mặc định hoặc theo chỉ định.
+1261	cung cấp thông tin hữu ích về các lệnh khác nhau.
+1262	bật/tắt lớp phủ bộ tìm đường phân cấp.
+1263	bật/tắt xây dựng tức thì.
+1264	tiêu diệt các đối tượng đã chọn.
+1265	thêm một số cấp độ theo chỉ định cho các đối tượng đã chọn.
+1266	không có mô tả.
+1267	bật/tắt hiển thị trực quan quá trình tìm đường.
+1268	tạm dừng hoặc tiếp tục game.
+1269	thêm một lượng kinh nghiệm người chơi theo chỉ định cho (những) chủ sở hữu của các đối tượng đã chọn.
+1270	gây mất điện 5 giây cho (những) chủ sở hữu của các đối tượng đã chọn.
+1271	bật/tắt lớp phủ hình học kết xuất.
+1272	bật/tắt lớp phủ bản đồ màn hình.
+1273	tự hủy mọi thứ và thua trận.
+1274	bật/tắt lớp phủ hình học địa hình.
+1275	bật/tắt kiểm tra tầm nhìn và bản đồ thu nhỏ.
+1276	bật/tắt điện vô hạn.
+1277	Đã xảy ra lỗi khi phát video.
+1278	Không thể phát video
+1279	Xóa tất cả bản đồ trên trang này?
+1280	Xóa bản đồ
+1281	{ $count ->\n[one] Xóa { $count } bản ghi.\n*[other] Xóa { $count } bản ghi.\n}
+1282	Xóa tất cả bản ghi đã chọn?
+1283	Xóa Tất cả
+1284	{ $count ->\n[one] Xóa { $count } tệp lưu.\n*[other] Xóa { $count } tệp lưu.\n}
+1285	Xóa tất cả tệp lưu trận đấu?
+1286	Xóa bản đồ '{ $title }'?
+1287	Xóa bản đồ
+1288	Xóa bản ghi { $replay }?
+1289	Xóa bản ghi đã chọn?
+1290	Xóa
+1291	Xóa '{ $save }'.
+1292	Xóa tệp lưu trận đấu đã chọn?
+1293	Quay lại
+1294	Có quá nhiều người chơi được định nghĩa ({ $players }/{ $max }).
+1295	Lỗi: Vượt quá số người chơi tối đa
+1296	Thoát
+1297	Vẫn thoát
+1298	Bản đồ có thể đã bị xóa bên ngoài trình sửa
+1299	Thoát và mất mọi thay đổi chưa lưu?
+1300	Thoát Trình sửa Bản đồ
+1301	Ở lại
+1302	Quay lại Trình sửa
+1303	Rời trận này và quay về trình sửa?
+1304	Rời Nhiệm vụ
+1305	Không thể đọc dữ liệu bản ghi.
+1306	{ -incompatible-replay-recorded } một phiên bản không tương thích:\n{ $version }.
+1307	{ -incompatible-replay-recorded } một bản đồ không khả dụng:\n{ $map }.
+1308	{ -incompatible-replay-recorded } một mod không khả dụng: { $mod }.
+1309	{ -incompatible-replay-recorded } một mod không xác định.
+1310	{ -incompatible-replay-recorded } một phiên bản không xác định.
+1311	Bản ghi Không tương thích
+1312	Đuổi
+1313	Người chơi này sẽ không thể tham gia lại trận đấu.
+1314	Đuổi { $player }?
+1315	{ $count ->\n[one] Bạn có chắc muốn đuổi 1 người xem?\n*[other] Bạn có chắc muốn đuổi { $count } người xem?\n}
+1316	Video của trò chơi có thể được cài đặt từ\nmenu "Quản lý Nội dung" trong trình chọn mod.
+1317	Chưa cài đặt video
+1318	Lưu
+1319	Lưu lại sẽ ghi đè\nmột bản đồ đã tồn tại.
+1320	Cảnh báo
+1321	Bản đồ đã bị chỉnh sửa từ bên ngoài trình sửa.\nLưu lại có thể ghi đè tiến trình.
+1322	Ghi đè
+1323	Ghi đè { $file }?
+1324	Ghi đè tệp lưu trận đấu?
+1325	Được
+1326	Bản đồ có thể đã bị xóa hoặc chứa\nlỗi khiến nó không thể tải được.
+1327	Thoát trò chơi? Tiến trình chưa lưu sẽ bị mất.
+1328	Thoát ra Màn hình Chính
+1329	Đổi tên Bản ghi
+1330	Đổi tên
+1331	Nhập tên tệp mới:
+1332	Đổi tên Tệp lưu
+1333	OK
+1334	Xem tệp debug.log để biết chi tiết.
+1335	Không thể lưu bản đồ
+1336	Không thể lắng nghe trên cổng { $port }.
+1337	Lỗi: "{ $message }" ({ $code }).
+1338	Kiểm tra xem cổng có đang được sử dụng hay không.
+1339	Tạo Máy chủ Thất bại
+1340	Đặt lại
+1341	Bạn có chắc muốn đặt lại\nmọi cài đặt trong bảng này?
+1342	Đặt lại { $panel }
+1343	Khởi động lại Sau
+1344	Khởi động lại Ngay
+1345	Một số thay đổi sẽ không được áp dụng cho đến khi\ngame khởi động lại. Khởi động lại ngay?
+1346	Khởi động lại Ngay?
+1347	Tiếp tục
+1348	Một số thay đổi sẽ không được áp dụng cho đến khi\ngame khởi động lại.
+1349	Cần Khởi động lại
+1350	{ $bots ->\n[one] Đuổi quản trị viên trận đấu cũng sẽ đuổi 1 bot.\n*[other] Đuổi quản trị viên trận đấu cũng sẽ đuổi { $bots } bot.\n}
+1351	Bỏ phiếu đuổi { $player }?
+1352	Bỏ phiếu Phản đối
+1353	Bỏ phiếu Trắng
+1354	Bỏ phiếu Đồng ý
+1355	Bắt đầu Bỏ phiếu
+1356	Kiểm soát tốc độ trôi qua của thời gian
+1357	Tốc độ Game
+1358	Độ khó của nhiệm vụ
+1359	Độ khó
+1360	Không người chơi nào có thể tấn công, gây sát thương hoặc chiếm giữ người chơi khác cho đến khi hiệp ước kết thúc. Gõ /endtreaty trong khung chat để bỏ phiếu kết thúc sớm.
+1361	Hiệp ước Hòa bình
+1362	Hiệu năng cao
+1363	Card Đồ họa:
+1364	Tiết kiệm điện
+1365	Windows sẽ chạy trò chơi bằng card đồ họa nào. Hầu hết laptop chơi game có hai card: một card tích hợp trong bộ xử lý tiết kiệm điện và một card rời tốc độ cao. Đây là lựa chọn tương tự như Windows Settings > System > Display > Graphics, và nó áp dụng vào lần khởi động game tiếp theo.
+1366	Để Windows tự quyết định
+1367	Cao
+1368	Chi tiết Thời tiết:
+1369	Thấp
+1370	Mức độ chi tiết khi vẽ thời tiết. Một cơn bão là thứ tốn tài nguyên nhất trên màn hình, nên hạ thấp mức này sẽ lấy lại khung hình mà không mất đi thời tiết. Mức Thấp vẫn giữ mọi loại thời tiết dễ nhận biết nhưng bỏ bớt vòng tóe nước dưới mưa, các lớp mưa và tuyết ở xa nhất, cùng các nhánh của sét. Áp dụng ngay lập tức.
+1371	Các đơn vị người chơi có khi bắt đầu trận đấu
+1372	Đơn vị Khởi đầu
+1373	Các đơn vị và kỹ năng mà người chơi có thể sử dụng
+1374	Cấp Công nghệ
+1375	Người chơi hoặc đội có điểm số cao nhất khi hết thời gian sẽ thắng
+1376	Giới hạn Thời gian
+1377	Mưa, giông bão, tuyết, sương mù, bão cát và gió thay đổi theo khí hậu của bản đồ trong suốt trận đấu.
+1378	Thời tiết
+1379	Tần suất thời tiết thay đổi.
+1380	Thay đổi Thời tiết
+1381	Loại tài nguyên
+1382	Thư mục
+1383	Bất kỳ ai
+1384	Chọn BlockedByActor
+1385	Chọn Locomotor
+1386	Chấp sẽ giảm hiệu quả chiến đấu của lực lượng người chơi
+1387	Một con quái vật khổng lồ chiến đấu cho người chơi này ngay từ đầu. Nếu nó chết thì không thể xây lại.
+1388	Lọc Trận đấu
+1389	Tin tức Chiến trường
+1390	Khả năng hiển thị Bản đồ
+1391	Quản trị Vị trí
+1392	{ $name } { $number ->\n*[zero] {""}\n[other] { $number }\n}
+1393	Nhập Chat
+1394	Trình sửa
+1395	Người xem
+1396	Bất kỳ
+1397	Di chuyển Tấn công
+1398	Tự động hoàn thành
+1399	Thêm vào nhóm 1
+1400	Thêm vào nhóm 2
+1401	Thêm vào nhóm 3
+1402	Thêm vào nhóm 4
+1403	Thêm vào nhóm 5
+1404	Thêm vào nhóm 6
+1405	Thêm vào nhóm 7
+1406	Thêm vào nhóm 8
+1407	Thêm vào nhóm 9
+1408	Thêm vào nhóm 0
+1409	Gộp với nhóm 1
+1410	Gộp với nhóm 2
+1411	Gộp với nhóm 3
+1412	Gộp với nhóm 4
+1413	Gộp với nhóm 5
+1414	Gộp với nhóm 6
+1415	Gộp với nhóm 7
+1416	Gộp với nhóm 8
+1417	Gộp với nhóm 9
+1418	Gộp với nhóm 0
+1419	Tạo nhóm 1
+1420	Tạo nhóm 2
+1421	Tạo nhóm 3
+1422	Tạo nhóm 4
+1423	Tạo nhóm 5
+1424	Tạo nhóm 6
+1425	Tạo nhóm 7
+1426	Tạo nhóm 8
+1427	Tạo nhóm 9
+1428	Tạo nhóm 0
+1429	Nhảy đến nhóm 1
+1430	Nhảy đến nhóm 2
+1431	Nhảy đến nhóm 3
+1432	Nhảy đến nhóm 4
+1433	Nhảy đến nhóm 5
+1434	Nhảy đến nhóm 6
+1435	Nhảy đến nhóm 7
+1436	Nhảy đến nhóm 8
+1437	Nhảy đến nhóm 9
+1438	Nhảy đến nhóm 0
+1439	Chọn nhóm 1
+1440	Chọn nhóm 2
+1441	Chọn nhóm 3
+1442	Chọn nhóm 4
+1443	Chọn nhóm 5
+1444	Chọn nhóm 6
+1445	Chọn nhóm 7
+1446	Chọn nhóm 8
+1447	Chọn nhóm 9
+1448	Chọn nhóm 0
+1449	Nhảy về căn cứ
+1450	Chuyển qua Xe thu hoạch
+1451	Công trình tiếp theo
+1452	Chuyển đổi hiển thị thanh trạng thái
+1453	Triển khai
+1454	Tab Đối tượng
+1455	Xóa Lựa chọn
+1456	Tab Lịch sử
+1457	Tab Lớp phủ
+1458	Tab Chọn
+1459	Tab Cài đặt
+1460	Tab Ô
+1461	Lớp phủ Địa hình Xây được
+1462	Lớp phủ Lưới
+1463	Lớp phủ Điểm đánh dấu
+1464	Tab Công cụ
+1465	Bảo vệ
+1466	Nhảy đến dấu trang 1
+1467	Nhảy đến dấu trang 2
+1468	Nhảy đến dấu trang 3
+1469	Nhảy đến dấu trang 4
+1470	Ghi dấu trang 1
+1471	Ghi dấu trang 2
+1472	Ghi dấu trang 3
+1473	Ghi dấu trang 4
+1474	Nhảy đến mép dưới
+1475	Nhảy đến mép trái
+1476	Nhảy đến mép phải
+1477	Nhảy đến mép trên
+1478	Cuộn xuống
+1479	Cuộn trái
+1480	Cuộn phải
+1481	Cuộn lên
+1482	Tiếp theo
+1483	Mở Chat Chung
+1484	Mở Chat Đội
+1485	Tạm dừng / Tiếp tục
+1486	Tạm dừng hoặc Tiếp tục
+1487	Đặt tín hiệu
+1488	Chế độ tắt điện
+1489	Trước đó
+1490	Vị trí 01
+1491	Vị trí 02
+1492	Vị trí 03
+1493	Vị trí 04
+1494	Vị trí 05
+1495	Vị trí 06
+1496	Vị trí 07
+1497	Vị trí 08
+1498	Vị trí 09
+1499	Vị trí 10
+1500	Vị trí 11
+1501	Vị trí 12
+1502	Vị trí 13
+1503	Vị trí 14

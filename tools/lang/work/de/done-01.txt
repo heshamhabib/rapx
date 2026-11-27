@@ -1,0 +1,250 @@
+0	Aufgenommen mit
+1	Schneller Panzer, gut zur Aufklärung.\nStark gegen leichte Panzerung\nSchwach gegen Infanterie, Panzer und Luftfahrzeuge
+2	Panzer
+3	Leichter Panzer
+4	Kampfpanzer der Union.\nStark gegen Fahrzeuge\nSchwach gegen Infanterie und Luftfahrzeuge
+5	Mittlerer Panzer
+6	Wrack (Mittlerer Panzer)
+7	Kampfpanzer der Vanguard mit schwerer Kanone.\nStark gegen Fahrzeuge\nSchwach gegen Infanterie und Luftfahrzeuge
+8	Schwerer Panzer
+9	Wrack (Schwerer Panzer)
+10	Großer, langsamer Panzer mit Flugabwehr.\nKann Betonmauern zermalmen.\nStark gegen Fahrzeuge, Infanterie und Luftfahrzeuge\nSchwach gegen nichts
+11	Mammut-Panzer
+12	Wrack (Mammut-Panzer)
+13	Produziert und munitioniert Luftfahrzeuge.\nStellplätze für 6 Flugzeuge.
+14	Luftwaffenbasis
+15	Heimat der Fallschirmjäger: drei Plätze für schwere\nTransportflugzeuge, die jeweils mit 40 Fallschirmjägern\nstarten und sie überall auf der Karte absetzen.\nBaut und munitioniert Transportflugzeuge\nBenötigt Flugfeld
+16	Luftlandebasis
+17	Produziert und munitioniert Luftfahrzeuge.\nStellplätze für 8 Flugzeuge.
+18	Luftwaffenstützpunkt
+19	Ein Badger wirft Fallschirmbomben\nüber dem gewählten Ziel ab.
+20	Fallschirmbomben
+21	Deckt ein Gebiet der Karte auf.
+22	Produziert und munitioniert Luftfahrzeuge.\nStellplätze für 4 Flugzeuge.\nSpezialfähigkeit: Spionageflugzeug\nSpezialfähigkeit: Fallschirmjäger
+23	Flugfeld
+24	Ein Badger setzt einen Infanterietrupp\nüber dem gewählten Ziel ab.
+25	Fallschirmjäger
+26	Produziert und munitioniert Luftfahrzeuge.\nSpezialfähigkeit: Spionageflugzeug\nSpezialfähigkeit: Fallschirmjäger\nSpezialfähigkeit: Fallschirmbomben
+27	Flugabwehrstellung. Schießt auch Drohnen,\nMarschflugkörper und manche Raketen auf kurze Distanz ab.\nBenötigt Energie.\nStark gegen Luftfahrzeuge und Drohnen\nSchwach gegen Bodeneinheiten
+28	Flak-Geschütz
+29	Beliebige Energieerzeugung
+30	Robuster Infanterietransporter.\nStark gegen Infanterie und leichte Panzerung\nSchwach gegen Panzer und Luftfahrzeuge
+31	Schützenpanzerwagen
+32	Liefert doppelt so viel Energie wie ein\nnormales Kraftwerk.
+33	Fortschrittliches Kraftwerk
+34	Weitreichende Artillerie.\nStark gegen Infanterie und Gebäude\nSchwach gegen Fahrzeuge und Luftfahrzeuge
+35	Artillerie
+36	Schießt feindliche Satelliten im Umkreis\nvon 12 Feldern ab.\nStark gegen Satelliten\nKann keine Bodeneinheiten oder Luftfahrzeuge treffen
+37	ASAT-Raketenstellung
+38	Liefert fortschrittliche Union-Technologie.\nSpezialfähigkeit: GPS-Satellit
+39	Deckt das Kartengelände auf und liefert taktische Informationen.\nBenötigt Energie und aktives Radar.
+40	GPS-Satellit
+41	Union-Technologiezentrum
+42	Schneller schwerer Transporthubschrauber.\nTrägt 10 Infanteristen. Nur Indien.\nLegt eine Nebelwand und seilt seine Truppen\nim Schwebeflug ab (F hier, G für Zielpunkt).\nUnbewaffnet\nSchwach gegen Flugabwehr
+43	AW101 Merlin
+44	B-17 Flying Fortress
+45	B-29 Superfortress
+46	Boeing 314 Clipper
+47	B-52 Stratofortress
+48	Badger
+49	Stacheldrahtzaun
+50	Explosives Fass
+51	Bildet Infanterie aus.
+52	Vanguard-Kaserne
+53	Infanterieproduktion
+54	Riesiges, schwer gepanzertes Schiff mit 16-Zoll-Geschützen,\nden weitreichendsten Geschützen auf See.\nStark gegen Gebäude, Bodeneinheiten und Schiffe\nSchwach gegen U-Boote und Luftfahrzeuge
+55	Schlachtschiff
+56	Billiger Kampfdroide der Union mit Blastergewehr.\nIn großer Zahl gebaut.\nStark gegen Infanterie\nSchwach gegen Fahrzeuge, Luftfahrzeuge
+57	Kampfdroide
+58	Einnehmen, um Biolabor-Einheiten zu produzieren.
+59	Voraussetzung für Biolabor-Einheiten.
+60	Biolabor
+61	Heimat des Atombombers AB-35 Longwing.\nLädt den Fatman-Schlag, solange der Bomber lebt.\nNur USA. Maximal 1 baubar.
+62	Die AB-35 Longwing startet und wirft\neine Fatman-Atombombe auf das Ziel.\nKleinere Explosion als die Atomrakete.
+63	Fatman-Schlag
+64	Strategischer Bomberflugplatz
+65	Abwehr ballistischer Raketen (THAAD-Klasse): fängt\nballistische und Hyperschallraketen weit draußen ab.\nBenötigt eine Radarkuppel für volle Reichweite.\nStark gegen ballistische und Hyperschallraketen\nKann keine Luftfahrzeuge, Drohnen oder Raketen bekämpfen
+66	Raketenschild
+67	Hält Einheiten auf und blockiert feindliches Feuer.
+68	Betonmauer
+69	Schneller gepanzerter Radtransporter mit\nMaschinenkanone. Trägt 5 Infanteristen. Nur Russland.\nStark gegen Infanterie und leichte Panzerung\nSchwach gegen Panzer und Luftfahrzeuge
+70	BTR
+71	Transportflugzeug mit 40 Fallschirmjägern an Bord.\nRechtsklick auf den Boden setzt sie dort ab; danach\nfliegt es heim und nimmt in einer Minute eine neue\nTruppe auf (kostenpflichtig).\nUnbewaffnet\nWird in der Luftlandebasis gebaut
+72	C-130 Hercules
+73	C-141 Starlifter
+74	C-17A Globemaster III
+75	Sehr langsames Schiff mit großer Reichweite.\nStark gegen Gebäude und Bodeneinheiten\nSchwach gegen Marineeinheiten und Luftfahrzeuge
+76	Kreuzer
+77	(deckt Gebiet für Besitzer auf)
+78	(Kamera für Unterstützungsfähigkeit)
+79	Feuert Tomahawk-Marschflugkörper tief ins Landesinnere\nund schützt die Flotte vor Luftangriffen.\nNur USA.\nStark gegen Gebäude und Luftfahrzeuge\nSchwach gegen U-Boote
+80	Lenkwaffenkreuzer
+81	Schwerer Radwerfer mit 6-Raketen-Salve.\nAufbauen, um auf eine schwere Lenkrakete\nmit größerer Reichweite umzuschalten.\nStark gegen Infanterie und Gebäude\nSchwach gegen Fahrzeuge und Luftfahrzeuge; teuer
+82	Chunmu
+83	Springt Soldaten und Hunde an und tötet sie\nmit einem Biss. Schwimmt schnell und ist reglos\nim Wasser unsichtbar. Nur Ägypten.\nStark gegen Infanterie und Hunde\nSchwach gegen Fahrzeuge und Gebäude
+84	Krokodil
+85	Nilkrokodil
+86	Flagge
+87	Bewaffnet mit Boden-Raketen.\nTeleportiert sich überallhin in Reichweite.\nStark gegen Fahrzeuge und Gebäude\nSchwach gegen Infanterie und Luftfahrzeuge\nSpezialfähigkeit: Teleportation
+88	Chrono-Panzer
+89	Träger der Essex-Klasse aus dem Zweiten Weltkrieg.\nEin schwimmender Flugplatz mit SAM-Werfern zur Verteidigung.\nStark gegen Luftfahrzeuge, Flugkörper\nSchwach gegen Schiffe, U-Boote\nMaximal 1: Ein neuer kann gebaut werden, sobald er verloren ist.
+90	Flottenträger
+91	Der erste Flugzeugträger mit Atomantrieb (Enterprise-Klasse).\nGrößeres Deck, härterer Rumpf, mehr SAM-Werfer.\nStark gegen Luftfahrzeuge, Flugkörper\nSchwach gegen Schiffe, U-Boote\nMaximal 1: Ein neuer kann gebaut werden, sobald er verloren ist.
+92	Kampfträger
+93	Atomgetriebener Superträger der Nimitz-Klasse.\nSchwer gepanzertes Flaggschiff der Flotte.\nStark gegen Luftfahrzeuge, Flugkörper\nSchwach gegen Schiffe, U-Boote\nMaximal 1: Ein neuer kann gebaut werden, sobald er verloren ist.
+94	Superträger
+95	Träger der Gerald-R.-Ford-Klasse mit modernster\nAbwehr. Das stärkste Schiff auf See.\nStark gegen Luftfahrzeuge, Flugkörper\nSchwach gegen Schiffe, U-Boote\nMaximal 1: Ein neuer kann gebaut werden, sobald er verloren ist.
+96	Zukunftsträger
+97	Chinas neuester Superträger mit\nelektromagnetischen Katapulten.\nStark gegen Luftfahrzeuge, Flugkörper\nSchwach gegen Schiffe, U-Boote\nMaximal 1: Ein neuer kann gebaut werden, sobald er verloren ist.
+98	Träger Fujian
+99	Ägyptischer amphibischer Hubschrauberträger.\nBillig und schnell gebaut.\nStark gegen Luftfahrzeuge, Flugkörper\nSchwach gegen Schiffe, U-Boote\nMaximal 1: Ein neuer kann gebaut werden, sobald er verloren ist.
+100	Hubschrauberträger Mistral
+101	Frankreichs atomgetriebener Flugzeugträger,\nder Stolz der Marine nationale.\nStark gegen Luftfahrzeuge, Flugkörper\nSchwach gegen Schiffe, U-Boote\nMaximal 1: Ein neuer kann gebaut werden, sobald er verloren ist.
+102	Träger Charles de Gaulle
+103	Träger der Royal Navy mit Skisprungschanze\nund zwei Inselaufbauten.\nStark gegen Luftfahrzeuge, Flugkörper\nSchwach gegen Schiffe, U-Boote\nMaximal 1: Ein neuer kann gebaut werden, sobald er verloren ist.
+104	Träger Queen Elizabeth
+105	Indiens selbst gebauter Träger mit\nSkisprungschanze.\nStark gegen Luftfahrzeuge, Flugkörper\nSchwach gegen Schiffe, U-Boote\nMaximal 1: Ein neuer kann gebaut werden, sobald er verloren ist.
+106	Träger Vikrant
+107	Ein umgebautes Handelsschiff mit Flugdeck\nfür Drohnen. Billig, aber zerbrechlich.\nStark gegen Luftfahrzeuge, Flugkörper\nSchwach gegen Schiffe, U-Boote\nMaximal 1: Ein neuer kann gebaut werden, sobald er verloren ist.
+108	Drohnenträger Bagheri
+109	Italienischer leichter Träger für Senkrechtstarter\nund Hubschrauber.\nStark gegen Luftfahrzeuge, Flugkörper\nSchwach gegen Schiffe, U-Boote\nMaximal 1: Ein neuer kann gebaut werden, sobald er verloren ist.
+110	Leichter Träger Cavour
+111	Hubschrauberzerstörer, umgebaut zum leichten\nTräger für senkrechtstartende Jäger.\nStark gegen Luftfahrzeuge, Flugkörper\nSchwach gegen Schiffe, U-Boote\nMaximal 1: Ein neuer kann gebaut werden, sobald er verloren ist.
+112	Träger Kaga
+113	Schwerer flugzeugtragender Kreuzer mit\nSkisprungschanze und starker SAM-Abwehr.\nStark gegen Luftfahrzeuge, Flugkörper\nSchwach gegen Schiffe, U-Boote\nMaximal 1: Ein neuer kann gebaut werden, sobald er verloren ist.
+114	Träger Kusnezow
+115	Halb Träger, halb Kreuzer: hinten ein Flugdeck,\nvorne Raketenwerfer.\nStark gegen Luftfahrzeuge, Flugkörper\nSchwach gegen Schiffe, U-Boote\nMaximal 1: Ein neuer kann gebaut werden, sobald er verloren ist.
+116	Flugdeckkreuzer Kiew
+117	Amphibienschiff, umgebaut zum Drohnenträger.\nStartet Schwärme von Kampfdrohnen.\nStark gegen Luftfahrzeuge, Flugkörper\nSchwach gegen Schiffe, U-Boote\nMaximal 1: Ein neuer kann gebaut werden, sobald er verloren ist.
+118	Drohnenträger Anadolu
+119	Gepanzerter Cyborg der Union mit schwerer Automatikpistole.\nKann nicht überrollt werden und geht nie in Deckung.\nStark gegen Infanterie\nSchwach gegen Fahrzeuge, Luftfahrzeuge
+120	Cyborg-Soldat
+121	Maschendrahtsperre
+122	Jefferson Memorial
+123	Lincoln Memorial
+124	Einnehmen für ein sehr hohes Einkommen.
+125	Liefert ein sehr hohes Einkommen.
+126	Washington Monument
+127	Das Weiße Haus
+128	Schnelles Mehrzweckschiff.\nKann U-Boote aufspüren.\nStark gegen Marineeinheiten, Fahrzeuge und Luftfahrzeuge\nSchwach gegen Infanterie
+129	Zerstörer
+130	Anti-Infanterie-Einheit.\nKann Spione aufspüren.\nStark gegen Infanterie\nSchwach gegen Fahrzeuge und Luftfahrzeuge
+131	Hund
+132	Kampfhund
+133	Bietet einen Überblick über\ndas Schlachtfeld.\nBenötigt Energie.
+134	Radarkuppel
+135	Lkw mit scharfem Atomsprengstoff,\nnur sehr schwach gepanzert.
+136	Sprengstoff-Lkw
+137	Allzweck-Infanterie.\nStark gegen Infanterie\nSchwach gegen Fahrzeuge und Luftfahrzeuge
+138	Schützen
+139	Infanterie mit Granaten.\nStark gegen Gebäude und Infanterie\nSchwach gegen Fahrzeuge und Luftfahrzeuge
+140	Grenadier
+141	Panzer- und Flugabwehr-Infanterie.\nStark gegen Fahrzeuge und Luftfahrzeuge\nSchwach gegen Infanterie
+142	Raketensoldat
+143	Fortschrittliche Anti-Gebäude-Einheit.\nStark gegen Infanterie und Gebäude\nSchwach gegen Fahrzeuge und Luftfahrzeuge
+144	Flammenwerfer
+145	Infiltriert und erobert\nfeindliche Gebäude.\nUnbewaffnet
+146	Ingenieur
+147	Elite-Kommando mit zwei Pistolen\nund C4.\nNur eine baubar.\nStark gegen Infanterie und Gebäude\nSchwach gegen Fahrzeuge und Luftfahrzeuge\nSpezialfähigkeit: Zerstört Gebäude mit C4
+148	Tanya
+149	Boeing 707 (Zelle der E-8C)
+150	Kairoer Fernsehturm
+151	Karnak-Tempel
+152	Großes Ägyptisches Museum
+153	Cheops-Pyramide
+154	Große Sphinx
+155	Mechanischer Kriegselefant mit schwerer Zwillingskanone.\nZertrampelt jede Infanterie, über die er läuft.\nBenötigt Technologiezentrum. Nur Indien.\nStark gegen Panzer, Gebäude und Infanterie\nSchwach gegen Luftfahrzeuge
+156	Elephanta
+157	Schwerer zweibeiniger Sturmläufer der Union.\nZwei Arm-Maschinenkanonen zerfetzen Infanterie,\nein Schulter-Raketenwerfer knackt Panzerung.\nStark gegen Infanterie, Fahrzeuge\nSchwach gegen Luftfahrzeuge
+158	Enforcer-Läufer
+159	Produziert Gebäude.
+160	Bauhof
+161	Große Reichweite für wenig Geld, aber ungenau.\nAufbauen, um auf 2 Shard-136-Kampfdrohnen\nmit sehr großer Reichweite umzuschalten.\nStark gegen Infanterie und Gebäude\nSchwach gegen Fahrzeuge und Luftfahrzeuge
+162	Fajir-5
+163	Gelenkte Langstreckenraketen, sehr präzise.\nStark gegen Gebäude, Infanterie und Fahrzeuge\nSchwach gegen Luftfahrzeuge; langsames Nachladen
+164	Fatah-X
+165	Einnehmen für zusätzliche Baufläche.
+166	Liefert Baufläche.
+167	Vorposten
+168	Drahtzaun
+169	Repariert Fahrzeuge gegen Credits.
+170	Reparaturdepot
+171	Schwere Zwillings-Flak. Ihre Salven beschädigen\njedes Luftfahrzeug in der Nähe und holen auch Drohnen\nund Marschflugkörper herunter.\nStark gegen Luftfahrzeuge und Drohnen\nSchwach gegen Bodeneinheiten
+172	Flakkanone
+173	Leuchtfackel
+174	Mobile Einheit mit Flakkanone.\nStark gegen Infanterie, leichte Panzerung und Luftfahrzeuge\nSchwach gegen Panzer
+175	Mobile Flak
+176	Anti-Infanterie-Verteidigung.\nKann getarnte Einheiten aufspüren.\nStark gegen Infanterie und leichte Panzerung\nSchwach gegen Panzer und Luftfahrzeuge
+177	Flammenturm
+178	Verhüllt die Sicht des Feindes mit Nebel.\nBenötigt Energie.
+179	Lückengenerator
+180	Edelsteinmine
+181	König der Monster. Wird in der Lobby gewählt: einer pro Spieler, nicht nachbaubar.\nSein Atomatem verbrennt alles in langer Sichtlinie, sogar Luftfahrzeuge.\nZertrampelt alles in seiner Nähe. Watet durch Flüsse und das Meer.\nStark gegen alles
+182	Godzilla
+183	Alter Grad-Werfer: billig, aber ungenau.\nStark gegen Infanterie und Gruppen\nSchwach gegen Fahrzeuge und Luftfahrzeuge
+184	Guajiro Grad
+185	Panzerabwehrstellung.\nKann getarnte Einheiten aufspüren.\nStark gegen Fahrzeuge\nSchwach gegen Infanterie und Luftfahrzeuge
+186	Geschützturm
+187	Mobile Flugabwehr: Salven aus vier schnellen Raketen,\ndie sich spiralförmig auf Luftziele stürzen, dazu eine\n35-mm-Kanone für alles, was zu nahe kommt.\nStark gegen Luftfahrzeuge und Hubschrauber\nKann keine Bodenziele angreifen
+188	Gürz Mace
+189	Kettenwerfer: große 12-Raketen-Salve auf weite Fläche.\nStark gegen Infanterie und Gebäude\nSchwach gegen Fahrzeuge und Luftfahrzeuge; langsam
+190	Hailstorm
+191	Sammelt Erz und Edelsteine zur\nVerarbeitung.\nUnbewaffnet
+192	Sammler
+193	Erzsammler
+194	Wrack (Erzsammler)
+195	Getarnte Verteidigungsstellung mit Schießscharte\nfür einen stationierten Soldaten.\nKann getarnte Einheiten aufspüren.\nStark gegen Infanterie und leichte Panzerung\nSchwach gegen Panzer und Luftfahrzeuge
+196	Tarnbunker
+197	Flugabwehr- und U-Jagd-Begleitschiff mit\nRaketen, Nahbereichsgeschütz und Wasserbomben.\nStark gegen Luftfahrzeuge und U-Boote\nSchwach gegen Bodeneinheiten
+198	Hubschrauberkreuzer
+199	Heilkiste
+200	Schneller leichter Kampfhubschrauber mit HOT-\nPanzerabwehrraketen und 20-mm-Kanone.\nStark gegen Panzer und Fahrzeuge\nSchwach gegen Infanterie und Flugabwehr
+201	Longbow
+202	Schneller Radwerfer mit gelenkten Langstreckenraketen.\nShoot and Scoot: fährt nach jedem Abschuss weg.\nStark gegen Infanterie, Gebäude und Fahrzeuge\nSchwach gegen Luftfahrzeuge
+203	HIMAX
+204	Kampfhubschrauber mit zwei Kettenkanonen.\nStark gegen Infanterie und leichte Panzerung\nSchwach gegen Panzer und Luftfahrzeuge
+205	Hind
+206	Schneller Raketen-Lkw: feuert einen langen Strom von\n30 leichten Raketen aus seinen Startrohren.\nStark gegen Infanterie und Gebäude\nSchwach gegen Panzer und Luftfahrzeuge
+207	Hailfire-Raketen-Lkw
+208	Robuster Spähwagen mit .50-cal-MG auf dem Dach.\nTrägt 4 Infanteristen. Nur USA.\nStark gegen Infanterie und leichte Panzerung\nSchwach gegen Panzer
+209	Humvee
+210	Einnehmen, damit sich Infanterie selbst heilt.
+211	Infanterie heilt sich selbst.
+212	Lazarett
+213	Produziert und munitioniert Hubschrauber.
+214	Heli-Landeplatz
+215	Eisscholle
+216	Schweres Transportflugzeug mit 40 Fallschirmjägern an Bord.\nRechtsklick auf den Boden setzt sie dort ab; danach\nfliegt es heim und nimmt in einer Minute eine neue\nTruppe auf (kostenpflichtig).\nHeckturm: zwei 23-mm-Kanonen gegen Luftfahrzeuge\nWird in der Luftlandebasis gebaut
+217	Il-76MD Candid
+218	Vanguard-Soldat in einem Kraftanzug mit\ngurtgespeistem schwerem Maschinengewehr.\nKann nicht überrollt werden und geht nie in Deckung.\nStark gegen Infanterie\nSchwach gegen Fahrzeuge, Luftfahrzeuge
+219	Eisengarde
+220	Macht eine Gruppe von Einheiten vorübergehend\nunverwundbar.\nBenötigt Energie.\nNur einer baubar.\nSpezialfähigkeit: Unverwundbarkeit
+221	Macht eine Gruppe von Einheiten\nfür 20 Sekunden unverwundbar.
+222	Unverwundbarkeit
+223	Eiserner Vorhang
+224	Einnehmen für ein hohes Einkommen.
+225	Liefert ein hohes Einkommen.
+226	Wächterturm
+227	Schnelles Aufklärungs- und Anti-Infanterie-Fahrzeug.\nKann nur einen Infanteristen tragen.\nStark gegen Infanterie\nSchwach gegen Fahrzeuge und Luftfahrzeuge
+228	Ranger
+229	Gepanzertes Erdkampfflugzeug.\nStark gegen Panzer und Fahrzeuge\nSchwach gegen Kampfjets\nGenerationsstufe 3\nGeflogen von: Union, USA
+230	AA-10 Thunderhog
+231	Transportflugzeug.\nTrägt Infanterie\nUnbewaffnet\nGenerationsstufe 4\nGeflogen von: Ukraine
+232	An-225 Dreamer
+233	Schwerer Bomber.\nStark gegen Gebäude\nSchwach gegen Kampfjets und Flugabwehr\nGenerationsstufe 5\nGeflogen von: Union, USA
+234	AB-2 Wraith
+235	Schwerer Bomber.\nStark gegen Gebäude\nSchwach gegen Kampfjets und Flugabwehr\nGenerationsstufe 2\nGeflogen von: USA
+236	AB-52 Stratoforce
+237	Schneller Abfangjäger.\nStark gegen Gebäude und Fahrzeuge\nSchwach gegen Flugabwehr\nGenerationsstufe 2\nGeflogen von: Union, USA, Deutschland, Italien, Japan, Türkei, Pakistan
+238	AF-104 Starflash
+239	Tarnkappenjäger.\nStark gegen Gebäude und Fahrzeuge\nSchwach gegen Flugabwehr\nGenerationsstufe 3\nGeflogen von: Union, USA
+240	AF-117 Nightjar
+241	Schneller Abfangjäger.\nStark gegen Gebäude und Fahrzeuge\nSchwach gegen Flugabwehr\nGenerationsstufe 3\nGeflogen von: Union, USA, Iran
+242	AF-14 Bobcat
+243	Mehrzweckkampfflugzeug.\nStark gegen Gebäude und Fahrzeuge\nSchwach gegen Flugabwehr\nGenerationsstufe 3\nGeflogen von: Union, USA, Italien, Südkorea, Ägypten, Türkei, Pakistan, Ukraine
+244	AF-16 Fighting Kestrel
+245	Marine-Jagdbomber.\nStark gegen Schiffe und Fahrzeuge\nSchwach gegen Flugabwehr\nGenerationsstufe 4\nGeflogen von: Japan
+246	AF-2 Zero Viper
+247	Tarnkappenjäger.\nStark gegen Gebäude und Fahrzeuge\nSchwach gegen Flugabwehr\nGenerationsstufe 5\nGeflogen von: Union, USA
+248	AF-22 Raptorex
+249	Schneller Abfangjäger.\nStark gegen Gebäude und Fahrzeuge\nSchwach gegen Flugabwehr\nGenerationsstufe 2\nGeflogen von: Union, USA, England, Deutschland, Japan, Südkorea, Ägypten, Türkei, Iran

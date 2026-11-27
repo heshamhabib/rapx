@@ -39,6 +39,7 @@ engine-smooth-screen-shake.patch
 engine-faster-sprite-loading.patch
 engine-gpu-memory-and-fill.patch
 engine-graphics-card-info.patch
+engine-languages.patch
 ```
 
 ## Upgrading the engine

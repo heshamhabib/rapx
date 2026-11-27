@@ -77,8 +77,9 @@ namespace OpenRA.Mods.RAPX.Widgets
 
 		public static bool IsTitan(string id) => !string.IsNullOrEmpty(id) && id != "none" && id != "random";
 
+		// Subtitles/Specials are English in rules/titans.yaml; tools/lang/l10n.py collects them for translation
 		string Line(Dictionary<string, string> lines, string id, string fallback) =>
-			Info != null && lines.TryGetValue(id, out var s) ? s : fallback;
+			Info != null && lines.TryGetValue(id, out var s) ? PxText.T(s).Replace("\n", "\\n") : fallback;
 
 		Color Accent(string id) =>
 			Info != null && Info.Colors.TryGetValue(id, out var c) ? c : id == "random" ? RandomColor : id == "none" ? NoneColor : Gold;
@@ -92,7 +93,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 				id = "none";
 
 			var accent = Accent(id);
-			var subtitle = Info == null ? "" : Line(Info.Subtitles, id, id == "none" ? "NO TITAN" : id == "random" ? "SURPRISE" : "TITAN");
+			var subtitle = Info == null ? "" : Line(Info.Subtitles, id, id == "none" ? PxText.T("NO TITAN") : id == "random" ? PxText.T("SURPRISE") : PxText.T("TITAN"));
 
 			if (Mode == DecorMode.Button)
 			{
@@ -180,10 +181,10 @@ namespace OpenRA.Mods.RAPX.Widgets
 	/// </summary>
 	public class PxTitanPickerPanelWidget : ScrollPanelWidget
 	{
-		public readonly string Title = "CHOOSE YOUR TITAN";
+		public readonly string Title = PxText.N("CHOOSE YOUR TITAN");
 		public readonly string TitleFont = "PXDisplay";
 		public readonly string HintFont = "PXSmall";
-		public readonly string Hint = "One per player. It walks out at the start and cannot be rebuilt.";
+		public readonly string Hint = PxText.N("One per player. It walks out at the start and cannot be rebuilt.");
 		public readonly int Padding = 16;
 		public readonly int TitleHeight = 64;
 		public readonly int Gap = 10;
@@ -224,8 +225,8 @@ namespace OpenRA.Mods.RAPX.Widgets
 		{
 			base.DrawOuter();
 			var rb = RenderBounds;
-			Game.Renderer.Fonts[TitleFont].DrawTextWithShadow(Title, new float2(rb.X + Padding + 4, rb.Y + 12), Color.White, Color.Black, 1);
-			Game.Renderer.Fonts[HintFont].DrawText(Hint, new float2(rb.X + Padding + 4, rb.Y + 38), Color.FromArgb(150, 151, 160));
+			Game.Renderer.Fonts[TitleFont].DrawTextWithShadow(PxText.T(Title), new float2(rb.X + Padding + 4, rb.Y + 12), Color.White, Color.Black, 1);
+			Game.Renderer.Fonts[HintFont].DrawText(PxText.T(Hint), new float2(rb.X + Padding + 4, rb.Y + 38), Color.FromArgb(150, 151, 160));
 			WidgetUtils.FillRectWithColor(new Rectangle(rb.X + Padding, rb.Y + TitleHeight - 6, rb.Width - 2 * Padding, 1),
 				Color.FromArgb(60, 255, 255, 255));
 		}

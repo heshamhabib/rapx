@@ -1,0 +1,165 @@
+2330	Le vote d'expulsion est désactivé sur ce serveur.
+2331	Le vote d'expulsion de { $kickee } a échoué.
+2332	{ $percentage }% des joueurs ont voté l'expulsion de { $kickee }.
+2333	{ $kicker } a lancé un vote d'expulsion contre { $kickee }.
+2334	Météo : { $weather }.
+2335	Prévisions météo : { $weather } dans { $seconds } secondes.
+2336	Vous avez été banni du serveur.
+2337	Vous avez été expulsé du serveur.
+2338	Vous avez été banni temporairement du serveur.
+2339	Proche
+2340	Éloignée
+2341	Très éloignée
+2342	Moyenne
+2343	Tous
+2344	Multiple
+2345	Aucun
+2346	Résultats de recherche
+2347	Classique
+2348	Moderne
+2349	Plein écran
+2350	Plein écran (ancien)
+2351	Fenêtré
+2352	Rapide
+2353	Plus rapide
+2354	Très rapide
+2355	Normale
+2356	Plus lente
+2357	Très lente
+2358	Bots
+2359	Bots désactivés
+2360	Fermée
+2361	Ouverte
+2362	Place
+2363	Inversé
+2364	Joystick
+2365	Armée
+2366	Armée (graphique)
+2367	Base
+2368	Combat
+2369	Gains (graphique)
+2370	Économie
+2371	Informations : aucune
+2372	Production
+2373	Pouvoirs de soutien
+2374	Date
+2375	Joueurs
+2376	Taille
+2377	Titre
+2378	Aucun traité
+2379	Personnalisé
+2380	OpenRA par défaut
+2381	Red Alert 2
+2382	Red Alert 2 (ordres au clic droit)
+2383	14 derniers jours
+2384	30 derniers jours
+2385	7 derniers jours
+2386	Aujourd'hui
+2387	Longue (60+ min)
+2388	Moyenne (30 min)
+2389	Courte (10 min)
+2390	Moins de 5 min
+2391	Multijoueur
+2392	Solo
+2393	Tous les joueurs
+2394	Désactiver le voile
+2395	Autre
+2396	Ajouter
+2397	Configurer les bots
+2398	Configurer les équipes
+2399	Chacun pour soi
+2400	Humains contre bots
+2401	Retirer
+2402	{ $count } équipes
+2403	Appui lourd
+2404	Appui léger
+2405	VCM seul
+2406	Toujours afficher
+2407	Afficher si endommagé
+2408	Standard
+2409	Automatique
+2410	Désactivé
+2411	Manuel
+2412	Infanterie seule
+2413	Sans superarmes
+2414	Sans restriction
+2415	Sans limite
+2416	{ $minutes ->\n[one] { $minutes } minute\n*[other] { $minutes } minutes\n}
+2417	Désactivée
+2418	Visuel uniquement
+2419	Fréquents
+2420	Rares
+2421	Défaite
+2422	Victoire
+2423	ALLIANCE { $p0 }  ·  DOSSIER NATIONAL
+2424	{ $p0 } DISPONIBLES
+2425	{ $p0 } CASES
+2426	{ $p0 } CASES/S
+2427	{ $p0 } DPS
+2428	{ $p0 } EXCLUSIFS
+2429	{ $p0 } AFFÛTS
+2430	{ $p0 } NATIONS   ·   { $p1 } ENTRÉES   ·   FLÈCHES / TAB POUR PARCOURIR
+2431	{ $p0 } NATIONS
+2432	{ $p0 } RAILS
+2433	{ $p0 } MORCEAUX · { $p1 }
+2434	{ $p0 } aires de transport : construit et réarme uniquement les transports aéroportés
+2435	COMMANDANT IA
+2436	AIR
+2437	Défense antiaérienne
+2438	Largage aéroporté : { $p0 } parachutistes ({ $p1 })
+2439	AÉRONEFS
+2440	Pont aérien
+2441	Amphibie
+2444	Leurres Angel : { $p0 } énormes salves trompent { $p1 }% des missiles guidés
+2446	Torpilles antinavires
+2447	Titan simien
+2448	ARMEMENT
+2449	BLINDAGE
+2450	BLINDAGE
+2451	ARMÉE
+2452	CATALOGUE DE L'ARSENAL
+2453	Obus d'artillerie
+2454	ATGM
+2455	Bombe atomique
+2456	Le souffle atomique touche aussi les aéronefs\nNage en mer · 1,000,000 PV
+2457	Titan atomique
+2458	Balistique
+2459	Défense de base
+2460	Structure de base
+2461	Rayon
+2462	Bateau
+2463	Bombardier
+2464	Bombes
+2465	TEMPS DE CONSTRUCTION
+2466	Bâtiment
+2467	Peut engager les aéronefs
+2468	Obus de canon
+2469	CAPACITÉS
+2470	Capture les bâtiments ennemis
+2471	cases
+2472	cases (min. { $p0 })
+2473	CHOISISSEZ VOTRE NATION
+2474	CHOISISSEZ VOTRE TITAN
+2475	CIWS
+2476	Défense rapprochée
+2477	Arme à sous-munitions
+2478	COMMANDANT · { $p0 }
+2479	COMMANDANT
+2480	COÛT
+2481	Croisière
+2482	CYCLE { $p0 }s
+2483	Antiaérien dédié
+2484	VAINCU · { $p0 }
+2485	VAINCU
+2486	DÉFENSES
+2487	DÉFENSES
+2488	Structure défensive
+2489	Détecte les unités furtives
+2490	DÉCONNECTÉ
+2491	Se déguise en voiture civile
+2492	Se déguise en soldat ennemi
+2493	DÉG. { $p0 }
+2494	dég.
+2496	Drone
+2498	Largue des parachutistes
+2499	ROBUSTESSE

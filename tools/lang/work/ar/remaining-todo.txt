@@ -1,0 +1,887 @@
+1760	Querying account details from
+1761	the OpenRA forum...
+1762	Checking Sources
+1763	Gone
+1764	Army Value
+1765	B. Lost
+1766	B. Killed
+1767	U. Lost
+1768	U. Killed
+1769	Vision
+1770	Connecting...
+1771	Connecting
+1772	Connecting to { $endpoint }...
+1773	Failed to connect to the OpenRA forum.
+1774	Please check your internet connection.
+1775	Connection Failed
+1776	This server is running a different mod:
+1777	Switch mods and join server?
+1778	Switch Mod
+1779	Password:
+1780	Track
+1781	Select which content packages you want to install:
+1782	Copying { $filename }
+1783	Copying { $filename } ({ $progress }%)
+1784	Could not connect to { $target }
+1785	Created by { $author }
+1786	Custom Colors
+1787	Additional developer-specific options can be enabled via the
+1788	Debug.DisplayDeveloperSettings setting or launch flag
+1789	Debug Options
+1790	Visualizations
+1791	Detecting drives
+1792	Digital Installs
+1793	Server Address:
+1794	Connect to Server
+1795	Disabled spawn
+1796	Download failed
+1797	Downloading { $title }
+1798	Downloading from { $host } { $received } { $suffix }
+1799	Downloading from { $host } { $received } / { $total } { $suffix } ({ $progress }%)
+1800	Downloading { $size } kB
+1801	Downloading { $size } kB ({ $progress }%)
+1802	Duplicate Actor ID
+1803	This is already used for "{ $key }" in the { $context } context
+1804	Duration: { $time }
+1805	Assets
+1806	Oil Derricks
+1807	Earned
+1808	Harvesters
+1809	Income
+1810	Spent
+1811	Extracting...
+1812	Extracting { $entry }
+1813	Extracting { $filename }
+1814	Extracting { $filename } ({ $progress }%)
+1815	Fetching list of mirrors...
+1816	Actors
+1817	in
+1818	Order by:
+1819	Resources
+1820	Terrain
+1821	Date:
+1822	Duration:
+1823	Faction:
+1824	Type:
+1825	Map:
+1826	Outcome:
+1827	Player:
+1828	Filter
+1829	Your authentication key is not connected
+1830	to an OpenRA forum account.
+1831	One or more players are not yet ready.
+1832	Are you sure that you want to force start the game?
+1833	Start Game?
+1834	Game Admin
+1835	Game Content Not Found
+1836	Game Sources
+1837	Load game
+1838	Save game
+1839	[CREATE NEW FILE]
+1840	Press Escape to cancel loading and return to the main menu
+1841	Loading Saved Game
+1842	Connect to a forum account to identify
+1843	yourself to other players, join private
+1844	servers, and display badges.
+1845	Generating authentication key pair.
+1846	This will take several seconds...
+1847	No hotkeys match the filter criteria.
+1848	Context:
+1849	Filter by name:
+1850	{ $minutes ->\n[0] In progress for less than a minute.\n[one] In progress for { $minutes } minute.\n*[other] In progress for { $minutes } minutes.\n}
+1851	Infinite
+1852	Installation Failed
+1853	Installing Content
+1854	Internet Server (UPnP/NAT-PMP
+1855	Enabled
+1856	Not Supported
+1857	You may also apply a temporary ban, preventing
+1858	them from joining for the remainder of this game.
+1859	Kick Spectators
+1860	One or more clients are missing the selected
+1861	map, and will be kicked from the server.
+1862	Latency:
+1863	{ $length } sec
+1864	Loading news
+1865	Loading player profile...
+1866	Failed to load player profile.
+1867	Map Options
+1868	Color
+1869	Handicap
+1870	Name
+1871	Ready
+1872	Spawn
+1873	Local Server:
+1874	We would like to collect some system details that will help us optimize OpenRA.
+1875	With your permission, the following anonymous data will be sent each game launch:
+1876	Manage
+1877	Unknown Map
+1878	This map is not compatible
+1879	with this version of OpenRA
+1880	An error occurred during installation
+1881	Searching OpenRA Resource Center...
+1882	{ $count ->\n[one] Searching the OpenRA Resource Center for { $count } map...\n*[other] Searching the OpenRA Resource Center for { $count } maps...\n}
+1883	(Huge)
+1884	(Large)
+1885	(Medium)
+1886	(Small)
+1887	Searching...
+1888	This map was not found on the
+1889	OpenRA Resource Center
+1890	{ $count ->\n[one] { $count } map was not found on the OpenRA Resource Center\n*[other] { $count } maps were not found on the OpenRA Resource Center\n}
+1891	A new version of the map
+1892	was found on your computer
+1893	Validating...
+1894	Choose Map
+1895	Tile Alpha
+1896	Axis Angle
+1897	Number of Sides
+1898	Mirror Mode
+1899	Max Speed
+1900	Online mirror is not available. Please install from an original disc.
+1901	Accomplished
+1902	Failed
+1903	In progress
+1904	Mission:
+1905	- Place structures using the <Left> mouse button
+1906	- Command units using the <Left> mouse button
+1907	or by moving the cursor to the edge of the screen
+1908	- Pan the battlefield using the <Middle> mouse button
+1909	- Pan the battlefield using the <Right> mouse button
+1910	- Select units using the <Left> mouse button
+1911	- Target support powers using the <Left> mouse button
+1912	- Zoom the battlefield using the <Scroll Wheel>
+1913	- Zoom the battlefield using <MODIFIER + Scroll Wheel>
+1914	- Command units using the <Right> mouse button
+1915	(optional)
+1916	Port:
+1917	Server Name:
+1918	Create Server
+1919	Length
+1920	Volume:
+1921	Audio Muted
+1922	Mute this player
+1923	Height:
+1924	Tileset:
+1925	New Map
+1926	Width:
+1927	Failed to parse news: { $message }
+1928	Failed to retrieve news: { $message }
+1929	No matches
+1930	The game music can be installed
+1931	from the "Manage Content" menu.
+1932	Music Not Installed
+1933	No Server Selected
+1934	No song is playing
+1935	No Team
+1936	Not Available
+1937	You are running an outdated version of OpenRA. Download the latest version from www.openra.net
+1938	A preview of the next OpenRA release is available for testing. Download the playtest from www.openra.net
+1939	You are running an unrecognized version of OpenRA. Download the latest version from www.openra.net
+1940	- Game will be advertised to the Local Area Network only.
+1941	- You must manually configure your firewall to allow connections.
+1942	- Players can connect using Direct IP from the Internet if you
+1943	manually configure port forwarding on your router.
+1944	- Game will be advertised to the Local Area Network and Internet.
+1945	- You must manually configure your router to allow and forward
+1946	connections to your local IP and Port.
+1947	- You can enable UPnP/NAT-PMP (if supported by your router)
+1948	in the Advanced tab of the settings menu.
+1949	This hotkey cannot be modified
+1950	- Game will automatically configure port forwarding.
+1951	- You can disable UPnP/NAT-PMP in the settings menu.
+1952	OpenRA
+1953	The default is "{ $key }"
+1954	{ $players ->\n[one] One other player\n*[other] { $players } other players\n}
+1955	Password protected
+1956	Password Required
+1957	Paused
+1958	CEASEFIRE IN EFFECT
+1959	CEASEFIRE EXPIRING
+1960	TYPE /ENDTREATY TO VOTE FOR WAR
+1961	END-TREATY VOTES { $votes }/{ $needed }
+1962	WAR
+1963	ALL UNITS ENGAGE
+1964	{ $players ->\n[one] { $players } Player\n*[other] { $players } Players\n}
+1965	{ $players ->\n[0] No Players\n[one] One Player\n*[other] { $players } Players\n}
+1966	{ $players ->\n[one] { $players } Player Online\n*[other] { $players } Players Online\n}
+1967	Playing
+1968	Power Usage: { $usage }/{ $capacity }
+1969	Preset Colors
+1970	TEAM COLOR
+1971	Your own mix of settings. Pick a scheme to reset everything.
+1972	The standard OpenRA mouse and keys.
+1973	Left click selects and gives orders, right click deselects, right drag scrolls. RA2 keys (T, G, D, Z…).
+1974	Right click gives orders, right drag scrolls. RA2 keys (T, G, D, Z…).
+1975	Jump to map position
+1976	Save map position
+1977	BASE
+1978	MOUSE
+1979	SIDEBAR TABS
+1980	TEAMS & VIEW
+1981	UNIT COMMANDS
+1982	Add to selection
+1983	Shift + click
+1984	Deselect
+1985	Left click on empty ground
+1986	Force fire
+1987	Ctrl + click
+1988	Force move
+1989	Alt + click
+1990	Move / attack
+1991	Left click
+1992	Right click
+1993	Make a factory primary
+1994	Double-click the factory
+1995	Select that type on screen
+1996	Double-click a unit
+1997	Scroll the map
+1998	Hold middle button + drag
+1999	Hold right button + drag
+2000	Select units
+2001	Left click / left drag
+2002	(twice: whole map)
+2003	(again: send route)
+2004	Control scheme: { $scheme }
+2005	Add team to selection
+2006	Create team
+2007	Centre view on team
+2008	Select team (twice: centre view)
+2009	Controls
+2010	(not set)
+2011	{ $buildings } BUILDINGS · { $mobile } UNITS
+2012	{ $buildings } BUILDINGS · { $mobile } MCV
+2013	ENEMY FORCES
+2014	ENEMY STRUCTURES
+2015	{ $api }. Graphics cards in this PC: { $names }
+2016	Direct3D { $version } through ANGLE
+2017	{ $api }, driver { $version }
+2018	The game is on the power-saving graphics. Choose High performance above and restart the game for a much higher frame rate.
+2019	A graphics card in this PC is missing its driver. Install it from the NVIDIA, AMD or Intel website.
+2020	Restart the game to switch graphics card.
+2021	No graphics driver is in use, so the processor is drawing the game. Install the latest driver for your graphics card.
+2022	Graphics card in use: { $name }
+2023	OpenGL { $version }
+2024	{ $api }. Also in this PC: { $names }
+2025	not reported by the graphics driver
+2026	NATION  ·  COMMANDER
+2027	MISSION STATUS
+2028	RANK
+2029	STATUS
+2030	BATTLE REPORT
+2031	RED ALERT  //  PROJECT X
+2032	SOUNDTRACK
+2033	IN BATTLE
+2034	LIVE
+2035	PLAYERS
+2036	OBSERVER
+2037	CAMERA VIEW
+2038	STRUCTURE ACTIONS
+2039	COMMANDS
+2040	RALLY
+2041	BEACON
+2042	Build a Radar Dome to activate
+2043	CREDITS
+2044	NO RADAR SIGNAL
+2045	POWER
+2046	RADAR
+2047	REPAIR
+2048	SELL
+2049	MISSION TIME
+2050	OPENRA { $engine }  ·  COMMIT { $build }
+2051	OPENRA { $engine }
+2052	PROJECT X  //  VERSION
+2053	CHANGING
+2054	FORECAST
+2055	INCOMING
+2056	NEXT
+2057	STABLE
+2058	WEATHER
+2059	The weather on this map does not change.
+2060	Visual only: weather does not affect units.
+2061	Next: { $weather } in { $time }
+2062	Now: { $weather }
+2063	An authentication key has been copied to your
+2064	clipboard. Add this to your User Control Panel
+2065	on the OpenRA forum then press Continue.
+2066	{ $percentage }% complete
+2067	Choose Replay
+2068	{ $percentage }% Speed
+2069	Replay Viewer
+2070	Requires { $prerequisites }.
+2071	Author:
+2072	Directory:
+2073	Filename:
+2074	Save Map
+2075	Title:
+2076	Visibility:
+2077	The map script has encountered a fatal error
+2078	The details of the error have been saved to lua.log in the logs directory.
+2079	Please send this file to the map author so that they can fix this issue.
+2080	Failed to query server list.
+2081	No games found. Try changing filters.
+2082	Searching for { $title }
+2083	Diagonal:
+2084	Resources:
+2085	Filters
+2086	Your Operating System, OpenGL and .NET runtime versions, and language settings will be sent along with an anonymous ID to help prioritize future development.
+2087	Server shutting down
+2088	Silo Usage: { $usage }/{ $capacity }
+2089	Audio has been muted in settings.
+2090	Spectators
+2091	{ $spectators ->\n[0] No Spectators\n[one] One Spectator\n*[other] { $spectators } Spectators\n}
+2092	Actions
+2093	Faction
+2094	Player
+2095	Score
+2096	ALLY
+2097	HOSTILE
+2098	YOURS
+2099	Team { $team }
+2100	Search:
+2101	Tool:
+2102	Marker Tiles
+2103	Ally
+2104	Enemy
+2105	Unknown error
+2106	unknown host
+2107	Unknown server state
+2108	Unmute this player
+2109	unpacked
+2110	Unrevealed Terrain
+2111	You are running an outdated version of OpenRA.
+2112	Download the latest version from www.openra.net
+2113	Verifying archive...
+2114	Display { $number }
+2115	Waiting
+2116	Waiting for players
+2117	Blizzard
+2118	Clear skies
+2119	Fog
+2120	Heat haze
+2121	Rain
+2122	Sandstorm
+2123	Snow
+2124	Strong wind
+2125	Thunderstorm
+2126	Lost
+2127	Won
+2128	Not affiliated with or endorsed by Electronic Arts. Command & Conquer and Red Alert are trademarks of Electronic Arts Inc.
+2129	Fuelling the tank columns..., Calibrating artillery..., Briefing field commanders..., Charging Tesla coils..., Scrambling fighter wings..., Laying minefields..., Decrypting enemy transmissions..., Refining ore..., Deploying construction yards..., Synchronising radar uplink..., Splitting atoms...
+2130	INITIALIZING COMMAND
+2131	RETURNING TO COMMAND
+2132	DEPLOYING TO BATTLEFIELD
+2133	Briefing
+2134	Chat
+2135	Debug
+2136	Objectives
+2137	Options
+2138	Ammo Box
+2139	Structure
+2140	Boxes
+2141	Bridge
+2142	Field
+2143	Haystack
+2144	Igloo
+2145	Crate
+2146	Helicopter
+2147	Destroyed Helicopter
+2148	Destroyed Vehicle
+2149	Soldier
+2150	Mine
+2151	Plane
+2152	Destroyed Plane
+2153	Rock
+2154	Ship
+2155	Civilian Building
+2156	Tree
+2157	Tree (Burnt)
+2158	Vehicle
+2159	Flip
+2160	Rotate
+2161	RedAlert Project X
+2162	Nothing selected.
+2163	A-bomb launch detected.
+2164	A-bomb prepping.
+2165	A-bomb ready.
+2166	Added { $name } ({ $id })
+2167	{ $amount ->\n[one] Added one marker tile of type { $type }\n*[other] Added { $amount } marker tiles of type { $type }\n}
+2168	{ $amount ->\n[one] Added one cell of { $type }\n*[other] Added { $amount } cells of { $type }\n}
+2169	Added tile { $id }
+2170	Only the host can change the configuration.
+2171	Only the host can change the map.
+2172	Only admins can clear spawn points.
+2173	Only the host can kick players.
+2174	{ $admin } kicked { $player } from the server.
+2175	Only the host can set lobby info.
+2176	Only the host can move players to spectators.
+2177	Only the host can set that option.
+2178	Only the host can start the game.
+2179	Only admins can transfer admin to another player.
+2180	Airborne Unit lost.
+2181	Our ally is under attack.
+2182	Here are the available commands:
+2183	Base under attack.
+2184	Server name contains a blacklisted word.
+2185	Building infiltrated.
+2186	Cannot deploy here.
+2187	Flight deck: { $mode }
+2188	{ $player } changed the map to { $map }.
+2189	{ $remaining ->\n[one] Chat is disabled. Please try again in { $remaining } second.\n*[other] Chat is disabled. Please try again in { $remaining } seconds.\n}
+2190	Cheat used: { $cheat } by { $player }{ $suffix }.
+2191	Cheats are disabled.
+2192	Chronosphere charging.
+2193	Chronosphere ready.
+2194	Cleared { $amount } marker tiles
+2195	Cleared { $amount } marker tiles of type { $type }
+2196	Cleared selection
+2197	{ $player } is experiencing connection problems.
+2198	Construction complete.
+2199	{ $amount ->\n[one] Copied one tile\n*[other] Copied { $amount } tiles\n}
+2200	Credits stolen.
+2201	This map contains custom rules. Game experience may change.
+2202	Out of sync in frame { $frame }.\nCompare syncreport.log with other players.
+2203	Edited { $name } ({ $id })
+2204	Edited { $name } ({ $old-id }-> { $new-id })
+2205	No one in that slot.
+2206	The game has already started.
+2207	Could not parse the number of teams: { $raw }.
+2208	Atomic bomber detected.
+2209	Filled with tile { $id }
+2210	The game is full.
+2211	The game has started.
+2212	Game has not been advertised online.
+2213	The game has been paused by { $player }.
+2214	Game saved.
+2215	Game started.
+2216	The game has been un-paused by { $player }.
+2217	Server is running an incompatible mod.
+2218	Server is running an incompatible protocol.
+2219	Server is running an incompatible version.
+2220	Incorrect password.
+2221	Unable to start the game until more spawn points are enabled.
+2222	Insufficient funds.
+2223	Insufficient power.
+2224	Insufficient votes to kick player { $kickee }.
+2225	Cannot add bots to a slot with another client.
+2226	Invalid bot type.
+2227	Invalid cash amount.
+2228	{ $name } is not a valid command.
+2229	Invalid configuration command.
+2230	Failed to parse error message.
+2231	Invalid faction selected: { $faction }.
+2232	Invalid lobby info sent.
+2233	Unable to determine a valid player color. A random color has been selected.
+2234	Iron curtain charging.
+2235	Iron curtain ready.
+2236	{ $player } has joined the game.
+2237	You have already voted.
+2238	The host cannot kick themselves.
+2239	{ $player } was kicked from the server.
+2240	{ $player } has left.
+2241	Low power.
+2242	Malformed { $command } command.
+2243	Bots have been disabled on this map.
+2244	Failed to delete map '{ $map }'. See the debug.log file for details.
+2245	Master server communication established.
+2246	Master server communication failed.
+2247	Failed to switch mod.
+2248	{ $admin } moved { $player } to spectators.
+2249	Moved { $id } from { $x1 },{ $y1 } to { $x2 },{ $y2 }
+2250	Naval Unit lost.
+2251	{ $player } is now the admin.
+2252	New construction options.
+2253	{ $player } is now known as { $name }.
+2254	Only spectators and defeated players can be kicked after the game has started.
+2255	You do not have permission to join this server.
+2256	Server port is not accessible from the internet.
+2257	Unable to start the game until required slots are full.
+2258	Game cannot start without players.
+2259	{ $player } (Spectator) has disconnected.
+2260	Opened
+2261	{ $player } changed { $name } to { $value }.
+2262	{ $option } cannot be changed.
+2263	Treaty in effect: you cannot attack other players yet.
+2264	The peace treaty has ended. War!
+2265	Peace treaty ends in { $minutes ->\n[one] { $minutes } minute\n*[other] { $minutes } minutes\n}.
+2266	There is no peace treaty in effect.
+2267	Peace treaty ends in { $seconds }...
+2268	A peace treaty is in effect for { $minutes ->\n[one] { $minutes } minute\n*[other] { $minutes } minutes\n}. No attacks until it ends. Type /endtreaty to vote to end it early.
+2269	All players agreed: the treaty ends in { $seconds } seconds.
+2270	{ $player } votes to end the treaty early ({ $votes }/{ $needed }).
+2271	Color was adjusted to be less similar to another player.
+2272	Color was adjusted to be less similar to the terrain.
+2273	{ $player } has disconnected.
+2274	A player has been dropped after timing out.
+2275	{ $player } is defeated.
+2276	{ $player } is victorious.
+2277	Primary building selected.
+2278	No room to fast-rope there: the helicopter is climbing away with the rest of its troops.
+2279	Fast-rope: click the landing zone (Shift+click to queue, right click to cancel).
+2280	Select a transport helicopter with soldiers aboard to fast-rope.
+2281	Waypoint mode: click to add points, double-click or press the key again to send.
+2282	Fire mission: support is firing on the red smoke.
+2283	No support in range of the red smoke.
+2284	Red smoke ready.
+2285	Enemy red smoke spotted. Incoming fire!
+2286	Reinforcements have arrived.
+2287	Removed { $name } ({ $id })
+2288	Removed area { $x },{ $y } ({ $width },{ $height })
+2289	{ $amount ->\n[one] Removed one marker tile\n*[other] Removed { $amount } marker tiles\n}
+2290	Removed { $type }
+2291	Repairing.
+2292	Failed to delete replay file '{ $file }'. See the debug.log file for details.
+2293	Server requires players to have an OpenRA forum account.
+2294	Only the host can do that.
+2295	Server requires a password.
+2296	Satellite launched.
+2297	Saved current map.
+2298	Failed to delete save file '{ $savePath }'. See the logs for details.
+2299	Saved screenshot { $filename }
+2300	Searching for map on the Resource Center...
+2301	Select target.
+2302	Selected actor { $id }
+2303	Selected area { $x },{ $y } ({ $width },{ $height })
+2304	Silos needed.
+2305	Your slot was closed by the host.
+2306	Sonar pulse ready.
+2307	The spawn point is locked to another player slot.
+2308	You cannot occupy the same spawn point as another player.
+2309	Spy plane ready.
+2310	State cannot be changed once the game has started ({ $command }).
+2311	Cannot change state when marked as ready.
+2312	Structure captured.
+2313	{ $player } (Team { $team }) has disconnected.
+2314	{ $admin } temporarily banned { $player } from the server.
+2315	Time limit has expired.
+2316	{ $player } has been dropped after timing out.
+2317	{ $timeout ->\n[one] { $player } will be dropped in { $timeout } second.\n*[other] { $player } will be dropped in { $timeout } seconds.\n}
+2318	Our titan has fallen.
+2319	This server requires at least two human players to start a match.
+2320	Unable to build more.
+2321	Unable to comply. Building in progress.
+2322	Unable to start a vote.
+2323	Unit lost.
+2324	Unit promoted.
+2325	Unit ready.
+2326	Unit repaired.
+2327	Unit stolen.
+2328	Map was not found on server.
+2329	Unknown server command: { $command }.
+2330	Vote kick is disabled on this server.
+2331	Vote to kick player { $kickee } has failed.
+2332	{ $percentage }% of players have voted to kick player { $kickee }.
+2333	Player { $kicker } has started a vote to kick player { $kickee }.
+2334	Weather: { $weather }.
+2335	Weather forecast: { $weather } in { $seconds } seconds.
+2336	You have been banned from the server.
+2337	You have been kicked from the server.
+2338	You have been temporarily banned from the server.
+2339	Close
+2340	Far
+2341	Furthest
+2342	Medium
+2343	All
+2344	Multiple
+2345	None
+2346	Search Results
+2347	Classic
+2348	Modern
+2349	Fullscreen
+2350	Fullscreen (Legacy)
+2351	Windowed
+2352	Fast
+2353	Faster
+2354	Fastest
+2355	Normal
+2356	Slower
+2357	Slowest
+2358	Bots
+2359	Bots Disabled
+2360	Closed
+2361	Open
+2362	Slot
+2363	Inverted
+2364	Joystick
+2365	Army
+2366	Army (graph)
+2367	Basic
+2368	Combat
+2369	Earnings (graph)
+2370	Economy
+2371	Information: None
+2372	Production
+2373	Support Powers
+2374	Date
+2375	Players
+2376	Size
+2377	Title
+2378	No treaty
+2379	Custom
+2380	OpenRA default
+2381	Red Alert 2
+2382	Red Alert 2 (right-click orders)
+2383	Last 14 days
+2384	Last 30 days
+2385	Last 7 days
+2386	Today
+2387	Long (60+ min)
+2388	Medium (30 min)
+2389	Short (10 min)
+2390	Under 5 min
+2391	Multiplayer
+2392	Singleplayer
+2393	All Players
+2394	Disable Shroud
+2395	Other
+2396	Add
+2397	Configure Bots
+2398	Configure Teams
+2399	Free for all
+2400	Humans vs Bots
+2401	Remove
+2402	{ $count } Teams
+2403	Heavy Support
+2404	Light Support
+2405	MCV Only
+2406	Always Show
+2407	Show On Damage
+2408	Standard
+2409	Automatic
+2410	Disabled
+2411	Manual
+2412	Infantry Only
+2413	No Superweapons
+2414	Unrestricted
+2415	No limit
+2416	{ $minutes ->\n[one] { $minutes } minute\n*[other] { $minutes } minutes\n}
+2417	Off
+2418	Visual only
+2419	Frequent
+2420	Rare
+2421	Defeat
+2422	Victory
+2423	{ $p0 } ALLIANCE  ·  NATIONAL DOSSIER
+2424	{ $p0 } AVAILABLE
+2425	{ $p0 } CELLS
+2426	{ $p0 } CELLS/S
+2427	{ $p0 } DPS
+2428	{ $p0 } EXCLUSIVE
+2429	{ $p0 } MOUNTS
+2430	{ $p0 } NATIONS   ·   { $p1 } ENTRIES   ·   ARROWS / TAB TO BROWSE
+2431	{ $p0 } NATIONS
+2432	{ $p0 } RAILS
+2433	{ $p0 } TRACKS · { $p1 }
+2434	{ $p0 } transport pads: builds and reloads airborne transports only
+2435	AI COMMANDER
+2436	AIR
+2437	Air defence
+2438	Airborne drop: { $p0 } paratroopers ({ $p1 })
+2439	AIRCRAFT
+2440	Airlift
+2441	Amphibious
+2444	Angel flares: { $p0 } huge salvos fool { $p1 }% of guided missiles
+2446	Anti-ship torpedoes
+2447	Ape titan
+2448	ARMAMENT
+2449	ARMOR
+2450	ARMOUR
+2451	ARMY
+2452	ARSENAL CATALOGUE
+2453	Artillery shell
+2454	ATGM
+2455	Atomic bomb
+2456	Atomic breath hits aircraft too\nSwims the seas · 1,000,000 HP
+2457	Atomic titan
+2458	Ballistic
+2459	Base defence
+2460	Base structure
+2461	Beam
+2462	Boat
+2463	Bomber
+2464	Bombs
+2465	BUILD TIME
+2466	Building
+2467	Can engage aircraft
+2468	Cannon shell
+2469	CAPABILITIES
+2470	Captures enemy buildings
+2471	cells
+2472	cells (min { $p0 })
+2473	CHOOSE YOUR NATION
+2474	CHOOSE YOUR TITAN
+2475	CIWS
+2476	Close-in point defence
+2477	Cluster munition
+2478	COMMANDER · { $p0 }
+2479	COMMANDER
+2480	COST
+2481	Cruise
+2482	CYCLE { $p0 }s
+2483	Dedicated anti-air
+2484	DEFEATED · { $p0 }
+2485	DEFEATED
+2486	DEFENCES
+2487	DEFENSES
+2488	Defensive Structure
+2489	Detects stealth units
+2490	DISCONNECTED
+2491	Disguises as a civilian car
+2492	Disguises as enemy soldiers
+2493	DMG { $p0 }
+2494	dmg
+2496	Drone
+2498	Drops paratroopers
+2499	DURABILITY
+2500	Earns veterancy ranks
+2501	EFFECTIVE AGAINST
+2502	ENEMY
+2503	Energy beam
+2504	ENTRIES
+2505	EXCLUSIVE
+2506	Extends the build radius
+2507	Fast jet: strikes, then returns to rearm
+2508	FIELD DOSSIER
+2509	Field-repairs vehicles
+2510	FIELDED BY
+2512	FIREPOWER
+2513	Fixed-wing aircraft
+2514	Flares: { $p0 } salvos fool { $p1 }% of guided missiles
+2515	Flight deck: launches and rearms jets
+2516	Fortification
+2517	FORTIFIED
+2518	Generates { $p0 } power
+2519	Generates steady income
+2520	Grenade
+2521	GROUND
+2523	Ground vehicle
+2524	Guided missile
+2525	Hammer blows · hurls boulders\nLeaps to swat jets · 850,000 HP
+2526	Harvests ore and gems
+2527	Heals nearby infantry
+2528	HEALTH
+2529	Heavy
+2530	HEAVY ARMOUR
+2532	Hides your base in a shroud field
+2533	HIT POINTS
+2534	HOST
+2535	HOST · YOU
+2536	Hypersonic
+2537	IN COMBAT
+2538	Incendiary
+2539	INFANTRY
+2540	Infiltrates enemy buildings
+2541	Intercepts incoming missiles
+2542	Jams guided missiles
+2543	Lays minefields
+2544	Leaps at its prey
+2545	Light
+2547	LIGHT ARMOUR
+2549	LIMITED
+2550	Lurks unseen in water when still
+2551	MENU THEME
+2552	MENU THEME · PAUSED
+2553	(MIN { $p0 })
+2554	Missile interceptors
+2556	Mute music
+2557	NATIONAL
+2558	NATIONAL UNIT
+2559	NAVAL
+2560	Naval Unit
+2562	Naval vessel
+2563	NEUTRAL
+2564	NO ENTRIES FOR THIS NATION
+2565	No giant for this player
+2566	NO MUSIC INSTALLED
+2567	NO SELECTION
+2568	NO TITAN
+2569	No titan
+2570	No track playing
+2571	NOT READY
+2572	NOW PLAYING
+2573	Nuclear warhead
+2574	OFFLINE
+2575	One per player. It walks out at the start and cannot be rebuilt.
+2576	ONLINE
+2577	PAUSED
+2578	PERFORMANCE
+2579	Picked in the lobby (TITAN column): one per player, walks out at the start, cannot be rebuilt
+2580	Picked when the game starts
+2581	Plants demolition charges
+2582	Point defence vs missiles
+2583	POWER OUTPUT
+2584	POWER USAGE
+2585	Produces { $p0 }
+2586	PROJECT X  //  CLASSIFIED WAR ARCHIVE
+2587	PROJECT X · ORIGINAL SOUNDTRACK
+2588	Provides the radar minimap
+2589	RANDOM
+2590	RANGE { $p0 }
+2591	RANGE
+2592	Refines ore into credits
+2593	Relays and amplifies prism beams
+2594	Reloads its paratroopers on its pad in { $p0 } s, paying their price
+2595	Repairs bridges
+2596	Repairs docked vehicles
+2597	Repeat track: off
+2598	Repeat track: on
+2599	REPLAY
+2600	REQUIRES
+2602	Rocket
+2604	Rotary-wing aircraft
+2606	SCORE
+2607	Seismic shockwave (self-destructs)
+2608	Select a unit or structure
+2609	SELECT NATION
+2610	SELECTED UNITS ({ $p0 })
+2611	Self-repairs over time
+2613	Shoot and scoot
+2614	Shoots down { $p0 }
+2615	Shreds missiles aimed at it, { $p0 }% per burst
+2616	Shuffle: off
+2617	Shuffle: on
+2618	Small arms
+2619	SOUND IS MUTED
+2620	SPECTATING · { $p0 }
+2621	SPECTATING
+2622	SPEED
+2623	STANDING BY
+2624	Stealth: invisible when idle
+2625	STOPPED
+2626	Stores credits
+2627	STRONG
+2629	STRUCTURE
+2630	STRUCTURES
+2632	Submerges out of sight
+2633	SUPPORT
+2634	Support: no direct damage
+2635	SURPRISE
+2636	Surprise
+2637	Swims, faster in water than on land
+2639	Target marker
+2640	Teleports short distances
+2641	THE UNION
+2642	THE VANGUARD
+2643	TITAN
+2644	to see its details.
+2645	Torpedo
+2646	TRACK { $p0 } / { $p1 } · { $p2 }
+2647	Tramples infantry underfoot: they cannot dodge
+2648	Transports { $p0 } soldiers
+2649	Union
+2650	Unit
+2651	Unmute music
+2652	Vanguard
+2653	VEHICLES
+2654	VICTORIOUS
+2655	VICTORY · { $p0 }
+2656	VICTORY
+2657	VISION
+2658	VTOL: hovers and lands anywhere
+2659	WEAK
+2661	YOU
+2662	Valuable Minerals
+2663	{ $units ->\n[one] Selected one unit across map.\n*[other] Selected { $units } units across map.\n}
+2664	{ $units ->\n[one] Selected one unit across screen.\n*[other] Selected { $units } units across screen.\n}
+2665	ON HOLD
+2666	READY

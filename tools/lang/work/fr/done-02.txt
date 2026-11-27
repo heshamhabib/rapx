@@ -1,0 +1,150 @@
+150	Tour du Caire
+151	Temple de Karnak
+152	Grand Musée égyptien
+153	Grande Pyramide de Gizeh
+154	Grand Sphinx
+155	Éléphant de guerre mécanique à double canon lourd.\nPiétine toute l'infanterie sur son passage.\nNécessite un centre technologique. Inde uniquement.\nFort contre Chars, Bâtiments et Infanterie\nFaible contre Aéronefs
+156	Elephanta
+157	Marcheur d'assaut bipède lourd de l'Union.\nSes deux canons automatiques déchiquettent l'infanterie,\nson lance-roquettes d'épaule perce les blindages.\nFort contre Infanterie, Véhicules\nFaible contre Aéronefs
+158	Marcheur Enforcer
+159	Produit les structures.
+160	Chantier de construction
+161	Longue portée à petit prix, mais imprécis.\nDéployez-le pour passer à 2 drones d'attaque Shard-136\nà très longue portée.\nFort contre Infanterie et Bâtiments\nFaible contre Véhicules et Aéronefs
+162	Fajir-5
+163	Roquettes guidées à longue portée, très précises.\nFort contre Bâtiments, Infanterie et Véhicules\nFaible contre Aéronefs ; rechargement lent
+164	Fatah-X
+165	Capturez-le pour obtenir une zone constructible.
+166	Fournit une zone constructible.
+167	Poste de commandement avancé
+168	Clôture grillagée
+169	Répare les véhicules contre des crédits.
+170	Dépôt de maintenance
+171	Double canon antiaérien lourd. Ses rafales endommagent\ntous les aéronefs proches et peuvent abattre drones\net missiles de croisière.\nFort contre Aéronefs et Drones\nFaible contre Unités terrestres
+172	Canon Flak
+173	Leurre thermique
+174	Unité mobile équipée d'un canon Flak.\nFort contre Infanterie, Blindés légers et Aéronefs\nFaible contre Chars
+175	Flak mobile
+176	Défense de base anti-infanterie.\nPeut détecter les unités camouflées.\nFort contre Infanterie et Blindés légers\nFaible contre Chars et Aéronefs
+177	Tour lance-flammes
+178	Masque la vue de l'ennemi sous un voile.\nNécessite de l'énergie.
+179	Générateur de brouillage
+180	Mine de gemmes
+181	Le roi des monstres. Choisi dans le salon : un par joueur, impossible à reconstruire.\nSon souffle atomique brûle tout sur une longue ligne de vue, même les aéronefs.\nÉcrase tout ce qui s'approche. Traverse les rivières et la mer.\nFort contre tout
+182	Godzilla
+183	Vieux lance-roquettes Grad : bon marché mais imprécis.\nFort contre Infanterie et groupes\nFaible contre Véhicules et Aéronefs
+184	Grad Guajiro
+185	Défense de base antiblindés.\nPeut détecter les unités camouflées.\nFort contre Véhicules\nFaible contre Infanterie et Aéronefs
+186	Tourelle
+187	Défense antiaérienne mobile : salves de quatre missiles rapides\nqui fondent en vrille sur les aéronefs, et un canon de 35 mm\npour tout ce qui s'approche.\nFort contre Aéronefs et Hélicoptères\nNe peut pas attaquer les cibles au sol
+188	Gürz Mace
+189	Lanceur chenillé : une grosse salve de 12 roquettes sur une large zone.\nFort contre Infanterie et Bâtiments\nFaible contre Véhicules et Aéronefs ; lent
+190	Hailstorm
+191	Collecte le minerai et les gemmes\npour les raffiner.\nNon armé
+192	Collecteur
+193	Camion de minerai
+194	Épave (Camion de minerai)
+195	Défense fixe camouflée avec une meurtrière\npour un soldat en garnison.\nPeut détecter les unités camouflées.\nFort contre Infanterie et Blindés légers\nFaible contre Chars et Aéronefs
+196	Casemate camouflée
+197	Escorteur antiaérien et anti-sous-marin armé de\nmissiles, d'un canon de défense rapprochée et de grenades ASM.\nFort contre Aéronefs et Sous-marins\nFaible contre Unités terrestres
+198	Croiseur porte-hélicoptères
+199	Caisse de soins
+200	Hélicoptère d'attaque léger et rapide armé de missiles\nantichars HOT et d'un canon de 20 mm.\nFort contre Chars et Véhicules\nFaible contre Infanterie et DCA
+201	Longbow
+202	Lanceur à roues rapide tirant des roquettes guidées à longue portée.\nTire et décroche : se déplace après chaque tir.\nFort contre Infanterie, Bâtiments et Véhicules\nFaible contre Aéronefs
+203	HIMAX
+204	Hélicoptère de combat armé de deux canons à chaîne.\nFort contre Infanterie et Blindés légers\nFaible contre Chars et Aéronefs
+205	Hind
+206	Camion lance-roquettes rapide : tire un long flot de\n30 roquettes légères depuis ses tubes.\nFort contre Infanterie et Bâtiments\nFaible contre Chars et Aéronefs
+207	Camion lance-roquettes Hailfire
+208	Véhicule de reconnaissance robuste avec mitrailleuse de 12,7 mm sur le toit.\nTransporte 4 fantassins. États-Unis uniquement.\nFort contre Infanterie et Blindés légers\nFaible contre Chars
+209	Humvee
+210	Capturez-le pour que l'infanterie se soigne seule.
+211	Permet à l'infanterie de se soigner seule.
+212	Hôpital
+213	Produit et réarme les hélicoptères.
+214	Héliport
+215	Banquise
+216	Transport aéroporté lourd avec 40 parachutistes à bord.\nClic droit sur le sol pour les y larguer ; il rentre\nà la base et embarque une nouvelle force (payante) en une minute.\nTourelle de queue : deux canons de 23 mm contre les aéronefs\nConstruit à la base aéroportée
+217	Il-76MD Candid
+218	Soldat de Vanguard en exosquelette motorisé armé\nd'une mitrailleuse lourde à bande.\nNe peut pas être écrasé et ne se met jamais à couvert.\nFort contre Infanterie\nFaible contre Véhicules, Aéronefs
+219	Garde de fer
+220	Rend un groupe d'unités temporairement\ninvulnérable.\nNécessite de l'énergie.\nUn seul exemplaire possible.\nCapacité spéciale : Invulnérabilité
+221	Rend un groupe d'unités invulnérable\npendant 20 secondes.
+222	Invulnérabilité
+223	Rideau de fer
+224	Capturez-le pour recevoir un gros revenu.
+225	Fournit un gros revenu.
+226	Flèche du Gardien
+227	Véhicule rapide de reconnaissance et anti-infanterie.\nNe transporte qu'un seul fantassin.\nFort contre Infanterie\nFaible contre Véhicules et Aéronefs
+228	Ranger
+229	Avion d'attaque au sol blindé.\nFort contre Chars et Véhicules\nFaible contre Chasseurs\nGénération 3\nEn service : Union, États-Unis
+230	AA-10 Thunderhog
+231	Avion de transport.\nTransporte de l'infanterie\nNon armé\nGénération 4\nEn service : Ukraine
+232	An-225 Dreamer
+233	Bombardier lourd.\nFort contre Bâtiments\nFaible contre Chasseurs et DCA\nGénération 5\nEn service : Union, États-Unis
+234	AB-2 Wraith
+235	Bombardier lourd.\nFort contre Bâtiments\nFaible contre Chasseurs et DCA\nGénération 2\nEn service : États-Unis
+236	AB-52 Stratoforce
+237	Intercepteur rapide.\nFort contre Bâtiments et Véhicules\nFaible contre DCA\nGénération 2\nEn service : Union, États-Unis, Allemagne, Italie, Japon, Turquie, Pakistan
+238	AF-104 Starflash
+239	Chasseur furtif.\nFort contre Bâtiments et Véhicules\nFaible contre DCA\nGénération 3\nEn service : Union, États-Unis
+240	AF-117 Nightjar
+241	Intercepteur rapide.\nFort contre Bâtiments et Véhicules\nFaible contre DCA\nGénération 3\nEn service : Union, États-Unis, Iran
+242	AF-14 Bobcat
+243	Chasseur multirôle.\nFort contre Bâtiments et Véhicules\nFaible contre DCA\nGénération 3\nEn service : Union, États-Unis, Italie, Corée du Sud, Égypte, Turquie, Pakistan, Ukraine
+244	AF-16 Fighting Kestrel
+245	Chasseur d'attaque naval.\nFort contre Navires et Véhicules\nFaible contre DCA\nGénération 4\nEn service : Japon
+246	AF-2 Zero Viper
+247	Chasseur furtif.\nFort contre Bâtiments et Véhicules\nFaible contre DCA\nGénération 5\nEn service : Union, États-Unis
+248	AF-22 Raptorex
+249	Intercepteur rapide.\nFort contre Bâtiments et Véhicules\nFaible contre DCA\nGénération 2\nEn service : Union, États-Unis, Angleterre, Allemagne, Japon, Corée du Sud, Égypte, Turquie, Iran
+250	AF-4 Spectre II
+251	Générateur de brouillage volant : avion radar non armé\nqui cache à l'ennemi le sol situé sous lui.\nEnvoyez-le au-dessus d'une zone et il y tourne en cercle.\nNécessite un centre technologique\nNon armé, vulnérable à la DCA
+252	AE-2 Shroud Hawk
+253	Drone de combat sans pilote.\nBon marché, peu résistant\nFort contre Infanterie et Blindés légers\nPrototype, un par joueur\nEn service : Russie
+254	Grom-K
+255	Avion à décollage vertical.\nFort contre Véhicules\nFaible contre DCA\nGénération 3\nEn service : Union, États-Unis, Angleterre, Italie, Inde
+256	Harrow
+257	Bombardier lourd.\nFort contre Bâtiments\nFaible contre Chasseurs et DCA\nGénération 0\nEn service : Allemagne
+258	He-177 Greif
+259	Bombardier lourd.\nFort contre Bâtiments\nFaible contre Chasseurs et DCA\nGénération 5\nEn service : Allemagne
+260	HG-229 Nachtflügel
+261	Chasseur furtif.\nFort contre Bâtiments et Véhicules\nFaible contre DCA\nGénération 5\nEn service : Chine
+262	JX-20 Jade Dragon
+263	Avion d'attaque léger.\nFort contre Infanterie, Blindés légers et Drones\nFaible contre Chasseurs et DCA\nGénération 2\nEn service : Ukraine, Cuba, Égypte
+264	L-39U Albatross
+265	Chasseur à moteur à pistons des années 1940.\nBon marché et rapide à construire\nFort contre Infanterie et Blindés légers\nGénération 0\nEn service : Vanguard, Russie, Chine
+266	LaV-11 Fang
+267	Chasseur multirôle.\nFort contre Bâtiments et Véhicules\nFaible contre DCA\nGénération 3\nEn service : Union, France, Égypte, Inde, Ukraine
+268	Mirago 2000
+269	Chasseur à réaction.\nFort contre Bâtiments et Véhicules\nFaible contre DCA\nGénération 2\nEn service : Vanguard, Russie, Ukraine, Cuba, Inde, Chine, Pakistan, Iran, Égypte
+270	MiK-21 Fishbone
+271	Chasseur multirôle.\nFort contre Bâtiments et Véhicules\nFaible contre DCA\nGénération 3\nEn service : Vanguard, Russie, Ukraine, Cuba, Inde, Égypte
+272	MiK-23 Flintlock
+273	Intercepteur rapide.\nFort contre Bâtiments et Véhicules\nFaible contre DCA\nGénération 3\nEn service : Vanguard, Russie, Ukraine, Inde
+274	MiK-25 Foxbane
+275	Chasseur à moteur à pistons des années 1940.\nBon marché et rapide à construire\nFort contre Infanterie et Blindés légers\nGénération 0\nEn service : Vanguard, Russie
+276	MiK-3 Strela
+277	Chasseur furtif.\nFort contre Bâtiments et Véhicules\nFaible contre DCA\nPrototype, un par joueur\nEn service : Iran
+278	Qahir-X
+279	Chasseur multirôle.\nFort contre Bâtiments et Véhicules\nFaible contre DCA\nGénération 4\nEn service : France, Égypte, Inde, Ukraine
+280	Rafal F4
+281	Chasseur à réaction.\nFort contre Bâtiments et Véhicules\nFaible contre DCA\nGénération 3\nEn service : Iran
+282	Saeqa
+283	Chasseur d'attaque naval.\nFort contre Navires et Véhicules\nFaible contre DCA\nGénération 2\nEn service : Angleterre
+284	Sea Vixa
+285	Avion de reconnaissance à grande vitesse.\nTrès difficile à intercepter\nFaible contre DCA\nGénération 3\nEn service : États-Unis
+286	SR-7 Blackwing
+287	Avion d'attaque au sol blindé.\nFort contre Chars et Véhicules\nFaible contre Chasseurs\nGénération 3\nEn service : Vanguard, Russie, Ukraine, Iran
+288	Sk-25 Rook
+289	Chasseur à réaction.\nFort contre Bâtiments et Véhicules\nFaible contre DCA\nGénération 3\nEn service : Vanguard, Russie, Ukraine, Chine
+290	Sk-27 Flankard
+291	Chasseur multirôle.\nFort contre Bâtiments et Véhicules\nFaible contre DCA\nGénération 4\nEn service : Vanguard, Russie, Inde, Chine
+292	Sk-30 Flankard-M
+293	Chasseur multirôle.\nFort contre Bâtiments et Véhicules\nFaible contre DCA\nGénération 4\nEn service : Vanguard, Russie, Chine, Égypte, Iran
+294	Sk-35 Flankard-E
+295	Chasseur furtif.\nFort contre Bâtiments et Véhicules\nFaible contre DCA\nPrototype, un par joueur\nEn service : Vanguard, Russie
+296	Sk-47 Berkov
+297	Drone de combat sans pilote.\nBon marché, peu résistant\nFort contre Infanterie et Blindés légers\nGénération 3\nEn service : Turquie
+298	Drone d'essaim
+299	Bombardier lourd.\nFort contre Bâtiments\nFaible contre Chasseurs et DCA\nGénération 3\nEn service : Russie

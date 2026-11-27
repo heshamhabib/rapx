@@ -1,0 +1,250 @@
+1000	Marineproduktion
+1001	Ein schwerer Vanguard-Roboter, der Tesla-Blitze aus seinen Händen schleudert – tödlich für Infanterie und feindliche Roboter.
+1002	Tesla-Roboter
+1003	Kaserne der Union: bildet Schützen, Raketensoldaten, Ingenieure, Sanitäter und die Roboter-Infanterie aus. Mehrere Kasernen beschleunigen die Ausbildung. Setze einen Sammelpunkt, damit frische Trupps direkt an die Front marschieren.
+1004	Infanterieproduktion
+1005	Der Tiger: ein deutsch-französischer Kampfhubschrauber mit HOT-Panzerabwehrraketen an den äußeren Trägern und Raketenbehältern, die einen Strom von 68-mm-Raketen abfeuern. Nur Frankreich und Deutschland.
+1006	Schwerer Kampfhubschrauber
+1007	Ein gepanzerter thermobarischer Werfer. Kurze Reichweite, aber er verbrennt Infanterie und Gebäude in einem riesigen Feuerball.
+1008	Thermobarischer Werfer (Russland)
+1009	Der Chinook: bringt einen Infanterietrupp überallhin auf der Karte. Unbewaffnet, also setze deine Truppen fern von Flugabwehr ab.
+1010	Transporthubschrauber
+1011	Bringt Geld zur Raffinerie eines verbündeten Spielers. Unbewaffnet. Halte damit einen angeschlagenen Mitspieler im Spiel.
+1012	Versorgungs-Lkw
+1013	Schleudert Blitze, die Infanterie und Fahrzeuge gleichermaßen vernichten. Braucht viel Energie, und ein Stromausfall schaltet sie ab – schütze also deine Kraftwerke.
+1014	Tesla-Verteidigung
+1015	Ein Panzer mit aufgesetzter Tesla-Spule, deren Blitze durch Infanterie, Fahrzeuge und Gebäude schlagen. Russlands Antwort auf Panzermassen.
+1016	Tesla-Panzer
+1017	Die Bear: ein Langstreckenbomber mit vier gegenläufigen Propellertriebwerken. Unbewaffnet fliegt sie nur eine Mission: Ist der thermonukleare Schlag bereit, wirft sie die RDS-37-Wasserstoffbombe ab und fliegt heim. Geht sie verloren, beginnt der Timer von vorn. Nur Russland, eine pro Spieler.
+1018	Thermonuklearer Bomber
+1019	Ein Raketen-Lkw, der Schiffe weit draußen auf See trifft. An der Küste postiert, kommen feindliche Flotten nicht heran.
+1020	Anti-Schiff-Raketen (Japan)
+1021	Feuert eine riesige Rakete, die Infanterie und Gebäude aus großer Entfernung verwüstet. Lädt langsam nach und ist schwach gegen alles, was an sie herankommt.
+1022	Raketenartillerie
+1023	Präzise Langstreckenraketen, die Gebäude, Infanterie und Fahrzeuge mit chirurgischer Genauigkeit treffen. Lädt langsam nach.
+1024	Raketenwerfer (Ukraine)
+1025	Baut jeden Panzer, Transporter und Raketenwerfer. Mit Reparaturdepot und Radarkuppel werden die schwereren Modelle freigeschaltet, einschließlich des eigenen Raketenwerfers deiner Nation.
+1026	Fahrzeugproduktion
+1027	105-mm-Panzerkanone
+1028	120-mm-Panzerkanone
+1029	155-mm-Haubitze
+1030	16-Zoll-Schiffsgeschütze
+1031	25-mm-Maschinenkanone
+1032	2-Zoll-Schiffsgeschütz
+1033	8-Zoll-Schiffsgeschütze
+1034	90-mm-Panzerkanone
+1035	AK-47-Sturmgewehr
+1036	Doppelte Flugabwehrraketen
+1037	Flugabwehrraketen
+1038	Anti-Satelliten-Rakete
+1039	Tesla-Bogen
+1040	Kettenkanone
+1041	Zwillingskanonen
+1042	Gatling-CIWS
+1043	Colt-.45-Pistole
+1044	Kiefer
+1045	Schwere Automatikpistole
+1046	Sprengangriff
+1047	Wasserbomben
+1048	Biss
+1049	Dragon-Panzerabwehrrakete
+1050	Blastergewehr
+1051	Schwere Zwillingskanone
+1052	Zwillings-Maschinenkanonen
+1053	Schulter-Raketenwerfer
+1054	Fatman-Atombombe
+1055	Feuerballwerfer
+1056	23-mm-Flak (Luft)
+1057	23-mm-Flak (Boden)
+1058	Zwillings-Flakgeschütze
+1059	Flakgeschütz
+1060	Flammenwerfer
+1061	Atomatem
+1062	Stampfen
+1063	Handgranaten
+1064	35-mm-Luftsprengkanone
+1065	Infrarot-Viererfolge
+1066	Feld-Sanitätskasten
+1067	30-Raketen-Strom
+1068	.50-cal-Maschinengewehr
+1069	Gurtgespeistes schweres MG
+1070	AIM-54-Phoenix-Langstreckenraketen
+1071	R-27T-Langstreckenraketen
+1072	R-77-Langstreckenraketen
+1073	AIM-120-AMRAAM-Raketen
+1074	R-27T-Mittelstreckenraketen
+1075	R-77-Mittelstreckenraketen
+1076	AIM-9-Sidewinder-Raketen
+1077	R-73-Kurzstreckenraketen
+1078	AGM-65-Maverick-Raketen
+1079	9M120-Ataka-Panzerabwehrraketen
+1080	HOT-Panzerabwehrraketen
+1081	Kh-29-Luft-Boden-Raketen
+1082	Mk-82-Bomben
+1083	Streubomben
+1084	Streubomben (Paar)
+1085	GBU-Lenkbomben
+1086	GAU-8 30 mm Avenger
+1087	23-mm-Zwillingsheckkanonen
+1088	30-mm-Kanone
+1089	20-mm-Kanone
+1090	Hydra-Raketenbehälter
+1091	Raketenbehälter (Salvenfeuer)
+1092	S-8-Raketenbehälter
+1093	S-8-Raketenbehälter (Salvenfeuer)
+1094	Weißer-Phosphor-Bomben
+1095	Weißer-Phosphor-Bomben (Paar)
+1096	Felswurf
+1097	Sprunghieb (Flugabwehr)
+1098	Hammerschlag
+1099	152-mm-Läufergeschütz
+1100	M1-Karabiner
+1101	M60-Maschinengewehr
+1102	Tusk-Flugabwehrraketen
+1103	Maverick-Raketen
+1104	Hit-to-Kill-Abfangraketen
+1105	Mini-Atombombe
+1106	19-Raketen-Salve
+1107	Mittelstrecken-SAM
+1108	Schiffs-SAM
+1109	Nike-Boden-Luft-Rakete
+1110	Markiert ein Ziel: Artillerie und Luftfahrzeuge feuern auf den Rauch
+1111	Steigen hoch und stürzen auf die Dachpanzerung von Panzern
+1112	Orbitallaser
+1113	Fallschirmbomben
+1114	Tragbare Tesla-Spule
+1115	Prismastrahl
+1116	Prismaturm-Strahl
+1117	Vierfach-.50-MGs
+1118	Railgun
+1119	RDS-37-Wasserstoffbombe
+1120	Redeye-Flugabwehrrakete
+1121	Rote Rauchgranate
+1122	Feldreparaturkit
+1123	Chunmu-239-mm-Raketensalve
+1124	Chunmu-Lenkrakete
+1125	Fajr-5-Raketen
+1126	Fajr-Kamikazedrohne
+1127	Fatah-Lenkraketen
+1128	Grad-122-mm-Raketensalve
+1129	Hailstorm-Raketensalve
+1130	HIMAX-Lenkraketen
+1131	Kasirga-Schwerraketen
+1132	LRX-GPS-Lenkraketen
+1133	Marz-Raketensalve
+1134	Marz-Minenraketen
+1135	PHL-16-Schwerraketen
+1136	Pinaka-Raketensalve
+1137	Saetta-Raketensalve
+1138	Saqr-36-Streuraketen
+1139	TOS-Thermobarraketen
+1140	Type-12-Marschflugkörper
+1141	Vilkha-Lenkraketen
+1142	Ballistische SCUD-Rakete
+1143	Schockkanone
+1144	Schallgedämpfte Pistole
+1145	Scharfschützengewehr
+1146	Flugabwehrraketen
+1147	Selbstzerstörungsladung
+1148	Top-Attack-Raketen
+1149	Verdeckter Raketenwerfer
+1150	Derby-Radarrakete
+1151	Python-Infrarotrakete
+1152	Stinger-Raketen
+1153	Stinger-Flugabwehrraketen
+1154	Schwere Kanone
+1155	Maschinengewehr
+1156	U-Boot-gestützte Raketen
+1157	U-Boot-gestützte Flugabwehrraketen
+1158	Tesla-Blitz
+1159	Tomahawk-Marschflugkörper
+1160	Torpedos
+1161	Zwillings-Tesla-Spulen
+1162	Turmkanone
+1163	Vulcan-20-mm-Gatling
+1164	XR-85-Kanone
+1165	Ballistische Zolfaghar-Raketen
+1166	ZSU-23-Vierlingskanonen
+1167	Frankreichs XR-85: eine langsame, laufende Geschützplattform, deren Kanone jeden Panzer an Reichweite übertrifft und härter trifft als jedes andere Geschütz.
+1168	Schwerer Geschützdroide
+1169	Chinas eigener schwerer Jet-Transporter, das Rückgrat des Luftlandekorps der Volksbefreiungsarmee.
+1170	Ein Erdkampfflugzeug mit zwei MGs, das Infanterie und leichte Panzerung im Tiefflug beschießt.
+1171	Tiefflieger
+1172	Die Longwing: ein Nurflügelbomber mit vier Druckpropellern. Sie trägt keine Bordwaffen. Ist der Fatman-Schlag bereit, startet sie, wirft die Fatman-Atombombe auf das Ziel und fliegt heim. Geht sie verloren, beginnt der Timer von vorn. Nur USA, eine pro Spieler.
+1173	Atombomber
+1174	Ein schwerer Radwerfer mit zwei ballistischen Kurzstreckenraketen auf der Startrampe. Er übertrifft jede andere Bodeneinheit an Reichweite; nur weitreichende Flugabwehr kann die Raketen stoppen. Nur Iran.
+1175	Ballistischer Raketen-Lkw
+1176	Erlaubt Verbündeten, Gebäude in deinem Baubereich zu errichten
+1177	Bei Verbündeten bauen
+1178	Bot-Debugmeldungen anzeigen
+1179	Beschränkt das Bauen auf Bereiche um Bauhöfe
+1180	Baubereich begrenzen
+1181	Sync um BotModule-Code prüfen
+1182	Sync um nicht synchronisierten Code prüfen
+1183	Sammle Kisten mit Einheiten für zufällige Boni oder Mali
+1184	Kisten
+1185	Aktiviert Cheats und Entwicklerbefehle
+1186	Debug-Menü
+1187	Überall bauen
+1188	Sichtprüfungen deaktivieren
+1189	Alles bauen
+1190	Sofortiges Bauen
+1191	Sofortige Aufladung
+1192	Objekt-Tags anzeigen
+1193	Kampfgeometrie anzeigen
+1194	Eigenes Gelände anzeigen
+1195	Render-Geometrie anzeigen
+1196	Bildschirmkarte anzeigen
+1197	Geländegeometrie anzeigen
+1198	Einheitenpfade anzeigen
+1199	Unbegrenzte Energie
+1200	Die Karte ist zu Beginn aufgedeckt
+1201	Erkundete Karte
+1202	Feindliche Truppen sind nur in Sichtlinie sichtbar
+1203	Kriegsnebel
+1204	Bildratenbegrenzer aktivieren ({ $fps } FPS)
+1205	Vorübergehend sperren
+1206	Spieler erhalten Geldprämien für das Zerstören feindlicher Einheiten
+1207	Kopfgelder
+1208	Karten-Debugmeldungen anzeigen
+1209	Systeminformationen senden
+1210	Online bekannt machen
+1211	Gestartet
+1212	Leer
+1213	Inkompatibel
+1214	Geschützt
+1215	Wiederholen
+1216	Zufällig
+1217	Menümusik stummschalten
+1218	Hintergrundmusik stummschalten, wenn kein bestimmter Titel läuft
+1219	Tick-Leistungsprotokoll aktivieren
+1220	Beziehungsfarben
+1221	Spielerfarben nach Beziehung ändern (eigen, Feind, Verbündeter, neutral)
+1222	Bodeneffekte
+1223	Detailtexturen des Geländes und ziehende Wolkenschatten. Kosten jedes Bild gleich viel, egal was passiert – daher als Erstes auf der integrierten Grafik eines Laptops abschalten. Gilt ab dem nächsten Spiel.
+1224	HD-Weltdetails
+1225	Rendert das Schlachtfeld in voller Bildschirmauflösung, damit HD-Einheiten und -Gebäude beim Heranzoomen scharf bleiben. Deutlich mehr GPU-Last auf hochauflösenden (Retina-)Bildschirmen.
+1226	Flüssige Einheitenbewegung
+1227	Zeichnet bewegte Einheiten zwischen den Spieltakten, sodass sie mit voller Bildrate gleiten, statt 25-mal pro Sekunde zu springen.
+1228	Wettereffekte
+1229	Regen, Schnee, Nebel, Sandstürme und das Licht jedes Wetters sowie die Druckwellen großer Explosionen, die das Bild verzerren. Das Wetter wechselt weiterhin und wird angekündigt, nur nicht gezeichnet. Gilt ab dem nächsten Spiel.
+1230	Erlaubt das Abbauen von Bauhöfen
+1231	Verlegbare MBF
+1232	Debugbefehle in Wiederholungen aktivieren
+1233	Ingenieure bleiben nach dem Einnehmen eines Gebäudes auf dem Schlachtfeld
+1234	Wiederverwendbare Ingenieure
+1235	Spieler ohne zugewiesenen Startpunkt beginnen möglichst weit von Gegnern entfernt
+1236	Getrennte Team-Starts
+1237	Spieler verlieren, wenn ihre Basis zerstört ist
+1238	Kurzes Spiel
+1239	Vernichte jeden Widerstand!
+1240	Erlaubt den Bau des Raketensilos und seiner Atomrakete
+1241	Superwaffen
+1242	Spielereignis-Meldungen anzeigen
+1243	Kurze Textmeldungen für Spielereignisse anzeigen
+1244	UI-Rückmeldungen anzeigen
+1245	Kurze Textmeldungen für UI-Ereignisse anzeigen
+1246	schaltet das Objekt-Tag-Overlay um.
+1247	schaltet das Überall-Bauen um.
+1248	schaltet das Skript-Trigger-Overlay um.
+1249	schaltet das Kampfgeometrie-Overlay um.

@@ -1,0 +1,200 @@
+1330	Renommer
+1331	Entrez un nouveau nom de fichier :
+1332	Renommer la sauvegarde
+1333	OK
+1334	Consultez debug.log pour plus de détails.
+1335	Échec de l'enregistrement de la carte
+1336	Impossible d'écouter sur le port { $port }.
+1337	Erreur : « { $message } » ({ $code }).
+1338	Vérifiez si le port est déjà utilisé.
+1339	Échec de la création du serveur
+1340	Réinitialiser
+1341	Voulez-vous vraiment réinitialiser\ntous les réglages de ce panneau ?
+1342	Réinitialiser { $panel }
+1343	Redémarrer plus tard
+1344	Redémarrer maintenant
+1345	Certains changements ne seront appliqués\nqu'au redémarrage du jeu. Redémarrer maintenant ?
+1346	Redémarrer maintenant ?
+1347	Continuer
+1348	Certains changements ne seront appliqués\nqu'au redémarrage du jeu.
+1349	Redémarrage requis
+1350	{ $bots ->\n[one] Expulser l'administrateur de la partie expulsera aussi 1 bot.\n*[other] Expulser l'administrateur de la partie expulsera aussi { $bots } bots.\n}
+1351	Voter l'expulsion de { $player } ?
+1352	Voter contre
+1353	S'abstenir
+1354	Voter pour
+1355	Lancer le vote
+1356	Règle la vitesse à laquelle le temps s'écoule
+1357	Vitesse de jeu
+1358	La difficulté de la mission
+1359	Difficulté
+1360	Aucun joueur ne peut attaquer, endommager ou capturer un autre joueur avant la fin du traité. Tapez /endtreaty dans le chat pour voter sa fin anticipée.
+1361	Traité de paix
+1362	Hautes performances
+1363	Carte graphique :
+1364	Économie d'énergie
+1365	La carte graphique utilisée par Windows pour le jeu. La plupart des portables de jeu en ont deux : une économe intégrée au processeur et une dédiée rapide. C'est le même choix que Paramètres Windows > Système > Écran > Graphiques, et il s'applique au prochain lancement du jeu.
+1366	Laisser Windows décider
+1367	Élevé
+1368	Détail de la météo :
+1369	Faible
+1370	Le niveau de détail de la météo. Une tempête est l'élément le plus coûteux à l'écran : baisser ce réglage fait regagner des images sans perdre la météo. Faible garde chaque météo reconnaissable mais retire les éclaboussures sous la pluie, les couches de pluie et de neige les plus lointaines et les ramifications des éclairs. S'applique immédiatement.
+1371	Les unités dont disposent les joueurs au début de la partie
+1372	Unités de départ
+1373	Les unités et capacités disponibles pour les joueurs
+1374	Niveau technologique
+1375	Le joueur ou l'équipe au score le plus élevé à la fin du temps imparti l'emporte
+1376	Limite de temps
+1377	Pluie, orages, neige, brouillard, tempêtes de sable et vent qui suivent le climat de la carte et changent pendant la partie.
+1378	Météo
+1379	La fréquence des changements de météo.
+1380	Changements de météo
+1381	Types de ressources
+1382	Dossiers
+1383	Tout le monde
+1384	Choisir BlockedByActor
+1385	Choisir le Locomotor
+1386	Un handicap réduit l'efficacité au combat des forces du joueur
+1387	Un géant qui combat pour ce joueur dès le début. S'il meurt, il ne peut pas être reconstruit.
+1388	Filtrer les parties
+1389	Nouvelles du front
+1390	Visibilité de la carte
+1391	Admin de la place
+1392	{ $name } { $number ->\n*[zero] {""}\n[other] { $number }\n}
+1393	Saisie du chat
+1394	Éditeur
+1395	Spectateur
+1396	Tous
+1397	Mouvement d'attaque
+1398	Saisie automatique
+1449	Aller à la base
+1450	Parcourir les collecteurs
+1451	Installation suivante
+1452	Changer l'affichage des barres d'état
+1453	Déployer
+1454	Onglet Acteurs
+1455	Supprimer la sélection
+1456	Onglet Historique
+1457	Onglet Calques
+1458	Onglet Sélection
+1459	Onglet Paramètres
+1460	Onglet Tuiles
+1461	Calque du terrain constructible
+1462	Calque de grille
+1463	Calque des marqueurs
+1464	Onglet Outils
+1465	Garder
+1474	Aller au bord inférieur
+1475	Aller au bord gauche
+1476	Aller au bord droit
+1477	Aller au bord supérieur
+1478	Défiler vers le bas
+1479	Défiler vers la gauche
+1480	Défiler vers la droite
+1481	Défiler vers le haut
+1482	Suivant
+1483	Ouvrir le chat général
+1484	Ouvrir le chat d'équipe
+1485	Pause / Reprise
+1486	Pause ou reprise
+1487	Placer une balise
+1488	Mode coupure d'énergie
+1489	Précédent
+1514	Onglet Aéronefs
+1515	Onglet Bâtiments
+1516	Onglet Défense
+1517	Onglet Infanterie
+1518	Onglet Marine
+1519	Onglet Véhicules
+1520	Descente en corde lisse (hélicoptères de transport)
+1521	Mode points de passage
+1522	Retirer du groupe de contrôle
+1523	Mode réparation
+1524	Vitesse rapide
+1525	Vitesse maximale
+1526	Vitesse normale
+1527	Vitesse lente
+1528	Réinitialiser le zoom
+1529	Disperser
+1399	Ajouter au groupe 1
+1409	Fusionner avec le groupe 1
+1419	Créer le groupe 1
+1429	Aller au groupe 1
+1439	Sélectionner le groupe 1
+1400	Ajouter au groupe 2
+1410	Fusionner avec le groupe 2
+1420	Créer le groupe 2
+1430	Aller au groupe 2
+1440	Sélectionner le groupe 2
+1401	Ajouter au groupe 3
+1411	Fusionner avec le groupe 3
+1421	Créer le groupe 3
+1431	Aller au groupe 3
+1441	Sélectionner le groupe 3
+1402	Ajouter au groupe 4
+1412	Fusionner avec le groupe 4
+1422	Créer le groupe 4
+1432	Aller au groupe 4
+1442	Sélectionner le groupe 4
+1403	Ajouter au groupe 5
+1413	Fusionner avec le groupe 5
+1423	Créer le groupe 5
+1433	Aller au groupe 5
+1443	Sélectionner le groupe 5
+1404	Ajouter au groupe 6
+1414	Fusionner avec le groupe 6
+1424	Créer le groupe 6
+1434	Aller au groupe 6
+1444	Sélectionner le groupe 6
+1405	Ajouter au groupe 7
+1415	Fusionner avec le groupe 7
+1425	Créer le groupe 7
+1435	Aller au groupe 7
+1445	Sélectionner le groupe 7
+1406	Ajouter au groupe 8
+1416	Fusionner avec le groupe 8
+1426	Créer le groupe 8
+1436	Aller au groupe 8
+1446	Sélectionner le groupe 8
+1407	Ajouter au groupe 9
+1417	Fusionner avec le groupe 9
+1427	Créer le groupe 9
+1437	Aller au groupe 9
+1447	Sélectionner le groupe 9
+1408	Ajouter au groupe 0
+1418	Fusionner avec le groupe 0
+1428	Créer le groupe 0
+1438	Aller au groupe 0
+1448	Sélectionner le groupe 0
+1466	Aller au signet 1
+1470	Enregistrer le signet 1
+1467	Aller au signet 2
+1471	Enregistrer le signet 2
+1468	Aller au signet 3
+1472	Enregistrer le signet 3
+1469	Aller au signet 4
+1473	Enregistrer le signet 4
+1490	Emplacement 01
+1491	Emplacement 02
+1492	Emplacement 03
+1493	Emplacement 04
+1494	Emplacement 05
+1495	Emplacement 06
+1496	Emplacement 07
+1497	Emplacement 08
+1498	Emplacement 09
+1499	Emplacement 10
+1500	Emplacement 11
+1501	Emplacement 12
+1502	Emplacement 13
+1503	Emplacement 14
+1504	Emplacement 15
+1505	Emplacement 16
+1506	Emplacement 17
+1507	Emplacement 18
+1508	Emplacement 19
+1509	Emplacement 20
+1510	Emplacement 21
+1511	Emplacement 22
+1512	Emplacement 23
+1513	Emplacement 24

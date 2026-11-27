@@ -1,0 +1,150 @@
+2500	Erhält Veteranenränge
+2501	WIRKSAM GEGEN
+2502	FEINDLICH
+2503	Energiestrahl
+2504	EINTRÄGE
+2505	EXKLUSIV
+2506	Erweitert den Baubereich
+2507	Schneller Jet: greift an, dann kehrt er zum Nachladen zurück
+2508	EINSATZAKTE
+2509	Repariert Fahrzeuge im Feld
+2510	EINGESETZT VON
+2512	FEUERKRAFT
+2513	Starrflügler
+2514	Leuchtfackeln: { $p0 } Salven täuschen { $p1 }% der Lenkraketen
+2515	Flugdeck: startet und munitioniert Jets
+2516	Befestigung
+2517	BEFESTIGT
+2518	Erzeugt { $p0 } Energie
+2519	Erzeugt stetiges Einkommen
+2520	Granate
+2521	BODEN
+2523	Bodenfahrzeug
+2524	Lenkrakete
+2525	Hammerschläge · schleudert Felsbrocken\nSpringt hoch, um Jets herunterzuschlagen · 850.000 LP
+2526	Sammelt Erz und Edelsteine
+2527	Heilt Infanterie in der Nähe
+2528	LEBEN
+2529	Schwer
+2530	SCHWERE PANZERUNG
+2532	Hüllt deine Basis in ein Nebelfeld
+2533	LEBENSPUNKTE
+2534	GASTGEBER
+2535	GASTGEBER · DU
+2536	Hyperschall
+2537	IM KAMPF
+2538	Brandmunition
+2539	INFANTERIE
+2540	Infiltriert feindliche Gebäude
+2541	Fängt anfliegende Raketen ab
+2542	Stört Lenkraketen
+2543	Legt Minenfelder
+2544	Springt seine Beute an
+2545	Leicht
+2547	LEICHTE PANZERUNG
+2549	BEGRENZT
+2550	Reglos im Wasser unsichtbar
+2551	MENÜMUSIK
+2552	MENÜMUSIK · PAUSIERT
+2553	(MIN. { $p0 })
+2554	Abfangraketen
+2556	Musik stummschalten
+2557	NATIONAL
+2558	NATIONALE EINHEIT
+2559	MARINE
+2560	Marineeinheit
+2562	Kriegsschiff
+2563	NEUTRAL
+2564	KEINE EINTRÄGE FÜR DIESE NATION
+2565	Kein Riese für diesen Spieler
+2566	KEINE MUSIK INSTALLIERT
+2567	KEINE AUSWAHL
+2568	KEIN TITAN
+2569	Kein Titan
+2570	Es läuft kein Titel
+2571	NICHT BEREIT
+2572	LÄUFT
+2573	Atomsprengkopf
+2574	OFFLINE
+2575	Ein Exemplar pro Spieler. Es erscheint zu Beginn und kann nicht nachgebaut werden.
+2576	ONLINE
+2577	PAUSIERT
+2578	LEISTUNG
+2579	In der Lobby ausgewählt (Spalte TITAN): ein Exemplar pro Spieler, erscheint zu Beginn, kann nicht nachgebaut werden
+2580	Wird bei Spielbeginn gewählt
+2581	Legt Sprengladungen
+2582	Nahbereichsabwehr gegen Flugkörper
+2583	ENERGIEERZEUGUNG
+2584	ENERGIEVERBRAUCH
+2585	Produziert { $p0 }
+2586	PROJECT X  //  GEHEIMES KRIEGSARCHIV
+2587	PROJECT X · ORIGINAL SOUNDTRACK
+2588	Liefert die Radar-Minikarte
+2589	BELIEBIG
+2590	REICHWEITE { $p0 }
+2591	REICHWEITE
+2592	Verarbeitet Erz zu Credits
+2593	Leitet Prismastrahlen weiter und verstärkt sie
+2594	Lädt seine Fallschirmjäger auf seinem Landeplatz in { $p0 } s nach, gegen Bezahlung
+2595	Repariert Brücken
+2596	Repariert angedockte Fahrzeuge
+2597	Titel wiederholen: aus
+2598	Titel wiederholen: ein
+2599	WIEDERHOLUNG
+2600	BENÖTIGT
+2602	Rakete
+2604	Drehflügler
+2606	PUNKTE
+2607	Seismische Schockwelle (Selbstzerstörung)
+2608	Wähle eine Einheit oder ein Gebäude,
+2609	NATION WÄHLEN
+2610	AUSGEWÄHLTE EINHEITEN ({ $p0 })
+2611	Repariert sich mit der Zeit selbst
+2613	Feuer und Rückzug
+2614	Schießt { $p0 } ab
+2615	Zerstört Flugkörper, die auf es zielen, zu { $p0 }% pro Salve
+2616	Zufällig: aus
+2617	Zufällig: ein
+2618	Kleinwaffen
+2619	TON IST STUMMGESCHALTET
+2620	ZUSCHAUEN · { $p0 }
+2621	ZUSCHAUEN
+2622	GESCHWINDIGKEIT
+2623	BEREITSCHAFT
+2624	Tarnung: unsichtbar im Stillstand
+2625	GESTOPPT
+2626	Lagert Credits
+2629	GEBÄUDE
+2630	GEBÄUDE
+2632	Taucht außer Sichtweite ab
+2633	UNTERSTÜTZUNG
+2634	Unterstützung: kein direkter Schaden
+2635	ÜBERRASCHUNG
+2636	Überraschung
+2637	Schwimmt, im Wasser schneller als an Land
+2639	Zielmarkierung
+2640	Teleportiert sich über kurze Strecken
+2641	DIE UNION
+2642	DIE VANGUARD
+2643	TITAN
+2644	um die Details zu sehen.
+2645	Torpedo
+2646	TITEL { $p0 } / { $p1 } · { $p2 }
+2647	Zertrampelt Infanterie: sie kann nicht ausweichen
+2648	Trägt { $p0 } Soldaten
+2649	Union
+2650	Einheit
+2651	Musik wieder einschalten
+2652	Vanguard
+2653	FAHRZEUGE
+2654	SIEGREICH
+2655	SIEG · { $p0 }
+2656	SIEG
+2657	SICHTWEITE
+2658	VTOL: schwebt und landet überall
+2661	DU
+2662	Wertvolle Mineralien
+2663	{ $units ->\n[one] Eine Einheit auf der ganzen Karte ausgewählt.\n*[other] { $units } Einheiten auf der ganzen Karte ausgewählt.\n}
+2664	{ $units ->\n[one] Eine Einheit auf dem Bildschirm ausgewählt.\n*[other] { $units } Einheiten auf dem Bildschirm ausgewählt.\n}
+2665	AUSGESETZT
+2666	BEREIT

@@ -140,6 +140,7 @@ Chrome:
 	ra|px-lobby.yaml
 	ra|px-weather.yaml
 	ra|px-flags-large.yaml
+	ra|px-lang-flags.yaml
 	ra|px-titans.yaml
 
 Assemblies: OpenRA.Mods.Common.dll, OpenRA.Mods.Cnc.dll, OpenRA.Mods.RAPX.dll
@@ -194,6 +195,7 @@ ChromeLayout:
 	common|chrome/dropdowns.yaml
 	ra|chrome/musicplayer.yaml
 	ra|chrome/catalogue.yaml
+	ra|chrome/language.yaml
 	ra|chrome/tooltips.yaml
 	common|chrome/assetbrowser.yaml
 	common|chrome/missionbrowser.yaml
@@ -223,8 +225,51 @@ FluentMessages:
 	ra|fluent/airborne.ftl
 	ra|fluent/red-smoke.ftl
 	ra|fluent/air-assault.ftl
+	ra|fluent/px-text.ftl
 
 AllowUnusedFluentMessagesInExternalPackages: false
+
+# Interface languages for Main menu > Language (Game.Settings.Player.Language). Each language's Messages load on
+# top of FluentMessages, so untranslated keys stay English; Fonts swaps the Rajdhani UI fonts for ones that cover
+# the script. FallbackFonts supply glyphs any font lacks (native language names, player names).
+# Fonts: artsrc/lang-fonts/make_fonts.py, flags: artsrc/px-langs/generate.py.
+FluentLanguages:
+	FallbackFonts: ra|fonts/lang/Changa-SemiBold.ttf, ra|fonts/lang/NotoSansSC-Medium.ttf, ra|fonts/lang/SairaSemiCondensed-SemiBold.ttf
+	en:
+		Name: English
+		NativeName: English
+	ar:
+		Name: Arabic
+		NativeName: العربية
+		Messages: ra|fluent/lang/ar/game.ftl, ra|fluent/lang/ar/chrome.ftl
+		Fonts:
+			ra|fonts/Rajdhani-Medium.ttf: ra|fonts/lang/Changa-Medium.ttf
+			ra|fonts/Rajdhani-SemiBold.ttf: ra|fonts/lang/Changa-SemiBold.ttf
+			ra|fonts/Rajdhani-Bold.ttf: ra|fonts/lang/Changa-Bold.ttf
+	de:
+		Name: German
+		NativeName: Deutsch
+		Messages: ra|fluent/lang/de/game.ftl, ra|fluent/lang/de/chrome.ftl
+	fr:
+		Name: French
+		NativeName: Français
+		Messages: ra|fluent/lang/fr/game.ftl, ra|fluent/lang/fr/chrome.ftl
+	zh:
+		Name: Chinese
+		NativeName: 中文
+		Messages: ra|fluent/lang/zh/game.ftl, ra|fluent/lang/zh/chrome.ftl
+		Fonts:
+			ra|fonts/Rajdhani-Medium.ttf: ra|fonts/lang/NotoSansSC-Medium.ttf
+			ra|fonts/Rajdhani-SemiBold.ttf: ra|fonts/lang/NotoSansSC-Medium.ttf
+			ra|fonts/Rajdhani-Bold.ttf: ra|fonts/lang/NotoSansSC-Bold.ttf
+	vi:
+		Name: Vietnamese
+		NativeName: Tiếng Việt
+		Messages: ra|fluent/lang/vi/game.ftl, ra|fluent/lang/vi/chrome.ftl
+		Fonts:
+			ra|fonts/Rajdhani-Medium.ttf: ra|fonts/lang/SairaSemiCondensed-Medium.ttf
+			ra|fonts/Rajdhani-SemiBold.ttf: ra|fonts/lang/SairaSemiCondensed-SemiBold.ttf
+			ra|fonts/Rajdhani-Bold.ttf: ra|fonts/lang/SairaSemiCondensed-Bold.ttf
 
 Weapons:
 	ra|weapons/explosions.yaml

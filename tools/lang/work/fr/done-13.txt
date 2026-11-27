@@ -1,0 +1,200 @@
+2130	INITIALISATION DU COMMANDEMENT
+2131	RETOUR AU COMMANDEMENT
+2132	DÉPLOIEMENT SUR LE CHAMP DE BATAILLE
+2133	Briefing
+2134	Chat
+2135	Débogage
+2136	Objectifs
+2137	Options
+2138	Caisse de munitions
+2139	Structure
+2140	Caisses
+2141	Pont
+2142	Champ
+2143	Meule de foin
+2144	Igloo
+2145	Caisse
+2146	Hélicoptère
+2147	Hélicoptère détruit
+2148	Véhicule détruit
+2149	Soldat
+2150	Mine
+2151	Avion
+2152	Avion détruit
+2153	Rocher
+2154	Navire
+2155	Bâtiment civil
+2156	Arbre
+2157	Arbre (brûlé)
+2158	Véhicule
+2159	Retourner
+2160	Pivoter
+2161	RedAlert Project X
+2162	Aucune sélection.
+2163	Lancement de bombe atomique détecté.
+2164	Préparation de la bombe atomique.
+2165	Bombe atomique prête.
+2166	{ $name } ajouté ({ $id })
+2167	{ $amount ->\n[one] Une tuile marqueur de type { $type } ajoutée\n*[other] { $amount } tuiles marqueurs de type { $type } ajoutées\n}
+2168	{ $amount ->\n[one] Une case de { $type } ajoutée\n*[other] { $amount } cases de { $type } ajoutées\n}
+2169	Tuile { $id } ajoutée
+2170	Seul l'hôte peut modifier la configuration.
+2171	Seul l'hôte peut changer la carte.
+2172	Seuls les admins peuvent effacer les points de départ.
+2173	Seul l'hôte peut expulser des joueurs.
+2174	{ $admin } a expulsé { $player } du serveur.
+2175	Seul l'hôte peut définir les infos du salon.
+2176	Seul l'hôte peut placer des joueurs en spectateurs.
+2177	Seul l'hôte peut régler cette option.
+2178	Seul l'hôte peut lancer la partie.
+2179	Seuls les admins peuvent transférer les droits d'admin à un autre joueur.
+2180	Unité aéroportée perdue.
+2181	Notre allié est attaqué.
+2182	Voici les commandes disponibles :
+2183	Base attaquée.
+2184	Le nom du serveur contient un mot interdit.
+2185	Bâtiment infiltré.
+2186	Impossible de déployer ici.
+2187	Pont d'envol : { $mode }
+2188	{ $player } a changé la carte pour { $map }.
+2189	{ $remaining ->\n[one] Le chat est désactivé. Réessayez dans { $remaining } seconde.\n*[other] Le chat est désactivé. Réessayez dans { $remaining } secondes.\n}
+2190	Triche utilisée : { $cheat } par { $player }{ $suffix }.
+2191	Les triches sont désactivées.
+2192	Chronosphère en charge.
+2193	Chronosphère prête.
+2194	{ $amount } tuiles marqueurs effacées
+2195	{ $amount } tuiles marqueurs de type { $type } effacées
+2196	Sélection effacée
+2197	{ $player } rencontre des problèmes de connexion.
+2198	Construction terminée.
+2199	{ $amount ->\n[one] Une tuile copiée\n*[other] { $amount } tuiles copiées\n}
+2200	Crédits volés.
+2201	Cette carte contient des règles personnalisées. L'expérience de jeu peut changer.
+2202	Désynchronisation à l'image { $frame }.\nComparez syncreport.log avec les autres joueurs.
+2203	{ $name } modifié ({ $id })
+2204	{ $name } modifié ({ $old-id }-> { $new-id })
+2205	Personne à cette place.
+2206	La partie a déjà commencé.
+2207	Impossible de lire le nombre d'équipes : { $raw }.
+2208	Bombardier atomique détecté.
+2209	Rempli avec la tuile { $id }
+2210	La partie est complète.
+2211	La partie a commencé.
+2212	La partie n'a pas été annoncée en ligne.
+2213	La partie a été mise en pause par { $player }.
+2214	Partie sauvegardée.
+2215	Partie lancée.
+2216	La partie a été reprise par { $player }.
+2217	Le serveur utilise un mod incompatible.
+2218	Le serveur utilise un protocole incompatible.
+2219	Le serveur utilise une version incompatible.
+2220	Mot de passe incorrect.
+2221	Impossible de lancer la partie sans activer davantage de points de départ.
+2222	Fonds insuffisants.
+2223	Énergie insuffisante.
+2224	Votes insuffisants pour expulser { $kickee }.
+2225	Impossible d'ajouter des bots à une place occupée par un autre client.
+2226	Type de bot invalide.
+2227	Montant de crédits invalide.
+2228	{ $name } n'est pas une commande valide.
+2229	Commande de configuration invalide.
+2230	Impossible de lire le message d'erreur.
+2231	Faction choisie invalide : { $faction }.
+2232	Infos de salon envoyées invalides.
+2233	Impossible de déterminer une couleur de joueur valide. Une couleur aléatoire a été choisie.
+2234	Rideau de fer en charge.
+2235	Rideau de fer prêt.
+2236	{ $player } a rejoint la partie.
+2237	Vous avez déjà voté.
+2238	L'hôte ne peut pas s'expulser lui-même.
+2239	{ $player } a été expulsé du serveur.
+2240	{ $player } est parti.
+2241	Énergie faible.
+2242	Commande { $command } mal formée.
+2243	Les bots ont été désactivés sur cette carte.
+2244	Impossible de supprimer la carte « { $map } ». Consultez le fichier debug.log pour plus de détails.
+2245	Communication avec le serveur maître établie.
+2246	Échec de la communication avec le serveur maître.
+2247	Impossible de changer de mod.
+2248	{ $admin } a placé { $player } en spectateur.
+2249	{ $id } déplacé de { $x1 },{ $y1 } à { $x2 },{ $y2 }
+2250	Unité navale perdue.
+2251	{ $player } est maintenant l'admin.
+2252	Nouvelles options de construction.
+2253	{ $player } s'appelle désormais { $name }.
+2254	Après le début de la partie, seuls les spectateurs et les joueurs vaincus peuvent être expulsés.
+2255	Vous n'avez pas l'autorisation de rejoindre ce serveur.
+2256	Le port du serveur n'est pas accessible depuis Internet.
+2257	Impossible de lancer la partie tant que les places requises ne sont pas occupées.
+2258	Impossible de lancer la partie sans joueurs.
+2259	{ $player } (spectateur) s'est déconnecté.
+2260	Ouverte
+2261	{ $player } a changé { $name } en { $value }.
+2262	{ $option } ne peut pas être modifié.
+2263	Traité en vigueur : vous ne pouvez pas encore attaquer les autres joueurs.
+2264	Le traité de paix a pris fin. À la guerre !
+2265	Le traité de paix prend fin dans { $minutes ->\n[one] { $minutes } minute\n*[other] { $minutes } minutes\n}.
+2266	Aucun traité de paix n'est en vigueur.
+2267	Le traité de paix prend fin dans { $seconds }...
+2268	Un traité de paix est en vigueur pendant { $minutes ->\n[one] { $minutes } minute\n*[other] { $minutes } minutes\n}. Aucune attaque avant sa fin. Tapez /endtreaty pour voter sa fin anticipée.
+2269	Tous les joueurs sont d'accord : le traité prend fin dans { $seconds } secondes.
+2270	{ $player } vote pour mettre fin plus tôt au traité ({ $votes }/{ $needed }).
+2271	La couleur a été ajustée pour se distinguer d'un autre joueur.
+2272	La couleur a été ajustée pour se distinguer du terrain.
+2273	{ $player } s'est déconnecté.
+2274	Un joueur a été déconnecté après un délai d'attente dépassé.
+2275	{ $player } est vaincu.
+2276	{ $player } est victorieux.
+2277	Bâtiment principal sélectionné.
+2278	Pas de place pour descendre en corde lisse : l'hélicoptère s'éloigne avec le reste de ses troupes.
+2279	Corde lisse : cliquez sur la zone d'atterrissage (Shift+clic pour mettre en file, clic droit pour annuler).
+2280	Sélectionnez un hélicoptère de transport avec des soldats à bord pour descendre en corde lisse.
+2281	Mode points de passage : cliquez pour ajouter des points, double-cliquez ou appuyez à nouveau sur la touche pour envoyer.
+2282	Mission de tir : l'appui tire sur la fumée rouge.
+2283	Aucun appui à portée de la fumée rouge.
+2284	Fumée rouge prête.
+2285	Fumée rouge ennemie repérée. Tirs en approche !
+2286	Les renforts sont arrivés.
+2287	{ $name } supprimé ({ $id })
+2288	Zone { $x },{ $y } ({ $width },{ $height }) supprimée
+2289	{ $amount ->\n[one] Une tuile marqueur supprimée\n*[other] { $amount } tuiles marqueurs supprimées\n}
+2290	{ $type } supprimé
+2291	Réparation.
+2292	Impossible de supprimer le fichier de replay « { $file } ». Consultez le fichier debug.log pour plus de détails.
+2293	Le serveur exige un compte du forum OpenRA.
+2294	Seul l'hôte peut faire cela.
+2295	Le serveur exige un mot de passe.
+2296	Satellite lancé.
+2297	Carte actuelle enregistrée.
+2298	Impossible de supprimer le fichier de sauvegarde « { $savePath } ». Consultez les journaux pour plus de détails.
+2299	Capture d'écran { $filename } enregistrée
+2300	Recherche de la carte sur le Resource Center...
+2301	Choisissez une cible.
+2302	Acteur { $id } sélectionné
+2303	Zone { $x },{ $y } ({ $width },{ $height }) sélectionnée
+2304	Silos nécessaires.
+2305	Votre place a été fermée par l'hôte.
+2306	Impulsion sonar prête.
+2307	Ce point de départ est réservé à une autre place.
+2308	Vous ne pouvez pas occuper le même point de départ qu'un autre joueur.
+2309	Avion espion prêt.
+2310	L'état ne peut plus être modifié une fois la partie lancée ({ $command }).
+2311	Impossible de changer l'état une fois marqué comme prêt.
+2312	Structure capturée.
+2313	{ $player } (équipe { $team }) s'est déconnecté.
+2314	{ $admin } a banni temporairement { $player } du serveur.
+2315	Le temps imparti est écoulé.
+2316	{ $player } a été déconnecté après un délai d'attente dépassé.
+2317	{ $timeout ->\n[one] { $player } sera déconnecté dans { $timeout } seconde.\n*[other] { $player } sera déconnecté dans { $timeout } secondes.\n}
+2318	Notre titan est tombé.
+2319	Ce serveur exige au moins deux joueurs humains pour lancer une partie.
+2320	Impossible d'en construire davantage.
+2321	Impossible d'obéir. Construction en cours.
+2322	Impossible de lancer un vote.
+2323	Unité perdue.
+2324	Unité promue.
+2325	Unité prête.
+2326	Unité réparée.
+2327	Unité volée.
+2328	La carte est introuvable sur le serveur.
+2329	Commande serveur inconnue : { $command }.

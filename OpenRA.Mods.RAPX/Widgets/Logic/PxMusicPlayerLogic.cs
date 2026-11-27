@@ -10,6 +10,7 @@
 #endregion
 
 using System;
+using System.Globalization;
 using System.Linq;
 using OpenRA.GameRules;
 using OpenRA.Mods.Common.Traits;
@@ -48,26 +49,27 @@ namespace OpenRA.Mods.RAPX.Widgets.Logic
 			hero.GetStatus = () =>
 			{
 				if (NoMusic())
-					return "NO MUSIC INSTALLED";
+					return PxText.T("NO MUSIC INSTALLED");
 
 				if (Playing() == null)
-					return Shown() == null ? "STANDING BY" : "STOPPED";
+					return Shown() == null ? PxText.T("STANDING BY") : PxText.T("STOPPED");
 
 				if (playlist.CurrentSongIsBackground)
-					return Game.Sound.MusicPlaying ? "MENU THEME" : "MENU THEME · PAUSED";
+					return Game.Sound.MusicPlaying ? PxText.T("MENU THEME") : PxText.T("MENU THEME · PAUSED");
 
-				return Game.Sound.MusicPlaying ? "NOW PLAYING" : "PAUSED";
+				return Game.Sound.MusicPlaying ? PxText.T("NOW PLAYING") : PxText.T("PAUSED");
 			};
 
 			var totalLength = songs.Sum(s => s.Length);
 			hero.GetSubtitle = () =>
 			{
 				var index = Array.IndexOf(songs, Shown());
-				const string Album = "PROJECT X · ORIGINAL SOUNDTRACK";
-				return index < 0 ? $"{songs.Length} TRACKS · {Album}" : $"TRACK {index + 1:D2} / {songs.Length:D2} · {Album}";
+				var album = PxText.T("PROJECT X · ORIGINAL SOUNDTRACK");
+				return index < 0 ? PxText.F("{0} TRACKS · {1}", songs.Length, album)
+					: PxText.F("TRACK {0} / {1} · {2}", (index + 1).ToString("D2", CultureInfo.InvariantCulture), songs.Length.ToString("D2", CultureInfo.InvariantCulture), album);
 			};
 
-			hero.GetNote = () => Game.Settings.Sound.Mute ? "SOUND IS MUTED" : "";
+			hero.GetNote = () => Game.Settings.Sound.Mute ? PxText.T("SOUND IS MUTED") : "";
 			hero.CanSeek = () => Playing() != null;
 			hero.OnSeek = fraction =>
 			{
@@ -107,13 +109,13 @@ namespace OpenRA.Mods.RAPX.Widgets.Logic
 			shuffle.IsHighlighted = () => Game.Settings.Sound.Shuffle;
 			shuffle.IsDisabled = NoMusic;
 			shuffle.OnClick = () => Game.Settings.Sound.Shuffle ^= true;
-			shuffle.GetTooltipText = () => Game.Settings.Sound.Shuffle ? "Shuffle: on" : "Shuffle: off";
+			shuffle.GetTooltipText = () => Game.Settings.Sound.Shuffle ? PxText.T("Shuffle: on") : PxText.T("Shuffle: off");
 
 			var loop = widget.Get<PxMusicButtonWidget>("BUTTON_LOOP");
 			loop.IsHighlighted = () => Game.Settings.Sound.Repeat;
 			loop.IsDisabled = NoMusic;
 			loop.OnClick = () => Game.Sound.SetMusicLooped(!Game.Settings.Sound.Repeat);
-			loop.GetTooltipText = () => Game.Settings.Sound.Repeat ? "Repeat track: on" : "Repeat track: off";
+			loop.GetTooltipText = () => Game.Settings.Sound.Repeat ? PxText.T("Repeat track: on") : PxText.T("Repeat track: off");
 
 			var volume = widget.Get<SliderWidget>("VOLUME");
 			volume.OnChange += x => Game.Sound.MusicVolume = x;
@@ -122,7 +124,7 @@ namespace OpenRA.Mods.RAPX.Widgets.Logic
 			// Speaker toggles the music volume between silent and the last level
 			var speaker = widget.Get<PxMusicButtonWidget>("BUTTON_VOLUME");
 			var lastVolume = Game.Sound.MusicVolume > 0.01f ? Game.Sound.MusicVolume : 0.5f;
-			speaker.GetTooltipText = () => Game.Sound.MusicVolume > 0.01f ? "Mute music" : "Unmute music";
+			speaker.GetTooltipText = () => Game.Sound.MusicVolume > 0.01f ? PxText.T("Mute music") : PxText.T("Unmute music");
 			speaker.OnClick = () =>
 			{
 				if (Game.Sound.MusicVolume > 0.01f)
@@ -150,7 +152,7 @@ namespace OpenRA.Mods.RAPX.Widgets.Logic
 
 			var count = widget.GetOrNull<LabelWidget>("TRACK_COUNT");
 			if (count != null)
-				count.GetText = () => $"{songs.Length} TRACKS · {PxMusicCovers.Clock(totalLength)}";
+				count.GetText = () => PxText.F("{0} TRACKS · {1}", songs.Length, PxMusicCovers.Clock(totalLength));
 
 			widget.Get("NO_MUSIC_LABEL").IsVisible = NoMusic;
 

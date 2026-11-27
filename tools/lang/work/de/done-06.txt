@@ -1,0 +1,250 @@
+1250	schaltet das Debug-Overlay für eigenes Gelände um.
+1251	schaltet das Tiefenpuffer-Overlay um.
+1252	schaltet alle Cheats um und gibt dir etwas Geld für deine Mühe.
+1253	bringt das Spiel zum Absturz.
+1254	entfernt ausgewählte Objekte.
+1255	schaltet das Alles-Bauen um.
+1256	für vorzeitiges Ende des Friedensvertrags stimmen
+1257	Zeigt die Ausgänge von Fabriken an.
+1258	schaltet fast sofortiges Aufladen der Unterstützungsfähigkeiten um.
+1259	gibt den Standardbetrag oder einen angegebenen Geldbetrag.
+1260	gibt allen Spielern und der KI den Standardbetrag oder einen angegebenen Geldbetrag.
+1261	liefert nützliche Infos zu verschiedenen Befehlen.
+1262	schaltet das Overlay des hierarchischen Pfadfinders um.
+1263	schaltet sofortiges Bauen um.
+1264	tötet ausgewählte Objekte.
+1265	fügt den ausgewählten Objekten eine angegebene Anzahl an Stufen hinzu.
+1266	keine Beschreibung verfügbar.
+1267	schaltet eine Visualisierung der Pfadsuche um.
+1268	Spiel anhalten oder fortsetzen.
+1269	fügt den Besitzern der ausgewählten Objekte eine angegebene Menge Spielererfahrung hinzu.
+1270	verursacht einen 5-sekündigen Stromausfall bei den Besitzern der ausgewählten Objekte.
+1271	schaltet das Render-Geometrie-Overlay um.
+1272	schaltet das Bildschirmkarten-Overlay um.
+1273	alles selbst zerstören und das Spiel verlieren.
+1274	schaltet das Geländegeometrie-Overlay um.
+1275	schaltet Sichtprüfungen und Minikarte um.
+1276	schaltet unbegrenzte Energie um.
+1277	Bei der Videowiedergabe ist ein Fehler aufgetreten.
+1278	Video kann nicht abgespielt werden
+1279	Alle Karten auf dieser Seite löschen?
+1280	Karten löschen
+1281	{ $count ->\n[one] { $count } Wiederholung löschen.\n*[other] { $count } Wiederholungen löschen.\n}
+1282	Alle ausgewählten Wiederholungen löschen?
+1283	Alle löschen
+1284	{ $count ->\n[one] { $count } Spielstand löschen.\n*[other] { $count } Spielstände löschen.\n}
+1285	Alle Spielstände löschen?
+1286	Die Karte „{ $title }“ löschen?
+1287	Karte löschen
+1288	Wiederholung { $replay } löschen?
+1289	Ausgewählte Wiederholung löschen?
+1290	Löschen
+1291	„{ $save }“ löschen.
+1292	Ausgewählten Spielstand löschen?
+1293	Zurück
+1294	Es sind zu viele Spieler festgelegt ({ $players }/{ $max }).
+1295	Fehler: Maximale Spielerzahl überschritten
+1296	Beenden
+1297	Trotzdem beenden
+1298	Die Karte wurde möglicherweise außerhalb des Editors gelöscht
+1299	Beenden und alle ungespeicherten Änderungen verlieren?
+1300	Karteneditor verlassen
+1301	Bleiben
+1302	Zurück zum Editor
+1303	Dieses Spiel verlassen und zum Editor zurückkehren?
+1304	Mission verlassen
+1305	Die Metadaten der Wiederholung konnten nicht gelesen werden.
+1306	{ -incompatible-replay-recorded } einer inkompatiblen Version:\n{ $version }.
+1307	{ -incompatible-replay-recorded } einer nicht verfügbaren Karte:\n{ $map }.
+1308	{ -incompatible-replay-recorded } einer nicht verfügbaren Mod: { $mod }.
+1309	{ -incompatible-replay-recorded } einer unbekannten Mod.
+1310	{ -incompatible-replay-recorded } einer unbekannten Version.
+1311	Inkompatible Wiederholung
+1312	Entfernen
+1313	Dieser Spieler kann dem Spiel nicht wieder beitreten.
+1314	{ $player } entfernen?
+1315	{ $count ->\n[one] Willst du wirklich einen Zuschauer entfernen?\n*[other] Willst du wirklich { $count } Zuschauer entfernen?\n}
+1316	Die Spielvideos können über das Menü\n„Inhalte verwalten“ in der Mod-Auswahl installiert werden.
+1317	Video nicht installiert
+1318	Speichern
+1319	Beim Speichern überschreibst du\neine bereits vorhandene Karte.
+1320	Warnung
+1321	Die Karte wurde außerhalb des Editors bearbeitet.\nBeim Speichern kann Fortschritt überschrieben werden.
+1322	Überschreiben
+1323	{ $file } überschreiben?
+1324	Spielstand überschreiben?
+1325	Okay
+1326	Die Karte wurde möglicherweise gelöscht oder enthält\nFehler, die das Laden verhindern.
+1327	Spiel beenden? Ungespeicherter Fortschritt geht verloren.
+1328	Zum Desktop
+1329	Wiederholung umbenennen
+1330	Umbenennen
+1331	Neuen Dateinamen eingeben:
+1332	Spielstand umbenennen
+1333	OK
+1334	Details siehe debug.log.
+1335	Karte konnte nicht gespeichert werden
+1336	Port { $port } konnte nicht geöffnet werden.
+1337	Fehler: „{ $message }“ ({ $code }).
+1338	Prüfe, ob der Port bereits verwendet wird.
+1339	Servererstellung fehlgeschlagen
+1340	Zurücksetzen
+1341	Willst du wirklich alle Einstellungen\nin diesem Bereich zurücksetzen?
+1342	{ $panel } zurücksetzen
+1343	Später neu starten
+1344	Jetzt neu starten
+1345	Einige Änderungen werden erst nach einem\nNeustart des Spiels übernommen. Jetzt neu starten?
+1346	Jetzt neu starten?
+1347	Weiter
+1348	Einige Änderungen werden erst nach einem\nNeustart des Spiels übernommen.
+1349	Neustart erforderlich
+1350	{ $bots ->\n[one] Wird der Spielleiter entfernt, wird auch 1 Bot entfernt.\n*[other] Wird der Spielleiter entfernt, werden auch { $bots } Bots entfernt.\n}
+1351	Für Rauswurf von { $player } stimmen?
+1352	Dagegen
+1353	Enthalten
+1354	Dafür
+1355	Abstimmung starten
+1356	Bestimmt, wie schnell die Zeit vergeht
+1357	Spieltempo
+1358	Der Schwierigkeitsgrad der Mission
+1359	Schwierigkeit
+1360	Kein Spieler kann einen anderen angreifen, beschädigen oder dessen Gebäude einnehmen, bis der Vertrag endet. Gib /endtreaty im Chat ein, um für ein vorzeitiges Ende zu stimmen.
+1361	Friedensvertrag
+1362	Hohe Leistung
+1363	Grafikkarte:
+1364	Energiesparen
+1365	Auf welcher Grafikkarte Windows das Spiel ausführt. Die meisten Gaming-Laptops haben zwei: eine stromsparende im Prozessor und eine schnelle dedizierte. Dies ist dieselbe Wahl wie unter Windows-Einstellungen > System > Bildschirm > Grafik und gilt ab dem nächsten Spielstart.
+1366	Windows entscheiden lassen
+1367	Hoch
+1368	Wetterdetails:
+1369	Niedrig
+1370	Mit wie viel Detail das Wetter gezeichnet wird. Ein Sturm ist das Teuerste auf dem Bildschirm, daher bringt eine niedrigere Stufe Bilder zurück, ohne das Wetter zu verlieren. Niedrig hält jedes Wetter erkennbar, verzichtet aber auf Spritzkronen unter dem Regen, die fernsten Regen- und Schneeschichten und die Verästelungen der Blitze. Gilt sofort.
+1371	Die Einheiten, mit denen Spieler das Spiel beginnen
+1372	Starteinheiten
+1373	Die für Spieler verfügbaren Einheiten und Fähigkeiten
+1374	Techstufe
+1375	Der Spieler oder das Team mit der höchsten Punktzahl am Ende dieser Zeit gewinnt
+1376	Zeitlimit
+1377	Regen, Gewitter, Schnee, Nebel, Sandstürme und Wind, die dem Klima der Karte folgen und sich im Spielverlauf ändern.
+1378	Wetter
+1379	Wie oft das Wetter wechselt.
+1380	Wetterwechsel
+1381	Asset-Typen
+1382	Ordner
+1383	Jeder
+1384	BlockedByActor wählen
+1385	Locomotor wählen
+1386	Ein Handicap verringert die Kampfkraft der Truppen des Spielers
+1387	Ein Riese, der von Anfang an für diesen Spieler kämpft. Stirbt er, kann er nicht neu gebaut werden.
+1388	Spiele filtern
+1389	Frontnachrichten
+1390	Kartensichtbarkeit
+1391	Platz-Admin
+1392	{ $name } { $number ->\n*[zero] {""}\n[other] { $number }\n}
+1393	Chateingabe
+1394	Editor
+1395	Zuschauer
+1396	Beliebig
+1397	Angriffsbewegung
+1398	Autovervollständigung
+1399	Zu Gruppe 1 hinzufügen
+1400	Zu Gruppe 2 hinzufügen
+1401	Zu Gruppe 3 hinzufügen
+1402	Zu Gruppe 4 hinzufügen
+1403	Zu Gruppe 5 hinzufügen
+1404	Zu Gruppe 6 hinzufügen
+1405	Zu Gruppe 7 hinzufügen
+1406	Zu Gruppe 8 hinzufügen
+1407	Zu Gruppe 9 hinzufügen
+1408	Zu Gruppe 0 hinzufügen
+1409	Mit Gruppe 1 vereinen
+1410	Mit Gruppe 2 vereinen
+1411	Mit Gruppe 3 vereinen
+1412	Mit Gruppe 4 vereinen
+1413	Mit Gruppe 5 vereinen
+1414	Mit Gruppe 6 vereinen
+1415	Mit Gruppe 7 vereinen
+1416	Mit Gruppe 8 vereinen
+1417	Mit Gruppe 9 vereinen
+1418	Mit Gruppe 0 vereinen
+1419	Gruppe 1 erstellen
+1420	Gruppe 2 erstellen
+1421	Gruppe 3 erstellen
+1422	Gruppe 4 erstellen
+1423	Gruppe 5 erstellen
+1424	Gruppe 6 erstellen
+1425	Gruppe 7 erstellen
+1426	Gruppe 8 erstellen
+1427	Gruppe 9 erstellen
+1428	Gruppe 0 erstellen
+1429	Zu Gruppe 1 springen
+1430	Zu Gruppe 2 springen
+1431	Zu Gruppe 3 springen
+1432	Zu Gruppe 4 springen
+1433	Zu Gruppe 5 springen
+1434	Zu Gruppe 6 springen
+1435	Zu Gruppe 7 springen
+1436	Zu Gruppe 8 springen
+1437	Zu Gruppe 9 springen
+1438	Zu Gruppe 0 springen
+1439	Gruppe 1 auswählen
+1440	Gruppe 2 auswählen
+1441	Gruppe 3 auswählen
+1442	Gruppe 4 auswählen
+1443	Gruppe 5 auswählen
+1444	Gruppe 6 auswählen
+1445	Gruppe 7 auswählen
+1446	Gruppe 8 auswählen
+1447	Gruppe 9 auswählen
+1448	Gruppe 0 auswählen
+1449	Zur Basis springen
+1450	Sammler durchschalten
+1451	Nächste Anlage
+1452	Statusleisten-Anzeige wechseln
+1453	Aufbauen
+1454	Reiter Objekte
+1455	Auswahl löschen
+1456	Reiter Verlauf
+1457	Reiter Overlays
+1458	Reiter Auswahl
+1459	Reiter Einstellungen
+1460	Reiter Kacheln
+1461	Overlay Bebaubares Gelände
+1462	Raster-Overlay
+1463	Markierungsebenen-Overlay
+1464	Reiter Werkzeuge
+1465	Bewachen
+1466	Zu Lesezeichen 1 springen
+1467	Zu Lesezeichen 2 springen
+1468	Zu Lesezeichen 3 springen
+1469	Zu Lesezeichen 4 springen
+1470	Lesezeichen 1 speichern
+1471	Lesezeichen 2 speichern
+1472	Lesezeichen 3 speichern
+1473	Lesezeichen 4 speichern
+1474	Zum unteren Rand springen
+1475	Zum linken Rand springen
+1476	Zum rechten Rand springen
+1477	Zum oberen Rand springen
+1478	Nach unten schwenken
+1479	Nach links schwenken
+1480	Nach rechts schwenken
+1481	Nach oben schwenken
+1482	Weiter
+1483	Allgemeinen Chat öffnen
+1484	Team-Chat öffnen
+1485	Pause / Fortsetzen
+1486	Anhalten oder fortsetzen
+1487	Signal setzen
+1488	Abschaltmodus
+1489	Zurück
+1490	Platz 01
+1491	Platz 02
+1492	Platz 03
+1493	Platz 04
+1494	Platz 05
+1495	Platz 06
+1496	Platz 07
+1497	Platz 08
+1498	Platz 09
+1499	Platz 10

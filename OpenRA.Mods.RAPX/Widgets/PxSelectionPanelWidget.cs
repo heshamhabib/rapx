@@ -102,12 +102,12 @@ namespace OpenRA.Mods.RAPX.Widgets
 
 		static readonly Dictionary<string, string> Categories = new()
 		{
-			{ "Building", "Structure" },
-			{ "Defense", "Defensive Structure" },
-			{ "Infantry", "Infantry" },
-			{ "Vehicle", "Vehicle" },
-			{ "Aircraft", "Aircraft" },
-			{ "Ship", "Naval Unit" },
+			{ "Building", PxText.N("Structure") },
+			{ "Defense", PxText.N("Defensive Structure") },
+			{ "Infantry", PxText.N("Infantry") },
+			{ "Vehicle", PxText.N("Vehicle") },
+			{ "Aircraft", PxText.N("Aircraft") },
+			{ "Ship", PxText.N("Naval Unit") },
 		};
 
 		readonly World world;
@@ -235,9 +235,9 @@ namespace OpenRA.Mods.RAPX.Widgets
 			var y = rb.Y + 10;
 			if (primary == null)
 			{
-				titleFont.DrawText("NO SELECTION", new float2(x, y + 2), Color.FromArgb(110, 111, 120));
-				bodyFont.DrawText("Select a unit or structure", new float2(x, y + 32), LabelColor);
-				bodyFont.DrawText("to see its details.", new float2(x, y + 50), LabelColor);
+				titleFont.DrawText(PxText.T("NO SELECTION"), new float2(x, y + 2), Color.FromArgb(110, 111, 120));
+				bodyFont.DrawText(PxText.T("Select a unit or structure"), new float2(x, y + 32), LabelColor);
+				bodyFont.DrawText(PxText.T("to see its details."), new float2(x, y + 50), LabelColor);
 				return;
 			}
 
@@ -283,7 +283,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 			var x = rb.X + 12;
 			var y = rb.Y + 8;
 			var right = rb.Right - 12;
-			labelFont.DrawText("HEALTH", new float2(x, y), LabelColor);
+			labelFont.DrawText(PxText.T("HEALTH"), new float2(x, y), LabelColor);
 
 			var health = primary?.TraitOrDefault<IHealth>();
 			var fraction = health != null && health.MaxHP > 0 ? (float)health.HP / health.MaxHP : 0f;
@@ -319,10 +319,10 @@ namespace OpenRA.Mods.RAPX.Widgets
 			{
 				return new[]
 				{
-					("armor", "ARMOR", None, LabelColor),
-					("build-time", "BUILD TIME", None, LabelColor),
-					("speed", "SPEED", None, LabelColor),
-					("cost", "COST", None, LabelColor)
+					("armor", PxText.T("ARMOR"), None, LabelColor),
+					("build-time", PxText.T("BUILD TIME"), None, LabelColor),
+					("speed", PxText.T("SPEED"), None, LabelColor),
+					("cost", PxText.T("COST"), None, LabelColor)
 				};
 			}
 
@@ -340,24 +340,24 @@ namespace OpenRA.Mods.RAPX.Widgets
 
 			var cost = info.TraitInfoOrDefault<ValuedInfo>()?.Cost;
 			var result = new (string, string, string, Color)[4];
-			result[0] = ("armor", "ARMOR", armor != null ? Capitalize(armor) : None, Color.White);
-			result[1] = ("build-time", "BUILD TIME", buildTime, Color.White);
+			result[0] = ("armor", PxText.T("ARMOR"), armor != null ? Capitalize(armor) : None, Color.White);
+			result[1] = ("build-time", PxText.T("BUILD TIME"), buildTime, Color.White);
 
 			var powers = info.TraitInfos<PowerInfo>().ToList();
 			if (powers.Count > 0)
 			{
 				var amount = powers.Sum(p => p.Amount);
-				result[2] = ("power", amount >= 0 ? "POWER OUTPUT" : "POWER USAGE",
+				result[2] = ("power", amount >= 0 ? PxText.T("POWER OUTPUT") : PxText.T("POWER USAGE"),
 					(amount > 0 ? "+" : "") + amount.ToString(CultureInfo.InvariantCulture),
 					amount >= 0 ? Color.FromArgb(126, 224, 138) : Color.FromArgb(255, 140, 120));
 			}
 			else
 			{
 				var speed = info.TraitInfoOrDefault<MobileInfo>()?.Speed ?? info.TraitInfoOrDefault<AircraftInfo>()?.Speed;
-				result[2] = ("speed", "SPEED", speed?.ToString(CultureInfo.InvariantCulture) ?? None, Color.White);
+				result[2] = ("speed", PxText.T("SPEED"), speed?.ToString(CultureInfo.InvariantCulture) ?? None, Color.White);
 			}
 
-			result[3] = ("cost", "COST", cost != null ? "$" + cost.Value.ToString(CultureInfo.InvariantCulture) : None, Color.FromArgb(255, 209, 102));
+			result[3] = ("cost", PxText.T("COST"), cost != null ? "$" + cost.Value.ToString(CultureInfo.InvariantCulture) : None, Color.FromArgb(255, 209, 102));
 			return result;
 		}
 
@@ -370,7 +370,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 		{
 			var groups = PxSelection.Groups(world);
 			var total = groups.Sum(g => g.Actors.Count);
-			labelFont.DrawText($"SELECTED UNITS ({total})", new float2(rb.X + 12, rb.Y + 8), LabelColor);
+			labelFont.DrawText(PxText.F("SELECTED UNITS ({0})", total), new float2(rb.X + 12, rb.Y + 8), LabelColor);
 
 			var primary = PxSelection.Primary(world);
 			var slots = VisibleSlots(rb);
@@ -472,7 +472,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 		string OwnerTag(Player owner)
 		{
 			var relationship = world.LocalPlayer?.RelationshipWith(owner) ?? PlayerRelationship.Neutral;
-			var kind = relationship == PlayerRelationship.Ally ? "ALLY" : relationship == PlayerRelationship.Enemy ? "ENEMY" : "NEUTRAL";
+			var kind = relationship == PlayerRelationship.Ally ? PxText.T("ALLY") : relationship == PlayerRelationship.Enemy ? PxText.T("ENEMY") : PxText.T("NEUTRAL");
 			return kind + " · " + owner.ResolvedPlayerName.ToUpperInvariant();
 		}
 
@@ -486,9 +486,9 @@ namespace OpenRA.Mods.RAPX.Widgets
 		{
 			var queue = info.TraitInfoOrDefault<BuildableInfo>()?.Queue.FirstOrDefault();
 			if (queue != null && Categories.TryGetValue(queue, out var category))
-				return category;
+				return PxText.T(category);
 
-			return info.HasTraitInfo<BuildingInfo>() ? "Structure" : "Unit";
+			return info.HasTraitInfo<BuildingInfo>() ? PxText.T("Structure") : PxText.T("Unit");
 		}
 
 		static string Capitalize(string s) => s.Length == 0 ? s : char.ToUpperInvariant(s[0]) + s[1..];

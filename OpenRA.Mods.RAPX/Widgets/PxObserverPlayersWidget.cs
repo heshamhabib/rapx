@@ -102,7 +102,7 @@ namespace OpenRA.Mods.RAPX.Widgets
 				WidgetUtils.FillRectWithColor(flagRect, Color.FromArgb(150, 12, 13, 16));
 
 			var nameX = r.X + 56;
-			var status = won ? "VICTORY" : defeated ? "DEFEATED" : "IN BATTLE";
+			var status = won ? PxText.T("VICTORY") : defeated ? PxText.T("DEFEATED") : PxText.T("IN BATTLE");
 			var statusColor = won ? VictoryColor : defeated ? DefeatColor : ActiveColor;
 			var statusWidth = PxWarChrome.SpacedWidth(smallFont, status, 1);
 			var nameWidth = r.Right - 12 - statusWidth - 16 - nameX;
@@ -122,10 +122,10 @@ namespace OpenRA.Mods.RAPX.Widgets
 			var power = p.PlayerActor.TraitOrDefault<PowerManager>();
 			var cells = new (string Label, string Value, Color Color)[]
 			{
-				("CREDITS", resources != null ? Money(resources.Cash + resources.Resources) : "-", Color.FromArgb(255, 209, 102)),
-				("ARMY", stats != null ? Money(stats.ArmyValue) : "-", ValueColor),
-				("K / L", stats != null ? $"{stats.UnitsKilled + stats.BuildingsKilled}/{stats.UnitsDead + stats.BuildingsDead}" : "-", ValueColor),
-				("POWER", power != null ? power.ExcessPower.ToString(CultureInfo.InvariantCulture) : "-",
+				(PxText.T("CREDITS"), resources != null ? Money(resources.Cash + resources.Resources) : "-", Color.FromArgb(255, 209, 102)),
+				(PxText.T("ARMY"), stats != null ? Money(stats.ArmyValue) : "-", ValueColor),
+				(PxText.T("K / L"), stats != null ? $"{stats.UnitsKilled + stats.BuildingsKilled}/{stats.UnitsDead + stats.BuildingsDead}" : "-", ValueColor),
+				(PxText.T("POWER"), power != null ? power.ExcessPower.ToString(CultureInfo.InvariantCulture) : "-",
 					power != null && power.ExcessPower < 0 ? DefeatColor : ActiveColor),
 			};
 

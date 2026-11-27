@@ -21,6 +21,7 @@ namespace OpenRA.Graphics
 		readonly int size;
 		readonly SheetBuilder builder;
 		readonly IFont font;
+		readonly IFont[] fallbacks;
 		readonly Cache<char, GlyphInfo> glyphs;
 		readonly Cache<(char C, int Radius), Sprite> contrastGlyphs;
 		readonly Cache<int, float[]> dilationElements;
@@ -28,6 +29,9 @@ namespace OpenRA.Graphics
 		float deviceScale;
 
 		public SpriteFont(IPlatform platform, string name, byte[] data, int size, int ascender, float scale, SheetBuilder builder)
+			: this(platform, name, data, Array.Empty<byte[]>(), size, ascender, scale, builder) { }
+
+		public SpriteFont(IPlatform platform, string name, byte[] data, byte[][] fallbackData, int size, int ascender, float scale, SheetBuilder builder)
 		{
 			if (builder.Type != SheetType.BGRA)
 				throw new ArgumentException("The sheet builder must create BGRA sheets.", nameof(builder));
@@ -37,6 +41,7 @@ namespace OpenRA.Graphics
 			this.builder = builder;
 
 			font = platform.CreateFont(data);
+			fallbacks = Array.ConvertAll(fallbackData, platform.CreateFont);
 			glyphs = new Cache<char, GlyphInfo>(CreateGlyph);
 			contrastGlyphs = new Cache<(char, int), Sprite>(CreateContrastGlyph);
 			dilationElements = new Cache<int, float[]>(CreateCircularWeightMap);
@@ -58,10 +63,12 @@ namespace OpenRA.Graphics
 			contrastGlyphs.Clear();
 		}
 
-		void DrawTextContrast(string text, float2 location, Color contrastColor, int contrastOffset)
+		void DrawTextContrast(string text, float2 location, Color contrastColor, int contrastOffset, float scale = 1f)
 		{
+			text = TextShaper.Shape(text);
+
 			// Offset from the baseline position to the top-left of the glyph for rendering
-			location += new float2(0, size);
+			location += new float2(0, size * scale);
 
 			// Calculate positions in screen pixel coordinates
 			var screenContrast = (int)(contrastOffset * deviceScale);
@@ -72,7 +79,7 @@ namespace OpenRA.Graphics
 			{
 				if (s == '\n')
 				{
-					location += new float2(0, size);
+					location += new float2(0, size * scale);
 					screen = new int2((int)(location.X * deviceScale + 0.5f), (int)(location.Y * deviceScale + 0.5f));
 					continue;
 				}
@@ -84,17 +91,19 @@ namespace OpenRA.Graphics
 				{
 					var contrastSprite = contrastGlyphs[(s, screenContrast)];
 					Game.Renderer.RgbaSpriteRenderer.DrawSprite(contrastSprite,
-						(screen + g.Offset - contrastVector) / deviceScale,
-						1f / deviceScale,
+						(screen.ToFloat2() + g.Offset.ToFloat2() * scale - contrastVector) / deviceScale,
+						scale / deviceScale,
 						tint, 1f);
 				}
 
-				screen += new int2((int)(g.Advance + 0.5f), 0);
+				screen += new int2((int)(g.Advance * scale + 0.5f), 0);
 			}
 		}
 
 		public void DrawText(string text, float2 location, Color c)
 		{
+			text = TextShaper.Shape(text);
+
 			// Offset from the baseline position to the top-left of the glyph for rendering
 			location += new float2(0, size);
 
@@ -123,6 +132,38 @@ namespace OpenRA.Graphics
 			}
 		}
 
+		public void DrawTextScaled(string text, float2 location, Color c, float scale = 1f)
+		{
+			text = TextShaper.Shape(text);
+
+			// Offset from the baseline position to the top-left of the glyph for rendering
+			location += new float2(0, size * scale);
+
+			// Calculate positions in screen pixel coordinates
+			var screen = new int2((int)(location.X * deviceScale + 0.5f), (int)(location.Y * deviceScale + 0.5f));
+			var tint = new float3(c.R / 255f, c.G / 255f, c.B / 255f);
+			foreach (var s in text)
+			{
+				if (s == '\n')
+				{
+					location += new float2(0, size * scale);
+					screen = new int2((int)(location.X * deviceScale + 0.5f), (int)(location.Y * deviceScale + 0.5f));
+					continue;
+				}
+
+				var g = glyphs[s];
+
+				// Convert screen coordinates back to UI coordinates for drawing
+				if (g.Sprite != null)
+					Game.Renderer.RgbaSpriteRenderer.DrawSprite(g.Sprite,
+					(screen.ToFloat2() + g.Offset.ToFloat2() * scale) / deviceScale,
+					scale / deviceScale,
+					tint, 1f);
+
+				screen += new int2((int)(g.Advance * scale + 0.5f), 0);
+			}
+		}
+
 		static float2 Rotate(float2 v, float sina, float cosa, float2 offset)
 		{
 			return new float2(
@@ -132,6 +173,8 @@ namespace OpenRA.Graphics
 
 		public void DrawText(string text, float2 location, Color c, float angle)
 		{
+			text = TextShaper.Shape(text);
+
 			// Offset from the baseline position to the top-left of the glyph for rendering
 			// All positions are calculated in UI coordinates
 			var offset = new float2(0, size);
@@ -178,17 +221,17 @@ namespace OpenRA.Graphics
 			}
 		}
 
-		public void DrawTextWithContrast(string text, float2 location, Color fg, Color bg, int offset)
+		public void DrawTextWithContrast(string text, float2 location, Color fg, Color bg, int offset, float scale = 1f)
 		{
 			if (offset > 0)
-				DrawTextContrast(text, location, bg, offset);
+				DrawTextContrast(text, location, bg, offset, scale);
 
-			DrawText(text, location, fg);
+			DrawTextScaled(text, location, fg, scale);
 		}
 
-		public void DrawTextWithContrast(string text, float2 location, Color fg, Color bgDark, Color bgLight, int offset)
+		public void DrawTextWithContrast(string text, float2 location, Color fg, Color bgDark, Color bgLight, int offset, float scale = 1f)
 		{
-			DrawTextWithContrast(text, location, fg, GetContrastColor(fg, bgDark, bgLight), offset);
+			DrawTextWithContrast(text, location, fg, GetContrastColor(fg, bgDark, bgLight), offset, scale);
 		}
 
 		public void DrawTextWithShadow(string text, float2 location, Color fg, Color bg, int offset)
@@ -207,6 +250,24 @@ namespace OpenRA.Graphics
 		public void DrawTextWithShadow(string text, float2 location, Color fg, Color bgDark, Color bgLight, int offset)
 		{
 			DrawTextWithShadow(text, location, fg, GetContrastColor(fg, bgDark, bgLight), offset);
+		}
+
+		public void DrawTextWithShadowScaled(string text, float2 location, Color fg, Color bg, int offset, float scale = 1f)
+		{
+			if (offset != 0)
+			{
+				// Shadow offsets are rounded to an integer number of screen pixels.
+				// This makes sure the shadow will be positioned consistently everywhere on the screen.
+				var screenOffset = (int)(offset * deviceScale) / deviceScale;
+				DrawTextScaled(text, location + new float2(screenOffset, screenOffset), bg, scale);
+			}
+
+			DrawTextScaled(text, location, fg, scale);
+		}
+
+		public void DrawTextWithShadowScaled(string text, float2 location, Color fg, Color bgDark, Color bgLight, int offset, float scale = 1f)
+		{
+			DrawTextWithShadowScaled(text, location, fg, GetContrastColor(fg, bgDark, bgLight), offset, scale);
 		}
 
 		public void DrawTextWithShadow(string text, float2 location, Color fg, Color bg, int offset, float angle)
@@ -232,7 +293,7 @@ namespace OpenRA.Graphics
 			if (string.IsNullOrEmpty(text))
 				return new int2(0, size);
 
-			var lines = text.SplitLines('\n');
+			var lines = TextShaper.Shape(text).SplitLines('\n');
 
 			var maxWidth = 0f;
 			var rows = 0;
@@ -243,6 +304,16 @@ namespace OpenRA.Graphics
 			}
 
 			return new int2((int)Math.Ceiling(maxWidth), rows * size);
+		}
+
+		/// <summary>Measures text as it would be drawn with DrawText(..., scale): the same layout, shrunk uniformly.</summary>
+		public int2 Measure(string text, float scale)
+		{
+			if (scale >= 1f)
+				return Measure(text);
+
+			var m = Measure(text);
+			return new int2((int)Math.Ceiling(m.X * scale), (int)Math.Ceiling(m.Y * scale));
 		}
 
 		float LineWidth(ReadOnlySpan<char> line)
@@ -256,7 +327,12 @@ namespace OpenRA.Graphics
 
 		GlyphInfo CreateGlyph(char c)
 		{
-			var glyph = font.CreateGlyph(c, size, deviceScale);
+			// Characters the main font lacks (other scripts) come from the first fallback that has them
+			var source = font;
+			if (fallbacks.Length > 0 && c > 0x7f && !font.HasGlyph(c))
+				source = Array.Find(fallbacks, f => f.HasGlyph(c)) ?? font;
+
+			var glyph = source.CreateGlyph(c, size, deviceScale);
 			if (glyph.Data == null)
 			{
 				return new GlyphInfo
@@ -424,6 +500,8 @@ namespace OpenRA.Graphics
 		public void Dispose()
 		{
 			font.Dispose();
+			foreach (var f in fallbacks)
+				f.Dispose();
 		}
 	}
 

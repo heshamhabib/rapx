@@ -1,0 +1,300 @@
+300	Tv-160 Swanwing
+301	Tiêm kích đa năng.\nMạnh trước Công trình và Xe cơ giới\nYếu trước Phòng không\nThế hệ cấp 4\nĐược lái bởi: Anh, Đức, Ý, Thổ Nhĩ Kỳ
+302	Typhon
+303	Máy bay vận tải.\nThả màn khói và thả quân bằng dây\ntừ tư thế lượn đứng (F tại đây, G để chọn điểm hạ).\nChở bộ binh\nKhông vũ trang\nThế hệ cấp 4\nĐược lái bởi: Hoa Kỳ, Nhật Bản
+304	Kestrel Tiltrotor
+305	Máy bay ném bom hạng nặng.\nMạnh trước Công trình\nYếu trước Tiêm kích và Phòng không\nThế hệ cấp 2\nĐược lái bởi: Anh
+306	Volcan
+307	Drone chiến đấu không người lái.\nRẻ, lượng máu thấp\nMạnh trước Bộ binh và Giáp nhẹ\nNguyên mẫu, mỗi người 1 chiếc\nĐược lái bởi: Hoa Kỳ
+308	AX-47 Stingray
+309	Máy bay cất cánh thẳng đứng VTOL.\nMạnh trước Xe cơ giới\nYếu trước Phòng không\nNguyên mẫu, mỗi người 1 chiếc\nĐược lái bởi: Tiên phong, Nga
+310	Yk-141 Freestyler
+311	Tiêm kích tàng hình.\nMạnh trước Công trình và Xe cơ giới\nYếu trước Phòng không\nNguyên mẫu, mỗi người 1 chiếc\nĐược lái bởi: Liên minh, Hoa Kỳ
+312	AYF-23 Black Recluse
+313	Khí cầu ném bom bọc thép.\nTải trọng bom khổng lồ, tốc độ rất chậm\nYếu trước Phòng không\nNguyên mẫu, mỗi người 1 chiếc\nĐược lái bởi: Tiên phong, Nga, Ukraina, Cuba, Ấn Độ, Trung Quốc, Thổ Nhĩ Kỳ, Pakistan, Iran
+314	Zeppelin
+315	Trực thăng tấn công tốc độ cao, trang bị tên lửa chống tăng\nvà pháo. Cần Trung tâm Công nghệ.\nMạnh trước Xe tăng và Xe cơ giới\nYếu trước Phòng không
+316	Ka-52 Alligator
+317	Rocket 300 mm hạng nặng với tầm bắn rất xa.\nMạnh trước Công trình và các nhóm mục tiêu\nYếu trước Máy bay; nạp đạn chậm
+318	Kasirga-X
+319	Huấn luyện Chó Tấn công.
+320	Chuồng chó
+321	Con khỉ đột khổng lồ. Được chọn trong phòng chờ: mỗi người chơi 1 con, không thể xây lại.\nCú đấm búa nghiền nát xe tăng; ném đá tảng ra xa hơn.\nNhảy lên đập máy bay phản lực và trực thăng bay ngang qua.\nNhanh hơn Godzilla, nhưng không thể vượt qua mặt nước.\nMạnh trước mọi thứ khi áp sát
+322	King Kong
+323	Cỗ máy hạng nặng: thân xe tăng KV với pháo 152 mm\nđặt trên hai chân. Bước qua tường và bộ binh.\nMạnh trước Xe cơ giới và Công trình\nYếu trước Máy bay
+324	KV Strider
+325	Chở số quân gấp đôi một Tàu vận tải\nlên bãi biển và tự vệ trước máy bay.\nChỉ Hoa Kỳ.\nMạnh trước Máy bay\nYếu trước Tàu chiến và Tàu ngầm
+326	Tàu Đổ bộ Tấn công
+327	Hải đăng
+328	Chế tạo và phóng vệ tinh\n(tab Máy bay). Tối đa 8 vệ tinh.
+329	Tổ hợp Phóng
+330	Bệ phóng bánh xích, trang bị rocket dẫn đường GPS.\nChính xác cao; +50% sát thương trước công trình.\nMạnh trước Công trình và Bộ binh\nYếu trước Xe cơ giới và Máy bay
+331	LRX
+332	Phòng không tầm xa (lớp Patriot / S-400):\nchặn máy bay, tên lửa hành trình và tên lửa đạn đạo chiến thuật.\nCần Mái vòm Radar để đạt tầm bắn tối đa.\nMạnh trước Máy bay và Tên lửa\nYếu trước Quân mặt đất
+333	SAM Tầm xa
+334	Lơ lửng cao trên bản đồ và bắn tia laser\nthẳng xuống kẻ địch bên dưới.\nCác vệ tinh trong phạm vi 12 ô liên kết thành mạng lưới:\nmỗi vệ tinh liên kết cộng thêm +40% sát thương cho một phát bắn\n(tối đa +200%). Cần có Trạm Vệ tinh Mặt đất.\nChỉ Trận địa Tên lửa ASAT mới có thể bắn trúng nó
+335	Vệ tinh
+336	Vệ tinh Laser
+337	Tàu vận tải hải quân đa dụng.\nChở bộ binh và xe tăng\nKhông vũ trang
+338	Tàu Vận tải
+339	Xe phòng không giá rẻ, trang bị bốn súng máy\nhạng nặng trên bệ xoay.\nMạnh trước Máy bay và Bộ binh\nYếu trước Xe tăng
+340	Xe Bán xích Phòng không Quad
+341	Bệ phóng bánh xích: loạt 12 rocket lớn.\nTriển khai để chuyển sang bắn rocket mìn, rải\nmìn chống tăng.\nMạnh trước Bộ binh và Công trình\nYếu trước Xe cơ giới và Máy bay; chậm
+342	MARZ II
+343	Tòa nhà Quốc hội Mỹ
+344	Lầu Năm Góc
+345	Núi Rushmore
+346	Tháp Willis
+347	Triển khai thành Xưởng Xây dựng.\nKhông vũ trang
+348	Xe Xây dựng Cơ động
+349	Xác (Xe Xây dựng Cơ động)
+350	Phòng không cơ động tầm xa: tên lửa đánh chặn trực diện\nphóng thẳng lên, bắn theo mọi hướng mà không cần\nxoay bệ phóng. Cũng bắn hạ rocket, tên lửa hành trình và\ntên lửa đạn đạo.\nMạnh trước Máy bay và Tên lửa\nKhông thể tấn công mục tiêu mặt đất
+351	Aegis Lance
+352	Sửa chữa xe cơ giới lân cận và phục hồi xác xe\nvề trạng thái hoạt động bằng cách chiếm giữ chúng.\nKhông vũ trang
+353	Thợ máy
+354	Hồi phục bộ binh lân cận.\nKhông vũ trang
+355	Quân y
+356	Tái tạo màn sương để che khuất khu vực lân cận.\nKhông vũ trang
+357	Máy tạo Vùng mù Cơ động
+358	Xác (Máy tạo Vùng mù Cơ động)
+359	Black Hawk
+360	Trực thăng chở quân: chở 8 bộ binh\nvà tự vệ bằng súng máy cửa.\nThả màn khói và thả quân bằng dây\ntừ tư thế lượn đứng (F tại đây, G để chọn điểm hạ).\nKhông có vũ khí chống xe cơ giới\nYếu trước Phòng không
+361	Mi-17 Hip
+362	Trực thăng vận tải nặng nhất thế giới:\nchở 12 bộ binh đến bất kỳ đâu trên bản đồ.\nThả màn khói và thả quân bằng dây\ntừ tư thế lượn đứng (F tại đây, G để chọn điểm hạ).\nKhông vũ trang
+363	Mi-26 Halo
+364	Trực thăng vũ trang bọc thép, trang bị súng máy và rocket,\ncũng chở theo 5 bộ binh.\nThả màn khói và thả quân bằng dây\ntừ tư thế lượn đứng (F tại đây, G để chọn điểm hạ).\nMạnh trước Bộ binh và Xe cơ giới\nYếu trước Phòng không
+365	Mi-35M Hind-E
+366	Trụ sở tình báo bí mật của Anh.\nMở khóa Gián điệp và các Xe Gián điệp. Chỉ Anh.\nChỉ có thể xây 1 cái.\nCần điện để hoạt động.
+367	Trụ sở MI6
+368	Máy bay Cường kích Mặt đất tốc độ cao.\nMạnh trước Công trình và Xe cơ giới\nYếu trước Bộ binh và Máy bay
+369	Máy bay Cường kích MiG
+370	Mỏ Quặng
+371	Chiếm để mở rộng tầm nhìn.
+372	Cung cấp tầm nhìn.
+373	Trung tâm Liên lạc
+374	Xe tăng rocket bánh xích: bắn toàn bộ giàn 19\nrocket trong một loạt hỏa lực dày đặc, rồi nạp lại đạn.\nMạnh trước Bộ binh, Công trình và các nhóm xe cơ giới\nYếu trước Máy bay và cận chiến
+375	MLRS Thunderhead
+376	Rải mìn để tiêu diệt\nnhững đơn vị địch không cảnh giác.\nCó thể phát hiện mìn.\nKhông vũ trang
+377	Xe Rải mìn
+378	Thùng Tiền
+379	(vị trí xuất phát nhiều người chơi)
+380	Gây nhiễu Mái vòm Radar của địch ở gần\nvà làm lệch hướng tên lửa bay tới.\nKhông vũ trang
+381	Máy Gây nhiễu Radar Cơ động
+382	Phòng không tầm trung kiêm lá chắn rocket: mười tên lửa\nđánh chặn tốc độ cao bắn loạt để phá loạt rocket\ntrên không. Cũng bắn máy bay, tên lửa hành trình\nvà drone. Cần Mái vòm Radar để đạt tầm bắn tối đa.\nMạnh trước Rocket, Máy bay, Tên lửa hành trình và Drone\nYếu trước Quân mặt đất; không thể chặn tên lửa đạn đạo
+383	SAM Tầm trung
+384	Cung cấp một quả bom nguyên tử.\nCần điện để hoạt động.\nChỉ có thể xây 1 cái.\nKỹ năng đặc biệt: Bom Nguyên tử
+385	Hầm Tên lửa
+386	Phóng một quả bom nguyên tử tàn khốc\nxuống vị trí mục tiêu.
+387	Bom Nguyên tử
+388	Đơn vị công thành ngầm dưới nước, có khả năng\nphòng không.\nCó thể phát hiện tàu ngầm khác.\nMạnh trước Công trình, Quân mặt đất và Máy bay\nYếu trước Hải quân\nKỹ năng đặc biệt: Lặn
+389	Tàu ngầm Tên lửa
+390	Xe tăng chiến đấu của Tiên phong: rẻ hơn và nhanh hơn\nXe tăng Hạng nặng, trang bị pháo nhẹ hơn.\nMạnh trước Xe cơ giới\nYếu trước Bộ binh, Máy bay
+391	Xe tải rất nhanh trên bánh xe khổng lồ. Không có vũ khí:\nnó cán qua bộ binh, hàng rào và bao cát.\nChở 4 bộ binh. Chỉ Hoa Kỳ.\nMạnh trước Bộ binh\nYếu trước mọi thứ bắn trả
+392	Xe tải Quái vật
+393	Chiếm để nhận thêm ngân quỹ.
+394	Cung cấp thêm ngân quỹ.
+395	Giàn khoan Dầu
+396	Giàn khoan ngoài khơi bơm dầu khí\nđể tạo nguồn thu ổn định. Phải xây trên mặt nước\ngần căn cứ của bạn.\nThu nhập: $75 mỗi 10 giây\nNgừng bơm khi thiếu điện
+397	Giàn khoan Dầu khí
+398	Công trình phòng thủ cố định, có lỗ châu mai cho\nbinh lính đồn trú.\nCó thể phát hiện đơn vị tàng hình.\nMạnh trước Bộ binh và Giáp nhẹ\nYếu trước Xe tăng và Máy bay
+399	Lô cốt
+400	Bệ phóng rocket có tầm bắn xa nhất.\nMạnh trước Công trình và các nhóm mục tiêu\nYếu trước Máy bay; nạp đạn chậm
+401	PHX-16 Longreach
+402	Bắn toàn bộ số rocket mang theo rất nhanh.\nMạnh trước Bộ binh và Công trình\nYếu trước Xe cơ giới và Máy bay
+403	Pinak
+404	Một chiếc Badger thả bom dù\nxuống vị trí đã chọn.
+405	Bom dù (Dùng một lần)
+406	Một chiếc Badger thả một toán bộ binh\nxuống bất kỳ đâu trên bản đồ.
+407	Hiện lộ mọi tàu ngầm lân cận trong\nmột thời gian ngắn.
+408	Xung Sonar
+409	Cung cấp điện cho các\ncông trình khác.
+410	Nhà máy Điện
+411	Tinh luyện Quặng và Đá quý thành\ntiền.
+412	Nhà máy Tinh luyện Quặng
+413	Tàu trinh sát và hỗ trợ hạng nhẹ.\nCó thể phát hiện tàu ngầm.\nMạnh trước Hải quân\nYếu trước Quân mặt đất và Máy bay
+414	Pháo hạm
+415	Xe tăng tia của Liên minh với tầm bắn xa. Tinh thể của nó bắn\nmột tia sáng gây sát thương diện rộng lên nhóm địch.\nMạnh trước Bộ binh, Xe hạng nhẹ, Công trình\nYếu trước Xe tăng, Máy bay
+416	Xe tăng Lăng kính
+417	Công trình phòng thủ tia tinh thể của Liên minh.\nCác Tháp Lăng kính lân cận liên kết và truyền\nnăng lượng vào tháp đang bắn: +40% sát thương\ncho mỗi tháp liên kết (tối đa +200%).\nCần điện để hoạt động.\nMạnh trước Bộ binh, Xe cơ giới\nYếu trước Máy bay
+418	Tháp Lăng kính
+419	Gây sát thương địa chấn lên xe cơ giới\nvà công trình lân cận.\nMạnh trước Xe cơ giới và Công trình\nYếu trước Bộ binh và Máy bay
+420	Xe tăng MAD
+421	Mỏ Bỏ hoang
+422	Binh lính gần nhất của bạn ném một quả khói màu đỏ.\nSau 4 giây, pháo binh, xe phóng rocket, chiến hạm đang rảnh rỗi\nvà tối đa 4 máy bay tấn công của bạn sẽ bắn vào làn khói đó trong 20 giây.\nLàn khói trôi theo chiều gió, và hỏa lực sẽ bám theo nó.\nĐịch cũng có thể nhìn thấy làn khói này.
+423	Khói Đỏ
+424	Robot chống giáp tầm xa của Liên minh.\nSúng ray của nó gây sát thương mạnh nhưng nạp năng lượng chậm.\nMạnh trước Xe cơ giới, Robot\nYếu trước Bộ binh, Máy bay
+425	Robot Súng ray
+426	Sản xuất và nạp lại máy bay.\nChỗ đậu cho 10 máy bay.\nChỉ có thể xây 1 cái.
+427	Bộ Chỉ huy Không quân Chiến lược
+428	Bệ phóng bánh xích rẻ hơn, nạp đạn nhanh hơn.\nMạnh trước Bộ binh và Công trình\nYếu trước Xe cơ giới và Máy bay
+429	Saetta
+430	Trận địa SAM
+431	Rocket chùm: mỗi quả tách thành nhiều quả bom nhỏ.\nMạnh trước Bộ binh và Xe hạng nhẹ\nYếu trước Xe tăng, Công trình và Máy bay
+432	Saqr-36
+433	Chặn bộ binh và xe hạng nhẹ.\nCó thể bị xe tăng cán vỡ.
+434	Tường Bao cát
+435	Căn cứ của máy bay ném bom chiến lược Tv-95 Bear.\nNạp năng lượng cho Đòn Nhiệt hạch khi máy bay ném bom còn sống.\nChỉ Nga. Chỉ có thể xây 1 cái.
+436	Căn cứ Không quân Tầm xa
+437	Chiếc Tv-95 Bear cất cánh và thả\nmột quả bom khinh khí RDS-37 xuống mục tiêu.\nLớn hơn Fatman, nhỏ hơn Tên lửa Hạt nhân.
+438	Đòn Nhiệt hạch
+439	Xe sang tốc độ cao dành cho Gián điệp, giấu súng máy\nvà rocket bật lên. Chở một Gián điệp.\nCần Trụ sở MI6.\nQuân địch chỉ thấy một chiếc xe dân sự vô hại cho đến khi nó\nbị bắn trúng hoặc khai hỏa.\nMạnh trước Bộ binh, Xe cơ giới\nYếu trước Máy bay
+440	Xe Dân sự
+441	Xe Gián điệp 1
+442	Xe grand tourer cổ điển, giấu súng máy đôi.\nChắc chắn hơn và rẻ hơn Xe Gián điệp 1.\nChở một Gián điệp. Cần Trụ sở MI6.\nQuân địch chỉ thấy một chiếc xe dân sự vô hại cho đến khi nó\nbị bắn trúng hoặc khai hỏa.\nMạnh trước Bộ binh\nYếu trước Xe tăng, Máy bay
+443	Xe Gián điệp 2
+444	Thùng Thép
+445	Drone bom giá rẻ, tốc độ cao của Tiên phong. Lao vào\nmục tiêu và tự kích nổ.\nMạnh trước Xe cơ giới, Robot\nYếu trước Bộ binh, Công trình
+446	Drone Nhện
+447	Xe tăng điện tử thử nghiệm: pháo của nó bắn ra\nmột luồng điện mạnh. Chỉ có thể xây 1 cái.\nMạnh trước Xe tăng và Xe cơ giới\nYếu trước Máy bay
+448	Shockfang
+449	Bộ binh tinh nhuệ trang bị cuộn Tesla cầm tay.\nMạnh trước Bộ binh và Xe cơ giới\nYếu trước Máy bay
+450	Lính Tesla
+451	Lưu trữ lượng Quặng và Đá quý\ntinh luyện dư thừa.
+452	Kho chứa
+453	Xạ thủ bắn tỉa tầm xa. Một phát hạ gục hầu hết\nbộ binh. Ẩn mình khi đứng yên.\nMạnh trước Bộ binh\nYếu trước Xe cơ giới, Công trình
+454	Lính Bắn tỉa
+455	Xe tăng tên lửa tám chân của Tiên phong: tên lửa\ntấn công từ trên cao hạng nặng, tên lửa phòng không\nvà tên lửa đánh chặn bắn hạ rocket.\nMạnh trước Xe cơ giới, Máy bay\nYếu trước Bộ binh
+456	Xe tăng Nhện
+457	Xác (Xe tăng Nhện)
+458	Sản xuất và sửa chữa tàu ngầm\nvà tàu vận tải.
+459	Căn cứ Tàu ngầm
+460	Xâm nhập công trình địch để lấy tin tình báo hoặc\nphá hoại. Hiệu ứng chính xác tùy thuộc vào\ncông trình bị xâm nhập.\nMất ngụy trang khi tấn công.\nCó thể phát hiện gián điệp.\nMạnh trước Bộ binh\nYếu trước Xe cơ giới và Máy bay\nKỹ năng đặc biệt: Ngụy trang
+461	Gián điệp
+462	Gián điệp Anh
+463	Phòng không cơ động: bệ phóng xoay với tên lửa\ntầm nhiệt Python và tên lửa radar Derby, bay vọt\nlên cao rồi bổ nhào xuống máy bay.\nMạnh trước Máy bay và Trực thăng\nKhông thể tấn công mục tiêu mặt đất
+464	Spyder Talon
+465	Đơn vị chống hạm ngầm dưới nước, trang bị ngư lôi.\nCó thể phát hiện tàu ngầm khác.\nMạnh trước Hải quân\nYếu trước Quân mặt đất và Máy bay\nKỹ năng đặc biệt: Lặn
+466	Tàu ngầm
+467	Cung cấp công nghệ cao cấp của Tiên phong.
+468	Trung tâm Công nghệ Tiên phong
+469	Xe chở quân bọc thép nhẹ có khả năng\ntàng hình. Trang bị tên lửa đối đất.\nMạnh trước Giáp nhẹ\nYếu trước Bộ binh, Xe tăng và Máy bay
+470	Xe Vận tải Pha
+471	Cỗ máy tấn công bốn chân chậm chạp của Tiên phong,\ntrang bị pháo hạng nặng và súng máy.\nMạnh trước Xe cơ giới, Bộ binh\nYếu trước Máy bay
+472	Strider
+473	Trạm điều khiển mặt đất cho vệ tinh của bạn.\nNếu bạn mất hết các Trạm Vệ tinh Mặt đất, mọi vệ tinh\ncủa bạn sẽ ngừng hoạt động cho đến khi bạn xây một trạm mới.
+474	Trạm Vệ tinh Mặt đất
+475	Sản xuất và sửa chữa tàu chiến và\ntàu vận tải.
+476	Xưởng Đóng tàu
+477	Chướng ngại vật Chống tăng
+478	Robot hạng nặng của Tiên phong phóng ra tia sét Tesla\ntừ hai tay.\nMạnh trước Bộ binh, Robot\nYếu trước Xe cơ giới, Máy bay
+479	Automaton Tesla
+480	Trung tâm Công nghệ
+481	Huấn luyện bộ binh.
+482	Doanh trại Liên minh
+483	Trực thăng tấn công hạng nặng: tên lửa chống tăng HOT\nvà cụm phóng bắn ra một loạt rocket.\nChỉ Pháp và Đức.\nMạnh trước Xe tăng, Xe cơ giới và Bộ binh\nYếu trước Phòng không
+484	Tiger
+485	Bệ phóng nhiệt áp bọc thép. Tầm bắn ngắn,\nnhưng tàn phá dữ dội ở cự ly gần.\nMạnh trước Bộ binh và Công trình\nYếu trước Xe tăng và Máy bay
+486	TOZ-1 Sunflare
+487	Trực thăng chở quân tốc độ cao.\nThả màn khói và thả quân bằng dây\ntừ tư thế lượn đứng (F tại đây, G để chọn điểm hạ).\nKhông vũ trang
+488	Chinook
+489	Xác (Chinook)
+490	Vận chuyển tiền mặt đến người chơi khác.\nKhông vũ trang
+491	Xe Tiếp tế
+492	Công trình phòng thủ cao cấp.\nCần điện để hoạt động.\nCó thể phát hiện đơn vị tàng hình.\nMạnh trước Xe cơ giới và Bộ binh\nYếu trước Máy bay
+493	Cuộn Tesla
+494	Xe tăng gắn cuộn Tesla.\nMạnh trước Bộ binh, Xe cơ giới và Công trình\nYếu trước Máy bay
+495	Xe tăng Tesla
+496	Máy bay ném bom chiến lược bốn động cơ.\nThả bom khinh khí RDS-37 khi Đòn Nhiệt hạch\nđã sẵn sàng. Không có vũ khí nào khác.\nChỉ Nga. Chỉ có thể xây 1 cái.
+497	Tv-95 Bear
+498	Xe tên lửa chống hạm: tấn công tàu chiến ở ngoài khơi xa.\nMạnh trước Tàu chiến\nYếu trước mục tiêu mặt đất và Máy bay
+499	Type-12 Sea Arrow
+500	Xác (Máy bay Trinh sát)
+501	Máy bay Trinh sát
+502	Cột Điện
+503	Nhà thờ
+504	Xác (Máy bơm Dầu)
+505	Máy bơm Dầu
+506	Pháo rocket tầm xa.\nMạnh trước Bộ binh và Công trình\nYếu trước Xe cơ giới và Máy bay
+507	Bệ phóng Rocket V2
+508	Rocket tầm xa chính xác cao.\nMạnh trước Công trình, Bộ binh và Xe cơ giới\nYếu trước Máy bay; nạp đạn chậm
+509	Vilkra
+510	(điểm mốc cho hành vi kịch bản)
+511	Thùng Gỗ
+512	Sản xuất xe cơ giới.
+513	Nhà máy Chiến xa
+514	Cối xay gió
+515	Hàng rào Gỗ
+516	Bệ pháo hạng nặng của Pháp. Rất chậm, nhưng\npháo của nó có tầm bắn xa hơn mọi xe tăng và gây sát thương\nmạnh hơn bất kỳ khẩu pháo nào khác.\nMạnh trước Xe cơ giới, Công trình\nYếu trước Bộ binh khi áp sát, Máy bay
+517	Robot Xe tăng XR-85
+518	Xác (Robot Xe tăng XR-85)
+519	Y-20 Kunpeng
+520	Máy bay tấn công trang bị súng máy đôi.\nMạnh trước Bộ binh và Giáp nhẹ\nYếu trước Xe tăng và Máy bay
+521	Máy bay Tấn công Yak
+522	Máy bay ném bom nguyên tử kiểu cánh bay.\nThả bom Fatman khi Đòn Fatman đã sẵn sàng.\nKhông có vũ khí nào khác.\nChỉ Hoa Kỳ. Chỉ có thể xây 1 cái.
+523	AB-35 Longwing
+524	Xe tên lửa đạn đạo: bắn hai tên lửa trên giá phóng\nvào mục tiêu cách 22 ô, rồi nạp đạn chậm.\nChỉ phòng không tầm xa mới có thể chặn được tên lửa này.\nMạnh trước Công trình và Quân mặt đất\nYếu trước Máy bay và cận chiến
+525	Zolfaghar
+526	AI Tàn bạo
+527	AI Dễ
+528	AI Khó
+529	AI Hải quân
+530	AI Thường
+531	Phòng không
+532	Không quân
+533	Tuần duyên
+534	Chỉ huy
+535	Phòng thủ Mặt đất
+536	Thủy quân Lục chiến
+537	Hải quân
+538	Lực lượng Không gian
+539	Chiến lược
+540	Không người lái
+541	Tường
+542	Hủy
+543	Chuyển chế độ trò chuyện
+544	Pha màu
+545	Bảng màu
+546	Ngẫu nhiên
+547	Lưu
+548	Các đơn vị đã chọn sẽ di chuyển đến vị trí mong muốn\nvà tấn công bất kỳ kẻ địch nào gặp trên đường đi.\nGiữ <(Ctrl)> khi chọn mục tiêu để ra lệnh Tấn công Càn quét,\ntấn công bất kỳ đơn vị hoặc công trình nào gặp trên đường đi.\nNhấp chuột trái vào biểu tượng rồi nhấp chuột phải vào vị trí mục tiêu.
+549	Các đơn vị đã chọn sẽ thực hiện hoạt động triển khai mặc định\n- MCV sẽ mở ra thành Xưởng Xây dựng\n- Xưởng Xây dựng sẽ gấp lại thành MCV\n- Tàu vận tải sẽ cho hành khách xuống\n- Xe tải Phá hủy và Xe tăng MAD sẽ tự hủy\n- Xe Rải mìn sẽ đặt một quả mìn\n- Máy bay sẽ quay về căn cứ\nThực hiện ngay lập tức trên các đơn vị đã chọn.
+550	Buộc Tấn công
+551	Các đơn vị đã chọn sẽ tấn công đơn vị hoặc vị trí được nhắm đến\n- Hoạt động mặc định đối với mục tiêu bị vô hiệu hóa\n- Cho phép nhắm mục tiêu vào lực lượng của mình hoặc đồng minh\n- Đơn vị pháo binh tầm xa sẽ luôn nhắm vào\nvị trí, bỏ qua đơn vị và công trình\nNhấp chuột trái vào biểu tượng rồi nhấp chuột phải vào mục tiêu.\nGiữ <(Ctrl)> để kích hoạt tạm thời khi điều khiển đơn vị.
+552	Buộc Di chuyển
+553	Các đơn vị đã chọn sẽ di chuyển đến vị trí mong muốn\n- Hoạt động mặc định đối với mục tiêu bị vô hiệu hóa\n- Xe cơ giới sẽ cố gắng cán chết địch tại vị trí mục tiêu\n- Trực thăng sẽ hạ cánh tại vị trí mục tiêu\n- Xe tăng Chrono sẽ dịch chuyển tức thời đến vị trí mục tiêu\nNhấp chuột trái vào biểu tượng rồi nhấp chuột phải vào mục tiêu.\nGiữ <(Alt)> để kích hoạt tạm thời khi điều khiển đơn vị.
+554	Các đơn vị đã chọn sẽ đi theo đơn vị được nhắm đến.\nNhấp chuột trái vào biểu tượng rồi nhấp chuột phải vào đơn vị mục tiêu.
+555	Chế độ Điểm mốc
+556	Dùng Chế độ Điểm mốc để ra nhiều lệnh nối tiếp nhau\ncho các đơn vị đã chọn. Đơn vị sẽ thực hiện lệnh\nngay khi nhận được.\nNhấp chuột trái vào biểu tượng rồi ra lệnh trong thế giới game.\nGiữ <(Shift)> để kích hoạt tạm thời khi điều khiển đơn vị.
+557	Các đơn vị đã chọn sẽ dừng hoạt động hiện tại\nvà di chuyển đến một vị trí gần đó.\nThực hiện ngay lập tức trên các đơn vị đã chọn.
+558	Các đơn vị đã chọn sẽ dừng hoạt động hiện tại.\nCác công trình đã chọn sẽ đặt lại điểm tập kết.\nThực hiện ngay lập tức trên các mục tiêu đã chọn.
+559	Chuyển đổi
+560	Hủy bỏ
+561	Cho $20,000
+562	Xóa Màn sương
+563	Tăng trưởng Tài nguyên
+564	Đặt lại Màn sương
+565	Xóa đối tượng đã chọn
+566	Xóa mọi thứ trong khu vực đã chọn
+567	Tham gia
+568	Sao chép khu vực đã chọn
+569	Dán khu vực đã lưu
+570	Làm lại
+571	Làm lại bước cuối
+572	Hoàn tác bước cuối
+573	Bản ghi
+574	Đặt lại Bộ lọc
+575	Bắt đầu
+576	Tải
+577	Kết nối với tài khoản diễn đàn OpenRA
+578	Gỡ bỏ phím tắt
+579	Ghi đè
+580	Đặt lại về mặc định
+581	Đuổi người chơi này
+582	OK
+583	Quản lý Nội dung
+584	Cài đặt Thủ công
+585	Cài đặt Bản đồ
+586	Lịch sử
+587	Lớp phủ
+588	Chọn
+589	Ô
+590	Công cụ
+591	Cập nhật Bản đồ
+592	Xóa Tất cả Bản đồ
+593	Xóa Bản đồ
+594	Bản đồ Ngẫu nhiên
+595	Bản đồ Máy chủ
+596	Bản đồ Chính thức
+597	Bản đồ Tùy chỉnh
+598	Xóa Tất cả
+599	Xóa Hiện tại

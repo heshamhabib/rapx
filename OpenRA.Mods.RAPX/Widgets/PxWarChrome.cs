@@ -10,6 +10,7 @@
 #endregion
 
 using System;
+using System.Linq;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Widgets;
 using OpenRA.Primitives;
@@ -108,8 +109,14 @@ namespace OpenRA.Mods.RAPX.Widgets
 			WidgetUtils.FillRectWithColor(new Rectangle(r.Right - width, r.Y + width, width, r.Height - 2 * width), color);
 		}
 
+		// Letter spacing splits words into single glyphs, which breaks joined (Arabic) and wide (CJK) scripts
+		static bool Spaceable(string text) => text.All(c => c < 0x250);
+
 		public static int SpacedWidth(SpriteFont font, string text, int spacing)
 		{
+			if (!Spaceable(text))
+				return font.Measure(text).X;
+
 			var w = 0;
 			foreach (var c in text)
 				w += font.Measure(c.ToString()).X + spacing;
@@ -119,6 +126,12 @@ namespace OpenRA.Mods.RAPX.Widgets
 		public static void DrawSpaced(SpriteFont font, string text, float x, float y, int spacing, Color color)
 		{
 			var shadow = Color.FromArgb(color.A * 3 / 4, 0, 0, 0);
+			if (!Spaceable(text))
+			{
+				font.DrawTextWithShadow(text, new float2(x, y), color, shadow, 1);
+				return;
+			}
+
 			foreach (var c in text)
 			{
 				var s = c.ToString();

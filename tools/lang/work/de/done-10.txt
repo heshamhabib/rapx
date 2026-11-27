@@ -1,0 +1,245 @@
+2250	Marineeinheit verloren.
+2251	{ $player } ist jetzt Admin.
+2252	Neue Bauoptionen.
+2253	{ $player } heißt jetzt { $name }.
+2254	Nach Spielbeginn können nur Zuschauer und besiegte Spieler entfernt werden.
+2255	Du hast keine Berechtigung, diesem Server beizutreten.
+2256	Der Serverport ist aus dem Internet nicht erreichbar.
+2257	Das Spiel kann erst starten, wenn die erforderlichen Plätze besetzt sind.
+2258	Das Spiel kann ohne Spieler nicht starten.
+2259	{ $player } (Zuschauer) hat die Verbindung getrennt.
+2260	Geöffnet
+2261	{ $player } hat { $name } auf { $value } geändert.
+2262	{ $option } kann nicht geändert werden.
+2263	Friedensvertrag in Kraft: Du kannst noch keine anderen Spieler angreifen.
+2264	Der Friedensvertrag ist beendet. Krieg!
+2265	Der Friedensvertrag endet in { $minutes ->\n[one] { $minutes } Minute\n*[other] { $minutes } Minuten\n}.
+2266	Es ist kein Friedensvertrag in Kraft.
+2267	Der Friedensvertrag endet in { $seconds }...
+2268	Ein Friedensvertrag gilt für { $minutes ->\n[one] { $minutes } Minute\n*[other] { $minutes } Minuten\n}. Bis zu seinem Ende keine Angriffe. Gib /endtreaty ein, um für ein vorzeitiges Ende zu stimmen.
+2269	Alle Spieler sind einverstanden: Der Vertrag endet in { $seconds } Sekunden.
+2270	{ $player } stimmt für ein vorzeitiges Vertragsende ({ $votes }/{ $needed }).
+2271	Die Farbe wurde angepasst, um sich von einem anderen Spieler abzuheben.
+2272	Die Farbe wurde angepasst, um sich vom Gelände abzuheben.
+2273	{ $player } hat die Verbindung getrennt.
+2274	Ein Spieler wurde nach Zeitüberschreitung getrennt.
+2275	{ $player } wurde besiegt.
+2276	{ $player } hat gesiegt.
+2277	Primärgebäude gewählt.
+2278	Kein Platz zum Abseilen: Der Hubschrauber steigt mit dem Rest seiner Truppen wieder auf.
+2279	Abseilen: Landezone anklicken (Shift+Klick zum Einreihen, Rechtsklick zum Abbrechen).
+2280	Wähle einen Transporthubschrauber mit Soldaten an Bord zum Abseilen.
+2281	Wegpunktmodus: Klicken fügt Punkte hinzu, Doppelklick oder erneuter Tastendruck sendet.
+2282	Feuerauftrag: Die Unterstützung feuert auf den roten Rauch.
+2283	Keine Unterstützung in Reichweite des roten Rauchs.
+2284	Roter Rauch bereit.
+2285	Feindlicher roter Rauch gesichtet. Beschuss im Anflug!
+2286	Verstärkung ist eingetroffen.
+2287	{ $name } ({ $id }) entfernt
+2288	Bereich { $x },{ $y } ({ $width },{ $height }) entfernt
+2289	{ $amount ->\n[one] Eine Markierungskachel entfernt\n*[other] { $amount } Markierungskacheln entfernt\n}
+2290	{ $type } entfernt
+2291	Repariere.
+2292	Wiederholungsdatei „{ $file }“ konnte nicht gelöscht werden. Details siehe debug.log.
+2293	Der Server verlangt ein OpenRA-Forenkonto.
+2294	Nur der Host kann das tun.
+2295	Der Server verlangt ein Passwort.
+2296	Satellit gestartet.
+2297	Aktuelle Karte gespeichert.
+2298	Spielstand „{ $savePath }“ konnte nicht gelöscht werden. Details siehe Logs.
+2299	Screenshot { $filename } gespeichert
+2300	Suche Karte im Resource Center...
+2301	Ziel wählen.
+2302	Objekt { $id } ausgewählt
+2303	Bereich { $x },{ $y } ({ $width },{ $height }) ausgewählt
+2304	Silos benötigt.
+2305	Dein Platz wurde vom Host geschlossen.
+2306	Sonarimpuls bereit.
+2307	Der Startpunkt ist an einen anderen Spielerplatz gebunden.
+2308	Du kannst nicht denselben Startpunkt wie ein anderer Spieler belegen.
+2309	Spionageflugzeug bereit.
+2310	Der Status kann nach Spielbeginn nicht geändert werden ({ $command }).
+2311	Der Status kann im Bereit-Zustand nicht geändert werden.
+2312	Gebäude eingenommen.
+2313	{ $player } (Team { $team }) hat die Verbindung getrennt.
+2314	{ $admin } hat { $player } vorübergehend vom Server gesperrt.
+2315	Das Zeitlimit ist abgelaufen.
+2316	{ $player } wurde nach Zeitüberschreitung getrennt.
+2317	{ $timeout ->\n[one] { $player } wird in { $timeout } Sekunde getrennt.\n*[other] { $player } wird in { $timeout } Sekunden getrennt.\n}
+2318	Unser Titan ist gefallen.
+2319	Dieser Server benötigt mindestens zwei menschliche Spieler für ein Spiel.
+2320	Kein weiterer Bau möglich.
+2321	Nicht möglich. Bau läuft.
+2322	Abstimmung kann nicht gestartet werden.
+2323	Einheit verloren.
+2324	Einheit befördert.
+2325	Einheit bereit.
+2326	Einheit repariert.
+2327	Einheit gestohlen.
+2328	Karte wurde auf dem Server nicht gefunden.
+2329	Unbekannter Serverbefehl: { $command }.
+2330	Abstimmungen zum Rauswurf sind auf diesem Server deaktiviert.
+2331	Abstimmung zum Rauswurf von { $kickee } ist gescheitert.
+2332	{ $percentage }% der Spieler haben für den Rauswurf von { $kickee } gestimmt.
+2333	{ $kicker } hat eine Abstimmung zum Rauswurf von { $kickee } gestartet.
+2334	Wetter: { $weather }.
+2335	Wettervorhersage: { $weather } in { $seconds } Sekunden.
+2336	Du wurdest vom Server verbannt.
+2337	Du wurdest vom Server entfernt.
+2338	Du wurdest vorübergehend vom Server gesperrt.
+2339	Nah
+2340	Weit
+2341	Am weitesten
+2342	Mittel
+2343	Alle
+2344	Mehrere
+2345	Keine
+2346	Suchergebnisse
+2347	Klassisch
+2348	Modern
+2349	Vollbild
+2350	Vollbild (Legacy)
+2351	Fenster
+2352	Schnell
+2353	Schneller
+2354	Am schnellsten
+2355	Normal
+2356	Langsamer
+2357	Am langsamsten
+2358	Bots
+2359	Bots deaktiviert
+2360	Geschlossen
+2361	Offen
+2362	Platz
+2363	Invertiert
+2364	Joystick
+2365	Armee
+2366	Armee (Diagramm)
+2367	Grundlagen
+2368	Kampf
+2369	Einnahmen (Diagramm)
+2370	Wirtschaft
+2371	Information: Keine
+2372	Produktion
+2373	Unterstützung
+2374	Datum
+2375	Spieler
+2376	Größe
+2377	Titel
+2378	Kein Vertrag
+2379	Benutzerdefiniert
+2380	OpenRA-Standard
+2381	Red Alert 2
+2382	Red Alert 2 (Befehle per Rechtsklick)
+2383	Letzte 14 Tage
+2384	Letzte 30 Tage
+2385	Letzte 7 Tage
+2386	Heute
+2387	Lang (60+ Min.)
+2388	Mittel (30 Min.)
+2389	Kurz (10 Min.)
+2390	Unter 5 Min.
+2391	Mehrspieler
+2392	Einzelspieler
+2393	Alle Spieler
+2394	Nebel deaktivieren
+2395	Andere
+2396	Hinzufügen
+2397	Bots einrichten
+2398	Teams einrichten
+2399	Jeder gegen jeden
+2400	Menschen gegen Bots
+2401	Entfernen
+2402	{ $count } Teams
+2403	Schwere Unterstützung
+2404	Leichte Unterstützung
+2405	Nur MBF
+2406	Immer anzeigen
+2407	Bei Schaden anzeigen
+2408	Standard
+2409	Automatisch
+2410	Deaktiviert
+2411	Manuell
+2412	Nur Infanterie
+2413	Keine Superwaffen
+2414	Unbeschränkt
+2415	Kein Limit
+2416	{ $minutes ->\n[one] { $minutes } Minute\n*[other] { $minutes } Minuten\n}
+2417	Aus
+2418	Nur optisch
+2419	Häufig
+2420	Selten
+2421	Niederlage
+2422	Sieg
+2423	BÜNDNIS { $p0 }  ·  NATIONALES DOSSIER
+2424	{ $p0 } VERFÜGBAR
+2425	{ $p0 } FELDER
+2426	{ $p0 } FELDER/S
+2427	{ $p0 } DPS
+2428	{ $p0 } EXKLUSIV
+2429	{ $p0 } LAFETTEN
+2430	{ $p0 } NATIONEN   ·   { $p1 } EINTRÄGE   ·   PFEILE / TAB ZUM BLÄTTERN
+2431	{ $p0 } NATIONEN
+2432	{ $p0 } SCHIENEN
+2433	{ $p0 } TITEL · { $p1 }
+2434	{ $p0 } Transportplätze: baut und munitioniert nur Transportflugzeuge
+2435	KI-KOMMANDANT
+2436	LUFT
+2437	Flugabwehr
+2438	Luftlandung: { $p0 } Fallschirmjäger ({ $p1 })
+2439	LUFTFAHRZEUGE
+2440	Lufttransport
+2441	Amphibisch
+2444	Täuschkörper: { $p0 } riesige Salven täuschen { $p1 }% der Lenkraketen
+2446	Anti-Schiff-Torpedos
+2447	Affentitan
+2448	BEWAFFNUNG
+2449	PANZERUNG
+2450	PANZERUNG
+2451	ARMEE
+2452	ARSENAL-KATALOG
+2453	Artilleriegranate
+2454	ATGM
+2455	Atombombe
+2456	Atomatem trifft auch Luftfahrzeuge\nDurchschwimmt die Meere · 1.000.000 LP
+2457	Atomtitan
+2458	Ballistisch
+2459	Basisverteidigung
+2460	Basisgebäude
+2461	Strahl
+2462	Boot
+2463	Bomber
+2464	Bomben
+2465	BAUZEIT
+2466	Gebäude
+2467	Kann Luftziele bekämpfen
+2468	Kanonengranate
+2469	FÄHIGKEITEN
+2470	Nimmt feindliche Gebäude ein
+2471	Felder
+2472	Felder (min. { $p0 })
+2473	WÄHLE DEINE NATION
+2474	WÄHLE DEINEN TITAN
+2475	CIWS
+2476	Nahbereichsabwehr
+2477	Streumunition
+2478	KOMMANDANT · { $p0 }
+2479	KOMMANDANT
+2480	KOSTEN
+2481	Marschflugkörper
+2482	ZYKLUS { $p0 }s
+2483	Reine Flugabwehr
+2484	BESIEGT · { $p0 }
+2485	BESIEGT
+2486	VERTEIDIGUNG
+2487	VERTEIDIGUNG
+2488	Verteidigungsgebäude
+2489	Spürt getarnte Einheiten auf
+2490	GETRENNT
+2491	Tarnt sich als Zivilfahrzeug
+2492	Tarnt sich als feindlicher Soldat
+2493	SCH { $p0 }
+2494	Schaden
+2496	Drohne
+2498	Setzt Fallschirmjäger ab
+2499	HALTBARKEIT

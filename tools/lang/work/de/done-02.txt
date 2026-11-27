@@ -1,0 +1,250 @@
+250	AF-4 Spectre II
+251	Fliegender Lückengenerator: ein unbewaffnetes Radarflugzeug,\ndas den Boden unter sich vor dem Feind verbirgt.\nSchicke es über ein Gebiet, dann kreist es dort.\nBenötigt Technologiezentrum\nUnbewaffnet, schwach gegen Flugabwehr
+252	AE-2 Shroud Hawk
+253	Unbemannte Kampfdrohne.\nBillig, wenig Lebenspunkte\nStark gegen Infanterie und leichte Panzerung\nPrototyp, einer pro Spieler\nGeflogen von: Russland
+254	Grom-K
+255	VTOL-Senkrechtstarter.\nStark gegen Fahrzeuge\nSchwach gegen Flugabwehr\nGenerationsstufe 3\nGeflogen von: Union, USA, England, Italien, Indien
+256	Harrow
+257	Schwerer Bomber.\nStark gegen Gebäude\nSchwach gegen Kampfjets und Flugabwehr\nGenerationsstufe 0\nGeflogen von: Deutschland
+258	He-177 Greif
+259	Schwerer Bomber.\nStark gegen Gebäude\nSchwach gegen Kampfjets und Flugabwehr\nGenerationsstufe 5\nGeflogen von: Deutschland
+260	HG-229 Nachtflügel
+261	Tarnkappenjäger.\nStark gegen Gebäude und Fahrzeuge\nSchwach gegen Flugabwehr\nGenerationsstufe 5\nGeflogen von: China
+262	JX-20 Jade Dragon
+263	Leichtes Erdkampfflugzeug.\nStark gegen Infanterie, leichte Panzerung und Drohnen\nSchwach gegen Kampfjets und Flugabwehr\nGenerationsstufe 2\nGeflogen von: Ukraine, Kuba, Ägypten
+264	L-39U Albatross
+265	Jäger mit Kolbenmotor aus den 1940ern.\nBillig und schnell gebaut\nStark gegen Infanterie und leichte Panzerung\nGenerationsstufe 0\nGeflogen von: Vanguard, Russland, China
+266	LaV-11 Fang
+267	Mehrzweckkampfflugzeug.\nStark gegen Gebäude und Fahrzeuge\nSchwach gegen Flugabwehr\nGenerationsstufe 3\nGeflogen von: Union, Frankreich, Ägypten, Indien, Ukraine
+268	Mirago 2000
+269	Düsenjäger.\nStark gegen Gebäude und Fahrzeuge\nSchwach gegen Flugabwehr\nGenerationsstufe 2\nGeflogen von: Vanguard, Russland, Ukraine, Kuba, Indien, China, Pakistan, Iran, Ägypten
+270	MiK-21 Fishbone
+271	Mehrzweckkampfflugzeug.\nStark gegen Gebäude und Fahrzeuge\nSchwach gegen Flugabwehr\nGenerationsstufe 3\nGeflogen von: Vanguard, Russland, Ukraine, Kuba, Indien, Ägypten
+272	MiK-23 Flintlock
+273	Schneller Abfangjäger.\nStark gegen Gebäude und Fahrzeuge\nSchwach gegen Flugabwehr\nGenerationsstufe 3\nGeflogen von: Vanguard, Russland, Ukraine, Indien
+274	MiK-25 Foxbane
+275	Jäger mit Kolbenmotor aus den 1940ern.\nBillig und schnell gebaut\nStark gegen Infanterie und leichte Panzerung\nGenerationsstufe 0\nGeflogen von: Vanguard, Russland
+276	MiK-3 Strela
+277	Tarnkappenjäger.\nStark gegen Gebäude und Fahrzeuge\nSchwach gegen Flugabwehr\nPrototyp, einer pro Spieler\nGeflogen von: Iran
+278	Qahir-X
+279	Mehrzweckkampfflugzeug.\nStark gegen Gebäude und Fahrzeuge\nSchwach gegen Flugabwehr\nGenerationsstufe 4\nGeflogen von: Frankreich, Ägypten, Indien, Ukraine
+280	Rafal F4
+281	Düsenjäger.\nStark gegen Gebäude und Fahrzeuge\nSchwach gegen Flugabwehr\nGenerationsstufe 3\nGeflogen von: Iran
+282	Saeqa
+283	Marine-Jagdbomber.\nStark gegen Schiffe und Fahrzeuge\nSchwach gegen Flugabwehr\nGenerationsstufe 2\nGeflogen von: England
+284	Sea Vixa
+285	Hochgeschwindigkeits-Aufklärungsjet.\nSehr schwer abzufangen\nSchwach gegen Flugabwehr\nGenerationsstufe 3\nGeflogen von: USA
+286	SR-7 Blackwing
+287	Gepanzertes Erdkampfflugzeug.\nStark gegen Panzer und Fahrzeuge\nSchwach gegen Kampfjets\nGenerationsstufe 3\nGeflogen von: Vanguard, Russland, Ukraine, Iran
+288	Sk-25 Rook
+289	Düsenjäger.\nStark gegen Gebäude und Fahrzeuge\nSchwach gegen Flugabwehr\nGenerationsstufe 3\nGeflogen von: Vanguard, Russland, Ukraine, China
+290	Sk-27 Flankard
+291	Mehrzweckkampfflugzeug.\nStark gegen Gebäude und Fahrzeuge\nSchwach gegen Flugabwehr\nGenerationsstufe 4\nGeflogen von: Vanguard, Russland, Indien, China
+292	Sk-30 Flankard-M
+293	Mehrzweckkampfflugzeug.\nStark gegen Gebäude und Fahrzeuge\nSchwach gegen Flugabwehr\nGenerationsstufe 4\nGeflogen von: Vanguard, Russland, China, Ägypten, Iran
+294	Sk-35 Flankard-E
+295	Tarnkappenjäger.\nStark gegen Gebäude und Fahrzeuge\nSchwach gegen Flugabwehr\nPrototyp, einer pro Spieler\nGeflogen von: Vanguard, Russland
+296	Sk-47 Berkov
+297	Unbemannte Kampfdrohne.\nBillig, wenig Lebenspunkte\nStark gegen Infanterie und leichte Panzerung\nGenerationsstufe 3\nGeflogen von: Türkei
+298	Schwarmdrohne
+299	Schwerer Bomber.\nStark gegen Gebäude\nSchwach gegen Kampfjets und Flugabwehr\nGenerationsstufe 3\nGeflogen von: Russland
+300	Tv-160 Swanwing
+301	Mehrzweckkampfflugzeug.\nStark gegen Gebäude und Fahrzeuge\nSchwach gegen Flugabwehr\nGenerationsstufe 4\nGeflogen von: England, Deutschland, Italien, Türkei
+302	Typhon
+303	Transportflugzeug.\nLegt eine Nebelwand und seilt seine Truppen\nim Schwebeflug ab (F hier, G für Zielpunkt).\nTrägt Infanterie\nUnbewaffnet\nGenerationsstufe 4\nGeflogen von: USA, Japan
+304	Kestrel-Kipprotor
+305	Schwerer Bomber.\nStark gegen Gebäude\nSchwach gegen Kampfjets und Flugabwehr\nGenerationsstufe 2\nGeflogen von: England
+306	Volcan
+307	Unbemannte Kampfdrohne.\nBillig, wenig Lebenspunkte\nStark gegen Infanterie und leichte Panzerung\nPrototyp, einer pro Spieler\nGeflogen von: USA
+308	AX-47 Stingray
+309	VTOL-Senkrechtstarter.\nStark gegen Fahrzeuge\nSchwach gegen Flugabwehr\nPrototyp, einer pro Spieler\nGeflogen von: Vanguard, Russland
+310	Yk-141 Freestyler
+311	Tarnkappenjäger.\nStark gegen Gebäude und Fahrzeuge\nSchwach gegen Flugabwehr\nPrototyp, einer pro Spieler\nGeflogen von: Union, USA
+312	AYF-23 Black Recluse
+313	Gepanzertes Bomben-Luftschiff.\nRiesige Bombenlast, sehr langsam\nSchwach gegen Flugabwehr\nPrototyp, einer pro Spieler\nGeflogen von: Vanguard, Russland, Ukraine, Kuba, Indien, China, Türkei, Pakistan, Iran
+314	Zeppelin
+315	Schneller Kampfhubschrauber mit Panzerabwehrraketen\nund Kanone. Benötigt Technologiezentrum.\nStark gegen Panzer und Fahrzeuge\nSchwach gegen Flugabwehr
+316	Ka-52 Alligator
+317	Schwere 300-mm-Raketen mit sehr großer Reichweite.\nStark gegen Gebäude und Gruppen\nSchwach gegen Luftfahrzeuge; langsames Nachladen
+318	Kasirga-X
+319	Bildet Kampfhunde aus.
+320	Hundezwinger
+321	Der Riesenaffe. Wird in der Lobby gewählt: einer pro Spieler, nicht nachbaubar.\nHammerschläge zertrümmern Panzer; schleudert Felsbrocken weiter hinaus.\nSpringt hoch und schlägt überfliegende Jets und Hubschrauber herunter.\nSchneller als Godzilla, kann aber kein Wasser überqueren.\nStark gegen alles im Nahkampf
+322	King Kong
+323	Schwerer Läufer: ein KV-Panzerrumpf mit 152-mm-Geschütz\nauf zwei Beinen. Steigt über Mauern und Infanterie.\nStark gegen Fahrzeuge und Gebäude\nSchwach gegen Luftfahrzeuge
+324	KV-Läufer
+325	Bringt doppelt so viel wie ein Transporter\nan den Strand und wehrt sich gegen Luftangriffe.\nNur USA.\nStark gegen Luftfahrzeuge\nSchwach gegen Schiffe und U-Boote
+326	Amphibisches Angriffsschiff
+327	Leuchtturm
+328	Baut und startet Satelliten\n(Reiter Luftfahrzeuge). Bis zu 8 Satelliten.
+329	Startkomplex
+330	Kettenwerfer mit GPS-gelenkten Raketen.\nPräzise; +50 % Schaden gegen Gebäude.\nStark gegen Gebäude und Infanterie\nSchwach gegen Fahrzeuge und Luftfahrzeuge
+331	LRX
+332	Weitreichende Flugabwehr (Patriot-/S-400-Klasse):\nstoppt Luftfahrzeuge, Marschflugkörper und taktische ballistische Raketen.\nBenötigt eine Radarkuppel für volle Reichweite.\nStark gegen Luftfahrzeuge und Flugkörper\nSchwach gegen Bodeneinheiten
+333	Langstrecken-SAM
+334	Schwebt hoch über der Karte und feuert einen Laser\nsenkrecht nach unten auf Feinde unter ihm.\nSatelliten im Umkreis von 12 Feldern bilden ein Netz:\njeder verbundene Satellit verstärkt einen Schuss um +40 %\n(bis zu +200 %). Benötigt einen Satelliten-Uplink.\nNur ASAT-Raketenstellungen können ihn treffen
+335	Satellit
+336	Lasersatellit
+337	Allzweck-Marinetransporter.\nTrägt Infanterie und Panzer\nUnbewaffnet
+338	Transporter
+339	Billiges Flugabwehrfahrzeug mit vier schweren\nMaschinengewehren auf drehbarer Lafette.\nStark gegen Luftfahrzeuge und Infanterie\nSchwach gegen Panzer
+340	Vierlings-Flak-Halbkettenfahrzeug
+341	Kettenwerfer: große 12-Raketen-Salve.\nAufbauen, um auf Minenraketen umzuschalten,\ndie Panzerminen verstreuen.\nStark gegen Infanterie und Gebäude\nSchwach gegen Fahrzeuge und Luftfahrzeuge; langsam
+342	MARZ II
+343	US-Kapitol
+344	Das Pentagon
+345	Mount Rushmore
+346	Willis Tower
+347	Wird zum Bauhof aufgebaut.\nUnbewaffnet
+348	Mobiles Baufahrzeug
+349	Wrack (Mobiles Baufahrzeug)
+350	Weitreichende mobile Flugabwehr: Hit-to-Kill-Raketen,\nsenkrecht gestartet und ohne Drehen in jede Richtung\nabgefeuert. Schießt auch Raketen, Marschflugkörper\nund ballistische Raketen ab.\nStark gegen Luftfahrzeuge und Flugkörper\nKann keine Bodenziele angreifen
+351	Aegis Lance
+352	Repariert Fahrzeuge in der Nähe und macht Wracks\ndurch Einnehmen wieder einsatzbereit.\nUnbewaffnet
+353	Mechaniker
+354	Heilt Infanterie in der Nähe.\nUnbewaffnet
+355	Sanitäter
+356	Erzeugt Nebel, der die Umgebung verhüllt.\nUnbewaffnet
+357	Mobiler Lückengenerator
+358	Wrack (Mobiler Lückengenerator)
+359	Black Hawk
+360	Truppenhubschrauber: trägt 8 Infanteristen\nund verteidigt sich mit einem Türgeschütz.\nLegt eine Nebelwand und seilt seine Truppen\nim Schwebeflug ab (F hier, G für Zielpunkt).\nGegen Fahrzeuge unbewaffnet\nSchwach gegen Flugabwehr
+361	Mi-17 Hip
+362	Der schwerste Transporthubschrauber der Welt:\nträgt 12 Infanteristen überallhin auf der Karte.\nLegt eine Nebelwand und seilt seine Truppen\nim Schwebeflug ab (F hier, G für Zielpunkt).\nUnbewaffnet
+363	Mi-26 Halo
+364	Gepanzerter Kampfhubschrauber mit Kettenkanone und Raketen,\nder zudem 5 Infanteristen trägt.\nLegt eine Nebelwand und seilt seine Truppen\nim Schwebeflug ab (F hier, G für Zielpunkt).\nStark gegen Infanterie und Fahrzeuge\nSchwach gegen Flugabwehr
+365	Mi-35M Hind-E
+366	Britisches Geheimdiensthauptquartier.\nSchaltet den Spion und die Spionagewagen frei. Nur England.\nNur eines baubar.\nBenötigt Energie.
+367	MI6-Hauptquartier
+368	Schnelles Erdkampfflugzeug.\nStark gegen Gebäude und Fahrzeuge\nSchwach gegen Infanterie und Luftfahrzeuge
+369	MiG-Erdkampfflugzeug
+370	Erzmine
+371	Einnehmen für zusätzliche Sichtweite.
+372	Liefert Sichtweite.
+373	Kommunikationszentrum
+374	Raketenpanzer auf Ketten: feuert sein ganzes Gestell\nvon 19 Raketen in einem schweren Strom, dann lädt er nach.\nStark gegen Infanterie, Gebäude und Fahrzeuggruppen\nSchwach gegen Luftfahrzeuge und im Nahkampf
+375	Thunderhead MLRS
+376	Legt Minen, um unvorsichtige\nFeinde zu vernichten.\nKann Minen aufspüren.\nUnbewaffnet
+377	Minenleger
+378	Geldkiste
+379	(Mehrspieler-Startpunkt)
+380	Stört feindliche Radarkuppeln in der Nähe\nund lenkt anfliegende Raketen ab.\nUnbewaffnet
+381	Mobiler Radarstörer
+382	Flugabwehr mittlerer Reichweite und Raketenschild: zehn\nschnelle Abfangraketen zerlegen Raketensalven\nam Himmel. Bekämpft auch Luftfahrzeuge, Marschflugkörper\nund Drohnen. Benötigt eine Radarkuppel für volle Reichweite.\nStark gegen Raketen, Luftfahrzeuge, Marschflugkörper und Drohnen\nSchwach gegen Bodeneinheiten; kann keine ballistischen Raketen stoppen
+383	Mittelstrecken-SAM
+384	Liefert eine Atombombe.\nBenötigt Energie.\nNur eines baubar.\nSpezialfähigkeit: Atombombe
+385	Raketensilo
+386	Feuert eine verheerende Atombombe\nauf das Zielgebiet.
+387	Atombombe
+388	Getauchte Belagerungseinheit gegen Bodenziele\nmit Flugabwehr.\nKann andere U-Boote aufspüren.\nStark gegen Gebäude, Bodeneinheiten und Luftfahrzeuge\nSchwach gegen Marineeinheiten\nSpezialfähigkeit: Abtauchen
+389	Raketen-U-Boot
+390	Kampfpanzer der Vanguard: billiger und schneller\nals der Schwere Panzer, mit leichterer Kanone.\nStark gegen Fahrzeuge\nSchwach gegen Infanterie, Luftfahrzeuge
+391	Sehr schneller Truck auf Riesenrädern. Keine Waffe:\nEr überrollt Infanterie, Zäune und Sandsäcke.\nTrägt 4 Infanteristen. Nur USA.\nStark gegen Infanterie\nSchwach gegen alles, was zurückschießt
+392	Monstertruck
+393	Einnehmen für zusätzliche Mittel.
+394	Liefert zusätzliche Mittel.
+395	Ölbohrturm
+396	Offshore-Plattform, die Öl und Gas fördert\nund stetiges Einkommen bringt. Muss auf Wasser\nneben deiner Basis gebaut werden.\nEinkommen: $75 alle 10 Sekunden\nFördert nicht bei Energiemangel
+397	Bohrinsel
+398	Verteidigungsstellung mit Schießscharte für\neinen stationierten Soldaten.\nKann getarnte Einheiten aufspüren.\nStark gegen Infanterie und leichte Panzerung\nSchwach gegen Panzer und Luftfahrzeuge
+399	Bunker
+400	Der Raketenwerfer mit der größten Reichweite.\nStark gegen Gebäude und Gruppen\nSchwach gegen Luftfahrzeuge; langsames Nachladen
+401	PHX-16 Longreach
+402	Feuert seine gesamte Raketenladung sehr schnell ab.\nStark gegen Infanterie und Gebäude\nSchwach gegen Fahrzeuge und Luftfahrzeuge
+403	Pinak
+404	Ein Badger wirft Fallschirmbomben\nüber einem gewählten Ziel ab.
+405	Fallschirmbomben (einmalig)
+406	Ein Badger setzt einen Infanterietrupp\nüberall auf der Karte ab.
+407	Enthüllt kurzzeitig alle U-Boote\nin der Umgebung.
+408	Sonarimpuls
+409	Liefert Energie für andere\nGebäude.
+410	Kraftwerk
+411	Verarbeitet Erz und Edelsteine\nzu Credits.
+412	Erzraffinerie
+413	Leichtes Aufklärungs- und Unterstützungsschiff.\nKann U-Boote aufspüren.\nStark gegen Marineeinheiten\nSchwach gegen Bodeneinheiten und Luftfahrzeuge
+414	Kanonenboot
+415	Weitreichender Strahlenpanzer der Alliierten. Sein Kristall\nfeuert einen Lichtstrahl, der Feindgruppen trifft.\nStark gegen Infanterie, leichte Fahrzeuge, Gebäude\nSchwach gegen Panzer, Luftfahrzeuge
+416	Prismapanzer
+417	Kristallstrahl-Verteidigung der Alliierten.\nNahe Prismatürme verbinden sich und leiten ihre\nEnergie in den feuernden Turm: +40 % Schaden\npro verbundenem Turm (bis zu +200 %).\nBenötigt Energie.\nStark gegen Infanterie, Fahrzeuge\nSchwach gegen Luftfahrzeuge
+418	Prismaturm
+419	Verursacht seismischen Schaden an Fahrzeugen\nund Gebäuden in der Nähe.\nStark gegen Fahrzeuge und Gebäude\nSchwach gegen Infanterie und Luftfahrzeuge
+420	MAD-Panzer
+421	Verlassene Mine
+422	Dein nächster Soldat wirft eine rote Rauchgranate.\nNach 4 Sekunden feuern deine untätige Artillerie, Raketenwerfer, Schiffe\nund bis zu 4 Kampfflugzeuge 20 Sekunden lang auf den Rauch.\nDie Wolke treibt mit dem Wind, und das Feuer folgt ihr.\nDer Feind kann den Rauch ebenfalls sehen.
+423	Roter Rauch
+424	Weitreichender Panzerabwehr-Roboter der Union.\nSeine Railgun trifft hart, lädt aber langsam.\nStark gegen Fahrzeuge, Roboter\nSchwach gegen Infanterie, Luftfahrzeuge
+425	Railgun-Roboter
+426	Produziert und munitioniert Luftfahrzeuge.\nStellplätze für 10 Flugzeuge.\nMaximal 1 baubar.
+427	Strategisches Luftkommando
+428	Billigerer Kettenwerfer, der schneller nachlädt.\nStark gegen Infanterie und Gebäude\nSchwach gegen Fahrzeuge und Luftfahrzeuge
+429	Saetta
+430	SAM-Stellung
+431	Streuraketen: Jede zerfällt in Submunition.\nStark gegen Infanterie und leichte Fahrzeuge\nSchwach gegen Panzer, Gebäude und Luftfahrzeuge
+432	Saqr-36
+433	Hält Infanterie und leichte Fahrzeuge auf.\nKann von Panzern überrollt werden.
+434	Sandsackwall
+435	Heimat des strategischen Bombers Tv-95 Bear.\nLädt den thermonuklearen Schlag, solange der Bomber lebt.\nNur Russland. Maximal 1 baubar.
+436	Fernfliegerbasis
+437	Die Tv-95 Bear startet und wirft\neine RDS-37-Wasserstoffbombe auf das Ziel.\nStärker als der Fatman, schwächer als die Atomrakete.
+438	Thermonuklearer Schlag
+439	Schneller Luxuswagen für den Spion mit versteckten\nMGs und ausfahrbaren Raketen. Trägt einen Spion.\nBenötigt MI6-Hauptquartier.\nFeinde sehen ein harmloses Zivilfahrzeug, bis es\nbeschossen wird oder selbst das Feuer eröffnet.\nStark gegen Infanterie, Fahrzeuge\nSchwach gegen Luftfahrzeuge
+440	Zivilfahrzeug
+441	Spionagewagen 1
+442	Klassischer Gran Turismo mit versteckten Zwillings-\nMGs. Robuster und billiger als Spionagewagen 1.\nTrägt einen Spion. Benötigt MI6-Hauptquartier.\nFeinde sehen ein harmloses Zivilfahrzeug, bis es\nbeschossen wird oder selbst das Feuer eröffnet.\nStark gegen Infanterie\nSchwach gegen Panzer, Luftfahrzeuge
+443	Spionagewagen 2
+444	Stahlkiste
+445	Schnelle, billige Bombendrohne der Vanguard. Rennt\nauf ihr Ziel zu und detoniert.\nStark gegen Fahrzeuge, Roboter\nSchwach gegen Infanterie, Gebäude
+446	Spinnendrohne
+447	Experimenteller Cyberpanzer: Seine Kanone feuert eine\nschwere elektrische Entladung. Maximal 1 baubar.\nStark gegen Panzer und Fahrzeuge\nSchwach gegen Luftfahrzeuge
+448	Shockfang
+449	Elite-Infanterie mit tragbaren Tesla-Spulen.\nStark gegen Infanterie und Fahrzeuge\nSchwach gegen Luftfahrzeuge
+450	Schocktruppler
+451	Lagert überschüssiges\nraffiniertes Erz und Edelsteine.
+452	Silo
+453	Weitreichender Scharfschütze. Ein Schuss tötet fast jeden\nInfanteristen. Versteckt sich im Stillstand.\nStark gegen Infanterie\nSchwach gegen Fahrzeuge, Gebäude
+454	Scharfschütze
+455	Achtbeiniger Raketenpanzer der Vanguard: schwere\nTop-Attack-Raketen, Flugabwehrraketen\nund Abfangraketen gegen Raketenbeschuss.\nStark gegen Fahrzeuge, Luftfahrzeuge\nSchwach gegen Infanterie
+456	Spinnenpanzer
+457	Wrack (Spinnenpanzer)
+458	Produziert und repariert U-Boote\nund Transporter.
+459	U-Boot-Bunker
+460	Infiltriert feindliche Gebäude für Aufklärung oder\nSabotage. Die Wirkung hängt vom infiltrierten\nGebäude ab.\nVerliert die Tarnung beim Angriff.\nKann Spione aufspüren.\nStark gegen Infanterie\nSchwach gegen Fahrzeuge und Luftfahrzeuge\nSpezialfähigkeit: Verkleidung
+461	Spion
+462	Britischer Spion
+463	Mobile Flugabwehr: ein drehbarer Werfer mit Python-\nInfrarot- und Derby-Radarraketen, die hoch steigen\nund sich auf Luftziele stürzen.\nStark gegen Luftfahrzeuge und Hubschrauber\nKann keine Bodenziele angreifen
+464	Spyder Talon
+465	Getauchte Anti-Schiff-Einheit mit Torpedos.\nKann andere U-Boote aufspüren.\nStark gegen Marineeinheiten\nSchwach gegen Bodeneinheiten und Luftfahrzeuge\nSpezialfähigkeit: Abtauchen
+466	U-Boot
+467	Liefert fortschrittliche Vanguard-Technologie.
+468	Vanguard-Technologiezentrum
+469	Leicht gepanzerter Infanterietransporter mit\nTarnfunktion. Bewaffnet mit Boden-Raketen.\nStark gegen leichte Panzerung\nSchwach gegen Infanterie, Panzer und Luftfahrzeuge
+470	Phasentransporter
+471	Langsamer vierbeiniger Sturmläufer der Vanguard\nmit schwerer Kanone und Maschinengewehr.\nStark gegen Fahrzeuge, Infanterie\nSchwach gegen Luftfahrzeuge
+472	Strider
+473	Bodenkontrolle für deine Satelliten.\nVerlierst du jeden Uplink, gehen alle Satelliten\noffline, bis du einen neuen baust.
+474	Satelliten-Uplink
+475	Produziert und repariert Schiffe\nund Transporter.
+476	Werft
+477	Panzersperre
+478	Schwerer Vanguard-Roboter, der Tesla-Blitze\naus seinen Händen schleudert.\nStark gegen Infanterie, Roboter\nSchwach gegen Fahrzeuge, Luftfahrzeuge
+479	Tesla-Automat
+480	Technologiezentrum
+481	Bildet Infanterie aus.
+482	Union-Kaserne
+483	Schwerer Kampfhubschrauber: HOT-Panzerabwehrraketen\nund Werfer, die einen Raketenstrom abfeuern.\nNur Frankreich und Deutschland.\nStark gegen Panzer, Fahrzeuge und Infanterie\nSchwach gegen Flugabwehr
+484	Tiger
+485	Gepanzerter thermobarischer Werfer. Kurze Reichweite,\naber verheerend aus der Nähe.\nStark gegen Infanterie und Gebäude\nSchwach gegen Panzer und Luftfahrzeuge
+486	TOZ-1 Sunflare
+487	Schneller Infanterie-Transporthubschrauber.\nLegt eine Nebelwand und seilt seine Truppen\nim Schwebeflug ab (F hier, G für Zielpunkt).\nUnbewaffnet
+488	Chinook
+489	Wrack (Chinook)
+490	Transportiert Geld zu anderen Spielern.\nUnbewaffnet
+491	Versorgungs-Lkw
+492	Fortschrittliche Basisverteidigung.\nBenötigt Energie.\nKann getarnte Einheiten aufspüren.\nStark gegen Fahrzeuge und Infanterie\nSchwach gegen Luftfahrzeuge
+493	Tesla-Spule
+494	Panzer mit aufgesetzter Tesla-Spule.\nStark gegen Infanterie, Fahrzeuge und Gebäude\nSchwach gegen Luftfahrzeuge
+495	Tesla-Panzer
+496	Viermotoriger strategischer Bomber.\nWirft die RDS-37-Wasserstoffbombe ab, wenn der\nthermonukleare Schlag bereit ist. Keine weitere Waffe.\nNur Russland. Maximal 1 baubar.
+497	Tv-95 Bear
+498	Anti-Schiff-Raketen-Lkw: trifft Schiffe weit draußen auf See.\nStark gegen Schiffe\nSchwach gegen Landziele und Luftfahrzeuge
+499	Type-12 Sea Arrow

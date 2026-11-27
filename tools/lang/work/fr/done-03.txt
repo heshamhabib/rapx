@@ -1,0 +1,150 @@
+300	Tv-160 Swanwing
+301	Chasseur multirôle.\nFort contre Bâtiments et Véhicules\nFaible contre DCA\nGénération 4\nEn service : Angleterre, Allemagne, Italie, Turquie
+302	Typhon
+303	Avion de transport.\nDéploie un écran de fumée et fait descendre ses\ntroupes en corde lisse en vol stationnaire (F ici, G pour choisir un point).\nTransporte de l'infanterie\nNon armé\nGénération 4\nEn service : États-Unis, Japon
+304	Convertible Kestrel
+305	Bombardier lourd.\nFort contre Bâtiments\nFaible contre Chasseurs et DCA\nGénération 2\nEn service : Angleterre
+306	Volcan
+307	Drone de combat sans pilote.\nBon marché, peu résistant\nFort contre Infanterie et Blindés légers\nPrototype, un par joueur\nEn service : États-Unis
+308	AX-47 Stingray
+309	Avion à décollage vertical.\nFort contre Véhicules\nFaible contre DCA\nPrototype, un par joueur\nEn service : Vanguard, Russie
+310	Yk-141 Freestyler
+311	Chasseur furtif.\nFort contre Bâtiments et Véhicules\nFaible contre DCA\nPrototype, un par joueur\nEn service : Union, États-Unis
+312	AYF-23 Black Recluse
+313	Dirigeable de bombardement blindé.\nÉnorme charge de bombes, très lent\nFaible contre DCA\nPrototype, un par joueur\nEn service : Vanguard, Russie, Ukraine, Cuba, Inde, Chine, Turquie, Pakistan, Iran
+314	Zeppelin
+315	Hélicoptère d'attaque rapide armé de missiles antichars\net d'un canon. Nécessite un centre technologique.\nFort contre Chars et Véhicules\nFaible contre DCA
+316	Ka-52 Alligator
+317	Roquettes lourdes de 300 mm à très longue portée.\nFort contre Bâtiments et groupes\nFaible contre Aéronefs ; rechargement lent
+318	Kasirga-X
+319	Entraîne les chiens d'attaque.
+320	Chenil
+321	Le singe géant. Choisi dans le salon : un par joueur, impossible à reconstruire.\nSes coups de poing écrasent les chars ; il lance des rochers plus loin.\nIl bondit pour frapper les avions et hélicoptères qui le survolent.\nPlus rapide que Godzilla, mais ne peut pas traverser l'eau.\nFort contre tout au corps à corps
+322	King Kong
+323	Marcheur lourd : une caisse de char KV avec un canon de 152 mm\nsur deux jambes. Enjambe murs et infanterie.\nFort contre Véhicules et Bâtiments\nFaible contre Aéronefs
+324	KV Strider
+325	Transporte deux fois plus qu'un transport\njusqu'à la plage et se défend contre les aéronefs.\nÉtats-Unis uniquement.\nFort contre Aéronefs\nFaible contre Navires et Sous-marins
+326	Navire d'assaut amphibie
+327	Phare
+328	Construit et lance des satellites\n(onglet Aéronefs). Jusqu'à 8 satellites.
+329	Complexe de lancement
+330	Lanceur chenillé à roquettes guidées par GPS.\nPrécis ; +50 % de dégâts contre les bâtiments.\nFort contre Bâtiments et Infanterie\nFaible contre Véhicules et Aéronefs
+331	LRX
+332	Défense antiaérienne longue portée (classe Patriot / S-400) :\narrête aéronefs, missiles de croisière et missiles balistiques tactiques.\nNécessite un dôme radar pour sa portée maximale.\nFort contre Aéronefs et Missiles\nFaible contre Unités terrestres
+333	SAM longue portée
+334	Plane très haut au-dessus de la carte et tire un laser\nà la verticale sur les ennemis en dessous.\nLes satellites à moins de 12 cases forment un réseau :\nchaque satellite relié ajoute +40 % à un tir\n(jusqu'à +200 %). Nécessite une liaison satellite.\nSeuls les sites de missiles ASAT peuvent l'atteindre
+335	Satellite
+336	Satellite laser
+337	Transport naval polyvalent.\nTransporte infanterie et chars\nNon armé
+338	Transport
+339	Véhicule antiaérien bon marché avec quatre\nmitrailleuses lourdes sur affût tournant.\nFort contre Aéronefs et Infanterie\nFaible contre Chars
+340	Half-track AA quadruple
+341	Lanceur chenillé : une grosse salve de 12 roquettes.\nDéployez-le pour passer à des roquettes qui dispersent\ndes mines antichars.\nFort contre Infanterie et Bâtiments\nFaible contre Véhicules et Aéronefs ; lent
+342	MARZ II
+343	Capitole des États-Unis
+344	Le Pentagone
+345	Mont Rushmore
+346	Willis Tower
+347	Se déploie en chantier de construction.\nNon armé
+348	Véhicule de construction mobile
+349	Épave (Véhicule de construction mobile)
+350	Défense antiaérienne mobile longue portée : missiles à impact direct\nlancés à la verticale, tirés dans toutes les directions sans\npivoter. Abat aussi roquettes, missiles de croisière\net missiles balistiques.\nFort contre Aéronefs et Missiles\nNe peut pas attaquer les cibles au sol
+351	Aegis Lance
+352	Répare les véhicules proches et remet les épaves\nen état de marche en les capturant.\nNon armé
+353	Mécanicien
+354	Soigne l'infanterie proche.\nNon armé
+355	Infirmier
+356	Régénère le voile pour masquer les zones proches.\nNon armé
+357	Générateur de brouillage mobile
+358	Épave (Générateur de brouillage mobile)
+359	Black Hawk
+360	Hélicoptère de transport de troupes : emporte 8 fantassins\net se défend avec une mitrailleuse de sabord.\nDéploie un écran de fumée et fait descendre ses\ntroupes en corde lisse en vol stationnaire (F ici, G pour choisir un point).\nInefficace contre les véhicules\nFaible contre DCA
+361	Mi-17 Hip
+362	Le plus lourd hélicoptère de transport du monde :\nemporte 12 fantassins n'importe où sur la carte.\nDéploie un écran de fumée et fait descendre ses\ntroupes en corde lisse en vol stationnaire (F ici, G pour choisir un point).\nNon armé
+363	Mi-26 Halo
+364	Hélicoptère de combat blindé avec canon à chaîne et roquettes,\nqui transporte aussi 5 fantassins.\nDéploie un écran de fumée et fait descendre ses\ntroupes en corde lisse en vol stationnaire (F ici, G pour choisir un point).\nFort contre Infanterie et Véhicules\nFaible contre DCA
+365	Mi-35M Hind-E
+366	Quartier général du renseignement britannique.\nDébloque l'Espion et les voitures d'espion. Angleterre uniquement.\nUn seul exemplaire possible.\nNécessite de l'énergie.
+367	Quartier général du MI6
+368	Avion d'attaque au sol rapide.\nFort contre Bâtiments et Véhicules\nFaible contre Infanterie et Aéronefs
+369	Avion d'attaque MiG
+370	Mine de minerai
+371	Capturez-le pour obtenir une vision.
+372	Fournit un champ de vision.
+373	Centre de communications
+374	Char lance-roquettes chenillé : tire tout son panier de 19\nroquettes en un flot massif, puis recharge.\nFort contre Infanterie, Bâtiments et groupes de véhicules\nFaible contre Aéronefs et combat rapproché
+375	LRM Thunderhead
+376	Pose des mines pour détruire\nles ennemis imprudents.\nPeut détecter les mines.\nNon armé
+377	Mouilleur de mines
+378	Caisse d'argent
+379	(point de départ multijoueur)
+380	Brouille les dômes radar ennemis proches\net dévie les missiles entrants.\nNon armé
+381	Brouilleur radar mobile
+382	Défense antiaérienne moyenne portée et bouclier anti-roquettes : dix\nintercepteurs rapides partent en salve pour détruire les roquettes\nen vol. Abat aussi aéronefs, missiles de croisière\net drones. Nécessite un dôme radar pour sa portée maximale.\nFort contre Roquettes, Aéronefs, Missiles de croisière et Drones\nFaible contre Unités terrestres ; ne peut pas arrêter les missiles balistiques
+383	SAM moyenne portée
+384	Fournit une bombe atomique.\nNécessite de l'énergie.\nUn seul exemplaire possible.\nCapacité spéciale : Bombe atomique
+385	Silo à missiles
+386	Lance une bombe atomique dévastatrice\nsur la zone ciblée.
+387	Bombe atomique
+388	Unité de siège sous-marine contre cibles terrestres, dotée de\ncapacités antiaériennes.\nPeut détecter les autres sous-marins.\nFort contre Bâtiments, Unités terrestres et Aéronefs\nFaible contre Unités navales\nCapacité spéciale : plongée
+389	Sous-marin lance-missiles
+390	Char de combat de Vanguard : moins cher et plus rapide\nque le char lourd, avec un canon plus léger.\nFort contre Véhicules\nFaible contre Infanterie, Aéronefs
+391	Camion très rapide sur roues géantes. Sans arme :\nil écrase l'infanterie, les clôtures et les sacs de sable.\nTransporte 4 fantassins. États-Unis uniquement.\nFort contre Infanterie\nFaible contre tout ce qui riposte
+392	Monster Truck
+393	Capturez-le pour recevoir des fonds supplémentaires.
+394	Fournit des fonds supplémentaires.
+395	Derrick pétrolier
+396	Plateforme offshore qui pompe pétrole et gaz\npour un revenu régulier. Doit être construite sur l'eau\nprès de votre base.\nRevenu : $75 toutes les 10 secondes\nCesse de pomper en cas de manque d'énergie
+397	Plateforme pétrolière
+398	Défense fixe avec une meurtrière pour\nun soldat en garnison.\nPeut détecter les unités camouflées.\nFort contre Infanterie et Blindés légers\nFaible contre Chars et Aéronefs
+399	Casemate
+400	Le lance-roquettes à plus longue portée.\nFort contre Bâtiments et groupes\nFaible contre Aéronefs ; rechargement lent
+401	PHX-16 Longreach
+402	Tire toute sa charge de roquettes très rapidement.\nFort contre Infanterie et Bâtiments\nFaible contre Véhicules et Aéronefs
+403	Pinak
+404	Un Badger largue des bombes à parachute\nsur la zone choisie.
+405	Parabombes (usage unique)
+406	Un Badger largue une escouade d'infanterie\nn'importe où sur la carte.
+407	Révèle brièvement tous les sous-marins\ndans les environs.
+408	Impulsion sonar
+409	Alimente les autres\nstructures en énergie.
+410	Centrale électrique
+411	Raffine le minerai et les gemmes\nen crédits.
+412	Raffinerie de minerai
+413	Navire léger de reconnaissance et de soutien.\nPeut détecter les sous-marins.\nFort contre Unités navales\nFaible contre Unités terrestres et Aéronefs
+414	Canonnière
+415	Char à rayon allié à longue portée. Son cristal tire\nun faisceau lumineux qui frappe les groupes d'ennemis.\nFort contre Infanterie, Véhicules légers, Bâtiments\nFaible contre Chars, Aéronefs
+416	Char Prisme
+417	Défense à rayon de cristal alliée.\nLes tours Prisme proches se relient et envoient leur\nénergie à celle qui tire : +40 % de dégâts\npar tour reliée (jusqu'à +200 %).\nNécessite de l'énergie.\nFort contre Infanterie, Véhicules\nFaible contre Aéronefs
+418	Tour Prisme
+419	Inflige des dégâts sismiques aux véhicules\net structures proches.\nFort contre Véhicules et Bâtiments\nFaible contre Infanterie et Aéronefs
+420	Char MAD
+421	Mine abandonnée
+422	Votre soldat le plus proche lance un fumigène rouge.\nAprès 4 secondes, votre artillerie, vos lance-roquettes et navires inactifs\net jusqu'à 4 avions d'attaque pilonnent la fumée pendant 20 secondes.\nLe nuage dérive avec le vent, et les tirs le suivent.\nL'ennemi voit aussi la fumée.
+423	Fumée rouge
+424	Robot antiblindé longue portée de l'Union.\nSon canon électromagnétique frappe fort mais recharge lentement.\nFort contre Véhicules, Robots\nFaible contre Infanterie, Aéronefs
+425	Robot Railgun
+426	Produit et réarme les avions.\nParking pour 10 avions.\nMaximum 1.
+427	Commandement aérien stratégique
+428	Lanceur chenillé moins cher qui recharge plus vite.\nFort contre Infanterie et Bâtiments\nFaible contre Véhicules et Aéronefs
+429	Saetta
+430	Site SAM
+431	Roquettes à sous-munitions : chacune libère des bombettes.\nFort contre Infanterie et Véhicules légers\nFaible contre Chars, Bâtiments et Aéronefs
+432	Saqr-36
+433	Arrête l'infanterie et les véhicules légers.\nLes chars peuvent l'écraser.
+434	Mur de sacs de sable
+435	Base du bombardier stratégique Tv-95 Bear.\nCharge la Frappe thermonucléaire tant que le bombardier est en vie.\nRussie uniquement. Maximum 1.
+436	Base d'aviation à long rayon d'action
+437	Le Tv-95 Bear décolle et largue\nune bombe H RDS-37 sur la cible.\nPlus puissante que la Fatman, moins que le missile nucléaire.
+438	Frappe thermonucléaire
+439	Voiture de luxe rapide pour l'Espion, avec mitrailleuses\ncachées et roquettes escamotables. Transporte un Espion.\nNécessite le QG du MI6.\nL'ennemi voit une voiture civile inoffensive jusqu'à ce\nqu'elle soit prise pour cible ou ouvre le feu.\nFort contre Infanterie, Véhicules\nFaible contre Aéronefs
+440	Voiture civile
+441	Voiture d'espion 1
+442	Grand tourisme classique avec deux mitrailleuses\ncachées. Plus robuste et moins chère que la voiture d'espion 1.\nTransporte un Espion. Nécessite le QG du MI6.\nL'ennemi voit une voiture civile inoffensive jusqu'à ce\nqu'elle soit prise pour cible ou ouvre le feu.\nFort contre Infanterie\nFaible contre Chars, Aéronefs
+443	Voiture d'espion 2
+444	Caisse en acier
+445	Drone-bombe rapide et bon marché de Vanguard. Fonce\nsur sa cible et explose.\nFort contre Véhicules, Robots\nFaible contre Infanterie, Bâtiments
+446	Drone araignée
+447	Char cybernétique expérimental : son canon tire une lourde\ndécharge électrique. Maximum 1.\nFort contre Chars et Véhicules\nFaible contre Aéronefs
+448	Shockfang
+449	Infanterie d'élite équipée de bobines Tesla portatives.\nFort contre Infanterie et Véhicules\nFaible contre Aéronefs
