@@ -170,3 +170,11 @@ highground: Hold the High Ground
 	Filename: ra|audio/highground
 	Extension: mp3
 	VolumeModifier: 0.9
+roardark: Roar in the Dark
+	Filename: ra|audio/roardark
+	Extension: mp3
+	VolumeModifier: 0.9
+pinkignition: Pink Ignition
+	Filename: ra|audio/pinkignition
+	Extension: mp3
+	VolumeModifier: 0.9

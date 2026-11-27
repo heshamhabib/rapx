@@ -13,6 +13,8 @@ COVERS=(
 "lastbastion|capitol-siege.jpeg|0.42"     # Last Bastion Standing
 "tideturn|pacific-dogfight.jpg|0.17"      # Turning of the Tide
 "highground|mount-rushmore.jpeg|0.42"     # Hold the High Ground
+"pinkignition|titans-godzilla-vs-kong.jpeg|0.33"  # Pink Ignition
+"roardark|godzilla-roar-portrait.jpg|0.0"    # Roar in the Dark (landscape art: the band is most of it)
 )
 for c in "${COVERS[@]}"; do
   IFS='|' read -r track src top <<< "$c"
