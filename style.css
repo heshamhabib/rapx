@@ -927,11 +927,11 @@ html.gx-locked { overflow: hidden; }
 .titan-reel figcaption b { display: block; font: 400 11px/1.6 var(--mono); letter-spacing: .2em; text-transform: uppercase; color: var(--titan-text); }
 
 .titan-cards { display: grid; gap: clamp(22px, 3vw, 34px); }
-.titan-card { --side: var(--titan); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); grid-template-areas: "art body" "shot body";
+.titan-card { --side: var(--titan); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); grid-template-areas: "art body";
   background: var(--panel); border: 1px solid var(--line); border-left: 3px solid var(--side); }
 .titan-kong { --side: var(--ape); }
-.tc-art { grid-area: art; overflow: hidden; border-bottom: 1px solid var(--line); }
-.tc-art img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; transition: transform .8s cubic-bezier(.2,.8,.2,1); }
+.tc-art { grid-area: art; overflow: hidden; }
+.tc-art img { width: 100%; height: 100%; min-height: 260px; object-fit: cover; transition: transform .8s cubic-bezier(.2,.8,.2,1); }
 .titan-card:hover .tc-art img { transform: scale(1.04); }
 .tc-body { grid-area: body; padding: clamp(18px, 2.4vw, 28px); border-left: 1px solid var(--line); }
 .tc-role { margin: 0 0 4px; font: 400 12px/1 var(--mono); letter-spacing: .24em; text-transform: uppercase; color: var(--side); }
@@ -944,8 +944,6 @@ html.gx-locked { overflow: hidden; }
 .tc-moves li { position: relative; padding-left: 18px; color: var(--dim); line-height: 1.4; }
 .tc-moves li::before { content: ""; position: absolute; left: 0; top: .5em; width: 8px; height: 8px; background: var(--side); transform: rotate(45deg); }
 .tc-moves b { display: block; color: var(--ink); text-transform: uppercase; letter-spacing: .05em; }
-.tc-shot { grid-area: shot; border: 0; border-top: 0; }
-.tc-shot img { object-position: center; }
 
 .titan-howto { display: grid; grid-template-columns: minmax(0, 1fr) 220px; gap: clamp(20px, 3vw, 36px); align-items: center;
   margin-top: clamp(28px, 4vw, 44px); padding: clamp(18px, 3vw, 26px); background: var(--panel); border: 1px solid var(--line); }
@@ -960,8 +958,9 @@ html.gx-locked { overflow: hidden; }
   .titan-reel { max-width: 420px; justify-self: center; width: 100%; }
 }
 @media (max-width: 760px) {
-  .titan-card { grid-template-columns: minmax(0, 1fr); grid-template-areas: "art" "body" "shot"; }
-  .tc-body { border-left: 0; }
+  .titan-card { grid-template-columns: minmax(0, 1fr); grid-template-areas: "art" "body"; }
+  .tc-body { border-left: 0; border-top: 1px solid var(--line); }
+  .tc-art img { height: auto; min-height: 0; aspect-ratio: 3 / 2; }
   .titan-howto { grid-template-columns: minmax(0, 1fr); }
   .titan-howto ol { grid-template-columns: minmax(0, 1fr); }
   .titan-poster { max-width: 260px; }
